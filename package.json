@@ -1,7 +1,6 @@
 {
   "name": "dasar-ui",
   "version": "1.0.0",
-  "private": true,
   "author": "dxxta",
   "packageManager": "npm@10.9.8",
   "scripts": {
@@ -16,7 +15,8 @@
     "git:patch:push": "bash -c 'read -p \"branch: \" BRANCH && npm run git:patch && git push --follow-tags origin HEAD:refs/heads/$BRANCH'",
     "git:minor:push": "bash -c 'read -p \"branch: \" BRANCH && npm run git:minor && git push --follow-tags origin HEAD:refs/heads/$BRANCH'",
     "git:major:push": "bash -c 'read -p \"branch: \" BRANCH && npm run git:major && git push --follow-tags origin HEAD:refs/heads/$BRANCH'",
-    "release:publish": "npm run build && cd dist/dasar-ui && npm publish --access public"
+    "release:publish": "bash -c 'read -p \"otp: \" OTP && npm publish --access public --otp=$OTP'",
+    "release:build": "npm run build && cd dist/dasar-ui"
   },
   "devDependencies": {
     "@angular/platform-browser": "^22.1.0",
