@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/pis2co/dasar-ui/compare/v1.1.0...v1.2.0) (2026-10-09)
+
+
+### Features
+
+* add library package json as bump files ([7d5b56b](https://github.com/pis2co/dasar-ui/commit/7d5b56b04423eb05bcb262100703e91c444d56fb))
+
 ## [1.1.0](https://github.com/pis2co/dasar-ui/compare/v1.0.0...v1.1.0) (2026-10-09)
 
 
