@@ -1,0 +1,54 @@
+<div class="dasar-input-wrapper" [ngClass]="hostClass" [ngStyle]="hostStyle">
+  @if (label || labelRight) {
+    <div class="dasar-input-label-row">
+      @if (label) {
+        <label class="dasar-input-label">{{ label }}</label>
+      }
+      @if (labelRight || extraLabelSlot) {
+        <div class="dasar-input-label-right">
+          @if (extraLabelSlot) {
+            <ng-content select="[extra-label-slot]"></ng-content>
+          } @else {
+            <span>{{ labelRight }}</span>
+          }
+        </div>
+      }
+    </div>
+  }
+  <div
+    class="dasar-input-container appearance-{{ appearance }} size-{{ size }} radius-{{ radius }}"
+    [class.hide-overflow]="hideOverflow"
+    [class.full-width]="fullWidth"
+    [class.disabled]="disabled"
+    [class.fluid]="fluid"
+    [class.error]="error"
+    [ngClass]="containerClass"
+    [ngStyle]="containerStyle"
+  >
+    <ng-content select="[prefix-slot]"></ng-content>
+    <input
+      [placeholder]="placeholder"
+      [ngClass]="inputClass"
+      [ngStyle]="inputStyle"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [value]="value"
+      [type]="type"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+      class="dasar-input-native"
+    />
+    <ng-content select="[suffix-slot]"></ng-content>
+  </div>
+  @if (hint) {
+    <div
+      class="dasar-input-hint"
+      [class.disabled]="disabled"
+      [class.error]="error"
+      [ngClass]="hintClass"
+      [ngStyle]="hintStyle"
+    >
+      {{ hint }}
+    </div>
+  }
+</div>

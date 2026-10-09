@@ -1,0 +1,283 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-pivot-container {
+  /* Inherit Table Variables */
+  --dt-primary: var(--theme-primary-color);
+  --dt-primary-hover: var(--theme-primary-hover-color);
+  --dt-primary-surface: var(--theme-primary-surface-color);
+  --dt-text-inverse: var(--theme-text-inverse-color);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: var(--radius-md, $dasar-radius-md);
+  overflow: hidden;
+  background-color: var(--theme-bg-surface-color);
+
+  &.appearance-outline {
+    border: 1px solid var(--theme-border-strong-color);
+  }
+
+  &.appearance-filled {
+    background-color: var(--theme-bg-default-color);
+    border: 1px solid transparent;
+  }
+
+  &.appearance-elevated {
+    border: none;
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  &.appearance-borderless {
+    border: none;
+    border-radius: $dasar-radius-none;
+    background-color: transparent;
+  }
+
+  /* --- Sizing --- */
+  &.size-sm {
+    font-size: 13px;
+  }
+  &.size-md {
+    font-size: 14px;
+  }
+  &.size-lg {
+    font-size: 16px;
+  }
+
+  /* --- Spacing --- */
+  &.spacing-compact .dasar-pivot-table {
+    th,
+    td {
+      padding: $dasar-space-base $dasar-space-3;
+    }
+  }
+  &.spacing-normal .dasar-pivot-table {
+    th,
+    td {
+      padding: $dasar-space-4 $dasar-space-5;
+    }
+  }
+  &.spacing-relaxed .dasar-pivot-table {
+    th,
+    td {
+      padding: $dasar-space-6 $dasar-space-8;
+    }
+  }
+}
+
+.dasar-pivot-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dasar-pivot-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+  font-size: inherit;
+  color: var(--theme-text-primary-color);
+
+  th,
+  td {
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  /* --- Top Headers --- */
+  thead {
+    background-color: var(--dt-primary);
+
+    th {
+      font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
+      color: var(--dt-text-inverse);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--dt-primary-hover);
+    }
+  }
+
+  /* --- Top Left Corner --- */
+  .corner-cell {
+    background-color: var(--dt-primary);
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 15;
+    min-width: 120px;
+    vertical-align: top;
+    border-right: 1px solid var(--dt-primary-hover);
+  }
+
+  .corner-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--dt-text-inverse);
+    opacity: 0.9;
+
+    .col-label {
+      text-align: right;
+    }
+    .row-label {
+      text-align: left;
+      margin-top: $dasar-space-base;
+    }
+  }
+
+  /* --- Body & Rows --- */
+  tbody {
+    tr.dasar-table-row {
+      border-bottom: 1px solid var(--theme-border-subtle-color);
+      transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+      background-color: var(--theme-bg-surface-color);
+
+      &:last-child:not(.expanded) {
+        border-bottom: none;
+      }
+    }
+  }
+
+  /* --- Row Headers (Left Column) --- */
+  .row-header {
+    background-color: var(--theme-bg-surface-color);
+    font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    box-shadow: 1px 0 0 0 var(--theme-border-subtle-color);
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  /* --- Data Cells --- */
+  .data-cell {
+    text-align: right;
+  }
+
+  /* --- Hover State (Matches Table Hover) --- */
+  &.hoverable tbody tr.dasar-table-row:not(.state-row):hover {
+    background-color: var(--dt-primary-surface);
+    cursor: pointer;
+
+    .row-header {
+      background-color: var(--dt-primary-surface);
+      box-shadow:
+        inset $dasar-space-0-5 0 0 0 var(--dt-primary),
+        1px 0 0 0 var(--theme-border-subtle-color);
+    }
+  }
+
+  /* --- Totals --- */
+  .total-header {
+    font-weight: var(--font-weight-bold, $dasar-font-weight-bold);
+  }
+
+  thead .total-header {
+    background-color: var(--dt-primary-hover);
+    color: var(--dt-text-inverse);
+  }
+
+  .total-cell {
+    background-color: var(--theme-bg-hover-color);
+    font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
+    text-align: right;
+  }
+
+  tfoot {
+    tr {
+      border-top: 1px solid var(--theme-border-strong-color);
+    }
+
+    .total-header {
+      background-color: var(--theme-bg-hover-color);
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      box-shadow: 1px 0 0 0 var(--theme-border-subtle-color);
+    }
+  }
+
+  .grand-total {
+    background-color: var(--dt-primary-surface);
+    color: var(--dt-primary);
+    font-weight: var(--font-weight-bold, $dasar-font-weight-bold);
+  }
+}
+
+/* --- State & Utility Classes --- */
+.state-row {
+  background-color: transparent !important;
+  &:hover {
+    background-color: transparent !important;
+    cursor: default !important;
+  }
+}
+
+.state-cell {
+  text-align: center;
+  padding: $dasar-space-8 !important;
+}
+
+.state-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $dasar-space-3;
+  color: var(--theme-text-secondary-color);
+}
+
+.dasar-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--theme-border-subtle-color);
+  border-top-color: var(--dt-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $dasar-space-1;
+  h5 {
+    margin: 0;
+    font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
+    color: var(--theme-text-primary-color);
+    font-size: 16px;
+  }
+  p {
+    margin: 0;
+    color: var(--theme-text-secondary-color);
+    font-size: 14px;
+  }
+}
+
+.dasar-table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: $dasar-space-3 $dasar-space-4;
+  border-top: 1px solid var(--theme-border-subtle-color);
+  background-color: var(--theme-bg-surface-color);
+}

@@ -1,0 +1,239 @@
+// Fonts
+$dasar-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$dasar-font-hero: 'Space Grotesk', sans-serif;
+// Font Weight
+$dasar-font-weight-thin: 300;
+$dasar-font-weight-regular: 400;
+$dasar-font-weight-medium: 500;
+$dasar-font-weight-semibold: 600;
+$dasar-font-weight-bold: 700;
+// Text
+$dasar-text-xss: 0.5rem; // 8px
+$dasar-text-xs: 0.625rem; // 10px
+$dasar-text-sm: 0.75rem; // 12px
+$dasar-text-base: 0.875rem; // 14px
+$dasar-text-lg: 1rem; // 16px
+$dasar-text-xl: 1.125rem; // 18px
+$dasar-line-height-normal: 1.5;
+$dasar-line-height-tight: 1.25;
+// Breakpoints
+$breakpoint-sm: 40em; // 640px
+$breakpoint-md: 48em; // 768px
+$breakpoint-lg: 64em; // 1024px
+$breakpoint-xl: 75em; // 1200px
+// Border Radius (Using em to scale with component font-size)
+$dasar-radius-none: 0;
+$dasar-radius-xxs: 0.125em; // 2px
+$dasar-radius-xs: 0.25em; // 4px
+$dasar-radius-sm: 0.375em; // 6px
+$dasar-radius-md: 0.5em; // 8px
+$dasar-radius-lg: 0.625em; // 10px
+$dasar-radius-xl: 0.75em; // 12px
+$dasar-radius-2xl: 1em; // 16px
+$dasar-radius-3xl: 1.25em; // 20px
+$dasar-radius-4xl: 1.5em; // 24px
+$dasar-radius-full: 9999px; // Pill shape
+// Spacing (Using em to scale with component font-size)
+$dasar-space-0: 0;
+$dasar-space-0-5: 0.125em; // 2px
+$dasar-space-1: 0.25em; // 4px
+$dasar-space-base: 0.5em; // 8px
+$dasar-space-3: 0.75em; // 12px
+$dasar-space-4: 1em; // 16px
+$dasar-space-5: 1.25em; // 20px
+$dasar-space-6: 1.5em; // 24px
+$dasar-space-8: 2em; // 32px
+$dasar-space-10: 2.5em; // 40px
+$dasar-space-12: 3em; // 48px
+$dasar-space-16: 4em; // 64px
+$dasar-space-18: 5em; // 80px
+$dasar-space-24: 6em; // 96px
+$dasar-space-32: 8em; // 128px
+$dasar-space-40: 10em; // 160px
+$dasar-space-48: 12em; // 192px
+$dasar-space-56: 14em; // 224px
+$dasar-space-64: 16em; // 256px
+$dasar-space-80: 20em; // 320px
+$dasar-space-96: 24em; // 384px
+$dasar-space-120: 30em; // 480px
+// Colors
+$dasar-primary-900: #071727;
+$dasar-primary-800: #0d253f;
+$dasar-primary-700: #12345a;
+$dasar-primary-base: #1b4d8e;
+$dasar-primary-500: #2563eb;
+$dasar-primary-300: #60a5fa;
+$dasar-primary-200: #a2cafa;
+$dasar-primary-100: #bfdbfe;
+$dasar-primary-50: #eff6ff;
+$dasar-neutral-900: #111827;
+$dasar-neutral-800: #1f2937;
+$dasar-neutral-700: #374151;
+$dasar-neutral-base: #4b5563;
+$dasar-neutral-500: #6b7280;
+$dasar-neutral-400: #9ca3af;
+$dasar-neutral-300: #d1d5db;
+$dasar-neutral-200: #eaecf0;
+$dasar-neutral-100: #f3f4f6;
+$dasar-neutral-50: #ffffff;
+$dasar-success-50: #ecfdf5;
+$dasar-success-200: #a7f3d0;
+$dasar-success-500: #10b981;
+$dasar-success-base: #059669;
+$dasar-success-800: #065f46;
+$dasar-danger-50: #fef2f2;
+$dasar-danger-200: #fecaca;
+$dasar-danger-500: #ef4444;
+$dasar-danger-base: #dc2626;
+$dasar-danger-800: #991b1b;
+$dasar-warning-50: #fffbeb;
+$dasar-warning-200: #fde68a;
+$dasar-warning-500: #f59e0b;
+$dasar-warning-base: #d97706;
+$dasar-warning-800: #92400e;
+:root {
+  --dasar-primary-900: #{$dasar-primary-900};
+  --dasar-primary-800: #{$dasar-primary-800};
+  --dasar-primary-700: #{$dasar-primary-700};
+  --dasar-primary-base: #{$dasar-primary-base};
+  --dasar-primary-500: #{$dasar-primary-500};
+  --dasar-primary-300: #{$dasar-primary-300};
+  --dasar-primary-200: #{$dasar-primary-200};
+  --dasar-primary-100: #{$dasar-primary-100};
+  --dasar-primary-50: #{$dasar-primary-50};
+  --dasar-neutral-900: #{$dasar-neutral-900};
+  --dasar-neutral-800: #{$dasar-neutral-800};
+  --dasar-neutral-700: #{$dasar-neutral-700};
+  --dasar-neutral-base: #{$dasar-neutral-base};
+  --dasar-neutral-500: #{$dasar-neutral-500};
+  --dasar-neutral-400: #{$dasar-neutral-400};
+  --dasar-neutral-300: #{$dasar-neutral-300};
+  --dasar-neutral-200: #{$dasar-neutral-200};
+  --dasar-neutral-100: #{$dasar-neutral-100};
+  --dasar-neutral-50: #{$dasar-neutral-50};
+  --dasar-success-50: #{$dasar-success-50};
+  --dasar-success-200: #{$dasar-success-200};
+  --dasar-success-500: #{$dasar-success-500};
+  --dasar-success-base: #{$dasar-success-base};
+  --dasar-success-800: #{$dasar-success-800};
+  --dasar-danger-50: #{$dasar-danger-50};
+  --dasar-danger-200: #{$dasar-danger-200};
+  --dasar-danger-500: #{$dasar-danger-500};
+  --dasar-danger-base: #{$dasar-danger-base};
+  --dasar-danger-800: #{$dasar-danger-800};
+  --dasar-warning-50: #{$dasar-warning-50};
+  --dasar-warning-200: #{$dasar-warning-200};
+  --dasar-warning-500: #{$dasar-warning-500};
+  --dasar-warning-base: #{$dasar-warning-base};
+  --dasar-warning-800: #{$dasar-warning-800};
+
+  --font-sans: #{$dasar-font-sans};
+  --font-hero: #{$dasar-font-hero};
+
+  --font-weight-regular: #{$dasar-font-weight-regular};
+  --font-weight-medium: #{$dasar-font-weight-medium};
+  --font-weight-semibold: #{$dasar-font-weight-semibold};
+  --font-weight-bold: #{$dasar-font-weight-bold};
+
+  --font-size-xss: #{$dasar-text-xss};
+  --font-size-xs: #{$dasar-text-xs};
+  --font-size-sm: #{$dasar-text-sm};
+  --font-size-base: #{$dasar-text-base};
+  --font-size-lg: #{$dasar-text-lg};
+  --font-size-xl: #{$dasar-text-xl};
+
+  --line-height-normal: #{$dasar-line-height-normal};
+  --line-height-tight: #{$dasar-line-height-tight};
+
+  --radius-none: #{$dasar-radius-none};
+  --radius-xxs: #{$dasar-radius-xxs};
+  --radius-xs: #{$dasar-radius-xs};
+  --radius-sm: #{$dasar-radius-sm};
+  --radius-md: #{$dasar-radius-md};
+  --radius-lg: #{$dasar-radius-lg};
+  --radius-xl: #{$dasar-radius-xl};
+  --radius-2xl: #{$dasar-radius-2xl};
+  --radius-3xl: #{$dasar-radius-3xl};
+  --radius-4xl: #{$dasar-radius-4xl};
+  --radius-full: #{$dasar-radius-full};
+
+  --space-0: #{$dasar-space-0};
+  --space-0-5: #{$dasar-space-0-5};
+  --space-1: #{$dasar-space-1};
+  --space-base: #{$dasar-space-base};
+  --space-3: #{$dasar-space-3};
+  --space-4: #{$dasar-space-4};
+  --space-5: #{$dasar-space-5};
+  --space-6: #{$dasar-space-6};
+  --space-8: #{$dasar-space-8};
+  --space-10: #{$dasar-space-10};
+  --space-12: #{$dasar-space-12};
+  --space-16: #{$dasar-space-16};
+  --space-18: #{$dasar-space-18};
+  --space-24: #{$dasar-space-24};
+  --space-32: #{$dasar-space-32};
+  --space-40: #{$dasar-space-40};
+  --space-48: #{$dasar-space-48};
+  --space-56: #{$dasar-space-56};
+  --space-64: #{$dasar-space-64};
+  --space-80: #{$dasar-space-80};
+  --space-96: #{$dasar-space-96};
+  --space-120: #{$dasar-space-120};
+
+  --text-white-color: #{$dasar-neutral-50};
+  --text-black-color: #{$dasar-neutral-900};
+
+  --theme-bg-window-color: #{$dasar-neutral-50};
+  --theme-bg-default-color: #{$dasar-neutral-50};
+  --theme-bg-surface-color: #{$dasar-neutral-50};
+  --theme-bg-hover-color: #{$dasar-neutral-100};
+
+  --theme-text-color: #{$dasar-neutral-900};
+  --theme-text-primary-color: #{$dasar-neutral-900};
+  --theme-text-secondary-color: #{$dasar-neutral-500};
+  --theme-text-disabled-color: #{$dasar-neutral-400};
+  --theme-text-inverse-color: #{$dasar-neutral-50};
+
+  --theme-border-subtle-color: #{$dasar-neutral-200};
+  --theme-border-strong-color: #{$dasar-neutral-300};
+
+  --theme-primary-color: #{$dasar-primary-base};
+  --theme-primary-hover-color: #{$dasar-primary-700};
+  --theme-primary-active-color: #{$dasar-primary-800};
+  --theme-primary-surface-color: #{$dasar-primary-50};
+
+  --theme-success-color: #{$dasar-success-base};
+  --theme-success-surface-color: #{$dasar-success-50};
+  --theme-danger-color: #{$dasar-danger-base};
+  --theme-danger-surface-color: #{$dasar-danger-50};
+  --theme-warning-color: #{$dasar-warning-base};
+  --theme-warning-surface-color: #{$dasar-warning-50};
+}
+
+[data-theme='dark'] {
+  --theme-bg-window-color: #{$dasar-neutral-900};
+  --theme-bg-default-color: #{$dasar-neutral-900};
+  --theme-bg-surface-color: #{$dasar-neutral-800};
+  --theme-bg-hover-color: #{$dasar-neutral-700};
+
+  --theme-text-color: #{$dasar-neutral-50};
+  --theme-text-primary-color: #{$dasar-neutral-50};
+  --theme-text-secondary-color: #{$dasar-neutral-300};
+  --theme-text-disabled-color: #{$dasar-neutral-500};
+  --theme-text-inverse-color: #{$dasar-neutral-900};
+
+  --theme-border-subtle-color: #{$dasar-neutral-700};
+  --theme-border-strong-color: #{$dasar-neutral-700};
+
+  --theme-primary-color: #{$dasar-primary-300};
+  --theme-primary-hover-color: #{$dasar-primary-200};
+  --theme-primary-active-color: #{$dasar-primary-100};
+  --theme-primary-surface-color: rgba(96, 165, 250, 0.1);
+
+  --theme-success-color: #{$dasar-success-base};
+  --theme-success-surface-color: rgba(52, 211, 153, 0.1);
+  --theme-danger-color: #{$dasar-danger-base};
+  --theme-danger-surface-color: rgba(248, 113, 113, 0.1);
+  --theme-warning-color: #{$dasar-warning-base};
+  --theme-warning-surface-color: rgba(251, 191, 36, 0.1);
+}

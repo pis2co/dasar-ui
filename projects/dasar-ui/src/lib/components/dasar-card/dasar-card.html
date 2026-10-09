@@ -1,0 +1,80 @@
+<div
+  class="dasar-card-container appearance-{{ appearance }} size-{{ size }} radius-{{
+    radius
+  }} spacing-{{ spacing }}"
+  [class.hide-overflow]="hideOverflow"
+  [class.fluid]="fluid"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+>
+  @if (label || hasHeader || hasCaption || closable || hasExtraHeader) {
+    <div
+      class="dasar-card-header"
+      [class.fluid]="headerFluid"
+      [ngClass]="headerClass"
+      [ngStyle]="headerStyle"
+    >
+      <div
+        class="dasar-card-header-content"
+        [ngClass]="contentHeaderClass"
+        [ngStyle]="contentHeaderStyle"
+      >
+        @if (hasHeader) {
+          <ng-content select="[header-slot]"></ng-content>
+        } @else if (label) {
+          <span class="dasar-card-title">{{ label }}</span>
+        }
+        @if (hasCaption) {
+          <div
+            class="dasar-card-caption"
+            [class.fluid]="captionFluid"
+            [ngClass]="captionClass"
+            [ngStyle]="captionStyle"
+          >
+            <ng-content select="[caption-slot]"></ng-content>
+          </div>
+        }
+      </div>
+      @if (closable || hasExtraHeader) {
+        <div
+          class="dasar-card-extra-header"
+          [ngClass]="extraHeaderClass"
+          [ngStyle]="extraHeaderStyle"
+        >
+          @if (hasExtraHeader) {
+            <ng-content select="[extra-header-slot]"></ng-content>
+          }
+          @if (closable) {
+            <dasar-button
+              variant="ghost"
+              tabindex="-1"
+              icon-only
+              [size]="size"
+              (click)="closeCard()"
+            >
+              <dasar-icon name="x"></dasar-icon>
+            </dasar-button>
+          }
+        </div>
+      }
+    </div>
+  }
+  <div
+    class="dasar-card-body"
+    [class.fluid]="bodyFluid"
+    [ngClass]="bodyClass"
+    [ngStyle]="bodyStyle"
+  >
+    <ng-content></ng-content>
+  </div>
+  @if (hasAction) {
+    <div
+      class="dasar-card-actions"
+      [class.fluid]="actionFluid"
+      [ngClass]="actionClass"
+      [ngStyle]="actionStyle"
+    >
+      <ng-content select="[action-slot]"></ng-content>
+    </div>
+  }
+</div>

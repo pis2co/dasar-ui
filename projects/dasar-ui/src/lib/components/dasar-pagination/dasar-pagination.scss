@@ -1,0 +1,51 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-pagination-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .dasar-pagination-list {
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: $dasar-space-1;
+    flex-wrap: wrap;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .dasar-pagination-btn {
+    ::ng-deep .dasar-button-native {
+      min-width: $dasar-space-10;
+      padding-left: $dasar-space-base;
+      padding-right: $dasar-space-base;
+    }
+  }
+
+  &.size-sm .dasar-pagination-btn ::ng-deep .dasar-button-native {
+    min-width: $dasar-space-8;
+  }
+
+  &.size-lg .dasar-pagination-btn ::ng-deep .dasar-button-native {
+    min-width: $dasar-space-12;
+  }
+
+  .dasar-pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-text-secondary-color);
+    font-weight: var(--font-weight-medium, $dasar-font-weight-medium);
+    padding: 0 $dasar-space-base;
+    letter-spacing: 2px;
+    user-select: none;
+  }
+}

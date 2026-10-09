@@ -1,0 +1,184 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-card {
+  display: block;
+
+  &.full-width {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.dasar-card-container {
+  background-color: var(--card-background, var(--theme-bg-surface-color));
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+
+  &.hide-overflow {
+    overflow: hidden;
+  }
+
+  &.size-xs {
+    font-size: var(--card-font-size-xs, var(--font-size-xs));
+  }
+  &.size-sm {
+    font-size: var(--card-font-size-sm, var(--font-size-sm));
+  }
+  &.size-md {
+    font-size: var(--card-font-size-md, var(--font-size-base));
+  }
+  &.size-lg {
+    font-size: var(--card-font-size-lg, var(--font-size-lg));
+  }
+  &.size-xl {
+    font-size: var(--card-font-size-xl, var(--font-size-xl));
+  }
+
+  &.appearance-outline {
+    border: 1px solid var(--card-outline-border, var(--theme-border-strong-color));
+  }
+
+  &.appearance-borderless {
+    border: none;
+  }
+
+  &.appearance-elevated {
+    border: 1px solid var(--card-elevated-border, var(--theme-border-strong-color));
+    box-shadow: var(
+      --card-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+  }
+
+  &.radius-none {
+    border-radius: var(--card-radius-none, var(--radius-none));
+  }
+  &.radius-xs {
+    border-radius: var(--card-radius-xs, var(--radius-xs));
+  }
+  &.radius-sm {
+    border-radius: var(--card-radius-sm, var(--radius-sm));
+  }
+  &.radius-md {
+    border-radius: var(--card-radius-md, var(--radius-md));
+  }
+  &.radius-lg {
+    border-radius: var(--card-radius-lg, var(--radius-lg));
+  }
+  &.radius-xl {
+    border-radius: var(--card-radius-xl, var(--radius-xl));
+  }
+  &.radius-full {
+    border-radius: var(--card-radius-full, var(--radius-full));
+  }
+
+  &.spacing-normal {
+    .dasar-card-header {
+      padding: var(--card-normal-header-padding-vertical, var(--space-base))
+        var(--card-normal-header-padding-horizontal, var(--space-4));
+    }
+    .dasar-card-body {
+      padding: var(--card-normal-body-padding-vertical, var(--space-4))
+        var(--card-normal-body-padding-horizontal, var(--space-4));
+    }
+    .dasar-card-actions {
+      padding: var(--card-normal-actions-padding, var(--space-4));
+    }
+  }
+
+  &.spacing-compact {
+    .dasar-card-header {
+      padding: var(--card-compact-header-padding, var(--space-base));
+    }
+    .dasar-card-body {
+      padding: var(--card-compact-body-padding, var(--space-base));
+    }
+    .dasar-card-actions {
+      padding: var(--card-compact-actions-padding, var(--space-base));
+    }
+  }
+
+  &.fluid {
+    .dasar-card-header,
+    .dasar-card-body,
+    .dasar-card-caption,
+    .dasar-card-actions {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
+}
+
+.dasar-card-header {
+  border-bottom: 1px solid var(--card-header-border, var(--theme-border-strong-color));
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  .dasar-card-title {
+    color: var(--card-title-color, var(--theme-text-primary-color));
+    font-weight: var(--card-title-font-weight, var(--font-weight-semibold));
+    font-size: inherit;
+    margin: 0;
+  }
+
+  .dasar-card-header-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dasar-card-extra-header,
+  .dasar-card-close-wrapper {
+    flex-shrink: 0;
+  }
+
+  .appearance-borderless & {
+    border: none;
+  }
+
+  &.fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.dasar-card-body {
+  color: var(--card-body-color, var(--theme-text-primary-color));
+  line-height: var(--line-height-normal);
+  flex: 1;
+
+  &.fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.dasar-card-caption {
+  color: var(--card-caption-color, var(--theme-text-secondary-color));
+  font-size: var(--card-caption-font-size, var(--font-size-xs));
+
+  &.fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.dasar-card-actions {
+  background-color: var(--card-actions-background, transparent);
+  align-items: center;
+  border-top: none;
+  display: flex;
+  gap: var(--card-actions-gap, 12px);
+
+  &.fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  > * {
+    flex: 1;
+  }
+}

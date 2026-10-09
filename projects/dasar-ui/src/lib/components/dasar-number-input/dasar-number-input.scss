@@ -1,0 +1,358 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-number-input {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  width: fit-content;
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.dasar-number-input-wrapper {
+  gap: var(--number-input-wrapper-gap, var(--space-1));
+  flex-direction: column;
+  display: flex;
+}
+
+.dasar-number-input-label-row {
+  font-weight: var(--number-input-label-font-weight, var(--font-weight-medium));
+  color: var(--number-input-label-color, var(--theme-text-primary-color));
+  justify-content: space-between;
+  align-items: center;
+  line-height: var(--line-height-tight); // Updated
+  display: flex;
+
+  .dasar-number-input-label {
+    font-size: var(--number-input-label-font-size, var(--font-size-md));
+  }
+
+  .dasar-number-input-label-right {
+    color: var(--input-label-right-color, var(--theme-text-secondary-color));
+    font-size: var(--input-label-right-font-size, var(--font-size-sm));
+    font-weight: var(--font-weight-regular);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+}
+
+.dasar-number-input-container {
+  background-color: var(--number-input-bg, var(--theme-bg-hover-color));
+  border-radius: var(--number-input-radius-sm, var(--radius-sm));
+  box-sizing: border-box;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: stretch;
+  overflow: hidden;
+  width: 100%;
+
+  &.hide-overflow {
+    overflow: hidden;
+  }
+
+  &.appearance-outline {
+    border: 1px solid var(--number-input-outline-border, var(--theme-border-strong-color));
+    background-color: var(--number-input-outline-bg, transparent);
+
+    &:hover:not(.disabled) {
+      border-color: var(--number-input-outline-hover-border, var(--theme-primary-color));
+      transition: all 0.2s ease;
+    }
+
+    &:focus-within {
+      border-color: var(--number-input-outline-focus-border, var(--theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--number-input-outline-focus-ring, var(--theme-primary-surface-color));
+    }
+  }
+
+  &.appearance-filled {
+    border: 1px solid var(--number-input-filled-border, transparent);
+    background-color: var(--number-input-filled-bg, var(--theme-bg-hover-color));
+
+    &:hover:not(.disabled) {
+      background-color: var(--number-input-filled-hover-bg, var(--theme-border-subtle-color));
+      transition: all 0.2s ease;
+    }
+
+    &:focus-within {
+      background-color: var(--number-input-filled-focus-bg, var(--theme-bg-surface-color));
+      border-color: var(--number-input-filled-focus-border, var(--theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--number-input-filled-focus-ring, var(--theme-primary-surface-color));
+    }
+  }
+
+  &.error {
+    border-color: var(--number-input-error-border, var(--theme-danger-color)) !important;
+
+    &:focus-within {
+      box-shadow: 0 0 0 3px var(--number-input-error-focus-ring, var(--theme-danger-surface-color));
+    }
+  }
+
+  &.disabled {
+    background-color: var(--number-input-disabled-bg, var(--theme-bg-hover-color)) !important;
+    border-color: var(--number-input-disabled-border, transparent) !important;
+    cursor: not-allowed;
+    opacity: var(--number-input-disabled-opacity, 0.7);
+
+    .dasar-action-zone {
+      pointer-events: none;
+    }
+  }
+
+  &.size-xs {
+    font-size: var(--font-size-xs);
+    height: var(--number-input-height-xs, var(--space-6));
+    padding: 0 var(--number-input-padding-horizontal-xs, var(--space-base));
+
+    .dasar-number-input-native {
+      font-size: var(--number-input-font-size-xs, var(--font-size-xs));
+    }
+
+    &:has(.dasar-number-input-actions-group) {
+      padding-right: 0;
+    }
+
+    &:has([decrement-slot], [increment-slot]) {
+      padding-right: 0;
+
+      .dasar-number-input-native {
+        padding-right: var(--number-input-padding-horizontal-xs, var(--space-base));
+      }
+    }
+
+    &:has([prefix]) {
+      padding-left: 0;
+
+      .dasar-number-input-native {
+        padding-left: var(--number-input-padding-horizontal-xs, var(--space-base));
+      }
+    }
+  }
+
+  &.size-sm {
+    font-size: var(--font-size-sm);
+    height: var(--number-input-height-sm, var(--space-8));
+    padding: 0 var(--number-input-padding-horizontal-sm, var(--space-3));
+
+    .dasar-number-input-native {
+      font-size: var(--number-input-font-size-sm, var(--font-size-sm));
+    }
+
+    &:has(.dasar-number-input-actions-group) {
+      padding-right: 0;
+    }
+
+    &:has([decrement-slot], [increment-slot]) {
+      padding-right: 0;
+
+      .dasar-number-input-native {
+        padding-right: var(--number-input-padding-horizontal-sm, var(--space-3));
+      }
+    }
+
+    &:has([prefix]) {
+      padding-left: 0;
+
+      .dasar-number-input-native {
+        padding-left: var(--number-input-padding-horizontal-sm, var(--space-3));
+      }
+    }
+  }
+
+  &.size-md {
+    padding: 0 var(--number-input-padding-horizontal-md, var(--space-4));
+    height: var(--number-input-height-md, var(--space-10));
+    font-size: var(--font-size-base);
+
+    .dasar-number-input-native {
+      font-size: var(--number-input-font-size-md, var(--font-size-base));
+    }
+
+    &:has(.dasar-number-input-actions-group) {
+      padding-right: 0;
+    }
+
+    &:has([decrement-slot], [increment-slot]) {
+      padding-right: 0;
+
+      .dasar-number-input-native {
+        padding-right: var(--number-input-padding-horizontal-md, var(--space-4));
+      }
+    }
+
+    &:has([prefix]) {
+      padding-left: 0;
+
+      .dasar-number-input-native {
+        padding-left: var(--number-input-padding-horizontal-md, var(--space-4));
+      }
+    }
+  }
+
+  &.size-lg {
+    font-size: var(--font-size-lg);
+    height: var(--number-input-height-lg, var(--space-12));
+    padding: 0 var(--number-input-padding-horizontal-lg, var(--space-5));
+
+    .dasar-number-input-native {
+      font-size: var(--number-input-font-size-lg, var(--font-size-lg));
+    }
+
+    &:has(.dasar-number-input-actions-group) {
+      padding-right: 0;
+    }
+
+    &:has([decrement-slot], [increment-slot]) {
+      padding-right: 0;
+
+      .dasar-number-input-native {
+        padding-right: var(--number-input-padding-horizontal-lg, var(--space-5));
+      }
+    }
+
+    &:has([prefix]) {
+      padding-left: 0;
+
+      .dasar-number-input-native {
+        padding-left: var(--number-input-padding-horizontal-lg, var(--space-5));
+      }
+    }
+  }
+
+  &.size-xl {
+    font-size: var(--font-size-xl);
+    height: var(--number-input-height-xl, var(--space-16));
+    padding: 0 var(--number-input-padding-horizontal-xl, var(--space-6));
+
+    .dasar-number-input-native {
+      font-size: var(--number-input-font-size-xl, var(--font-size-xl));
+    }
+
+    &:not(.dasar-number-input-actions-group) {
+      padding-right: 0;
+    }
+
+    &:has([decrement-slot], [increment-slot]) {
+      padding-right: 0;
+
+      .dasar-number-input-native {
+        padding-right: var(--number-input-padding-horizontal-xl, var(--space-6));
+      }
+    }
+
+    &:has([prefix]) {
+      padding-left: 0;
+
+      .dasar-number-input-native {
+        padding-left: var(--number-input-padding-horizontal-xl, var(--space-6));
+      }
+    }
+  }
+
+  &.radius-none {
+    border-radius: var(--number-input-radius-none, var(--radius-none));
+  }
+  &.radius-sm {
+    border-radius: var(--number-input-radius-sm, var(--radius-xs));
+  }
+  &.radius-md {
+    border-radius: var(--number-input-radius-md, var(--radius-md));
+  }
+  &.radius-lg {
+    border-radius: var(--number-input-radius-lg, var(--radius-2xl));
+  }
+  &.radius-full {
+    border-radius: var(--number-input-radius-full, var(--radius-full));
+  }
+}
+
+.dasar-number-input-native {
+  color: var(--number-input-color, var(--theme-text-primary-color));
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+  outline: none;
+  border: none;
+  min-width: 0;
+  width: 100%;
+  flex: 1;
+
+  &::placeholder {
+    color: var(--number-input-placeholder-color, var(--theme-text-secondary-color));
+  }
+
+  &:disabled {
+    color: var(--number-input-disabled-color, var(--theme-text-disabled-color));
+    cursor: not-allowed;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px
+      var(--number-input-autofill-background, var(--theme-bg-default-color)) inset !important;
+    -webkit-text-fill-color: var(
+      --number-input-autofill-color,
+      var(--theme-text-primary-color)
+    ) !important;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    --moz-appearance: textfield;
+  }
+}
+
+.dasar-number-input-actions-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.dasar-number-input-action-zone {
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+
+  &:hover {
+    background-color: var(--number-input-action-hover-background, rgba(0, 0, 0, 0.05));
+    transition: all 0.2s ease;
+  }
+  // ::ng-deep dasar-button {
+  //   width: 100%;
+  //   height: 100%;
+  //   border-radius: var(--radius-none);
+  // }
+}
+
+.dasar-number-input-hint {
+  font-size: var(--number-input-hint-font-size, var(--font-size-xs));
+  color: var(--number-input-hint-color, var(--theme-text-secondary-color));
+  line-height: var(--line-height-normal); // Updated
+  margin-top: calc(var(--space-0-5) * -1);
+
+  &.error {
+    color: var(--number-input-hint-error-color, var(--theme-danger-color));
+  }
+
+  &.disabled {
+    opacity: var(--number-input-disabled-opacity, 0.7);
+    cursor: not-allowed;
+  }
+}

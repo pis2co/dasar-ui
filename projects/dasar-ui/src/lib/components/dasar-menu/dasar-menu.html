@@ -1,0 +1,63 @@
+<div
+  class="dasar-menu-wrapper"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+  [class.fluid]="fluid"
+>
+  <div
+    class="appearance-{{ appearance }} size-{{ size }} radius-{{ radius }}"
+    (click)="toggle($event)"
+    [class.dasar-menu-trigger]="true"
+    [class.disabled]="disabled"
+    [class.fluid]="fluid"
+  >
+    <ng-content select="[prefix-slot]"></ng-content>
+    <div class="dasar-menu-label-container">
+      @if (hasMenuLabel) {
+        <ng-content select="[menu-label-slot]"></ng-content>
+      } @else if (label) {
+        <span class="dasar-menu-text-label">{{ label }}</span>
+      } @else {
+        <ng-content></ng-content>
+      }
+    </div>
+    <ng-content select="[suffix-slot]"></ng-content>
+  </div>
+  @if (isOpen() && !disabled) {
+    <div
+      class="dasar-menu-panel placement-{{ placement }}"
+      [ngClass]="panelClass"
+      [ngStyle]="panelStyle"
+    >
+      @for (item of items; track item.value; let i = $index) {
+        @if (item.divider) {
+          <div class="dasar-menu-divider"></div>
+        } @else {
+          <div
+            class="dasar-menu-item"
+            [class.disabled]="item.disabled"
+            [ngClass]="itemClass"
+            (click)="onItemSelect(item, $event)"
+          >
+            @if (hasMenuItem) {
+              <!-- <ng-container
+                *ngTemplateOutlet="providedMenuItem; context: { $implicit: item,  index: i }"
+              ></ng-container> -->
+              <ng-container
+                *ngTemplateOutlet="
+                  providedMenuItem!.templateRef;
+                  context: { $implicit: item, index: i }
+                "
+              ></ng-container>
+            } @else {
+              @if (item.iconName) {
+                <dasar-icon [name]="item.iconName" size="sm"></dasar-icon>
+              }
+              <span class="dasar-menu-item-label">{{ item.label }}</span>
+            }
+          </div>
+        }
+      }
+    </div>
+  }
+</div>

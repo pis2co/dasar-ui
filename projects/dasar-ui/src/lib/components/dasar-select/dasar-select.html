@@ -1,0 +1,185 @@
+<div class="dasar-select-wrapper">
+  @if (label || extraLabelSlot) {
+    <div class="dasar-select-label-row">
+      @if (label) {
+        <label class="dasar-select-label">{{ label }}</label>
+      } @else {
+        <ng-content select="[label-slot]"></ng-content>
+      }
+      @if (extraLabelSlot) {
+        <ng-content select="[extra-label-slot]"></ng-content>
+      } @else if (labelRight) {
+        <span class="dasar-select-label-right">{{ labelRight }}</span>
+      }
+    </div>
+  }
+  <div
+    class="dasar-select-container appearance-{{ appearance }} size-{{ size }} radius-{{ radius }}"
+    [class.hide-overflow]="hideOverflow"
+    [class.full-width]="fullWidth"
+    [class.disabled]="disabled"
+    [class.error]="error"
+    [class.open]="isOpen"
+    [ngClass]="containerClass"
+    [ngStyle]="containerStyle"
+    (click)="toggleDropdown()"
+  >
+    <ng-content select="[prefix-slot]"></ng-content>
+    <div
+      class="dasar-select-value-display"
+      [class.is-multiple]="isMultiple"
+      [class.display-chip]="isMultiple && multipleType === 'chip'"
+    >
+      @if (isMultiple) {
+        @if (multipleType === 'chip') {
+          @for (option of selectedOptions; track option.value) {
+            @if (chipTemplate) {
+              <ng-container
+                *ngTemplateOutlet="
+                  chipTemplate.templateRef;
+                  context: {
+                    $implicit: option,
+                    selectInstance: this,
+                  }
+                "
+              >
+              </ng-container>
+            } @else {
+              <dasar-chip
+                [size]="chipSize"
+                [label]="option.label"
+                [removable]="!disabled"
+                [ngClass]="option.chipClass"
+                [ngStyle]="option.chipStyle"
+                [variant]="option.chipVariant ?? 'primary'"
+                (onClicked)="$event.stopPropagation()"
+                (onRemoved)="removeOption(option, $event)"
+              >
+              </dasar-chip>
+            }
+          }
+        } @else {
+          @if (!searchable || !isOpen) {
+            @if (selectedOptions.length > 0) {
+              <span class="dasar-select-selected-text">{{ getMultipleDisplayText() }}</span>
+            }
+          }
+        }
+      }
+      @if (!isMultiple && (!searchable || !isOpen)) {
+        @if (selectedOption) {
+          <span class="dasar-select-selected-text">{{ selectedOption.label }}</span>
+        }
+      }
+      @if (!hasValue && (!searchable || !isOpen)) {
+        <span class="dasar-select-placeholder">{{ placeholder }}</span>
+      }
+      @if (searchable && isOpen) {
+        <input
+          #searchInput
+          type="text"
+          class="dasar-select-search-input"
+          [placeholder]="
+            hasValue && isMultiple && multipleType === 'chip'
+              ? ''
+              : hasValue && !isMultiple
+                ? (selectedOption?.label ?? '')
+                : hasValue && isMultiple && multipleType === 'text'
+                  ? getMultipleDisplayText()
+                  : placeholder
+          "
+          [disabled]="disabled"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onSearchInput($event)"
+          (click)="$event.stopPropagation()"
+          (blur)="onInputBlur()"
+          (focus)="onInputFocus()"
+        />
+      }
+    </div>
+    @if (loading) {
+      <div class="dasar-select-loader-wrapper">
+        <dasar-icon name="loader" size="sm" class="spinning-icon"></dasar-icon>
+      </div>
+    }
+    @if (clearable && hasValue && !disabled) {
+      <dasar-icon
+        class="dasar-select-clear-btn"
+        tabindex="-1"
+        size="sm"
+        name="x"
+        (click)="clearSelection($event)"
+      ></dasar-icon>
+    }
+    <ng-content select="[suffix-slot]"></ng-content>
+    <dasar-button
+      class="dasar-select-arrow-btn"
+      variant="ghost"
+      tabindex="-1"
+      icon-only
+      [class.rotated]="isOpen"
+      [disabled]="disabled"
+      [size]="size"
+    >
+      <dasar-icon [name]="arrowIconName" [size]="size"></dasar-icon>
+    </dasar-button>
+  </div>
+  @if (isOpen && !disabled) {
+    <div
+      class="dasar-select-dropdown-panel"
+      [ngClass]="dropdownPanelClass"
+      [ngStyle]="dropdownPanelStyle"
+    >
+      @if (loading) {
+        @if (optionLoadingSlot) {
+          <ng-content select="[option-loading-slot]"></ng-content>
+        } @else {
+          <div class="dasar-select-loading-state">
+            <span>Loading options...</span>
+          </div>
+        }
+      } @else if (filteredOptions.length === 0) {
+        @if (optionEmptySlot) {
+          <ng-content select="[option-empty-slot]"></ng-content>
+        } @else {
+          <div class="dasar-select-empty-state">
+            <span>No options found</span>
+          </div>
+        }
+      } @else {
+        @for (option of filteredOptions; track option.value) {
+          <div
+            class="dasar-select-option"
+            [class.selected]="isOptionSelected(option)"
+            [class.disabled]="option.disabled"
+            [ngClass]="optionClass"
+            (click)="selectOption(option, $event)"
+          >
+            @if (isMultiple) {
+              <input
+                type="checkbox"
+                [checked]="isOptionSelected(option)"
+                [disabled]="option.disabled"
+              />
+            }
+            @if (optionTemplate) {
+              <ng-container
+                *ngTemplateOutlet="optionTemplate.templateRef; context: { $implicit: option }"
+              ></ng-container>
+            } @else {
+              @if (option.iconName) {
+                <dasar-icon [name]="option.iconName" size="sm"></dasar-icon>
+              }
+              <span class="option-label">{{ option.label }}</span>
+            }
+          </div>
+        }
+      }
+    </div>
+  }
+  @if (hint) {
+    <div class="dasar-select-hint" [class.error]="error" [class.disabled]="disabled">
+      {{ hint }}
+    </div>
+  }
+</div>

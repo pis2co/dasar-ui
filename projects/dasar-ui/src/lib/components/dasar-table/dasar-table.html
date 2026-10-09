@@ -1,0 +1,162 @@
+<div
+  class="dasar-table-container appearance-{{ appearance }} size-{{ size }} spacing-{{ spacing }}"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+  [class.fluid]="fluid"
+>
+  <div class="dasar-table-wrapper" [ngClass]="wrapperClass" [ngStyle]="wrapperStyle">
+    <table
+      class="dasar-table-native"
+      [class.hoverable]="hoverable"
+      [class.striped]="striped"
+      [ngClass]="tableClass"
+      [ngStyle]="tableStyle"
+    >
+      @if (columns.length > 0) {
+        <thead [ngClass]="headerClass" [ngStyle]="headerStyle">
+          @if (hasHeader) {
+            <ng-content select="[header-slot]"></ng-content>
+          } @else {
+            <tr>
+              @if (expandable) {
+                <th class="expand-col-header" style="width: 40px"></th>
+              }
+              @for (col of columns; track col.key) {
+                <th
+                  [style.text-align]="col.align || 'left'"
+                  [style.width]="col.width || 'auto'"
+                  [class.sortable]="col.sortable"
+                  [ngClass]="getColHeaderClass(col)"
+                  [ngStyle]="getColHeaderStyle(col)"
+                  (click)="col.sortable ? onSort(col.key) : null"
+                >
+                  <div
+                    class="th-content"
+                    [style.justify-content]="
+                      col.align === 'right'
+                        ? 'flex-end'
+                        : col.align === 'center'
+                          ? 'center'
+                          : 'flex-start'
+                    "
+                  >
+                    <span>{{ col.label ?? col.key }}</span>
+                    @if (col.sortable) {
+                      <span class="sort-indicator" [class.active]="sortKey === col.key">
+                        @if (sortKey === col.key && sortDirection === 'asc') {
+                          ↑
+                        } @else if (sortKey === col.key && sortDirection === 'desc') {
+                          ↓
+                        } @else {
+                          ↕
+                        }
+                      </span>
+                    }
+                  </div>
+                </th>
+              }
+            </tr>
+          }
+        </thead>
+        <tbody [ngClass]="bodyClass" [ngStyle]="bodyStyle">
+          @if (hasBody) {
+            <ng-content select="[body-slot]"></ng-content>
+          } @else {
+            @if (loading) {
+              <tr class="state-row">
+                <td [attr.colspan]="columns.length + (expandable ? 1 : 0)" class="state-cell">
+                  <div class="state-content">
+                    <div class="dasar-spinner"></div>
+                    <span>{{ loadingText }}</span>
+                  </div>
+                </td>
+              </tr>
+            } @else if (data.length === 0) {
+              <tr class="state-row">
+                <td [attr.colspan]="columns.length + (expandable ? 1 : 0)" class="state-cell">
+                  @if (hasEmpty) {
+                    <ng-content select="[empty-slot]"></ng-content>
+                  } @else {
+                    <div class="empty-content">
+                      <h5>{{ emptyTitle }}</h5>
+                      <p>{{ emptyDescription }}</p>
+                    </div>
+                  }
+                </td>
+              </tr>
+            } @else {
+              @for (row of data; track row; let i = $index) {
+                <tr
+                  class="dasar-table-row"
+                  [class.expanded]="isExpanded(i)"
+                  (click)="rowClick(row, i, $event)"
+                  (dblclick)="rowDblClick(row, i, $event)"
+                  (contextmenu)="rowContextMenu(row, i, $event)"
+                >
+                  @if (expandable) {
+                    <td
+                      class="expand-col-cell"
+                      style="width: 40px; display: flex; justify-items: center; align-items: center"
+                    >
+                      <dasar-button
+                        variant="ghost"
+                        [size]="size"
+                        icon-only
+                        [class.is-expanded]="isExpanded(i)"
+                        (click)="toggleExpand(row, i, $event)"
+                      >
+                        <dasar-icon
+                          [name]="isExpanded(i) ? 'chevron-down' : 'chevron-right'"
+                        ></dasar-icon>
+                      </dasar-button>
+                    </td>
+                  }
+                  @for (col of columns; track col.key) {
+                    <td
+                      [style.text-align]="col.align || 'left'"
+                      [ngClass]="getColCellClass(col, row, i)"
+                      [ngStyle]="getColCellStyle(col, row, i)"
+                    >
+                      @if (getCellTemplate(col.key); as tmpl) {
+                        <ng-container
+                          *ngTemplateOutlet="
+                            tmpl;
+                            context: { $implicit: row[col.key], row: row, index: i }
+                          "
+                        ></ng-container>
+                      } @else {
+                        {{ row[col.key] }}
+                      }
+                    </td>
+                  }
+                </tr>
+                @if (expandable && isExpanded(i) && hasExpanded) {
+                  <tr class="dasar-table-expanded-row">
+                    <td
+                      [attr.colspan]="columns.length + (expandable ? 1 : 0)"
+                      class="expanded-cell"
+                    >
+                      <ng-container
+                        *ngTemplateOutlet="
+                          providedExpanded!.templateRef;
+                          context: { $implicit: row, index: i }
+                        "
+                      ></ng-container>
+                    </td>
+                  </tr>
+                }
+              }
+            }
+          }
+        </tbody>
+      } @else {
+        <ng-content></ng-content>
+      }
+    </table>
+  </div>
+  @if (hasPagination) {
+    <div class="dasar-table-pagination" [ngClass]="paginationClass" [ngStyle]="paginationStyle">
+      <ng-content select="[pagination-slot]"></ng-content>
+    </div>
+  }
+</div>

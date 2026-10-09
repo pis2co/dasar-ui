@@ -1,0 +1,158 @@
+<div
+  class="dasar-calendar-container size-{{ size }} appearance-{{ appearance }} radius-{{
+    radius
+  }} variant-{{ variant }} "
+  [ngStyle]="containerStyle"
+  [ngClass]="containerClass"
+>
+  @if (!hideHeader) {
+    @if (headerTemplate) {
+      <ng-container
+        *ngTemplateOutlet="headerTemplate.templateRef; context: { $implicit: this }"
+      ></ng-container>
+    } @else {
+      <div class="calendar-header" [ngStyle]="headerStyle" [ngClass]="headerClass">
+        <div
+          class="header-title-wrapper"
+          (click)="variant != 'dashboard' ? toggleViewMode() : null"
+        >
+          <span class="current-month">
+            @if (viewMode === 'days') {
+              {{ currentMonthYear }}
+            } @else if (viewMode === 'months') {
+              {{ currentViewDate.getFullYear() }}
+            } @else {
+              Select Year
+            }
+          </span>
+          @if (variant != 'dashboard') {
+            <dasar-icon
+              [name]="viewMode === 'days' ? 'chevron-down' : 'chevron-up'"
+              class="header-chevron"
+            >
+            </dasar-icon>
+          }
+        </div>
+        @if (viewMode === 'days') {
+          <div class="header-actions">
+            @if (prevYearTemplate && variant === 'dashboard') {
+              <ng-container
+                *ngTemplateOutlet="prevYearTemplate.templateRef; context: { $implicit: this }"
+              ></ng-container>
+            } @else if (variant === 'dashboard') {
+              <dasar-button size="sm" variant="ghost" icon-only (click)="changeYear(-1, $event)">
+                <dasar-icon name="arrow-left"></dasar-icon>
+              </dasar-button>
+            }
+            @if (prevMonthTemplate) {
+              <ng-container
+                *ngTemplateOutlet="prevMonthTemplate.templateRef; context: { $implicit: this }"
+              ></ng-container>
+            } @else {
+              <dasar-button size="sm" variant="ghost" icon-only (click)="changeMonth(-1, $event)">
+                <dasar-icon name="chevron-left"></dasar-icon>
+              </dasar-button>
+            }
+            @if (todayTemplate && variant === 'dashboard') {
+              <ng-container
+                *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
+              ></ng-container>
+            } @else if (variant === 'dashboard') {
+              <dasar-button size="sm" variant="primary" (click)="goToToday($event)"
+                >Today</dasar-button
+              >
+            }
+            @if (nextMonthTemplate) {
+              <ng-container
+                *ngTemplateOutlet="nextMonthTemplate.templateRef; context: { $implicit: this }"
+              ></ng-container>
+            } @else {
+              <dasar-button size="sm" variant="ghost" icon-only (click)="changeMonth(1, $event)">
+                <dasar-icon name="chevron-right"></dasar-icon>
+              </dasar-button>
+            }
+            @if (nextYearTemplate && variant === 'dashboard') {
+              <ng-container
+                *ngTemplateOutlet="nextYearTemplate.templateRef; context: { $implicit: this }"
+              ></ng-container>
+            } @else if (variant === 'dashboard') {
+              <dasar-button size="sm" variant="ghost" icon-only (click)="changeYear(1, $event)">
+                <dasar-icon name="arrow-right"></dasar-icon>
+              </dasar-button>
+            }
+          </div>
+        }
+      </div>
+    }
+  }
+  @if (viewMode === 'days') {
+    <div class="calendar-grid-wrapper radius-{{ radius }}">
+      <div class="calendar-grid">
+        @if (variant === 'dropdown') {
+          @for (wd of localizedDropdownWeekdays; track wd) {
+            <div class="weekday-header">{{ wd }}</div>
+          }
+        }
+        @for (day of calendarDays; track day.date.getTime()) {
+          <div
+            class="day-cell"
+            [class.other-month]="!day.isCurrentMonth"
+            [class.selected]="day.isSelected"
+            (click)="selectDate(day, $event)"
+          >
+            @if (variant === 'dashboard') {
+              <div class="cell-top">
+                <div class="day-number" [class.today]="day.isToday">{{ day.dayNumber }}</div>
+                @if (day.weekdayStr) {
+                  <div class="weekday-label">{{ day.weekdayStr }}</div>
+                }
+              </div>
+              @if (!hideFullDate) {
+                <div class="cell-content">{{ day.fullDateStr }}</div>
+              }
+            } @else {
+              <div class="day-number" [class.today]="day.isToday">
+                {{ day.dayNumber }}
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  }
+  @if (viewMode === 'months') {
+    <div class="picker-grid-wrapper radius-{{ radius }}">
+      <div class="picker-grid months-grid">
+        @for (m of monthsList; track m.index) {
+          <button
+            type="button"
+            class="picker-cell"
+            [class.selected]="m.index === currentViewDate.getMonth()"
+            (click)="selectMonth(m.index, $event)"
+          >
+            {{ m.name }}
+          </button>
+        }
+      </div>
+    </div>
+  }
+  @if (viewMode === 'years') {
+    <div class="picker-grid-wrapper radius-{{ radius }}">
+      <div class="picker-grid years-grid">
+        @for (y of yearsList; track y) {
+          <button
+            type="button"
+            class="picker-cell"
+            [class.selected]="y === currentViewDate.getFullYear()"
+            (click)="selectYear(y, $event)"
+          >
+            {{ y }}
+          </button>
+        }
+      </div>
+    </div>
+  }
+  @if (footerSlot) {
+    <ng-content select="[calendar-footer-slot]"></ng-content>
+  }
+</div>

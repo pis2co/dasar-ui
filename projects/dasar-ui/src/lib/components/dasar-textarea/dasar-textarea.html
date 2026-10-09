@@ -1,0 +1,43 @@
+<div class="dasar-textarea-wrapper">
+  @if (label || extraLabelSlot) {
+    <div class="dasar-textarea-label-row">
+      @if (label) {
+        <label class="dasar-textarea-label">{{ label }}</label>
+      } @else {
+        <ng-content select="[label-slot]"></ng-content>
+      }
+      @if (extraLabelSlot) {
+        <ng-content select="[extra-label-slot]"></ng-content>
+      } @else if (labelRight) {
+        <span class="dasar-textarea-label-right">{{ labelRight }}</span>
+      }
+    </div>
+  }
+  <div
+    class="dasar-textarea-container appearance-{{ appearance }} size-{{ size }} radius-{{ radius }}"
+    [class.full-width]="fullWidth"
+    [class.disabled]="disabled"
+    [class.error]="error"
+    [ngClass]="containerClass"
+    [ngStyle]="containerStyle"
+  >
+    <textarea
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [rows]="rows"
+      [cols]="cols"
+      [ngClass]="textareaClass"
+      [ngStyle]="textareaStyle"
+      [value]="_value"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+      class="dasar-textarea-native"
+    ></textarea>
+  </div>
+  @if (hint) {
+    <div class="dasar-textarea-hint" [class.error]="error" [class.disabled]="disabled">
+      {{ hint }}
+    </div>
+  }
+</div>

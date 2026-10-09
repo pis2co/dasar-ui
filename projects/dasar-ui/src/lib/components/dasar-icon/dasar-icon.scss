@@ -1,0 +1,24 @@
+@use '../../styles/theme.scss' as *;
+
+:host {
+  justify-content: center;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.dasar-icon {
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  svg {
+    display: block;
+    flex-shrink: 0;
+  }
+  &.fluid {
+    height: fit-content;
+    width: fit-content;
+    padding: none;
+  }
+}

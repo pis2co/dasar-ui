@@ -1,0 +1,42 @@
+<dasar-button
+  [ngStyle]="containerStyle"
+  [ngClass]="containerClass"
+  [appearance]="appearance"
+  [disabled]="disabled"
+  [variant]="variant"
+  [radius]="radius"
+  [fluid]="fluid"
+  [size]="size"
+  (click)="click($event)"
+  class="dasar-chip-container"
+>
+  <span class="chip-inner-content" [ngStyle]="contentStyle" [ngClass]="contentClass">
+    @if (iconName) {
+      <dasar-icon proje prefix-slot [name]="iconName" class="chip-icon" size="xs"></dasar-icon>
+    }
+    <span class="chip-label-wrapper" [ngStyle]="labelStyle" [ngClass]="labelClass">
+      @if (label) {
+        {{ label }}
+      } @else if (labelSlot) {
+        <ng-content select="[chip-label-slot]"></ng-content>
+      } @else {
+        <ng-content></ng-content>
+      }
+    </span>
+    @if (removable) {
+      <span
+        suffix-slot
+        (click)="remove($event)"
+        class="chip-close-wrapper"
+        aria-label="Remove"
+        role="button"
+      >
+        @if (closeSlot) {
+          <ng-content select="[chip-close-slot]"></ng-content>
+        } @else {
+          <dasar-icon [name]="closeIconName" class="chip-close-icon" size="xs" fluid></dasar-icon>
+        }
+      </span>
+    }
+  </span>
+</dasar-button>

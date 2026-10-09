@@ -1,0 +1,163 @@
+<div
+  class="dasar-pivot-container appearance-{{ appearance }} size-{{ size }} spacing-{{ spacing }}"
+>
+  <!-- Top Table Header Slot (Optional Toolbar) -->
+  @if (providedHeader) {
+    <ng-container *ngTemplateOutlet="providedHeader.templateRef"></ng-container>
+  }
+
+  <div class="dasar-pivot-wrapper">
+    <table class="dasar-pivot-table hoverable">
+      <!-- HEADER ROW -->
+      <thead>
+        <tr>
+          <th class="corner-cell">
+            <div class="corner-labels">
+              @if (colLabel) {
+                <span class="col-label">{{ colLabel }}</span>
+              }
+              @if (rowLabel) {
+                <span class="row-label">{{ rowLabel }}</span>
+              }
+            </div>
+          </th>
+
+          @for (col of colHeaders; track col) {
+            <th scope="col" class="col-header">
+              @if (colHeaderTemplate) {
+                <ng-container
+                  *ngTemplateOutlet="colHeaderTemplate.templateRef; context: { $implicit: col }"
+                ></ng-container>
+              } @else {
+                {{ col }}
+              }
+            </th>
+          }
+          @if (showRowTotals) {
+            <th scope="col" class="total-header">Total</th>
+          }
+        </tr>
+      </thead>
+
+      <!-- CUSTOM BODY SLOT -->
+      @if (providedBody) {
+        <ng-container *ngTemplateOutlet="providedBody.templateRef"></ng-container>
+      }
+      <!-- STANDARD BODY -->
+      @else if (data.length > 0 && !loading) {
+        <tbody>
+          @for (row of rowHeaders; track row; let i = $index) {
+            <tr
+              class="dasar-table-row"
+              (click)="handleRowClick(row, i, $event)"
+              (dblclick)="handleRowDblclick(row, i, $event)"
+              (contextmenu)="handleRowContextMenu(row, i, $event)"
+            >
+              <!-- Row Header -->
+              <th scope="row" class="row-header">
+                @if (rowHeaderTemplate) {
+                  <ng-container
+                    *ngTemplateOutlet="rowHeaderTemplate.templateRef; context: { $implicit: row }"
+                  ></ng-container>
+                } @else {
+                  {{ row }}
+                }
+              </th>
+
+              <!-- Data Cells (With custom styling functions) -->
+              @for (col of colHeaders; track col) {
+                <td
+                  class="data-cell"
+                  [ngClass]="cellClassFn ? cellClassFn(matrix[row][col], row, col) : ''"
+                  [ngStyle]="cellStyleFn ? cellStyleFn(matrix[row][col], row, col) : null"
+                >
+                  @if (cellTemplate) {
+                    <ng-container
+                      *ngTemplateOutlet="
+                        cellTemplate.templateRef;
+                        context: { $implicit: matrix[row][col], row: row, col: col }
+                      "
+                    ></ng-container>
+                  } @else {
+                    {{ matrix[row][col] !== null ? matrix[row][col] : emptyText }}
+                  }
+                </td>
+              }
+
+              <!-- Row Total Cell -->
+              @if (showRowTotals) {
+                <td class="total-cell row-total">
+                  {{ rowTotals[row] !== null ? rowTotals[row] : emptyText }}
+                </td>
+              }
+            </tr>
+
+            <!-- Expanded Row Slot -->
+            @if (expandedRows.has(row) && providedExpanded) {
+              <tr class="dasar-table-expanded-row state-row">
+                <td
+                  [attr.colspan]="colHeaders.length + (showRowTotals ? 2 : 1)"
+                  class="expanded-cell"
+                >
+                  <ng-container
+                    *ngTemplateOutlet="providedExpanded.templateRef; context: { $implicit: row }"
+                  ></ng-container>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      }
+
+      <!-- FOOTER ROW -->
+      @if (showColTotals && rowHeaders.length > 0 && !loading && !providedBody) {
+        <tfoot>
+          <tr>
+            <th scope="row" class="total-header">Grand Total</th>
+            @for (col of colHeaders; track col) {
+              <td class="total-cell col-total">
+                {{ colTotals[col] !== null ? colTotals[col] : emptyText }}
+              </td>
+            }
+            @if (showRowTotals) {
+              <td class="total-cell grand-total">
+                {{ grandTotal !== null ? grandTotal : emptyText }}
+              </td>
+            }
+          </tr>
+        </tfoot>
+      }
+    </table>
+
+    <!-- Loading State -->
+    @if (loading) {
+      <div class="state-cell">
+        <div class="state-content">
+          <div class="dasar-spinner"></div>
+          <p>{{ loadingText }}</p>
+        </div>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (data.length === 0 && !loading) {
+      @if (providedEmpty) {
+        <ng-container *ngTemplateOutlet="providedEmpty.templateRef"></ng-container>
+      } @else {
+        <div class="state-cell">
+          <div class="empty-content">
+            <h5>{{ emptyTitle }}</h5>
+            <p>{{ emptyDescription }}</p>
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+  <!-- Pagination Slot (Bottom Toolbar) -->
+  @if (providedPagination) {
+    <div class="dasar-table-pagination">
+      <ng-container *ngTemplateOutlet="providedPagination.templateRef"></ng-container>
+    </div>
+  }
+</div>

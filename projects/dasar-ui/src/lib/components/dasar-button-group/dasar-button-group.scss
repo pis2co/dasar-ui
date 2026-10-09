@@ -1,0 +1,69 @@
+@use '../../styles/theme.scss' as *;
+
+:host {
+  display: inline-flex;
+  vertical-align: middle;
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+  &.attached {
+    &.horizontal {
+      dasar-button {
+        &:not(:first-child) {
+          margin-left: -1px;
+          .dasar-button-native {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+          }
+        }
+
+        &:not(:last-child) {
+          .dasar-button-native {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+          }
+        }
+
+        &:hover,
+        &:focus-within {
+          position: relative;
+          z-index: 2;
+        }
+      }
+    }
+
+    &.vertical {
+      dasar-button {
+        &:not(:first-child) {
+          margin-top: -1px;
+          .dasar-button-native {
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
+          }
+        }
+
+        &:not(:last-child) {
+          .dasar-button-native {
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+          }
+        }
+
+        &:hover,
+        &:focus-within {
+          position: relative;
+          z-index: 2;
+        }
+      }
+    }
+  }
+
+  &:not(.attached) {
+    gap: 8px;
+    &.vertical {
+      flex-direction: column;
+    }
+  }
+}

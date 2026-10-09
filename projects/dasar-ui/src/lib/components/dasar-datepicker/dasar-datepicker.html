@@ -1,0 +1,102 @@
+<div
+  class="dasar-datepicker-container"
+  [class.full-width]="fullWidth"
+  [class.disabled]="disabled"
+  [class.error]="error"
+  [class.fluid]="fluid"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+>
+  @if (hasLabelRow) {
+    <div
+      class="dasar-datepicker-label-wrapper"
+      [ngClass]="labelWrapperClass"
+      [ngStyle]="labelWrapperStyle"
+    >
+      <div class="dasar-datepicker-label-content">
+        @if (labelSlot) {
+          <ng-content select="[label-slot]"></ng-content>
+        } @else if (label) {
+          {{ label }}
+        }
+      </div>
+      @if (extraLabelSlot) {
+        <div class="dasar-datepicker-extra-label-content">
+          <ng-content select="[extra-label-slot]"></ng-content>
+        </div>
+      }
+    </div>
+  }
+  <div
+    #triggerElement
+    class="dasar-datepicker-wrapper"
+    [ngClass]="wrapperClass"
+    [ngStyle]="wrapperStyle"
+  >
+    <div
+      class="dasar-datepicker-trigger appearance-{{ appearance }} size-{{ size }} radius-{{
+        radius
+      }}"
+      (click)="toggleDropdown($event)"
+      [class.has-value]="!!internalDate"
+      [class.active]="isOpen"
+      [ngClass]="triggerClass"
+      [ngStyle]="triggerStyle"
+      tabindex="0"
+    >
+      <ng-content select="[prefix-slot]"></ng-content>
+      <span class="value-text">{{ internalDate ? formattedDisplay : placeholder }}</span>
+      <div class="datepicker-actions">
+        @if (clearable && internalDate) {
+          <dasar-icon class="clear-icon" name="x" (click)="clearValue($event)"></dasar-icon>
+        }
+        <dasar-icon
+          [name]="type.includes('time') ? 'clock' : 'calendar'"
+          class="calendar-icon"
+        ></dasar-icon>
+      </div>
+    </div>
+    @if (isOpen) {
+      <div
+        #dropdownElement
+        class="dasar-datepicker-dropdown radius-{{ radius }} placement-{{ placement }}"
+        [ngClass]="dropdownClass"
+        [ngStyle]="dropdownStyle"
+      >
+        <dasar-calendar
+          variant="dropdown"
+          (valueChange)="onCalendarSelect($event)"
+          (prevMonth)="onPrevMonthClick.emit()"
+          (nextMonth)="onNextMonthClick.emit()"
+          (prevYear)="onPrevYearClick.emit()"
+          (nextYear)="onNextYearClick.emit()"
+          [value-format]="valueFormat"
+          [(value)]="internalDate"
+          [locale]="locale"
+        >
+          @if (extraFooterSlot) {
+            <ng-content
+              ngProjectAs="[calendar-footer-slot]"
+              select="[extra-footer-slot]"
+            ></ng-content>
+          }
+        </dasar-calendar>
+      </div>
+    }
+  </div>
+  @if (hasHintRow) {
+    <div
+      class="slot-wrapper hint-wrapper"
+      [class.disabled]="disabled"
+      [class.error]="error"
+      [ngClass]="hintWrapperClass"
+      [ngStyle]="hintWrapperStyle"
+    >
+      @if (hintSlot) {
+        <ng-content select="[hint-slot]"></ng-content>
+      } @else if (hint) {
+        {{ hint }}
+      }
+    </div>
+  }
+</div>

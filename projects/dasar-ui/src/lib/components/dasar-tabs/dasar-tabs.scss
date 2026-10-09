@@ -1,0 +1,126 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-tabs {
+  display: block;
+  width: 100%;
+}
+
+.dasar-tabs-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &.fluid {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
+    .dasar-tabs-list {
+      display: flex;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+.dasar-tabs-list {
+  font-size: var(--font-size-base);
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: var(--space-1);
+  gap: var(--space-1);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.dasar-tabs-container.appearance-subtle .dasar-tabs-list {
+  background-color: var(--theme-bg-hover-color);
+  border-radius: var(--radius-md);
+  transition: background-color 0.3s ease;
+}
+
+.dasar-tabs-container.appearance-solid .dasar-tabs-list {
+  background-color: var(--theme-bg-surface-color);
+  border: 1px solid var(--theme-border-strong-color);
+  border-radius: var(--radius-md);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.dasar-tabs-container.appearance-outline .dasar-tabs-list {
+  border-bottom: 1px solid var(--theme-border-subtle-color);
+  margin-bottom: calc(var(--space-0-5) * -1);
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.dasar-tabs-container.appearance-outline {
+  .dasar-tabs-list {
+    background-color: transparent;
+    box-shadow: inset 0 -1px 0 0 var(--theme-border-subtle-color);
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    gap: 0;
+  }
+
+  .dasar-tab-trigger-btn {
+    border-bottom: none;
+    margin-bottom: 0;
+    transition: box-shadow 0.3s ease-in-out;
+
+    ::ng-deep .dasar-button-native {
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+      background-color: transparent !important;
+      border-color: transparent !important;
+      transition:
+        color 0.3s ease-in-out,
+        font-weight 0.3s ease;
+      &:hover {
+        color: var(--theme-primary-color);
+        background-color: var(--theme-bg-hover-color) !important;
+      }
+    }
+
+    &.active {
+      box-shadow: inset 0 -1px 0 0 var(--theme-primary-color);
+      // ::ng-deep .dasar-button-native {
+      //   color: var(--theme-primary-color) !important;
+      //   font-weight: var(--font-weight-semibold);
+      //   background-color: transparent !important;
+      // }
+    }
+  }
+}
+
+.dasar-tabs-content {
+  padding-top: var(--space-4);
+  color: var(--theme-text-primary-color);
+
+  > * {
+    animation: dasarTabFadeIn 0.3s ease-in-out forwards;
+    display: block;
+  }
+}
+
+@keyframes dasarTabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

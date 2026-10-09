@@ -1,0 +1,41 @@
+<div
+  class="dasar-tabs-container appearance-{{ appearance }} size-{{ size }}"
+  [class.fluid]="fluid"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+>
+  <div class="dasar-tabs-list" [ngClass]="listClass" [ngStyle]="listStyle">
+    @if (items.length > 0) {
+      @for (item of items; track item; let i = $index) {
+        <dasar-button
+          [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
+          [radius]="appearance === 'outline' ? 'none' : radius"
+          [size]="size === 'compact' ? 'sm' : 'md'"
+          [class.active]="activeIndex === i"
+          [fluid]="fluid"
+          (click)="selectTab(i)"
+          class="dasar-tab-trigger-btn"
+        >
+          {{ item }}
+        </dasar-button>
+      }
+    } @else {
+      @for (tabSlotDirective of tabItemSlotDirectives; track tabSlotDirective; let i = $index) {
+        <dasar-button
+          [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
+          [radius]="appearance === 'outline' ? 'none' : radius"
+          [size]="size === 'compact' ? 'sm' : 'md'"
+          [class.active]="activeIndex === i"
+          (click)="selectTab(i)"
+          [fluid]="fluid"
+          class="dasar-tab-trigger-btn"
+        >
+          <ng-container *ngTemplateOutlet="tabSlotDirective.templateRef"></ng-container>
+        </dasar-button>
+      }
+    }
+  </div>
+  <div class="dasar-tabs-content" [ngClass]="contentClass" [ngStyle]="contentStyle">
+    <ng-content></ng-content>
+  </div>
+</div>

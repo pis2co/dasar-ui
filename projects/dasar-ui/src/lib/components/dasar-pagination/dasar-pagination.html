@@ -1,0 +1,98 @@
+<nav class="dasar-pagination-container size-{{ size }}">
+  <ul class="dasar-pagination-list">
+    @if (showFirstLast) {
+      <li>
+        <dasar-button
+          [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
+          [appearance]="appearance === 'solid' ? 'outline' : appearance"
+          [size]="size"
+          [radius]="radius"
+          [disabled]="currentPage === 1 || disabled"
+          (click)="goToPage(1)"
+          class="dasar-pagination-btn"
+          aria-label="First page"
+        >
+          &laquo;
+        </dasar-button>
+      </li>
+    }
+
+    <li>
+      <dasar-button
+        [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
+        [appearance]="appearance === 'solid' ? 'outline' : appearance"
+        [size]="size"
+        [radius]="radius"
+        [disabled]="currentPage === 1 || disabled"
+        (click)="goToPage(currentPage - 1)"
+        class="dasar-pagination-btn"
+        aria-label="Previous page"
+      >
+        &lsaquo;
+      </dasar-button>
+    </li>
+
+    @for (page of pages; track $index) {
+      <li>
+        @if (page === '...') {
+          <span class="dasar-pagination-ellipsis">...</span>
+        } @else {
+          <dasar-button
+            [variant]="
+              currentPage === page ? 'primary' : appearance === 'outline' ? 'ghost' : 'secondary'
+            "
+            [appearance]="
+              currentPage === page
+                ? appearance === 'outline'
+                  ? 'solid'
+                  : appearance
+                : appearance === 'solid'
+                  ? 'outline'
+                  : appearance
+            "
+            [size]="size"
+            [radius]="radius"
+            [disabled]="disabled"
+            (click)="goToPage(page)"
+            class="dasar-pagination-btn"
+            [class.active]="currentPage === page"
+          >
+            {{ page }}
+          </dasar-button>
+        }
+      </li>
+    }
+
+    <li>
+      <dasar-button
+        [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
+        [appearance]="appearance === 'solid' ? 'outline' : appearance"
+        [size]="size"
+        [radius]="radius"
+        [disabled]="currentPage === totalPages || disabled"
+        (click)="goToPage(currentPage + 1)"
+        class="dasar-pagination-btn"
+        aria-label="Next page"
+      >
+        &rsaquo;
+      </dasar-button>
+    </li>
+
+    @if (showFirstLast) {
+      <li>
+        <dasar-button
+          [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
+          [appearance]="appearance === 'solid' ? 'outline' : appearance"
+          [size]="size"
+          [radius]="radius"
+          [disabled]="currentPage === totalPages || disabled"
+          (click)="goToPage(totalPages)"
+          class="dasar-pagination-btn"
+          aria-label="Last page"
+        >
+          &raquo;
+        </dasar-button>
+      </li>
+    }
+  </ul>
+</nav>

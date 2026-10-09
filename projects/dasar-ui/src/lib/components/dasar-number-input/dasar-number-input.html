@@ -1,0 +1,90 @@
+<div class="dasar-number-input-wrapper">
+  @if (label) {
+    <div class="dasar-number-input-label-row">
+      @if (label) {
+        <label class="dasar-number-input-label">{{ label }}</label>
+      }
+      @if (labelRight || hasExtraLabelSlot) {
+        <div class="dasar-number-input-label-right">
+          @if (hasExtraLabelSlot) {
+            <ng-content select="[extra-label-slot]"></ng-content>
+          } @else {
+            <span>{{ labelRight }}</span>
+          }
+        </div>
+      }
+    </div>
+  }
+  <div
+    class="dasar-number-input-container size-{{ size }} appearance-{{ appearance }} radius-{{
+      radius
+    }}"
+    [class.hide-overflow]="hideOverflow"
+    [class.disabled]="disabled"
+    [class.error]="error"
+    [ngClass]="containerClass"
+    [ngStyle]="containerStyle"
+  >
+    <ng-content select="[prefix-slot]"></ng-content>
+    <input
+      [id]="label"
+      class="dasar-number-input-native"
+      type="number"
+      [ngClass]="inputClass"
+      [ngStyle]="inputStyle"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [value]="value"
+      [step]="step"
+      [min]="min"
+      [max]="max"
+      (input)="onInput($event)"
+      (focus)="onFocus($event)"
+      (blur)="onBlur($event)"
+    />
+    <div class="dasar-number-input-actions-group">
+      <div class="asar-number-input-action-zone" (click)="onDecrement($event)">
+        @if (hasDecrementSlot) {
+          <ng-content select="[decrement-slot]"></ng-content>
+        } @else {
+          <dasar-button
+            variant="ghost"
+            radius="none"
+            [disabled]="disabled"
+            [size]="size"
+            tabindex="-1"
+            icon-only
+          >
+            <dasar-icon name="minus"></dasar-icon>
+          </dasar-button>
+        }
+      </div>
+      <div class="dasar-number-input-action-zone" (click)="onIncrement($event)">
+        @if (hasIncrementSlot) {
+          <ng-content select="[increment-slot]"></ng-content>
+        } @else {
+          <dasar-button
+            variant="ghost"
+            radius="none"
+            [disabled]="disabled"
+            [size]="size"
+            tabindex="-1"
+            icon-only
+          >
+            <dasar-icon name="plus"></dasar-icon>
+          </dasar-button>
+        }
+      </div>
+    </div>
+  </div>
+  @if (hint) {
+    <div
+      class="dasar-number-input-hint"
+      [class.error]="error"
+      [ngClass]="hintClass"
+      [ngStyle]="hintStyle"
+    >
+      {{ hint }}
+    </div>
+  }
+</div>
