@@ -1,0 +1,68 @@
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%; max-width: 450px">
+  <dasar-input label="Salary Expectation" placeholder="0" mask="thousand" full-width>
+    <div
+      prefix
+      style="
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        background: var(--theme-bg-hover-color);
+        border-right: 1px solid var(--theme-border-strong-color);
+        height: 100%;
+      "
+    >
+      Rp
+    </div>
+    <div
+      suffix
+      style="
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: var(--theme-text-secondary-color);
+      "
+    >
+      / month
+    </div>
+  </dasar-input>
+
+  <dasar-input
+    label="Newsletter Subscription"
+    placeholder="Enter your email"
+    type="email"
+    full-width
+  >
+    <div
+      prefix
+      style="
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        color: var(--theme-text-secondary-color);
+      "
+    >
+      <dasar-icon name="mail" size="sm"></dasar-icon>
+    </div>
+    <div suffix style="height: 100%; display: flex; align-items: center; padding-right: 4px">
+      <dasar-button variant="primary" size="sm" radius="sm">Subscribe</dasar-button>
+    </div>
+  </dasar-input>
+
+  <dasar-input
+    label="Short Bio"
+    placeholder="Tell us about yourself"
+    [(ngModel)]="bioText"
+    full-width
+  >
+    <div
+      extra-label-slot
+      [style.color]="
+        bioText.length > 50 ? 'var(--theme-danger-color)' : 'var(--theme-text-secondary-color)'
+      "
+    >
+      {{ bioText.length }} / 50
+    </div>
+  </dasar-input>
+</div>

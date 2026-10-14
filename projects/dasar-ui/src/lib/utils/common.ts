@@ -151,7 +151,7 @@ export function resolveThemeDefault<
   service: DasarThemeService | null,
 ): NonNullable<NonNullable<DasarComponentConfig[C]>[K]> | T {
   const providerConfig = provider?.componentConfig as any;
-  const serviceConfig = service?.themeVariable()?.components as any;
+  const serviceConfig = service?.rawThemeVariable()?.components as any;
 
   // Component-Specific Config (First)
   if (providerConfig?.[componentKey]?.[propKey] !== undefined) {

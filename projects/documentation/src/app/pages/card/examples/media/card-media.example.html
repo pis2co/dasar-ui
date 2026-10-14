@@ -1,0 +1,28 @@
+<div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap">
+  <dasar-card hide-overflow body-fluid style="width: 300px">
+    <!-- Fluid Image in Body -->
+    <div
+      style="
+        height: 160px;
+        background-color: var(--theme-primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      "
+    >
+      Image Placeholder
+    </div>
+
+    <div style="padding: 16px">
+      <h3 style="margin-top: 0; margin-bottom: 4px">Beautiful Scenery</h3>
+      <p style="margin: 0; color: var(--theme-text-secondary-color); font-size: 14px">
+        By combining hideOverflow and bodyFluid, you can create edge-to-edge media cards.
+      </p>
+    </div>
+
+    <ng-container action-slot>
+      <dasar-button variant="primary" fluid>Read More</dasar-button>
+    </ng-container>
+  </dasar-card>
+</div>

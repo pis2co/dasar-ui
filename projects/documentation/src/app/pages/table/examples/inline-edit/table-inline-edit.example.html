@@ -1,0 +1,53 @@
+<div style="width: 100%; max-width: 800px">
+  <dasar-table [data]="employees" [columns]="columns">
+    <ng-template cell-slot="name" let-val let-row="row">
+      @if (row.isEditing) {
+        <input
+          type="text"
+          [(ngModel)]="row.editName"
+          style="
+            padding: 4px 8px;
+            border: 1px solid var(--theme-border-strong-color);
+            border-radius: 4px;
+            width: 100%;
+          "
+        />
+      } @else {
+        <span>{{ val }}</span>
+      }
+    </ng-template>
+    <ng-template cell-slot="role" let-val let-row="row">
+      @if (row.isEditing) {
+        <select
+          [(ngModel)]="row.editRole"
+          style="
+            padding: 4px 8px;
+            border: 1px solid var(--theme-border-strong-color);
+            border-radius: 4px;
+            width: 100%;
+          "
+        >
+          <option value="Admin">Admin</option>
+          <option value="Editor">Editor</option>
+          <option value="Viewer">Viewer</option>
+        </select>
+      } @else {
+        <dasar-chip [variant]="val === 'Admin' ? 'primary' : 'ghost'" size="sm">{{
+          val
+        }}</dasar-chip>
+      }
+    </ng-template>
+    <ng-template cell-slot="actions" let-row="row">
+      <div style="display: flex; gap: 8px; justify-content: flex-end">
+        @if (row.isEditing) {
+          <dasar-button variant="primary" size="sm" (click)="saveEdit(row)">Save</dasar-button>
+          <dasar-button variant="ghost" size="sm" (click)="cancelEdit(row)">Cancel</dasar-button>
+        } @else {
+          <dasar-button appearance="outline" size="sm" icon-only (click)="startEdit(row)">
+            <dasar-icon name="edit-2" size="sm"></dasar-icon>
+          </dasar-button>
+        }
+      </div>
+    </ng-template>
+  </dasar-table>
+</div>

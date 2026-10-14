@@ -1,0 +1,20 @@
+<p>
+  Selected Date Object: <strong>{{ standaloneDate() | date: 'mediumDate' }}</strong>
+</p>
+<dasar-calendar
+  [(value)]="standaloneDate"
+  valueFormat="DD-MM-YYYY"
+  appearance="borderless"
+  weekdayFormat="EEEE"
+  locale="id-ID"
+  radius="none"
+  full-width
+  (onMonthChange)="onMonthChange($event)"
+  (onYearChange)="onYearChange($event)"
+  (onNextMonthClick)="onNextMonthClick($event)"
+  (onPrevMonthClick)="onPrevMonthClick($event)"
+  (onNextYearClick)="onNextYearClick($event)"
+  (onPrevYearClick)="onPrevYearClick($event)"
+  (onTodayClick)="onTodayClick($event)"
+  (valueChange)="onValueChanged($event)"
+/>

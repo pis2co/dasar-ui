@@ -5,7 +5,14 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/spec",
     "types": ["vitest/globals"],
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "paths": {
+      "@components/*": ["./src/lib/components/*"],
+      "@services/*": ["./src/lib/services/*"],
+      "@models/*": ["./src/lib/models/*"],
+      "@styles/*": ["./src/lib/styles/*"],
+      "dasar-ui": ["./src/public-api.ts"]
+    }
   },
   "include": ["src/**/*.d.ts", "src/**/*.spec.ts"]
 }

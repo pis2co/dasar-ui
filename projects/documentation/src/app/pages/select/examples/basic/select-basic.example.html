@@ -1,0 +1,13 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 320px">
+  <dasar-select
+    label="Country"
+    placeholder="Select your country"
+    [options]="countries"
+    [(ngModel)]="selectedCountry"
+    full-width
+  ></dasar-select>
+
+  <p style="margin: 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+    Bound Value: <strong>{{ selectedCountry || 'None' }}</strong>
+  </p>
+</div>

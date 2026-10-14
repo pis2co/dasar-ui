@@ -1,0 +1,75 @@
+<docs-layout
+  title="Calendar"
+  description="A robust and fully customizable calendar component for displaying dates, scheduling, and acting as the core of date-pickers."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Dashboard Variant"
+  >
+    <app-calendar-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: dropdownHtml },
+      { label: 'TypeScript', lang: 'typescript', value: dropdownTs },
+    ]"
+    title="Compact Dropdown Variant"
+  >
+    <app-calendar-dropdown-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: localeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: localeTs },
+    ]"
+    title="Localization & Formatting (id-ID vs en-US)"
+  >
+    <app-calendar-locale-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: formatHtml },
+      { label: 'TypeScript', lang: 'typescript', value: formatTs },
+    ]"
+    title="Hiding Elements & Custom Styling"
+  >
+    <app-calendar-format-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: headerHtml },
+      { label: 'TypeScript', lang: 'typescript', value: headerTs },
+    ]"
+    title="Complete Header Override"
+  >
+    <app-calendar-custom-header-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: actionsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: actionsTs },
+    ]"
+    title="Custom Footers & Action Slots"
+  >
+    <app-calendar-actions-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: stylesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: stylesTs },
+    ]"
+    title="Radius & Disabled States"
+  >
+    <app-calendar-styles-example />
+  </doc-example-component>
+</docs-layout>

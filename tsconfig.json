@@ -12,7 +12,10 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "dasar-ui": ["./dist/dasar-ui"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -28,10 +31,10 @@
       "path": "./projects/dasar-ui/tsconfig.spec.json"
     },
     {
-      "path": "./projects/consumer-app/tsconfig.app.json"
+      "path": "./projects/documentation/tsconfig.app.json"
     },
     {
-      "path": "./projects/consumer-app/tsconfig.spec.json"
+      "path": "./projects/documentation/tsconfig.spec.json"
     }
   ]
 }

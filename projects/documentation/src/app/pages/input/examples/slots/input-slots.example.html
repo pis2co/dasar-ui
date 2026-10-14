@@ -1,0 +1,52 @@
+<div style="display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 400px">
+  <dasar-input label="Search Users" placeholder="Search..." full-width>
+    <div prefix-slot style="padding: 0 12px; display: flex; align-items: center; color: gray">
+      <dasar-icon name="search" size="sm"></dasar-icon>
+    </div>
+  </dasar-input>
+
+  <dasar-input label="Website URL" placeholder="mysite" full-width fluid hide-overflow>
+    <div
+      prefix-slot
+      style="
+        padding: 0 12px;
+        background: var(--theme-bg-hover-color);
+        border-right: 1px solid var(--theme-border-strong-color);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: gray;
+      "
+    >
+      https://
+    </div>
+    <div
+      suffix-slot
+      style="padding: 0 12px; display: flex; align-items: center; color: gray; font-size: 14px"
+    >
+      .com
+    </div>
+  </dasar-input>
+
+  <dasar-input
+    label="Password"
+    type="password"
+    placeholder="Enter password"
+    label-right="Forgot?"
+    full-width
+  >
+    <div
+      extra-label-slot
+      style="color: var(--theme-primary-color); cursor: pointer; text-decoration: underline"
+    >
+      Need help?
+    </div>
+    <div
+      suffix-slot
+      style="padding: 0 12px; display: flex; align-items: center; cursor: pointer; color: gray"
+    >
+      <dasar-icon name="eye" size="sm"></dasar-icon>
+    </div>
+  </dasar-input>
+</div>

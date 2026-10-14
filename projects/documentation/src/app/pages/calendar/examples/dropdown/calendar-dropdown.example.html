@@ -1,0 +1,10 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap">
+  <div style="width: 320px">
+    <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 500">Dropdown Variant</p>
+    <dasar-calendar
+      variant="dropdown"
+      [value]="selectedDate()"
+      (valueChange)="selectedDate.set($event)"
+    ></dasar-calendar>
+  </div>
+</div>

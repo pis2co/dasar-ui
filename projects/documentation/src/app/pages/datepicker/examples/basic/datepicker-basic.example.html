@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 320px">
+  <dasar-datepicker
+    label="Select a Date"
+    placeholder="Choose your birth date"
+    [(value)]="selectedDate"
+    full-width
+  ></dasar-datepicker>
+
+  <p style="margin: 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+    Returned Value: <strong>{{ selectedDate() || 'None' }}</strong>
+  </p>
+</div>

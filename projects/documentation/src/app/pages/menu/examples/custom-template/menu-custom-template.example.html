@@ -1,0 +1,42 @@
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+  <!-- Custom Slots and Content -->
+  <dasar-menu [items]="customItems" (itemClick)="onMenuClick($event)" appearance="filled">
+    <!-- Prefix Slot -->
+    <dasar-icon prefix name="dots-vertical" size="sm"></dasar-icon>
+    <!-- Label Slot -->
+    <span menu-label>Custom Actions</span>
+    <!-- Suffix Slot -->
+    <dasar-icon suffix name="chevron-down" size="sm"></dasar-icon>
+    <!-- Custom Menu Item Renderer -->
+    <!-- <ng-template menu-item let-value> -->
+    <ng-template menu-item let-item>
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-weight: 500">{{ item.label }}</span>
+        <span style="color: lightsalmon; font-size: 10px"> Action key: {{ item.value }} </span>
+      </div>
+    </ng-template>
+  </dasar-menu>
+</div>
+<br />
+<div style="display: flex; gap: 12px; flex-direction: column">
+  <dasar-card appearance="outline" label="Project Overview" style="width: 320px">
+    <!-- Place menu in the extra-header-slot of the card -->
+    <div extra-header-slot>
+      <dasar-menu
+        fluid
+        appearance="none"
+        placement="bottom-end"
+        [items]="actionItems"
+        (itemClick)="onActionClick($event)"
+      >
+        <dasar-button prefix variant="ghost" icon-only>
+          <dasar-icon name="dots-vertical"></dasar-icon>
+        </dasar-button>
+      </dasar-menu>
+    </div>
+
+    <p style="margin: 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+      Manage your project settings, collaborate with your team, and track your recent deployments.
+    </p>
+  </dasar-card>
+</div>

@@ -1,0 +1,13 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 320px">
+  <dasar-input
+    label="Email Address"
+    placeholder="Enter your email"
+    type="email"
+    [(ngModel)]="emailValue"
+    full-width
+  ></dasar-input>
+
+  <p style="margin: 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+    Bound Value: <strong>{{ emailValue || 'None' }}</strong>
+  </p>
+</div>

@@ -1,0 +1,24 @@
+<div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap">
+  <dasar-card style="width: 350px">
+    <!-- Custom Header Slot -->
+    <div header-slot style="display: flex; align-items: center; gap: 8px">
+      <dasar-icon name="user" size="md"></dasar-icon>
+      <span style="font-weight: 600">User Profile</span>
+    </div>
+
+    <!-- Custom Caption Slot -->
+    <span caption-slot>Manage your personal information and security.</span>
+
+    <!-- Body Content -->
+    <p style="margin-bottom: 0">
+      Your account is currently active. Please review your security settings to ensure maximum
+      protection.
+    </p>
+
+    <!-- Action Slot -->
+    <ng-container action-slot>
+      <dasar-button variant="danger" full-width>Cancel</dasar-button>
+      <dasar-button variant="primary" full-width>Save Changes</dasar-button>
+    </ng-container>
+  </dasar-card>
+</div>

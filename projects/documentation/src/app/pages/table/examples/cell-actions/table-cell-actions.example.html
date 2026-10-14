@@ -1,0 +1,14 @@
+<div style="width: 100%; max-width: 800px">
+  <dasar-table [data]="users" [columns]="columns">
+    <ng-template cell-slot="actions" let-row="row">
+      <div style="display: flex; gap: 8px; justify-content: flex-end">
+        <dasar-button variant="ghost" size="sm" icon-only>
+          <dasar-icon name="edit-2" size="sm"></dasar-icon>
+        </dasar-button>
+        <dasar-button variant="ghost" size="sm" icon-only>
+          <dasar-icon name="trash" size="sm" style="color: var(--theme-danger-color)"></dasar-icon>
+        </dasar-button>
+      </div>
+    </ng-template>
+  </dasar-table>
+</div>

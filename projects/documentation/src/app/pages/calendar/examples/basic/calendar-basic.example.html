@@ -1,0 +1,11 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%">
+  <p style="margin: 0">
+    Selected Date: <strong>{{ selectedDate() | date: 'fullDate' }}</strong>
+  </p>
+
+  <dasar-calendar
+    [value]="selectedDate()"
+    (valueChange)="selectedDate.set($event)"
+    full-width
+  ></dasar-calendar>
+</div>

@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 320px">
+  <dasar-number-input
+    label="Item Quantity"
+    placeholder="0"
+    [(ngModel)]="qty"
+    full-width
+  ></dasar-number-input>
+
+  <p style="margin: 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+    Bound Value: <strong>{{ qty }}</strong>
+  </p>
+</div>

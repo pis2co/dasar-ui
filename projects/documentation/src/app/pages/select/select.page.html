@@ -1,0 +1,66 @@
+<!-- select.page.html -->
+<docs-layout
+  title="Select"
+  description="A customizable dropdown selection component supporting single and multiple values, inline searching, and rich custom templates."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Usage"
+  >
+    <app-select-basic-example></app-select-basic-example>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance & Sizes"
+  >
+    <app-select-appearance-example></app-select-appearance-example>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: searchHtml },
+      { label: 'TypeScript', lang: 'typescript', value: searchTs },
+    ]"
+    title="Searchable List"
+  >
+    <app-select-search-example></app-select-search-example>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: multipleHtml },
+      { label: 'TypeScript', lang: 'typescript', value: multipleTs },
+    ]"
+    title="Multiple Selection Modes"
+  >
+    <app-select-multiple-example></app-select-multiple-example>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: statesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: statesTs },
+    ]"
+    title="Validation & States"
+  >
+    <app-select-states-example></app-select-states-example>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: slotsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: slotsTs },
+    ]"
+    title="Custom Templates & Slots"
+  >
+    <app-select-slots-example></app-select-slots-example>
+  </doc-example-component>
+</docs-layout>

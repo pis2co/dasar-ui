@@ -1,0 +1,12 @@
+<div style="width: 100%; max-width: 800px">
+  <dasar-table [data]="users" [columns]="columns">
+    <ng-template cell-slot="status" let-val>
+      <dasar-chip
+        [variant]="val === 'Active' ? 'success' : val === 'Pending' ? 'warning' : 'danger'"
+        size="sm"
+      >
+        {{ val }}
+      </dasar-chip>
+    </ng-template>
+  </dasar-table>
+</div>

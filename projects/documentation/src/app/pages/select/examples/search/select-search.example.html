@@ -1,0 +1,13 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 300px">
+    <dasar-select
+      label="Searchable Select"
+      placeholder="Type to filter..."
+      [searchable]="true"
+      [clearable]="true"
+      [options]="frameworks"
+      [(ngModel)]="selectedFramework"
+      full-width
+    ></dasar-select>
+  </div>
+</div>

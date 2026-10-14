@@ -1,0 +1,173 @@
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
+  <dasar-card [container-style]="{ overflow: 'hidden' }" appearance="elevated" header-fluid>
+    <div header-slot style="display: flex; width: 100%">
+      <img
+        src="https://img.magnific.com/free-photo/liquid-marbling-paint-texture-background-fluid-painting-abstract-texture-intensive-color-mix-wallpaper_1258-82946.jpg?semt=ais_hybrid&w=740&q=80"
+        alt="Hero"
+        style="
+          display: block;
+          width: 100%;
+          height: 80px;
+          object-fit: cover;
+          border-top-left-radius: inherit;
+          border-top-right-radius: inherit;
+        "
+      />
+    </div>
+    <div style="font-weight: bold; margin-bottom: 4px; padding-top: 12px">
+      Card with Image Header
+    </div>
+    <div style="font-size: 13px; color: var(--theme-text-secondary-color)">
+      Because <code>headerFluid</code> is true, the image touches the top edges.
+    </div>
+  </dasar-card>
+  <dasar-card
+    [container-style]="{ overflow: 'hidden' }"
+    appearance="outline"
+    label="Recent Users"
+    body-fluid
+  >
+    <div caption-slot>Users who logged in recently</div>
+    <ul style="list-style: none; margin: 0; padding: 0; font-size: 14px">
+      <li style="padding: 12px 16px; border-bottom: 1px solid var(--theme-border-subtle-color)">
+        Alice Johnson
+      </li>
+      <li style="padding: 12px 16px; border-bottom: 1px solid var(--theme-border-subtle-color)">
+        Bob Smith
+      </li>
+      <li style="padding: 12px 16px">Charlie Davis</li>
+    </ul>
+  </dasar-card>
+  <dasar-card
+    [container-style]="{ overflow: 'hidden' }"
+    appearance="elevated"
+    label="Pro Plan"
+    action-fluid
+  >
+    <div style="font-size: 32px; font-weight: bold; margin: 12px 0 4px 0">
+      $19<span style="font-size: 16px; color: gray; font-weight: normal">/mo</span>
+    </div>
+    <div style="font-size: 13px; color: gray; margin-bottom: 16px">
+      Includes all premium features.
+    </div>
+    <dasar-button action-slot variant="primary" radius="none" full-width>
+      Subscribe Now
+    </dasar-button>
+  </dasar-card>
+  <dasar-card
+    [container-style]="{ overflow: 'hidden' }"
+    appearance="outline"
+    body-fluid
+    spacing="compact"
+  >
+    <div
+      header-slot
+      style="display: flex; justify-content: space-between; align-items: center; width: 100%"
+    >
+      <span style="font-weight: 600">Mechanical Keyboard</span>
+      <span style="color: var(--theme-primary-color); font-weight: bold">$99.00</span>
+    </div>
+    <img
+      src="https://images.unsplash.com/photo-1595225476474-87563907a212?w=500&q=80"
+      alt="Keyboard"
+      style="display: block; width: 100%; height: 160px; object-fit: cover"
+    />
+    <ng-container action-slot>
+      <dasar-button variant="secondary" fluid>Add to Cart</dasar-button>
+    </ng-container>
+  </dasar-card>
+  <dasar-card
+    appearance="elevated"
+    spacing="compact"
+    [container-style]="{
+      background: 'linear-gradient(135deg, var(--theme-primary-color), #2563eb)',
+      color: 'white',
+      border: 'none',
+    }"
+    [header-style]="{ borderBottom: 'none', paddingBottom: '0' }"
+  >
+    <div header-slot style="font-size: 14px; opacity: 0.9">Total Revenue</div>
+    <div extra-header-slot>
+      <dasar-icon
+        style="color: rgba(255, 255, 255, 0.8)"
+        name="trending-up"
+        [stroke]="2"
+      ></dasar-icon>
+    </div>
+    <div style="font-size: 32px; font-weight: bold">$45,231</div>
+    <div style="font-size: 12px; opacity: 0.8; margin-top: 4px">+12.5% from last month</div>
+  </dasar-card>
+  <dasar-card
+    appearance="outline"
+    [container-style]="{
+      borderColor: 'var(--theme-warning-color)',
+      backgroundColor: 'var(--theme-warning-color)',
+    }"
+    [header-style]="{ borderBottom: '1px solid rgba(0,0,0,0.1)' }"
+  >
+    <div header-slot style="display: flex; align-items: center; gap: 8px; color: white">
+      <dasar-icon name="alert-triangle"></dasar-icon>
+      <span style="font-weight: 600">Action Required</span>
+    </div>
+    <p style="margin: 0; color: white; font-size: 14px; opacity: 0.9">
+      Your subscription is about to expire in 3 days. Please update your billing information to
+      avoid service interruption.
+    </p>
+    <ng-container action-slot>
+      <dasar-button
+        variant="secondary"
+        size="sm"
+        [button-style]="{ backgroundColor: '#854d0e', color: 'white', border: 'none' }"
+        >Update Billing</dasar-button
+      >
+    </ng-container>
+  </dasar-card>
+  <dasar-card [container-style]="{ overflow: 'visible', marginTop: '36px' }" appearance="outline">
+    <div
+      header-slot
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: relative;
+      "
+    >
+      <div
+        style="
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
+          background-color: var(--theme-primary-color);
+          border: 4px solid var(--theme-bg-surface-color, white);
+          position: absolute;
+          top: -56px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <dasar-icon name="user" size="lg"></dasar-icon>
+      </div>
+      <div style="margin-top: 24px; font-weight: bold; font-size: 18px">Jane Doe</div>
+      <div style="font-size: 13px; color: gray">Senior Developer</div>
+    </div>
+
+    <div
+      style="
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 8px;
+        color: var(--theme-text-secondary-color);
+      "
+    >
+      Passionate about building scalable frontend applications and mentoring junior developers.
+    </div>
+    <div action-slot style="display: flex; gap: 8px; justify-content: center; width: 100%">
+      <dasar-button variant="ghost" size="sm">Message</dasar-button>
+      <dasar-button variant="primary" size="sm">Follow</dasar-button>
+    </div>
+  </dasar-card>
+</div>
