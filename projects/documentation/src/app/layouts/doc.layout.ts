@@ -216,8 +216,10 @@ export class DocsLayoutComponent {
       title: 'Basic',
       items: [
         { label: 'Button', route: '/components/button' },
+        { label: 'Button Group', route: '/components/button-group' },
         { label: 'Icon', route: '/components/icon' },
         { label: 'Chip', route: '/components/chip' },
+        { label: 'Divider', route: '/components/divider' },
         { label: 'Calendar', route: '/components/calendar' },
         { label: 'Datepicker', route: '/components/datepicker' },
         { label: 'Card', route: '/components/card' },

@@ -1,0 +1,12 @@
+<dasar-button-group>
+  @for (option of options; track option) {
+    <dasar-button
+      [variant]="selected() === option ? 'primary' : 'secondary'"
+      (click)="select(option)"
+    >
+      {{ option }}
+    </dasar-button>
+  }
+</dasar-button-group>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Selected: {{ selected() }}</p>

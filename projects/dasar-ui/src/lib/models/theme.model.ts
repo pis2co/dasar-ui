@@ -1,12 +1,14 @@
 import { DasarNumberInputConfig } from '../components/dasar-number-input/dasar-number-input';
 import { DasarDatepickerConfig } from '../components/dasar-datepicker/dasar-datepicker';
 import { DasarCalendarConfig } from '../components/dasar-calendar/dasar-calendar';
+import { DasarButtonGroupConfig } from '../components/dasar-button-group/dasar-button-group';
 import { DasarButtonConfig } from '../components/dasar-button/dasar-button';
 import { DasarSelectConfig } from '../components/dasar-select/dasar-select';
 import { DasarInputConfig } from '../components/dasar-input/dasar-input';
 import { DasarTableConfig } from '../components/dasar-table/dasar-table';
 import { DasarCardConfig } from '../components/dasar-card/dasar-card';
 import { DasarChipConfig } from '../components/dasar-chip/dasar-chip';
+import { DasarDividerConfig } from '../components/dasar-divider/dasar-divider';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
 import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
@@ -186,6 +188,23 @@ export interface DasarThemeButton {
   ghostHoverBg?: string;
   ghostHoverColor?: string;
   ghostFocusRing?: string;
+}
+export interface DasarThemeButtonGroup {
+  gap?: string;
+  radius?: string;
+  dividerColor?: string;
+  focusZIndex?: string;
+}
+export interface DasarThemeDivider {
+  color?: string;
+  thickness?: string;
+  spacing?: string;
+  dashStyle?: string;
+  labelColor?: string;
+  labelFontSize?: string;
+  labelGap?: string;
+  labelOffset?: string;
+  verticalMinHeight?: string;
 }
 export interface DasarThemeChip {
   closeMarginRight?: string;
@@ -677,9 +696,11 @@ export type DasarComponentConfig = {
   calendar?: DasarCalendarConfig;
   select?: DasarSelectConfig;
   button?: DasarButtonConfig;
+  buttonGroup?: DasarButtonGroupConfig;
   input?: DasarInputConfig;
   card?: DasarCardConfig;
   chip?: DasarChipConfig;
+  divider?: DasarDividerConfig;
   modal?: DasarModalConfig;
   overlay?: DasarOverlayConfig;
   icon?: DasarIconConfig;
@@ -697,10 +718,12 @@ export interface DasarThemeConfig {
     light?: {
       common?: DasarThemeCommon;
       button?: DasarThemeButton;
+      buttonGroup?: DasarThemeButtonGroup;
       input?: DasarThemeInput;
       calendar?: DasarThemeCalendar;
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
+      divider?: DasarThemeDivider;
       select?: DasarThemeSelect;
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;
@@ -713,10 +736,12 @@ export interface DasarThemeConfig {
     dark?: {
       common?: DasarThemeCommon;
       button?: DasarThemeButton;
+      buttonGroup?: DasarThemeButtonGroup;
       input?: DasarThemeInput;
       calendar?: DasarThemeCalendar;
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
+      divider?: DasarThemeDivider;
       select?: DasarThemeSelect;
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;

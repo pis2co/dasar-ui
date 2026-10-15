@@ -1,6 +1,8 @@
 import {
   DasarThemeButton,
+  DasarThemeButtonGroup,
   DasarThemeCalendar,
+  DasarThemeDivider,
   DasarThemeCard,
   DasarThemeChip,
   DasarThemeColors,
@@ -152,6 +154,12 @@ export const buttonMap: Record<keyof DasarThemeButton, string> = {
   ghostHoverBg: '--btn-ghost-hover-bg',
   ghostHoverColor: '--btn-ghost-hover-color',
   ghostFocusRing: '--btn-ghost-focus-ring',
+};
+export const buttonGroupMap: Record<keyof DasarThemeButtonGroup, string> = {
+  gap: '--btn-group-gap',
+  radius: '--btn-group-radius',
+  dividerColor: '--btn-group-divider-color',
+  focusZIndex: '--btn-group-focus-z-index',
 };
 export const inputMap: Record<keyof DasarThemeInput, string> = {
   wrapperGap: '--input-wrapper-gap',
@@ -344,6 +352,17 @@ export const chipMap: Record<keyof DasarThemeChip, string> = {
   closeHoverBg: '--chip-close-hover-bg',
   closePadding: '--chip-close-padding',
   innerGap: '--chip-inner-gap',
+};
+export const dividerMap: Record<keyof DasarThemeDivider, string> = {
+  color: '--divider-color',
+  thickness: '--divider-thickness',
+  spacing: '--divider-spacing',
+  dashStyle: '--divider-dash-style',
+  labelColor: '--divider-label-color',
+  labelFontSize: '--divider-label-font-size',
+  labelGap: '--divider-label-gap',
+  labelOffset: '--divider-label-offset',
+  verticalMinHeight: '--divider-vertical-min-height',
 };
 export const selectMap: Record<keyof DasarThemeSelect, string> = {
   wrapperGap: '--select-wrapper-gap',
@@ -701,6 +720,9 @@ export class DasarThemeService {
     if (config.tokens?.[config.mode]?.button) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.button, buttonMap);
     }
+    if (config.tokens?.[config.mode]?.buttonGroup) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.buttonGroup, buttonGroupMap);
+    }
     if (config.tokens?.[config.mode]?.input) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.input, inputMap);
     }
@@ -712,6 +734,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.chip) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.chip, chipMap);
+    }
+    if (config.tokens?.[config.mode]?.divider) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.divider, dividerMap);
     }
     if (config.tokens?.[config.mode]?.select) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.select, selectMap);

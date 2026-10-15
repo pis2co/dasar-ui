@@ -8,8 +8,10 @@ import {
 import {
   datepickerMap,
   calendarMap,
+  dividerMap,
   selectMap,
   buttonMap,
+  buttonGroupMap,
   commonMap,
   inputMap,
   chipMap,
@@ -189,6 +191,15 @@ export class DasarThemeProviderComponent implements OnChanges {
         dictionary: buttonMap,
       });
     }
+    const buttonGroupTokens =
+      this.tokenConfig?.[currentMode]?.buttonGroup || this.tokenConfig?.light?.buttonGroup;
+    if (buttonGroupTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: buttonGroupTokens,
+        dictionary: buttonGroupMap,
+      });
+    }
     const inputTokens = this.tokenConfig?.[currentMode]?.input || this.tokenConfig?.light?.input;
     if (inputTokens) {
       this.injectMappedTokens({ element: hostElement, payload: inputTokens, dictionary: inputMap });
@@ -214,6 +225,15 @@ export class DasarThemeProviderComponent implements OnChanges {
     const chipTokens = this.tokenConfig?.[currentMode]?.chip || this.tokenConfig?.light?.chip;
     if (chipTokens) {
       this.injectMappedTokens({ element: hostElement, payload: chipTokens, dictionary: chipMap });
+    }
+    const dividerTokens =
+      this.tokenConfig?.[currentMode]?.divider || this.tokenConfig?.light?.divider;
+    if (dividerTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: dividerTokens,
+        dictionary: dividerMap,
+      });
     }
 
     const selectTokens = this.tokenConfig?.[currentMode]?.select || this.tokenConfig?.light?.select;

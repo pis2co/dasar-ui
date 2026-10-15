@@ -1,0 +1,84 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-divider {
+  display: block;
+
+  &.vertical {
+    display: inline-flex;
+    align-self: stretch;
+    min-height: var(--divider-vertical-min-height, 1em);
+  }
+}
+
+.dasar-divider-container {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  &.horizontal {
+    width: 100%;
+    margin-block: var(--divider-spacing, var(--divider-spacing-local));
+
+    .dasar-divider-line {
+      border-top-width: var(--divider-thickness, 1px);
+    }
+  }
+
+  &.vertical {
+    flex-direction: column;
+    height: auto;
+    align-self: stretch;
+    margin-inline: var(--divider-spacing, var(--divider-spacing-local));
+
+    .dasar-divider-line {
+      border-left-width: var(--divider-thickness, 1px);
+      height: 100%;
+    }
+  }
+
+  &.dashed .dasar-divider-line {
+    border-style: var(--divider-dash-style, dashed);
+  }
+
+  &.label-left .dasar-divider-line-start,
+  &.label-right .dasar-divider-line-end {
+    flex: 0 0 var(--divider-label-offset, 24px);
+  }
+
+  &.spacing-none {
+    --divider-spacing-local: 0;
+  }
+
+  &.spacing-xs {
+    --divider-spacing-local: 4px;
+  }
+
+  &.spacing-sm {
+    --divider-spacing-local: 8px;
+  }
+
+  &.spacing-md {
+    --divider-spacing-local: 16px;
+  }
+
+  &.spacing-lg {
+    --divider-spacing-local: 24px;
+  }
+
+  &.spacing-xl {
+    --divider-spacing-local: 32px;
+  }
+}
+
+.dasar-divider-line {
+  flex: 1 1 auto;
+  border: 0 solid var(--divider-color, var(--theme-border-subtle-color));
+}
+
+.dasar-divider-label {
+  flex: none;
+  padding-inline: var(--divider-label-gap, var(--space-base));
+  color: var(--divider-label-color, var(--theme-text-secondary-color));
+  font-size: var(--divider-label-font-size, var(--font-size-sm));
+  white-space: nowrap;
+}

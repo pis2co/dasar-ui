@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/pis2co/dasar-ui/compare/v1.9.3...v1.10.0) (2026-10-15)
+
+
+### Features
+
+* add button group and divider ([4c53652](https://github.com/pis2co/dasar-ui/commit/4c53652ae72d562186d9a19db9d3db964b8d95cc))
+
 ### [1.9.3](https://github.com/pis2co/dasar-ui/compare/v1.9.2...v1.9.3) (2026-10-15)
 
 ### [1.9.2](https://github.com/pis2co/dasar-ui/compare/v1.9.1...v1.9.2) (2026-10-15)
