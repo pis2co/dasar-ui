@@ -8,16 +8,16 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { DasarModalComponent, DasarButtonComponent, DasarSelectComponent } from 'dasar-ui';
 import {
   DOC_DEFAULT_SETTINGS,
   DocCustomizeService,
   DocCustomizeSettings,
 } from '../services/doc-customize.service';
+import { DasarModalComponent, DasarButtonComponent, DasarSelectComponent } from 'dasar-ui';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-interface Opt {
+interface DasarModalOption {
   label: string;
   value: string | null;
 }
@@ -182,22 +182,10 @@ export class DocCustomizeModalComponent implements OnChanges {
 
   private customize = inject(DocCustomizeService);
   readonly draft = signal<DocCustomizeSettings>({ ...DOC_DEFAULT_SETTINGS });
-
-  /**
-   * `dasar-select` maps a null value to an empty string internally, so a null
-   * "Default" option can never be selected again. This sentinel keeps the
-   * option list clean while round-tripping through the component.
-   */
   readonly sentinel = DEFAULT_SENTINEL;
-
-  /**
-   * The select dropdown panel sits at z-index 50 while dasar-overlay sits at
-   * 1000, so inside this dialog the panel has to be lifted above the backdrop.
-   * Library-side fix would belong in dasar-select.
-   */
   readonly panelStyle = { 'z-index': '1100' };
 
-  readonly sizeOptions: Opt[] = [
+  readonly sizeOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: 'XS', value: 'xs' },
     { label: 'SM', value: 'sm' },
@@ -205,7 +193,7 @@ export class DocCustomizeModalComponent implements OnChanges {
     { label: 'LG', value: 'lg' },
     { label: 'XL', value: 'xl' },
   ];
-  readonly radiusOptions: Opt[] = [
+  readonly radiusOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: 'None', value: 'none' },
     { label: 'XS', value: 'xs' },
@@ -215,24 +203,24 @@ export class DocCustomizeModalComponent implements OnChanges {
     { label: 'XL', value: 'xl' },
     { label: 'Full', value: 'full' },
   ];
-  readonly buttonAppearanceOptions: Opt[] = [
+  readonly buttonAppearanceOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: 'Solid', value: 'solid' },
     { label: 'Subtle', value: 'subtle' },
     { label: 'Outline', value: 'outline' },
   ];
-  readonly inputAppearanceOptions: Opt[] = [
+  readonly inputAppearanceOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: 'Outline', value: 'outline' },
     { label: 'Filled', value: 'filled' },
   ];
-  readonly cardAppearanceOptions: Opt[] = [
+  readonly cardAppearanceOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: 'Outline', value: 'outline' },
     { label: 'Borderless', value: 'borderless' },
     { label: 'Elevated', value: 'elevated' },
   ];
-  readonly fontSizeOptions: Opt[] = [
+  readonly fontSizeOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: '12px', value: '12px' },
     { label: '13px', value: '13px' },
@@ -240,7 +228,7 @@ export class DocCustomizeModalComponent implements OnChanges {
     { label: '15px', value: '15px' },
     { label: '16px', value: '16px' },
   ];
-  readonly fontOptions: Opt[] = [
+  readonly fontOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: 'System UI', value: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif' },
     { label: 'Serif', value: 'Georgia, "Times New Roman", serif' },
@@ -257,10 +245,6 @@ export class DocCustomizeModalComponent implements OnChanges {
     this.draft.update((d) => ({ ...d, [key]: value }));
   }
 
-  /**
-   * Handles a dasar-select change: the sentinel is translated back to null so
-   * the setting stays unset.
-   */
   setOption<K extends keyof DocCustomizeSettings>(key: K, value: unknown) {
     this.set(key, (value === DEFAULT_SENTINEL ? null : value) as DocCustomizeSettings[K]);
   }

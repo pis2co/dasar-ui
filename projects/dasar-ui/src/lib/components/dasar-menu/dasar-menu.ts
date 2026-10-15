@@ -106,7 +106,6 @@ export class DasarMenu {
     return this._placement;
   }
 
-  /** Placement currently rendered; may differ from `placement` after a flip. */
   readonly currentPlacement = signal<DasarMenuPlacementType>(this._placement);
 
   @Input() appearance = resolveThemeDefault(
@@ -217,12 +216,9 @@ export class DasarMenu {
   get hasMenuItem(): boolean {
     return !!this.providedMenuItem;
   }
-  /** Icon size that matches the menu size. */
   get itemIconSize(): number {
     return fieldIconSize(this.size);
   }
-
-  /** Flip the panel away from a viewport edge while the panel is open. */
   @HostListener('window:resize')
   @HostListener('window:scroll')
   onViewportChange(): void {

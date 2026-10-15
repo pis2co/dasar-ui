@@ -1,7 +1,6 @@
 @use '../../styles/theme.scss' as *;
 
 .dasar-pivot-container {
-  /* Inherit Table Variables */
   --dt-primary: var(--theme-primary-color);
   --dt-primary-hover: var(--theme-primary-hover-color);
   --dt-primary-surface: var(--theme-primary-surface-color);
@@ -36,7 +35,6 @@
     background-color: transparent;
   }
 
-  /* --- Sizing --- */
   &.size-sm {
     font-size: 13px;
   }
@@ -47,7 +45,6 @@
     font-size: 16px;
   }
 
-  /* --- Spacing --- */
   &.spacing-compact .dasar-pivot-table {
     th,
     td {

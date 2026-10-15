@@ -28,7 +28,6 @@ import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { CommonModule } from '@angular/common';
 
-/** Kept for backwards compatibility, the shared type lives in utils. */
 export type DasarDatepickerPlacement = DasarPanelPlacement;
 export type DasarDatepickerSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle';
@@ -153,7 +152,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   get placement(): DasarDatepickerPlacement {
     return this._placement;
   }
-  /** Placement currently rendered; may differ from `placement` after a flip. */
   currentPlacement: DasarDatepickerPlacement = this._placement;
   @Input() appearance = resolveThemeDefault(
     'datepicker',
@@ -446,7 +444,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       }
     }
   }
-  /** Icon size that fits the current trigger size. */
   get iconSize(): number {
     return fieldIconSize(this.size);
   }
@@ -466,7 +463,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       this.setFocus(false, event);
     }
   }
-  /** Recalculate while the panel is open so scrolling/resizing keeps it in view. */
   @HostListener('window:resize')
   @HostListener('window:scroll')
   onViewportChange() {
