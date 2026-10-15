@@ -23,6 +23,7 @@ import { DasarTabsConfig } from '../components/dasar-tabs/dasar-tabs';
 import { ScaleAttributeType } from './type.model';
 import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/dasar-list';
 import { DasarPaginationConfig } from '@components/dasar-pagination/dasar-pagination';
+import { DasarSwitchConfig } from '@components/dasar-switch/dasar-switch';
 
 export type DasarThemeMode = 'light' | 'dark';
 export type DasarBreakpointName = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -745,6 +746,28 @@ export interface DasarThemePagination {
   summaryColor?: string;
   dropdownMaxHeight?: string;
 }
+export interface DasarThemeSwitch {
+  gap?: string;
+  radius?: string;
+  thumbRadius?: string;
+  heightSm?: string;
+  heightMd?: string;
+  heightLg?: string;
+  minWidthSm?: string;
+  minWidthMd?: string;
+  minWidthLg?: string;
+  trackBg?: string;
+  trackCheckedBg?: string;
+  thumbBg?: string;
+  thumbIconColor?: string;
+  thumbIconCheckedColor?: string;
+  contentColor?: string;
+  contentFontSize?: string;
+  focusColor?: string;
+  disabledOpacity?: string;
+  labelColor?: string;
+  labelFontSize?: string;
+}
 export interface DasarThemeTabs {
   listPaddingNormal?: string;
   listPaddingCompact?: string;
@@ -835,6 +858,7 @@ export type DasarComponentConfig = {
   list?: DasarListConfig;
   listItem?: DasarListItemConfig;
   pagination?: DasarPaginationConfig;
+  switch?: DasarSwitchConfig;
 };
 export interface DasarThemeConfig {
   mode: DasarThemeMode;
@@ -860,6 +884,7 @@ export interface DasarThemeConfig {
       table?: DasarThemeTable;
       list?: DasarThemeList;
       pagination?: DasarThemePagination;
+      switch?: DasarThemeSwitch;
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;
@@ -882,6 +907,7 @@ export interface DasarThemeConfig {
       table?: DasarThemeTable;
       list?: DasarThemeList;
       pagination?: DasarThemePagination;
+      switch?: DasarThemeSwitch;
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;

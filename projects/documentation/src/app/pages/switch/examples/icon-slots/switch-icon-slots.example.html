@@ -1,0 +1,14 @@
+<div style="display: flex; align-items: center; gap: 16px">
+  <dasar-switch [(value)]="first">
+    <span icon-slot><dasar-icon name="bell" /></span>
+  </dasar-switch>
+  <dasar-switch [(value)]="second">
+    <span checked-icon-slot><dasar-icon name="check" /></span>
+    <span unchecked-icon-slot><dasar-icon name="x" /></span>
+  </dasar-switch>
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  The icon slot is shared; checked and unchecked icon slots replace it per state. They beat
+  checked-icon-name and unchecked-icon-name.
+</p>

@@ -1,0 +1,6 @@
+<div style="display: flex; align-items: center; gap: 16px">
+  <dasar-switch [value]="on()" (onUpdate)="on.set($event)" disabled />
+  <dasar-switch [value]="off()" (onUpdate)="off.set($event)" disabled />
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Disabled blocks every interaction.</p>

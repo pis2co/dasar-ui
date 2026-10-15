@@ -1,0 +1,5 @@
+<dasar-switch [default-value]="true" (onUpdate)="last.set($event)" />
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Starts on without a value binding. Last update: {{ last() }}.
+</p>

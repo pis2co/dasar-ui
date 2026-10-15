@@ -22,6 +22,7 @@ import {
   menuMap,
   listMap,
   paginationMap,
+  switchMap,
   tableMap,
   tabsMap,
   overlayMap,
@@ -296,6 +297,15 @@ export class DasarThemeProviderComponent implements OnChanges {
         element: hostElement,
         payload: paginationTokens,
         dictionary: paginationMap,
+      });
+    }
+
+    const switchTokens = this.tokenConfig?.[currentMode]?.switch || this.tokenConfig?.light?.switch;
+    if (switchTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: switchTokens,
+        dictionary: switchMap,
       });
     }
 

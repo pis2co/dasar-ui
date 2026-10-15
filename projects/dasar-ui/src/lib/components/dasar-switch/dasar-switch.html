@@ -1,0 +1,48 @@
+<label [ngClass]="containerClasses" [ngStyle]="containerStyle">
+  <button
+    type="button"
+    role="switch"
+    [ngClass]="trackClasses"
+    [ngStyle]="trackStyle"
+    [attr.aria-checked]="isChecked"
+    [attr.aria-label]="label || null"
+    [disabled]="isDisabled"
+    (click)="toggle($event)"
+    (keydown)="onKeydown($event)"
+  >
+    <span class="dasar-switch-content">
+      <span class="dasar-switch-content-checked" [class.hidden]="!providedChecked || !isChecked">
+        <ng-content select="[checked-slot]"></ng-content>
+      </span>
+      <span class="dasar-switch-content-unchecked" [class.hidden]="!providedUnchecked || isChecked">
+        <ng-content select="[unchecked-slot]"></ng-content>
+      </span>
+    </span>
+    <span class="dasar-switch-thumb">
+      <span class="dasar-switch-thumb-icon" [class.hidden]="!providedCheckedIcon || !isChecked">
+        <ng-content select="[checked-icon-slot]"></ng-content>
+      </span>
+      <span class="dasar-switch-thumb-icon" [class.hidden]="!providedUncheckedIcon || isChecked">
+        <ng-content select="[unchecked-icon-slot]"></ng-content>
+      </span>
+      <span
+        class="dasar-switch-thumb-icon"
+        [class.hidden]="
+          !providedIcon || (isChecked ? !!providedCheckedIcon : !!providedUncheckedIcon)
+        "
+      >
+        <ng-content select="[icon-slot]"></ng-content>
+      </span>
+      @if (
+        !providedIcon &&
+        !(isChecked ? providedCheckedIcon : providedUncheckedIcon) &&
+        currentIconName
+      ) {
+        <dasar-icon class="dasar-switch-thumb-icon" [name]="currentIconName"></dasar-icon>
+      }
+    </span>
+  </button>
+  @if (label) {
+    <span class="dasar-switch-label">{{ label }}</span>
+  }
+</label>

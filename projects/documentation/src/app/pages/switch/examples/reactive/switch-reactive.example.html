@@ -1,0 +1,6 @@
+<div style="display: flex; align-items: center; gap: 16px">
+  <dasar-switch [formControl]="control" />
+  <dasar-button size="sm" (click)="toggleDisabled()">Toggle disabled</dasar-button>
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Control value: {{ control.value }}.</p>
