@@ -25,7 +25,6 @@ import { COMPONENT_CONFIG_DOCS } from './theming.data';
   styles: [
     `
       .theming-group-title {
-        margin: var(--space-6) 0 var(--space-3);
         font-size: var(--font-size-lg);
       }
       dasar-table {

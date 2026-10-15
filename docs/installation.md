@@ -1,7 +1,3 @@
-# Installation
-
-How to add `dasar-ui` to an Angular project.
-
 ## Requirements
 
 - Angular 22 (`@angular/core`, `@angular/common`, `@angular/forms`, `@angular/platform-browser` `^22.1.0`)

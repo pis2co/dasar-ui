@@ -1,8 +1,6 @@
-# Getting started
+## 1. Render a component
 
 Render your first component, wrap the app in the theme provider, and switch between light and dark mode.
-
-## 1. Render a component
 
 ```ts
 import { DasarButtonComponent, DasarCardComponent } from 'dasar-ui';

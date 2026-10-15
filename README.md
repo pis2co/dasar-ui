@@ -1,4 +1,4 @@
-# dasar-ui
+# Dasar UI
 
 Angular UI component library based on danarakca design system. Standalone components, SSR-safe, themeable with light and dark mode.
 
