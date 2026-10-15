@@ -10,8 +10,14 @@ import {
   DasarThemeSelect,
   DasarThemeCommon,
   DasarThemeMenu,
+  DasarThemeMode,
 } from '@models/theme.model';
-import { DASAR_THEME_PROVIDER } from '../components/dasar-theme-provider/dasar-theme-provider';
+import {
+  DASAR_THEME_PROVIDER,
+  defaultDarkCommonTokens,
+  defaultLightCommonTokens,
+} from '../components/dasar-theme-provider/dasar-theme-provider';
+import { dasarVariables } from '../styles/theme';
 import {
   DOCUMENT,
   inject,
@@ -541,6 +547,36 @@ export const tableMap: Record<string, string> = {
   paginationBackground: '--table-pagination-background',
 };
 
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function deepMerge<T>(base: T, override: unknown): T {
+  if (!isPlainObject(base) || !isPlainObject(override)) {
+    return (override === undefined ? base : override) as T;
+  }
+  const result: Record<string, unknown> = { ...base };
+  for (const [key, value] of Object.entries(override)) {
+    if (value === undefined) continue;
+    const current = result[key];
+    result[key] =
+      isPlainObject(current) && isPlainObject(value) ? deepMerge(current, value) : value;
+  }
+  return result as T;
+}
+
+function buildDefaultThemeConfig(mode: DasarThemeMode = 'light'): DasarThemeConfig {
+  return {
+    mode,
+    colors: structuredClone(dasarVariables.colors) as DasarThemeColors,
+    components: {},
+    tokens: {
+      light: { common: { ...defaultLightCommonTokens } },
+      dark: { common: { ...defaultDarkCommonTokens } },
+    },
+  };
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -611,7 +647,20 @@ export class DasarThemeService {
     this.themeState.next(config);
   }
 
+  /**
+   * Full theme config: library defaults merged with the consumer config.
+   * Consumer values take priority.
+   */
   public themeVariable(): DasarThemeConfig {
+    const raw = this.themeState.getValue();
+    return deepMerge(buildDefaultThemeConfig(raw.mode ?? 'light'), raw);
+  }
+
+  /**
+   * Only the config provided by the consumer, without library defaults.
+   * Used internally to resolve component input priority.
+   */
+  public rawThemeVariable(): DasarThemeConfig {
     return this.themeState.getValue();
   }
 

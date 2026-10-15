@@ -1,0 +1,31 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 250px">
+    <dasar-input
+      label="Currency (Thousand Mask)"
+      placeholder="1.000.000"
+      mask="thousand"
+      [(ngModel)]="amount"
+      full-width
+    ></dasar-input>
+  </div>
+
+  <div style="flex: 1; min-width: 250px">
+    <dasar-input
+      label="Date Mask"
+      placeholder="DD/MM/YYYY"
+      mask="date"
+      [(ngModel)]="dateStr"
+      full-width
+    ></dasar-input>
+  </div>
+
+  <div style="flex: 1; min-width: 250px">
+    <dasar-input
+      label="Custom Mask (Uppercase)"
+      placeholder="XYZ-123"
+      [mask]="customUpperMask"
+      [(ngModel)]="promoCode"
+      full-width
+    ></dasar-input>
+  </div>
+</div>

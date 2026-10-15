@@ -1,0 +1,13 @@
+<div [style]="{ display: 'flex', gap: '12px', 'align-items': 'center', 'flex-wrap': 'wrap' }">
+  <dasar-chip disabled size="sm">Disabled</dasar-chip>
+  <dasar-chip label="Attribute Label Tag" [removable]="true" size="sm"></dasar-chip>
+  <dasar-chip
+    appearance="subtle"
+    size="sm"
+    [removable]="true"
+    (onClick)="clicked()"
+    (onRemove)="removed()"
+  >
+    <span chip-label>Clickable</span>
+  </dasar-chip>
+</div>

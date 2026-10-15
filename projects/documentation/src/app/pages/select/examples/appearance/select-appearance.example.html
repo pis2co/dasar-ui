@@ -1,0 +1,32 @@
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%">
+  <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap">
+    <div style="flex: 1; min-width: 200px">
+      <dasar-select
+        label="Outline (Default)"
+        appearance="outline"
+        [options]="options"
+        full-width
+      ></dasar-select>
+    </div>
+    <div style="flex: 1; min-width: 200px">
+      <dasar-select
+        label="Filled Appearance"
+        appearance="filled"
+        [options]="options"
+        full-width
+      ></dasar-select>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap">
+    <div style="flex: 1; min-width: 200px">
+      <dasar-select label="Small Size" size="sm" [options]="options" full-width></dasar-select>
+    </div>
+    <div style="flex: 1; min-width: 200px">
+      <dasar-select label="Medium Size" size="md" [options]="options" full-width></dasar-select>
+    </div>
+    <div style="flex: 1; min-width: 200px">
+      <dasar-select label="Large Size" size="lg" [options]="options" full-width></dasar-select>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 300px">
+    <dasar-select
+      label="Multiple (Text Display)"
+      multiple-type="text"
+      placeholder="Select members"
+      [searchable]="true"
+      [options]="users"
+      [(ngModel)]="selectedUsersText"
+      full-width
+    ></dasar-select>
+  </div>
+
+  <div style="flex: 1; min-width: 300px">
+    <dasar-select
+      label="Multiple (Chip Display)"
+      multiple-type="chip"
+      placeholder="Assign roles"
+      [options]="roles"
+      [(ngModel)]="selectedRoles"
+      full-width
+    ></dasar-select>
+  </div>
+</div>

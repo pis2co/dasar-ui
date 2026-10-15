@@ -1,0 +1,44 @@
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%; max-width: 450px">
+  <dasar-select label="Custom Option Rendering" [options]="users" full-width>
+    <ng-container *chip-template="let opt">
+      <div style="display: flex; align-items: center; gap: 12px; width: 100%">
+        <div
+          style="
+            background: var(--theme-primary-color);
+            width: 32px;
+            height: 32px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+          "
+        >
+          {{ opt.label.charAt(0) }}
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <span style="font-weight: 600; font-size: 14px; line-height: 1">{{ opt.label }}</span>
+          <span style="font-size: 12px; color: gray">{{ opt['email'] }}</span>
+        </div>
+      </div>
+    </ng-container>
+  </dasar-select>
+
+  <dasar-select label="Custom Slot Rendering" [options]="users" full-width multiple-type="chip">
+    <ng-template chip-template let-option let-select="selectInstance">
+      <dasar-chip size="sm">{{ option.label }}</dasar-chip>
+    </ng-template>
+  </dasar-select>
+
+  <dasar-select placeholder="Filter by status" [options]="[]" full-width>
+    <div label-slot style="display: flex; align-items: center">
+      <dasar-icon name="filter" size="sm"></dasar-icon>
+      <span style="font-weight: 600">Status Filter</span>
+    </div>
+    <div extra-label-slot style="color: var(--theme-primary-color); cursor: pointer">Clear All</div>
+    <div option-empty-slot style="padding: 24px; text-align: center; color: gray">
+      <dasar-icon name="inbox" size="lg" style="margin-bottom: 8px; opacity: 0.5"></dasar-icon>
+      <div>No statuses matched your criteria.</div>
+    </div>
+  </dasar-select>
+</div>

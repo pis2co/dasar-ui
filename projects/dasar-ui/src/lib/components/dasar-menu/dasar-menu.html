@@ -5,6 +5,7 @@
   [class.fluid]="fluid"
 >
   <div
+    #triggerEl
     class="appearance-{{ appearance }} size-{{ size }} radius-{{ radius }}"
     (click)="toggle($event)"
     [class.dasar-menu-trigger]="true"
@@ -25,7 +26,10 @@
   </div>
   @if (isOpen() && !disabled) {
     <div
-      class="dasar-menu-panel placement-{{ placement }}"
+      #panelEl
+      class="dasar-menu-panel size-{{ size }} radius-{{ radius }} placement-{{
+        currentPlacement()
+      }}"
       [ngClass]="panelClass"
       [ngStyle]="panelStyle"
     >
@@ -51,7 +55,7 @@
               ></ng-container>
             } @else {
               @if (item.iconName) {
-                <dasar-icon [name]="item.iconName" size="sm"></dasar-icon>
+                <dasar-icon [name]="item.iconName" [size]="itemIconSize"></dasar-icon>
               }
               <span class="dasar-menu-item-label">{{ item.label }}</span>
             }

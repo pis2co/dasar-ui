@@ -1,0 +1,23 @@
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+  <dasar-button (click)="openCustom.set(true)">Custom width (720px)</dasar-button>
+  <dasar-button (click)="openFull.set(true)">Full width</dasar-button>
+</div>
+
+<dasar-modal
+  [open]="openCustom()"
+  label="Custom width"
+  width="720px"
+  (onClose)="openCustom.set(false)"
+>
+  <p>
+    The <code>width</code> input sets an explicit width and overrides the preset that comes from
+    <code>size</code>.
+  </p>
+</dasar-modal>
+
+<dasar-modal [open]="openFull()" label="Full width" full-width (onClose)="openFull.set(false)">
+  <p>
+    <code>full-width</code> makes the modal span the viewport minus the overlay padding, and it wins
+    over an explicit <code>width</code>.
+  </p>
+</dasar-modal>

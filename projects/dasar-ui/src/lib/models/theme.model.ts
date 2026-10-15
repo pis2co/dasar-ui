@@ -7,6 +7,8 @@ import { DasarInputConfig } from '../components/dasar-input/dasar-input';
 import { DasarTableConfig } from '../components/dasar-table/dasar-table';
 import { DasarCardConfig } from '../components/dasar-card/dasar-card';
 import { DasarChipConfig } from '../components/dasar-chip/dasar-chip';
+import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
+import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
 import { DasarMenuConfig } from '../components/dasar-menu/dasar-menu';
 import { ScaleAttributeType } from './type.model';
@@ -606,6 +608,8 @@ export type DasarComponentConfig = {
   input?: DasarInputConfig;
   card?: DasarCardConfig;
   chip?: DasarChipConfig;
+  modal?: DasarModalConfig;
+  overlay?: DasarOverlayConfig;
   icon?: DasarIconConfig;
   menu?: DasarMenuConfig;
   table?: DasarTableConfig;

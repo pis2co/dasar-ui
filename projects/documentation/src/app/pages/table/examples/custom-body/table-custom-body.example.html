@@ -1,0 +1,39 @@
+<div style="width: 100%; max-width: 800px">
+  <dasar-table [data]="data" [columns]="columns" appearance="borderless">
+    <ng-container body-slot>
+      @for (row of data; track row.id) {
+        <tr style="border-bottom: 12px solid transparent">
+          <td colspan="3" style="padding: 0">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: var(--theme-bg-surface-color);
+                padding: 16px 24px;
+                border-radius: 12px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+                border: 1px solid var(--theme-border-subtle-color);
+              "
+            >
+              <div style="display: flex; gap: 16px; align-items: center">
+                <dasar-icon
+                  name="file-text"
+                  size="lg"
+                  style="color: var(--theme-primary-color)"
+                ></dasar-icon>
+                <div>
+                  <div style="font-weight: 600; font-size: 16px">{{ row.title }}</div>
+                  <div style="color: var(--theme-text-secondary-color); font-size: 14px">
+                    {{ row.date }}
+                  </div>
+                </div>
+              </div>
+              <dasar-button variant="secondary" size="sm">Download</dasar-button>
+            </div>
+          </td>
+        </tr>
+      }
+    </ng-container>
+  </dasar-table>
+</div>

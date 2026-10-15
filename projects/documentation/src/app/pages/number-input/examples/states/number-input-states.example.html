@@ -1,0 +1,21 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 200px">
+    <dasar-number-input
+      label="Error State"
+      [error]="true"
+      hint="Value exceeds available stock."
+      [value]="999"
+      full-width
+    ></dasar-number-input>
+  </div>
+
+  <div style="flex: 1; min-width: 200px">
+    <dasar-number-input
+      label="Disabled State"
+      [disabled]="true"
+      hint="Out of stock."
+      [value]="0"
+      full-width
+    ></dasar-number-input>
+  </div>
+</div>

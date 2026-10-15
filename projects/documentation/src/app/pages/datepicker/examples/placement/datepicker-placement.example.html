@@ -1,0 +1,24 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap">
+  <div style="width: 250px">
+    <dasar-datepicker
+      label="Bottom Start (Default)"
+      placement="bottom-start"
+      full-width
+    ></dasar-datepicker>
+  </div>
+
+  <div style="width: 250px">
+    <dasar-datepicker
+      label="Top End"
+      placement="top-end"
+      hint="Dropdown opens upwards and aligns right."
+      full-width
+    ></dasar-datepicker>
+  </div>
+</div>
+
+<p style="margin: 12px 0 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+  <code>placement</code> is the <em>preferred</em> side of the trigger. When the preferred side has
+  no room left in the viewport, the panel automatically flips to the side with more space, both
+  vertically and horizontally, and it re-checks while you scroll or resize.
+</p>

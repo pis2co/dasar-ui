@@ -27,8 +27,11 @@ import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
+import { computeSmartPlacement, DasarPanelPlacement } from '../../utils/panel-placement';
+import { fieldIconSize } from '../../utils/icon-size';
 
 export type DasarSelectSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarSelectPlacementType = DasarPanelPlacement;
 export type DasarSelectChipSizeType = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarSelectMultipleDisplayType = 'text' | 'chip' | null;
 export type DasarSelectAppearanceType = 'outline' | 'filled';
@@ -50,6 +53,7 @@ export interface DasarSelectConfig {
   dropdownPanelClass?: ClassType;
   containerClass?: ClassType;
   optionClass?: ClassType;
+  placement?: DasarPanelPlacement;
   dropdownPanelStyle?: StyleType;
   containerStyle?: StyleType;
   fullWidth?: boolean;
@@ -116,6 +120,8 @@ export interface DasarSelectOption {
 })
 export class DasarSelect implements ControlValueAccessor {
   @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
+  @ViewChild('triggerEl') triggerEl?: ElementRef<HTMLElement>;
+  @ViewChild('panelEl') panelEl?: ElementRef<HTMLElement>;
 
   @ContentChild(DasarSelectOptionLoadingSlot) optionLoadingSlot?: DasarSelectOptionLoadingSlot;
   @ContentChild(DasarSelectOptionEmptySlot) optionEmptySlot?: DasarSelectOptionEmptySlot;
@@ -171,6 +177,27 @@ export class DasarSelect implements ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+  private _placement: DasarSelectPlacementType = resolveThemeDefault(
+    'select',
+    'placement',
+    'bottom-start' as DasarSelectPlacementType,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input()
+  set placement(value: DasarSelectPlacementType) {
+    this._placement = value;
+    this.currentPlacement = value;
+  }
+  get placement(): DasarSelectPlacementType {
+    return this._placement;
+  }
+  /** Placement currently rendered; may differ from `placement` after a flip. */
+  currentPlacement: DasarSelectPlacementType = this._placement;
+  /** Icon size that fits the current select size. */
+  get iconSize(): number {
+    return fieldIconSize(this.size);
+  }
   @Input() options = resolveThemeDefault(
     'select',
     'options',
@@ -413,14 +440,36 @@ export class DasarSelect implements ControlValueAccessor {
   }
   openPanel(): void {
     if (this.disabled || this.isOpen) return;
+    this.currentPlacement = this.placement;
     this.isOpen = true;
     this.onPanelOpened.emit();
     const openEvent = new CustomEvent('dasar-select:opened', { detail: this });
     document.dispatchEvent(openEvent);
+    setTimeout(() => this.recalculatePlacement(), 0);
     if (this.searchable) {
       setTimeout(() => {
         this.searchInput?.nativeElement.focus();
       });
+    }
+  }
+
+  /** Flip the panel away from a viewport edge while the panel is open. */
+  @HostListener('window:resize')
+  @HostListener('window:scroll')
+  onViewportChange(): void {
+    if (this.isOpen) this.recalculatePlacement();
+  }
+
+  private recalculatePlacement(): void {
+    if (!this.triggerEl?.nativeElement || !this.panelEl?.nativeElement) return;
+    const next = computeSmartPlacement(
+      this.triggerEl.nativeElement,
+      this.panelEl.nativeElement,
+      this.placement,
+    );
+    if (next !== this.currentPlacement) {
+      this.currentPlacement = next;
+      this.cdr.markForCheck();
     }
   }
   closePanel(): void {

@@ -48,10 +48,16 @@
       <span class="value-text">{{ internalDate ? formattedDisplay : placeholder }}</span>
       <div class="datepicker-actions">
         @if (clearable && internalDate) {
-          <dasar-icon class="clear-icon" name="x" (click)="clearValue($event)"></dasar-icon>
+          <dasar-icon
+            class="clear-icon"
+            name="x"
+            [size]="iconSize"
+            (click)="clearValue($event)"
+          ></dasar-icon>
         }
         <dasar-icon
           [name]="type.includes('time') ? 'clock' : 'calendar'"
+          [size]="iconSize"
           class="calendar-icon"
         ></dasar-icon>
       </div>
@@ -59,12 +65,15 @@
     @if (isOpen) {
       <div
         #dropdownElement
-        class="dasar-datepicker-dropdown radius-{{ radius }} placement-{{ placement }}"
+        class="dasar-datepicker-dropdown size-{{ size }} radius-{{ radius }} placement-{{
+          currentPlacement
+        }}"
         [ngClass]="dropdownClass"
         [ngStyle]="dropdownStyle"
       >
         <dasar-calendar
           variant="dropdown"
+          [size]="size"
           (valueChange)="onCalendarSelect($event)"
           (prevMonth)="onPrevMonthClick.emit()"
           (nextMonth)="onNextMonthClick.emit()"

@@ -1,0 +1,27 @@
+<h4 style="margin:0 0 8px">Radius</h4>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+  @for (r of radii; track r) {
+    <dasar-button size="sm" radius="md" (click)="showRadius(r)">{{ r }}</dasar-button>
+  }
+</div>
+
+<h4 style="margin:0 0 8px">Spacing</h4>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+  @for (s of spacings; track s) {
+    <dasar-button size="sm" radius="md" (click)="showSpacing(s)">{{ s }}</dasar-button>
+  }
+</div>
+
+<dasar-modal
+  [open]="open()"
+  [radius]="radius()"
+  [spacing]="spacing()"
+  [label]="'radius: ' + radius() + ' / spacing: ' + spacing()"
+  (onClose)="open.set(false)"
+>
+  <p>
+    <code>radius</code> uses the shared scale from <code>dasar-card</code>. <code>spacing</code>
+    switches the padding of the header, body and actions between <code>normal</code> and
+    <code>compact</code>.
+  </p>
+</dasar-modal>

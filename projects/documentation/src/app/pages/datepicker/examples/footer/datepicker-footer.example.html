@@ -1,0 +1,23 @@
+<div style="width: 100%; max-width: 320px">
+  <dasar-datepicker
+    #dp
+    label="With Footer Actions"
+    placeholder="Select a date"
+    full-width
+    [(value)]="activeDate"
+  >
+    <div
+      extra-footer-slot
+      style="
+        padding: 12px;
+        border-top: 1px solid var(--theme-border-subtle-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      "
+    >
+      <dasar-button variant="ghost" size="sm" (click)="dp.clearValue($event)"> Clear </dasar-button>
+      <dasar-button variant="primary" size="sm" (click)="setToday(dp)"> Today </dasar-button>
+    </div>
+  </dasar-datepicker>
+</div>

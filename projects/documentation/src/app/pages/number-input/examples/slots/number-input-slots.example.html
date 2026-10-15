@@ -1,0 +1,49 @@
+<div style="display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 400px">
+  <dasar-number-input label="Price" placeholder="0" full-width>
+    <div
+      prefix
+      style="
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        background: var(--theme-bg-hover-color);
+        border-right: 1px solid var(--theme-border-strong-color);
+        height: 100%;
+      "
+    >
+      $
+    </div>
+  </dasar-number-input>
+
+  <dasar-number-input label="Custom Action Buttons" [value]="1" full-width>
+    <div
+      decrement-slot
+      style="
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        background: var(--theme-danger-color);
+        color: white;
+        height: 100%;
+        font-weight: 600;
+      "
+    >
+      MINUS
+    </div>
+    <div
+      increment-slot
+      style="
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        background: var(--theme-success-color);
+        color: white;
+        height: 100%;
+        font-weight: 600;
+      "
+    >
+      PLUS
+    </div>
+  </dasar-number-input>
+</div>

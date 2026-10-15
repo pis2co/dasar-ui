@@ -1,0 +1,32 @@
+<div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap">
+  <!-- Closable Card -->
+  @if (!isClosed) {
+    <dasar-card
+      label="Dismissible Notification"
+      [closable]="true"
+      (onClose)="handleClose()"
+      style="width: 320px"
+      appearance="outline"
+    >
+      <span caption-slot>System Alert</span>
+      <p>This card can be dismissed by clicking the X icon in the header.</p>
+    </dasar-card>
+  }
+
+  <!-- Extra Header Slot -->
+  <dasar-card label="Task Status" style="width: 320px">
+    <div extra-header-slot>
+      <span
+        style="
+          background: var(--theme-success-color);
+          color: white;
+          padding: 2px 8px;
+          border-radius: 99px;
+          font-size: 12px;
+        "
+        >Completed</span
+      >
+    </div>
+    <p>We provide an extra header slot for badges, toggles, or secondary action menus.</p>
+  </dasar-card>
+</div>

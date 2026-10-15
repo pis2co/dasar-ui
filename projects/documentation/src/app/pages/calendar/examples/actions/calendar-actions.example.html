@@ -1,0 +1,21 @@
+<div style="width: 350px">
+  <dasar-calendar variant="dropdown">
+    <ng-container *calendar-today-template="let cal">
+      <dasar-button variant="secondary" size="sm" (click)="cal.goToToday()">
+        Jump to Today
+      </dasar-button>
+    </ng-container>
+    <div
+      calendar-footer-slot
+      style="
+        padding: 12px;
+        border-top: 1px solid var(--theme-border-subtle-color);
+        display: flex;
+        justify-content: space-between;
+      "
+    >
+      <dasar-button variant="ghost" size="sm">Clear</dasar-button>
+      <dasar-button variant="primary" size="sm">Apply</dasar-button>
+    </div>
+  </dasar-calendar>
+</div>

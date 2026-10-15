@@ -1,0 +1,72 @@
+@if (open) {
+  <dasar-overlay
+    [blur]="overlayBlur"
+    [background]="overlayBackground"
+    (onClick)="handleOverlayClick()"
+  >
+    <div
+      class="dasar-modal-container appearance-{{ appearance }} size-{{ size }} radius-{{
+        radius
+      }} spacing-{{ spacing }}"
+      [class.full-width]="fullWidth"
+      [style.width]="resolvedWidth"
+      [ngClass]="containerClass"
+      [ngStyle]="containerStyle"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="label || null"
+    >
+      @if (label || hasHeader || closable || hasClose) {
+        <div
+          class="dasar-modal-header"
+          [class.fluid]="headerFluid"
+          [ngClass]="headerClass"
+          [ngStyle]="headerStyle"
+        >
+          <div class="dasar-modal-header-content">
+            @if (hasHeader) {
+              <ng-content select="[header-slot]"></ng-content>
+            } @else if (label) {
+              <span class="dasar-modal-title">{{ label }}</span>
+            }
+          </div>
+          @if (hasClose || closable) {
+            <div class="dasar-modal-close" [ngClass]="closeClass" [ngStyle]="closeStyle">
+              @if (hasClose) {
+                <ng-content select="[close-slot]"></ng-content>
+              } @else {
+                <dasar-button
+                  variant="ghost"
+                  icon-only
+                  aria-label="Close"
+                  [size]="size"
+                  (click)="close()"
+                >
+                  <dasar-icon name="x"></dasar-icon>
+                </dasar-button>
+              }
+            </div>
+          }
+        </div>
+      }
+      <div
+        class="dasar-modal-body"
+        [class.fluid]="bodyFluid"
+        [ngClass]="bodyClass"
+        [ngStyle]="bodyStyle"
+      >
+        <ng-content></ng-content>
+      </div>
+      @if (hasAction) {
+        <div
+          class="dasar-modal-actions"
+          [class.fluid]="actionFluid"
+          [ngClass]="actionClass"
+          [ngStyle]="actionStyle"
+        >
+          <ng-content select="[action-slot]"></ng-content>
+        </div>
+      }
+    </div>
+  </dasar-overlay>
+}

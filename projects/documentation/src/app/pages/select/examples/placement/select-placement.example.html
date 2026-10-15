@@ -1,0 +1,20 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap">
+  <dasar-select
+    label="Bottom Start (Default)"
+    placement="bottom-start"
+    [options]="options"
+    [(ngModel)]="value"
+  />
+
+  <dasar-select label="Bottom End" placement="bottom-end" [options]="options" [(ngModel)]="value" />
+
+  <dasar-select label="Top Start" placement="top-start" [options]="options" [(ngModel)]="value" />
+
+  <dasar-select label="Top End" placement="top-end" [options]="options" [(ngModel)]="value" />
+</div>
+
+<p style="margin: 12px 0 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+  <code>placement</code> is the <em>preferred</em> side of the trigger. When the preferred side has
+  no room left in the viewport, the panel automatically flips to the side with more space, both
+  vertically and horizontally, and it re-checks while you scroll or resize.
+</p>

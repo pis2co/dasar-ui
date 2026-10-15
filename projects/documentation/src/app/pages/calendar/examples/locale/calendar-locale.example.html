@@ -1,0 +1,34 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap">
+  <div style="flex: 1; min-width: 300px">
+    <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600">id-ID (Indonesian)</p>
+    <dasar-calendar
+      variant="dropdown"
+      locale="id-ID"
+      header-format="MMMM yyyy"
+      weekday-format="EEEE"
+      value-format="dd MMMM yyyy"
+      [value]="idDate()"
+      (valueChange)="idDate.set($event)"
+    ></dasar-calendar>
+    <p style="font-size: 12px; margin-top: 8px; color: gray">
+      Format: dd MMMM yyyy <br />
+      Selected: {{ idDate() | date: 'longDate' : '' : 'id-ID' }}
+    </p>
+  </div>
+  <div style="flex: 1; min-width: 300px">
+    <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600">en-US (American English)</p>
+    <dasar-calendar
+      variant="dropdown"
+      locale="en-US"
+      header-format="MMM yyyy"
+      weekday-format="EEE"
+      value-format="MM/dd/yyyy"
+      [value]="enDate()"
+      (valueChange)="enDate.set($event)"
+    ></dasar-calendar>
+    <p style="font-size: 12px; margin-top: 8px; color: gray">
+      Format: MM/dd/yyyy <br />
+      Selected: {{ enDate() | date: 'longDate' : '' : 'en-US' }}
+    </p>
+  </div>
+</div>

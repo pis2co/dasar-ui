@@ -14,6 +14,7 @@
     </div>
   }
   <div
+    #triggerEl
     class="dasar-select-container appearance-{{ appearance }} size-{{ size }} radius-{{ radius }}"
     [class.hide-overflow]="hideOverflow"
     [class.full-width]="fullWidth"
@@ -99,14 +100,14 @@
     </div>
     @if (loading) {
       <div class="dasar-select-loader-wrapper">
-        <dasar-icon name="loader" size="sm" class="spinning-icon"></dasar-icon>
+        <dasar-icon name="loader" [size]="iconSize" class="spinning-icon"></dasar-icon>
       </div>
     }
     @if (clearable && hasValue && !disabled) {
       <dasar-icon
         class="dasar-select-clear-btn"
         tabindex="-1"
-        size="sm"
+        [size]="iconSize"
         name="x"
         (click)="clearSelection($event)"
       ></dasar-icon>
@@ -121,12 +122,15 @@
       [disabled]="disabled"
       [size]="size"
     >
-      <dasar-icon [name]="arrowIconName" [size]="size"></dasar-icon>
+      <dasar-icon [name]="arrowIconName" [size]="iconSize"></dasar-icon>
     </dasar-button>
   </div>
   @if (isOpen && !disabled) {
     <div
-      class="dasar-select-dropdown-panel"
+      #panelEl
+      class="dasar-select-dropdown-panel size-{{ size }} radius-{{ radius }} placement-{{
+        currentPlacement
+      }}"
       [ngClass]="dropdownPanelClass"
       [ngStyle]="dropdownPanelStyle"
     >
@@ -168,7 +172,7 @@
               ></ng-container>
             } @else {
               @if (option.iconName) {
-                <dasar-icon [name]="option.iconName" size="sm"></dasar-icon>
+                <dasar-icon [name]="option.iconName" [size]="iconSize"></dasar-icon>
               }
               <span class="option-label">{{ option.label }}</span>
             }

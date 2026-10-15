@@ -1,0 +1,23 @@
+<div style="width: 100%; max-width: 800px">
+  <dasar-table [data]="departments" [columns]="columns" [expandable]="true" appearance="elevated">
+    <ng-template expanded-slot let-row>
+      <div
+        style="
+          padding: 16px;
+          background: var(--theme-bg-default-color);
+          border-top: 1px solid var(--theme-border-subtle-color);
+        "
+      >
+        <h5 style="margin: 0 0 12px 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+          Employees in {{ row.name }}
+        </h5>
+        <dasar-table
+          [data]="row.employees"
+          [columns]="employeeColumns"
+          appearance="outline"
+          size="sm"
+        ></dasar-table>
+      </div>
+    </ng-template>
+  </dasar-table>
+</div>

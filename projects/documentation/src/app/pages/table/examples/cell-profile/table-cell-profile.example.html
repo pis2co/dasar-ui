@@ -1,0 +1,29 @@
+<div style="width: 100%; max-width: 800px">
+  <dasar-table [data]="users" [columns]="columns">
+    <ng-template cell-slot="profile" let-row="row">
+      <div style="display: flex; gap: 12px; align-items: center">
+        <div
+          style="
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--theme-primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+          "
+        >
+          {{ row.name.charAt(0) }}
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <span style="font-weight: 600; line-height: 1.2">{{ row.name }}</span>
+          <span style="font-size: 12px; color: var(--theme-text-secondary-color)">{{
+            row.email
+          }}</span>
+        </div>
+      </div>
+    </ng-template>
+  </dasar-table>
+</div>

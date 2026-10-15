@@ -1,0 +1,30 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 250px">
+    <dasar-datepicker
+      label="Indonesian Format (id-ID)"
+      locale="id-ID"
+      display-format="dd MMMM yyyy"
+      value-format="yyyy-MM-dd"
+      hint="Displays as: 17 Agustus 1945"
+      [(value)]="idDate"
+      full-width
+    ></dasar-datepicker>
+    <p style="font-size: 13px; color: gray; margin-top: 8px">
+      Bound output: {{ idDate() || 'null' }}
+    </p>
+  </div>
+  <div style="flex: 1; min-width: 250px">
+    <dasar-datepicker
+      label="American Format (en-US)"
+      locale="en-US"
+      display-format="MM/dd/yyyy"
+      value-format="timestamp"
+      hint="Outputs the raw JS Date timestamp"
+      [(value)]="usDate"
+      full-width
+    ></dasar-datepicker>
+    <p style="font-size: 13px; color: gray; margin-top: 8px">
+      Bound output: {{ usDate() || 'null' }}
+    </p>
+  </div>
+</div>

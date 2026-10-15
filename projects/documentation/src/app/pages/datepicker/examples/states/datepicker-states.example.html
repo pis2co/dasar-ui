@@ -1,0 +1,28 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 200px">
+    <dasar-datepicker
+      label="Clearable Field"
+      [clearable]="true"
+      [(value)]="dateValue"
+      full-width
+    ></dasar-datepicker>
+  </div>
+
+  <div style="flex: 1; min-width: 200px">
+    <dasar-datepicker
+      label="Error State"
+      [error]="true"
+      hint="Please select a valid date in the future."
+      full-width
+    ></dasar-datepicker>
+  </div>
+
+  <div style="flex: 1; min-width: 200px">
+    <dasar-datepicker
+      label="Disabled State"
+      [disabled]="true"
+      hint="You cannot interact with this field."
+      full-width
+    ></dasar-datepicker>
+  </div>
+</div>

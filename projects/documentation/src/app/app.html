@@ -1,0 +1,51 @@
+<main>
+  <dasar-theme-provider
+    [componentConfig]="customize.componentConfig()"
+    [tokenConfig]="customize.tokenConfig()"
+    [mode]="customize.mode()"
+    [ngStyle]="{ height: '100vh', overflow: 'hidden' }"
+  >
+    <dasar-card
+      appearance="borderless"
+      radius="none"
+      [container-style]="{
+        padding: '0 var(--space-base)',
+        'border-bottom': '1px solid var(--theme-border-subtle-color)',
+        'justify-content': 'center',
+        'align-items': 'center',
+        display: 'flex',
+        height: '50px',
+      }"
+      [body-style]="{
+        'justify-content': 'space-between',
+        'align-items': 'center',
+        display: 'flex',
+        width: '100%',
+      }"
+    >
+      <span style="font-weight: 800; font-family: var(--font-hero)">Dasar UI Library</span>
+      <div style="display: flex; gap: 8px; align-items: center">
+        <dasar-button
+          size="md"
+          radius="md"
+          appearance="outline"
+          variant="secondary"
+          (click)="customizeOpen.set(true)"
+          >Customize</dasar-button
+        >
+        <dasar-button size="md" radius="md" appearance="solid" (click)="customize.toggleMode()">
+          <span [ngStyle]="{ 'text-transform': 'capitalize' }">Theme: {{ customize.mode() }}</span>
+        </dasar-button>
+      </div>
+    </dasar-card>
+    <div [ngStyle]="{ height: 'calc(100vh - 50px)' }">
+      @for (key of [customize.renderKey()]; track key) {
+        <router-outlet></router-outlet>
+      }
+    </div>
+    <doc-customize-modal
+      [open]="customizeOpen()"
+      (closed)="customizeOpen.set(false)"
+    ></doc-customize-modal>
+  </dasar-theme-provider>
+</main>

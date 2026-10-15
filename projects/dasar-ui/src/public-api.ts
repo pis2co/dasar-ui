@@ -14,10 +14,15 @@ export * from './lib/components/dasar-icon/dasar-icon';
 export * from './lib/components/dasar-card/dasar-card';
 export * from './lib/components/dasar-chip/dasar-chip';
 export * from './lib/components/dasar-input/dasar-input';
+export * from './lib/components/dasar-modal/dasar-modal';
+export * from './lib/components/dasar-overlay/dasar-overlay';
 // adjusted
 export * from './lib/components/dasar-theme-provider/dasar-theme-provider';
 export * from './lib/components/dasar-button/dasar-button';
 // services
 export * from './lib/services/theme.service';
+// utils
+export * from './lib/utils/panel-placement';
+export * from './lib/utils/icon-size';
 // models
 export * from './lib/models/theme.model';

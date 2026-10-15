@@ -1,0 +1,36 @@
+<div style="display: flex; flex-direction: column; width: 100%">
+  <dasar-calendar full-width>
+    <ng-container *calendar-header-template="let cal">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px;
+          background-color: var(--theme-primary-surface-color);
+          border-radius: 8px 8px 0 0;
+          margin-bottom: 16px;
+        "
+      >
+        <div style="display: flex; flex-direction: column">
+          <span style="font-size: 20px; font-weight: bold; color: var(--theme-primary-color)">
+            {{ cal.currentViewDate | date: 'MMMM' }}
+          </span>
+          <span style="font-size: 14px; color: var(--theme-text-secondary-color)">
+            {{ cal.currentViewDate | date: 'yyyy' }}
+          </span>
+        </div>
+
+        <div style="display: flex; gap: 8px">
+          <dasar-button variant="secondary" size="sm" (click)="cal.changeMonth(-1)"
+            >Previous</dasar-button
+          >
+          <dasar-button variant="primary" size="sm" (click)="cal.goToToday()">Today</dasar-button>
+          <dasar-button variant="secondary" size="sm" (click)="cal.changeMonth(1)"
+            >Next</dasar-button
+          >
+        </div>
+      </div>
+    </ng-container>
+  </dasar-calendar>
+</div>

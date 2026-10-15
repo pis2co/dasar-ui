@@ -1,0 +1,20 @@
+<div style="width: 100%; max-width: 800px">
+  <dasar-table [data]="data" [columns]="columns">
+    <div
+      pagination-slot
+      style="display: flex; justify-content: space-between; width: 100%; align-items: center"
+    >
+      <span style="font-size: 14px; color: var(--theme-text-secondary-color)"
+        >Showing 1 to 5 of 97 results</span
+      >
+      <div style="display: flex; gap: 8px">
+        <dasar-button appearance="outline" size="sm">Prev</dasar-button>
+        <dasar-button variant="primary" size="sm">1</dasar-button>
+        <dasar-button variant="ghost" size="sm">2</dasar-button>
+        <dasar-button variant="ghost" size="sm">3</dasar-button>
+        <dasar-button variant="ghost" size="sm">...</dasar-button>
+        <dasar-button appearance="outline" size="sm">Next</dasar-button>
+      </div>
+    </div>
+  </dasar-table>
+</div>

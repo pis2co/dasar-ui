@@ -1,0 +1,16 @@
+<div style="display: flex; gap: 24px; flex-wrap: wrap">
+  <div style="width: 320px">
+    <p style="margin: 0 0 12px 0; font-weight: 500">Radius Full & Borderless</p>
+    <dasar-calendar
+      variant="dropdown"
+      appearance="borderless"
+      radius="full"
+      [container-style]="{ boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }"
+    ></dasar-calendar>
+  </div>
+
+  <div style="width: 320px">
+    <p style="margin: 0 0 12px 0; font-weight: 500">Disabled State</p>
+    <dasar-calendar variant="dropdown" [disabled]="true"></dasar-calendar>
+  </div>
+</div>

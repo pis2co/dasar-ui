@@ -1,0 +1,65 @@
+<docs-layout
+  title="Input"
+  description="A foundational text input component that supports theming, custom masking, validation states, and rich content slots."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Usage"
+  >
+    <app-input-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance & Sizes"
+  >
+    <app-input-appearance-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: slotsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: slotsTs },
+    ]"
+    title="Prefix, Suffix & Slots"
+  >
+    <app-input-slots-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: maskHtml },
+      { label: 'TypeScript', lang: 'typescript', value: maskTs },
+    ]"
+    title="Input Masks"
+  >
+    <app-input-mask-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: statesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: statesTs },
+    ]"
+    title="Validation & States"
+  >
+    <app-input-states-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: searchHtml },
+      { label: 'TypeScript', lang: 'typescript', value: searchTs },
+    ]"
+    title="More Example"
+  >
+    <app-input-more-example />
+  </doc-example-component>
+</docs-layout>

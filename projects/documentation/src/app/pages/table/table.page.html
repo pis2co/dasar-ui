@@ -1,0 +1,125 @@
+<docs-layout
+  title="Table"
+  description="Advanced examples demonstrating how to fully customize Dasar Table cells, headers, empty states, and expanded rows using Angular structural directives."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: badgeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: badgeTs },
+    ]"
+    title="Cell Slot: Status Badges"
+  >
+    <app-table-cell-badge></app-table-cell-badge>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: profileHtml },
+      { label: 'TypeScript', lang: 'typescript', value: profileTs },
+    ]"
+    title="Cell Slot: User Profiles"
+  >
+    <app-table-cell-profile></app-table-cell-profile>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: actionsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: actionsTs },
+    ]"
+    title="Cell Slot: Action Buttons"
+  >
+    <app-table-cell-actions></app-table-cell-actions>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: expandedHtml },
+      { label: 'TypeScript', lang: 'typescript', value: expandedTs },
+    ]"
+    title="Expandable Rows"
+  >
+    <app-table-expanded></app-table-expanded>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: emptyHtml },
+      { label: 'TypeScript', lang: 'typescript', value: emptyTs },
+    ]"
+    title="Custom Empty State"
+  >
+    <app-table-empty></app-table-empty>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: paginationHtml },
+      { label: 'TypeScript', lang: 'typescript', value: paginationTs },
+    ]"
+    title="Custom Pagination Footer"
+  >
+    <app-table-pagination></app-table-pagination>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: customSizesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: customSizesTs },
+    ]"
+    title="Custom Sizes"
+  >
+    <app-table-custom-sizes></app-table-custom-sizes>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: customBodyHtml },
+      { label: 'TypeScript', lang: 'typescript', value: customBodyTs },
+    ]"
+    title="Custom Body Layout"
+  >
+    <app-table-custom-body></app-table-custom-body>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: heatmapHtml },
+      { label: 'TypeScript', lang: 'typescript', value: heatmapTs },
+    ]"
+    title="Data Heatmap using Dynamic cellStyle"
+  >
+    <app-table-heatmap></app-table-heatmap>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: dynamicStyleHtml },
+      { label: 'TypeScript', lang: 'typescript', value: dynamicStyleTs },
+    ]"
+    title="Conditional Text & Status Styling"
+  >
+    <app-table-dynamic-style></app-table-dynamic-style>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: inlineEditHtml },
+      { label: 'TypeScript', lang: 'typescript', value: inlineEditTs },
+    ]"
+    title="Inline Editing with Cell Slots"
+  >
+    <app-table-inline-edit></app-table-inline-edit>
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: nestedHtml },
+      { label: 'TypeScript', lang: 'typescript', value: nestedTs },
+    ]"
+    title="Nested Tables in Expanded Rows"
+  >
+    <app-table-nested></app-table-nested>
+  </doc-example-component>
+</docs-layout>

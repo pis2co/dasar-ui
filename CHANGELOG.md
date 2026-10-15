@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/pis2co/dasar-ui/compare/v1.3.0...v1.4.0) (2026-10-15)
+
+
+### Features
+
+* config, custom modal and more ([0972e21](https://github.com/pis2co/dasar-ui/commit/0972e21ae8070c63ff11705d8ba107a1a7cf948b))
+
+
+### Bug Fixes
+
+* placement and more ([b2174e8](https://github.com/pis2co/dasar-ui/commit/b2174e8130e63214890ee1a80d3dc2e912d315ef))
+
 ## [1.3.0](https://github.com/pis2co/dasar-ui/compare/v1.2.0...v1.3.0) (2026-10-09)
 
 ## [1.2.0](https://github.com/pis2co/dasar-ui/compare/v1.1.0...v1.2.0) (2026-10-09)

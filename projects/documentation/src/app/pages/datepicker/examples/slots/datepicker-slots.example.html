@@ -1,0 +1,19 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 400px">
+  <dasar-datepicker full-width>
+    <div label-slot style="display: flex; align-items: center; gap: 8px">
+      <dasar-icon name="calendar" size="sm"></dasar-icon>
+      <span style="font-weight: 600">Meeting Date</span>
+    </div>
+    <span extra-label-slot style="color: var(--theme-primary-color)">*Required</span>
+    <dasar-icon
+      prefix-slot
+      name="briefcase"
+      size="sm"
+      style="margin-left: 4px; color: gray"
+    ></dasar-icon>
+    <div hint-slot style="display: flex; align-items: center; gap: 4px; margin-top: 4px">
+      <dasar-icon name="info-circle" size="xs"></dasar-icon>
+      <span>Select a date during business days.</span>
+    </div>
+  </dasar-datepicker>
+</div>

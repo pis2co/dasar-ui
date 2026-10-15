@@ -1,0 +1,17 @@
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+  @for (s of sizes; track s) {
+    <dasar-button (click)="show(s)">Size: {{ s }}</dasar-button>
+  }
+</div>
+
+<dasar-modal
+  [open]="open()"
+  [size]="size()"
+  [label]="'Size: ' + size()"
+  (onClose)="open.set(false)"
+>
+  <p>
+    The <code>size</code> input controls both the width preset and the typographic scale inside the
+    modal: <code>sm</code> is 400px, <code>md</code> is 560px and <code>lg</code> is 800px.
+  </p>
+</dasar-modal>

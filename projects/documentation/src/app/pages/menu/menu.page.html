@@ -1,0 +1,35 @@
+<docs-layout
+  title="Menu"
+  description="A contextual dropdown menu component used for displaying a list of selectable actions, links, or commands."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic"
+  >
+    <app-menu-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: placementHtml },
+      { label: 'TypeScript', lang: 'typescript', value: placementTs },
+    ]"
+    title="Placements"
+  >
+    <app-menu-placement-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: templateHtml },
+      { label: 'TypeScript', lang: 'typescript', value: templateTs },
+    ]"
+    title="Slots & Custom Templates"
+  >
+    <app-menu-custom-template-example />
+  </doc-example-component>
+</docs-layout>
