@@ -1,0 +1,9 @@
+<dasar-list bordered max-height="200px">
+  @for (member of members; track member) {
+    <dasar-list-item>{{ member }}</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Only the content area scrolls. The header and footer stay fixed.
+</p>

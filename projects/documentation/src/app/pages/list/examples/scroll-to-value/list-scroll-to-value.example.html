@@ -1,0 +1,31 @@
+<div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px; flex-wrap: wrap">
+  <dasar-radio-group [(ngModel)]="offset" direction="horizontal">
+    <dasar-radio label="Offset 0" [checked-value]="0" />
+    <dasar-radio label="Offset 16" [checked-value]="16" />
+    <dasar-radio label="Offset 48" [checked-value]="48" />
+  </dasar-radio-group>
+  <dasar-button (click)="jump()">Jump to 25</dasar-button>
+</div>
+
+<dasar-list
+  selectable
+  bordered
+  max-height="200px"
+  [(ngModel)]="selected"
+  [scroll-offset]="offset()"
+  (onScroll)="onScroll($event)"
+>
+  @for (member of members; track member) {
+    <dasar-list-item [value]="member">{{ member }}</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Selected: {{ selected() }}. The list opens scrolled to it, and Jump to 25 scrolls from outside.
+</p>
+
+@if (log().length > 0) {
+  <p style="font-size: 12px; margin-top: 4px; color: gray">
+    Scroll events: {{ log().join(' · ') }}.
+  </p>
+}

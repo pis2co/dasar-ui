@@ -14,6 +14,12 @@ import { ListAdvancedDynamicExample } from './examples/advanced-dynamic/list-adv
 import { ListAdvancedThemeExample } from './examples/advanced-theme/list-advanced-theme.example';
 import { ListRadiusExample } from './examples/radius/list-radius.example';
 import { ListRadiusThemeExample } from './examples/radius-theme/list-radius-theme.example';
+import { ListSelectableExample } from './examples/selectable/list-selectable.example';
+import { ListScrollExample } from './examples/scroll/list-scroll.example';
+import { ListScrollToValueExample } from './examples/scroll-to-value/list-scroll-to-value.example';
+import { ListValueFieldExample } from './examples/value-field/list-value-field.example';
+import { ListReactiveExample } from './examples/reactive/list-reactive.example';
+import { ListKeyboardExample } from './examples/keyboard/list-keyboard.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/list-basic.example.html' with { loader: 'text' };
@@ -102,6 +108,52 @@ import radiusThemeTs from './examples/radius-theme/list-radius-theme.example.ts'
   loader: 'text',
 };
 
+// @ts-ignore
+import selectableHtml from './examples/selectable/list-selectable.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import selectableTs from './examples/selectable/list-selectable.example.ts' with {
+  loader: 'text',
+};
+
+// @ts-ignore
+import scrollHtml from './examples/scroll/list-scroll.example.html' with { loader: 'text' };
+// @ts-ignore
+import scrollTs from './examples/scroll/list-scroll.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import scrollToValueHtml from './examples/scroll-to-value/list-scroll-to-value.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import scrollToValueTs from './examples/scroll-to-value/list-scroll-to-value.example.ts' with {
+  loader: 'text',
+};
+
+// @ts-ignore
+import valueFieldHtml from './examples/value-field/list-value-field.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import valueFieldTs from './examples/value-field/list-value-field.example.ts' with {
+  loader: 'text',
+};
+
+// @ts-ignore
+import reactiveHtml from './examples/reactive/list-reactive.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import reactiveTs from './examples/reactive/list-reactive.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import keyboardHtml from './examples/keyboard/list-keyboard.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import keyboardTs from './examples/keyboard/list-keyboard.example.ts' with { loader: 'text' };
+
 @Component({
   imports: [
     CommonModule,
@@ -118,6 +170,12 @@ import radiusThemeTs from './examples/radius-theme/list-radius-theme.example.ts'
     ListAdvancedThemeExample,
     ListRadiusExample,
     ListRadiusThemeExample,
+    ListSelectableExample,
+    ListScrollExample,
+    ListScrollToValueExample,
+    ListValueFieldExample,
+    ListReactiveExample,
+    ListKeyboardExample,
   ],
   templateUrl: './list.page.html',
   selector: 'app-list-page',
@@ -157,6 +215,24 @@ export class ListDocPage {
   protected radiusThemeHtml = radiusThemeHtml;
   protected radiusThemeTs = radiusThemeTs;
 
+  protected selectableHtml = selectableHtml;
+  protected selectableTs = selectableTs;
+
+  protected scrollHtml = scrollHtml;
+  protected scrollTs = scrollTs;
+
+  protected scrollToValueHtml = scrollToValueHtml;
+  protected scrollToValueTs = scrollToValueTs;
+
+  protected valueFieldHtml = valueFieldHtml;
+  protected valueFieldTs = valueFieldTs;
+
+  protected reactiveHtml = reactiveHtml;
+  protected reactiveTs = reactiveTs;
+
+  protected keyboardHtml = keyboardHtml;
+  protected keyboardTs = keyboardTs;
+
   protected readonly apiProps: DocApiProperty[] = [
     {
       name: 'size',
@@ -195,6 +271,116 @@ export class ListDocPage {
       defaultValue: 'false',
       description:
         'Shows a pointer cursor and an active background using --list-active-background. The click event stays on the item, the component does not emit anything.',
+    },
+    {
+      name: 'value / [(ngModel)]',
+      type: 'any',
+      defaultValue: 'null',
+      description: 'Selected value. Works with valueChange, ngModel and reactive forms.',
+    },
+    {
+      name: 'selectable',
+      type: 'boolean',
+      defaultValue: 'false',
+      description:
+        'Clicking an item selects it and highlights it using --list-active-item-background. Default via components.list.selectable.',
+    },
+    {
+      name: 'value-field',
+      type: 'string | null',
+      defaultValue: 'null',
+      description:
+        'Matches object values by this key, so { id: 2, name: "x" } selects the item with id 2.',
+    },
+    {
+      name: 'max-height',
+      type: 'string | null',
+      defaultValue: 'null',
+      description:
+        'Max height of the content area, for example "200px". Only the content scrolls, the header and footer stay fixed. Also settable with the --list-max-height token.',
+    },
+    {
+      name: 'scroll-offset',
+      type: 'number',
+      defaultValue: '0',
+      description:
+        "Pixels between the active item's top and the scroll area top after auto-scroll.",
+    },
+    {
+      name: 'scroll-behavior',
+      type: "'auto' | 'smooth'",
+      defaultValue: "'auto'",
+      description: 'Scroll animation used by auto-scroll.',
+    },
+    {
+      name: 'scroll-on-init',
+      type: 'boolean',
+      defaultValue: 'true',
+      description: 'Scrolls to the value on first render. Later value changes still scroll.',
+    },
+    {
+      name: 'scroll-on-click',
+      type: 'boolean',
+      defaultValue: 'true',
+      description: 'Scrolls a clicked item to the offset.',
+    },
+    {
+      name: 'keyboard',
+      type: 'boolean',
+      defaultValue: 'true',
+      description:
+        'Arrow keys, Home, End and Enter navigate and select when selectable. Only active then.',
+    },
+    {
+      name: 'show-focus',
+      type: 'boolean',
+      defaultValue: 'false',
+      description:
+        'Shows the focus outline (--list-focus-item-outline) on the keyboard-focused item. Navigation works either way.',
+    },
+    {
+      name: '(valueChange) / (onUpdate)',
+      type: 'any',
+      defaultValue: '-',
+      description: 'Emit the new value when the user selects an item.',
+    },
+    {
+      name: '(onItemClick)',
+      type: 'DasarListItemClickEvent',
+      defaultValue: '-',
+      description:
+        'Fires on every non-disabled item click with value, index and the event, even without selectable.',
+    },
+    {
+      name: '(onScroll)',
+      type: 'DasarListScrollEvent',
+      defaultValue: '-',
+      description:
+        'Fires each time the list scrolls to an item on its own, with value, index, scrollTop and reason (init, value, click, keyboard or api).',
+    },
+    {
+      name: '(onUserScroll)',
+      type: 'Event',
+      defaultValue: '-',
+      description: 'Native scroll of the content area.',
+    },
+    {
+      name: 'scrollToActive() / scrollToValue()',
+      type: 'method',
+      defaultValue: '-',
+      description: 'Public methods reachable via ViewChild to scroll from code.',
+    },
+    {
+      name: 'dasar-list-item: value',
+      type: 'any',
+      defaultValue: 'undefined',
+      description: 'Value of the item. Items without a value cannot be selected.',
+    },
+    {
+      name: 'dasar-list-item: disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Blocks clicks and keyboard on the item.',
     },
     {
       name: 'container-class',

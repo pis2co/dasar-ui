@@ -729,6 +729,10 @@ export interface DasarThemeList {
   footerBorder?: string;
   footerBackground?: string;
   itemPadding?: string;
+  maxHeight?: string;
+  activeItemBackground?: string;
+  activeItemColor?: string;
+  focusItemOutline?: string;
   prefixColor?: string;
   suffixColor?: string;
 }
