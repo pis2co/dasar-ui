@@ -1,4 +1,3 @@
-import { isPlatformBrowser } from '@angular/common';
 import {
   afterNextRender,
   Component,
@@ -10,6 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 import { marked } from 'marked';
 import * as Prism from 'prismjs';
 
@@ -103,6 +103,15 @@ const INTERNAL_DOC_LINKS: Array<[string, string]> = [
         padding-left: var(--space-4);
         border-left: 3px solid var(--theme-border-strong-color);
         color: var(--theme-text-secondary-color);
+      }
+      .doc-markdown img {
+        max-width: 100%;
+        border-radius: var(--radius-full);
+        vertical-align: middle;
+      }
+      .doc-markdown td img {
+        width: 64px;
+        height: 64px;
       }
     `,
   ],

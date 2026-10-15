@@ -1,6 +1,6 @@
 # dasar-ui
 
-Angular UI component library. Standalone components, SSR-safe, themeable with light and dark mode.
+Angular UI component library based on danarakca design system. Standalone components, SSR-safe, themeable with light and dark mode.
 
 [![npm version](https://img.shields.io/npm/v/dasar-ui.svg)](https://www.npmjs.com/package/dasar-ui)
 [![license](https://img.shields.io/npm/l/dasar-ui.svg)](https://github.com/pis2co/dasar-ui/blob/main/package.json)
@@ -45,6 +45,13 @@ Read the full guides:
 - [npm package](https://www.npmjs.com/package/dasar-ui)
 - [Changelog](https://github.com/pis2co/dasar-ui/blob/main/CHANGELOG.md)
 - [GitHub repository](https://github.com/pis2co/dasar-ui)
+
+## Contributors
+
+- <a href="https://github.com/pis2co"><img src="https://github.com/pis2co.png?size=40" width="32" height="32" alt="pis2co" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /></a> **[pis2co](https://github.com/pis2co)** — Organization and maintainer
+- <a href="https://github.com/dxxta"><img src="https://github.com/dxxta.png?size=40" width="32" height="32" alt="dxxta" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /></a> **[dxxta](https://github.com/dxxta)** — Author and maintainer
+
+Contributions are welcome for apbn core team. Open an issue or a pull request on [GitHub](https://github.com/pis2co/dasar-ui).
 
 ## Development
 

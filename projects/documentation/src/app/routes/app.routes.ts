@@ -1,24 +1,24 @@
+import { ThemingComponentConfigDocPage } from '../pages/theming/theming-component-config.page';
+import { ThemingCssVariablesDocPage } from '../pages/theming/theming-css-variables.page';
+import { GettingStartedDocPage } from '../pages/getting-started/getting-started.page';
+import { IntroductionDocPage } from '../pages/introduction/introduction.page';
+import { InstallationDocPage } from '../pages/installation/installation.page';
 import { NumberInputDocPage } from '../pages/number-input/number-input.page';
+import { ThemingTokensDocPage } from '../pages/theming/theming-tokens.page';
 import { DatepickerDocPage } from '../pages/datepicker/datepicker.page';
 import { CalendarDocPage } from '../pages/calendar/calendar.page';
+import { ThemingDocPage } from '../pages/theming/theming.page';
 import { ButtonDocPage } from '../pages/button/button.page';
 import { SelectDocPage } from '../pages/select/select.page';
 import { InputDocPage } from '../pages/input/input.page';
 import { TableDocPage } from '../pages/table/table.page';
+import { ModalDocPage } from '../pages/modal/modal.page';
 import { ChipDocPage } from '../pages/chip/chip.page';
 import { IconDocPage } from '../pages/icon/icon.page';
 import { CardDocPage } from '../pages/card/card.page';
 import { MenuDocPage } from '../pages/menu/menu.page';
-import { ModalDocPage } from '../pages/modal/modal.page';
 import { TabsDocPage } from '../pages/tabs/tabs.page';
 import { ListDocPage } from '../pages/list/list.page';
-import { IntroductionDocPage } from '../pages/introduction/introduction.page';
-import { InstallationDocPage } from '../pages/installation/installation.page';
-import { GettingStartedDocPage } from '../pages/getting-started/getting-started.page';
-import { ThemingDocPage } from '../pages/theming/theming.page';
-import { ThemingTokensDocPage } from '../pages/theming/theming-tokens.page';
-import { ThemingCssVariablesDocPage } from '../pages/theming/theming-css-variables.page';
-import { ThemingComponentConfigDocPage } from '../pages/theming/theming-component-config.page';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -30,106 +30,106 @@ export const routes: Routes = [
   {
     path: 'introduction',
     component: IntroductionDocPage,
-    title: 'Introduction',
+    title: 'Introduction | Dasar UI',
   },
   {
     path: 'installation',
     component: InstallationDocPage,
-    title: 'Installation',
+    title: 'Installation | Dasar UI',
   },
   {
     path: 'getting-started',
     component: GettingStartedDocPage,
-    title: 'Getting Started',
+    title: 'Getting Started | Dasar UI',
   },
   {
     path: 'theming',
     component: ThemingDocPage,
-    title: 'Theming',
+    title: 'Theming | Dasar UI',
   },
   {
     path: 'theming/tokens',
     component: ThemingTokensDocPage,
-    title: 'Theme Tokens',
+    title: 'Theme Tokens | Dasar UI',
   },
   {
     path: 'theming/css-variables',
     component: ThemingCssVariablesDocPage,
-    title: 'CSS Variables',
+    title: 'CSS Variables | Dasar UI',
   },
   {
     path: 'theming/component-config',
     component: ThemingComponentConfigDocPage,
-    title: 'Component Config',
+    title: 'Component Config | Dasar UI',
   },
   {
     path: 'components/button',
     component: ButtonDocPage,
-    title: 'Button Docs',
+    title: 'Button Docs | Dasar UI',
   },
   {
     path: 'components/icon',
     component: IconDocPage,
-    title: 'Icon Docs',
+    title: 'Icon Docs | Dasar UI',
   },
   {
     path: 'components/chip',
     component: ChipDocPage,
-    title: 'Chip Docs',
+    title: 'Chip Docs | Dasar UI',
   },
   {
     path: 'components/card',
     component: CardDocPage,
-    title: 'Card Docs',
+    title: 'Card Docs | Dasar UI',
   },
   {
     path: 'components/modal',
     component: ModalDocPage,
-    title: 'Modal Docs',
+    title: 'Modal Docs | Dasar UI',
   },
   {
     path: 'components/tabs',
     component: TabsDocPage,
-    title: 'Tabs Docs',
+    title: 'Tabs Docs | Dasar UI',
   },
   {
     path: 'components/list',
     component: ListDocPage,
-    title: 'List Docs',
+    title: 'List Docs | Dasar UI',
   },
   {
     path: 'components/calendar',
     component: CalendarDocPage,
-    title: 'Calendar Docs',
+    title: 'Calendar Docs | Dasar UI',
   },
   {
     path: 'components/datepicker',
     component: DatepickerDocPage,
-    title: 'Datepicker Docs',
+    title: 'Datepicker Docs | Dasar UI',
   },
   {
     path: 'components/table',
     component: TableDocPage,
-    title: 'Table Docs',
+    title: 'Table Docs | Dasar UI',
   },
   {
     path: 'components/select',
     component: SelectDocPage,
-    title: 'Select Docs',
+    title: 'Select Docs | Dasar UI',
   },
   {
     path: 'components/input',
     component: InputDocPage,
-    title: 'Input Docs',
+    title: 'Input Docs | Dasar UI',
   },
   {
     path: 'components/number-input',
     component: NumberInputDocPage,
-    title: 'Number Input Docs',
+    title: 'Number Input Docs | Dasar UI',
   },
   {
     path: 'components/menu',
     component: MenuDocPage,
-    title: 'Menu Docs',
+    title: 'Menu Docs | Dasar UI',
   },
 ];

@@ -128,7 +128,7 @@ export interface DocNavGroup {
         margin: 0 auto;
       }
       .docs-header {
-        // margin-bottom: var(--space-10);
+        margin-bottom: var(--space-base);
         border-bottom: 1px solid var(--theme-border-subtle-color);
         padding-bottom: var(--space-6);
       }
