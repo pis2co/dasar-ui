@@ -1,0 +1,11 @@
+<div style="display: flex; flex-direction: column; gap: 12px">
+  @for (a of appearances; track a) {
+    <dasar-pagination
+      [page-count]="5"
+      [page]="page()"
+      (onUpdatePage)="page.set($event)"
+      [appearance]="a"
+      [display-order]="['pages']"
+    />
+  }
+</div>

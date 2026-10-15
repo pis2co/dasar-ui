@@ -1,98 +1,132 @@
-<nav class="dasar-pagination-container size-{{ size }}">
-  <ul class="dasar-pagination-list">
-    @if (showFirstLast) {
-      <li>
-        <dasar-button
-          [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
-          [appearance]="appearance === 'solid' ? 'outline' : appearance"
-          [size]="size"
-          [radius]="radius"
-          [disabled]="currentPage === 1 || disabled"
-          (click)="goToPage(1)"
-          class="dasar-pagination-btn"
-          aria-label="First page"
-        >
-          &laquo;
-        </dasar-button>
-      </li>
-    }
+<nav
+  class="dasar-pagination-container size-{{ size }} spacing-{{ spacing }}"
+  [class.fluid]="fluid"
+  [class.disabled]="disabled"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+  aria-label="Pagination"
+>
+  @if (hasPrefix) {
+    <div class="dasar-pagination-prefix">
+      <ng-content select="[prefix-slot]"></ng-content>
+    </div>
+  }
 
-    <li>
-      <dasar-button
-        [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
-        [appearance]="appearance === 'solid' ? 'outline' : appearance"
-        [size]="size"
-        [radius]="radius"
-        [disabled]="currentPage === 1 || disabled"
-        (click)="goToPage(currentPage - 1)"
-        class="dasar-pagination-btn"
-        aria-label="Previous page"
-      >
-        &lsaquo;
-      </dasar-button>
-    </li>
-
-    @for (page of pages; track $index) {
-      <li>
-        @if (page === '...') {
-          <span class="dasar-pagination-ellipsis">...</span>
-        } @else {
+  @for (part of order; track part) {
+    @if (part === 'pages') {
+      <ul class="dasar-pagination-list">
+        <li class="dasar-pagination-item">
           <dasar-button
-            [variant]="
-              currentPage === page ? 'primary' : appearance === 'outline' ? 'ghost' : 'secondary'
-            "
-            [appearance]="
-              currentPage === page
-                ? appearance === 'outline'
-                  ? 'solid'
-                  : appearance
-                : appearance === 'solid'
-                  ? 'outline'
-                  : appearance
-            "
+            icon-only
+            [variant]="itemVariant"
+            [appearance]="itemAppearance"
             [size]="size"
             [radius]="radius"
-            [disabled]="disabled"
-            (click)="goToPage(page)"
+            [disabled]="isFirstPage || disabled"
+            (click)="prev()"
             class="dasar-pagination-btn"
-            [class.active]="currentPage === page"
+            aria-label="Previous page"
           >
-            {{ page }}
+            @if (hasPrev) {
+              <ng-content select="[prev-slot]"></ng-content>
+            } @else {
+              <dasar-icon [name]="prevIcon"></dasar-icon>
+            }
           </dasar-button>
+        </li>
+
+        @for (item of items; track item.type === 'page' ? 'p' + item.page : 'e' + item.key) {
+          <li class="dasar-pagination-item">
+            @if (item.type === 'page') {
+              <dasar-button
+                icon-only
+                [variant]="page === item.page ? activeVariant : itemVariant"
+                [appearance]="page === item.page ? activeAppearance : itemAppearance"
+                [size]="size"
+                [radius]="radius"
+                [disabled]="disabled"
+                (click)="goTo(item.page)"
+                class="dasar-pagination-btn"
+                [class.active]="page === item.page"
+                [attr.aria-label]="'Page ' + item.page"
+                [attr.aria-current]="page === item.page ? 'page' : null"
+              >
+                {{ item.page }}
+              </dasar-button>
+            } @else {
+              @if (showEllipsisDropdown && !disabled) {
+                <dasar-menu
+                  class="dasar-pagination-ellipsis-menu"
+                  appearance="none"
+                  [size]="controlSize"
+                  [radius]="radius"
+                  [items]="ellipsisItems(item)"
+                  panelClass="dasar-pagination-ellipsis-panel"
+                  [attr.aria-label]="
+                    item.key === 'left' ? 'Previous hidden pages' : 'Next hidden pages'
+                  "
+                  (onItemClick)="onEllipsisPick($event)"
+                >
+                  <span class="dasar-pagination-ellipsis" aria-hidden="true">…</span>
+                </dasar-menu>
+              } @else {
+                <span class="dasar-pagination-ellipsis" aria-hidden="true">…</span>
+              }
+            }
+          </li>
         }
-      </li>
-    }
 
-    <li>
-      <dasar-button
-        [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
-        [appearance]="appearance === 'solid' ? 'outline' : appearance"
-        [size]="size"
-        [radius]="radius"
-        [disabled]="currentPage === totalPages || disabled"
-        (click)="goToPage(currentPage + 1)"
-        class="dasar-pagination-btn"
-        aria-label="Next page"
-      >
-        &rsaquo;
-      </dasar-button>
-    </li>
-
-    @if (showFirstLast) {
-      <li>
-        <dasar-button
-          [variant]="appearance === 'outline' ? 'ghost' : 'primary'"
-          [appearance]="appearance === 'solid' ? 'outline' : appearance"
-          [size]="size"
-          [radius]="radius"
-          [disabled]="currentPage === totalPages || disabled"
-          (click)="goToPage(totalPages)"
-          class="dasar-pagination-btn"
-          aria-label="Last page"
-        >
-          &raquo;
-        </dasar-button>
-      </li>
+        <li class="dasar-pagination-item">
+          <dasar-button
+            icon-only
+            [variant]="itemVariant"
+            [appearance]="itemAppearance"
+            [size]="size"
+            [radius]="radius"
+            [disabled]="isLastPage || disabled"
+            (click)="next()"
+            class="dasar-pagination-btn"
+            aria-label="Next page"
+          >
+            @if (hasNext) {
+              <ng-content select="[next-slot]"></ng-content>
+            } @else {
+              <dasar-icon [name]="nextIcon"></dasar-icon>
+            }
+          </dasar-button>
+        </li>
+      </ul>
+    } @else if (part === 'size-picker') {
+      <dasar-select
+        class="dasar-pagination-size-picker"
+        [options]="sizeOptions"
+        [size]="controlSize"
+        [ngModel]="pageSizes"
+        (ngModelChange)="changePageSize($event)"
+        [disabled]="disabled"
+        [attr.aria-label]="'Items per page'"
+      ></dasar-select>
     }
-  </ul>
+  }
+
+  @if (labelSlot || summary !== null) {
+    <span class="dasar-pagination-summary" aria-live="polite">
+      @if (labelSlot) {
+        <ng-container
+          *ngTemplateOutlet="
+            labelSlot.templateRef;
+            context: { $implicit: page, page: page, count: pageCount }
+          "
+        ></ng-container>
+      } @else {
+        {{ summary }}
+      }
+    </span>
+  }
+
+  @if (hasSuffix) {
+    <div class="dasar-pagination-suffix">
+      <ng-content select="[suffix-slot]"></ng-content>
+    </div>
+  }
 </nav>

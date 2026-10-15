@@ -1,0 +1,12 @@
+<dasar-pagination
+  [page-count]="5"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+  prev-icon="arrow-left"
+  next-icon="arrow-right"
+  [display-order]="['pages']"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Any dasar-icon name works for the previous and next buttons.
+</p>

@@ -1,0 +1,17 @@
+<dasar-pagination [page-count]="100" [page]="page()" (onUpdatePage)="page.set($event)" />
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Click an ellipsis to pick one of the hidden pages. Current page: {{ page() }}.
+</p>
+
+<dasar-pagination
+  [page-count]="100"
+  [page]="plain()"
+  (onUpdatePage)="plain.set($event)"
+  [display-order]="['pages']"
+  style="margin-top: 12px"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Without quick-jumper-dropdown in display-order the ellipses are plain text.
+</p>

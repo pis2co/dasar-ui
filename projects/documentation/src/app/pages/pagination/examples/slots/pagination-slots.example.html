@@ -1,0 +1,10 @@
+<dasar-pagination [page-count]="24" [page]="page()" (onUpdatePage)="page.set($event)">
+  <span prefix-slot style="font-size: 12px; color: gray">Total {{ total }} items</span>
+  <span prev-slot><dasar-icon name="arrow-left" /></span>
+  <span next-slot><dasar-icon name="arrow-right" /></span>
+  <span suffix-slot style="font-size: 12px; color: gray">Page {{ page() }} / 24</span>
+</dasar-pagination>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Prefix, previous, next and suffix slots replace the matching parts.
+</p>

@@ -692,6 +692,14 @@ export const listMap: Record<string, string> = {
   prefixColor: '--list-prefix-color',
   suffixColor: '--list-suffix-color',
 };
+export const paginationMap: Record<string, string> = {
+  gap: '--pagination-gap',
+  fontSize: '--pagination-font-size',
+  itemMinWidth: '--pagination-item-min-width',
+  ellipsisColor: '--pagination-ellipsis-color',
+  summaryColor: '--pagination-summary-color',
+  dropdownMaxHeight: '--pagination-dropdown-max-height',
+};
 export const tabsMap: Record<keyof DasarThemeTabs, string> = {
   listPaddingNormal: '--tabs-list-padding-normal',
   listPaddingCompact: '--tabs-list-padding-compact',
@@ -861,6 +869,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.list) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.list, listMap);
+    }
+    if (config.tokens?.[config.mode]?.pagination) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.pagination, paginationMap);
     }
     if (config.tokens?.[config.mode]?.tabs) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.tabs, tabsMap);

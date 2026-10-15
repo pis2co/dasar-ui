@@ -1,0 +1,20 @@
+<dasar-pagination
+  [page-count]="5"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+  spacing="lg"
+  [display-order]="['pages']"
+/>
+
+<dasar-pagination
+  [page-count]="5"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+  fluid
+  [display-order]="['pages']"
+  style="margin-top: 12px"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Wide spacing, then a fluid bar that spreads across the full width.
+</p>

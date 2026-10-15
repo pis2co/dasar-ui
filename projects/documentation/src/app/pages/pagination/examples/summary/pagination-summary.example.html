@@ -1,0 +1,21 @@
+<dasar-pagination
+  [page-count]="20"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+  label="Page {page} of {count}"
+/>
+
+<dasar-pagination
+  [page-count]="20"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+  style="margin-top: 12px"
+>
+  <ng-template label-slot let-page let-count="count">
+    <strong>Halaman {{ page }}</strong> / {{ count }}
+  </ng-template>
+</dasar-pagination>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  The label supports page and count tokens, or a label-slot template with the same context.
+</p>
