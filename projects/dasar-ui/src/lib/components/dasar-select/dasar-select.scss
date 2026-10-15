@@ -262,8 +262,6 @@
 
 .dasar-select-dropdown-panel {
   position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
   width: 100%;
   max-height: var(--select-dropdown-max-height, 240px);
   overflow-y: auto;
@@ -278,6 +276,51 @@
   z-index: var(--select-dropdown-z-index, 50);
   display: flex;
   flex-direction: column;
+
+  &.radius-none {
+    border-radius: var(--select-dropdown-radius-none, var(--radius-none));
+  }
+  &.radius-xs {
+    border-radius: var(--select-dropdown-radius-xs, var(--radius-xs));
+  }
+  &.radius-sm {
+    border-radius: var(--select-dropdown-radius-sm, var(--radius-sm));
+  }
+  &.radius-md {
+    border-radius: var(--select-dropdown-radius-md, var(--radius-md));
+  }
+  &.radius-lg {
+    border-radius: var(--select-dropdown-radius-lg, var(--radius-lg));
+  }
+  &.radius-xl {
+    border-radius: var(--select-dropdown-radius-xl, var(--radius-xl));
+  }
+  &.radius-full {
+    border-radius: var(--select-dropdown-radius-full, var(--radius-lg));
+  }
+
+  &.placement-bottom-start {
+    top: calc(100% + var(--select-dropdown-offset, 4px));
+    right: auto;
+    left: 0;
+  }
+  &.placement-bottom-end {
+    top: calc(100% + var(--select-dropdown-offset, 4px));
+    right: 0;
+    left: auto;
+  }
+  &.placement-top-start {
+    right: auto;
+    bottom: calc(100% + var(--select-dropdown-offset, 4px));
+    top: auto;
+    left: 0;
+  }
+  &.placement-top-end {
+    bottom: calc(100% + var(--select-dropdown-offset, 4px));
+    top: auto;
+    right: 0;
+    left: auto;
+  }
 }
 
 .dasar-select-option {
@@ -290,20 +333,32 @@
   cursor: pointer;
   display: flex;
 
-  .size-xs & {
+  .dasar-select-dropdown-panel.size-xs & {
     font-size: var(--font-size-xs);
+
+    padding: var(--select-option-padding-y, var(--space-1))
+      var(--select-option-padding-x, var(--space-base));
   }
-  .size-sm & {
+  .dasar-select-dropdown-panel.size-sm & {
     font-size: var(--font-size-sm);
+
+    padding: var(--select-option-padding-y, var(--space-1))
+      var(--select-option-padding-x, var(--space-3));
   }
-  .size-md & {
+  .dasar-select-dropdown-panel.size-md & {
     font-size: var(--font-size-base);
   }
-  .size-lg & {
+  .dasar-select-dropdown-panel.size-lg & {
     font-size: var(--font-size-lg);
+
+    padding: var(--select-option-padding-y, var(--space-3))
+      var(--select-option-padding-x, var(--space-4));
   }
-  .size-xl & {
+  .dasar-select-dropdown-panel.size-xl & {
     font-size: var(--font-size-xl);
+
+    padding: var(--select-option-padding-y, var(--space-3))
+      var(--select-option-padding-x, var(--space-5));
   }
 
   &:hover:not(.disabled) {

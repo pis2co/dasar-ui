@@ -14,6 +14,7 @@ import {
   signal,
   Directive,
   ContentChild,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -22,8 +23,10 @@ import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.mode
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
+import { computeSmartPlacement, DasarPanelPlacement } from '../../utils/panel-placement';
+import { fieldIconSize } from '../../utils/icon-size';
 
-export type DasarMenuPlacementType = 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end';
+export type DasarMenuPlacementType = DasarPanelPlacement;
 export type DasarMenuSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarMenuAppearanceType = 'none' | 'outline' | 'filled';
 export type DasarMenuRadiusType = ScaleAttributeType;
@@ -84,13 +87,27 @@ export class DasarMenu {
   private elementRef = inject(ElementRef);
   isOpen = signal<boolean>(false);
 
-  @Input() placement = resolveThemeDefault(
+  @ViewChild('triggerEl') triggerEl?: ElementRef<HTMLElement>;
+  @ViewChild('panelEl') panelEl?: ElementRef<HTMLElement>;
+
+  private _placement: DasarMenuPlacementType = resolveThemeDefault(
     'menu',
     'placement',
     'bottom-start',
     this.themeProvider,
     this.themeService,
   );
+  @Input()
+  set placement(value: DasarMenuPlacementType) {
+    this._placement = value;
+    this.currentPlacement.set(value);
+  }
+  get placement(): DasarMenuPlacementType {
+    return this._placement;
+  }
+
+  /** Placement currently rendered; may differ from `placement` after a flip. */
+  readonly currentPlacement = signal<DasarMenuPlacementType>(this._placement);
 
   @Input() appearance = resolveThemeDefault(
     'menu',
@@ -200,6 +217,30 @@ export class DasarMenu {
   get hasMenuItem(): boolean {
     return !!this.providedMenuItem;
   }
+  /** Icon size that matches the menu size. */
+  get itemIconSize(): number {
+    return fieldIconSize(this.size);
+  }
+
+  /** Flip the panel away from a viewport edge while the panel is open. */
+  @HostListener('window:resize')
+  @HostListener('window:scroll')
+  onViewportChange(): void {
+    if (this.isOpen()) this.recalculatePlacement();
+  }
+
+  private recalculatePlacement(): void {
+    if (!this.triggerEl?.nativeElement || !this.panelEl?.nativeElement) return;
+    const next = computeSmartPlacement(
+      this.triggerEl.nativeElement,
+      this.panelEl.nativeElement,
+      this.placement,
+    );
+    if (next !== this.currentPlacement()) {
+      this.currentPlacement.set(next);
+      this.cdr.markForCheck();
+    }
+  }
 
   toggle(event?: Event): void {
     if (event) event.stopPropagation();
@@ -212,11 +253,13 @@ export class DasarMenu {
   }
   open(): void {
     if (this.disabled || this.isOpen()) return;
+    this.currentPlacement.set(this.placement);
     this.isOpen.set(true);
     this.onPanelClose.emit();
     // Broadcast globally that this menu instance just opened
     const openEvent = new CustomEvent('dasar-menu:opened', { detail: this });
     document.dispatchEvent(openEvent);
+    setTimeout(() => this.recalculatePlacement(), 0);
   }
   close(): void {
     if (!this.isOpen()) return;

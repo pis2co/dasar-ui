@@ -1,21 +1,93 @@
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DasarDatepicker } from './dasar-datepicker';
+import { DasarDatepicker, DasarDatepickerComponent } from './dasar-datepicker';
+
+@Component({
+  standalone: true,
+  imports: [DasarDatepickerComponent],
+  template: `
+    <dasar-datepicker
+      [size]="size()"
+      [radius]="radius()"
+      [placement]="placement()"
+      [value]="value()"
+      clearable
+      placeholder="Pick a date"
+    />
+  `,
+})
+class DatepickerHost {
+  size = signal<'sm' | 'md' | 'lg'>('sm');
+  radius = signal<'none' | 'md' | 'lg' | 'full'>('lg');
+  placement = signal<'bottom-start' | 'top-start'>('bottom-start');
+  value = signal<string | null>(null);
+}
 
 describe('DasarDatepicker', () => {
   let component: DasarDatepicker;
-  let fixture: ComponentFixture<DasarDatepicker>;
+  let fixture: ComponentFixture<DatepickerHost>;
+  let host: DatepickerHost;
+
+  const trigger = () =>
+    fixture.nativeElement.querySelector('.dasar-datepicker-trigger') as HTMLElement;
+  const dropdown = () =>
+    fixture.nativeElement.querySelector('.dasar-datepicker-dropdown') as HTMLElement;
+  const open = async () => {
+    trigger().click();
+    await fixture.whenStable();
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DasarDatepicker],
+      imports: [DatepickerHost],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DasarDatepicker);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture = TestBed.createComponent(DatepickerHost);
+    host = fixture.componentInstance;
+    component = fixture.debugElement.children[0].componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('calendar icon fits the trigger size', () => {
+    const svg = trigger().querySelector('.calendar-icon svg') as SVGElement;
+    expect(svg.getAttribute('width')).toBe('14');
+  });
+
+  it('clear icon fits the trigger size when there is a value', () => {
+    host.value.set('2026-01-05');
+    fixture.detectChanges();
+    const svg = trigger().querySelector('.clear-icon svg') as SVGElement;
+    expect(svg.getAttribute('width')).toBe('14');
+  });
+
+  it('dropdown follows the trigger size and radius', async () => {
+    await open();
+
+    expect(dropdown()).toBeTruthy();
+    expect(dropdown().classList).toContain('size-sm');
+    expect(dropdown().classList).toContain('radius-lg');
+    expect(dropdown().classList).toContain('placement-bottom-start');
+  });
+
+  it('dropdown starts at the requested placement', async () => {
+    host.placement.set('top-start');
+    await open();
+
+    expect(dropdown().classList).toContain('placement-top-start');
+  });
+
+  it('never writes the flipped placement back to the placement input', async () => {
+    await open();
+
+    expect(component.placement).toBe('bottom-start');
+    expect(component.currentPlacement).toBe('bottom-start');
+  });
+
+  it('renders no dropdown while closed', () => {
+    expect(dropdown()).toBeNull();
   });
 });

@@ -1,0 +1,44 @@
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+  <dasar-button (click)="openNotClosable.set(true)">closable = false</dasar-button>
+  <dasar-button (click)="openNoOverlay.set(true)">close-on-overlay = false</dasar-button>
+  <dasar-button (click)="openNoEscape.set(true)">close-on-escape = false</dasar-button>
+</div>
+
+<dasar-modal
+  [open]="openNotClosable()"
+  label="Not closable"
+  closable="false"
+  (onClose)="openNotClosable.set(false)"
+>
+  <p>
+    With <code>closable="false"</code> the default ✕ button is not rendered, so the dialog can only
+    be closed from the action below.
+  </p>
+  <div action-slot>
+    <dasar-button size="md" radius="md" (click)="openNotClosable.set(false)">Close</dasar-button>
+  </div>
+</dasar-modal>
+
+<dasar-modal
+  [open]="openNoOverlay()"
+  label="Backdrop click does nothing"
+  close-on-overlay="false"
+  (onClose)="openNoOverlay.set(false)"
+>
+  <p>
+    With <code>close-on-overlay="false"</code> clicking the backdrop no longer emits
+    <code>(onClose)</code>. The ✕ button and Esc still work.
+  </p>
+</dasar-modal>
+
+<dasar-modal
+  [open]="openNoEscape()"
+  label="Esc does nothing"
+  close-on-escape="false"
+  (onClose)="openNoEscape.set(false)"
+>
+  <p>
+    With <code>close-on-escape="false"</code> pressing Esc no longer emits
+    <code>(onClose)</code>. The ✕ button and a backdrop click still work.
+  </p>
+</dasar-modal>

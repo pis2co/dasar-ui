@@ -9,6 +9,7 @@ import { ChipDocPage } from '../pages/chip/chip.page';
 import { IconDocPage } from '../pages/icon/icon.page';
 import { CardDocPage } from '../pages/card/card.page';
 import { MenuDocPage } from '../pages/menu/menu.page';
+import { ModalDocPage } from '../pages/modal/modal.page';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -36,6 +37,11 @@ export const routes: Routes = [
     path: 'components/card',
     component: CardDocPage,
     title: 'Card Docs',
+  },
+  {
+    path: 'components/modal',
+    component: ModalDocPage,
+    title: 'Modal Docs',
   },
   {
     path: 'components/calendar',

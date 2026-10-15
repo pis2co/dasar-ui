@@ -10,6 +10,7 @@ import { SelectSearchExample } from './examples/search/select-search.example';
 import { SelectMultipleExample } from './examples/multiple/select-multiple.example';
 import { SelectStatesExample } from './examples/states/select-states.example';
 import { SelectSlotsExample } from './examples/slots/select-slots.example';
+import { SelectPlacementExample } from './examples/placement/select-placement.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/select-basic.example.html' with { loader: 'text' };
@@ -44,6 +45,14 @@ import statesTs from './examples/states/select-states.example.ts' with { loader:
 import slotsHtml from './examples/slots/select-slots.example.html' with { loader: 'text' };
 // @ts-ignore
 import slotsTs from './examples/slots/select-slots.example.ts' with { loader: 'text' };
+// @ts-ignore
+import placementHtml from './examples/placement/select-placement.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import placementTs from './examples/placement/select-placement.example.ts' with {
+  loader: 'text',
+};
 
 @Component({
   imports: [
@@ -56,6 +65,7 @@ import slotsTs from './examples/slots/select-slots.example.ts' with { loader: 't
     SelectMultipleExample,
     SelectStatesExample,
     SelectSlotsExample,
+    SelectPlacementExample,
   ],
   templateUrl: './select.page.html',
   selector: 'app-select-page',
@@ -74,6 +84,8 @@ export class SelectDocPage {
   protected statesTs = statesTs;
   protected slotsHtml = slotsHtml;
   protected slotsTs = slotsTs;
+  protected placementHtml = placementHtml;
+  protected placementTs = placementTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {
@@ -114,16 +126,23 @@ export class SelectDocPage {
       description: 'Visual style of the main trigger container.',
     },
     {
+      name: 'placement',
+      type: "'bottom-start' | 'bottom-end' | 'top-start' | 'top-end'",
+      defaultValue: "'bottom-start'",
+      description:
+        'Preferred side of the trigger for the dropdown. The panel flips to the other side automatically when the viewport has no room.',
+    },
+    {
       name: 'size',
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
-      description: 'Sizing scale for the trigger and options.',
+      description: 'Sizing scale for the trigger, the panel and the options inside it.',
     },
     {
       name: 'radius',
       type: 'ScaleAttributeType',
       defaultValue: "'md'",
-      description: 'Border radius.',
+      description: 'Border radius of the trigger and of the dropdown panel.',
     },
     {
       name: 'label / placeholder / hint',

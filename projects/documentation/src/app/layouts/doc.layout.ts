@@ -208,6 +208,7 @@ export class DocsLayoutComponent {
         { label: 'Calendar', route: '/components/calendar' },
         { label: 'Datepicker', route: '/components/datepicker' },
         { label: 'Card', route: '/components/card' },
+        { label: 'Modal', route: '/components/modal' },
         { label: 'Menu', route: '/components/menu' },
       ],
     },

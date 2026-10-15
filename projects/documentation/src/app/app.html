@@ -38,13 +38,11 @@
         </dasar-button>
       </div>
     </dasar-card>
-
     <div [ngStyle]="{ height: 'calc(100vh - 50px)' }">
       @for (key of [customize.renderKey()]; track key) {
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
       }
     </div>
-
     <doc-customize-modal
       [open]="customizeOpen()"
       (closed)="customizeOpen.set(false)"

@@ -71,19 +71,20 @@ export class MenuDocPage {
       name: 'placement',
       type: "'bottom-start' | 'bottom-end' | 'top-start' | 'top-end'",
       defaultValue: "'bottom-start'",
-      description: 'Controls the positioning of the dropdown panel relative to the trigger.',
+      description:
+        'Preferred side of the trigger for the panel. It flips to the other side automatically when the viewport has no room.',
     },
     {
       name: 'size',
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
-      description: 'Sets the overall sizing of the menu trigger.',
+      description: 'Sets the sizing of the menu trigger, the panel and the items inside it.',
     },
     {
       name: 'radius',
       type: 'ScaleAttributeType',
       defaultValue: "'md'",
-      description: 'Controls the border radius of the trigger button.',
+      description: 'Controls the border radius of the trigger button and of the dropdown panel.',
     },
     {
       name: 'disabled',

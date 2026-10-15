@@ -21,12 +21,15 @@ import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provid
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { DasarCalendarComponent } from '../dasar-calendar/dasar-calendar';
 import { resolveThemeDefault, safeFormat } from '../../utils/common';
+import { computeSmartPlacement, DasarPanelPlacement } from '../../utils/panel-placement';
+import { fieldIconSize } from '../../utils/icon-size';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { CommonModule } from '@angular/common';
 
-export type DasarDatepickerPlacement = 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end';
+/** Kept for backwards compatibility, the shared type lives in utils. */
+export type DasarDatepickerPlacement = DasarPanelPlacement;
 export type DasarDatepickerSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle';
 export type DasarDatepickerRadius = ScaleAttributeType;
@@ -135,13 +138,23 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
-  @Input() placement = resolveThemeDefault(
+  private _placement: DasarDatepickerPlacement = resolveThemeDefault(
     'datepicker',
     'placement',
     'bottom-start',
     this.themeProvider,
     this.themeService,
   );
+  @Input()
+  set placement(value: DasarDatepickerPlacement) {
+    this._placement = value;
+    this.currentPlacement = value;
+  }
+  get placement(): DasarDatepickerPlacement {
+    return this._placement;
+  }
+  /** Placement currently rendered; may differ from `placement` after a flip. */
+  currentPlacement: DasarDatepickerPlacement = this._placement;
   @Input() appearance = resolveThemeDefault(
     'datepicker',
     'appearance',
@@ -433,6 +446,11 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       }
     }
   }
+  /** Icon size that fits the current trigger size. */
+  get iconSize(): number {
+    return fieldIconSize(this.size);
+  }
+
   toggleDropdown(event: Event) {
     if (this.disabled) return;
     this.isOpen = !this.isOpen;
@@ -440,13 +458,19 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     if (this.isOpen) {
       this.onClickIn.emit(event);
       this.setFocus(true, event);
-      // Reset to user requested placement first
-      this.placement = this.placement;
+      // Start from the consumer requested placement, then flip if needed.
+      this.currentPlacement = this.placement;
       setTimeout(() => this.calculateSmartPlacement(), 0);
     } else {
       this.onClickOut.emit(event);
       this.setFocus(false, event);
     }
+  }
+  /** Recalculate while the panel is open so scrolling/resizing keeps it in view. */
+  @HostListener('window:resize')
+  @HostListener('window:scroll')
+  onViewportChange() {
+    if (this.isOpen) this.calculateSmartPlacement();
   }
   clearValue(event: Event) {
     event.stopPropagation();
@@ -488,29 +512,13 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   }
   private calculateSmartPlacement() {
     if (!this.triggerEl?.nativeElement || !this.dropdownEl?.nativeElement) return;
-    const triggerRect = this.triggerEl.nativeElement.getBoundingClientRect();
-    const dropdownRect = this.dropdownEl.nativeElement.getBoundingClientRect();
-    // Calculate available space in the browser window
-    const spaceBelow = window.innerHeight - triggerRect.bottom;
-    const spaceAbove = triggerRect.top;
-    // 16px safety margin so it doesn't touch the exact edge of the screen
-    const requiredSpace = dropdownRect.height + 16;
-    let newPlacement = this.placement;
-    if (
-      newPlacement.startsWith('bottom') &&
-      spaceBelow < requiredSpace &&
-      spaceAbove > requiredSpace
-    ) {
-      newPlacement = newPlacement.replace('bottom', 'top') as DasarDatepickerPlacement;
-    } else if (
-      newPlacement.startsWith('top') &&
-      spaceAbove < requiredSpace &&
-      spaceBelow > requiredSpace
-    ) {
-      newPlacement = newPlacement.replace('top', 'bottom') as DasarDatepickerPlacement;
-    }
-    if (this.placement !== newPlacement) {
-      this.placement = newPlacement;
+    const newPlacement = computeSmartPlacement(
+      this.triggerEl.nativeElement,
+      this.dropdownEl.nativeElement,
+      this.placement,
+    );
+    if (this.currentPlacement !== newPlacement) {
+      this.currentPlacement = newPlacement;
       this.cdr.detectChanges();
     }
   }

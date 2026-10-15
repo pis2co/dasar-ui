@@ -1,0 +1,29 @@
+<p style="margin:0 0 8px">
+  This text sits behind the overlay, so you can see how much of it stays readable.
+</p>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+  <dasar-button (click)="blur.set('0px'); open.set(true)">No blur</dasar-button>
+  <dasar-button (click)="blur.set('4px'); open.set(true)">Default blur</dasar-button>
+  <dasar-button (click)="blur.set('12px'); open.set(true)">Heavy blur</dasar-button>
+  <dasar-button
+    (click)="blur.set('6px'); background.set('rgba(37, 99, 235, 0.35)'); open.set(true)"
+  >
+    Tinted backdrop
+  </dasar-button>
+</div>
+
+<dasar-modal
+  [open]="open()"
+  label="Overlay"
+  [overlay-blur]="blur()"
+  [overlay-background]="background()"
+  (onClose)="open.set(false)"
+>
+  <p>
+    <code>overlay-blur</code> controls the backdrop blur radius and
+    <code>overlay-background</code> its color. Both are passed down to the underlying
+    <code>dasar-overlay</code>.
+  </p>
+  <p>Current blur: {{ blur() }}. Current background: {{ background() }}.</p>
+</dasar-modal>

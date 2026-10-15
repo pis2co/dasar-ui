@@ -1,0 +1,30 @@
+<dasar-button (click)="open.set(true)">Open with slots</dasar-button>
+
+<dasar-modal [open]="open()" (onClose)="open.set(false)">
+  <div header-slot style="display: flex; align-items: center; gap: 8px">
+    <dasar-icon name="info-circle"></dasar-icon>
+    <strong>Custom header content</strong>
+  </div>
+
+  <dasar-button close-slot variant="ghost" size="sm" radius="md" (click)="open.set(false)">
+    Dismiss
+  </dasar-button>
+
+  <p>
+    The <code>header-slot</code> replaces the <code>label</code>, the <code>close-slot</code>
+    replaces the default ✕ button, and the default slot is the body.
+  </p>
+
+  <div action-slot>
+    <dasar-button
+      appearance="outline"
+      variant="secondary"
+      size="md"
+      radius="md"
+      (click)="open.set(false)"
+    >
+      Cancel
+    </dasar-button>
+    <dasar-button size="md" radius="md" (click)="open.set(false)">Confirm</dasar-button>
+  </div>
+</dasar-modal>

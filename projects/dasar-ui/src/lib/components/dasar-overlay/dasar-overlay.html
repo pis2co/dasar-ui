@@ -1,0 +1,11 @@
+<div
+  class="dasar-overlay-backdrop"
+  [style.--overlay-blur]="blur"
+  [style.--overlay-background]="background"
+  [style.z-index]="zIndex"
+  [ngClass]="overlayClass"
+  [ngStyle]="overlayStyle"
+  (click)="handleClick($event)"
+>
+  <ng-content></ng-content>
+</div>

@@ -126,7 +126,7 @@ export class DatepickerDocPage {
       name: 'size',
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
-      description: 'Controls the height and typographic scale of the input.',
+      description: 'Controls the height, typographic scale and icon size of the input.',
     },
     {
       name: 'placement',
