@@ -2,20 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Unreleased
+## [1.5.0](https://github.com/pis2co/dasar-ui/compare/v1.4.0...v1.5.0) (2026-10-15)
+
 
 ### Features
 
-* `dasar-tabs` scrolls horizontally on its own and shows left/right arrow buttons once the tab strip is wider than its container. The buttons appear, disappear and disable at the edges automatically.
-* New `dasar-tabs` inputs: `scroll-left-icon-name`, `scroll-right-icon-name` (defaults `chevron-left` / `chevron-right`), `scroll-button-class` and `scroll-button-style`.
-* New `dasar-tabs` slots: `[tabs-scroll-left-slot]` and `[tabs-scroll-right-slot]` replace the default icon inside the arrow button. `DasarTabsConfig` gained `scrollLeftIconName`, `scrollRightIconName`, `scrollButtonClass` and `scrollButtonStyle`.
-
-### Breaking
-
-* `dasar-tabs` `size` now takes `ScaleAttributeType` (`none | xs | sm | md | lg | xl | full`). The previous `compact | normal` values moved to the new `spacing` input.
-* `dasar-tabs` inputs use kebab-case bindings: `[container-class]`, `[content-class]`, `[list-class]`, `[container-style]`, `[content-style]`, `[list-style]`, `[active-index]`.
-* `dasar-tabs` outputs renamed to `onTabsChange` and `onTabsClick`. `onTabsChange` no longer emits when the active tab is clicked again.
-* `DasarTabsModule` was removed, use `DasarTabsComponent`.
+* adjust dasar-tabs functionality and more ([998739a](https://github.com/pis2co/dasar-ui/commit/998739afce63b1ce1beec5b65126c1ee2aa7e7e5))
+* adjust tabs component and more ([208f9aa](https://github.com/pis2co/dasar-ui/commit/208f9aa6706aacb766f592ddebcdd8480d06f945))
+* create dasar-list component ([94efa8c](https://github.com/pis2co/dasar-ui/commit/94efa8c92a03b9e92609b187c16f691e68d2cef6))
 
 ## [1.4.0](https://github.com/pis2co/dasar-ui/compare/v1.3.0...v1.4.0) (2026-10-15)
 
