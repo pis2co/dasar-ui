@@ -2,13 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Unreleased
+### [1.5.2](https://github.com/pis2co/dasar-ui/compare/v1.5.1...v1.5.2) (2026-10-15)
+
 
 ### Features
 
-* documentation page for `dasar-list` (`/components/list`) with nine examples: basic, size, bordered & divider, interactive, header & footer, prefix & suffix, custom style, a dynamic list and theme defaults.
-* `dasar-list`, `dasar-list-item` and their four slot directives are now exported from the public API as `DasarListComponent`. Only the config types were reachable before.
-* `components/list` and `components/listItem` entries in the documentation Customize modal (size, bordered, show divider).
+* add documentation for dasar-list ([dab366a](https://github.com/pis2co/dasar-ui/commit/dab366adee2661891c601e3bd8eed6e65fb236f6))
 
 ### [1.5.1](https://github.com/pis2co/dasar-ui/compare/v1.5.0...v1.5.1) (2026-10-15)
 
