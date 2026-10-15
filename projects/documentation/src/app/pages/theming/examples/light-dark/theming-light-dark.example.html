@@ -1,0 +1,15 @@
+<dasar-theme-provider [mode]="mode()" [tokenConfig]="tokenConfig">
+  <dasar-card label="Light and dark">
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+      <dasar-button variant="primary" (click)="toggle()">
+        <span style="text-transform: capitalize">Theme: {{ mode() }}</span>
+      </dasar-button>
+      <dasar-button variant="secondary" appearance="outline">Secondary</dasar-button>
+    </div>
+  </dasar-card>
+</dasar-theme-provider>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  The provider sets data-theme on its host and picks tokens.light or tokens.dark. Click the button
+  to switch modes.
+</p>

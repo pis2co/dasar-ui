@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+
+### Features
+
+* introduction, installation and getting-started pages rendered from Markdown. `README.md` is the introduction page source, `docs/installation.md` and `docs/getting-started.md` are shared with GitHub and GitHub Pages.
+* theming overview page with live examples (custom tokens, component config, light and dark, global theme, CSS override) plus theme tokens, CSS variables and component config reference pages.
+* navbar version chip with a live npm latest-version check, and changelog, GitHub and npm buttons.
+
 ### [1.5.2](https://github.com/pis2co/dasar-ui/compare/v1.5.1...v1.5.2) (2026-10-15)
 
 

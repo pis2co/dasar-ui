@@ -23,8 +23,43 @@
         width: '100%',
       }"
     >
-      <span style="font-weight: 800; font-family: var(--font-hero)">Dasar UI Library</span>
-      <div style="display: flex; gap: 8px; align-items: center">
+      <div style="display: flex; align-items: center; gap: var(--space-base)">
+        <span style="font-weight: 800; font-family: var(--font-hero)">Dasar UI Library</span>
+        <dasar-chip variant="secondary" size="xs">v{{ version }}</dasar-chip>
+        @if (latestVersion() !== null) {
+          <dasar-chip variant="primary" size="xs">latest v{{ latestVersion() }}</dasar-chip>
+        }
+      </div>
+      <div class="docs-navbar-actions">
+        <dasar-button
+          size="md"
+          radius="md"
+          appearance="outline"
+          variant="secondary"
+          (click)="openExternal('https://github.com/pis2co/dasar-ui/blob/main/CHANGELOG.md')"
+          aria-label="Open changelog on GitHub"
+          >Changelog</dasar-button
+        >
+        <dasar-button
+          size="md"
+          radius="md"
+          appearance="outline"
+          variant="secondary"
+          icon-only
+          (click)="openExternal('https://github.com/pis2co/dasar-ui')"
+          aria-label="Open dasar-ui on GitHub"
+          ><dasar-icon name="brand-github" size="sm"
+        /></dasar-button>
+        <dasar-button
+          size="md"
+          radius="md"
+          appearance="outline"
+          variant="secondary"
+          icon-only
+          (click)="openExternal('https://www.npmjs.com/package/dasar-ui')"
+          aria-label="Open dasar-ui on npm"
+          ><dasar-icon name="brand-npm" size="sm"
+        /></dasar-button>
         <dasar-button
           size="md"
           radius="md"

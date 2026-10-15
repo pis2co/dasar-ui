@@ -1,0 +1,56 @@
+<docs-layout
+  title="Theming"
+  description="Three layers with a fixed precedence: CSS variables, theme tokens, then component config. Tokens and config can be scoped with dasar-theme-provider or applied globally with setGlobalTheme."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: customTokensHtml },
+      { label: 'TypeScript', lang: 'typescript', value: customTokensTs },
+    ]"
+    title="Custom Tokens"
+  >
+    <app-theming-custom-tokens-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: componentConfigHtml },
+      { label: 'TypeScript', lang: 'typescript', value: componentConfigTs },
+    ]"
+    title="Component Config"
+  >
+    <app-theming-component-config-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: lightDarkHtml },
+      { label: 'TypeScript', lang: 'typescript', value: lightDarkTs },
+    ]"
+    title="Light & Dark"
+  >
+    <app-theming-light-dark-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: globalThemeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: globalThemeTs },
+    ]"
+    title="Global Theme"
+  >
+    <app-theming-global-theme-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: cssOverrideHtml },
+      { label: 'TypeScript', lang: 'typescript', value: cssOverrideTs },
+      { label: 'CSS', lang: 'css', value: cssOverrideCss },
+    ]"
+    title="CSS Override"
+  >
+    <app-theming-css-override-example />
+  </doc-example-component>
+</docs-layout>
