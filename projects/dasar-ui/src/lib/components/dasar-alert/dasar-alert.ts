@@ -15,15 +15,17 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, StyleType } from '../../models/type.model';
+import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIcon } from '../dasar-icon/dasar-icon';
 
 export type DasarAlertVariantType = 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+export type DasarAlertRadiusType = ScaleAttributeType;
 
 export interface DasarAlertConfig {
   variant?: DasarAlertVariantType;
+  radius?: DasarAlertRadiusType;
   bordered?: boolean;
   closeable?: boolean;
   iconName?: string | null;
@@ -67,6 +69,13 @@ export class DasarAlert implements OnDestroy {
     'alert',
     'bordered',
     true,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() radius: DasarAlertRadiusType = resolveThemeDefault(
+    'alert',
+    'radius',
+    'md',
     this.themeProvider,
     this.themeService,
   );
@@ -174,6 +183,7 @@ export class DasarAlert implements OnDestroy {
     const baseClass = {
       [this.variant]: true,
       bordered: this.bordered,
+      [`radius-${this.radius}`]: !!this.radius,
       closeable: this.closeable,
       'with-icon': this.hasIcon,
       'with-header': this.hasHeader,

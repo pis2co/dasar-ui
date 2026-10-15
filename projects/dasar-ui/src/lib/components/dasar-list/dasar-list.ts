@@ -17,6 +17,7 @@ import { resolveThemeDefault } from '../../utils/common';
 
 export interface DasarListConfig {
   size?: DasarListSize;
+  radius?: DasarListRadiusType;
   bordered?: boolean;
   showDivider?: boolean;
   hoverable?: boolean;
@@ -31,6 +32,7 @@ export interface DasarListItemConfig {
 }
 
 export type DasarListSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarListRadiusType = ScaleAttributeType;
 
 @Directive({ selector: '[header-slot]', standalone: true })
 export class DasarListHeaderSlot {}
@@ -60,6 +62,14 @@ export class DasarList {
   private themeService = inject(DasarThemeService, { optional: true });
 
   @Input() size = resolveThemeDefault('list', 'size', 'md', this.themeProvider, this.themeService);
+
+  @Input() radius: DasarListRadiusType = resolveThemeDefault(
+    'list',
+    'radius',
+    'md',
+    this.themeProvider,
+    this.themeService,
+  );
 
   @Input({ transform: booleanAttribute }) bordered = resolveThemeDefault(
     'list',

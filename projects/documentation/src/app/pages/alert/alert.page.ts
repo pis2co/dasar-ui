@@ -13,6 +13,8 @@ import { AlertVisibleExample } from './examples/visible/alert-visible.example';
 import { AlertSlotsExample } from './examples/slots/alert-slots.example';
 import { AlertCustomStyleExample } from './examples/custom-style/alert-custom-style.example';
 import { AlertAdvancedThemeExample } from './examples/advanced-theme/alert-advanced-theme.example';
+import { AlertRadiusExample } from './examples/radius/alert-radius.example';
+import { AlertRadiusThemeExample } from './examples/radius-theme/alert-radius-theme.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/alert-basic.example.html' with { loader: 'text' };
@@ -76,6 +78,20 @@ import advancedThemeTs from './examples/advanced-theme/alert-advanced-theme.exam
   loader: 'text',
 };
 
+// @ts-ignore
+import radiusHtml from './examples/radius/alert-radius.example.html' with { loader: 'text' };
+// @ts-ignore
+import radiusTs from './examples/radius/alert-radius.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import radiusThemeHtml from './examples/radius-theme/alert-radius-theme.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import radiusThemeTs from './examples/radius-theme/alert-radius-theme.example.ts' with {
+  loader: 'text',
+};
+
 @Component({
   imports: [
     CommonModule,
@@ -91,6 +107,8 @@ import advancedThemeTs from './examples/advanced-theme/alert-advanced-theme.exam
     AlertSlotsExample,
     AlertCustomStyleExample,
     AlertAdvancedThemeExample,
+    AlertRadiusExample,
+    AlertRadiusThemeExample,
   ],
   templateUrl: './alert.page.html',
   selector: 'app-alert-page',
@@ -127,6 +145,12 @@ export class AlertDocPage {
   protected advancedThemeHtml = advancedThemeHtml;
   protected advancedThemeTs = advancedThemeTs;
 
+  protected radiusHtml = radiusHtml;
+  protected radiusTs = radiusTs;
+
+  protected radiusThemeHtml = radiusThemeHtml;
+  protected radiusThemeTs = radiusThemeTs;
+
   protected readonly apiProps: DocApiProperty[] = [
     {
       name: 'variant',
@@ -139,6 +163,12 @@ export class AlertDocPage {
       type: 'boolean',
       defaultValue: 'true',
       description: 'Draws a border in the variant color.',
+    },
+    {
+      name: 'radius',
+      type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      defaultValue: "'md'",
+      description: 'Corner radius of the container. Default via components.alert.radius.',
     },
     {
       name: 'closeable',

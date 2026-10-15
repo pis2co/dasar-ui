@@ -565,6 +565,12 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       description: 'Draws a border in the variant color.',
     },
     {
+      name: 'radius',
+      type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      defaultValue: "'md'",
+      description: 'Default corner radius of the alert container.',
+    },
+    {
       name: 'closeable',
       type: 'boolean',
       defaultValue: 'false',
@@ -1205,6 +1211,12 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       description: 'Padding density and size.',
     },
     {
+      name: 'radius',
+      type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      defaultValue: "'md'",
+      description: 'Default corner radius of the table container.',
+    },
+    {
       name: 'sortKey / sortDirection',
       type: 'string | null / DasarTableSortDirection',
       defaultValue: 'null',
@@ -1291,6 +1303,12 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Font size and item padding of the list.',
+    },
+    {
+      name: 'radius',
+      type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      defaultValue: "'md'",
+      description: 'Default corner radius of the list container.',
     },
     {
       name: 'bordered',
