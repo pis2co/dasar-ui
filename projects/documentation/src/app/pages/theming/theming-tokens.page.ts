@@ -27,7 +27,6 @@ import { TOKEN_GROUPS } from './theming.data';
     `
       .theming-group-title {
         text-transform: capitalize;
-        margin: var(--space-6) 0 0;
       }
       .theming-group-path {
         font-size: var(--font-size-sm);
