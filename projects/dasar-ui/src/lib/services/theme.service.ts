@@ -546,7 +546,30 @@ export const tableMap: Record<string, string> = {
   paginationBorder: '--table-pagination-border',
   paginationBackground: '--table-pagination-background',
 };
-
+export const listMap: Record<string, string> = {
+  background: '--list-background',
+  color: '--list-color',
+  radius: '--list-radius',
+  border: '--list-border',
+  fontSizeSm: '--list-font-size-sm',
+  fontSizeMd: '--list-font-size-md',
+  fontSizeLg: '--list-font-size-lg',
+  divider: '--list-divider',
+  hoverBackground: '--list-hover-background',
+  activeBackground: '--list-active-background',
+  headerPadding: '--list-header-padding',
+  headerFontWeight: '--list-header-font-weight',
+  headerBorder: '--list-header-border',
+  headerBackground: '--list-header-background',
+  footerPadding: '--list-footer-padding',
+  footerFontSize: '--list-footer-font-size',
+  footerColor: '--list-footer-color',
+  footerBorder: '--list-footer-border',
+  footerBackground: '--list-footer-background',
+  itemPadding: '--list-item-padding',
+  prefixColor: '--list-prefix-color',
+  suffixColor: '--list-suffix-color',
+};
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -592,14 +615,12 @@ export class DasarThemeService {
 
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    // Apply initial component configuration if provided via provider
     if (this.initialConfig) {
       this.setGlobalTheme(this.initialConfig);
     }
   }
 
   public setGlobalTheme(config: DasarThemeConfig, targetElement?: HTMLElement) {
-    // Guard against SSR crashes when document is undefined on the server
     if (!isPlatformBrowser(this.platformId)) {
       this.themeState.next(config);
       return;
@@ -643,23 +664,17 @@ export class DasarThemeService {
     if (config.tokens?.[config.mode]?.table) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.table, tableMap);
     }
-    // Update TS State
+    if (config.tokens?.[config.mode]?.list) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.list, listMap);
+    }
     this.themeState.next(config);
   }
 
-  /**
-   * Full theme config: library defaults merged with the consumer config.
-   * Consumer values take priority.
-   */
   public themeVariable(): DasarThemeConfig {
     const raw = this.themeState.getValue();
     return deepMerge(buildDefaultThemeConfig(raw.mode ?? 'light'), raw);
   }
 
-  /**
-   * Only the config provided by the consumer, without library defaults.
-   * Used internally to resolve component input priority.
-   */
   public rawThemeVariable(): DasarThemeConfig {
     return this.themeState.getValue();
   }

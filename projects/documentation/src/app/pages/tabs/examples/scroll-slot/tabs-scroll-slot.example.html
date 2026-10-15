@@ -1,0 +1,22 @@
+<div style="width: 340px">
+  <dasar-tabs
+    appearance="outline"
+    size="sm"
+    [items]="items"
+    [active-index]="active()"
+    (onTabsChange)="active.set($event)"
+  >
+    <ng-template tabs-scroll-left-slot>
+      <span style="display: inline-flex; align-items: center; gap: 4px">‹ Prev</span>
+    </ng-template>
+    <ng-template tabs-scroll-right-slot>
+      <span style="display: inline-flex; align-items: center; gap: 4px">Next ›</span>
+    </ng-template>
+    <p>{{ items[active()] }}.</p>
+  </dasar-tabs>
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  The slots only replace the button content. Clicking, the disabled edges and the automatic
+  visibility still come from the component.
+</p>

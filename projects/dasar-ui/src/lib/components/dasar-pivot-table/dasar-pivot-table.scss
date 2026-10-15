@@ -84,7 +84,6 @@
     white-space: nowrap;
   }
 
-  /* --- Top Headers --- */
   thead {
     background-color: var(--dt-primary);
 
@@ -98,7 +97,6 @@
     }
   }
 
-  /* --- Top Left Corner --- */
   .corner-cell {
     background-color: var(--dt-primary);
     position: sticky;
@@ -130,7 +128,6 @@
     }
   }
 
-  /* --- Body & Rows --- */
   tbody {
     tr.dasar-table-row {
       border-bottom: 1px solid var(--theme-border-subtle-color);
@@ -145,7 +142,6 @@
     }
   }
 
-  /* --- Row Headers (Left Column) --- */
   .row-header {
     background-color: var(--theme-bg-surface-color);
     font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
@@ -158,12 +154,10 @@
       box-shadow 0.2s ease;
   }
 
-  /* --- Data Cells --- */
   .data-cell {
     text-align: right;
   }
 
-  /* --- Hover State (Matches Table Hover) --- */
   &.hoverable tbody tr.dasar-table-row:not(.state-row):hover {
     background-color: var(--dt-primary-surface);
     cursor: pointer;
@@ -176,7 +170,6 @@
     }
   }
 
-  /* --- Totals --- */
   .total-header {
     font-weight: var(--font-weight-bold, $dasar-font-weight-bold);
   }
@@ -213,7 +206,6 @@
   }
 }
 
-/* --- State & Utility Classes --- */
 .state-row {
   background-color: transparent !important;
   &:hover {

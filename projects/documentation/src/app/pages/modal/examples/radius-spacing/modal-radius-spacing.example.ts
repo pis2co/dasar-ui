@@ -1,9 +1,5 @@
 import { Component, signal } from '@angular/core';
-import {
-  DasarModalComponent,
-  DasarButtonComponent,
-  DasarModalRadius,
-} from 'dasar-ui';
+import { DasarModalComponent, DasarButtonComponent, DasarModalRadius } from 'dasar-ui';
 
 @Component({
   templateUrl: './modal-radius-spacing.example.html',

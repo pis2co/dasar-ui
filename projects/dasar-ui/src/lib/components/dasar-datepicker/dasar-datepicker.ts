@@ -388,7 +388,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     if (!this.internalDate || isNaN(this.internalDate.getTime())) return '';
     try {
       const formatToUse = () => {
-        // return this.type === 'datetime' ? `${this.displayFormat} HH:mm` : this.displayFormat;
         return this.displayFormat;
       };
       return safeFormat(this.internalDate, formatToUse(), this.locale);
@@ -397,7 +396,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     }
   }
 
-  // Control Value Accessor
   writeValue(value: any): void {
     if (this._value === value) return;
     this._value = value ?? null;
@@ -415,13 +413,12 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     this.cdr.detectChanges();
   }
 
-  // Date Processing
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     if (this.isOpen && !this.elementRef.nativeElement.contains(event.target)) {
       this.isOpen = false;
       this.onClickOut.emit(event);
-      this.setFocus(false, event); // Emits blur and touched automatically
+      this.setFocus(false, event);
     }
   }
   private syncInternalDate() {
@@ -455,7 +452,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     if (this.isOpen) {
       this.onClickIn.emit(event);
       this.setFocus(true, event);
-      // Start from the consumer requested placement, then flip if needed.
       this.currentPlacement = this.placement;
       setTimeout(() => this.calculateSmartPlacement(), 0);
     } else {
@@ -476,7 +472,7 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     this.onChange(null);
     this.valueChange.emit(null);
     this.onCleared.emit();
-    this.setFocus(true, event); // Keep focused after clear
+    this.setFocus(true, event);
     this.cdr.markForCheck();
   }
   onCalendarSelect(date: Date | null) {

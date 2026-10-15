@@ -29,8 +29,8 @@ export type DasarCardRadius = ScaleAttributeType;
 export interface DasarCardConfig {
   appearance?: 'outline' | 'borderless' | 'elevated';
   spacing?: 'normal' | 'compact';
-  radius?: ScaleAttributeType; // Or DasarCardRadius
-  size?: Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>; // Or DasarCardSize
+  radius?: ScaleAttributeType;
+  size?: Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
   label?: string;
   contentHeaderStyle?: StyleType;
   extraHeaderStyle?: StyleType;

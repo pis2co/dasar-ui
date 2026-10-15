@@ -65,16 +65,10 @@
 
     &:has([prefix-slot]) {
       padding-left: 0;
-      // .dasar-input-native {
-      //   padding-left: var(--input-padding-horizontal-xs, var(--space-base));
-      // }
     }
 
     &:has([suffix-slot]) {
       padding-right: 0;
-      // .dasar-input-native {
-      //   padding-right: var(--input-padding-horizontal-xs, var(--space-base));
-      // }
     }
   }
 
@@ -85,16 +79,10 @@
 
     &:has([prefix-slot]) {
       padding-left: 0;
-      // .dasar-input-native {
-      //   padding-left: var(--input-padding-horizontal-sm, var(--space-3));
-      // }
     }
 
     &:has([suffix-slot]) {
       padding-right: 0;
-      // .dasar-input-native {
-      //   padding-right: var(--input-padding-horizontal-sm, var(--space-3));
-      // }
     }
   }
 
@@ -105,16 +93,10 @@
 
     &:has([prefix-slot]) {
       padding-left: 0;
-      // .dasar-input-native {
-      //   padding-left: var(--input-padding-horizontal-md, var(--space-4));
-      // }
     }
 
     &:has([suffix-slot]) {
       padding-right: 0;
-      // .dasar-input-native {
-      //   padding-right: var(--input-padding-horizontal-md, var(--space-4));
-      // }
     }
   }
 
@@ -125,16 +107,10 @@
 
     &:has([prefix-slot]) {
       padding-left: 0;
-      // .dasar-input-native {
-      //   padding-left: var(--input-padding-horizontal-lg, var(--space-5));
-      // }
     }
 
     &:has([suffix-slot]) {
       padding-right: 0;
-      // .dasar-input-native {
-      //   padding-right: var(--input-padding-horizontal-lg, var(--space-5));
-      // }
     }
   }
 
@@ -145,16 +121,10 @@
 
     &:has([prefix-slot]) {
       padding-left: 0;
-      // .dasar-input-native {
-      //   padding-left: var(--input-padding-horizontal-xl, var(--space-6));
-      // }
     }
 
     &:has([suffix-slot]) {
       padding-right: 0;
-      // .dasar-input-native {
-      //   padding-right: var(--input-padding-horizontal-xl, var(--space-6));
-      // }
     }
   }
 

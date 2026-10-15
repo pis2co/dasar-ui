@@ -186,9 +186,7 @@ export class DasarChip {
   @HostBinding('class.dasar-chip') readonly baseClass = true;
   @HostListener('click', ['$event'])
   onHostClick(event: MouseEvent) {
-    // stop the event from bubbling up to parent elements
     event.stopPropagation();
-    // prevent default anchor/button behavior
     event.preventDefault();
   }
 

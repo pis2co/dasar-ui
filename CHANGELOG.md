@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/pis2co/dasar-ui/compare/v1.4.0...v1.5.0) (2026-10-15)
+
+
+### Features
+
+* adjust dasar-tabs functionality and more ([998739a](https://github.com/pis2co/dasar-ui/commit/998739afce63b1ce1beec5b65126c1ee2aa7e7e5))
+* adjust tabs component and more ([208f9aa](https://github.com/pis2co/dasar-ui/commit/208f9aa6706aacb766f592ddebcdd8480d06f945))
+* create dasar-list component ([94efa8c](https://github.com/pis2co/dasar-ui/commit/94efa8c92a03b9e92609b187c16f691e68d2cef6))
+
 ## [1.4.0](https://github.com/pis2co/dasar-ui/compare/v1.3.0...v1.4.0) (2026-10-15)
 
 

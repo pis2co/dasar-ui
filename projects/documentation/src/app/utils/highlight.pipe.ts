@@ -30,9 +30,7 @@ export class HighlightPipe implements PipeTransform {
           lookbehind: true,
         };
       }
-    } catch (e) {
-      // Prevents server-side crash
-    }
+    } catch (e) {}
   }
 
   transform(code: string, language: 'html' | 'typescript' | 'scss' | 'css'): SafeHtml {

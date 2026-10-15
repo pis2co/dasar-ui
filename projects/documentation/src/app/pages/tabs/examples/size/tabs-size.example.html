@@ -1,0 +1,6 @@
+@for (size of sizes; track size) {
+  <p style="font-size: 12px; margin: 8px 0 4px; color: gray">{{ size }}</p>
+  <dasar-tabs [size]="size" [items]="items">
+    <p>{{ size }} body content.</p>
+  </dasar-tabs>
+}

@@ -1,1 +1,25 @@
-<p>dasar-list works!</p>
+<div
+  class="dasar-list-container size-{{ size }}"
+  [class.bordered]="bordered"
+  [class.show-divider]="showDivider"
+  [class.hoverable]="hoverable"
+  [class.clickable]="clickable"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+>
+  @if (hasHeader) {
+    <div class="dasar-list-header">
+      <ng-content select="[header-slot]"></ng-content>
+    </div>
+  }
+
+  <div class="dasar-list-content">
+    <ng-content></ng-content>
+  </div>
+
+  @if (hasFooter) {
+    <div class="dasar-list-footer">
+      <ng-content select="[footer-slot]"></ng-content>
+    </div>
+  }
+</div>

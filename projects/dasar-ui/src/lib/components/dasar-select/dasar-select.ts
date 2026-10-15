@@ -192,9 +192,7 @@ export class DasarSelect implements ControlValueAccessor {
   get placement(): DasarSelectPlacementType {
     return this._placement;
   }
-  /** Placement currently rendered; may differ from `placement` after a flip. */
   currentPlacement: DasarSelectPlacementType = this._placement;
-  /** Icon size that fits the current select size. */
   get iconSize(): number {
     return fieldIconSize(this.size);
   }
@@ -351,7 +349,6 @@ export class DasarSelect implements ControlValueAccessor {
   onChange: any = () => {};
   onTouched: any = () => {};
 
-  // Control Value
   writeValue(val: any): void {
     this._value = val ?? (this.multipleType ? [] : '');
     this.cdr.markForCheck();
@@ -407,7 +404,6 @@ export class DasarSelect implements ControlValueAccessor {
     }
   }
 
-  // Processing
   removeOption(option: DasarSelectOption, event: Event): void {
     event.stopPropagation();
     if (this.disabled) return;
@@ -416,7 +412,7 @@ export class DasarSelect implements ControlValueAccessor {
       this._value = this._value.filter((val) => val !== option.value);
       this.onChange(this._value);
       this.valueChange.emit(this._value);
-      this.cdr.detectChanges(); // Force UI update immediately
+      this.cdr.detectChanges();
     }
   }
   clearSelection(event: Event): void {
@@ -453,7 +449,6 @@ export class DasarSelect implements ControlValueAccessor {
     }
   }
 
-  /** Flip the panel away from a viewport edge while the panel is open. */
   @HostListener('window:resize')
   @HostListener('window:scroll')
   onViewportChange(): void {
@@ -501,7 +496,6 @@ export class DasarSelect implements ControlValueAccessor {
       this.onChange(this._value);
       this.valueChange.emit(this._value);
 
-      // If searchable, re-focus input after selecting a chip
       if (this.searchable) {
         this.searchQuery = '';
         this.searchInput?.nativeElement.focus();

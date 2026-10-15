@@ -1,0 +1,6 @@
+@for (spacing of spacings; track spacing) {
+  <p style="font-size: 12px; margin: 8px 0 4px; color: gray">{{ spacing }}</p>
+  <dasar-tabs [spacing]="spacing" [items]="items">
+    <p>{{ spacing }} body content.</p>
+  </dasar-tabs>
+}

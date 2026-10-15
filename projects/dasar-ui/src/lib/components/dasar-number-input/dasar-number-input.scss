@@ -26,7 +26,7 @@
   color: var(--number-input-label-color, var(--theme-text-primary-color));
   justify-content: space-between;
   align-items: center;
-  line-height: var(--line-height-tight); // Updated
+  line-height: var(--line-height-tight);
   display: flex;
 
   .dasar-number-input-label {
@@ -334,17 +334,12 @@
     background-color: var(--number-input-action-hover-background, rgba(0, 0, 0, 0.05));
     transition: all 0.2s ease;
   }
-  // ::ng-deep dasar-button {
-  //   width: 100%;
-  //   height: 100%;
-  //   border-radius: var(--radius-none);
-  // }
 }
 
 .dasar-number-input-hint {
   font-size: var(--number-input-hint-font-size, var(--font-size-xs));
   color: var(--number-input-hint-color, var(--theme-text-secondary-color));
-  line-height: var(--line-height-normal); // Updated
+  line-height: var(--line-height-normal);
   margin-top: calc(var(--space-0-5) * -1);
 
   &.error {

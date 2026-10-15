@@ -1,0 +1,6 @@
+@for (appearance of appearances; track appearance) {
+  <p style="font-size: 12px; margin: 8px 0 4px; color: gray">{{ appearance }}</p>
+  <dasar-tabs [appearance]="appearance" [items]="items">
+    <p>{{ appearance }} body content.</p>
+  </dasar-tabs>
+}

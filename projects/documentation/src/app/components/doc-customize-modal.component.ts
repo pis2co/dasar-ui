@@ -84,6 +84,33 @@ const DEFAULT_SENTINEL = '__default__';
           [ngModel]="draft().cardAppearance ?? sentinel"
           (ngModelChange)="setOption('cardAppearance', $event)"
         ></dasar-select>
+
+        <dasar-select
+          full-width
+          label="Tabs appearance"
+          [dropdown-panel-style]="panelStyle"
+          [options]="tabsAppearanceOptions"
+          [ngModel]="draft().tabsAppearance ?? sentinel"
+          (ngModelChange)="setOption('tabsAppearance', $event)"
+        ></dasar-select>
+
+        <dasar-select
+          full-width
+          label="Tabs size"
+          [dropdown-panel-style]="panelStyle"
+          [options]="tabsSizeOptions"
+          [ngModel]="draft().tabsSize ?? sentinel"
+          (ngModelChange)="setOption('tabsSize', $event)"
+        ></dasar-select>
+
+        <dasar-select
+          full-width
+          label="Tabs spacing"
+          [dropdown-panel-style]="panelStyle"
+          [options]="tabsSpacingOptions"
+          [ngModel]="draft().tabsSpacing ?? sentinel"
+          (ngModelChange)="setOption('tabsSpacing', $event)"
+        ></dasar-select>
       </section>
 
       <section class="cm-section">
@@ -120,15 +147,17 @@ const DEFAULT_SENTINEL = '__default__';
         ></dasar-select>
       </section>
 
-      <div action-slot>
+      <div action-slot style="display: flex; justify-content: space-between; align-items: center;">
         <dasar-button appearance="outline" variant="secondary" (click)="resetDraft()">
           Reset to defaults
         </dasar-button>
         <span class="cm-spacer"></span>
-        <dasar-button appearance="outline" variant="secondary" (click)="cancel()">
-          Cancel
-        </dasar-button>
-        <dasar-button appearance="solid" (click)="apply()">Apply</dasar-button>
+        <div style="display: flex; gap: var(--space-base); align-items: center;">
+          <dasar-button appearance="outline" variant="secondary" (click)="cancel()">
+            Cancel
+          </dasar-button>
+          <dasar-button appearance="solid" (click)="apply()">Apply</dasar-button>
+        </div>
       </div>
     </dasar-modal>
   `,
@@ -219,6 +248,27 @@ export class DocCustomizeModalComponent implements OnChanges {
     { label: 'Outline', value: 'outline' },
     { label: 'Borderless', value: 'borderless' },
     { label: 'Elevated', value: 'elevated' },
+  ];
+  readonly tabsAppearanceOptions: DasarModalOption[] = [
+    { label: 'Default', value: DEFAULT_SENTINEL },
+    { label: 'Solid', value: 'solid' },
+    { label: 'Subtle', value: 'subtle' },
+    { label: 'Outline', value: 'outline' },
+  ];
+  readonly tabsSizeOptions: DasarModalOption[] = [
+    { label: 'Default', value: DEFAULT_SENTINEL },
+    { label: 'None', value: 'none' },
+    { label: 'Xs', value: 'xs' },
+    { label: 'Sm', value: 'sm' },
+    { label: 'Md', value: 'md' },
+    { label: 'Lg', value: 'lg' },
+    { label: 'Xl', value: 'xl' },
+    { label: 'Full', value: 'full' },
+  ];
+  readonly tabsSpacingOptions: DasarModalOption[] = [
+    { label: 'Default', value: DEFAULT_SENTINEL },
+    { label: 'Normal', value: 'normal' },
+    { label: 'Compact', value: 'compact' },
   ];
   readonly fontSizeOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },

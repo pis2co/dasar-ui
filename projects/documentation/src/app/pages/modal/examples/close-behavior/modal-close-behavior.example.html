@@ -1,4 +1,4 @@
-<div style="display:flex;gap:8px;flex-wrap:wrap">
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
   <dasar-button (click)="openNotClosable.set(true)">closable = false</dasar-button>
   <dasar-button (click)="openNoOverlay.set(true)">close-on-overlay = false</dasar-button>
   <dasar-button (click)="openNoEscape.set(true)">close-on-escape = false</dasar-button>
@@ -38,7 +38,7 @@
   (onClose)="openNoEscape.set(false)"
 >
   <p>
-    With <code>close-on-escape="false"</code> pressing Esc no longer emits
-    <code>(onClose)</code>. The ✕ button and a backdrop click still work.
+    With <code>close-on-escape="false"</code> pressing Esc no longer emits <code>(onClose)</code>.
+    The ✕ button and a backdrop click still work.
   </p>
 </dasar-modal>

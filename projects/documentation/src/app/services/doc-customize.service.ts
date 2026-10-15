@@ -11,6 +11,9 @@ export interface DocCustomizeSettings {
   buttonAppearance: 'solid' | 'subtle' | 'outline' | null;
   inputAppearance: 'outline' | 'filled' | null;
   cardAppearance: 'outline' | 'borderless' | 'elevated' | null;
+  tabsAppearance: 'solid' | 'subtle' | 'outline' | null;
+  tabsSize: DocSize | null;
+  tabsSpacing: 'normal' | 'compact' | null;
   primaryColor: string | null;
   fontSizeBase: string | null;
   fontSans: string | null;
@@ -22,6 +25,9 @@ export const DOC_DEFAULT_SETTINGS: DocCustomizeSettings = {
   buttonAppearance: null,
   inputAppearance: null,
   cardAppearance: null,
+  tabsAppearance: null,
+  tabsSize: null,
+  tabsSpacing: null,
   primaryColor: null,
   fontSizeBase: null,
   fontSans: null,
@@ -46,6 +52,12 @@ export class DocCustomizeService {
     if (s.buttonAppearance) config.button = { appearance: s.buttonAppearance };
     if (s.inputAppearance) config.input = { appearance: s.inputAppearance };
     if (s.cardAppearance) config.card = { appearance: s.cardAppearance };
+    if (s.tabsAppearance || s.tabsSize || s.tabsSpacing) {
+      config.tabs = {};
+      if (s.tabsAppearance) config.tabs.appearance = s.tabsAppearance;
+      if (s.tabsSize) config.tabs.size = s.tabsSize;
+      if (s.tabsSpacing) config.tabs.spacing = s.tabsSpacing;
+    }
     return config;
   });
 

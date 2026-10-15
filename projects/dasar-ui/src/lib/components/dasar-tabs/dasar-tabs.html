@@ -1,41 +1,103 @@
 <div
-  class="dasar-tabs-container appearance-{{ appearance }} size-{{ size }}"
+  class="dasar-tabs-container appearance-{{ appearance }} size-{{ size }} spacing-{{
+    spacing
+  }} radius-{{ radius }}"
   [class.fluid]="fluid"
   [ngClass]="containerClass"
   [ngStyle]="containerStyle"
 >
-  <div class="dasar-tabs-list" [ngClass]="listClass" [ngStyle]="listStyle">
-    @if (items.length > 0) {
-      @for (item of items; track item; let i = $index) {
-        <dasar-button
-          [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
-          [radius]="appearance === 'outline' ? 'none' : radius"
-          [size]="size === 'compact' ? 'sm' : 'md'"
-          [class.active]="activeIndex === i"
-          [fluid]="fluid"
-          (click)="selectTab(i)"
-          class="dasar-tab-trigger-btn"
-        >
-          {{ item }}
-        </dasar-button>
+  <div
+    class="dasar-tabs-list-wrapper"
+    [class.overflowing]="overflowing()"
+    [class.can-scroll-left]="canScrollLeft()"
+    [class.can-scroll-right]="canScrollRight()"
+  >
+    @if (overflowing()) {
+      <dasar-button
+        class="dasar-tabs-scroll-btn"
+        variant="ghost"
+        [size]="buttonSize"
+        [radius]="appearance === 'outline' ? 'none' : radius"
+        [disabled]="!canScrollLeft()"
+        [ngClass]="scrollButtonClass"
+        [ngStyle]="scrollButtonStyle"
+        aria-label="Scroll tabs left"
+        (click)="scrollBy(-1)"
+      >
+        @if (scrollLeftSlot) {
+          <ng-container *ngTemplateOutlet="scrollLeftSlot.templateRef"></ng-container>
+        } @else {
+          <dasar-icon [name]="scrollLeftIconName" size="sm" />
+        }
+      </dasar-button>
+    }
+
+    <div
+      #tabsList
+      class="dasar-tabs-list"
+      role="tablist"
+      [ngClass]="listClass"
+      [ngStyle]="listStyle"
+    >
+      @if (items.length > 0) {
+        @for (item of items; track $index; let i = $index) {
+          <dasar-button
+            [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
+            [radius]="appearance === 'outline' ? 'none' : radius"
+            [size]="buttonSize"
+            [class.active]="activeIndex === i"
+            [fluid]="fluid"
+            role="tab"
+            [attr.aria-selected]="activeIndex === i"
+            [attr.tabindex]="activeIndex === i ? 0 : -1"
+            (click)="selectTab(i)"
+            class="dasar-tab-trigger-btn"
+          >
+            {{ item }}
+          </dasar-button>
+        }
+      } @else {
+        @for (tabSlotDirective of tabItemSlotDirectives; track tabSlotDirective; let i = $index) {
+          <dasar-button
+            [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
+            [radius]="appearance === 'outline' ? 'none' : radius"
+            [size]="buttonSize"
+            [class.active]="activeIndex === i"
+            role="tab"
+            [attr.aria-selected]="activeIndex === i"
+            [attr.tabindex]="activeIndex === i ? 0 : -1"
+            (click)="selectTab(i)"
+            [fluid]="fluid"
+            class="dasar-tab-trigger-btn"
+          >
+            <ng-container *ngTemplateOutlet="tabSlotDirective.templateRef"></ng-container>
+          </dasar-button>
+        }
       }
-    } @else {
-      @for (tabSlotDirective of tabItemSlotDirectives; track tabSlotDirective; let i = $index) {
-        <dasar-button
-          [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
-          [radius]="appearance === 'outline' ? 'none' : radius"
-          [size]="size === 'compact' ? 'sm' : 'md'"
-          [class.active]="activeIndex === i"
-          (click)="selectTab(i)"
-          [fluid]="fluid"
-          class="dasar-tab-trigger-btn"
-        >
-          <ng-container *ngTemplateOutlet="tabSlotDirective.templateRef"></ng-container>
-        </dasar-button>
-      }
+    </div>
+
+    @if (overflowing()) {
+      <dasar-button
+        class="dasar-tabs-scroll-btn"
+        variant="ghost"
+        [size]="buttonSize"
+        [radius]="appearance === 'outline' ? 'none' : radius"
+        [disabled]="!canScrollRight()"
+        [ngClass]="scrollButtonClass"
+        [ngStyle]="scrollButtonStyle"
+        aria-label="Scroll tabs right"
+        (click)="scrollBy(1)"
+      >
+        @if (scrollRightSlot) {
+          <ng-container *ngTemplateOutlet="scrollRightSlot.templateRef"></ng-container>
+        } @else {
+          <dasar-icon [name]="scrollRightIconName" size="sm" />
+        }
+      </dasar-button>
     }
   </div>
-  <div class="dasar-tabs-content" [ngClass]="contentClass" [ngStyle]="contentStyle">
+
+  <div class="dasar-tabs-content" role="tabpanel" [ngClass]="contentClass" [ngStyle]="contentStyle">
     <ng-content></ng-content>
   </div>
 </div>

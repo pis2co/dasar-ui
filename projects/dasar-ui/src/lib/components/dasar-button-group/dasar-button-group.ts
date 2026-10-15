@@ -10,10 +10,6 @@ export type DasarButtonGroupOrientationType = 'horizontal' | 'vertical';
   selector: 'dasar-button-group',
   imports: [CommonModule],
   standalone: true,
-//   host: {
-
-//   }
-// //dasar-button-native-group
 })
 export class DasarButtonGroup {
   @Input() orientation: DasarButtonGroupOrientationType = 'horizontal';
@@ -22,9 +18,9 @@ export class DasarButtonGroup {
   get buttonClasses(): Record<string, boolean> {
     return {
       'dasar-button-native-group': true,
-      horizontal: this.orientation === "vertical",
-      vertical: this.orientation === "vertical",
-      'attached': this.attached,
+      horizontal: this.orientation === 'vertical',
+      vertical: this.orientation === 'vertical',
+      attached: this.attached,
     };
   }
 }

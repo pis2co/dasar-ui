@@ -69,8 +69,12 @@ describe('DasarModal', () => {
     expect(container().classList).toContain('size-md');
     expect(container().classList).toContain('radius-lg');
     expect(container().classList).toContain('appearance-elevated');
-    expect(fixture.nativeElement.querySelector('.dasar-modal-title').textContent).toContain('Title');
-    expect(fixture.nativeElement.querySelector('.dasar-modal-body p').textContent).toContain('Body');
+    expect(fixture.nativeElement.querySelector('.dasar-modal-title').textContent).toContain(
+      'Title',
+    );
+    expect(fixture.nativeElement.querySelector('.dasar-modal-body p').textContent).toContain(
+      'Body',
+    );
     expect(fixture.nativeElement.querySelector('.dasar-modal-actions .action-btn')).toBeTruthy();
     expect(modalElement().classList).toContain('open');
   });

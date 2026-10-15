@@ -1,8 +1,3 @@
-/**
- * Maps a control size (xs / sm / md / lg / xl) to a pixel size that fits the
- * control height. The library default for `dasar-icon` is `md` (24px), which is
- * too tall for a `xs` (24px) or `sm` (32px) field trigger.
- */
 export function fieldIconSize(size: string | number | null | undefined): number {
   switch (size) {
     case 'xs':

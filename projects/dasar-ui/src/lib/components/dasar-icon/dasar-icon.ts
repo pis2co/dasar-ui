@@ -72,7 +72,7 @@ export class DasarIcon implements OnInit {
       case 'xl':
         return 40;
       default:
-        return typeof this.size === 'number' ? this.size : 16; // sm and xs
+        return typeof this.size === 'number' ? this.size : 16;
     }
   }
   get svgContent(): SafeHtml {

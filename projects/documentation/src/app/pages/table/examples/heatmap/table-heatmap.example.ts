@@ -30,10 +30,8 @@ export class TableHeatmapExample implements OnInit {
         headerStyle: { fontSize: '11px', padding: '8px 4px' },
         cellStyle: (row: any) => {
           const val = row[hour];
-          // Scale intensity based on a max value of 100
           const intensity = Math.min(1, val / 100);
           return {
-            // Emerald green based on value
             backgroundColor: `rgba(16, 185, 129, ${intensity})`,
             color: intensity > 0.55 ? '#ffffff' : 'var(--theme-text-primary-color)',
             border: '1px solid var(--theme-bg-default-color)',

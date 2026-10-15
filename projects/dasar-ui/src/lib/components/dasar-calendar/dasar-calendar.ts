@@ -295,7 +295,7 @@ export class DasarCalendar implements OnInit, OnChanges, ControlValueAccessor {
     return years;
   }
   get localizedDropdownWeekdays(): string[] {
-    const baseDate = new Date(2026, 5, 7); // Sunday
+    const baseDate = new Date(2026, 5, 7);
     return Array.from({ length: 7 }, (_, i) => {
       const d = new Date(baseDate);
       d.setDate(baseDate.getDate() + i);
