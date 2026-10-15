@@ -5,6 +5,7 @@
     [checked]="isChecked"
     [disabled]="isDisabled"
     [attr.aria-invalid]="hasError || null"
+    [attr.aria-describedby]="hint ? hintId : null"
     (change)="toggle($event)"
     (blur)="onTouched()"
   />
@@ -19,7 +20,7 @@
   <ng-content></ng-content>
 </label>
 @if (hint) {
-  <div [ngClass]="hintClasses" [ngStyle]="hintStyle">
+  <div [id]="hintId" [ngClass]="hintClasses" [ngStyle]="hintStyle">
     {{ hint }}
   </div>
 }

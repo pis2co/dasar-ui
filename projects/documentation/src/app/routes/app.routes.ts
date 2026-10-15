@@ -27,6 +27,7 @@ import { TabsDocPage } from '../pages/tabs/tabs.page';
 import { ListDocPage } from '../pages/list/list.page';
 import { PaginationDocPage } from '../pages/pagination/pagination.page';
 import { SwitchDocPage } from '../pages/switch/switch.page';
+import { SkeletonDocPage } from '../pages/skeleton/skeleton.page';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -144,6 +145,11 @@ export const routes: Routes = [
     path: 'components/switch',
     component: SwitchDocPage,
     title: 'Switch Docs | Dasar UI',
+  },
+  {
+    path: 'components/skeleton',
+    component: SkeletonDocPage,
+    title: 'Skeleton Docs | Dasar UI',
   },
   {
     path: 'components/calendar',

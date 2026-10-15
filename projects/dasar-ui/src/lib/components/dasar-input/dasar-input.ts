@@ -60,6 +60,8 @@ export class DasarInputPrefixSlot {}
 @Directive({ selector: '[suffix-slot]', standalone: true })
 export class DasarInputSuffixSlot {}
 
+let nextDasarInputId = 0;
+
 @Component({
   providers: [
     {
@@ -189,13 +191,6 @@ export class DasarInput implements ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
-  @Input({ alias: 'hint-class' }) hintClass = resolveThemeDefault(
-    'input',
-    'hintClass',
-    null,
-    this.themeProvider,
-    this.themeService,
-  );
   @Input({ alias: 'container-style' }) containerStyle = resolveThemeDefault(
     'input',
     'containerStyle',
@@ -217,6 +212,13 @@ export class DasarInput implements ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+  @Input({ alias: 'hint-class' }) hintClass = resolveThemeDefault(
+    'input',
+    'hintClass',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
   @Input({ alias: 'hint-style' }) hintStyle = resolveThemeDefault(
     'input',
     'hintStyle',
@@ -224,6 +226,8 @@ export class DasarInput implements ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+
+  readonly hintId = `dasar-input-hint-${++nextDasarInputId}`;
   @Input({ alias: 'hide-overflow', transform: booleanAttribute }) hideOverflow =
     resolveThemeDefault('card', 'hideOverflow', false, this.themeProvider, this.themeService);
 

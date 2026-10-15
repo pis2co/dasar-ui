@@ -1,0 +1,17 @@
+<div
+  style="
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    max-width: 420px;
+    padding: 16px;
+    border: 1px solid var(--theme-border-subtle-color);
+    border-radius: var(--radius-md);
+  "
+>
+  <dasar-skeleton circle height="48" />
+  <div style="display: flex; flex-direction: column; gap: 12px; flex: 1">
+    <dasar-skeleton width="60%" height="14" />
+    <dasar-skeleton [repeat]="2" />
+  </div>
+</div>

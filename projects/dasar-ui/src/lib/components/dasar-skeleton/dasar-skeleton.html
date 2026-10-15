@@ -1,0 +1,9 @@
+<div class="dasar-skeleton" [ngClass]="containerClasses" [ngStyle]="containerStyle">
+  @for (item of items; track $index) {
+    <span
+      class="dasar-skeleton-item"
+      [ngClass]="itemClasses"
+      [ngStyle]="itemStyleFor($index)"
+    ></span>
+  }
+</div>

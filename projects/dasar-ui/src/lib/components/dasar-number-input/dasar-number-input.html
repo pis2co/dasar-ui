@@ -38,6 +38,8 @@
       [step]="step"
       [min]="min"
       [max]="max"
+      [attr.aria-invalid]="error || null"
+      [attr.aria-describedby]="hint ? hintId : null"
       (input)="onInput($event)"
       (focus)="onFocus($event)"
       (blur)="onBlur($event)"
@@ -80,7 +82,9 @@
   @if (hint) {
     <div
       class="dasar-number-input-hint"
+      [id]="hintId"
       [class.error]="error"
+      [class.disabled]="disabled"
       [ngClass]="hintClass"
       [ngStyle]="hintStyle"
     >

@@ -19,6 +19,7 @@ import {
   DasarThemeTabs,
   DasarThemeOverlay,
   DasarThemeModal,
+  DasarThemeSkeleton,
 } from '@models/theme.model';
 import {
   DASAR_THEME_PROVIDER,
@@ -721,6 +722,17 @@ export const switchMap: Record<string, string> = {
   disabledOpacity: '--switch-disabled-opacity',
   labelColor: '--switch-label-color',
   labelFontSize: '--switch-label-font-size',
+  errorColor: '--switch-error-color',
+  hintGap: '--switch-hint-gap',
+  hintColor: '--switch-hint-color',
+  hintFontSize: '--switch-hint-font-size',
+  hintErrorColor: '--switch-hint-error-color',
+};
+export const skeletonMap: Record<keyof DasarThemeSkeleton, string> = {
+  baseColor: '--skeleton-base-color',
+  highlightColor: '--skeleton-highlight-color',
+  animationDuration: '--skeleton-animation-duration',
+  gap: '--skeleton-gap',
 };
 export const tabsMap: Record<keyof DasarThemeTabs, string> = {
   listPaddingNormal: '--tabs-list-padding-normal',
@@ -897,6 +909,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.switch) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.switch, switchMap);
+    }
+    if (config.tokens?.[config.mode]?.skeleton) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.skeleton, skeletonMap);
     }
     if (config.tokens?.[config.mode]?.tabs) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.tabs, tabsMap);

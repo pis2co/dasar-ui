@@ -56,6 +56,8 @@ export interface DasarSelectConfig {
   placement?: DasarPanelPlacement;
   dropdownPanelStyle?: StyleType;
   containerStyle?: StyleType;
+  hintClass?: ClassType;
+  hintStyle?: StyleType;
   fullWidth?: boolean;
   clearable?: boolean;
   searchable?: boolean;
@@ -85,6 +87,8 @@ export class DasarSelectChipTemplate {
 export class DasarSelectOptionTemplate {
   constructor(public templateRef: TemplateRef<any>) {}
 }
+
+let nextDasarSelectId = 0;
 
 export interface DasarSelectOption {
   chipVariant?: DasarChipVariantType;
@@ -273,6 +277,22 @@ export class DasarSelect implements ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+  @Input({ alias: 'hint-class' }) hintClass = resolveThemeDefault(
+    'select',
+    'hintClass',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'hint-style' }) hintStyle = resolveThemeDefault(
+    'select',
+    'hintStyle',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
+
+  readonly hintId = `dasar-select-hint-${++nextDasarSelectId}`;
   @Input({ alias: 'full-width', transform: booleanAttribute }) fullWidth = resolveThemeDefault(
     'select',
     'fullWidth',

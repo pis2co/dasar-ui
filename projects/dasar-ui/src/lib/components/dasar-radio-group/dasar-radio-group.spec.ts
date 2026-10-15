@@ -192,6 +192,9 @@ describe('DasarRadioGroup', () => {
     expect(fixture.nativeElement.querySelector('.dasar-radio-group-hint')?.textContent).toContain(
       'Pick one',
     );
+    expect(fixture.nativeElement.querySelector('.dasar-radio-group-hint')?.classList).toContain(
+      'error',
+    );
     expect(
       (fixture.nativeElement.querySelector('dasar-radio-group') as HTMLElement).classList,
     ).toContain('error');

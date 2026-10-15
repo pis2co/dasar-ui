@@ -1,0 +1,78 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--skeleton-gap, var(--space-base));
+}
+
+.dasar-skeleton-item {
+  display: block;
+  width: 100%;
+  height: var(--skeleton-text-height, 12px);
+  background-color: var(--skeleton-base-color, var(--theme-border-subtle-color));
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+
+  &.type-box {
+    border-radius: var(--radius-md);
+  }
+
+  &.radius-none {
+    border-radius: var(--radius-none);
+  }
+
+  &.radius-xs {
+    border-radius: var(--radius-xs);
+  }
+
+  &.radius-sm {
+    border-radius: var(--radius-sm);
+  }
+
+  &.radius-md {
+    border-radius: var(--radius-md);
+  }
+
+  &.radius-lg {
+    border-radius: var(--radius-lg);
+  }
+
+  &.radius-xl {
+    border-radius: var(--radius-xl);
+  }
+
+  &.circle {
+    border-radius: 50%;
+    flex: none;
+  }
+
+  &.animated {
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--skeleton-highlight-color, rgba(255, 255, 255, 0.6)) 50%,
+      transparent 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+    animation: dasar-skeleton-shimmer var(--skeleton-animation-duration, 1.5s) ease-in-out infinite;
+  }
+}
+
+@keyframes dasar-skeleton-shimmer {
+  0% {
+    background-position: -150% 0;
+  }
+
+  100% {
+    background-position: 250% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dasar-skeleton-item.animated {
+    animation: none;
+  }
+}

@@ -24,6 +24,7 @@ import { ScaleAttributeType } from './type.model';
 import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/dasar-list';
 import { DasarPaginationConfig } from '@components/dasar-pagination/dasar-pagination';
 import { DasarSwitchConfig } from '@components/dasar-switch/dasar-switch';
+import { DasarSkeletonConfig } from '@components/dasar-skeleton/dasar-skeleton';
 
 export type DasarThemeMode = 'light' | 'dark';
 export type DasarBreakpointName = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -767,6 +768,17 @@ export interface DasarThemeSwitch {
   disabledOpacity?: string;
   labelColor?: string;
   labelFontSize?: string;
+  errorColor?: string;
+  hintGap?: string;
+  hintColor?: string;
+  hintFontSize?: string;
+  hintErrorColor?: string;
+}
+export interface DasarThemeSkeleton {
+  baseColor?: string;
+  highlightColor?: string;
+  animationDuration?: string;
+  gap?: string;
 }
 export interface DasarThemeTabs {
   listPaddingNormal?: string;
@@ -859,6 +871,7 @@ export type DasarComponentConfig = {
   listItem?: DasarListItemConfig;
   pagination?: DasarPaginationConfig;
   switch?: DasarSwitchConfig;
+  skeleton?: DasarSkeletonConfig;
 };
 export interface DasarThemeConfig {
   mode: DasarThemeMode;
@@ -885,6 +898,7 @@ export interface DasarThemeConfig {
       list?: DasarThemeList;
       pagination?: DasarThemePagination;
       switch?: DasarThemeSwitch;
+      skeleton?: DasarThemeSkeleton;
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;
@@ -908,6 +922,7 @@ export interface DasarThemeConfig {
       list?: DasarThemeList;
       pagination?: DasarThemePagination;
       switch?: DasarThemeSwitch;
+      skeleton?: DasarThemeSkeleton;
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;

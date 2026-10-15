@@ -101,4 +101,8 @@
   &.error {
     color: var(--radio-error-color, var(--dasar-danger-base));
   }
+
+  &.disabled {
+    opacity: var(--radio-disabled-opacity, 0.5);
+  }
 }

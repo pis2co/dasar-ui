@@ -237,6 +237,7 @@ export class DocsLayoutComponent {
         { label: 'Checkbox', route: '/components/checkbox' },
         { label: 'Radio', route: '/components/radio' },
         { label: 'Switch', route: '/components/switch' },
+        { label: 'Skeleton', route: '/components/skeleton' },
         { label: 'Breakpoint', route: '/components/breakpoint' },
         { label: 'Select', route: '/components/select' },
       ],

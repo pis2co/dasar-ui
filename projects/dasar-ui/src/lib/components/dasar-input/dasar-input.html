@@ -34,6 +34,8 @@
       [readonly]="readonly"
       [value]="value"
       [type]="type"
+      [attr.aria-invalid]="error || null"
+      [attr.aria-describedby]="hint ? hintId : null"
       (input)="onInput($event)"
       (blur)="onBlur()"
       class="dasar-input-native"
@@ -43,6 +45,7 @@
   @if (hint) {
     <div
       class="dasar-input-hint"
+      [id]="hintId"
       [class.disabled]="disabled"
       [class.error]="error"
       [ngClass]="hintClass"

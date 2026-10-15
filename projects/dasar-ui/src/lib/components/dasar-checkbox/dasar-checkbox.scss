@@ -95,4 +95,8 @@
   &.error {
     color: var(--checkbox-error-color, var(--dasar-danger-base));
   }
+
+  &.disabled {
+    opacity: var(--checkbox-disabled-opacity, 0.5);
+  }
 }

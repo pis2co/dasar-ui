@@ -73,22 +73,6 @@
   }
 }
 
-.hint-wrapper {
-  font-size: var(--datepicker-hint-font-size, var(--font-size-xs));
-  color: var(--datepicker-hint-color, var(--theme-text-secondary-color));
-  margin-top: calc(var(--space-0-5) * -1);
-  line-height: var(--line-height-normal);
-
-  &.error {
-    color: var(--datepicker-hint-error-color, var(--theme-danger-color));
-  }
-
-  &.disabled {
-    opacity: var(--datepicker-disabled-opacity, 0.6);
-    cursor: not-allowed;
-  }
-}
-
 .dasar-datepicker-wrapper {
   flex-direction: column;
   display: flex;
@@ -328,4 +312,24 @@
     opacity: 1;
     transform: translateY(0) scaleY(1);
   }
+}
+
+.hint-wrapper {
+  font-size: var(--datepicker-hint-font-size, var(--font-size-xs));
+  color: var(--datepicker-hint-color, var(--theme-text-secondary-color));
+  margin-top: calc(var(--space-0-5) * -1);
+  line-height: var(--line-height-normal);
+
+  &.error {
+    color: var(--datepicker-hint-error-color, var(--theme-danger-color));
+  }
+
+  &.disabled {
+    opacity: var(--datepicker-disabled-opacity, 0.6);
+    cursor: not-allowed;
+  }
+}
+
+.dasar-datepicker .hidden {
+  display: none;
 }

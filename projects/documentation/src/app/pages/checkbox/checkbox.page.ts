@@ -151,16 +151,22 @@ export class CheckboxDocPage {
 
   protected readonly apiProps: DocApiProperty[] = [
     {
-      name: 'dasar-checkbox: size',
+      name: 'size',
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Size of the checkbox.',
     },
     {
-      name: 'dasar-checkbox: label',
+      name: 'label',
       type: 'string',
       defaultValue: "''",
       description: 'Label text next to the box.',
+    },
+    {
+      name: 'error',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Error styling for the box and hint.',
     },
     {
       name: 'dasar-checkbox: hint',
@@ -169,63 +175,57 @@ export class CheckboxDocPage {
       description: 'Helper text under the checkbox.',
     },
     {
-      name: 'dasar-checkbox: error',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Error styling for the box and hint.',
-    },
-    {
-      name: 'dasar-checkbox: disabled',
+      name: 'disabled',
       type: 'boolean',
       defaultValue: 'false',
       description: 'Disables the checkbox.',
     },
     {
-      name: 'dasar-checkbox: checked-value',
+      name: 'checked-value',
       type: 'any',
       defaultValue: 'true',
       description:
         'Value emitted when checked. Ignored inside a group for display, but sent in the group array.',
     },
     {
-      name: 'dasar-checkbox: unchecked-value',
+      name: 'unchecked-value',
       type: 'any',
       defaultValue: 'false',
       description: 'Value emitted when unchecked. Not used inside a group.',
     },
     {
-      name: 'dasar-checkbox: value / [(value)]',
+      name: 'value / [(value)]',
       type: 'any',
       defaultValue: 'false',
       description: 'Checked state. Compared against checked-value. Overridden by the group.',
     },
     {
-      name: 'dasar-checkbox: container-class / box-class / label-class / hint-class',
+      name: 'container-class / box-class / label-class / hint-class',
       type: 'string | object',
       defaultValue: "''",
       description: 'Classes for the checkbox parts.',
     },
     {
-      name: 'dasar-checkbox: container-style / box-style / label-style / hint-style',
+      name: 'container-style / box-style / label-style / hint-style',
       type: 'object',
       defaultValue: 'null',
       description: 'Inline styles for the checkbox parts.',
     },
     {
-      name: 'dasar-checkbox: (onUpdate)',
+      name: '(onUpdate)',
       type: 'EventEmitter<any>',
       defaultValue: '-',
       description:
         'Fires with the new value when toggled. Does not fire for children inside a group.',
     },
     {
-      name: 'dasar-checkbox: (valueChange)',
+      name: '(valueChange)',
       type: 'EventEmitter<any>',
       defaultValue: '-',
       description: 'Fires with the new value. Used by [(value)] and forms.',
     },
     {
-      name: 'dasar-checkbox: default slot',
+      name: 'default slot',
       type: 'Content Slot',
       defaultValue: '-',
       description: 'Extra content after the label.',

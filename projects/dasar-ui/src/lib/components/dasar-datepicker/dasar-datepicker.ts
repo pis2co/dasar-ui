@@ -79,6 +79,8 @@ export class DasarDatepickerExtraFooterSlot {}
 @Directive({ selector: '[hint-slot]', standalone: true })
 export class DasarDatepickerHintSlot {}
 
+let nextDasarDatepickerId = 0;
+
 @Component({
   selector: 'dasar-datepicker',
   standalone: true,
@@ -244,13 +246,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
-  @Input({ alias: 'hint-wrapper-class' }) hintWrapperClass = resolveThemeDefault(
-    'datepicker',
-    'hintWrapperClass',
-    null,
-    this.themeProvider,
-    this.themeService,
-  );
   @Input({ alias: 'container-style' }) containerStyle = resolveThemeDefault(
     'datepicker',
     'containerStyle',
@@ -286,6 +281,13 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+  @Input({ alias: 'hint-wrapper-class' }) hintWrapperClass = resolveThemeDefault(
+    'datepicker',
+    'hintWrapperClass',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
   @Input({ alias: 'hint-wrapper-style' }) hintWrapperStyle = resolveThemeDefault(
     'datepicker',
     'hintWrapperStyle',
@@ -293,6 +295,8 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+
+  readonly hintId = `dasar-datepicker-hint-${++nextDasarDatepickerId}`;
   @Input({ alias: 'full-width', transform: booleanAttribute }) fullWidth = resolveThemeDefault(
     'datepicker',
     'fullWidth',
@@ -518,10 +522,10 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
 
 export const DasarDatepickerComponent = [
   DasarDatepicker,
+  DasarDatepickerHintSlot,
   DasarDatepickerLabelSlot,
   DasarDatepickerExtraLabelSlot,
   DasarDatepickerExtraHeaderSlot,
   DasarDatepickerExtraFooterSlot,
-  DasarDatepickerHintSlot,
   DasarDatepickerPrefixSlot,
 ] as const;
