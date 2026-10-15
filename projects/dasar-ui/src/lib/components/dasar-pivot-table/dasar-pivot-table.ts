@@ -13,7 +13,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// --- Types ---
 export type DasarPivotAggregator = 'sum' | 'count' | 'avg' | 'min' | 'max';
 export type DasarPivotTableAppearance = 'outline' | 'filled' | 'elevated' | 'borderless';
 export type DasarPivotTableSpacing = 'compact' | 'normal' | 'relaxed';
@@ -203,7 +202,6 @@ export class DasarPivotTable implements OnChanges {
     this.grandTotal = null;
   }
 
-  // --- Event Handlers ---
   handleRowClick(row: string, index: number, event: MouseEvent) {
     this.rowClick.emit({ row, index, event });
   }

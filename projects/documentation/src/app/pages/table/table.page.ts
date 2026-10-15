@@ -1,4 +1,3 @@
-// table.page.ts
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 import { CommonModule } from '@angular/common';

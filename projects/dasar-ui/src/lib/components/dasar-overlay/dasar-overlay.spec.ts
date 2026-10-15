@@ -5,7 +5,10 @@ import { DasarOverlay } from './dasar-overlay';
 @Component({
   standalone: true,
   imports: [DasarOverlay],
-  template: `<dasar-overlay [blur]="blur()" (onClick)="clicked.set(clicked() + 1)"></dasar-overlay>`,
+  template: `<dasar-overlay
+    [blur]="blur()"
+    (onClick)="clicked.set(clicked() + 1)"
+  ></dasar-overlay>`,
 })
 class OverlayHost {
   blur = signal('4px');

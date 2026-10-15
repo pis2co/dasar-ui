@@ -13,7 +13,7 @@ export class CardClosableExample {
   handleClose() {
     this.isClosed = true;
     setTimeout(() => {
-      this.isClosed = false; // reset for example purposes
+      this.isClosed = false;
     }, 2000);
   }
 }

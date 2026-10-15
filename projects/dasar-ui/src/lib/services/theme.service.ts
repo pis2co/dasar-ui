@@ -592,14 +592,12 @@ export class DasarThemeService {
 
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    // Apply initial component configuration if provided via provider
     if (this.initialConfig) {
       this.setGlobalTheme(this.initialConfig);
     }
   }
 
   public setGlobalTheme(config: DasarThemeConfig, targetElement?: HTMLElement) {
-    // Guard against SSR crashes when document is undefined on the server
     if (!isPlatformBrowser(this.platformId)) {
       this.themeState.next(config);
       return;
@@ -643,23 +641,14 @@ export class DasarThemeService {
     if (config.tokens?.[config.mode]?.table) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.table, tableMap);
     }
-    // Update TS State
     this.themeState.next(config);
   }
 
-  /**
-   * Full theme config: library defaults merged with the consumer config.
-   * Consumer values take priority.
-   */
   public themeVariable(): DasarThemeConfig {
     const raw = this.themeState.getValue();
     return deepMerge(buildDefaultThemeConfig(raw.mode ?? 'light'), raw);
   }
 
-  /**
-   * Only the config provided by the consumer, without library defaults.
-   * Used internally to resolve component input priority.
-   */
   public rawThemeVariable(): DasarThemeConfig {
     return this.themeState.getValue();
   }

@@ -1,0 +1,25 @@
+<dasar-tabs appearance="subtle" size="sm">
+  <ng-template tab-item-slot>
+    <span style="display: inline-flex; align-items: center; gap: 4px">
+      <dasar-icon name="home" [size]="14" />
+      Overview
+    </span>
+  </ng-template>
+
+  <ng-template tab-item-slot>
+    <span style="display: inline-flex; align-items: center; gap: 4px">
+      <dasar-icon name="settings" [size]="14" />
+      Settings
+    </span>
+  </ng-template>
+
+  <ng-template tab-item-slot>
+    <span style="display: inline-flex; align-items: center; gap: 4px">
+      <dasar-icon name="user" [size]="14" />
+      Team
+      <dasar-chip size="xs" variant="primary">3</dasar-chip>
+    </span>
+  </ng-template>
+
+  <p>Each tab trigger is a custom template rendered inside the default button.</p>
+</dasar-tabs>

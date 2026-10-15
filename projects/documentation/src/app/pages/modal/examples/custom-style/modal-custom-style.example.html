@@ -8,25 +8,27 @@
   [action-style]="{ 'justify-content': 'space-between' }"
   body-fluid
 >
-  <img
-    src="https://picsum.photos/800/300"
-    alt="Placeholder"
-    style="display:block;width:100%"
-  />
-  <div style="padding:16px">
+  <img src="https://picsum.photos/800/300" alt="Placeholder" style="display: block; width: 100%" />
+  <div style="padding: 16px">
     <p>
       <code>body-fluid</code> removes the body padding so the image reaches the modal edges. The
       <code>header-style</code> paints the header, and <code>action-style</code> pushes the footer
       buttons apart.
     </p>
     <p>
-      Every section also accepts a <code>-style</code> and a <code>-class</code> input:
-      container, header, close, body and actions.
+      Every section also accepts a <code>-style</code> and a <code>-class</code> input: container,
+      header, close, body and actions.
     </p>
   </div>
 
   <div action-slot>
-    <dasar-button appearance="outline" variant="secondary" size="md" radius="md" (click)="open.set(false)">
+    <dasar-button
+      appearance="outline"
+      variant="secondary"
+      size="md"
+      radius="md"
+      (click)="open.set(false)"
+    >
       Cancel
     </dasar-button>
     <dasar-button size="md" radius="md" (click)="open.set(false)">Save</dasar-button>

@@ -11,6 +11,7 @@ import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
 import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
 import { DasarMenuConfig } from '../components/dasar-menu/dasar-menu';
+import { DasarTabsConfig } from '../components/dasar-tabs/dasar-tabs';
 import { ScaleAttributeType } from './type.model';
 
 export type DasarThemeMode = 'light' | 'dark';
@@ -34,25 +35,20 @@ export interface DasarThemeColors {
   warning: DasarThemeScale;
 }
 export interface DasarThemeCommon {
-  // primary
   primaryColor?: string;
   primaryHoverColor?: string;
   primaryActiveColor?: string;
   primarySurfaceColor?: string;
-  // text
   textPrimaryColor?: string;
   textSecondaryColor?: string;
   textDisabledColor?: string;
   textInverseColor?: string;
-  // background
   bgWindowColor?: string;
   bgDefaultColor?: string;
   bgSurfaceColor?: string;
   bgHoverColor?: string;
-  // border
   borderSubtleColor?: string;
   borderStrongColor?: string;
-  // font
   fontSans?: string;
   fontHero?: string;
   fontWeightRegular?: string;
@@ -65,30 +61,24 @@ export interface DasarThemeCommon {
   fontSizeBase?: string;
   fontSizeLg?: string;
   fontSizeXl?: string;
-  // line
   lineHeightNormal?: string;
   lineHeightTight?: string;
 }
 export interface DasarThemeCommonDark {
-  // primary
   primaryColor?: string;
   primaryHoverColor?: string;
   primaryActiveColor?: string;
   primarySurfaceColor?: string;
-  // text
   textPrimaryColor?: string;
   textSecondaryColor?: string;
   textDisabledColor?: string;
   textInverseColor?: string;
-  // background
   bgWindowColor?: string;
   bgDefaultColor?: string;
   bgSurfaceColor?: string;
   bgHoverColor?: string;
-  // border
   borderSubtleColor?: string;
   borderStrongColor?: string;
-  // font
   fontSans?: string;
   fontHero?: string;
   fontSize?: string;
@@ -102,7 +92,6 @@ export interface DasarThemeCommonDark {
   fontSizeBase?: string;
   fontSizeLg?: string;
   fontSizeXl?: string;
-  // line
   lineHeightNormal?: string;
   lineHeightTight?: string;
 }
@@ -613,6 +602,7 @@ export type DasarComponentConfig = {
   icon?: DasarIconConfig;
   menu?: DasarMenuConfig;
   table?: DasarTableConfig;
+  tabs?: DasarTabsConfig;
 };
 export interface DasarThemeConfig {
   mode: DasarThemeMode;

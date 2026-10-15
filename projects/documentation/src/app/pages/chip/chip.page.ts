@@ -3,20 +3,17 @@ import { DocExampleComponent } from '../../components/doc-example.component';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-// Import Example Components
 import { ChipVariantExample } from './examples/variant/chip-variant.example';
 import { ChipAppearanceExample } from './examples/appearance/chip-appearance.example';
 import { ChipRadiusExample } from './examples/radius/chip-radius.example';
 import { ChipSizesExample } from './examples/sizes/chip-sizes.example';
 import { ChipMoreExample } from './examples/more/chip-more.example';
 
-// Variant
 // @ts-ignore - raw example
 import variantHtml from './examples/variant/chip-variant.example.html' with { loader: 'text' };
 // @ts-ignore - raw example
 import variantTs from './examples/variant/chip-variant.example.ts' with { loader: 'text' };
 
-// Appearance
 // @ts-ignore - raw example
 import appearanceHtml from './examples/appearance/chip-appearance.example.html' with {
   loader: 'text',
@@ -24,19 +21,16 @@ import appearanceHtml from './examples/appearance/chip-appearance.example.html' 
 // @ts-ignore - raw example
 import appearanceTs from './examples/appearance/chip-appearance.example.ts' with { loader: 'text' };
 
-// Radius
 // @ts-ignore - raw example
 import radiusHtml from './examples/radius/chip-radius.example.html' with { loader: 'text' };
 // @ts-ignore - raw example
 import radiusTs from './examples/radius/chip-radius.example.ts' with { loader: 'text' };
 
-// Sizes
 // @ts-ignore - raw example
 import sizesHtml from './examples/sizes/chip-sizes.example.html' with { loader: 'text' };
 // @ts-ignore - raw example
 import sizesTs from './examples/sizes/chip-sizes.example.ts' with { loader: 'text' };
 
-// More
 // @ts-ignore - raw example
 import moreHtml from './examples/more/chip-more.example.html' with { loader: 'text' };
 // @ts-ignore - raw example

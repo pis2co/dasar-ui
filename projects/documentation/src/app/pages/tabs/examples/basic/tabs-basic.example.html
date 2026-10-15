@@ -1,0 +1,13 @@
+<dasar-tabs [items]="items" [active-index]="active()" (onTabsChange)="active.set($event)">
+  @switch (active()) {
+    @case (0) {
+      <p>Overview body content.</p>
+    }
+    @case (1) {
+      <p>Details body content.</p>
+    }
+    @case (2) {
+      <p>Reviews body content.</p>
+    }
+  }
+</dasar-tabs>

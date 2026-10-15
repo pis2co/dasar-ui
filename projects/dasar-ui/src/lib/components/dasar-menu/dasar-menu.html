@@ -44,9 +44,6 @@
             (click)="onItemSelect(item, $event)"
           >
             @if (hasMenuItem) {
-              <!-- <ng-container
-                *ngTemplateOutlet="providedMenuItem; context: { $implicit: item,  index: i }"
-              ></ng-container> -->
               <ng-container
                 *ngTemplateOutlet="
                   providedMenuItem!.templateRef;

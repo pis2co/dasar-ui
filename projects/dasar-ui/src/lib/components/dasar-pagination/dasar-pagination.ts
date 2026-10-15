@@ -9,7 +9,7 @@ import {
   effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DasarButtonComponent } from '../dasar-button/dasar-button'; // Adjust path as needed
+import { DasarButtonComponent } from '../dasar-button/dasar-button';
 
 export type DasarPaginationRadiusType = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type DasarPaginationAppearanceType = 'solid' | 'subtle' | 'outline';

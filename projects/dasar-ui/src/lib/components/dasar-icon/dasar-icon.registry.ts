@@ -1,5 +1,3 @@
-// Auto-generated from @tabler/icons — do not edit manually
-// Total: 5039 icons (outline)
 export type DasarIconNodeType = [string, Record<string, string | number>][];
 
 export const ICON_REGISTRY: Record<string, DasarIconNodeType> = {

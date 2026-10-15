@@ -81,8 +81,6 @@ describe('computeSmartPlacement', () => {
 
   it('keeps the preferred placement when neither side has room', () => {
     setViewport(1024, 400);
-    // Equal room above and below (184px each) but the panel needs 308px:
-    // neither side is strictly better, so nothing flips.
     const trigger = rect({ top: 184, bottom: 216, left: 400, right: 600 });
     const panel = rect({ width: 200, height: 300 });
 

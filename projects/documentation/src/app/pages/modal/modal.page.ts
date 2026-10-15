@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
-// Import Example Components
 import { ModalBasicExample } from './examples/basic/modal-basic.example';
 import { ModalSizeExample } from './examples/size/modal-size.example';
 import { ModalAppearanceExample } from './examples/appearance/modal-appearance.example';
@@ -170,7 +169,8 @@ export class ModalDocPage {
       name: 'full-width',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Stretches the modal to the viewport minus the overlay padding. Wins over width.',
+      description:
+        'Stretches the modal to the viewport minus the overlay padding. Wins over width.',
     },
     {
       name: 'closable',
@@ -244,7 +244,8 @@ export class ModalDocPage {
       name: '[action-slot]',
       type: 'Content Slot',
       defaultValue: '-',
-      description: 'Injects footer action elements. The actions stay visible while the body scrolls.',
+      description:
+        'Injects footer action elements. The actions stay visible while the body scrolls.',
     },
     {
       name: 'default slot',

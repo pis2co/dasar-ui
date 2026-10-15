@@ -1,0 +1,16 @@
+<dasar-tabs
+  [items]="items"
+  [active-index]="active()"
+  (onTabsClick)="onClick($event)"
+  (onTabsChange)="onChange($event)"
+>
+  <p>Body of tab {{ active() + 1 }}.</p>
+</dasar-tabs>
+
+<ul style="margin: 12px 0 0; padding-left: 18px; font-family: monospace; font-size: 12px">
+  @for (event of events(); track $index) {
+    <li>{{ event }}</li>
+  } @empty {
+    <li>Click a tab to log its events.</li>
+  }
+</ul>

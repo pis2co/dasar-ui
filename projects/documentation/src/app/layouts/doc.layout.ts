@@ -191,13 +191,7 @@ export class DocsLayoutComponent {
   navigation: DocNavGroup[] = [
     {
       title: 'Getting Started',
-      items: [
-        { label: 'Introduction', route: '/components/button' },
-        // { label: 'Installation', route: '/components/installation' },
-        // { label: 'Colors', route: '/components/colors' },
-        // { label: 'Theming', route: '/components/theming' },
-        // { label: 'Changelog', route: '/components/changelog' },
-      ],
+      items: [{ label: 'Introduction', route: '/components/button' }],
     },
     {
       title: 'Basic',
@@ -210,6 +204,7 @@ export class DocsLayoutComponent {
         { label: 'Card', route: '/components/card' },
         { label: 'Modal', route: '/components/modal' },
         { label: 'Menu', route: '/components/menu' },
+        { label: 'Tabs', route: '/components/tabs' },
       ],
     },
     {

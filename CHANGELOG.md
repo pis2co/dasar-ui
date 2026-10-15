@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+
+### Breaking
+
+* `dasar-tabs` `size` now takes `ScaleAttributeType` (`none | xs | sm | md | lg | xl | full`). The previous `compact | normal` values moved to the new `spacing` input.
+* `dasar-tabs` inputs use kebab-case bindings: `[container-class]`, `[content-class]`, `[list-class]`, `[container-style]`, `[content-style]`, `[list-style]`, `[active-index]`.
+* `dasar-tabs` outputs renamed to `onTabsChange` and `onTabsClick`. `onTabsChange` no longer emits when the active tab is clicked again.
+* `DasarTabsModule` was removed, use `DasarTabsComponent`.
+
 ## [1.4.0](https://github.com/pis2co/dasar-ui/compare/v1.3.0...v1.4.0) (2026-10-15)
 
 

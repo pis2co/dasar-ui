@@ -1,18 +1,23 @@
 <div
-  class="dasar-tabs-container appearance-{{ appearance }} size-{{ size }}"
+  class="dasar-tabs-container appearance-{{ appearance }} size-{{ size }} spacing-{{
+    spacing
+  }} radius-{{ radius }}"
   [class.fluid]="fluid"
   [ngClass]="containerClass"
   [ngStyle]="containerStyle"
 >
-  <div class="dasar-tabs-list" [ngClass]="listClass" [ngStyle]="listStyle">
+  <div class="dasar-tabs-list" role="tablist" [ngClass]="listClass" [ngStyle]="listStyle">
     @if (items.length > 0) {
-      @for (item of items; track item; let i = $index) {
+      @for (item of items; track $index; let i = $index) {
         <dasar-button
           [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
           [radius]="appearance === 'outline' ? 'none' : radius"
-          [size]="size === 'compact' ? 'sm' : 'md'"
+          [size]="buttonSize"
           [class.active]="activeIndex === i"
           [fluid]="fluid"
+          role="tab"
+          [attr.aria-selected]="activeIndex === i"
+          [attr.tabindex]="activeIndex === i ? 0 : -1"
           (click)="selectTab(i)"
           class="dasar-tab-trigger-btn"
         >
@@ -24,8 +29,11 @@
         <dasar-button
           [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
           [radius]="appearance === 'outline' ? 'none' : radius"
-          [size]="size === 'compact' ? 'sm' : 'md'"
+          [size]="buttonSize"
           [class.active]="activeIndex === i"
+          role="tab"
+          [attr.aria-selected]="activeIndex === i"
+          [attr.tabindex]="activeIndex === i ? 0 : -1"
           (click)="selectTab(i)"
           [fluid]="fluid"
           class="dasar-tab-trigger-btn"
@@ -35,7 +43,7 @@
       }
     }
   </div>
-  <div class="dasar-tabs-content" [ngClass]="contentClass" [ngStyle]="contentStyle">
+  <div class="dasar-tabs-content" role="tabpanel" [ngClass]="contentClass" [ngStyle]="contentStyle">
     <ng-content></ng-content>
   </div>
 </div>

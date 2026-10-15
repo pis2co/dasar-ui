@@ -1,0 +1,13 @@
+<dasar-tabs appearance="outline" [active-index]="active()" (onTabsChange)="active.set($event)">
+  @for (tab of tabs(); track tab) {
+    <ng-template tab-item-slot>
+      <span style="display: inline-flex; align-items: center; gap: 4px">
+        {{ tab }}
+        <dasar-icon name="x" [size]="12" (click)="closeTab(tab, $event)" />
+      </span>
+    </ng-template>
+  }
+  <p>Settings for {{ tabs()[active()] ?? 'nothing' }}.</p>
+</dasar-tabs>
+
+<dasar-button size="sm" variant="ghost" (click)="addTab()">Add tab</dasar-button>

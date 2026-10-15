@@ -1,0 +1,27 @@
+<dasar-card label="Workspace settings" size="sm" spacing="compact">
+  <dasar-tabs
+    size="sm"
+    spacing="compact"
+    [active-index]="active"
+    (onTabsChange)="active = $event"
+    [items]="['Profile', 'Access', 'Billing']"
+  >
+    @switch (active) {
+      @case (0) {
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <dasar-input label="Full name" [(ngModel)]="name" />
+        </div>
+      }
+      @case (1) {
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <dasar-select label="Role" [options]="roles" [(ngModel)]="role" />
+        </div>
+      }
+      @case (2) {
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <dasar-datepicker label="Renewal date" [(ngModel)]="renewal" clearable />
+        </div>
+      }
+    }
+  </dasar-tabs>
+</dasar-card>

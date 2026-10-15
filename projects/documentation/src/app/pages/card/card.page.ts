@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
-// Import Example Components
 import { CardAppearanceExample } from './examples/appearance/card-appearance.example';
 import { CardSpacingExample } from './examples/spacing/card-spacing.example';
 import { CardSlotsExample } from './examples/slots/card-slots.example';

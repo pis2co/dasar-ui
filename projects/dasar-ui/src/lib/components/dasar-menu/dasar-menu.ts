@@ -252,7 +252,6 @@ export class DasarMenu {
     this.currentPlacement.set(this.placement);
     this.isOpen.set(true);
     this.onPanelClose.emit();
-    // Broadcast globally that this menu instance just opened
     const openEvent = new CustomEvent('dasar-menu:opened', { detail: this });
     document.dispatchEvent(openEvent);
     setTimeout(() => this.recalculatePlacement(), 0);

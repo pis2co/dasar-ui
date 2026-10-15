@@ -161,15 +161,6 @@ export class DasarThemeProviderComponent implements OnChanges {
     this.previouslyInjectedVars = [];
 
     const currentMode = this.activeMode();
-    // const baseCommonTokens =
-    //   currentMode === 'light' ? defaultLightCommonTokens : defaultDarkCommonTokens;
-    // const overrideCommonTokens = this.tokenConfig?.[currentMode]?.common || {};
-    // this.injectMappedTokens({
-    //   payload: { ...baseCommonTokens, ...overrideCommonTokens },
-    //   element: hostElement,
-    //   dictionary: commonMap,
-    //   removable: true,
-    // });
 
     const baseCommonTokens = this.parentProvider
       ? this.parentProvider.getResolvedCommonTokens(currentMode)
@@ -185,17 +176,6 @@ export class DasarThemeProviderComponent implements OnChanges {
         dictionary: commonMap,
       });
     }
-
-    // const commonTokens =
-    //   this.tokenConfig?.[currentMode]?.common ||
-    //   (currentMode === 'light' ? defaultLightCommonTokens : defaultDarkCommonTokens);
-    // if (commonTokens) {
-    //   this.injectMappedTokens({
-    //     element: hostElement,
-    //     payload: commonTokens,
-    //     dictionary: commonMap,
-    //   });
-    // }
 
     const buttonTokens = this.tokenConfig?.[currentMode]?.button || this.tokenConfig?.light?.button;
     if (buttonTokens) {
@@ -275,7 +255,6 @@ export class DasarThemeProviderComponent implements OnChanges {
         Object.entries(shades).forEach(([shadeKey, value]) => {
           if (value !== undefined && value !== null) {
             const cssVar = `--dasar-${paletteName}-${shadeKey}`;
-            // this.renderer.setStyle(element, cssVar, String(value));
             element.style.setProperty(cssVar, String(value));
             this.previouslyInjectedVars.push(cssVar);
           }

@@ -1,0 +1,6 @@
+@for (radius of radii; track radius) {
+  <p style="font-size: 12px; margin: 8px 0 4px; color: gray">{{ radius }}</p>
+  <dasar-tabs [radius]="radius" [items]="items">
+    <p>{{ radius }} body content.</p>
+  </dasar-tabs>
+}

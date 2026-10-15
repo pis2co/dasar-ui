@@ -285,7 +285,6 @@ export class DasarInput implements ControlValueAccessor {
     return stringVal;
   }
   writeValue(value: any): void {
-    // this.value = value ?? '';
     const rawString = value !== null && value !== undefined ? String(value) : '';
     this._value = this.formatValue(rawString);
     this.cdr.markForCheck();
@@ -300,9 +299,6 @@ export class DasarInput implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
   onInput(event: Event): void {
-    // const val = (event.target as HTMLInputElement).value;
-    // this.value = val;
-    // this.onChange(val);
     const inputEl = event.target as HTMLInputElement;
     const formattedVal = this.formatValue(inputEl.value);
     inputEl.value = formattedVal;
