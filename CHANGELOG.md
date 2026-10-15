@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Unreleased
+### [1.9.1](https://github.com/pis2co/dasar-ui/compare/v1.9.0...v1.9.1) (2026-10-15)
 
-### Documentation
 
-* real descriptions for the button, chip, icon and table documentation pages, replacing placeholder text.
+### Bug Fixes
+
+* docs and script publish ([1012339](https://github.com/pis2co/dasar-ui/commit/10123392d668821b282ca96d274cc5d68f799049))
 
 ## [1.9.0](https://github.com/pis2co/dasar-ui/compare/v1.7.1...v1.9.0) (2026-10-15)
 
