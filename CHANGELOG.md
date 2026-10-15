@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/pis2co/dasar-ui/compare/v2.0.3...v2.1.0) (2026-10-15)
+
+
+### Features
+
+* add alert and checkbox component ([a8bc858](https://github.com/pis2co/dasar-ui/commit/a8bc8586db1a110b14eaaebffa88b388baf3f878))
+* add breakpoint, radio and more ([24c6e54](https://github.com/pis2co/dasar-ui/commit/24c6e54eae82c71ca37d1e323abd94bfffef1900))
+
+
+### Bug Fixes
+
+* container issue on radio and checkbox component ([81d27a0](https://github.com/pis2co/dasar-ui/commit/81d27a0d4f6ff6d2073f604fcafe6ff6482a039e))
+
+### [2.0.3](https://github.com/pis2co/dasar-ui/compare/v2.0.2...v2.0.3) (2026-10-15)
+
+
+### Bug Fixes
+
+* update readme ([23e18f6](https://github.com/pis2co/dasar-ui/commit/23e18f62e4afebc966bd14023d0cb47a42573565))
+
 ### [2.0.1](https://github.com/pis2co/dasar-ui/compare/v2.0.0...v2.0.1) (2026-10-15)
 
 

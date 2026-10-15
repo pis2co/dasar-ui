@@ -1,0 +1,30 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-radio-group {
+  display: block;
+}
+
+.dasar-radio-group-container {
+  display: flex;
+
+  &.vertical {
+    flex-direction: column;
+    gap: var(--radio-group-gap, var(--space-3));
+  }
+
+  &.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--radio-group-gap, var(--space-3));
+  }
+}
+
+.dasar-radio-group-hint {
+  margin-top: var(--radio-hint-gap, 4px);
+  font-size: var(--radio-hint-font-size, 12px);
+  color: var(--radio-hint-color, var(--theme-text-secondary-color));
+
+  &.error {
+    color: var(--radio-error-color, var(--dasar-danger-base));
+  }
+}

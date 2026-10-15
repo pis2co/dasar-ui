@@ -1,0 +1,105 @@
+<docs-layout
+  title="Alert"
+  description="Shows a short, important message in one of five color variants, with an optional title, leading icon and close button. Bordered by default. Emits onClose when dismissed and onAfterLeave once the leave animation finishes, and supports [(visible)] to show it again."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic"
+  >
+    <app-alert-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: variantHtml },
+      { label: 'TypeScript', lang: 'typescript', value: variantTs },
+    ]"
+    title="Variant"
+  >
+    <app-alert-variant-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: borderedHtml },
+      { label: 'TypeScript', lang: 'typescript', value: borderedTs },
+    ]"
+    title="Bordered"
+  >
+    <app-alert-bordered-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: titleHtml },
+      { label: 'TypeScript', lang: 'typescript', value: titleTs },
+    ]"
+    title="With Title"
+  >
+    <app-alert-title-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: iconHtml },
+      { label: 'TypeScript', lang: 'typescript', value: iconTs },
+    ]"
+    title="With Icon"
+  >
+    <app-alert-icon-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: closeableHtml },
+      { label: 'TypeScript', lang: 'typescript', value: closeableTs },
+    ]"
+    title="Closeable & Events"
+  >
+    <app-alert-closeable-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: visibleHtml },
+      { label: 'TypeScript', lang: 'typescript', value: visibleTs },
+    ]"
+    title="Visible (Two-way)"
+  >
+    <app-alert-visible-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: slotsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: slotsTs },
+    ]"
+    title="Slots"
+  >
+    <app-alert-slots-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: customStyleHtml },
+      { label: 'TypeScript', lang: 'typescript', value: customStyleTs },
+    ]"
+    title="Custom Style"
+  >
+    <app-alert-custom-style-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: advancedThemeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: advancedThemeTs },
+    ]"
+    title="Advanced: Theme Defaults"
+  >
+    <app-alert-advanced-theme-example />
+  </doc-example-component>
+</docs-layout>

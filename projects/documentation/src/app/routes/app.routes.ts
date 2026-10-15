@@ -16,6 +16,10 @@ import { TableDocPage } from '../pages/table/table.page';
 import { ModalDocPage } from '../pages/modal/modal.page';
 import { ChipDocPage } from '../pages/chip/chip.page';
 import { DividerDocPage } from '../pages/divider/divider.page';
+import { AlertDocPage } from '../pages/alert/alert.page';
+import { CheckboxDocPage } from '../pages/checkbox/checkbox.page';
+import { RadioDocPage } from '../pages/radio/radio.page';
+import { BreakpointDocPage } from '../pages/breakpoint/breakpoint.page';
 import { IconDocPage } from '../pages/icon/icon.page';
 import { CardDocPage } from '../pages/card/card.page';
 import { MenuDocPage } from '../pages/menu/menu.page';
@@ -88,6 +92,26 @@ export const routes: Routes = [
     path: 'components/divider',
     component: DividerDocPage,
     title: 'Divider Docs | Dasar UI',
+  },
+  {
+    path: 'components/alert',
+    component: AlertDocPage,
+    title: 'Alert Docs | Dasar UI',
+  },
+  {
+    path: 'components/checkbox',
+    component: CheckboxDocPage,
+    title: 'Checkbox Docs | Dasar UI',
+  },
+  {
+    path: 'components/radio',
+    component: RadioDocPage,
+    title: 'Radio Docs | Dasar UI',
+  },
+  {
+    path: 'components/breakpoint',
+    component: BreakpointDocPage,
+    title: 'Breakpoint Docs | Dasar UI',
   },
   {
     path: 'components/card',

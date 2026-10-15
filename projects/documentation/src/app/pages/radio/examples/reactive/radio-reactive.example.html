@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: column; gap: 8px">
+  <dasar-radio name="tier" label="Basic" checked-value="a" [formControl]="control" />
+  <dasar-radio name="tier" label="Pro" checked-value="b" [formControl]="control" />
+  <dasar-radio name="tier" label="Enterprise" checked-value="c" [formControl]="control" />
+</div>
+
+<div style="display: flex; gap: 8px; align-items: center; margin-top: 8px">
+  <dasar-button size="sm" (click)="control.disabled ? control.enable() : control.disable()">
+    {{ control.disabled ? 'Enable' : 'Disable' }}
+  </dasar-button>
+  <span style="font-size: 12px; color: gray">value = {{ control.value }}</span>
+</div>

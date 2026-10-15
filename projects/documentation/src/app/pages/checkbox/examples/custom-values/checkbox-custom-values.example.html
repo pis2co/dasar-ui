@@ -1,0 +1,11 @@
+<dasar-checkbox
+  label="Subscribe to the newsletter"
+  checked-value="Y"
+  unchecked-value="N"
+  [value]="answer()"
+  (onUpdate)="handleUpdate($event)"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  value = {{ answer() }} (updates: {{ log().join(', ') }})
+</p>

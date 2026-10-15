@@ -1,0 +1,16 @@
+<dasar-breakpoint
+  hidden-at="xs"
+  (onMediaUpdate)="handleMedia($event)"
+  (onShow)="handleShow($event)"
+  (onHidden)="handleHidden($event)"
+>
+  <div style="padding: 8px 12px; border: 1px solid gray; border-radius: 8px">
+    Resize past 640px to trigger events.
+  </div>
+</dasar-breakpoint>
+
+<ul style="font-size: 12px; margin-top: 8px; color: gray">
+  @for (entry of log(); track entry) {
+    <li>{{ entry }}</li>
+  }
+</ul>

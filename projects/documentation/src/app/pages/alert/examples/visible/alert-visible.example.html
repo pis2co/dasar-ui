@@ -1,0 +1,16 @@
+<dasar-alert
+  closeable
+  variant="success"
+  icon-name="circle-check"
+  title="Saved"
+  [(visible)]="visible"
+>
+  Closing sets visible to false. The button below sets it back to true.
+</dasar-alert>
+
+<div style="display: flex; gap: 8px; align-items: center; margin-top: 8px">
+  <dasar-button size="sm" (click)="visible.set(!visible())">
+    {{ visible() ? 'Hide' : 'Show' }}
+  </dasar-button>
+  <span style="font-size: 12px; color: gray">visible = {{ visible() }}</span>
+</div>

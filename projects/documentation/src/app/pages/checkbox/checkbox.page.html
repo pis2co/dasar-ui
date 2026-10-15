@@ -1,0 +1,115 @@
+<docs-layout
+  title="Checkbox"
+  description="A checkbox for boolean or custom on/off values, with label, hint, error and disabled states. Works with ngModel and reactive forms. Dasar-checkbox-group combines several checkboxes into one array value, with optional value-field matching for objects."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic"
+  >
+    <app-checkbox-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: sizeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: sizeTs },
+    ]"
+    title="Size"
+  >
+    <app-checkbox-size-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: customValuesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: customValuesTs },
+    ]"
+    title="Custom Values & onUpdate"
+  >
+    <app-checkbox-custom-values-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: labelHintHtml },
+      { label: 'TypeScript', lang: 'typescript', value: labelHintTs },
+    ]"
+    title="Label & Hint"
+  >
+    <app-checkbox-label-hint-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: errorHtml },
+      { label: 'TypeScript', lang: 'typescript', value: errorTs },
+    ]"
+    title="Error"
+  >
+    <app-checkbox-error-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled"
+  >
+    <app-checkbox-disabled-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: reactiveHtml },
+      { label: 'TypeScript', lang: 'typescript', value: reactiveTs },
+    ]"
+    title="Reactive Forms"
+  >
+    <app-checkbox-reactive-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupTs },
+    ]"
+    title="Checkbox Group"
+  >
+    <app-checkbox-group-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupLayoutHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupLayoutTs },
+    ]"
+    title="Group Direction & Disabled"
+  >
+    <app-checkbox-group-layout-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupValueFieldHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupValueFieldTs },
+    ]"
+    title="Group Value Field"
+  >
+    <app-checkbox-group-value-field-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: advancedThemeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: advancedThemeTs },
+    ]"
+    title="Advanced: Theme Defaults"
+  >
+    <app-checkbox-advanced-theme-example />
+  </doc-example-component>
+</docs-layout>

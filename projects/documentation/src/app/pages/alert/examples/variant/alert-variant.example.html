@@ -1,0 +1,5 @@
+<div style="display: flex; flex-direction: column; gap: 12px">
+  @for (v of variants; track v) {
+    <dasar-alert [variant]="v" [title]="v">This is a {{ v }} alert.</dasar-alert>
+  }
+</div>

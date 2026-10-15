@@ -1,0 +1,25 @@
+<label [ngClass]="containerClasses" [ngStyle]="containerStyle">
+  <input
+    type="checkbox"
+    class="dasar-checkbox-native"
+    [checked]="isChecked"
+    [disabled]="isDisabled"
+    [attr.aria-invalid]="hasError || null"
+    (change)="toggle($event)"
+    (blur)="onTouched()"
+  />
+  <span [ngClass]="boxClasses" [ngStyle]="boxStyle" aria-hidden="true">
+    @if (isChecked) {
+      <dasar-icon name="check" size="sm" />
+    }
+  </span>
+  @if (label) {
+    <span [ngClass]="labelClasses" [ngStyle]="labelStyle">{{ label }}</span>
+  }
+  <ng-content></ng-content>
+</label>
+@if (hint) {
+  <div [ngClass]="hintClasses" [ngStyle]="hintStyle">
+    {{ hint }}
+  </div>
+}

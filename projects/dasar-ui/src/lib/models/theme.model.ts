@@ -9,6 +9,12 @@ import { DasarTableConfig } from '../components/dasar-table/dasar-table';
 import { DasarCardConfig } from '../components/dasar-card/dasar-card';
 import { DasarChipConfig } from '../components/dasar-chip/dasar-chip';
 import { DasarDividerConfig } from '../components/dasar-divider/dasar-divider';
+import { DasarAlertConfig } from '../components/dasar-alert/dasar-alert';
+import { DasarCheckboxConfig } from '../components/dasar-checkbox/dasar-checkbox';
+import { DasarCheckboxGroupConfig } from '../components/dasar-checkbox-group/dasar-checkbox-group';
+import { DasarRadioConfig } from '../components/dasar-radio/dasar-radio';
+import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-radio-group';
+import { DasarBreakpointConfig } from '../components/dasar-breakpoint/dasar-breakpoint';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
 import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
@@ -18,6 +24,13 @@ import { ScaleAttributeType } from './type.model';
 import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/dasar-list';
 
 export type DasarThemeMode = 'light' | 'dark';
+export type DasarBreakpointName = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export interface DasarThemeBreakpoints {
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+}
 export interface DasarThemeScale {
   50?: string;
   100?: string;
@@ -194,6 +207,78 @@ export interface DasarThemeButtonGroup {
   radius?: string;
   dividerColor?: string;
   focusZIndex?: string;
+}
+export interface DasarThemeAlert {
+  padding?: string;
+  gap?: string;
+  radius?: string;
+  borderWidth?: string;
+  fontSize?: string;
+  titleFontSize?: string;
+  titleFontWeight?: string;
+  titleGap?: string;
+  closePadding?: string;
+  closeHoverBg?: string;
+  leaveDuration?: string;
+  primaryBg?: string;
+  primaryColor?: string;
+  primaryBorder?: string;
+  primaryIconColor?: string;
+  secondaryBg?: string;
+  secondaryColor?: string;
+  secondaryBorder?: string;
+  secondaryIconColor?: string;
+  successBg?: string;
+  successColor?: string;
+  successBorder?: string;
+  successIconColor?: string;
+  warningBg?: string;
+  warningColor?: string;
+  warningBorder?: string;
+  warningIconColor?: string;
+  dangerBg?: string;
+  dangerColor?: string;
+  dangerBorder?: string;
+  dangerIconColor?: string;
+}
+export interface DasarThemeCheckbox {
+  gap?: string;
+  hintGap?: string;
+  sizeSm?: string;
+  sizeMd?: string;
+  sizeLg?: string;
+  radius?: string;
+  borderWidth?: string;
+  borderColor?: string;
+  bg?: string;
+  checkedBg?: string;
+  checkColor?: string;
+  focusColor?: string;
+  errorColor?: string;
+  disabledOpacity?: string;
+  labelColor?: string;
+  hintColor?: string;
+  hintFontSize?: string;
+  groupGap?: string;
+}
+export interface DasarThemeRadio {
+  gap?: string;
+  hintGap?: string;
+  sizeSm?: string;
+  sizeMd?: string;
+  sizeLg?: string;
+  dotSize?: string;
+  borderWidth?: string;
+  borderColor?: string;
+  bg?: string;
+  checkedColor?: string;
+  focusColor?: string;
+  errorColor?: string;
+  disabledOpacity?: string;
+  labelColor?: string;
+  hintColor?: string;
+  hintFontSize?: string;
+  groupGap?: string;
 }
 export interface DasarThemeDivider {
   color?: string;
@@ -701,6 +786,12 @@ export type DasarComponentConfig = {
   card?: DasarCardConfig;
   chip?: DasarChipConfig;
   divider?: DasarDividerConfig;
+  alert?: DasarAlertConfig;
+  checkbox?: DasarCheckboxConfig;
+  checkboxGroup?: DasarCheckboxGroupConfig;
+  radio?: DasarRadioConfig;
+  radioGroup?: DasarRadioGroupConfig;
+  breakpoint?: DasarBreakpointConfig;
   modal?: DasarModalConfig;
   overlay?: DasarOverlayConfig;
   icon?: DasarIconConfig;
@@ -714,6 +805,7 @@ export interface DasarThemeConfig {
   mode: DasarThemeMode;
   colors?: DasarThemeColors;
   components?: DasarComponentConfig;
+  breakpoints?: DasarThemeBreakpoints;
   tokens?: {
     light?: {
       common?: DasarThemeCommon;
@@ -724,6 +816,9 @@ export interface DasarThemeConfig {
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
       divider?: DasarThemeDivider;
+      alert?: DasarThemeAlert;
+      checkbox?: DasarThemeCheckbox;
+      radio?: DasarThemeRadio;
       select?: DasarThemeSelect;
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;
@@ -742,6 +837,9 @@ export interface DasarThemeConfig {
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
       divider?: DasarThemeDivider;
+      alert?: DasarThemeAlert;
+      checkbox?: DasarThemeCheckbox;
+      radio?: DasarThemeRadio;
       select?: DasarThemeSelect;
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;

@@ -3,6 +3,9 @@ import {
   DasarThemeButtonGroup,
   DasarThemeCalendar,
   DasarThemeDivider,
+  DasarThemeAlert,
+  DasarThemeCheckbox,
+  DasarThemeRadio,
   DasarThemeCard,
   DasarThemeChip,
   DasarThemeColors,
@@ -363,6 +366,78 @@ export const dividerMap: Record<keyof DasarThemeDivider, string> = {
   labelGap: '--divider-label-gap',
   labelOffset: '--divider-label-offset',
   verticalMinHeight: '--divider-vertical-min-height',
+};
+export const alertMap: Record<keyof DasarThemeAlert, string> = {
+  padding: '--alert-padding',
+  gap: '--alert-gap',
+  radius: '--alert-radius',
+  borderWidth: '--alert-border-width',
+  fontSize: '--alert-font-size',
+  titleFontSize: '--alert-title-font-size',
+  titleFontWeight: '--alert-title-font-weight',
+  titleGap: '--alert-title-gap',
+  closePadding: '--alert-close-padding',
+  closeHoverBg: '--alert-close-hover-bg',
+  leaveDuration: '--alert-leave-duration',
+  primaryBg: '--alert-primary-bg',
+  primaryColor: '--alert-primary-color',
+  primaryBorder: '--alert-primary-border',
+  primaryIconColor: '--alert-primary-icon-color',
+  secondaryBg: '--alert-secondary-bg',
+  secondaryColor: '--alert-secondary-color',
+  secondaryBorder: '--alert-secondary-border',
+  secondaryIconColor: '--alert-secondary-icon-color',
+  successBg: '--alert-success-bg',
+  successColor: '--alert-success-color',
+  successBorder: '--alert-success-border',
+  successIconColor: '--alert-success-icon-color',
+  warningBg: '--alert-warning-bg',
+  warningColor: '--alert-warning-color',
+  warningBorder: '--alert-warning-border',
+  warningIconColor: '--alert-warning-icon-color',
+  dangerBg: '--alert-danger-bg',
+  dangerColor: '--alert-danger-color',
+  dangerBorder: '--alert-danger-border',
+  dangerIconColor: '--alert-danger-icon-color',
+};
+export const checkboxMap: Record<keyof DasarThemeCheckbox, string> = {
+  gap: '--checkbox-gap',
+  hintGap: '--checkbox-hint-gap',
+  sizeSm: '--checkbox-size-sm',
+  sizeMd: '--checkbox-size-md',
+  sizeLg: '--checkbox-size-lg',
+  radius: '--checkbox-radius',
+  borderWidth: '--checkbox-border-width',
+  borderColor: '--checkbox-border-color',
+  bg: '--checkbox-bg',
+  checkedBg: '--checkbox-checked-bg',
+  checkColor: '--checkbox-check-color',
+  focusColor: '--checkbox-focus-color',
+  errorColor: '--checkbox-error-color',
+  disabledOpacity: '--checkbox-disabled-opacity',
+  labelColor: '--checkbox-label-color',
+  hintColor: '--checkbox-hint-color',
+  hintFontSize: '--checkbox-hint-font-size',
+  groupGap: '--checkbox-group-gap',
+};
+export const radioMap: Record<keyof DasarThemeRadio, string> = {
+  gap: '--radio-gap',
+  hintGap: '--radio-hint-gap',
+  sizeSm: '--radio-size-sm',
+  sizeMd: '--radio-size-md',
+  sizeLg: '--radio-size-lg',
+  dotSize: '--radio-dot-size',
+  borderWidth: '--radio-border-width',
+  borderColor: '--radio-border-color',
+  bg: '--radio-bg',
+  checkedColor: '--radio-checked-color',
+  focusColor: '--radio-focus-color',
+  errorColor: '--radio-error-color',
+  disabledOpacity: '--radio-disabled-opacity',
+  labelColor: '--radio-label-color',
+  hintColor: '--radio-hint-color',
+  hintFontSize: '--radio-hint-font-size',
+  groupGap: '--radio-group-gap',
 };
 export const selectMap: Record<keyof DasarThemeSelect, string> = {
   wrapperGap: '--select-wrapper-gap',
@@ -737,6 +812,15 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.divider) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.divider, dividerMap);
+    }
+    if (config.tokens?.[config.mode]?.alert) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.alert, alertMap);
+    }
+    if (config.tokens?.[config.mode]?.checkbox) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.checkbox, checkboxMap);
+    }
+    if (config.tokens?.[config.mode]?.radio) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.radio, radioMap);
     }
     if (config.tokens?.[config.mode]?.select) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.select, selectMap);

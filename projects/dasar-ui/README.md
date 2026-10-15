@@ -1,64 +1,58 @@
-# DasarUi
+# Dasar UI
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.0.
+Angular UI component library based on danarakca design system. Standalone components, SSR-safe, themeable with light and dark mode.
 
-## Code scaffolding
+[![npm version](https://img.shields.io/npm/v/dasar-ui.svg)](https://www.npmjs.com/package/dasar-ui)
+[![license](https://img.shields.io/npm/l/dasar-ui.svg)](https://github.com/pis2co/dasar-ui/blob/main/package.json)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Features
 
-```bash
-ng generate component component-name
-```
+- Standalone Angular components, no NgModule setup
+- Theming in three layers: CSS variables, theme tokens, component config
+- Light and dark mode with `data-theme="dark"`
+- SSR-safe components and documentation app
+- Design tokens for colors, typography, spacing, radius and per-component styles
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Components
 
-```bash
-ng generate --help
-```
+Button, Icon, Chip, Input, Number Input, Select, Calendar, Datepicker, Card, Modal, Overlay, Menu, Table, Tabs, List.
 
-## Building
-
-To build the library, run:
-
-```bash
-ng build dasar-ui
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-
-   ```bash
-   cd dist/dasar-ui
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Quick start
 
 ```bash
-ng test
+npm i dasar-ui
 ```
 
-## Running end-to-end tests
+```ts
+import { DasarButtonComponent } from 'dasar-ui';
 
-For end-to-end (e2e) testing, run:
+@Component({
+  imports: [DasarButtonComponent],
+  template: `<dasar-button variant="primary">Save</dasar-button>`,
+})
+export class App {}
+```
+
+Read the full guides:
+
+- [Installation](./docs/installation.md)
+- [Getting started](./docs/getting-started.md)
+- [Theming overview](https://github.com/pis2co/dasar-ui) (in the docs app: `/theming`)
+
+## Links
+
+- [Documentation app](https://github.com/pis2co/dasar-ui)
+- [npm package](https://www.npmjs.com/package/dasar-ui)
+- [Changelog](https://github.com/pis2co/dasar-ui/blob/main/CHANGELOG.md)
+- [GitHub repository](https://github.com/pis2co/dasar-ui)
+
+## Development
+
+This repository is an Angular 22 monorepo with the `dasar-ui` library and an SSR documentation app.
 
 ```bash
-ng e2e
+npm install
+npx ng build dasar-ui
+npx ng build documentation
+npx ng test dasar-ui --watch=false
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

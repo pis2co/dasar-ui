@@ -1,0 +1,7 @@
+<dasar-radio-group [(value)]="selected" value-field="id">
+  @for (city of cities; track city.id) {
+    <dasar-radio [label]="city.name" [checked-value]="city" />
+  }
+</dasar-radio-group>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">value = {{ selected().name }}</p>

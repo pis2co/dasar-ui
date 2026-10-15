@@ -104,19 +104,16 @@ export interface DocNavGroup {
       .docs-page-wrapper {
         background-color: var(--theme-bg-default-color);
         font-family: var(--font-sans);
-        overflow: hidden;
         display: flex;
         height: 100%;
       }
       .docs-sidebar {
         border-right: 1px solid var(--theme-border-subtle-color);
         background: var(--theme-bg-surface-color);
-        position: sticky;
         overflow-y: auto;
         flex-shrink: 0;
         width: 150px;
         height: 100%;
-        top: 0;
       }
       .docs-main {
         width: calc(100vw - 150px);
@@ -221,6 +218,7 @@ export class DocsLayoutComponent {
         { label: 'Icon', route: '/components/icon' },
         { label: 'Chip', route: '/components/chip' },
         { label: 'Divider', route: '/components/divider' },
+        { label: 'Alert', route: '/components/alert' },
         { label: 'Calendar', route: '/components/calendar' },
         { label: 'Datepicker', route: '/components/datepicker' },
         { label: 'Card', route: '/components/card' },
@@ -235,6 +233,9 @@ export class DocsLayoutComponent {
       items: [
         { label: 'Input', route: '/components/input' },
         { label: 'Number Input', route: '/components/number-input' },
+        { label: 'Checkbox', route: '/components/checkbox' },
+        { label: 'Radio', route: '/components/radio' },
+        { label: 'Breakpoint', route: '/components/breakpoint' },
         { label: 'Select', route: '/components/select' },
       ],
     },
