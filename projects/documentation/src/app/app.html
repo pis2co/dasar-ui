@@ -31,6 +31,9 @@
         }
       </div>
       <div class="docs-navbar-actions">
+        <dasar-button appearance="outline" variant="secondary" (click)="customizeOpen.set(true)"
+          >Customize</dasar-button
+        >
         <dasar-button
           size="md"
           radius="md"
@@ -41,35 +44,24 @@
           >Changelog</dasar-button
         >
         <dasar-button
-          size="md"
-          radius="md"
           appearance="outline"
           variant="secondary"
           icon-only
           (click)="openExternal('https://github.com/pis2co/dasar-ui')"
           aria-label="Open dasar-ui on GitHub"
-          ><dasar-icon name="brand-github" size="sm"
+          ><dasar-icon name="brand-github"
         /></dasar-button>
         <dasar-button
-          size="md"
-          radius="md"
           appearance="outline"
-          variant="secondary"
+          variant="danger"
           icon-only
           (click)="openExternal('https://www.npmjs.com/package/dasar-ui')"
           aria-label="Open dasar-ui on npm"
-          ><dasar-icon name="brand-npm" size="sm"
+          ><dasar-icon name="brand-npm"
         /></dasar-button>
-        <dasar-button
-          size="md"
-          radius="md"
-          appearance="outline"
-          variant="secondary"
-          (click)="customizeOpen.set(true)"
-          >Customize</dasar-button
-        >
-        <dasar-button size="md" radius="md" appearance="solid" (click)="customize.toggleMode()">
-          <span [ngStyle]="{ 'text-transform': 'capitalize' }">Theme: {{ customize.mode() }}</span>
+
+        <dasar-button icon-only appearance="solid" (click)="customize.toggleMode()">
+          <dasar-icon name="{{ customize.mode() == 'light' ? 'moon' : 'sun' }}" />
         </dasar-button>
       </div>
     </dasar-card>
