@@ -1,0 +1,13 @@
+<dasar-theme-provider [componentConfig]="componentConfig" [tokenConfig]="tokenConfig">
+  <dasar-list>
+    <div header-slot>From the theme provider</div>
+    @for (item of items; track item) {
+      <dasar-list-item>{{ item }}</dasar-list-item>
+    }
+  </dasar-list>
+</dasar-theme-provider>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  components.list sets size, bordered and show-divider. tokens.light.list sets the radius and the
+  header background.
+</p>

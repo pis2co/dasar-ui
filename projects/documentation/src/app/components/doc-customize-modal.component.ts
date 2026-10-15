@@ -114,6 +114,37 @@ const DEFAULT_SENTINEL = '__default__';
       </section>
 
       <section class="cm-section">
+        <h3>List</h3>
+
+        <dasar-select
+          full-width
+          label="List size"
+          [dropdown-panel-style]="panelStyle"
+          [options]="listSizeOptions"
+          [ngModel]="draft().listSize ?? sentinel"
+          (ngModelChange)="setOption('listSize', $event)"
+        ></dasar-select>
+
+        <dasar-select
+          full-width
+          label="List bordered"
+          [dropdown-panel-style]="panelStyle"
+          [options]="booleanOptions"
+          [ngModel]="booleanSentinel(draft().listBordered)"
+          (ngModelChange)="setBooleanOption('listBordered', $event)"
+        ></dasar-select>
+
+        <dasar-select
+          full-width
+          label="List show divider"
+          [dropdown-panel-style]="panelStyle"
+          [options]="booleanOptions"
+          [ngModel]="booleanSentinel(draft().listDivider)"
+          (ngModelChange)="setBooleanOption('listDivider', $event)"
+        ></dasar-select>
+      </section>
+
+      <section class="cm-section">
         <h3>Theme</h3>
 
         <div class="cm-color">
@@ -147,8 +178,11 @@ const DEFAULT_SENTINEL = '__default__';
         ></dasar-select>
       </section>
 
-      <div action-slot style="display: flex; justify-content: space-between; align-items: center;">
-        <dasar-button appearance="outline" variant="secondary" (click)="resetDraft()">
+      <div
+        action-slot
+        style="width: 100%; display: flex; gap: var(--space-base); justify-content: space-between; align-items: center;"
+      >
+        <dasar-button appearance="outline" variant="danger" (click)="resetDraft()">
           Reset to defaults
         </dasar-button>
         <span class="cm-spacer"></span>
@@ -270,6 +304,17 @@ export class DocCustomizeModalComponent implements OnChanges {
     { label: 'Normal', value: 'normal' },
     { label: 'Compact', value: 'compact' },
   ];
+  readonly listSizeOptions: DasarModalOption[] = [
+    { label: 'Default', value: DEFAULT_SENTINEL },
+    { label: 'Sm', value: 'sm' },
+    { label: 'Md', value: 'md' },
+    { label: 'Lg', value: 'lg' },
+  ];
+  readonly booleanOptions: DasarModalOption[] = [
+    { label: 'Default', value: DEFAULT_SENTINEL },
+    { label: 'On', value: 'true' },
+    { label: 'Off', value: 'false' },
+  ];
   readonly fontSizeOptions: DasarModalOption[] = [
     { label: 'Default', value: DEFAULT_SENTINEL },
     { label: '12px', value: '12px' },
@@ -297,6 +342,15 @@ export class DocCustomizeModalComponent implements OnChanges {
 
   setOption<K extends keyof DocCustomizeSettings>(key: K, value: unknown) {
     this.set(key, (value === DEFAULT_SENTINEL ? null : value) as DocCustomizeSettings[K]);
+  }
+
+  setBooleanOption<K extends keyof DocCustomizeSettings>(key: K, value: unknown) {
+    const parsed = value === DEFAULT_SENTINEL ? null : String(value) === 'true';
+    this.set(key, parsed as DocCustomizeSettings[K]);
+  }
+
+  booleanSentinel(value: boolean | null): string {
+    return value === null ? DEFAULT_SENTINEL : String(value);
   }
 
   resetDraft() {

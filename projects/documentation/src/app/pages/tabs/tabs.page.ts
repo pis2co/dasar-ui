@@ -323,6 +323,13 @@ export class TabsDocPage {
       description: 'Replaces the content of the right arrow button.',
     },
     {
+      name: 'theme tokens',
+      type: 'DasarThemeTabs',
+      defaultValue: '-',
+      description:
+        'Set through tokens.light.tabs (or tokens.dark.tabs) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Each key writes one CSS variable, for example gapNormal -> --tabs-gap-normal and scrollFade -> --tabs-scroll-fade.',
+    },
+    {
       name: '[tab-item-slot]',
       type: 'Content Slot',
       defaultValue: '-',

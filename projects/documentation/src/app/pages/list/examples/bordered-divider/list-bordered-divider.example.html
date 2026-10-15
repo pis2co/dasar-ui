@@ -1,0 +1,20 @@
+<p style="font-size: 12px; margin: 8px 0 4px; color: gray">bordered</p>
+<dasar-list bordered>
+  @for (item of items; track item) {
+    <dasar-list-item>{{ item }}</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin: 8px 0 4px; color: gray">show-divider</p>
+<dasar-list show-divider>
+  @for (item of items; track item) {
+    <dasar-list-item>{{ item }}</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin: 8px 0 4px; color: gray">bordered + show-divider</p>
+<dasar-list bordered show-divider>
+  @for (item of items; track item) {
+    <dasar-list-item>{{ item }}</dasar-list-item>
+  }
+</dasar-list>

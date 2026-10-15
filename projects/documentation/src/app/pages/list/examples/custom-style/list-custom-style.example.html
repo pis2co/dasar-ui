@@ -1,0 +1,11 @@
+<dasar-list bordered show-divider container-class="my-list" [container-style]="containerStyle">
+  @for (item of items; track item; let i = $index) {
+    <dasar-list-item [item-style]="i === 1 ? highlightStyle : null">
+      <span class="my-list-label">{{ item }}</span>
+    </dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  container-style caps the width at 320px, and the second row uses item-style for a highlight.
+</p>

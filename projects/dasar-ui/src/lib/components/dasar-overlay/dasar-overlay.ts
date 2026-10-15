@@ -39,14 +39,14 @@ export class DasarOverlay {
   @Input() blur = resolveThemeDefault(
     'overlay',
     'blur',
-    '4px',
+    null as string | null,
     this.themeProvider,
     this.themeService,
   );
   @Input() background = resolveThemeDefault(
     'overlay',
     'background',
-    'rgba(0, 0, 0, 0.45)',
+    null as string | null,
     this.themeProvider,
     this.themeService,
   );

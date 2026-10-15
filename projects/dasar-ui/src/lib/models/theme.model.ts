@@ -607,6 +607,64 @@ export interface DasarThemeList {
   prefixColor?: string;
   suffixColor?: string;
 }
+export interface DasarThemeTabs {
+  listPaddingNormal?: string;
+  listPaddingCompact?: string;
+  gapNormal?: string;
+  gapCompact?: string;
+  contentGapNormal?: string;
+  contentGapCompact?: string;
+  listRadiusNone?: string;
+  listRadiusXs?: string;
+  listRadiusSm?: string;
+  listRadiusMd?: string;
+  listRadiusLg?: string;
+  listRadiusXl?: string;
+  listRadiusFull?: string;
+  scrollGap?: string;
+  scrollFade?: string;
+  scrollBtnPaddingX?: string;
+}
+export interface DasarThemeOverlay {
+  background?: string;
+  blur?: string;
+}
+export interface DasarThemeModal {
+  background?: string;
+  bodyColor?: string;
+  titleColor?: string;
+  titleFontWeight?: string;
+  headerBorder?: string;
+  actionsBackground?: string;
+  actionsBorder?: string;
+  actionsGap?: string;
+  outlineBorder?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
+  widthSm?: string;
+  widthMd?: string;
+  widthLg?: string;
+  fontSizeXs?: string;
+  fontSizeSm?: string;
+  fontSizeMd?: string;
+  fontSizeLg?: string;
+  fontSizeXl?: string;
+  radiusNone?: string;
+  radiusXs?: string;
+  radiusSm?: string;
+  radiusMd?: string;
+  radiusLg?: string;
+  radiusXl?: string;
+  radiusFull?: string;
+  compactHeaderPadding?: string;
+  compactBodyPadding?: string;
+  compactActionsPadding?: string;
+  normalHeaderPaddingHorizontal?: string;
+  normalHeaderPaddingVertical?: string;
+  normalBodyPaddingHorizontal?: string;
+  normalBodyPaddingVertical?: string;
+  normalActionsPadding?: string;
+}
 export interface DasarComponentCommonConfig {
   size?: Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   radius?: ScaleAttributeType;
@@ -648,6 +706,9 @@ export interface DasarThemeConfig {
       menu?: DasarThemeMenu;
       table?: DasarThemeTable;
       list?: DasarThemeList;
+      tabs?: DasarThemeTabs;
+      overlay?: DasarThemeOverlay;
+      modal?: DasarThemeModal;
     };
     dark?: {
       common?: DasarThemeCommon;
@@ -661,6 +722,9 @@ export interface DasarThemeConfig {
       menu?: DasarThemeMenu;
       table?: DasarThemeTable;
       list?: DasarThemeList;
+      tabs?: DasarThemeTabs;
+      overlay?: DasarThemeOverlay;
+      modal?: DasarThemeModal;
     };
   };
 }

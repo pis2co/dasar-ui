@@ -234,14 +234,14 @@ export class DasarModal implements OnChanges, OnDestroy {
   @Input({ alias: 'overlay-blur' }) overlayBlur = resolveThemeDefault(
     'modal',
     'overlayBlur',
-    '4px',
+    null as string | null,
     this.themeProvider,
     this.themeService,
   );
   @Input({ alias: 'overlay-background' }) overlayBackground = resolveThemeDefault(
     'modal',
     'overlayBackground',
-    'rgba(0, 0, 0, 0.45)',
+    null as string | null,
     this.themeProvider,
     this.themeService,
   );

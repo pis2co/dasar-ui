@@ -1,0 +1,20 @@
+<dasar-list clickable hoverable bordered>
+  @for (item of items; track item.id) {
+    <dasar-list-item
+      (click)="select(item.id)"
+      [item-style]="{
+        'background-color': selected() === item.id ? 'var(--theme-primary-surface-color)' : '',
+        'font-weight': selected() === item.id ? '600' : '',
+      }"
+    >
+      <div class="dasar-list-item-body">
+        <span>{{ item.name }}</span>
+        <span style="font-size: 12px; color: gray">{{ item.role }}</span>
+      </div>
+    </dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Selected: {{ selected() ?? 'none' }}. Click the row again to clear it.
+</p>

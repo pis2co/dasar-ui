@@ -14,6 +14,9 @@ export interface DocCustomizeSettings {
   tabsAppearance: 'solid' | 'subtle' | 'outline' | null;
   tabsSize: DocSize | null;
   tabsSpacing: 'normal' | 'compact' | null;
+  listSize: 'sm' | 'md' | 'lg' | null;
+  listBordered: boolean | null;
+  listDivider: boolean | null;
   primaryColor: string | null;
   fontSizeBase: string | null;
   fontSans: string | null;
@@ -28,6 +31,9 @@ export const DOC_DEFAULT_SETTINGS: DocCustomizeSettings = {
   tabsAppearance: null,
   tabsSize: null,
   tabsSpacing: null,
+  listSize: null,
+  listBordered: null,
+  listDivider: null,
   primaryColor: null,
   fontSizeBase: null,
   fontSans: null,
@@ -57,6 +63,12 @@ export class DocCustomizeService {
       if (s.tabsAppearance) config.tabs.appearance = s.tabsAppearance;
       if (s.tabsSize) config.tabs.size = s.tabsSize;
       if (s.tabsSpacing) config.tabs.spacing = s.tabsSpacing;
+    }
+    if (s.listSize || s.listBordered !== null || s.listDivider !== null) {
+      config.list = {};
+      if (s.listSize) config.list.size = s.listSize;
+      if (s.listBordered !== null) config.list.bordered = s.listBordered;
+      if (s.listDivider !== null) config.list.showDivider = s.listDivider;
     }
     return config;
   });
