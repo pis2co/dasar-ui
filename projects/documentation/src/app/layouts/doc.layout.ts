@@ -65,6 +65,7 @@ export interface DocNavGroup {
           <div class="docs-content">
             <ng-content></ng-content>
           </div>
+          <br />
           @if (apiData && apiData.length > 0) {
             <div class="api-reference-section">
               <h2 class="api-title">API Reference</h2>
@@ -173,7 +174,7 @@ export interface DocNavGroup {
       .api-title {
         font-weight: var(--font-weight-semibold);
         color: var(--theme-text-primary-color);
-        margin: 0 0 var(--space-6) 0;
+        margin: var(--space-base) 0;
         border-bottom: 1px solid var(--theme-border-subtle-color);
       }
       .api-reference-section code {

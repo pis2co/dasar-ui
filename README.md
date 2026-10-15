@@ -48,8 +48,8 @@ Read the full guides:
 
 ## Contributors
 
-- <a href="https://github.com/pis2co"><img src="https://github.com/pis2co.png?size=40" width="32" height="32" alt="pis2co" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /></a> **[pis2co](https://github.com/pis2co)** — Organization and maintainer
-- <a href="https://github.com/dxxta"><img src="https://github.com/dxxta.png?size=40" width="32" height="32" alt="dxxta" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /></a> **[dxxta](https://github.com/dxxta)** — Author and maintainer
+- <a href="https://github.com/pis2co"><div style="display: flex; align-items: center;"><img src="https://github.com/pis2co.png?size=40" width="32" height="32" alt="pis2co" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /><span>**[pis2co](https://github.com/pis2co)**, Organization and maintainer</span></div></a>
+- <a href="https://github.com/dxxta"><div style="display: flex; align-items: center;"><img src="https://github.com/dxxta.png?size=40" width="32" height="32" alt="dxxta" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /><span>**[dxxta](https://github.com/dxxta)**, Author and maintainer</span></div></a>
 
 Contributions are welcome for apbn core team. Open an issue or a pull request on [GitHub](https://github.com/pis2co/dasar-ui).
 
