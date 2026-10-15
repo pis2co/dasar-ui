@@ -59,6 +59,8 @@ export class DasarNumberInputDecrementSlot {}
 @Directive({ selector: '[increment-slot]', standalone: true })
 export class DasarNumberInputIncrementSlot {}
 
+let nextDasarNumberInputId = 0;
+
 @Component({
   providers: [
     {
@@ -226,6 +228,8 @@ export class DasarNumberInput implements ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+
+  readonly hintId = `dasar-number-input-hint-${++nextDasarNumberInputId}`;
   @Input({ alias: 'hide-overflow', transform: booleanAttribute }) hideOverflow =
     resolveThemeDefault('card', 'hideOverflow', false, this.themeProvider, this.themeService);
 

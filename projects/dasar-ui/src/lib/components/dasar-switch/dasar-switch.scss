@@ -2,6 +2,8 @@
 
 .dasar-switch {
   display: inline-flex;
+  flex-direction: column;
+  gap: var(--switch-hint-gap, 4px);
   vertical-align: middle;
 }
 
@@ -36,6 +38,11 @@
 
   &.checked {
     background-color: var(--switch-track-checked-bg, var(--theme-primary-color));
+  }
+
+  .dasar-switch.error &,
+  &.error {
+    box-shadow: 0 0 0 2px var(--switch-error-color, var(--theme-danger-color));
   }
 
   &:focus-visible {
@@ -109,4 +116,17 @@
 .dasar-switch-label {
   color: var(--switch-label-color, var(--theme-text-primary-color));
   font-size: var(--switch-label-font-size, inherit);
+}
+
+.dasar-switch-hint {
+  font-size: var(--switch-hint-font-size, 12px);
+  color: var(--switch-hint-color, var(--theme-text-secondary-color));
+
+  &.error {
+    color: var(--switch-hint-error-color, var(--theme-danger-color));
+  }
+
+  &.disabled {
+    opacity: var(--switch-disabled-opacity, 0.5);
+  }
 }

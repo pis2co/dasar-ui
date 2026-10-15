@@ -39,6 +39,8 @@ export interface DasarRadioGroupConfig {
 
 let nextRadioGroupId = 0;
 
+let nextDasarRadioGroupHintId = 0;
+
 const keyOf = (value: any, valueField: string | null): any => {
   if (valueField && value !== null && value !== undefined && typeof value === 'object') {
     return value[valueField];
@@ -194,6 +196,8 @@ export class DasarRadioGroup implements ControlValueAccessor {
     this.themeService,
   );
 
+  readonly hintId = `dasar-radio-group-hint-${++nextDasarRadioGroupHintId}`;
+
   @Output() valueChange = new EventEmitter<any>();
   @Output() onUpdate = new EventEmitter<any>();
 
@@ -210,16 +214,22 @@ export class DasarRadioGroup implements ControlValueAccessor {
     return 'radiogroup';
   }
 
+  @HostBinding('attr.aria-describedby')
+  get describedBy(): string | null {
+    return this.hint ? this.hintId : null;
+  }
+
   @HostListener('focusout')
   onFocusOut() {
     this.onTouched();
   }
 
-  get containerClasses(): Record<string, boolean> {
-    const overrideClass = parseClassesToArray(this.containerClass);
+  get hintClasses(): Record<string, boolean> {
+    const error = this.ownError();
+    const overrideClass = parseClassesToArray(this.hintClass);
     const baseClass = {
-      'dasar-radio-group-container': true,
-      [this.direction]: true,
+      'dasar-radio-group-hint': true,
+      error,
     };
     if (overrideClass && overrideClass?.length > 0) {
       return {
@@ -230,11 +240,11 @@ export class DasarRadioGroup implements ControlValueAccessor {
     return baseClass;
   }
 
-  get hintClasses(): Record<string, boolean> {
-    const overrideClass = parseClassesToArray(this.hintClass);
+  get containerClasses(): Record<string, boolean> {
+    const overrideClass = parseClassesToArray(this.containerClass);
     const baseClass = {
-      'dasar-radio-group-hint': true,
-      error: this.ownError(),
+      'dasar-radio-group-container': true,
+      [this.direction]: true,
     };
     if (overrideClass && overrideClass?.length > 0) {
       return {

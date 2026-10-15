@@ -23,6 +23,8 @@
     [class.open]="isOpen"
     [ngClass]="containerClass"
     [ngStyle]="containerStyle"
+    [attr.aria-invalid]="error || null"
+    [attr.aria-describedby]="hint ? hintId : null"
     (click)="toggleDropdown()"
   >
     <ng-content select="[prefix-slot]"></ng-content>
@@ -182,7 +184,14 @@
     </div>
   }
   @if (hint) {
-    <div class="dasar-select-hint" [class.error]="error" [class.disabled]="disabled">
+    <div
+      class="dasar-select-hint"
+      [id]="hintId"
+      [class.error]="error"
+      [class.disabled]="disabled"
+      [ngClass]="hintClass"
+      [ngStyle]="hintStyle"
+    >
       {{ hint }}
     </div>
   }

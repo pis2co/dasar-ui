@@ -12,6 +12,8 @@ import { DasarSelect, DasarSelectComponent } from './dasar-select';
       [radius]="radius()"
       [placement]="placement()"
       [options]="options"
+      [hint]="hint()"
+      [error]="error()"
       [ngModel]="value"
     />
   `,
@@ -20,6 +22,8 @@ class SelectHost {
   size = signal<'sm' | 'md' | 'lg'>('sm');
   radius = signal<'none' | 'md' | 'lg' | 'full'>('lg');
   placement = signal<'bottom-start' | 'top-start'>('bottom-start');
+  hint = signal<string | undefined>(undefined);
+  error = signal(false);
   value = '';
   options = [
     { label: 'Alpha', value: 'a', iconName: 'info-circle' },
@@ -93,5 +97,18 @@ describe('DasarSelect', () => {
 
     const svg = panel().querySelector('.dasar-select-option dasar-icon svg') as SVGElement;
     expect(svg.getAttribute('width')).toBe('14');
+  });
+
+  it('renders the hint and marks it as an error', async () => {
+    host.hint.set('Pick a valid option.');
+    host.error.set(true);
+    await fixture.whenStable();
+
+    const hint = fixture.nativeElement.querySelector('.dasar-select-hint') as HTMLElement;
+    expect(hint?.textContent).toContain('Pick a valid option.');
+    expect(hint.classList).toContain('error');
+    expect(hint.getAttribute('id')).toBe(component.hintId);
+    expect(container().getAttribute('aria-invalid')).toBe('true');
+    expect(container().getAttribute('aria-describedby')).toBe(component.hintId);
   });
 });

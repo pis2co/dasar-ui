@@ -5,6 +5,8 @@
     [ngClass]="trackClasses"
     [ngStyle]="trackStyle"
     [attr.aria-checked]="isChecked"
+    [attr.aria-invalid]="error || null"
+    [attr.aria-describedby]="hint ? hintId : null"
     [attr.aria-label]="label || null"
     [disabled]="isDisabled"
     (click)="toggle($event)"
@@ -46,3 +48,8 @@
     <span class="dasar-switch-label">{{ label }}</span>
   }
 </label>
+@if (hint) {
+  <div [id]="hintId" [ngClass]="hintClasses" [ngStyle]="hintStyle">
+    {{ hint }}
+  </div>
+}

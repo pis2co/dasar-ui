@@ -2,7 +2,7 @@
   <ng-content></ng-content>
 </div>
 @if (hint) {
-  <div [ngClass]="hintClasses" [ngStyle]="hintStyle">
+  <div [id]="hintId" [ngClass]="hintClasses" [ngStyle]="hintStyle">
     {{ hint }}
   </div>
 }

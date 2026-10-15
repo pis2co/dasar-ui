@@ -147,16 +147,22 @@ export class RadioDocPage {
 
   protected readonly apiProps: DocApiProperty[] = [
     {
-      name: 'dasar-radio: size',
+      name: 'size',
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Size of the radio.',
     },
     {
-      name: 'dasar-radio: label',
+      name: 'label',
       type: 'string',
       defaultValue: "''",
       description: 'Label text next to the circle.',
+    },
+    {
+      name: 'error',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Error styling for the circle and hint.',
     },
     {
       name: 'dasar-radio: hint',
@@ -165,25 +171,19 @@ export class RadioDocPage {
       description: 'Helper text under the radio.',
     },
     {
-      name: 'dasar-radio: error',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Error styling for the circle and hint.',
-    },
-    {
-      name: 'dasar-radio: disabled',
+      name: 'disabled',
       type: 'boolean',
       defaultValue: 'false',
       description: 'Disables the radio.',
     },
     {
-      name: 'dasar-radio: checked-value',
+      name: 'checked-value',
       type: 'any',
       defaultValue: 'true',
       description: 'Value of this option. Selected when value matches it.',
     },
     {
-      name: 'dasar-radio: name',
+      name: 'name',
       type: 'string | null',
       defaultValue: 'null',
       description:
@@ -203,13 +203,13 @@ export class RadioDocPage {
       description: 'Classes for the radio parts.',
     },
     {
-      name: 'dasar-radio: container-style / circle-style / label-style / hint-style',
+      name: 'container-style / circle-style / label-style / hint-style',
       type: 'object',
       defaultValue: 'null',
       description: 'Inline styles for the radio parts.',
     },
     {
-      name: 'dasar-radio: (onUpdate)',
+      name: '(onUpdate)',
       type: 'EventEmitter<any>',
       defaultValue: '-',
       description:
@@ -222,13 +222,13 @@ export class RadioDocPage {
       description: 'Fires with checked-value. Used by [(value)] and forms.',
     },
     {
-      name: 'dasar-radio: default slot',
+      name: 'default slot',
       type: 'Content Slot',
       defaultValue: '-',
       description: 'Extra content after the label.',
     },
     {
-      name: 'dasar-radio-group: value / [(value)]',
+      name: 'roup: value / [(value)]',
       type: 'any',
       defaultValue: 'null',
       description: 'Selected value. Overrides every child state.',

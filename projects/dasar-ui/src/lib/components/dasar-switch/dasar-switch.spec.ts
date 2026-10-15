@@ -17,6 +17,8 @@ import { DasarSwitch, DasarSwitchComponent, DasarSwitchSizeType } from './dasar-
     (valueChange)="value.set($event)"
     (onUpdate)="updates.set([...updates(), $event])"
     [disabled]="disabled()"
+    [error]="error()"
+    [hint]="hint()"
     [size]="size()"
     [checked-value]="cv()"
     [unchecked-value]="ucv()"
@@ -28,6 +30,8 @@ import { DasarSwitch, DasarSwitchComponent, DasarSwitchSizeType } from './dasar-
 class SwitchHost {
   value = signal<any>(false);
   disabled = signal(false);
+  error = signal(false);
+  hint = signal('');
   size = signal<DasarSwitchSizeType>('md');
   cv = signal<any>(true);
   ucv = signal<any>(false);
@@ -191,6 +195,29 @@ describe('DasarSwitch', () => {
     expect(fixture.componentInstance.updates()).toEqual([]);
     expect((trackOf(fixture) as HTMLButtonElement).disabled).toBe(true);
     expect(fixture.nativeElement.querySelector('.dasar-switch').classList).toContain('disabled');
+  });
+
+  it('applies error styling and aria-invalid', async () => {
+    fixture.componentInstance.error.set(true);
+    await fixture.whenStable();
+
+    expect(fixture.nativeElement.querySelector('.dasar-switch').classList).toContain('error');
+    expect(trackOf(fixture).getAttribute('aria-invalid')).toBe('true');
+  });
+
+  it('renders the hint and marks it as an error', async () => {
+    fixture.componentInstance.hint.set('Extra verification step.');
+    fixture.componentInstance.error.set(true);
+    await fixture.whenStable();
+
+    const hint = fixture.nativeElement.querySelector('.dasar-switch-hint') as HTMLElement;
+    expect(hint?.textContent).toContain('Extra verification step.');
+    expect(hint.classList).toContain('error');
+    expect(trackOf(fixture).getAttribute('aria-describedby')).toBe(hint.getAttribute('id'));
+  });
+
+  it('reads hint from the component config', () => {
+    expect(switchOf(fixture).hint).toBe('');
   });
 
   it('toggles on Space and Enter', async () => {
@@ -414,5 +441,10 @@ describe('switchMap tokens', () => {
     expect(switchMap['disabledOpacity']).toBe('--switch-disabled-opacity');
     expect(switchMap['labelColor']).toBe('--switch-label-color');
     expect(switchMap['labelFontSize']).toBe('--switch-label-font-size');
+    expect(switchMap['errorColor']).toBe('--switch-error-color');
+    expect(switchMap['hintGap']).toBe('--switch-hint-gap');
+    expect(switchMap['hintColor']).toBe('--switch-hint-color');
+    expect(switchMap['hintFontSize']).toBe('--switch-hint-font-size');
+    expect(switchMap['hintErrorColor']).toBe('--switch-hint-error-color');
   });
 });

@@ -172,6 +172,11 @@ describe('DasarRadio', () => {
     expect(fixture.nativeElement.querySelector('.dasar-radio-hint')?.textContent).toContain(
       'Choose one',
     );
+    expect(fixture.nativeElement.querySelector('.dasar-radio-hint')?.classList).toContain('error');
+    const hintId = (hostOf(fixture).querySelector('.dasar-radio-hint') as HTMLElement).getAttribute(
+      'id',
+    );
+    expect(nativeOf(fixture).getAttribute('aria-describedby')).toBe(hintId);
   });
 
   it('applies the lg size class', async () => {

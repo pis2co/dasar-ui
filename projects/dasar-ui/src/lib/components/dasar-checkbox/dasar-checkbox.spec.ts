@@ -165,6 +165,13 @@ describe('DasarCheckbox', () => {
     expect(fixture.nativeElement.querySelector('.dasar-checkbox-hint')?.textContent).toContain(
       'Required field',
     );
+    expect(fixture.nativeElement.querySelector('.dasar-checkbox-hint')?.classList).toContain(
+      'error',
+    );
+    const hintId = (
+      hostOf(fixture).querySelector('.dasar-checkbox-hint') as HTMLElement
+    ).getAttribute('id');
+    expect(nativeOf(fixture).getAttribute('aria-describedby')).toBe(hintId);
   });
 
   it('applies the lg size class', async () => {

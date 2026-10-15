@@ -17,6 +17,7 @@ export * from './lib/components/dasar-divider/dasar-divider';
 export * from './lib/components/dasar-alert/dasar-alert';
 export * from './lib/components/dasar-checkbox/dasar-checkbox';
 export * from './lib/components/dasar-switch/dasar-switch';
+export * from './lib/components/dasar-skeleton/dasar-skeleton';
 export * from './lib/components/dasar-checkbox-group/dasar-checkbox-group';
 export * from './lib/components/dasar-radio/dasar-radio';
 export * from './lib/components/dasar-radio-group/dasar-radio-group';

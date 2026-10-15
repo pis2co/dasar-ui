@@ -116,7 +116,7 @@ export class InputDocPage {
       name: 'hint',
       type: 'string',
       defaultValue: 'undefined',
-      description: 'Helper text rendered below the input.',
+      description: 'Helper text rendered below the input. Turns red when error is set.',
     },
     {
       name: 'placeholder',

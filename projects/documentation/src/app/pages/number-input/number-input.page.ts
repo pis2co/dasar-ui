@@ -99,8 +99,13 @@ export class NumberInputDocPage {
       description: 'Constraint limits.',
     },
     { name: 'label', type: 'string', defaultValue: 'undefined', description: 'Text label.' },
-    { name: 'hint', type: 'string', defaultValue: 'undefined', description: 'Helper text.' },
     { name: 'placeholder', type: 'string', defaultValue: "''", description: 'Placeholder string.' },
+    {
+      name: 'hint',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Helper text. Turns red when error is set.',
+    },
     {
       name: 'full-width',
       type: 'boolean',

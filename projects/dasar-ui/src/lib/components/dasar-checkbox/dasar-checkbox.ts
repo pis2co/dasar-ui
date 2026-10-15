@@ -46,6 +46,8 @@ export interface DasarCheckboxConfig {
   hintStyle?: StyleType;
 }
 
+let nextDasarCheckboxId = 0;
+
 export const isEqualValue = (first: any, second: any): boolean => {
   if (first === second) return true;
   if (
@@ -204,6 +206,8 @@ export class DasarCheckbox implements ControlValueAccessor {
     this.themeService,
   );
 
+  readonly hintId = `dasar-checkbox-hint-${++nextDasarCheckboxId}`;
+
   @Output() valueChange = new EventEmitter<any>();
   @Output() onUpdate = new EventEmitter<any>();
 
@@ -277,11 +281,13 @@ export class DasarCheckbox implements ControlValueAccessor {
   }
 
   get hintClasses(): Record<string, boolean> {
+    const disabled = this.isDisabled;
+    const error = this.hasError;
     const overrideClass = parseClassesToArray(this.hintClass);
     const baseClass = {
       'dasar-checkbox-hint': true,
-      error: this.hasError,
-      disabled: this.isDisabled,
+      error,
+      disabled,
     };
     if (overrideClass && overrideClass?.length > 0) {
       return {

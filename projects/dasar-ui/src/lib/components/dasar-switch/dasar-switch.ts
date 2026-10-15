@@ -27,16 +27,20 @@ export type DasarSwitchSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'
 export interface DasarSwitchConfig {
   size?: DasarSwitchSizeType;
   disabled?: boolean;
+  error?: boolean;
   checkedValue?: any;
   uncheckedValue?: any;
   defaultValue?: any;
   checkedIconName?: string;
   uncheckedIconName?: string;
   label?: string;
+  hint?: string;
   containerClass?: ClassType;
   containerStyle?: StyleType;
   trackClass?: ClassType;
   trackStyle?: StyleType;
+  hintClass?: ClassType;
+  hintStyle?: StyleType;
 }
 
 @Directive({ selector: '[checked-slot]', standalone: true })
@@ -53,6 +57,8 @@ export class DasarSwitchCheckedIconSlot {}
 
 @Directive({ selector: '[unchecked-icon-slot]', standalone: true })
 export class DasarSwitchUncheckedIconSlot {}
+
+let nextDasarSwitchId = 0;
 
 @Component({
   providers: [
@@ -91,6 +97,13 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
     'switch',
     'size',
     'md' as DasarSwitchSizeType,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ transform: booleanAttribute }) error = resolveThemeDefault(
+    'switch',
+    'error',
+    false,
     this.themeProvider,
     this.themeService,
   );
@@ -179,6 +192,23 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
     this.themeProvider,
     this.themeService,
   );
+  @Input() hint = resolveThemeDefault('switch', 'hint', '', this.themeProvider, this.themeService);
+  @Input({ alias: 'hint-class' }) hintClass = resolveThemeDefault(
+    'switch',
+    'hintClass',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'hint-style' }) hintStyle = resolveThemeDefault(
+    'switch',
+    'hintStyle',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
+
+  readonly hintId = `dasar-switch-hint-${++nextDasarSwitchId}`;
 
   @Output() valueChange = new EventEmitter<any>();
   @Output() onUpdate = new EventEmitter<any>();
@@ -188,6 +218,7 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
     const classes = ['dasar-switch', this.size];
     if (this.isChecked) classes.push('checked');
     if (this.isDisabled) classes.push('disabled');
+    if (this.error) classes.push('error');
     return classes.join(' ');
   }
 
@@ -209,6 +240,25 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
       'dasar-switch-container': true,
       checked: this.isChecked,
       disabled: this.isDisabled,
+      error: this.error,
+    };
+    if (overrideClass && overrideClass?.length > 0) {
+      return {
+        ...baseClass,
+        ...Object.fromEntries(overrideClass.map((name) => [name, true])),
+      };
+    }
+    return baseClass;
+  }
+
+  get hintClasses(): Record<string, boolean> {
+    const disabled = this.isDisabled;
+    const error = this.error;
+    const overrideClass = parseClassesToArray(this.hintClass);
+    const baseClass = {
+      'dasar-switch-hint': true,
+      error,
+      disabled,
     };
     if (overrideClass && overrideClass?.length > 0) {
       return {

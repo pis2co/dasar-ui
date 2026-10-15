@@ -11,6 +11,8 @@ import { DasarDatepicker, DasarDatepickerComponent } from './dasar-datepicker';
       [radius]="radius()"
       [placement]="placement()"
       [value]="value()"
+      [hint]="hint()"
+      [error]="error()"
       clearable
       placeholder="Pick a date"
     />
@@ -21,6 +23,8 @@ class DatepickerHost {
   radius = signal<'none' | 'md' | 'lg' | 'full'>('lg');
   placement = signal<'bottom-start' | 'top-start'>('bottom-start');
   value = signal<string | null>(null);
+  hint = signal<string | undefined>(undefined);
+  error = signal(false);
 }
 
 describe('DasarDatepicker', () => {
@@ -89,5 +93,44 @@ describe('DasarDatepicker', () => {
 
   it('renders no dropdown while closed', () => {
     expect(dropdown()).toBeNull();
+  });
+
+  it('renders the hint and marks it as an error', async () => {
+    host.hint.set('Pick a future date.');
+    host.error.set(true);
+    await fixture.whenStable();
+
+    const hint = fixture.nativeElement.querySelector('.hint-wrapper') as HTMLElement;
+    expect(hint?.textContent).toContain('Pick a future date.');
+    expect(hint.classList).toContain('error');
+    expect(hint.getAttribute('id')).toBe(component.hintId);
+    expect(trigger().getAttribute('aria-invalid')).toBe('true');
+    expect(trigger().getAttribute('aria-describedby')).toBe(component.hintId);
+  });
+});
+
+@Component({
+  standalone: true,
+  imports: [DasarDatepickerComponent],
+  template: `
+    <dasar-datepicker>
+      <span hint-slot>Business days only.</span>
+    </dasar-datepicker>
+  `,
+})
+class DatepickerHintSlotHost {}
+
+describe('DasarDatepicker hint slot', () => {
+  it('projects the hint slot content', async () => {
+    await TestBed.configureTestingModule({
+      imports: [DatepickerHintSlotHost],
+    }).compileComponents();
+
+    const slotFixture = TestBed.createComponent(DatepickerHintSlotHost);
+    await slotFixture.whenStable();
+
+    expect(slotFixture.nativeElement.querySelector('.hint-wrapper')?.textContent).toContain(
+      'Business days only.',
+    );
   });
 });

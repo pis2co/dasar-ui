@@ -178,6 +178,18 @@ describe('DasarCheckboxGroup', () => {
     expect(
       fixture.nativeElement.querySelector('.dasar-checkbox-group-hint')?.textContent,
     ).toContain('Pick at least one');
+    expect(fixture.nativeElement.querySelector('.dasar-checkbox-group-hint')?.classList).toContain(
+      'error',
+    );
+    expect(
+      (fixture.nativeElement.querySelector('dasar-checkbox-group') as HTMLElement).getAttribute(
+        'aria-describedby',
+      ),
+    ).toBe(
+      (
+        fixture.nativeElement.querySelector('.dasar-checkbox-group-hint') as HTMLElement
+      ).getAttribute('id'),
+    );
     expect(
       (fixture.nativeElement.querySelector('dasar-checkbox-group') as HTMLElement).classList,
     ).toContain('error');

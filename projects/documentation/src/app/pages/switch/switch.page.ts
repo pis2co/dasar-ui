@@ -6,6 +6,7 @@ import { DocExampleComponent } from '../../components/doc-example.component';
 import { SwitchBasicExample } from './examples/basic/switch-basic.example';
 import { SwitchSizeExample } from './examples/size/switch-size.example';
 import { SwitchDisabledExample } from './examples/disabled/switch-disabled.example';
+import { SwitchErrorExample } from './examples/error/switch-error.example';
 import { SwitchCustomValuesExample } from './examples/custom-values/switch-custom-values.example';
 import { SwitchDefaultValueExample } from './examples/default-value/switch-default-value.example';
 import { SwitchNgModelExample } from './examples/ng-model/switch-ng-model.example';
@@ -31,6 +32,11 @@ import disabledHtml from './examples/disabled/switch-disabled.example.html' with
 };
 // @ts-ignore
 import disabledTs from './examples/disabled/switch-disabled.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import errorHtml from './examples/error/switch-error.example.html' with { loader: 'text' };
+// @ts-ignore
+import errorTs from './examples/error/switch-error.example.ts' with { loader: 'text' };
 
 // @ts-ignore
 import customValuesHtml from './examples/custom-values/switch-custom-values.example.html' with {
@@ -100,6 +106,7 @@ import themeTs from './examples/theme/switch-theme.example.ts' with { loader: 't
     SwitchBasicExample,
     SwitchSizeExample,
     SwitchDisabledExample,
+    SwitchErrorExample,
     SwitchCustomValuesExample,
     SwitchDefaultValueExample,
     SwitchNgModelExample,
@@ -122,6 +129,9 @@ export class SwitchDocPage {
 
   protected disabledHtml = disabledHtml;
   protected disabledTs = disabledTs;
+
+  protected errorHtml = errorHtml;
+  protected errorTs = errorTs;
 
   protected customValuesHtml = customValuesHtml;
   protected customValuesTs = customValuesTs;
@@ -178,6 +188,24 @@ export class SwitchDocPage {
       type: 'boolean',
       defaultValue: 'false',
       description: 'Blocks toggling.',
+    },
+    {
+      name: 'hint',
+      type: 'string',
+      defaultValue: "''",
+      description: 'Helper text under the switch. Turns red when error is set.',
+    },
+    {
+      name: 'hint-class / hint-style',
+      type: 'ClassType / StyleType',
+      defaultValue: '-',
+      description: 'Class and inline style for the switch hint.',
+    },
+    {
+      name: 'error',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Error styling for the track and hint.',
     },
     {
       name: 'size',
