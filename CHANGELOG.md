@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/pis2co/dasar-ui/compare/v2.0.0...v2.0.1) (2026-10-15)
+
+
+### Bug Fixes
+
+* doc layout component ([59b4b9c](https://github.com/pis2co/dasar-ui/commit/59b4b9c5d664eb1b8eaba10eda2b27a783ebdf67))
+* update readme ([9d76faa](https://github.com/pis2co/dasar-ui/commit/9d76faa0064b4179e9552954d0c22d98d319d3fc))
+* vertical example button group ([4ee7bd8](https://github.com/pis2co/dasar-ui/commit/4ee7bd865d0e046248e038c263c8e4e6866ecc2a))
+
 ## [2.0.0](https://github.com/pis2co/dasar-ui/compare/v1.10.1...v2.0.0) (2026-10-15)
 
 ### [1.10.1](https://github.com/pis2co/dasar-ui/compare/v1.10.0...v1.10.1) (2026-10-15)
