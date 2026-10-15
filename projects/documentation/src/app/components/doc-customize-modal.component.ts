@@ -147,8 +147,11 @@ const DEFAULT_SENTINEL = '__default__';
         ></dasar-select>
       </section>
 
-      <div action-slot style="display: flex; justify-content: space-between; align-items: center;">
-        <dasar-button appearance="outline" variant="secondary" (click)="resetDraft()">
+      <div
+        action-slot
+        style="width: 100%; display: flex; gap: var(--space-base); justify-content: space-between; align-items: center;"
+      >
+        <dasar-button appearance="outline" variant="danger" (click)="resetDraft()">
           Reset to defaults
         </dasar-button>
         <span class="cm-spacer"></span>

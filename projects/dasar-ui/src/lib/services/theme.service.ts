@@ -11,6 +11,9 @@ import {
   DasarThemeCommon,
   DasarThemeMenu,
   DasarThemeMode,
+  DasarThemeTabs,
+  DasarThemeOverlay,
+  DasarThemeModal,
 } from '@models/theme.model';
 import {
   DASAR_THEME_PROVIDER,
@@ -570,6 +573,64 @@ export const listMap: Record<string, string> = {
   prefixColor: '--list-prefix-color',
   suffixColor: '--list-suffix-color',
 };
+export const tabsMap: Record<keyof DasarThemeTabs, string> = {
+  listPaddingNormal: '--tabs-list-padding-normal',
+  listPaddingCompact: '--tabs-list-padding-compact',
+  gapNormal: '--tabs-gap-normal',
+  gapCompact: '--tabs-gap-compact',
+  contentGapNormal: '--tabs-content-gap-normal',
+  contentGapCompact: '--tabs-content-gap-compact',
+  listRadiusNone: '--tabs-list-radius-none',
+  listRadiusXs: '--tabs-list-radius-xs',
+  listRadiusSm: '--tabs-list-radius-sm',
+  listRadiusMd: '--tabs-list-radius-md',
+  listRadiusLg: '--tabs-list-radius-lg',
+  listRadiusXl: '--tabs-list-radius-xl',
+  listRadiusFull: '--tabs-list-radius-full',
+  scrollGap: '--tabs-scroll-gap',
+  scrollFade: '--tabs-scroll-fade',
+  scrollBtnPaddingX: '--tabs-scroll-btn-padding-x',
+};
+export const overlayMap: Record<keyof DasarThemeOverlay, string> = {
+  background: '--overlay-background',
+  blur: '--overlay-blur',
+};
+export const modalMap: Record<keyof DasarThemeModal, string> = {
+  background: '--modal-background',
+  bodyColor: '--modal-body-color',
+  titleColor: '--modal-title-color',
+  titleFontWeight: '--modal-title-font-weight',
+  headerBorder: '--modal-header-border',
+  actionsBackground: '--modal-actions-background',
+  actionsBorder: '--modal-actions-border',
+  actionsGap: '--modal-actions-gap',
+  outlineBorder: '--modal-outline-border',
+  elevatedBorder: '--modal-elevated-border',
+  elevatedShadow: '--modal-elevated-shadow',
+  widthSm: '--modal-width-sm',
+  widthMd: '--modal-width-md',
+  widthLg: '--modal-width-lg',
+  fontSizeXs: '--modal-font-size-xs',
+  fontSizeSm: '--modal-font-size-sm',
+  fontSizeMd: '--modal-font-size-md',
+  fontSizeLg: '--modal-font-size-lg',
+  fontSizeXl: '--modal-font-size-xl',
+  radiusNone: '--modal-radius-none',
+  radiusXs: '--modal-radius-xs',
+  radiusSm: '--modal-radius-sm',
+  radiusMd: '--modal-radius-md',
+  radiusLg: '--modal-radius-lg',
+  radiusXl: '--modal-radius-xl',
+  radiusFull: '--modal-radius-full',
+  compactHeaderPadding: '--modal-compact-header-padding',
+  compactBodyPadding: '--modal-compact-body-padding',
+  compactActionsPadding: '--modal-compact-actions-padding',
+  normalHeaderPaddingHorizontal: '--modal-normal-header-padding-horizontal',
+  normalHeaderPaddingVertical: '--modal-normal-header-padding-vertical',
+  normalBodyPaddingHorizontal: '--modal-normal-body-padding-horizontal',
+  normalBodyPaddingVertical: '--modal-normal-body-padding-vertical',
+  normalActionsPadding: '--modal-normal-actions-padding',
+};
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -666,6 +727,15 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.list) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.list, listMap);
+    }
+    if (config.tokens?.[config.mode]?.tabs) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.tabs, tabsMap);
+    }
+    if (config.tokens?.[config.mode]?.overlay) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.overlay, overlayMap);
+    }
+    if (config.tokens?.[config.mode]?.modal) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.modal, modalMap);
     }
     this.themeState.next(config);
   }

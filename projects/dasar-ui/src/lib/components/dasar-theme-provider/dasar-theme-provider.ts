@@ -16,6 +16,9 @@ import {
   cardMap,
   menuMap,
   listMap,
+  tabsMap,
+  overlayMap,
+  modalMap,
 } from '../../services/theme.service';
 import {
   InjectionToken,
@@ -234,6 +237,26 @@ export class DasarThemeProviderComponent implements OnChanges {
     const listTokens = this.tokenConfig?.[currentMode]?.list || this.tokenConfig?.light?.list;
     if (listTokens) {
       this.injectMappedTokens({ element: hostElement, payload: listTokens, dictionary: listMap });
+    }
+
+    const tabsTokens = this.tokenConfig?.[currentMode]?.tabs || this.tokenConfig?.light?.tabs;
+    if (tabsTokens) {
+      this.injectMappedTokens({ element: hostElement, payload: tabsTokens, dictionary: tabsMap });
+    }
+
+    const overlayTokens =
+      this.tokenConfig?.[currentMode]?.overlay || this.tokenConfig?.light?.overlay;
+    if (overlayTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: overlayTokens,
+        dictionary: overlayMap,
+      });
+    }
+
+    const modalTokens = this.tokenConfig?.[currentMode]?.modal || this.tokenConfig?.light?.modal;
+    if (modalTokens) {
+      this.injectMappedTokens({ element: hostElement, payload: modalTokens, dictionary: modalMap });
     }
   }
 

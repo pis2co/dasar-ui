@@ -63,3 +63,68 @@ describe('DasarThemeService.themeVariable', () => {
     expect(dasarVariables.colors.primary.base).not.toBe('#000000');
   });
 });
+
+describe('DasarThemeService component tokens', () => {
+  let service: DasarThemeService;
+  const root = () => document.documentElement;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(DasarThemeService);
+  });
+
+  afterEach(() => {
+    root().removeAttribute('data-theme');
+    [
+      '--tabs-gap-normal',
+      '--tabs-scroll-gap',
+      '--overlay-blur',
+      '--overlay-background',
+      '--modal-background',
+      '--modal-width-md',
+    ].forEach((cssVar) => root().style.removeProperty(cssVar));
+  });
+
+  it('injects tabs, overlay and modal tokens on the document root', () => {
+    service.setGlobalTheme({
+      mode: 'light',
+      tokens: {
+        light: {
+          tabs: { gapNormal: '9px', scrollGap: '7px' },
+          overlay: { blur: '7px', background: 'rgba(1, 2, 3, 0.5)' },
+          modal: { background: 'red', widthMd: '480px' },
+        },
+      },
+    });
+
+    expect(root().style.getPropertyValue('--tabs-gap-normal')).toBe('9px');
+    expect(root().style.getPropertyValue('--tabs-scroll-gap')).toBe('7px');
+    expect(root().style.getPropertyValue('--overlay-blur')).toBe('7px');
+    expect(root().style.getPropertyValue('--overlay-background')).toBe('rgba(1, 2, 3, 0.5)');
+    expect(root().style.getPropertyValue('--modal-background')).toBe('red');
+    expect(root().style.getPropertyValue('--modal-width-md')).toBe('480px');
+    expect(root().getAttribute('data-theme')).toBeNull();
+  });
+
+  it('injects dark mode tokens under the dark mode', () => {
+    service.setGlobalTheme({
+      mode: 'dark',
+      tokens: {
+        dark: { modal: { background: 'navy' } },
+        light: { modal: { background: 'red' } },
+      },
+    });
+
+    expect(root().getAttribute('data-theme')).toBe('dark');
+    expect(root().style.getPropertyValue('--modal-background')).toBe('navy');
+  });
+
+  it('ignores unknown token keys', () => {
+    service.setGlobalTheme({
+      mode: 'light',
+      tokens: { light: { modal: { notARealToken: 'x' } as any } },
+    });
+
+    expect(root().style.getPropertyValue('--modal-not-a-real-token')).toBe('');
+  });
+});

@@ -192,15 +192,17 @@ export class ModalDocPage {
     },
     {
       name: 'overlay-blur',
-      type: 'string',
-      defaultValue: "'4px'",
-      description: 'Backdrop blur radius, forwarded to the underlying dasar-overlay.',
+      type: 'string | null',
+      defaultValue: 'null',
+      description:
+        'Backdrop blur radius, forwarded to the underlying dasar-overlay. Falls back to the --overlay-blur theme token, then 4px.',
     },
     {
       name: 'overlay-background',
-      type: 'string',
-      defaultValue: "'rgba(0, 0, 0, 0.45)'",
-      description: 'Backdrop color, forwarded to the underlying dasar-overlay.',
+      type: 'string | null',
+      defaultValue: 'null',
+      description:
+        'Backdrop color, forwarded to the underlying dasar-overlay. Falls back to the --overlay-background theme token, then rgba(0, 0, 0, 0.45).',
     },
     {
       name: 'fluid / ...-fluid',
@@ -246,6 +248,13 @@ export class ModalDocPage {
       defaultValue: '-',
       description:
         'Injects footer action elements. The actions stay visible while the body scrolls.',
+    },
+    {
+      name: 'theme tokens',
+      type: 'DasarThemeModal',
+      defaultValue: '-',
+      description:
+        'Set through tokens.light.modal (or tokens.dark.modal) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Each key writes one CSS variable, for example widthMd -> --modal-width-md.',
     },
     {
       name: 'default slot',

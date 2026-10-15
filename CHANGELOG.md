@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+
+### Features
+
+* theme tokens for `dasar-tabs`, `dasar-overlay` and `dasar-modal` (`tabsMap`, `overlayMap`, `modalMap`, `DasarThemeTabs`, `DasarThemeOverlay`, `DasarThemeModal`). Each key writes one CSS variable, through `tokens.light.tabs|overlay|modal` in `DasarThemeService.setGlobalTheme` or through `[tokenConfig]` on `dasar-theme-provider`.
+
+### Breaking
+
+* `dasar-overlay` `blur` / `background` and `dasar-modal` `overlay-blur` / `overlay-background` now default to `null` instead of `4px` and `rgba(0, 0, 0, 0.45)`. The rendered result is unchanged because those values moved to the CSS fallbacks, but the inputs can now be overridden by the `--overlay-blur` and `--overlay-background` theme tokens, and reading the input value returns `null` unless a consumer sets it.
+
 ## [1.5.0](https://github.com/pis2co/dasar-ui/compare/v1.4.0...v1.5.0) (2026-10-15)
 
 

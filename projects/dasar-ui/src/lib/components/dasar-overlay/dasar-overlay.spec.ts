@@ -44,6 +44,14 @@ describe('DasarOverlay', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.classList).toContain('dasar-overlay');
   });
+
+  it('leaves the backdrop tokens free when no blur or background is set', () => {
+    fixture.detectChanges();
+    const backdrop = fixture.nativeElement.querySelector('.dasar-overlay-backdrop') as HTMLElement;
+
+    expect(backdrop.style.getPropertyValue('--overlay-blur')).toBe('');
+    expect(backdrop.style.getPropertyValue('--overlay-background')).toBe('');
+  });
 });
 
 describe('DasarOverlay interactions', () => {
