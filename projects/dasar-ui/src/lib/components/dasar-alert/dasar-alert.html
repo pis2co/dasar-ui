@@ -1,0 +1,35 @@
+@if (shown()) {
+  <div
+    class="dasar-alert-container"
+    [ngClass]="containerClasses"
+    [ngStyle]="containerStyle"
+    (animationend)="onAnimationEnd($event)"
+  >
+    @if (hasIcon) {
+      <span class="dasar-alert-icon">
+        <ng-content select="[icon-slot]"></ng-content>
+        @if (!iconSlot && iconName) {
+          <dasar-icon [name]="iconName" size="sm" />
+        }
+      </span>
+    }
+    <div class="dasar-alert-body">
+      @if (hasHeader) {
+        <div [ngClass]="titleClasses" [ngStyle]="titleStyle">
+          <ng-content select="[header-slot]"></ng-content>
+          @if (!headerSlot && title) {
+            {{ title }}
+          }
+        </div>
+      }
+      <div [ngClass]="contentClasses" [ngStyle]="contentStyle">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    @if (closeable) {
+      <button type="button" class="dasar-alert-close" aria-label="Close" (click)="close($event)">
+        <dasar-icon [name]="closeIconName" size="sm" />
+      </button>
+    }
+  </div>
+}

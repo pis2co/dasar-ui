@@ -9,6 +9,8 @@ import {
   datepickerMap,
   calendarMap,
   dividerMap,
+  alertMap,
+  checkboxMap,
   selectMap,
   buttonMap,
   buttonGroupMap,
@@ -233,6 +235,23 @@ export class DasarThemeProviderComponent implements OnChanges {
         element: hostElement,
         payload: dividerTokens,
         dictionary: dividerMap,
+      });
+    }
+    const alertTokens = this.tokenConfig?.[currentMode]?.alert || this.tokenConfig?.light?.alert;
+    if (alertTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: alertTokens,
+        dictionary: alertMap,
+      });
+    }
+    const checkboxTokens =
+      this.tokenConfig?.[currentMode]?.checkbox || this.tokenConfig?.light?.checkbox;
+    if (checkboxTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: checkboxTokens,
+        dictionary: checkboxMap,
       });
     }
 

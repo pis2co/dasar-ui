@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+
+### Features
+
+* new `dasar-alert` component with `variant` (primary/secondary/success/warning/danger), `bordered` (default true), `closeable`, `title`, `icon-name`, `close-icon-name`, `[(visible)]` and class/style overrides; `onClose`, `onAfterLeave` and `visibleChange` outputs; default, `header-slot` and `icon-slot` content slots; tokens via `tokens.*.alert` / `alertMap`, defaults via `components.alert`.
+* documentation page for `dasar-alert` at `/components/alert` with ten examples; alert added to the Theme Tokens, CSS Variables and Component Config pages.
+* new `dasar-checkbox` component with `size`, `label`, `hint`, `error`, `disabled`, `checked-value`/`unchecked-value`, `value`/`ngModel` binding with `ControlValueAccessor` support and `onUpdate` output; tokens via `tokens.*.checkbox` / `checkboxMap`, defaults via `components.checkbox`.
+* new `dasar-checkbox-group` component combining checkboxes into an array `value`/`ngModel` binding with `value-field` object matching, `size`/`direction`/`disabled`/`error`/`hint` overrides and `onUpdate` output; defaults via `components.checkboxGroup`.
+* documentation page for `dasar-checkbox` at `/components/checkbox` with eleven examples; checkbox added to the Theme Tokens, CSS Variables and Component Config pages.
+
 ### [2.0.3](https://github.com/pis2co/dasar-ui/compare/v2.0.2...v2.0.3) (2026-10-15)
 
 

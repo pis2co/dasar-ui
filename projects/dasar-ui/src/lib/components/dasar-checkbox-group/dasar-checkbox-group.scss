@@ -1,0 +1,30 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-checkbox-group {
+  display: block;
+}
+
+.dasar-checkbox-group-container {
+  display: flex;
+
+  &.vertical {
+    flex-direction: column;
+    gap: var(--checkbox-group-gap, var(--space-3));
+  }
+
+  &.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--checkbox-group-gap, var(--space-3));
+  }
+}
+
+.dasar-checkbox-group-hint {
+  margin-top: var(--checkbox-hint-gap, 4px);
+  font-size: var(--checkbox-hint-font-size, 12px);
+  color: var(--checkbox-hint-color, var(--theme-text-secondary-color));
+
+  &.error {
+    color: var(--checkbox-error-color, var(--dasar-danger-base));
+  }
+}

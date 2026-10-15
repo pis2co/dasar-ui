@@ -1,0 +1,7 @@
+<dasar-checkbox-group [(ngModel)]="fruits" hint="Pick your favorites.">
+  <dasar-checkbox label="Apple" checked-value="apple" />
+  <dasar-checkbox label="Banana" checked-value="banana" />
+  <dasar-checkbox label="Cherry" checked-value="cherry" />
+</dasar-checkbox-group>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">value = {{ fruits().join(', ') }}</p>

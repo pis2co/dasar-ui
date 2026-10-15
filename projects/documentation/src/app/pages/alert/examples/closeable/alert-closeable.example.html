@@ -1,0 +1,16 @@
+@if (show()) {
+  <dasar-alert
+    closeable
+    title="Closeable"
+    variant="warning"
+    icon-name="alert-triangle"
+    (onClose)="handleClose()"
+    (onAfterLeave)="handleAfterLeave()"
+  >
+    Click the close icon. onClose fires first, onAfterLeave fires after the leave animation.
+  </dasar-alert>
+} @else {
+  <dasar-button size="sm" (click)="reset()">Show again</dasar-button>
+}
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Events: {{ log().join(' → ') }}</p>

@@ -9,6 +9,9 @@ import { DasarTableConfig } from '../components/dasar-table/dasar-table';
 import { DasarCardConfig } from '../components/dasar-card/dasar-card';
 import { DasarChipConfig } from '../components/dasar-chip/dasar-chip';
 import { DasarDividerConfig } from '../components/dasar-divider/dasar-divider';
+import { DasarAlertConfig } from '../components/dasar-alert/dasar-alert';
+import { DasarCheckboxConfig } from '../components/dasar-checkbox/dasar-checkbox';
+import { DasarCheckboxGroupConfig } from '../components/dasar-checkbox-group/dasar-checkbox-group';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
 import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
@@ -194,6 +197,59 @@ export interface DasarThemeButtonGroup {
   radius?: string;
   dividerColor?: string;
   focusZIndex?: string;
+}
+export interface DasarThemeAlert {
+  padding?: string;
+  gap?: string;
+  radius?: string;
+  borderWidth?: string;
+  fontSize?: string;
+  titleFontSize?: string;
+  titleFontWeight?: string;
+  titleGap?: string;
+  closePadding?: string;
+  closeHoverBg?: string;
+  leaveDuration?: string;
+  primaryBg?: string;
+  primaryColor?: string;
+  primaryBorder?: string;
+  primaryIconColor?: string;
+  secondaryBg?: string;
+  secondaryColor?: string;
+  secondaryBorder?: string;
+  secondaryIconColor?: string;
+  successBg?: string;
+  successColor?: string;
+  successBorder?: string;
+  successIconColor?: string;
+  warningBg?: string;
+  warningColor?: string;
+  warningBorder?: string;
+  warningIconColor?: string;
+  dangerBg?: string;
+  dangerColor?: string;
+  dangerBorder?: string;
+  dangerIconColor?: string;
+}
+export interface DasarThemeCheckbox {
+  gap?: string;
+  hintGap?: string;
+  sizeSm?: string;
+  sizeMd?: string;
+  sizeLg?: string;
+  radius?: string;
+  borderWidth?: string;
+  borderColor?: string;
+  bg?: string;
+  checkedBg?: string;
+  checkColor?: string;
+  focusColor?: string;
+  errorColor?: string;
+  disabledOpacity?: string;
+  labelColor?: string;
+  hintColor?: string;
+  hintFontSize?: string;
+  groupGap?: string;
 }
 export interface DasarThemeDivider {
   color?: string;
@@ -701,6 +757,9 @@ export type DasarComponentConfig = {
   card?: DasarCardConfig;
   chip?: DasarChipConfig;
   divider?: DasarDividerConfig;
+  alert?: DasarAlertConfig;
+  checkbox?: DasarCheckboxConfig;
+  checkboxGroup?: DasarCheckboxGroupConfig;
   modal?: DasarModalConfig;
   overlay?: DasarOverlayConfig;
   icon?: DasarIconConfig;
@@ -724,6 +783,8 @@ export interface DasarThemeConfig {
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
       divider?: DasarThemeDivider;
+      alert?: DasarThemeAlert;
+      checkbox?: DasarThemeCheckbox;
       select?: DasarThemeSelect;
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;
@@ -742,6 +803,8 @@ export interface DasarThemeConfig {
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
       divider?: DasarThemeDivider;
+      alert?: DasarThemeAlert;
+      checkbox?: DasarThemeCheckbox;
       select?: DasarThemeSelect;
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;

@@ -1,0 +1,91 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-checkbox {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--checkbox-hint-gap, 4px);
+
+  &.disabled {
+    opacity: var(--checkbox-disabled-opacity, 0.5);
+  }
+}
+
+.dasar-checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--checkbox-gap, var(--space-base));
+  cursor: pointer;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.dasar-checkbox-native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.dasar-checkbox-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--checkbox-size-md, 18px);
+  height: var(--checkbox-size-md, 18px);
+  box-sizing: border-box;
+  border: var(--checkbox-border-width, 1px) solid
+    var(--checkbox-border-color, var(--theme-border-subtle-color));
+  border-radius: var(--checkbox-radius, 4px);
+  background: var(--checkbox-bg, transparent);
+  color: var(--checkbox-check-color, #fff);
+  transition:
+    background 150ms ease,
+    border-color 150ms ease;
+}
+
+.dasar-checkbox-native:checked + .dasar-checkbox-box,
+.dasar-checkbox-box.checked {
+  background: var(--checkbox-checked-bg, var(--dasar-primary-base));
+  border-color: var(--checkbox-checked-bg, var(--dasar-primary-base));
+}
+
+.dasar-checkbox-native:focus-visible + .dasar-checkbox-box {
+  outline: 2px solid var(--checkbox-focus-color, var(--dasar-primary-200));
+  outline-offset: 1px;
+}
+
+.dasar-checkbox.sm .dasar-checkbox-box {
+  width: var(--checkbox-size-sm, 14px);
+  height: var(--checkbox-size-sm, 14px);
+}
+
+.dasar-checkbox.lg .dasar-checkbox-box {
+  width: var(--checkbox-size-lg, 22px);
+  height: var(--checkbox-size-lg, 22px);
+}
+
+.dasar-checkbox-label {
+  font-size: var(--font-size-sm);
+  color: var(--checkbox-label-color, inherit);
+}
+
+.dasar-checkbox.lg .dasar-checkbox-label {
+  font-size: var(--font-size-base);
+}
+
+.dasar-checkbox.error .dasar-checkbox-box {
+  border-color: var(--checkbox-error-color, var(--dasar-danger-base));
+}
+
+.dasar-checkbox-hint {
+  font-size: var(--checkbox-hint-font-size, 12px);
+  color: var(--checkbox-hint-color, var(--theme-text-secondary-color));
+
+  &.error {
+    color: var(--checkbox-error-color, var(--dasar-danger-base));
+  }
+}

@@ -1,0 +1,12 @@
+<p style="font-size: 12px; margin: 8px 0 4px; color: gray">horizontal</p>
+<dasar-checkbox-group direction="horizontal" [(value)]="horizontal">
+  <dasar-checkbox label="A" checked-value="a" />
+  <dasar-checkbox label="B" checked-value="b" />
+  <dasar-checkbox label="C" checked-value="c" />
+</dasar-checkbox-group>
+
+<p style="font-size: 12px; margin: 8px 0 4px; color: gray">disabled group</p>
+<dasar-checkbox-group disabled [value]="['a']">
+  <dasar-checkbox label="A" checked-value="a" />
+  <dasar-checkbox label="B" checked-value="b" />
+</dasar-checkbox-group>

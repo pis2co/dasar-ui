@@ -1,0 +1,14 @@
+<dasar-checkbox-group [(value)]="selected" value-field="id">
+  @for (city of cities; track city.id) {
+    <dasar-checkbox [label]="city.name" [checked-value]="city" />
+  }
+</dasar-checkbox-group>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  value =
+  {{
+    selected()
+      .map((c) => c.name ?? c.id)
+      .join(', ')
+  }}
+</p>

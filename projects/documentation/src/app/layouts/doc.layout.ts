@@ -221,6 +221,7 @@ export class DocsLayoutComponent {
         { label: 'Icon', route: '/components/icon' },
         { label: 'Chip', route: '/components/chip' },
         { label: 'Divider', route: '/components/divider' },
+        { label: 'Alert', route: '/components/alert' },
         { label: 'Calendar', route: '/components/calendar' },
         { label: 'Datepicker', route: '/components/datepicker' },
         { label: 'Card', route: '/components/card' },
@@ -235,6 +236,7 @@ export class DocsLayoutComponent {
       items: [
         { label: 'Input', route: '/components/input' },
         { label: 'Number Input', route: '/components/number-input' },
+        { label: 'Checkbox', route: '/components/checkbox' },
         { label: 'Select', route: '/components/select' },
       ],
     },

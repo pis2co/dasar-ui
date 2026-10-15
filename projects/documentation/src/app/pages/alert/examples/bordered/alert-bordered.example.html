@@ -1,0 +1,9 @@
+<p style="font-size: 12px; margin: 8px 0 4px; color: gray">bordered (default)</p>
+<dasar-alert variant="primary">Bordered by default.</dasar-alert>
+
+<p style="font-size: 12px; margin: 8px 0 4px; color: gray">bordered = false</p>
+<div style="display: flex; flex-direction: column; gap: 12px">
+  @for (v of variants; track v) {
+    <dasar-alert [variant]="v" [bordered]="false">No border.</dasar-alert>
+  }
+</div>
