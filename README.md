@@ -1,59 +1,58 @@
-# DasarUi
+# dasar-ui
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
+Angular UI component library. Standalone components, SSR-safe, themeable with light and dark mode.
 
-## Development server
+[![npm version](https://img.shields.io/npm/v/dasar-ui.svg)](https://www.npmjs.com/package/dasar-ui)
+[![license](https://img.shields.io/npm/l/dasar-ui.svg)](https://github.com/pis2co/dasar-ui/blob/main/package.json)
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- Standalone Angular components, no NgModule setup
+- Theming in three layers: CSS variables, theme tokens, component config
+- Light and dark mode with `data-theme="dark"`
+- SSR-safe components and documentation app
+- Design tokens for colors, typography, spacing, radius and per-component styles
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Components
 
-## Code scaffolding
+Button, Icon, Chip, Input, Number Input, Select, Calendar, Datepicker, Card, Modal, Overlay, Menu, Table, Tabs, List.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Quick start
 
 ```bash
-ng generate --help
+npm i dasar-ui
 ```
 
-## Building
+```ts
+import { DasarButtonComponent } from 'dasar-ui';
 
-To build the project run:
+@Component({
+  imports: [DasarButtonComponent],
+  template: `<dasar-button variant="primary">Save</dasar-button>`,
+})
+export class App {}
+```
+
+Read the full guides:
+
+- [Installation](./docs/installation.md)
+- [Getting started](./docs/getting-started.md)
+- [Theming overview](https://github.com/pis2co/dasar-ui) (in the docs app: `/theming`)
+
+## Links
+
+- [Documentation app](https://github.com/pis2co/dasar-ui)
+- [npm package](https://www.npmjs.com/package/dasar-ui)
+- [Changelog](https://github.com/pis2co/dasar-ui/blob/main/CHANGELOG.md)
+- [GitHub repository](https://github.com/pis2co/dasar-ui)
+
+## Development
+
+This repository is an Angular 22 monorepo with the `dasar-ui` library and an SSR documentation app.
 
 ```bash
-ng build
+npm install
+npx ng build dasar-ui
+npx ng build documentation
+npx ng test dasar-ui --watch=false
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

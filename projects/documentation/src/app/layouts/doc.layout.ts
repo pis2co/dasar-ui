@@ -19,6 +19,7 @@ export interface DocExample {
 export interface DocNavItem {
   label: string;
   route: string;
+  exact?: boolean;
 }
 
 export interface DocNavGroup {
@@ -41,7 +42,12 @@ export interface DocNavGroup {
               </div>
               <div class="nav-items">
                 @for (item of group.items; track item.label) {
-                  <a [routerLink]="item.route" routerLinkActive="active" class="nav-link">
+                  <a
+                    [routerLink]="item.route"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+                    class="nav-link"
+                  >
                     {{ item.label }}
                   </a>
                 }
@@ -122,7 +128,7 @@ export interface DocNavGroup {
         margin: 0 auto;
       }
       .docs-header {
-        margin-bottom: var(--space-10);
+        // margin-bottom: var(--space-10);
         border-bottom: 1px solid var(--theme-border-subtle-color);
         padding-bottom: var(--space-6);
       }
@@ -191,7 +197,20 @@ export class DocsLayoutComponent {
   navigation: DocNavGroup[] = [
     {
       title: 'Getting Started',
-      items: [{ label: 'Introduction', route: '/components/button' }],
+      items: [
+        { label: 'Introduction', route: '/introduction' },
+        { label: 'Installation', route: '/installation' },
+        { label: 'Getting Started', route: '/getting-started' },
+      ],
+    },
+    {
+      title: 'Theming',
+      items: [
+        { label: 'Overview', route: '/theming', exact: true },
+        { label: 'Theme Tokens', route: '/theming/tokens' },
+        { label: 'CSS Variables', route: '/theming/css-variables' },
+        { label: 'Component Config', route: '/theming/component-config' },
+      ],
     },
     {
       title: 'Basic',

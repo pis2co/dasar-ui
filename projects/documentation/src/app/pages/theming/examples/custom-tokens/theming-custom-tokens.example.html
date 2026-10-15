@@ -1,0 +1,13 @@
+<dasar-theme-provider [componentConfig]="componentConfig" [tokenConfig]="tokenConfig">
+  <dasar-card label="Scoped theme">
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+      <dasar-button variant="primary">Themed button</dasar-button>
+      <dasar-chip variant="primary">Themed chip</dasar-chip>
+    </div>
+  </dasar-card>
+</dasar-theme-provider>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  tokens.light.common sets the primary color, tokens.light.button sets the md radius and the font
+  weight. Only content inside this provider is affected.
+</p>

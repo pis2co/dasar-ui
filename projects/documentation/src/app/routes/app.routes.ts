@@ -12,13 +12,55 @@ import { MenuDocPage } from '../pages/menu/menu.page';
 import { ModalDocPage } from '../pages/modal/modal.page';
 import { TabsDocPage } from '../pages/tabs/tabs.page';
 import { ListDocPage } from '../pages/list/list.page';
+import { IntroductionDocPage } from '../pages/introduction/introduction.page';
+import { InstallationDocPage } from '../pages/installation/installation.page';
+import { GettingStartedDocPage } from '../pages/getting-started/getting-started.page';
+import { ThemingDocPage } from '../pages/theming/theming.page';
+import { ThemingTokensDocPage } from '../pages/theming/theming-tokens.page';
+import { ThemingCssVariablesDocPage } from '../pages/theming/theming-css-variables.page';
+import { ThemingComponentConfigDocPage } from '../pages/theming/theming-component-config.page';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'components/button',
+    redirectTo: 'introduction',
     pathMatch: 'full',
+  },
+  {
+    path: 'introduction',
+    component: IntroductionDocPage,
+    title: 'Introduction',
+  },
+  {
+    path: 'installation',
+    component: InstallationDocPage,
+    title: 'Installation',
+  },
+  {
+    path: 'getting-started',
+    component: GettingStartedDocPage,
+    title: 'Getting Started',
+  },
+  {
+    path: 'theming',
+    component: ThemingDocPage,
+    title: 'Theming',
+  },
+  {
+    path: 'theming/tokens',
+    component: ThemingTokensDocPage,
+    title: 'Theme Tokens',
+  },
+  {
+    path: 'theming/css-variables',
+    component: ThemingCssVariablesDocPage,
+    title: 'CSS Variables',
+  },
+  {
+    path: 'theming/component-config',
+    component: ThemingComponentConfigDocPage,
+    title: 'Component Config',
   },
   {
     path: 'components/button',
