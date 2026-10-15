@@ -2,24 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Unreleased
+## [2.2.0](https://github.com/pis2co/dasar-ui/compare/v2.1.0...v2.2.0) (2026-10-15)
+
 
 ### Features
 
-* `dasar-list` selection and scroll: `[(value)]` / `ngModel` / reactive forms (ControlValueAccessor), `selectable`, `value-field`, `max-height`, `scroll-offset`, `scroll-behavior`, `scroll-on-init`, `scroll-on-click`, `keyboard`, `show-focus` (default false, shows the focus outline on the keyboard-focused item), `valueChange` / `onUpdate` outputs, `(onItemClick)` with value, index and event, `(onScroll)` with value, index, scrollTop and reason, `(onUserScroll)` for native scrolls, and public `scrollToActive()` / `scrollToValue()`; on render and on external value changes the list scrolls inside its own content area until the active item's top sits `scroll-offset` px below the top (clamped, no page scroll, SSR-safe); clicking an item scrolls it to the offset; keyboard arrows, Home, End and Enter navigate and select with aria-activedescendant. `dasar-list-item` gets `value` and `disabled`. Tokens `--list-max-height`, `--list-active-item-background`, `--list-active-item-color`, `--list-focus-item-outline`; defaults via `components.list`.
-* six new list examples: selectable, scroll, scroll to value, value field, reactive forms and keyboard.
-* `radius` input (none/xs/sm/md/lg/xl/full, default md) for `dasar-alert`, `dasar-list` and `dasar-table`, configurable via `components.alert|list|table.radius`; per-size tokens `--alert-radius-*`, `--list-radius-*` and `--table-container-radius-*` via `tokens.*.alert|list|table` (existing `radius` token still drives md; borderless table stays square); table tokens now also apply through `dasar-theme-provider`.
-* radius and radius theme-config examples on the alert, list and table docs pages; radius rows added to the Component Config page.
-* `dasar-switch`: `value` / `ngModel` / reactive forms, `default-value`, `checked-value` / `unchecked-value`, `disabled`, `size` sm–lg, `checked-icon-name` / `unchecked-icon-name`, `label`; outputs `onUpdate` / `valueChange`; slots `checked-slot`, `unchecked-slot`, `icon-slot`, `checked-icon-slot`, `unchecked-icon-slot`; keyboard Space/Enter with `role="switch"`; defaults via `components.switch`, tokens `--switch-*` via `tokens.*.switch`; new docs page with eleven examples.
-* `dasar-switch`: new `error` input with the `--switch-error-color` token and an Error docs example.
-* Hints on `dasar-input`, `dasar-number-input`, `dasar-select`, `dasar-datepicker`, `dasar-checkbox` (+group), `dasar-radio` (+group) and `dasar-switch` turn the danger color when `error` is set and are linked with `aria-describedby`; controls set `aria-invalid`.
-* `dasar-switch`: `hint` / `hint-class` / `hint-style`; tokens `--switch-hint-*` via `tokens.*.switch`.
-* `dasar-pagination` rewrite: `page` / `default-page`, `page-count`, `page-sizes` (number) with a `page-size-options` picker, `page-slot` window, `display-order` (`pages`, `size-picker`, `quick-jumper-dropdown`), ellipsis dropdown of the hidden pages, `label` summary with `{page}` / `{count}`, `disabled`, `size` xs–xl, `radius`, `appearance` (`ghost` default, `solid`, `subtle`, `outline`), `spacing`, `prev-icon` / `next-icon`, `fluid`; all page and arrow buttons are `icon-only`; inactive buttons are `ghost` (bordered for `outline`) and the active page uses `primary`; outputs `onUpdatePage` / `pageChange` and `onUpdatePageSize` / `page-sizesChange`; slots `label-slot` (ng-template with page/count context), `prev-slot`, `next-slot`, `prefix-slot`, `suffix-slot`; defaults via `components.pagination`, tokens `--pagination-gap`, `--pagination-font-size`, `--pagination-item-min-width`, `--pagination-ellipsis-color`, `--pagination-summary-color` and `--pagination-dropdown-max-height` via `tokens.*.pagination`; new docs page with fourteen examples.
-* `dasar-skeleton`: new component — `type` (`text` / `box`), `size` xs–xl, `radius`, `width` / `height`, `full-width`, `repeat` (the last of a multi-line text block is shorter), `animated` (shimmer, honours `prefers-reduced-motion`), `circle`; `container-class` / `container-style` and `item-class` / `item-style`; defaults via `components.skeleton`, tokens `--skeleton-base-color`, `--skeleton-highlight-color`, `--skeleton-animation-duration` and `--skeleton-gap` via `tokens.*.skeleton`; new docs page with ten examples.
+* add dasar-switch component ([9922207](https://github.com/pis2co/dasar-ui/commit/992220768cb5e725b238c2b58767dcefa7300fd6))
+* add radius config and more ([2a258f5](https://github.com/pis2co/dasar-ui/commit/2a258f587d0a2e436db120a1313b58613977cbe7))
+* add skeleton and adjust input components ([69be24b](https://github.com/pis2co/dasar-ui/commit/69be24beded83edfddb59750b068369aa252bf1d))
 
-### BREAKING CHANGES
 
-* `dasar-pagination`: `currentPage`, `totalItems`, `siblingCount`, `pageSize` and `showFirstLast` removed. Use `page`, `page-count`, `page-slot` and `page-sizes`.
+### Bug Fixes
+
+* adjust margin ([e6e466e](https://github.com/pis2co/dasar-ui/commit/e6e466ef60c9254d3aef13edb7a87d73db9665d0))
+* adjust pagination component ([f68e6ee](https://github.com/pis2co/dasar-ui/commit/f68e6ee45790b3bb90453b5335e0ce672c97df89))
+* dasar list focus state ([4754d5a](https://github.com/pis2co/dasar-ui/commit/4754d5ac67ca8066d3b8ebcc67c5f71c7cb61658))
 
 ## [2.1.0](https://github.com/pis2co/dasar-ui/compare/v2.0.3...v2.1.0) (2026-10-15)
 
