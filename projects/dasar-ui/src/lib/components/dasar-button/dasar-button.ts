@@ -4,6 +4,7 @@ import {
   HostBinding,
   Component,
   inject,
+  signal,
   Input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -44,6 +45,7 @@ export interface DasarButtonConfig {
 export class DasarButton {
   private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
   private themeService = inject(DasarThemeService, { optional: true });
+  protected groupTick = signal(0);
 
   @Input() appearance = resolveThemeDefault(
     'button',
@@ -96,7 +98,7 @@ export class DasarButton {
   );
   @Input({ transform: booleanAttribute }) disabled = resolveThemeDefault(
     'button',
-    'iconOnly',
+    'disabled',
     false,
     this.themeProvider,
     this.themeService,
@@ -125,13 +127,28 @@ export class DasarButton {
 
   @HostBinding('class')
   get hostClasses(): string {
+    this.groupTick();
     const classes = ['dasar-button'];
     if (this.fullWidth) classes.push('full-width');
     if (this.disabled) classes.push('disabled');
     return classes.join(' ');
   }
 
+  applyGroupState(state: {
+    size: DasarButtonSizeType;
+    variant: DasarButtonVariantType;
+    appearance: DasarButtonAppearanceType;
+    disabled: boolean;
+  }) {
+    this.size = state.size;
+    this.variant = state.variant;
+    this.appearance = state.appearance;
+    this.disabled = state.disabled;
+    this.groupTick.update((tick) => tick + 1);
+  }
+
   get buttonClasses(): Record<string, boolean> {
+    this.groupTick();
     const overrideClass = parseClassesToArray(this.buttonClass);
     const baseClass = {
       [this.appearance]: this.appearance !== 'solid',

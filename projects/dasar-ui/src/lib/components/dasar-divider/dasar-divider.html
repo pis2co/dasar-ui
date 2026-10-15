@@ -1,0 +1,13 @@
+<div class="dasar-divider-container" [ngClass]="containerClasses" [ngStyle]="containerStyle">
+  <span class="dasar-divider-line dasar-divider-line-start"></span>
+  @if (hasLabel) {
+    <span [ngClass]="labelClasses" [ngStyle]="labelStyle">
+      @if (labelTemplate) {
+        <ng-container [ngTemplateOutlet]="labelTemplate.templateRef" />
+      } @else {
+        {{ label }}
+      }
+    </span>
+    <span class="dasar-divider-line dasar-divider-line-end"></span>
+  }
+</div>

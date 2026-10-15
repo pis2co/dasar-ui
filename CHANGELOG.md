@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+
+### Features
+
+* `dasar-button-group` supports `orientation`, `attached`, `size`, `variant`, `appearance`, `radius`, `full-width`, `disabled`, `container-class` and `container-style`, and passes size, variant, appearance and disabled down to child buttons.
+* theme tokens are available via `tokens.*.buttonGroup` and `buttonGroupMap`, and component defaults via `components.buttonGroup`.
+* new documentation page for `dasar-button-group` at `/components/button-group` with nine examples.
+* new `dasar-divider` component with `dashed`, `vertical`, `label`, `label-placement` (left/center/right), `spacing`, `container-class`/`container-style`/`label-class`/`label-style` and a `divider-label-slot` template; tokens via `tokens.*.divider` / `dividerMap`, defaults via `components.divider`.
+* documentation page for `dasar-divider` at `/components/divider` with nine examples; divider added to the Theme Tokens, CSS Variables and Component Config pages.
+
+### Bug Fixes
+
+* the button group orientation classes were never applied, and `horizontal` was computed from the vertical check.
+* `dasar-button` `disabled` read the `iconOnly` config key.
+
+### Breaking
+
+* the button group DOM now wraps its content in `.dasar-button-group-container`. Custom CSS targeting `dasar-button-group > dasar-button` must target `.dasar-button-group-container > .dasar-button`.
+
 ### [1.9.3](https://github.com/pis2co/dasar-ui/compare/v1.9.2...v1.9.3) (2026-10-15)
 
 ### [1.9.2](https://github.com/pis2co/dasar-ui/compare/v1.9.1...v1.9.2) (2026-10-15)

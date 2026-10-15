@@ -1,69 +1,118 @@
 @use '../../styles/theme.scss' as *;
 
-:host {
+.dasar-button-group {
   display: inline-flex;
   vertical-align: middle;
+
+  &.full-width {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.dasar-button-group-container {
+  display: inline-flex;
+  box-sizing: border-box;
+
+  &.horizontal {
+    flex-direction: row;
+  }
 
   &.vertical {
     flex-direction: column;
   }
 
+  &:not(.attached) {
+    gap: var(--btn-group-gap, var(--space-base));
+  }
+
+  &.full-width {
+    display: flex;
+    width: 100%;
+
+    &.horizontal > .dasar-button {
+      flex: 1 1 0;
+    }
+
+    > .dasar-button,
+    > .dasar-button .dasar-button-native {
+      width: 100%;
+    }
+  }
+
   &.attached {
+    > .dasar-button .dasar-button-native {
+      border-radius: 0;
+    }
+
+    > .dasar-button:hover,
+    > .dasar-button:focus-within {
+      position: relative;
+      z-index: var(--btn-group-focus-z-index, 2);
+    }
+
     &.horizontal {
-      dasar-button {
-        &:not(:first-child) {
-          margin-left: -1px;
-          .dasar-button-native {
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-          }
-        }
+      > .dasar-button:not(:first-child) {
+        margin-left: -1px;
+      }
 
-        &:not(:last-child) {
-          .dasar-button-native {
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-          }
-        }
+      > .dasar-button:not(:first-child) .dasar-button-native {
+        border-left-color: var(--btn-group-divider-color, currentColor);
+      }
 
-        &:hover,
-        &:focus-within {
-          position: relative;
-          z-index: 2;
-        }
+      > .dasar-button:first-child .dasar-button-native {
+        border-top-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-bottom-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+      }
+
+      > .dasar-button:last-child .dasar-button-native {
+        border-top-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-bottom-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
       }
     }
 
     &.vertical {
-      dasar-button {
-        &:not(:first-child) {
-          margin-top: -1px;
-          .dasar-button-native {
-            border-top-left-radius: 0 !important;
-            border-top-right-radius: 0 !important;
-          }
-        }
+      > .dasar-button:not(:first-child) {
+        margin-top: -1px;
+      }
 
-        &:not(:last-child) {
-          .dasar-button-native {
-            border-bottom-left-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-          }
-        }
+      > .dasar-button:first-child .dasar-button-native {
+        border-top-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-top-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+      }
 
-        &:hover,
-        &:focus-within {
-          position: relative;
-          z-index: 2;
-        }
+      > .dasar-button:last-child .dasar-button-native {
+        border-bottom-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-bottom-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
       }
     }
   }
 
-  &:not(.attached) {
-    gap: 8px;
-    &.vertical {
-      flex-direction: column;
-    }
+  &.radius-none {
+    --btn-group-radius-local: var(--radius-none);
+  }
+
+  &.radius-xs {
+    --btn-group-radius-local: var(--radius-xs);
+  }
+
+  &.radius-sm {
+    --btn-group-radius-local: var(--radius-sm);
+  }
+
+  &.radius-md {
+    --btn-group-radius-local: var(--radius-md);
+  }
+
+  &.radius-lg {
+    --btn-group-radius-local: var(--radius-lg);
+  }
+
+  &.radius-xl {
+    --btn-group-radius-local: var(--radius-xl);
+  }
+
+  &.radius-full {
+    --btn-group-radius-local: var(--radius-full);
   }
 }

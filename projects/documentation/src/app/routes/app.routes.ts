@@ -9,11 +9,13 @@ import { DatepickerDocPage } from '../pages/datepicker/datepicker.page';
 import { CalendarDocPage } from '../pages/calendar/calendar.page';
 import { ThemingDocPage } from '../pages/theming/theming.page';
 import { ButtonDocPage } from '../pages/button/button.page';
+import { ButtonGroupDocPage } from '../pages/button-group/button-group.page';
 import { SelectDocPage } from '../pages/select/select.page';
 import { InputDocPage } from '../pages/input/input.page';
 import { TableDocPage } from '../pages/table/table.page';
 import { ModalDocPage } from '../pages/modal/modal.page';
 import { ChipDocPage } from '../pages/chip/chip.page';
+import { DividerDocPage } from '../pages/divider/divider.page';
 import { IconDocPage } from '../pages/icon/icon.page';
 import { CardDocPage } from '../pages/card/card.page';
 import { MenuDocPage } from '../pages/menu/menu.page';
@@ -68,6 +70,11 @@ export const routes: Routes = [
     title: 'Button Docs | Dasar UI',
   },
   {
+    path: 'components/button-group',
+    component: ButtonGroupDocPage,
+    title: 'Button Group Docs | Dasar UI',
+  },
+  {
     path: 'components/icon',
     component: IconDocPage,
     title: 'Icon Docs | Dasar UI',
@@ -76,6 +83,11 @@ export const routes: Routes = [
     path: 'components/chip',
     component: ChipDocPage,
     title: 'Chip Docs | Dasar UI',
+  },
+  {
+    path: 'components/divider',
+    component: DividerDocPage,
+    title: 'Divider Docs | Dasar UI',
   },
   {
     path: 'components/card',
