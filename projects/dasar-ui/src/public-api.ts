@@ -11,6 +11,7 @@ export * from './lib/components/dasar-calendar/dasar-calendar';
 export * from './lib/components/dasar-select/dasar-select';
 export * from './lib/components/dasar-icon/dasar-icon';
 export * from './lib/components/dasar-card/dasar-card';
+export * from './lib/components/dasar-list/dasar-list';
 export * from './lib/components/dasar-chip/dasar-chip';
 export * from './lib/components/dasar-input/dasar-input';
 export * from './lib/components/dasar-modal/dasar-modal';

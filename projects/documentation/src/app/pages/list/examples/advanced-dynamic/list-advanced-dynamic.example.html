@@ -1,0 +1,29 @@
+<dasar-list clickable hoverable bordered show-divider>
+  @if (tasks().length > 0) {
+    @for (task of tasks(); track task.id) {
+      <dasar-list-item (click)="addTask()">
+        <dasar-icon prefix-slot name="list" size="sm" />
+        <div class="dasar-list-item-body">
+          <span>{{ task.title }}</span>
+          <span style="font-size: 12px; color: gray">{{ task.owner }}</span>
+        </div>
+        <dasar-button
+          suffix-slot
+          size="xs"
+          variant="ghost"
+          appearance="subtle"
+          (click)="removeTask(task.id, $event)"
+          aria-label="Remove task"
+        >
+          <dasar-icon name="trash" size="sm" />
+        </dasar-button>
+      </dasar-list-item>
+    }
+  } @else {
+    <dasar-list-item>No tasks yet. Click anywhere to add one.</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Clicking a row adds a task. The remove button stops the event from bubbling to the row.
+</p>

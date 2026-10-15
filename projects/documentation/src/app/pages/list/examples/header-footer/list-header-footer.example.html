@@ -1,0 +1,7 @@
+<dasar-list bordered show-divider>
+  <div header-slot>Team members</div>
+  @for (member of members; track member) {
+    <dasar-list-item>{{ member }}</dasar-list-item>
+  }
+  <div footer-slot>{{ members.length }} members</div>
+</dasar-list>

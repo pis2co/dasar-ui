@@ -1,0 +1,9 @@
+<dasar-list bordered show-divider hoverable>
+  @for (item of items; track item.name) {
+    <dasar-list-item>
+      <dasar-icon prefix-slot name="user" size="sm" />
+      {{ item.name }}
+      <dasar-chip suffix-slot size="xs" variant="secondary">{{ item.role }}</dasar-chip>
+    </dasar-list-item>
+  }
+</dasar-list>
