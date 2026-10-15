@@ -2,11 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Unreleased
+## [1.8.0](https://github.com/pis2co/dasar-ui/compare/v1.7.1...v1.8.0) (2026-10-15)
 
-### Features
 
-* contributors section on the introduction page and the GitHub README (pis2co, dxxta).
+### Bug Fixes
+
+* adjust docs ([4b59465](https://github.com/pis2co/dasar-ui/commit/4b5946546fbbbb5de97ddc1d66687593dd289266))
 
 ### [1.7.1](https://github.com/pis2co/dasar-ui/compare/v1.7.0...v1.7.1) (2026-10-15)
 
