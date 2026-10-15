@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file. See [standa
 * new `dasar-checkbox` component with `size`, `label`, `hint`, `error`, `disabled`, `checked-value`/`unchecked-value`, `value`/`ngModel` binding with `ControlValueAccessor` support and `onUpdate` output; tokens via `tokens.*.checkbox` / `checkboxMap`, defaults via `components.checkbox`.
 * new `dasar-checkbox-group` component combining checkboxes into an array `value`/`ngModel` binding with `value-field` object matching, `size`/`direction`/`disabled`/`error`/`hint` overrides and `onUpdate` output; defaults via `components.checkboxGroup`.
 * documentation page for `dasar-checkbox` at `/components/checkbox` with eleven examples; checkbox added to the Theme Tokens, CSS Variables and Component Config pages.
+* new `dasar-radio` component with `size`, `label`, `hint`, `error`, `disabled`, `name`, `checked-value`, `value`/`ngModel` binding with `ControlValueAccessor` support and `onUpdate` output; clicking the selected radio emits nothing; tokens via `tokens.*.radio` / `radioMap`, defaults via `components.radio`.
+* new `dasar-radio-group` component managing a single selected value across its children with `value-field` object matching, a generated shared native `name`, `size`/`direction`/`disabled`/`error`/`hint` overrides and `onUpdate` output; defaults via `components.radioGroup`.
+* documentation page for `dasar-radio` at `/components/radio` with eleven examples; radio added to the Theme Tokens, CSS Variables and Component Config pages.
+* new `DasarBreakpointService` with signals `width`, `height`, `name`, `smAndDown`, `mdAndDown`, `lgAndDown`, `xlAndDown` and `*AndUp`, plus SSR-safe defaults and `setBreakpoints`; thresholds configurable via `breakpoints` in `DasarThemeConfig`, defaults match `theme.scss` (sm 640, md 768, lg 1024, xl 1200).
+* new `dasar-breakpoint` component with `hidden-at` / `show-at` and `onMediaUpdate`, `onShow`, `onHidden` outputs; defaults via `components.breakpoint`.
+* documentation page for breakpoints at `/components/breakpoint` with eight examples; breakpoint added to the Component Config page.
 
 ### [2.0.3](https://github.com/pis2co/dasar-ui/compare/v2.0.2...v2.0.3) (2026-10-15)
 

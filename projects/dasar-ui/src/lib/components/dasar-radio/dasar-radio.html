@@ -1,1 +1,22 @@
-<p>dasar-radio works!</p>
+<label [ngClass]="containerClasses" [ngStyle]="containerStyle">
+  <input
+    type="radio"
+    class="dasar-radio-native"
+    [attr.name]="currentName"
+    [checked]="isChecked"
+    [disabled]="isDisabled"
+    [attr.aria-invalid]="hasError || null"
+    (change)="select($event)"
+    (blur)="onTouched()"
+  />
+  <span [ngClass]="circleClasses" [ngStyle]="circleStyle" aria-hidden="true"></span>
+  @if (label) {
+    <span [ngClass]="labelClasses" [ngStyle]="labelStyle">{{ label }}</span>
+  }
+  <ng-content></ng-content>
+</label>
+@if (hint) {
+  <div [ngClass]="hintClasses" [ngStyle]="hintStyle">
+    {{ hint }}
+  </div>
+}

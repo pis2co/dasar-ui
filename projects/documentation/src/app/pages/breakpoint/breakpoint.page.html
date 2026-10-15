@@ -1,0 +1,85 @@
+<docs-layout
+  title="Breakpoint"
+  description="Reactive viewport info for showing different views per device. DasarBreakpointService exposes width, height, name and smAndDown style signals. Dasar-breakpoint shows or hides its content with hidden-at and show-at."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: serviceBasicsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: serviceBasicsTs },
+    ]"
+    title="Service Basics"
+  >
+    <app-breakpoint-service-basics-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: hiddenAtHtml },
+      { label: 'TypeScript', lang: 'typescript', value: hiddenAtTs },
+    ]"
+    title="Hidden At"
+  >
+    <app-breakpoint-hidden-at-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: showAtHtml },
+      { label: 'TypeScript', lang: 'typescript', value: showAtTs },
+    ]"
+    title="Show At"
+  >
+    <app-breakpoint-show-at-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: pairHtml },
+      { label: 'TypeScript', lang: 'typescript', value: pairTs },
+    ]"
+    title="Mobile vs Desktop"
+  >
+    <app-breakpoint-pair-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: eventsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: eventsTs },
+    ]"
+    title="Events"
+  >
+    <app-breakpoint-events-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: templateHtml },
+      { label: 'TypeScript', lang: 'typescript', value: templateTs },
+    ]"
+    title="Service in Template"
+  >
+    <app-breakpoint-template-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: customHtml },
+      { label: 'TypeScript', lang: 'typescript', value: customTs },
+    ]"
+    title="Custom Breakpoints"
+  >
+    <app-breakpoint-custom-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: advancedThemeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: advancedThemeTs },
+    ]"
+    title="Advanced: Theme Defaults"
+  >
+    <app-breakpoint-advanced-theme-example />
+  </doc-example-component>
+</docs-layout>

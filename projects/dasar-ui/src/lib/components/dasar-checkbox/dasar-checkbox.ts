@@ -46,7 +46,7 @@ export interface DasarCheckboxConfig {
   hintStyle?: StyleType;
 }
 
-const isEqualValue = (first: any, second: any): boolean => {
+export const isEqualValue = (first: any, second: any): boolean => {
   if (first === second) return true;
   if (
     first !== null &&

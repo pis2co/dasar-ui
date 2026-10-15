@@ -11,6 +11,7 @@ import {
   dividerMap,
   alertMap,
   checkboxMap,
+  radioMap,
   selectMap,
   buttonMap,
   buttonGroupMap,
@@ -252,6 +253,14 @@ export class DasarThemeProviderComponent implements OnChanges {
         element: hostElement,
         payload: checkboxTokens,
         dictionary: checkboxMap,
+      });
+    }
+    const radioTokens = this.tokenConfig?.[currentMode]?.radio || this.tokenConfig?.light?.radio;
+    if (radioTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: radioTokens,
+        dictionary: radioMap,
       });
     }
 

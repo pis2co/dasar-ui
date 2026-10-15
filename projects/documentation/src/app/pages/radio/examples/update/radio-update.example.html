@@ -1,0 +1,20 @@
+<div style="display: flex; flex-direction: column; gap: 8px">
+  <dasar-radio
+    name="pet"
+    label="Cat"
+    checked-value="cat"
+    [value]="choice()"
+    (onUpdate)="handleUpdate($event)"
+  />
+  <dasar-radio
+    name="pet"
+    label="Dog"
+    checked-value="dog"
+    [value]="choice()"
+    (onUpdate)="handleUpdate($event)"
+  />
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  value = {{ choice() }} (updates: {{ log().join(', ') }})
+</p>

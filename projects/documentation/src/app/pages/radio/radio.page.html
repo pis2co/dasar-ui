@@ -1,0 +1,115 @@
+<docs-layout
+  title="Radio"
+  description="A radio button for picking one option out of several. Standalone radios sharing a name and ngModel behave as one group, including native arrow-key navigation. Dasar-radio-group manages the selection for you, with optional value-field matching for objects."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic"
+  >
+    <app-radio-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: sizeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: sizeTs },
+    ]"
+    title="Size"
+  >
+    <app-radio-size-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: updateHtml },
+      { label: 'TypeScript', lang: 'typescript', value: updateTs },
+    ]"
+    title="onUpdate"
+  >
+    <app-radio-update-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: labelHintHtml },
+      { label: 'TypeScript', lang: 'typescript', value: labelHintTs },
+    ]"
+    title="Label & Hint"
+  >
+    <app-radio-label-hint-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: errorHtml },
+      { label: 'TypeScript', lang: 'typescript', value: errorTs },
+    ]"
+    title="Error"
+  >
+    <app-radio-error-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled"
+  >
+    <app-radio-disabled-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: reactiveHtml },
+      { label: 'TypeScript', lang: 'typescript', value: reactiveTs },
+    ]"
+    title="Reactive Forms"
+  >
+    <app-radio-reactive-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupTs },
+    ]"
+    title="Radio Group"
+  >
+    <app-radio-group-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupLayoutHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupLayoutTs },
+    ]"
+    title="Group Direction & Disabled"
+  >
+    <app-radio-group-layout-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupValueFieldHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupValueFieldTs },
+    ]"
+    title="Group Value Field"
+  >
+    <app-radio-group-value-field-example />
+  </doc-example-component>
+
+  <!-- <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: advancedThemeHtml },
+      { label: 'TypeScript', lang: 'typescript', value: advancedThemeTs },
+    ]"
+    title="Advanced: Theme Defaults"
+  >
+    <app-radio-advanced-theme-example />
+  </doc-example-component> -->
+</docs-layout>

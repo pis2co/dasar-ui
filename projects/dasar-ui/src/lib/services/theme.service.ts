@@ -5,6 +5,7 @@ import {
   DasarThemeDivider,
   DasarThemeAlert,
   DasarThemeCheckbox,
+  DasarThemeRadio,
   DasarThemeCard,
   DasarThemeChip,
   DasarThemeColors,
@@ -419,6 +420,25 @@ export const checkboxMap: Record<keyof DasarThemeCheckbox, string> = {
   hintFontSize: '--checkbox-hint-font-size',
   groupGap: '--checkbox-group-gap',
 };
+export const radioMap: Record<keyof DasarThemeRadio, string> = {
+  gap: '--radio-gap',
+  hintGap: '--radio-hint-gap',
+  sizeSm: '--radio-size-sm',
+  sizeMd: '--radio-size-md',
+  sizeLg: '--radio-size-lg',
+  dotSize: '--radio-dot-size',
+  borderWidth: '--radio-border-width',
+  borderColor: '--radio-border-color',
+  bg: '--radio-bg',
+  checkedColor: '--radio-checked-color',
+  focusColor: '--radio-focus-color',
+  errorColor: '--radio-error-color',
+  disabledOpacity: '--radio-disabled-opacity',
+  labelColor: '--radio-label-color',
+  hintColor: '--radio-hint-color',
+  hintFontSize: '--radio-hint-font-size',
+  groupGap: '--radio-group-gap',
+};
 export const selectMap: Record<keyof DasarThemeSelect, string> = {
   wrapperGap: '--select-wrapper-gap',
   labelFontsize: '--select-label-font-size',
@@ -798,6 +818,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.checkbox) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.checkbox, checkboxMap);
+    }
+    if (config.tokens?.[config.mode]?.radio) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.radio, radioMap);
     }
     if (config.tokens?.[config.mode]?.select) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.select, selectMap);

@@ -1,0 +1,6 @@
+<div style="display: flex; flex-direction: column; gap: 8px">
+  <dasar-radio name="plan" label="Monthly" checked-value="monthly" [(ngModel)]="plan" />
+  <dasar-radio name="plan" label="Yearly" checked-value="yearly" [(ngModel)]="plan" />
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">value = {{ plan() }}</p>

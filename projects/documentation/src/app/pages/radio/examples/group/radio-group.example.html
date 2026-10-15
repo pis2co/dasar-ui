@@ -1,0 +1,7 @@
+<dasar-radio-group [(ngModel)]="size" hint="Pick a size.">
+  <dasar-radio label="Small" checked-value="s" />
+  <dasar-radio label="Medium" checked-value="m" />
+  <dasar-radio label="Large" checked-value="l" />
+</dasar-radio-group>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">value = {{ size() }}</p>
