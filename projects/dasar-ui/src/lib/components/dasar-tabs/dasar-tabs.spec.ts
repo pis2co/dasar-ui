@@ -54,6 +54,7 @@ class ItemsHost {
 class SlotHost {}
 
 @Component({
+  selector: 'app-empty-body-host',
   standalone: true,
   imports: [DasarTabsComponent],
   template: `<dasar-tabs [items]="['A', 'B']" />`,
@@ -61,11 +62,39 @@ class SlotHost {}
 class EmptyBodyHost {}
 
 @Component({
+  selector: 'app-theme-host',
   standalone: true,
   imports: [DasarTabsComponent],
   template: `<dasar-tabs [items]="['A']" />`,
 })
 class ThemeHost {}
+
+@Component({
+  standalone: true,
+  imports: [DasarTabsComponent],
+  template: `
+    <dasar-tabs
+      [items]="['Alpha', 'Beta', 'Gamma']"
+      scroll-left-icon-name="arrow-left"
+      scroll-right-icon-name="arrow-right"
+      scroll-button-class="my-scroll"
+      [scroll-button-style]="{ 'margin-inline': '2px' }"
+    />
+  `,
+})
+class ScrollIconHost {}
+
+@Component({
+  standalone: true,
+  imports: [DasarTabsComponent],
+  template: `
+    <dasar-tabs [items]="['Alpha', 'Beta', 'Gamma']">
+      <ng-template tabs-scroll-left-slot><span class="my-left">Prev</span></ng-template>
+      <ng-template tabs-scroll-right-slot><span class="my-right">Next</span></ng-template>
+    </dasar-tabs>
+  `,
+})
+class ScrollSlotHost {}
 
 const containerOf = (fixture: ComponentFixture<unknown>) =>
   fixture.nativeElement.querySelector('.dasar-tabs-container') as HTMLElement;
@@ -75,6 +104,48 @@ const contentOf = (fixture: ComponentFixture<unknown>) =>
   fixture.nativeElement.querySelector('.dasar-tabs-content') as HTMLElement;
 const triggerElementsOf = (fixture: ComponentFixture<unknown>) =>
   Array.from(fixture.nativeElement.querySelectorAll('.dasar-tab-trigger-btn')) as HTMLElement[];
+const wrapperOf = (fixture: ComponentFixture<unknown>) =>
+  fixture.nativeElement.querySelector('.dasar-tabs-list-wrapper') as HTMLElement;
+const scrollButtonsOf = (fixture: ComponentFixture<unknown>) =>
+  Array.from(fixture.nativeElement.querySelectorAll('.dasar-tabs-scroll-btn')) as HTMLElement[];
+
+const setMetrics = (el: HTMLElement, scrollWidth: number, clientWidth: number, scrollLeft = 0) => {
+  Object.defineProperty(el, 'scrollWidth', {
+    value: scrollWidth,
+    configurable: true,
+    writable: true,
+  });
+  Object.defineProperty(el, 'clientWidth', {
+    value: clientWidth,
+    configurable: true,
+    writable: true,
+  });
+  Object.defineProperty(el, 'scrollLeft', {
+    value: scrollLeft,
+    configurable: true,
+    writable: true,
+  });
+};
+
+class FakeResizeObserver {
+  static instances: FakeResizeObserver[] = [];
+
+  constructor(private readonly callback: () => void) {
+    FakeResizeObserver.instances.push(this);
+  }
+
+  observe() {}
+  unobserve() {}
+
+  disconnect() {
+    const at = FakeResizeObserver.instances.indexOf(this);
+    if (at >= 0) FakeResizeObserver.instances.splice(at, 1);
+  }
+
+  trigger() {
+    this.callback();
+  }
+}
 
 describe('DasarTabs', () => {
   let component: DasarTabs;
@@ -255,6 +326,7 @@ describe('DasarTabs without a projected body', () => {
 
 describe('DasarTabs theme defaults', () => {
   let fixture: ComponentFixture<ThemeHost>;
+  let component: DasarTabs;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -268,6 +340,7 @@ describe('DasarTabs theme defaults', () => {
                 size: 'lg',
                 spacing: 'compact',
                 appearance: 'outline',
+                scrollLeftIconName: 'arrow-left',
               },
             },
           },
@@ -276,6 +349,7 @@ describe('DasarTabs theme defaults', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeHost);
+    component = fixture.debugElement.children[0].componentInstance;
     await fixture.whenStable();
   });
 
@@ -285,5 +359,212 @@ describe('DasarTabs theme defaults', () => {
     expect(container.classList).toContain('size-lg');
     expect(container.classList).toContain('spacing-compact');
     expect(container.classList).toContain('appearance-outline');
+  });
+
+  it('reads the scroll icon default from the component config', async () => {
+    setMetrics(listOf(fixture), 600, 300);
+    component.updateScrollState();
+    await fixture.whenStable();
+
+    const icons = fixture.debugElement.queryAll(By.css('.dasar-tabs-scroll-btn dasar-icon'));
+    expect(icons.map((icon) => icon.componentInstance.name)).toEqual([
+      'arrow-left',
+      'chevron-right',
+    ]);
+  });
+});
+
+describe('DasarTabs scroll arrows', () => {
+  let fixture: ComponentFixture<ItemsHost>;
+  let component: DasarTabs;
+  let originalResizeObserver: unknown;
+  let originalScrollIntoView: unknown;
+  let scrollIntoViewTargets: Element[] = [];
+
+  const triggers = () => triggerElementsOf(fixture);
+  const clickTab = async (index: number) => {
+    (triggers()[index].querySelector('button') as HTMLElement).click();
+    await fixture.whenStable();
+  };
+
+  const measure = async (scrollWidth: number, clientWidth: number, scrollLeft = 0) => {
+    setMetrics(listOf(fixture), scrollWidth, clientWidth, scrollLeft);
+    component.updateScrollState();
+    await fixture.whenStable();
+  };
+
+  beforeAll(() => {
+    originalResizeObserver = (globalThis as any).ResizeObserver;
+    (globalThis as any).ResizeObserver = FakeResizeObserver;
+    originalScrollIntoView = (Element.prototype as any).scrollIntoView;
+    (Element.prototype as any).scrollIntoView = function (this: Element) {
+      scrollIntoViewTargets.push(this);
+    };
+  });
+
+  afterAll(() => {
+    if (originalResizeObserver === undefined) delete (globalThis as any).ResizeObserver;
+    else (globalThis as any).ResizeObserver = originalResizeObserver;
+    if (originalScrollIntoView === undefined) delete (Element.prototype as any).scrollIntoView;
+    else (Element.prototype as any).scrollIntoView = originalScrollIntoView;
+  });
+
+  beforeEach(async () => {
+    scrollIntoViewTargets = [];
+    await TestBed.configureTestingModule({
+      imports: [ItemsHost],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ItemsHost);
+    component = fixture.debugElement.children[0].componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('starts with no scroll arrows before any measurement', () => {
+    expect(scrollButtonsOf(fixture).length).toBe(0);
+    expect(wrapperOf(fixture).classList).not.toContain('overflowing');
+  });
+
+  it('does not render the arrows when the strip fits the container', async () => {
+    await measure(300, 300);
+
+    expect(scrollButtonsOf(fixture).length).toBe(0);
+    expect(wrapperOf(fixture).classList).not.toContain('overflowing');
+  });
+
+  it('renders both arrows with the left one disabled at the start', async () => {
+    await measure(600, 300);
+
+    const buttons = scrollButtonsOf(fixture);
+    expect(buttons.length).toBe(2);
+    expect(wrapperOf(fixture).classList).toContain('overflowing');
+    expect(wrapperOf(fixture).classList).toContain('can-scroll-right');
+    expect(wrapperOf(fixture).classList).not.toContain('can-scroll-left');
+    expect((buttons[0].querySelector('button') as HTMLButtonElement).disabled).toBe(true);
+    expect((buttons[1].querySelector('button') as HTMLButtonElement).disabled).toBe(false);
+  });
+
+  it('enables both arrows in the middle of the scroll range', async () => {
+    await measure(600, 300, 150);
+
+    const buttons = scrollButtonsOf(fixture);
+    expect((buttons[0].querySelector('button') as HTMLButtonElement).disabled).toBe(false);
+    expect((buttons[1].querySelector('button') as HTMLButtonElement).disabled).toBe(false);
+    expect(wrapperOf(fixture).classList).toContain('can-scroll-left');
+    expect(wrapperOf(fixture).classList).toContain('can-scroll-right');
+  });
+
+  it('disables the right arrow at the end of the scroll range', async () => {
+    await measure(600, 300, 300);
+
+    const buttons = scrollButtonsOf(fixture);
+    expect((buttons[0].querySelector('button') as HTMLButtonElement).disabled).toBe(false);
+    expect((buttons[1].querySelector('button') as HTMLButtonElement).disabled).toBe(true);
+    expect(wrapperOf(fixture).classList).not.toContain('can-scroll-right');
+  });
+
+  it('scrolls by 80 percent of the visible width', async () => {
+    await measure(600, 300, 150);
+    const calls: ScrollToOptions[] = [];
+    (listOf(fixture) as any).scrollBy = (options: ScrollToOptions) => calls.push(options);
+
+    (scrollButtonsOf(fixture)[1].querySelector('button') as HTMLElement).click();
+    await fixture.whenStable();
+
+    expect(calls).toEqual([{ left: 240, behavior: 'smooth' }]);
+  });
+
+  it('removes the arrows once the strip fits again', async () => {
+    await measure(600, 300);
+    expect(scrollButtonsOf(fixture).length).toBe(2);
+
+    await measure(300, 300);
+    expect(scrollButtonsOf(fixture).length).toBe(0);
+  });
+
+  it('attaches a resize observer to the strip', () => {
+    expect(FakeResizeObserver.instances.length).toBeGreaterThan(0);
+  });
+
+  it('shows the default chevron icons in the arrows', async () => {
+    await measure(600, 300);
+
+    const icons = fixture.debugElement.queryAll(By.css('.dasar-tabs-scroll-btn dasar-icon'));
+    expect(icons.map((icon) => icon.componentInstance.name)).toEqual([
+      'chevron-left',
+      'chevron-right',
+    ]);
+  });
+
+  it('labels the arrows and keeps them out of the tablist', async () => {
+    await measure(600, 300);
+
+    const buttons = scrollButtonsOf(fixture);
+    expect(buttons[0].getAttribute('aria-label')).toBe('Scroll tabs left');
+    expect(buttons[1].getAttribute('aria-label')).toBe('Scroll tabs right');
+    expect(buttons[0].getAttribute('role')).toBeNull();
+    expect(buttons[1].getAttribute('role')).toBeNull();
+  });
+
+  it('scrolls the newly selected tab into view', async () => {
+    await clickTab(1);
+
+    expect(scrollIntoViewTargets).toContain(triggers()[1]);
+  });
+});
+
+describe('DasarTabs custom scroll icons', () => {
+  let fixture: ComponentFixture<ScrollIconHost>;
+  let component: DasarTabs;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ScrollIconHost],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ScrollIconHost);
+    component = fixture.debugElement.children[0].componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('uses the icon name inputs and the scroll button class and style', async () => {
+    setMetrics(listOf(fixture), 600, 300);
+    component.updateScrollState();
+    await fixture.whenStable();
+
+    const icons = fixture.debugElement.queryAll(By.css('.dasar-tabs-scroll-btn dasar-icon'));
+    expect(icons.map((icon) => icon.componentInstance.name)).toEqual(['arrow-left', 'arrow-right']);
+
+    const buttons = scrollButtonsOf(fixture);
+    expect(buttons[0].classList).toContain('my-scroll');
+    expect(buttons[0].style.marginInline).toBe('2px');
+  });
+});
+
+describe('DasarTabs scroll slots', () => {
+  let fixture: ComponentFixture<ScrollSlotHost>;
+  let component: DasarTabs;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ScrollSlotHost],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ScrollSlotHost);
+    component = fixture.debugElement.children[0].componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('renders the slot templates instead of the default icons', async () => {
+    setMetrics(listOf(fixture), 600, 300);
+    component.updateScrollState();
+    await fixture.whenStable();
+
+    const buttons = scrollButtonsOf(fixture);
+    expect(buttons.length).toBe(2);
+    expect(buttons[0].querySelector('.my-left')?.textContent).toContain('Prev');
+    expect(buttons[1].querySelector('.my-right')?.textContent).toContain('Next');
+    expect(buttons[0].querySelector('dasar-icon')).toBeNull();
+    expect(buttons[1].querySelector('dasar-icon')).toBeNull();
   });
 });

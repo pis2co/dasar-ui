@@ -1,0 +1,16 @@
+<div style="width: 340px">
+  <dasar-tabs
+    size="sm"
+    scroll-left-icon-name="arrow-left"
+    scroll-right-icon-name="arrow-right"
+    [items]="items"
+    [active-index]="active()"
+    (onTabsChange)="active.set($event)"
+  >
+    <p>{{ items[active()] }}.</p>
+  </dasar-tabs>
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  The arrow icons are plain icon names, so any name from the icon registry works.
+</p>

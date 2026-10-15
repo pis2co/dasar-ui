@@ -1,0 +1,20 @@
+<dasar-button size="sm" appearance="subtle" (click)="narrow.set(!narrow())">
+  {{ narrow() ? 'Widen container' : 'Narrow container' }}
+</dasar-button>
+
+<div [style.width]="narrow() ? '360px' : '100%'" style="margin-top: 12px">
+  <dasar-tabs
+    appearance="outline"
+    size="sm"
+    [items]="items"
+    [active-index]="active()"
+    (onTabsChange)="active.set($event)"
+  >
+    <p>Tab {{ active() + 1 }} of {{ items.length }}: {{ items[active()] }}.</p>
+  </dasar-tabs>
+</div>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Narrow the window or the container until the strip no longer fits. The arrow buttons appear,
+  disappear and disable on their own.
+</p>

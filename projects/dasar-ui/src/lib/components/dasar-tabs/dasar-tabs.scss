@@ -15,11 +15,14 @@
     border: none;
     box-shadow: none;
 
-    .dasar-tabs-list {
+    .dasar-tabs-list-wrapper {
       display: flex;
       background-color: transparent !important;
       border: none !important;
       box-shadow: none !important;
+    }
+
+    .dasar-tabs-list {
       padding: 0 !important;
     }
   }
@@ -62,48 +65,95 @@
     font-size: var(--font-size-xl);
   }
 
-  &.radius-none .dasar-tabs-list {
+  &.radius-none .dasar-tabs-list-wrapper {
     border-radius: var(--tabs-list-radius-none, var(--radius-none));
   }
-  &.radius-xs .dasar-tabs-list {
+  &.radius-xs .dasar-tabs-list-wrapper {
     border-radius: var(--tabs-list-radius-xs, var(--radius-xs));
   }
-  &.radius-sm .dasar-tabs-list {
+  &.radius-sm .dasar-tabs-list-wrapper {
     border-radius: var(--tabs-list-radius-sm, var(--radius-sm));
   }
-  &.radius-md .dasar-tabs-list {
+  &.radius-md .dasar-tabs-list-wrapper {
     border-radius: var(--tabs-list-radius-md, var(--radius-md));
   }
-  &.radius-lg .dasar-tabs-list {
+  &.radius-lg .dasar-tabs-list-wrapper {
     border-radius: var(--tabs-list-radius-lg, var(--radius-lg));
   }
-  &.radius-xl .dasar-tabs-list {
+  &.radius-xl .dasar-tabs-list-wrapper {
     border-radius: var(--tabs-list-radius-xl, var(--radius-xl));
   }
-  &.radius-full .dasar-tabs-list {
+  &.radius-full .dasar-tabs-list-wrapper {
     border-radius: var(--tabs-list-radius-full, var(--radius-full));
   }
 }
 
+.dasar-tabs-list-wrapper {
+  --tabs-fade-left: 0px;
+  --tabs-fade-right: 0px;
+
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  gap: var(--tabs-scroll-gap, var(--space-0-5));
+
+  &.can-scroll-left {
+    --tabs-fade-left: var(--tabs-scroll-fade, 12px);
+  }
+  &.can-scroll-right {
+    --tabs-fade-right: var(--tabs-scroll-fade, 12px);
+  }
+}
+
 .dasar-tabs-list {
-  font-size: var(--font-size-base);
   -ms-overflow-style: none;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  flex: 1 1 auto;
+  min-width: 0;
   display: inline-flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  font-size: var(--font-size-base);
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
-.dasar-tabs-container.appearance-subtle .dasar-tabs-list {
+.dasar-tabs-list-wrapper .dasar-tabs-list {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--tabs-fade-left),
+    #000 calc(100% - var(--tabs-fade-right)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--tabs-fade-left),
+    #000 calc(100% - var(--tabs-fade-right)),
+    transparent 100%
+  );
+}
+
+.dasar-tabs-list-wrapper .dasar-tabs-scroll-btn {
+  flex: 0 0 auto;
+}
+
+.dasar-tabs-list-wrapper .dasar-tabs-scroll-btn .dasar-button-native {
+  padding-left: var(--tabs-scroll-btn-padding-x, var(--space-1));
+  padding-right: var(--tabs-scroll-btn-padding-x, var(--space-1));
+}
+
+.dasar-tabs-container.appearance-subtle .dasar-tabs-list-wrapper {
   background-color: var(--theme-bg-hover-color);
   transition: background-color 0.3s ease;
 }
 
-.dasar-tabs-container.appearance-solid .dasar-tabs-list {
+.dasar-tabs-container.appearance-solid .dasar-tabs-list-wrapper {
   background-color: var(--theme-bg-surface-color);
   border: 1px solid var(--theme-border-strong-color);
   transition:
@@ -112,15 +162,29 @@
 }
 
 .dasar-tabs-container.appearance-outline {
-  .dasar-tabs-list {
+  .dasar-tabs-list-wrapper {
     border-bottom: 1px solid var(--theme-border-subtle-color);
     margin-bottom: calc(var(--space-0-5) * -1);
     background-color: transparent;
     box-shadow: inset 0 -1px 0 0 var(--theme-border-subtle-color);
     border-radius: 0;
     border: none;
+    overflow: visible;
+  }
+
+  .dasar-tabs-list {
     padding: 0;
     gap: 0;
+  }
+
+  .dasar-tabs-scroll-btn .dasar-button-native {
+    background-color: transparent !important;
+    border-color: transparent !important;
+
+    &:hover:not(:disabled) {
+      color: var(--theme-primary-color);
+      background-color: var(--theme-bg-hover-color) !important;
+    }
   }
 
   .dasar-tab-trigger-btn {

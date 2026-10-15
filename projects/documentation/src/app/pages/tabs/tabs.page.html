@@ -1,6 +1,6 @@
 <docs-layout
   title="Tabs"
-  description="A tab strip for switching between related views. It renders string items or custom trigger templates, and removes its body padding when no content is projected."
+  description="A tab strip for switching between related views. It renders string items or custom trigger templates, removes its body padding when no content is projected, and shows scroll arrows by itself as soon as the strip is wider than its container."
   [apiData]="apiProps"
 >
   <doc-example-component
@@ -101,6 +101,36 @@
     title="Events"
   >
     <app-tabs-events-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: scrollHtml },
+      { label: 'TypeScript', lang: 'typescript', value: scrollTs },
+    ]"
+    title="Scroll Arrows"
+  >
+    <app-tabs-scroll-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: scrollIconHtml },
+      { label: 'TypeScript', lang: 'typescript', value: scrollIconTs },
+    ]"
+    title="Scroll Arrow Icons"
+  >
+    <app-tabs-scroll-icon-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: scrollSlotHtml },
+      { label: 'TypeScript', lang: 'typescript', value: scrollSlotTs },
+    ]"
+    title="Scroll Arrow Slots"
+  >
+    <app-tabs-scroll-slot-example />
   </doc-example-component>
 
   <doc-example-component

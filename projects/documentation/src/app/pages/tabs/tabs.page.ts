@@ -16,6 +16,9 @@ import { TabsEventsExample } from './examples/events/tabs-events.example';
 import { TabsAdvancedDynamicExample } from './examples/advanced-dynamic/tabs-advanced-dynamic.example';
 import { TabsAdvancedFormExample } from './examples/advanced-form/tabs-advanced-form.example';
 import { TabsAdvancedThemeExample } from './examples/advanced-theme/tabs-advanced-theme.example';
+import { TabsScrollExample } from './examples/scroll/tabs-scroll.example';
+import { TabsScrollIconExample } from './examples/scroll-icon/tabs-scroll-icon.example';
+import { TabsScrollSlotExample } from './examples/scroll-slot/tabs-scroll-slot.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/tabs-basic.example.html' with { loader: 'text' };
@@ -89,6 +92,26 @@ import advancedThemeHtml from './examples/advanced-theme/tabs-advanced-theme.exa
 import advancedThemeTs from './examples/advanced-theme/tabs-advanced-theme.example.ts' with {
   loader: 'text',
 };
+// @ts-ignore
+import scrollHtml from './examples/scroll/tabs-scroll.example.html' with { loader: 'text' };
+// @ts-ignore
+import scrollTs from './examples/scroll/tabs-scroll.example.ts' with { loader: 'text' };
+// @ts-ignore
+import scrollIconHtml from './examples/scroll-icon/tabs-scroll-icon.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import scrollIconTs from './examples/scroll-icon/tabs-scroll-icon.example.ts' with {
+  loader: 'text',
+};
+// @ts-ignore
+import scrollSlotHtml from './examples/scroll-slot/tabs-scroll-slot.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import scrollSlotTs from './examples/scroll-slot/tabs-scroll-slot.example.ts' with {
+  loader: 'text',
+};
 
 @Component({
   imports: [
@@ -108,6 +131,9 @@ import advancedThemeTs from './examples/advanced-theme/tabs-advanced-theme.examp
     TabsAdvancedDynamicExample,
     TabsAdvancedFormExample,
     TabsAdvancedThemeExample,
+    TabsScrollExample,
+    TabsScrollIconExample,
+    TabsScrollSlotExample,
   ],
   templateUrl: './tabs.page.html',
   selector: 'app-tabs-page',
@@ -152,6 +178,15 @@ export class TabsDocPage {
 
   protected advancedThemeHtml = advancedThemeHtml;
   protected advancedThemeTs = advancedThemeTs;
+
+  protected scrollHtml = scrollHtml;
+  protected scrollTs = scrollTs;
+
+  protected scrollIconHtml = scrollIconHtml;
+  protected scrollIconTs = scrollIconTs;
+
+  protected scrollSlotHtml = scrollSlotHtml;
+  protected scrollSlotTs = scrollSlotTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {
@@ -248,6 +283,44 @@ export class TabsDocPage {
       type: 'EventEmitter<number>',
       defaultValue: '-',
       description: 'Fires on every tab click, including the already active tab.',
+    },
+    {
+      name: 'scroll-left-icon-name',
+      type: 'string',
+      defaultValue: "'chevron-left'",
+      description:
+        'Icon name for the left arrow. The arrow only renders while the strip overflows the container.',
+    },
+    {
+      name: 'scroll-right-icon-name',
+      type: 'string',
+      defaultValue: "'chevron-right'",
+      description: 'Icon name for the right arrow.',
+    },
+    {
+      name: 'scroll-button-class',
+      type: 'string | object',
+      defaultValue: "''",
+      description: 'Class applied to both arrow buttons.',
+    },
+    {
+      name: 'scroll-button-style',
+      type: 'object',
+      defaultValue: 'null',
+      description: 'Inline style applied to both arrow buttons.',
+    },
+    {
+      name: '[tabs-scroll-left-slot]',
+      type: 'Content Slot',
+      defaultValue: '-',
+      description:
+        'Replaces the content of the left arrow button. The button itself, its disabled edge state and its visibility stay automatic.',
+    },
+    {
+      name: '[tabs-scroll-right-slot]',
+      type: 'Content Slot',
+      defaultValue: '-',
+      description: 'Replaces the content of the right arrow button.',
     },
     {
       name: '[tab-item-slot]',

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## Unreleased
 
+### Features
+
+* `dasar-tabs` scrolls horizontally on its own and shows left/right arrow buttons once the tab strip is wider than its container. The buttons appear, disappear and disable at the edges automatically.
+* New `dasar-tabs` inputs: `scroll-left-icon-name`, `scroll-right-icon-name` (defaults `chevron-left` / `chevron-right`), `scroll-button-class` and `scroll-button-style`.
+* New `dasar-tabs` slots: `[tabs-scroll-left-slot]` and `[tabs-scroll-right-slot]` replace the default icon inside the arrow button. `DasarTabsConfig` gained `scrollLeftIconName`, `scrollRightIconName`, `scrollButtonClass` and `scrollButtonStyle`.
+
 ### Breaking
 
 * `dasar-tabs` `size` now takes `ScaleAttributeType` (`none | xs | sm | md | lg | xl | full`). The previous `compact | normal` values moved to the new `spacing` input.
