@@ -1,0 +1,17 @@
+<div class="dasar-list-item" [ngClass]="itemClass" [ngStyle]="itemStyle">
+  @if (hasPrefix) {
+    <div class="dasar-list-item-prefix">
+      <ng-content select="[prefix-slot]"></ng-content>
+    </div>
+  }
+
+  <div class="dasar-list-item-body">
+    <ng-content></ng-content>
+  </div>
+
+  @if (hasSuffix) {
+    <div class="dasar-list-item-suffix">
+      <ng-content select="[suffix-slot]"></ng-content>
+    </div>
+  }
+</div>

@@ -13,6 +13,7 @@ import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
 import { DasarMenuConfig } from '../components/dasar-menu/dasar-menu';
 import { DasarTabsConfig } from '../components/dasar-tabs/dasar-tabs';
 import { ScaleAttributeType } from './type.model';
+import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/dasar-list';
 
 export type DasarThemeMode = 'light' | 'dark';
 export interface DasarThemeScale {
@@ -582,6 +583,30 @@ export interface DasarThemeMenu {
   dividerBackground?: string;
   dividerMarginVertical?: string;
 }
+export interface DasarThemeList {
+  background?: string;
+  color?: string;
+  radius?: string;
+  border?: string;
+  fontSizeSm?: string;
+  fontSizeMd?: string;
+  fontSizeLg?: string;
+  divider?: string;
+  hoverBackground?: string;
+  activeBackground?: string;
+  headerPadding?: string;
+  headerFontWeight?: string;
+  headerBorder?: string;
+  headerBackground?: string;
+  footerPadding?: string;
+  footerFontSize?: string;
+  footerColor?: string;
+  footerBorder?: string;
+  footerBackground?: string;
+  itemPadding?: string;
+  prefixColor?: string;
+  suffixColor?: string;
+}
 export interface DasarComponentCommonConfig {
   size?: Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   radius?: ScaleAttributeType;
@@ -603,6 +628,8 @@ export type DasarComponentConfig = {
   menu?: DasarMenuConfig;
   table?: DasarTableConfig;
   tabs?: DasarTabsConfig;
+  list?: DasarListConfig;
+  listItem?: DasarListItemConfig;
 };
 export interface DasarThemeConfig {
   mode: DasarThemeMode;
@@ -620,6 +647,7 @@ export interface DasarThemeConfig {
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;
       table?: DasarThemeTable;
+      list?: DasarThemeList;
     };
     dark?: {
       common?: DasarThemeCommon;
@@ -632,6 +660,7 @@ export interface DasarThemeConfig {
       card?: DasarThemeCard;
       menu?: DasarThemeMenu;
       table?: DasarThemeTable;
+      list?: DasarThemeList;
     };
   };
 }

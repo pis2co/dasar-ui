@@ -15,6 +15,7 @@ import {
   chipMap,
   cardMap,
   menuMap,
+  listMap,
 } from '../../services/theme.service';
 import {
   InjectionToken,
@@ -228,6 +229,11 @@ export class DasarThemeProviderComponent implements OnChanges {
     const menuTokens = this.tokenConfig?.[currentMode]?.menu || this.tokenConfig?.light?.menu;
     if (menuTokens) {
       this.injectMappedTokens({ element: hostElement, payload: menuTokens, dictionary: menuMap });
+    }
+
+    const listTokens = this.tokenConfig?.[currentMode]?.list || this.tokenConfig?.light?.list;
+    if (listTokens) {
+      this.injectMappedTokens({ element: hostElement, payload: listTokens, dictionary: listMap });
     }
   }
 
