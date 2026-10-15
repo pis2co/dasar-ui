@@ -20,10 +20,10 @@ import { TOKEN_ROWS } from './theming.data';
     <dasar-input
       label="Search variables"
       placeholder="For example --btn- or --list-"
-      [ngModel]="query()"
-      (ngModelChange)="query.set($event)"
+      full-width
+      [(ngModel)]="query"
+      hint="{{ rows().length }} variables"
     />
-    <p class="theming-count">{{ rows().length }} variables</p>
     <dasar-table
       [columns]="columns"
       [hoverable]="true"

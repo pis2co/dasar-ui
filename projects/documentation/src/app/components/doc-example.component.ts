@@ -14,7 +14,7 @@ interface DocExampleCodeOption {
   standalone: true,
   imports: [CommonModule, DasarCardComponent, HighlightPipe, DasarButtonComponent],
   template: `
-    <dasar-card [label]="title" class="doc-example-card">
+    <dasar-card [label]="title">
       <dasar-card
         extra-header-slot
         fluid
@@ -73,10 +73,6 @@ interface DocExampleCodeOption {
   `,
   styles: [
     `
-      .doc-example-card {
-        display: block;
-        margin-bottom: var(--space-8);
-      }
       .example-toolbar {
         display: flex;
         justify-content: space-between;
