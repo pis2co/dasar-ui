@@ -1,0 +1,14 @@
+<dasar-radio-group [(ngModel)]="slot" direction="horizontal" style="margin-bottom: 12px">
+  <dasar-radio label="Slot 5" [checked-value]="5" />
+  <dasar-radio label="Slot 7" [checked-value]="7" />
+  <dasar-radio label="Slot 9" [checked-value]="9" />
+</dasar-radio-group>
+
+<dasar-pagination
+  [page-count]="50"
+  [page-slot]="slot()"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Current page: {{ page() }} of 50.</p>

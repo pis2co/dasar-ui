@@ -1,0 +1,12 @@
+<dasar-pagination
+  [page-count]="count()"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+  [page-sizes]="size()"
+  (onUpdatePageSize)="size.set($event)"
+  [page-size-options]="[10, 20, 50]"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Page {{ page() }} of {{ count() }}, {{ size() }} of {{ total }} items per page.
+</p>

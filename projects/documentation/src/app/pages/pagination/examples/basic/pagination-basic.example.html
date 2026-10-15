@@ -1,0 +1,3 @@
+<dasar-pagination [page-count]="10" [page]="page()" (onUpdatePage)="page.set($event)" />
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Current page: {{ page() }}.</p>

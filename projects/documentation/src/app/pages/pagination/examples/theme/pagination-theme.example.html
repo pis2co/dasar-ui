@@ -1,0 +1,8 @@
+<dasar-theme-provider [componentConfig]="componentConfig" [tokenConfig]="tokenConfig">
+  <dasar-pagination [page-count]="10" [page]="page()" (onUpdatePage)="page.set($event)" />
+</dasar-theme-provider>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  components.pagination sets size, spacing and the label. tokens.light.pagination sets the gap and
+  the item min-width.
+</p>

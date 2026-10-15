@@ -25,6 +25,7 @@ import { CardDocPage } from '../pages/card/card.page';
 import { MenuDocPage } from '../pages/menu/menu.page';
 import { TabsDocPage } from '../pages/tabs/tabs.page';
 import { ListDocPage } from '../pages/list/list.page';
+import { PaginationDocPage } from '../pages/pagination/pagination.page';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -132,6 +133,11 @@ export const routes: Routes = [
     path: 'components/list',
     component: ListDocPage,
     title: 'List Docs | Dasar UI',
+  },
+  {
+    path: 'components/pagination',
+    component: PaginationDocPage,
+    title: 'Pagination Docs | Dasar UI',
   },
   {
     path: 'components/calendar',

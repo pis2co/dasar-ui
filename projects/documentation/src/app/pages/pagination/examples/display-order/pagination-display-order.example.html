@@ -1,0 +1,10 @@
+<dasar-pagination
+  [page-count]="10"
+  [page]="page()"
+  (onUpdatePage)="page.set($event)"
+  [display-order]="['size-picker', 'pages']"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  The size picker renders before the pages. Leave an item out to hide it.
+</p>

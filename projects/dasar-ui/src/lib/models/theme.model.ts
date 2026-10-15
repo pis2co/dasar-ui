@@ -22,6 +22,7 @@ import { DasarMenuConfig } from '../components/dasar-menu/dasar-menu';
 import { DasarTabsConfig } from '../components/dasar-tabs/dasar-tabs';
 import { ScaleAttributeType } from './type.model';
 import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/dasar-list';
+import { DasarPaginationConfig } from '@components/dasar-pagination/dasar-pagination';
 
 export type DasarThemeMode = 'light' | 'dark';
 export type DasarBreakpointName = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -736,6 +737,14 @@ export interface DasarThemeList {
   prefixColor?: string;
   suffixColor?: string;
 }
+export interface DasarThemePagination {
+  gap?: string;
+  fontSize?: string;
+  itemMinWidth?: string;
+  ellipsisColor?: string;
+  summaryColor?: string;
+  dropdownMaxHeight?: string;
+}
 export interface DasarThemeTabs {
   listPaddingNormal?: string;
   listPaddingCompact?: string;
@@ -825,6 +834,7 @@ export type DasarComponentConfig = {
   tabs?: DasarTabsConfig;
   list?: DasarListConfig;
   listItem?: DasarListItemConfig;
+  pagination?: DasarPaginationConfig;
 };
 export interface DasarThemeConfig {
   mode: DasarThemeMode;
@@ -849,6 +859,7 @@ export interface DasarThemeConfig {
       menu?: DasarThemeMenu;
       table?: DasarThemeTable;
       list?: DasarThemeList;
+      pagination?: DasarThemePagination;
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;
@@ -870,6 +881,7 @@ export interface DasarThemeConfig {
       menu?: DasarThemeMenu;
       table?: DasarThemeTable;
       list?: DasarThemeList;
+      pagination?: DasarThemePagination;
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;

@@ -226,6 +226,7 @@ export class DocsLayoutComponent {
         { label: 'Menu', route: '/components/menu' },
         { label: 'Tabs', route: '/components/tabs' },
         { label: 'List', route: '/components/list' },
+        { label: 'Pagination', route: '/components/pagination' },
       ],
     },
     {
