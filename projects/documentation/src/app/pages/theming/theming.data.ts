@@ -1335,6 +1335,60 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       description: 'Pointer cursor and active background on items.',
     },
     {
+      name: 'selectable',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Clicking an item selects it and highlights the active item.',
+    },
+    {
+      name: 'valueField',
+      type: 'string | null',
+      defaultValue: 'null',
+      description: 'Matches object values by this key.',
+    },
+    {
+      name: 'maxHeight',
+      type: 'string | null',
+      defaultValue: 'null',
+      description: 'Max height of the scrollable content area.',
+    },
+    {
+      name: 'scrollOffset',
+      type: 'number',
+      defaultValue: '0',
+      description: 'Pixels between the active item top and the scroll area top.',
+    },
+    {
+      name: 'scrollBehavior',
+      type: "'auto' | 'smooth'",
+      defaultValue: "'auto'",
+      description: 'Scroll animation used by auto-scroll.',
+    },
+    {
+      name: 'scrollOnInit',
+      type: 'boolean',
+      defaultValue: 'true',
+      description: 'Scrolls to the value on first render.',
+    },
+    {
+      name: 'scrollOnClick',
+      type: 'boolean',
+      defaultValue: 'true',
+      description: 'Scrolls a clicked item to the offset.',
+    },
+    {
+      name: 'keyboard',
+      type: 'boolean',
+      defaultValue: 'true',
+      description: 'Arrow keys, Home, End and Enter when selectable.',
+    },
+    {
+      name: 'showFocus',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Shows the focus outline on the keyboard-focused item.',
+    },
+    {
       name: 'containerStyle',
       type: 'StyleType',
       defaultValue: '-',
@@ -1348,6 +1402,12 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
     },
   ],
   listItem: [
+    {
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Blocks clicks and keyboard on the item.',
+    },
     {
       name: 'itemStyle',
       type: 'StyleType',

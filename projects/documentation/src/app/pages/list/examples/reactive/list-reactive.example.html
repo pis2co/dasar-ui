@@ -1,0 +1,11 @@
+<dasar-button (click)="toggle()">{{ disabled() ? 'Enable' : 'Disable' }}</dasar-button>
+
+<dasar-list selectable bordered [formControl]="control" style="margin-top: 12px; display: block">
+  @for (member of members; track member) {
+    <dasar-list-item [value]="member">{{ member }}</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Control value: {{ control.value ?? 'none' }}. Disabled: {{ control.disabled }}.
+</p>

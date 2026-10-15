@@ -3,7 +3,10 @@
   [class.bordered]="bordered"
   [class.show-divider]="showDivider"
   [class.hoverable]="hoverable"
-  [class.clickable]="clickable"
+  [class.clickable]="clickable || selectable"
+  [class.selectable]="selectable"
+  [class.disabled]="isDisabled"
+  [class.scrollable]="!!maxHeight"
   [ngClass]="containerClass"
   [ngStyle]="containerStyle"
 >
@@ -13,7 +16,17 @@
     </div>
   }
 
-  <div class="dasar-list-content">
+  <div
+    #contentRef
+    class="dasar-list-content"
+    role="listbox"
+    [style.max-height]="maxHeight"
+    [attr.tabindex]="selectable && keyboard && !isDisabled ? 0 : null"
+    [attr.aria-activedescendant]="activeDescendantId"
+    [attr.aria-disabled]="isDisabled || null"
+    (keydown)="onKeydown($event)"
+    (focus)="onFocus()"
+  >
     <ng-content></ng-content>
   </div>
 

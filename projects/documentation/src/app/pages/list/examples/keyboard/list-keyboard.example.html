@@ -1,0 +1,18 @@
+<dasar-list
+  selectable
+  keyboard
+  show-focus
+  bordered
+  max-height="200px"
+  [value]="selected()"
+  (valueChange)="selected.set($event)"
+>
+  @for (member of members; track member) {
+    <dasar-list-item [value]="member">{{ member }}</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Tab into the list, move with ↑ ↓ Home End, select with Enter. Selected:
+  {{ selected() ?? 'none' }}.
+</p>

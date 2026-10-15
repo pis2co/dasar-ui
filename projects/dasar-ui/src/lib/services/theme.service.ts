@@ -685,6 +685,10 @@ export const listMap: Record<string, string> = {
   footerBorder: '--list-footer-border',
   footerBackground: '--list-footer-background',
   itemPadding: '--list-item-padding',
+  maxHeight: '--list-max-height',
+  activeItemBackground: '--list-active-item-background',
+  activeItemColor: '--list-active-item-color',
+  focusItemOutline: '--list-focus-item-outline',
   prefixColor: '--list-prefix-color',
   suffixColor: '--list-suffix-color',
 };

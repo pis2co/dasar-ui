@@ -1,4 +1,16 @@
-<div class="dasar-list-item" [ngClass]="itemClass" [ngStyle]="itemStyle">
+<div
+  class="dasar-list-item"
+  [class.active]="active"
+  [class.focused]="focused"
+  [class.disabled]="isItemDisabled"
+  [attr.id]="itemId"
+  [attr.role]="list?.selectable ? 'option' : null"
+  [attr.aria-selected]="list?.selectable ? active : null"
+  [attr.aria-disabled]="isItemDisabled || null"
+  [ngClass]="itemClass"
+  [ngStyle]="itemStyle"
+  (click)="onItemClick($event)"
+>
   @if (hasPrefix) {
     <div class="dasar-list-item-prefix">
       <ng-content select="[prefix-slot]"></ng-content>

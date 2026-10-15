@@ -1,0 +1,7 @@
+<dasar-list selectable bordered [value]="selected()" (valueChange)="selected.set($event)">
+  @for (member of members; track member) {
+    <dasar-list-item [value]="member">{{ member }}</dasar-list-item>
+  }
+</dasar-list>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Selected: {{ selected() ?? 'none' }}.</p>
