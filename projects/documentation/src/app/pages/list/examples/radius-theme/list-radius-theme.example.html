@@ -1,0 +1,11 @@
+<dasar-theme-provider [componentConfig]="componentConfig" [tokenConfig]="tokenConfig">
+  <dasar-list>
+    @for (item of items; track item) {
+      <dasar-list-item>{{ item }}</dasar-list-item>
+    }
+  </dasar-list>
+</dasar-theme-provider>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Radius xl from components.list, sized by tokens.light.list.radiusXl.
+</p>

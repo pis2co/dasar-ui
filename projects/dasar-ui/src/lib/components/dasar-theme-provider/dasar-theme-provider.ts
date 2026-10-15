@@ -21,6 +21,7 @@ import {
   cardMap,
   menuMap,
   listMap,
+  tableMap,
   tabsMap,
   overlayMap,
   modalMap,
@@ -290,6 +291,15 @@ export class DasarThemeProviderComponent implements OnChanges {
     const tabsTokens = this.tokenConfig?.[currentMode]?.tabs || this.tokenConfig?.light?.tabs;
     if (tabsTokens) {
       this.injectMappedTokens({ element: hostElement, payload: tabsTokens, dictionary: tabsMap });
+    }
+
+    const tableTokens = this.tokenConfig?.[currentMode]?.table || this.tokenConfig?.light?.table;
+    if (tableTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: tableTokens,
+        dictionary: tableMap,
+      });
     }
 
     const overlayTokens =

@@ -24,6 +24,7 @@ import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
 
 export type DasarTableAppearance = 'outline' | 'filled' | 'elevated' | 'borderless';
+export type DasarTableRadiusType = ScaleAttributeType;
 export type DasarTableSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarTableSpacing = 'compact' | 'normal' | 'relaxed';
 export type DasarTableSortDirection = 'asc' | 'desc' | null;
@@ -55,6 +56,7 @@ export interface DasarTableConfig {
   size?: DasarTableSize;
   sortKey?: string | null;
   sortDirection?: DasarTableSortDirection;
+  radius?: DasarTableRadiusType;
   emptyTitle?: string;
   emptyDescription?: string;
   loadingText?: string;
@@ -167,6 +169,13 @@ export class DasarTable {
     this.themeService,
   );
   @Input() size = resolveThemeDefault('table', 'size', 'md', this.themeProvider, this.themeService);
+  @Input() radius: DasarTableRadiusType = resolveThemeDefault(
+    'table',
+    'radius',
+    'md',
+    this.themeProvider,
+    this.themeService,
+  );
   @Input() sortKey = resolveThemeDefault(
     'table',
     'sortKey',

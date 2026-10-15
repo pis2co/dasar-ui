@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarThemeConfig } from '../../models/theme.model';
 import { DasarThemeProviderComponent } from '../dasar-theme-provider/dasar-theme-provider';
-import { DasarAlertComponent, DasarAlertVariantType } from './dasar-alert';
+import { alertMap } from '../../services/theme.service';
+import { DasarAlertComponent, DasarAlertRadiusType, DasarAlertVariantType } from './dasar-alert';
 
 @Component({
   selector: 'test-alert-host',
@@ -62,6 +63,16 @@ class AlertThemeHost {}
 })
 class AlertTokensHost {
   tokens = signal<DasarThemeConfig['tokens']>({});
+}
+
+@Component({
+  selector: 'test-alert-radius-host',
+  standalone: true,
+  imports: [DasarAlertComponent],
+  template: `<dasar-alert [radius]="radius()">Body</dasar-alert>`,
+})
+class AlertRadiusHost {
+  radius = signal<DasarAlertRadiusType>('md');
 }
 
 const hostOf = (fixture: ComponentFixture<unknown>) =>
@@ -269,5 +280,70 @@ describe('DasarAlert theme tokens', () => {
 
     expect(host.style.getPropertyValue('--alert-padding')).toBe('20px');
     expect(host.style.getPropertyValue('--alert-danger-bg')).toBe('red');
+  });
+});
+
+describe('DasarAlert radius', () => {
+  let fixture: ComponentFixture<AlertRadiusHost>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AlertRadiusHost],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AlertRadiusHost);
+    await fixture.whenStable();
+  });
+
+  it('defaults to radius-md', () => {
+    expect(containerOf(fixture)?.classList).toContain('radius-md');
+  });
+
+  it('radius drives the container class', async () => {
+    for (const value of ['none', 'sm', 'lg', 'full'] as DasarAlertRadiusType[]) {
+      fixture.componentInstance.radius.set(value);
+      await fixture.whenStable();
+
+      expect(containerOf(fixture)?.classList).toContain(`radius-${value}`);
+    }
+  });
+});
+
+describe('DasarAlert radius theme default', () => {
+  let fixture: ComponentFixture<AlertThemeHost>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AlertThemeHost],
+      providers: [
+        {
+          provide: DASAR_THEME_PROVIDER,
+          useValue: { componentConfig: { alert: { radius: 'none' } } },
+        },
+      ],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AlertThemeHost);
+    await fixture.whenStable();
+  });
+
+  it('reads radius from the component config', () => {
+    expect(containerOf(fixture)?.classList).toContain('radius-none');
+  });
+});
+
+describe('alertMap radius tokens', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+  });
+
+  it('maps the per-size radius tokens', () => {
+    expect(alertMap.radiusNone).toBe('--alert-radius-none');
+    expect(alertMap.radiusXs).toBe('--alert-radius-xs');
+    expect(alertMap.radiusSm).toBe('--alert-radius-sm');
+    expect(alertMap.radiusMd).toBe('--alert-radius-md');
+    expect(alertMap.radiusLg).toBe('--alert-radius-lg');
+    expect(alertMap.radiusXl).toBe('--alert-radius-xl');
+    expect(alertMap.radiusFull).toBe('--alert-radius-full');
   });
 });

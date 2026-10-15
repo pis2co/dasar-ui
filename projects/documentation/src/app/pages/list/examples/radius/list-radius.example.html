@@ -1,0 +1,17 @@
+<div style="display: flex; flex-direction: column; gap: 12px">
+  <dasar-list radius="none" bordered>
+    @for (member of members; track member) {
+      <dasar-list-item>{{ member }} (none)</dasar-list-item>
+    }
+  </dasar-list>
+  <dasar-list radius="md" bordered>
+    @for (member of members; track member) {
+      <dasar-list-item>{{ member }} (md)</dasar-list-item>
+    }
+  </dasar-list>
+  <dasar-list radius="xl" bordered>
+    @for (member of members; track member) {
+      <dasar-list-item>{{ member }} (xl)</dasar-list-item>
+    }
+  </dasar-list>
+</div>

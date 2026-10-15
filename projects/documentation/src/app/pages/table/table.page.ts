@@ -15,6 +15,8 @@ import { TableExpandedExample } from './examples/expanded/table-expanded.example
 import { TableHeatmapExample } from './examples/heatmap/table-heatmap.example';
 import { TableNestedExample } from './examples/nested/table-nested.example';
 import { TableEmptyExample } from './examples/empty/table-empty.example';
+import { TableRadiusExample } from './examples/radius/table-radius.example';
+import { TableRadiusThemeExample } from './examples/radius-theme/table-radius-theme.example';
 
 // @ts-ignore
 import profileHtml from './examples/cell-profile/table-cell-profile.example.html' with {
@@ -92,6 +94,18 @@ import inlineEditTs from './examples/inline-edit/table-inline-edit.example.ts' w
 import nestedHtml from './examples/nested/table-nested.example.html' with { loader: 'text' };
 // @ts-ignore
 import nestedTs from './examples/nested/table-nested.example.ts' with { loader: 'text' };
+// @ts-ignore
+import radiusHtml from './examples/radius/table-radius.example.html' with { loader: 'text' };
+// @ts-ignore
+import radiusTs from './examples/radius/table-radius.example.ts' with { loader: 'text' };
+// @ts-ignore
+import radiusThemeHtml from './examples/radius-theme/table-radius-theme.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import radiusThemeTs from './examples/radius-theme/table-radius-theme.example.ts' with {
+  loader: 'text',
+};
 
 @Component({
   imports: [
@@ -110,6 +124,8 @@ import nestedTs from './examples/nested/table-nested.example.ts' with { loader: 
     TablePaginationExample,
     TableCustomSizesExample,
     TableCustomBodyExample,
+    TableRadiusExample,
+    TableRadiusThemeExample,
   ],
   templateUrl: './table.page.html',
   selector: 'app-table-page',
@@ -140,6 +156,10 @@ export class TableDocPage {
   protected inlineEditTs = inlineEditTs;
   protected nestedHtml = nestedHtml;
   protected nestedTs = nestedTs;
+  protected radiusHtml = radiusHtml;
+  protected radiusTs = radiusTs;
+  protected radiusThemeHtml = radiusThemeHtml;
+  protected radiusThemeTs = radiusThemeTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {
@@ -165,6 +185,13 @@ export class TableDocPage {
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Typographic scale of the table contents.',
+    },
+    {
+      name: 'radius',
+      type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      defaultValue: "'md'",
+      description:
+        'Corner radius of the table container. Default via components.table.radius. Borderless appearance always stays square.',
     },
     {
       name: 'spacing',

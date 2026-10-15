@@ -17,6 +17,34 @@
     width: 100%;
   }
 
+  &.radius-none {
+    border-radius: var(--table-container-radius-none, var(--radius-none));
+  }
+
+  &.radius-xs {
+    border-radius: var(--table-container-radius-xs, var(--radius-xs));
+  }
+
+  &.radius-sm {
+    border-radius: var(--table-container-radius-sm, var(--radius-sm));
+  }
+
+  &.radius-md {
+    border-radius: var(--table-container-radius-md, var(--table-radius, var(--radius-md)));
+  }
+
+  &.radius-lg {
+    border-radius: var(--table-container-radius-lg, var(--radius-lg));
+  }
+
+  &.radius-xl {
+    border-radius: var(--table-container-radius-xl, var(--radius-xl));
+  }
+
+  &.radius-full {
+    border-radius: var(--table-container-radius-full, var(--radius-full));
+  }
+
   &.appearance-outline {
     border: 1px solid var(--table-outline-border, var(--theme-border-strong-color));
   }

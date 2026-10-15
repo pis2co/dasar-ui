@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+
+### Features
+
+* `radius` input (none/xs/sm/md/lg/xl/full, default md) for `dasar-alert`, `dasar-list` and `dasar-table`, configurable via `components.alert|list|table.radius`; per-size tokens `--alert-radius-*`, `--list-radius-*` and `--table-container-radius-*` via `tokens.*.alert|list|table` (existing `radius` token still drives md; borderless table stays square); table tokens now also apply through `dasar-theme-provider`.
+* radius and radius theme-config examples on the alert, list and table docs pages; radius rows added to the Component Config page.
+
 ## [2.1.0](https://github.com/pis2co/dasar-ui/compare/v2.0.3...v2.1.0) (2026-10-15)
 
 

@@ -12,6 +12,8 @@ import { ListPrefixSuffixExample } from './examples/prefix-suffix/list-prefix-su
 import { ListCustomStyleExample } from './examples/custom-style/list-custom-style.example';
 import { ListAdvancedDynamicExample } from './examples/advanced-dynamic/list-advanced-dynamic.example';
 import { ListAdvancedThemeExample } from './examples/advanced-theme/list-advanced-theme.example';
+import { ListRadiusExample } from './examples/radius/list-radius.example';
+import { ListRadiusThemeExample } from './examples/radius-theme/list-radius-theme.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/list-basic.example.html' with { loader: 'text' };
@@ -86,6 +88,20 @@ import advancedThemeTs from './examples/advanced-theme/list-advanced-theme.examp
   loader: 'text',
 };
 
+// @ts-ignore
+import radiusHtml from './examples/radius/list-radius.example.html' with { loader: 'text' };
+// @ts-ignore
+import radiusTs from './examples/radius/list-radius.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import radiusThemeHtml from './examples/radius-theme/list-radius-theme.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import radiusThemeTs from './examples/radius-theme/list-radius-theme.example.ts' with {
+  loader: 'text',
+};
+
 @Component({
   imports: [
     CommonModule,
@@ -100,6 +116,8 @@ import advancedThemeTs from './examples/advanced-theme/list-advanced-theme.examp
     ListCustomStyleExample,
     ListAdvancedDynamicExample,
     ListAdvancedThemeExample,
+    ListRadiusExample,
+    ListRadiusThemeExample,
   ],
   templateUrl: './list.page.html',
   selector: 'app-list-page',
@@ -133,6 +151,12 @@ export class ListDocPage {
   protected advancedThemeHtml = advancedThemeHtml;
   protected advancedThemeTs = advancedThemeTs;
 
+  protected radiusHtml = radiusHtml;
+  protected radiusTs = radiusTs;
+
+  protected radiusThemeHtml = radiusThemeHtml;
+  protected radiusThemeTs = radiusThemeTs;
+
   protected readonly apiProps: DocApiProperty[] = [
     {
       name: 'size',
@@ -140,6 +164,12 @@ export class ListDocPage {
       defaultValue: "'md'",
       description:
         'Sets the font size and the item padding. Uses --list-font-size-sm/md/lg and --list-item-padding.',
+    },
+    {
+      name: 'radius',
+      type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'",
+      defaultValue: "'md'",
+      description: 'Corner radius of the container. Default via components.list.radius.',
     },
     {
       name: 'bordered',

@@ -30,6 +30,34 @@
     border-color: var(--alert-border-local);
   }
 
+  &.radius-none {
+    border-radius: var(--alert-radius-none, var(--radius-none));
+  }
+
+  &.radius-xs {
+    border-radius: var(--alert-radius-xs, var(--radius-xs));
+  }
+
+  &.radius-sm {
+    border-radius: var(--alert-radius-sm, var(--radius-sm));
+  }
+
+  &.radius-md {
+    border-radius: var(--alert-radius-md, var(--alert-radius, var(--radius-md)));
+  }
+
+  &.radius-lg {
+    border-radius: var(--alert-radius-lg, var(--radius-lg));
+  }
+
+  &.radius-xl {
+    border-radius: var(--alert-radius-xl, var(--radius-xl));
+  }
+
+  &.radius-full {
+    border-radius: var(--alert-radius-full, var(--radius-full));
+  }
+
   &.leaving {
     animation: dasar-alert-leave var(--alert-leave-duration, 200ms) ease forwards;
   }

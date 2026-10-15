@@ -25,6 +25,34 @@
     border: 1px solid var(--list-border, var(--theme-border-strong-color));
   }
 
+  &.radius-none {
+    border-radius: var(--list-radius-none, var(--radius-none));
+  }
+
+  &.radius-xs {
+    border-radius: var(--list-radius-xs, var(--radius-xs));
+  }
+
+  &.radius-sm {
+    border-radius: var(--list-radius-sm, var(--radius-sm));
+  }
+
+  &.radius-md {
+    border-radius: var(--list-radius-md, var(--list-radius, var(--radius-md)));
+  }
+
+  &.radius-lg {
+    border-radius: var(--list-radius-lg, var(--radius-lg));
+  }
+
+  &.radius-xl {
+    border-radius: var(--list-radius-xl, var(--radius-xl));
+  }
+
+  &.radius-full {
+    border-radius: var(--list-radius-full, var(--radius-full));
+  }
+
   &.size-sm {
     font-size: var(--list-font-size-sm, var(--font-size-sm));
     --list-item-padding: var(--space-base) var(--space-3);
