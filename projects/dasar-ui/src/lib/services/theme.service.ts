@@ -700,6 +700,28 @@ export const paginationMap: Record<string, string> = {
   summaryColor: '--pagination-summary-color',
   dropdownMaxHeight: '--pagination-dropdown-max-height',
 };
+export const switchMap: Record<string, string> = {
+  gap: '--switch-gap',
+  radius: '--switch-radius',
+  thumbRadius: '--switch-thumb-radius',
+  heightSm: '--switch-height-sm',
+  heightMd: '--switch-height-md',
+  heightLg: '--switch-height-lg',
+  minWidthSm: '--switch-min-width-sm',
+  minWidthMd: '--switch-min-width-md',
+  minWidthLg: '--switch-min-width-lg',
+  trackBg: '--switch-track-bg',
+  trackCheckedBg: '--switch-track-checked-bg',
+  thumbBg: '--switch-thumb-bg',
+  thumbIconColor: '--switch-thumb-icon-color',
+  thumbIconCheckedColor: '--switch-thumb-icon-checked-color',
+  contentColor: '--switch-content-color',
+  contentFontSize: '--switch-content-font-size',
+  focusColor: '--switch-focus-color',
+  disabledOpacity: '--switch-disabled-opacity',
+  labelColor: '--switch-label-color',
+  labelFontSize: '--switch-label-font-size',
+};
 export const tabsMap: Record<keyof DasarThemeTabs, string> = {
   listPaddingNormal: '--tabs-list-padding-normal',
   listPaddingCompact: '--tabs-list-padding-compact',
@@ -872,6 +894,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.pagination) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.pagination, paginationMap);
+    }
+    if (config.tokens?.[config.mode]?.switch) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.switch, switchMap);
     }
     if (config.tokens?.[config.mode]?.tabs) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.tabs, tabsMap);

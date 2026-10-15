@@ -1,0 +1,5 @@
+<div style="display: flex; align-items: center; gap: 16px">
+  @for (s of sizes; track s) {
+    <dasar-switch [size]="s" [value]="on()" (onUpdate)="on.set($event)" />
+  }
+</div>

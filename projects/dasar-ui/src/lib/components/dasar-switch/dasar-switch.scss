@@ -1,0 +1,112 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-switch {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.dasar-switch .hidden {
+  display: none;
+}
+
+.dasar-switch-container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--switch-gap, var(--space-base));
+  cursor: pointer;
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: var(--switch-disabled-opacity, 0.5);
+  }
+}
+
+.dasar-switch-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  cursor: inherit;
+  height: var(--switch-h, var(--switch-height-md, 22px));
+  min-width: var(--switch-w, var(--switch-min-width-md, 40px));
+  border-radius: var(--switch-radius, var(--radius-full));
+  background-color: var(--switch-track-bg, var(--theme-border-strong-color));
+  transition: background-color 0.2s ease;
+
+  &.checked {
+    background-color: var(--switch-track-checked-bg, var(--theme-primary-color));
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--switch-focus-color, var(--theme-primary-surface-color));
+    outline-offset: 1px;
+  }
+}
+
+.dasar-switch.sm .dasar-switch-track {
+  --switch-h: var(--switch-height-sm, 18px);
+  --switch-w: var(--switch-min-width-sm, 32px);
+}
+
+.dasar-switch.md .dasar-switch-track {
+  --switch-h: var(--switch-height-md, 22px);
+  --switch-w: var(--switch-min-width-md, 40px);
+}
+
+.dasar-switch.lg .dasar-switch-track {
+  --switch-h: var(--switch-height-lg, 28px);
+  --switch-w: var(--switch-min-width-lg, 52px);
+}
+
+.dasar-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(var(--switch-h) - 4px);
+  height: calc(var(--switch-h) - 4px);
+  border-radius: var(--switch-thumb-radius, var(--radius-full));
+  background-color: var(--switch-thumb-bg, #fff);
+  color: var(--switch-thumb-icon-color, var(--theme-text-secondary-color));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: left 0.2s ease;
+}
+
+.dasar-switch-track.checked .dasar-switch-thumb {
+  left: calc(100% - var(--switch-h) + 2px);
+  color: var(--switch-thumb-icon-checked-color, var(--theme-primary-color));
+}
+
+.dasar-switch-thumb-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--switch-h) * 0.5);
+}
+
+.dasar-switch-thumb .dasar-icon {
+  width: 70%;
+  height: 70%;
+}
+
+.dasar-switch-content {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  font-size: var(--switch-content-font-size, 11px);
+  color: var(--switch-content-color, var(--theme-text-inverse-color));
+  white-space: nowrap;
+  padding: 0 var(--space-1) 0 calc(var(--switch-h) + 2px);
+}
+
+.dasar-switch-track.checked .dasar-switch-content {
+  padding: 0 calc(var(--switch-h) + 2px) 0 var(--space-1);
+}
+
+.dasar-switch-label {
+  color: var(--switch-label-color, var(--theme-text-primary-color));
+  font-size: var(--switch-label-font-size, inherit);
+}
