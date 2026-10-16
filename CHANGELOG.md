@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/pis2co/dasar-ui/compare/v2.1.0...v2.2.1) (2026-10-16)
+
+
+### Features
+
+* add dasar-switch component ([bff0b49](https://github.com/pis2co/dasar-ui/commit/bff0b4907ee9073370088d311ca7948b06f86c98))
+* add radius config and more ([6b54f92](https://github.com/pis2co/dasar-ui/commit/6b54f92dc8f26e927f0494c83327b016f281b63b))
+* add skeleton and adjust input components ([d701362](https://github.com/pis2co/dasar-ui/commit/d701362b5df4a870bc37b5e8552a98659d77d9f9))
+
+
+### Bug Fixes
+
+* adjust margin ([128849e](https://github.com/pis2co/dasar-ui/commit/128849e16631c366d44615505da1d5e9bdbf55a6))
+* adjust pagination component ([bf638fe](https://github.com/pis2co/dasar-ui/commit/bf638feea5451ca08b4491f31bfd38b06a0a59c8))
+* dasar list focus state ([7c81493](https://github.com/pis2co/dasar-ui/commit/7c81493926599f9a68b228bbc2dd3423f235a057))
+* routes order adjustment ([e319543](https://github.com/pis2co/dasar-ui/commit/e3195437daf8475b39b3522edb882838d6e8866e))
+
 ## [2.2.0](https://github.com/pis2co/dasar-ui/compare/v2.1.0...v2.2.0) (2026-10-15)
 
 
