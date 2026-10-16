@@ -220,7 +220,6 @@ export class DocsLayoutComponent {
         { label: 'Divider', route: '/components/divider' },
         { label: 'Alert', route: '/components/alert' },
         { label: 'Calendar', route: '/components/calendar' },
-        { label: 'Datepicker', route: '/components/datepicker' },
         { label: 'Card', route: '/components/card' },
         { label: 'Modal', route: '/components/modal' },
         { label: 'Menu', route: '/components/menu' },
@@ -228,6 +227,10 @@ export class DocsLayoutComponent {
         { label: 'List', route: '/components/list' },
         { label: 'Pagination', route: '/components/pagination' },
       ],
+    },
+    {
+      title: 'Data',
+      items: [{ label: 'Table', route: '/components/table' }],
     },
     {
       title: 'Input',
@@ -240,11 +243,8 @@ export class DocsLayoutComponent {
         { label: 'Skeleton', route: '/components/skeleton' },
         { label: 'Breakpoint', route: '/components/breakpoint' },
         { label: 'Select', route: '/components/select' },
+        { label: 'Datepicker', route: '/components/datepicker' },
       ],
-    },
-    {
-      title: 'Data',
-      items: [{ label: 'Table', route: '/components/table' }],
     },
   ];
   apiColumns: DasarTableColumn[] = [
