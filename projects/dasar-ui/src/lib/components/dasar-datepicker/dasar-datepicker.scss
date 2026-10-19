@@ -261,32 +261,25 @@
     border-radius: var(--datepicker-dropdown-radius-full, var(--radius-lg));
   }
 
-  position: absolute;
-  z-index: var(--datepicker-dropdown-z-index, 50);
+  position: fixed;
+  visibility: hidden;
+  z-index: var(--datepicker-dropdown-z-index, 1000);
   width: var(--datepicker-dropdown-width, 280px);
   animation: dasarFadeInDown 0.15s ease-out forwards;
 
   &.placement-bottom-start {
-    top: calc(100% + var(--space-1));
-    left: 0;
     transform-origin: top left;
   }
 
   &.placement-bottom-end {
-    top: calc(100% + var(--space-1));
-    right: 0;
     transform-origin: top right;
   }
 
   &.placement-top-start {
-    bottom: calc(100% + var(--space-1));
-    left: 0;
     transform-origin: bottom left;
   }
 
   &.placement-top-end {
-    bottom: calc(100% + var(--space-1));
-    right: 0;
     transform-origin: bottom right;
   }
 

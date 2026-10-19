@@ -246,7 +246,8 @@
 }
 
 .dasar-select-dropdown-panel {
-  position: absolute;
+  position: fixed;
+  visibility: hidden;
   width: 100%;
   max-height: var(--select-dropdown-max-height, 240px);
   overflow-y: auto;
@@ -258,7 +259,7 @@
     0 10px 25px -5px rgba(0, 0, 0, 0.1),
     0 8px 10px -6px rgba(0, 0, 0, 0.1)
   );
-  z-index: var(--select-dropdown-z-index, 50);
+  z-index: var(--select-dropdown-z-index, 1000);
   display: flex;
   flex-direction: column;
 
@@ -285,26 +286,12 @@
   }
 
   &.placement-bottom-start {
-    top: calc(100% + var(--select-dropdown-offset, 4px));
-    right: auto;
-    left: 0;
   }
   &.placement-bottom-end {
-    top: calc(100% + var(--select-dropdown-offset, 4px));
-    right: 0;
-    left: auto;
   }
   &.placement-top-start {
-    right: auto;
-    bottom: calc(100% + var(--select-dropdown-offset, 4px));
-    top: auto;
-    left: 0;
   }
   &.placement-top-end {
-    bottom: calc(100% + var(--select-dropdown-offset, 4px));
-    top: auto;
-    right: 0;
-    left: auto;
   }
 }
 

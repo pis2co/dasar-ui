@@ -1,4 +1,5 @@
 import {
+  DestroyRef,
   Component,
   Input,
   Output,
@@ -21,7 +22,12 @@ import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provid
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { DasarCalendarComponent } from '../dasar-calendar/dasar-calendar';
 import { resolveThemeDefault, safeFormat } from '../../utils/common';
-import { computeSmartPlacement, DasarPanelPlacement } from '../../utils/panel-placement';
+import {
+  applyFixedPanelPosition,
+  computeSmartPlacement,
+  DasarPanelPlacement,
+  listenViewportChanges,
+} from '../../utils/panel-placement';
 import { fieldIconSize } from '../../utils/icon-size';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
@@ -463,11 +469,9 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       this.setFocus(false, event);
     }
   }
-  @HostListener('window:resize')
-  @HostListener('window:scroll')
-  onViewportChange() {
+  private viewportListener = listenViewportChanges(() => {
     if (this.isOpen) this.calculateSmartPlacement();
-  }
+  }, inject(DestroyRef));
   clearValue(event: Event) {
     event.stopPropagation();
     if (this.disabled) return;
@@ -517,6 +521,12 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       this.currentPlacement = newPlacement;
       this.cdr.detectChanges();
     }
+    applyFixedPanelPosition(
+      this.triggerEl.nativeElement,
+      this.dropdownEl.nativeElement,
+      newPlacement,
+      { offset: 4 },
+    );
   }
 }
 

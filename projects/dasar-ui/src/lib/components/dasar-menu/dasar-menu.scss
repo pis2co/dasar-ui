@@ -109,14 +109,15 @@
   border: 1px solid var(--menu-panel-border, var(--theme-border-subtle-color));
   border-radius: var(--menu-panel-radius, var(--radius-md));
   min-width: var(--menu-panel-min-width, 180px);
-  position: absolute;
+  position: fixed;
+  visibility: hidden;
   box-shadow: var(
     --menu-panel-shadow,
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -4px rgba(0, 0, 0, 0.1)
   );
   padding: var(--menu-panel-padding, var(--space-1));
-  z-index: var(--menu-panel-z-index, 100);
+  z-index: var(--menu-panel-z-index, 1000);
   display: flex;
   flex-direction: column;
   animation: fadeIn 0.15s ease-out forwards;
@@ -144,20 +145,12 @@
   }
 
   &.placement-bottom-start {
-    top: calc(100% + var(--menu-panel-offset, 6px));
-    left: 0;
   }
   &.placement-bottom-end {
-    top: calc(100% + var(--menu-panel-offset, 6px));
-    right: 0;
   }
   &.placement-top-start {
-    bottom: calc(100% + var(--menu-panel-offset, 6px));
-    left: 0;
   }
   &.placement-top-end {
-    bottom: calc(100% + var(--menu-panel-offset, 6px));
-    right: 0;
   }
 }
 

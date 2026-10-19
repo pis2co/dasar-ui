@@ -1,4 +1,5 @@
 import {
+  DestroyRef,
   booleanAttribute,
   Component,
   HostBinding,
@@ -23,7 +24,12 @@ import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.mode
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
-import { computeSmartPlacement, DasarPanelPlacement } from '../../utils/panel-placement';
+import {
+  applyFixedPanelPosition,
+  computeSmartPlacement,
+  DasarPanelPlacement,
+  listenViewportChanges,
+} from '../../utils/panel-placement';
 import { fieldIconSize } from '../../utils/icon-size';
 
 export type DasarMenuPlacementType = DasarPanelPlacement;
@@ -219,11 +225,9 @@ export class DasarMenu {
   get itemIconSize(): number {
     return fieldIconSize(this.size);
   }
-  @HostListener('window:resize')
-  @HostListener('window:scroll')
-  onViewportChange(): void {
+  private viewportListener = listenViewportChanges(() => {
     if (this.isOpen()) this.recalculatePlacement();
-  }
+  }, inject(DestroyRef));
 
   private recalculatePlacement(): void {
     if (!this.triggerEl?.nativeElement || !this.panelEl?.nativeElement) return;
@@ -236,6 +240,7 @@ export class DasarMenu {
       this.currentPlacement.set(next);
       this.cdr.markForCheck();
     }
+    applyFixedPanelPosition(this.triggerEl.nativeElement, this.panelEl.nativeElement, next);
   }
 
   toggle(event?: Event): void {

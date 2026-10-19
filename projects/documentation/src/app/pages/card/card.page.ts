@@ -126,7 +126,8 @@ export class CardDocPage {
       name: 'hide-overflow',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Applies overflow hidden. Great for embedding edge-to-edge images.',
+      description:
+        'Applies overflow hidden. Great for embedding edge-to-edge images. Open dropdowns (menu, select, datepicker, pagination) are not clipped.',
     },
     {
       name: 'full-width',

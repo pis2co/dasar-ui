@@ -27,9 +27,9 @@
       </div>
     </div>
     @if (closeable) {
-      <button type="button" class="dasar-alert-close" aria-label="Close" (click)="close($event)">
+      <dasar-button icon-only aria-label="Close" (click)="close($event)">
         <dasar-icon [name]="closeIconName" size="sm" />
-      </button>
+      </dasar-button>
     }
   </div>
 }

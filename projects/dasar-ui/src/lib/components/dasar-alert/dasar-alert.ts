@@ -18,6 +18,7 @@ import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provid
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { DasarThemeService } from '../../services/theme.service';
+import { DasarButton } from '../dasar-button/dasar-button';
 import { DasarIcon } from '../dasar-icon/dasar-icon';
 
 export type DasarAlertVariantType = 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
@@ -49,7 +50,7 @@ export class DasarAlertIconSlot {}
   styleUrls: ['./dasar-alert.scss'],
   templateUrl: './dasar-alert.html',
   selector: 'dasar-alert',
-  imports: [CommonModule, DasarIcon],
+  imports: [CommonModule, DasarIcon, DasarButton],
 })
 export class DasarAlert implements OnDestroy {
   private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });

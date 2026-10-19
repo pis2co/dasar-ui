@@ -1,4 +1,5 @@
 import {
+  DestroyRef,
   booleanAttribute,
   Component,
   HostBinding,
@@ -27,7 +28,12 @@ import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
-import { computeSmartPlacement, DasarPanelPlacement } from '../../utils/panel-placement';
+import {
+  applyFixedPanelPosition,
+  computeSmartPlacement,
+  DasarPanelPlacement,
+  listenViewportChanges,
+} from '../../utils/panel-placement';
 import { fieldIconSize } from '../../utils/icon-size';
 
 export type DasarSelectSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
@@ -469,11 +475,9 @@ export class DasarSelect implements ControlValueAccessor {
     }
   }
 
-  @HostListener('window:resize')
-  @HostListener('window:scroll')
-  onViewportChange(): void {
+  private viewportListener = listenViewportChanges(() => {
     if (this.isOpen) this.recalculatePlacement();
-  }
+  }, inject(DestroyRef));
 
   private recalculatePlacement(): void {
     if (!this.triggerEl?.nativeElement || !this.panelEl?.nativeElement) return;
@@ -486,6 +490,10 @@ export class DasarSelect implements ControlValueAccessor {
       this.currentPlacement = next;
       this.cdr.markForCheck();
     }
+    applyFixedPanelPosition(this.triggerEl.nativeElement, this.panelEl.nativeElement, next, {
+      offset: 4,
+      matchWidth: true,
+    });
   }
   closePanel(): void {
     if (!this.isOpen) return;
