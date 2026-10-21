@@ -14,6 +14,7 @@ import { SelectDocPage } from '../pages/select/select.page';
 import { InputDocPage } from '../pages/input/input.page';
 import { TableDocPage } from '../pages/table/table.page';
 import { ModalDocPage } from '../pages/modal/modal.page';
+import { DrawerDocPage } from '../pages/drawer/drawer.page';
 import { ChipDocPage } from '../pages/chip/chip.page';
 import { DividerDocPage } from '../pages/divider/divider.page';
 import { AlertDocPage } from '../pages/alert/alert.page';
@@ -125,6 +126,11 @@ export const routes: Routes = [
     path: 'components/modal',
     component: ModalDocPage,
     title: 'Modal Docs | Dasar UI',
+  },
+  {
+    path: 'components/drawer',
+    component: DrawerDocPage,
+    title: 'Drawer Docs | Dasar UI',
   },
   {
     path: 'components/tabs',

@@ -16,6 +16,7 @@ import { DasarRadioConfig } from '../components/dasar-radio/dasar-radio';
 import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-radio-group';
 import { DasarBreakpointConfig } from '../components/dasar-breakpoint/dasar-breakpoint';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
+import { DasarDrawerConfig } from '../components/dasar-drawer/dasar-drawer';
 import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
 import { DasarMenuConfig } from '../components/dasar-menu/dasar-menu';
@@ -802,6 +803,25 @@ export interface DasarThemeOverlay {
   background?: string;
   blur?: string;
 }
+export interface DasarThemeDrawer {
+  background?: string;
+  bodyColor?: string;
+  titleColor?: string;
+  titleFontWeight?: string;
+  fontSize?: string;
+  border?: string;
+  shadow?: string;
+  headerBorder?: string;
+  headerPadding?: string;
+  bodyPadding?: string;
+  actionsBackground?: string;
+  actionsBorder?: string;
+  actionsPadding?: string;
+  actionsGap?: string;
+  animationDuration?: string;
+  resizeHandleSize?: string;
+  resizeHandleHoverColor?: string;
+}
 export interface DasarThemeModal {
   background?: string;
   bodyColor?: string;
@@ -862,6 +882,7 @@ export type DasarComponentConfig = {
   radioGroup?: DasarRadioGroupConfig;
   breakpoint?: DasarBreakpointConfig;
   modal?: DasarModalConfig;
+  drawer?: DasarDrawerConfig;
   overlay?: DasarOverlayConfig;
   icon?: DasarIconConfig;
   menu?: DasarMenuConfig;
@@ -902,6 +923,7 @@ export interface DasarThemeConfig {
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;
+      drawer?: DasarThemeDrawer;
     };
     dark?: {
       common?: DasarThemeCommon;
@@ -926,6 +948,7 @@ export interface DasarThemeConfig {
       tabs?: DasarThemeTabs;
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;
+      drawer?: DasarThemeDrawer;
     };
   };
 }

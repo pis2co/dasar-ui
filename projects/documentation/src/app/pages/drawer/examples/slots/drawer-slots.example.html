@@ -1,0 +1,21 @@
+<dasar-button (click)="show.set(true)">Open drawer with slots</dasar-button>
+
+<dasar-drawer [(show)]="show">
+  <div header-slot style="display: flex; align-items: center; gap: 8px">
+    <dasar-icon name="settings" />
+    <strong>Settings</strong>
+  </div>
+
+  <dasar-button closeable-slot size="sm" appearance="outline" (click)="show.set(false)">
+    Done
+  </dasar-button>
+
+  <p>The default slot is the body.</p>
+
+  <div action-slot>
+    <dasar-button appearance="outline" variant="secondary" (click)="show.set(false)">
+      Cancel
+    </dasar-button>
+    <dasar-button (click)="show.set(false)">Save</dasar-button>
+  </div>
+</dasar-drawer>

@@ -1,0 +1,15 @@
+<dasar-button (click)="show.set(true)">Open resizable drawer</dasar-button>
+
+<dasar-drawer
+  [(show)]="show"
+  label="Resizable drawer"
+  resizable
+  width="420px"
+  min-width="280px"
+  max-width="80vw"
+  (onWidthUpdate)="width.set($event)"
+>
+  <p>Drag the left edge, or focus it and use the arrow keys.</p>
+</dasar-drawer>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">Last width: {{ width() ?? '-' }}px</p>

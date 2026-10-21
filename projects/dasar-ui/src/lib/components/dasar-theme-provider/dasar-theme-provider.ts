@@ -28,6 +28,7 @@ import {
   tabsMap,
   overlayMap,
   modalMap,
+  drawerMap,
 } from '../../services/theme.service';
 import {
   InjectionToken,
@@ -346,6 +347,15 @@ export class DasarThemeProviderComponent implements OnChanges {
     const modalTokens = this.tokenConfig?.[currentMode]?.modal || this.tokenConfig?.light?.modal;
     if (modalTokens) {
       this.injectMappedTokens({ element: hostElement, payload: modalTokens, dictionary: modalMap });
+    }
+
+    const drawerTokens = this.tokenConfig?.[currentMode]?.drawer || this.tokenConfig?.light?.drawer;
+    if (drawerTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: drawerTokens,
+        dictionary: drawerMap,
+      });
     }
   }
 

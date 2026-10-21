@@ -19,6 +19,7 @@ import {
   DasarThemeTabs,
   DasarThemeOverlay,
   DasarThemeModal,
+  DasarThemeDrawer,
   DasarThemeSkeleton,
 } from '@models/theme.model';
 import {
@@ -756,6 +757,25 @@ export const overlayMap: Record<keyof DasarThemeOverlay, string> = {
   background: '--overlay-background',
   blur: '--overlay-blur',
 };
+export const drawerMap: Record<keyof DasarThemeDrawer, string> = {
+  background: '--dasar-drawer-background',
+  bodyColor: '--dasar-drawer-body-color',
+  titleColor: '--dasar-drawer-title-color',
+  titleFontWeight: '--dasar-drawer-title-font-weight',
+  fontSize: '--dasar-drawer-font-size',
+  border: '--dasar-drawer-border',
+  shadow: '--dasar-drawer-shadow',
+  headerBorder: '--dasar-drawer-header-border',
+  headerPadding: '--dasar-drawer-header-padding',
+  bodyPadding: '--dasar-drawer-body-padding',
+  actionsBackground: '--dasar-drawer-actions-background',
+  actionsBorder: '--dasar-drawer-actions-border',
+  actionsPadding: '--dasar-drawer-actions-padding',
+  actionsGap: '--dasar-drawer-actions-gap',
+  animationDuration: '--dasar-drawer-animation-duration',
+  resizeHandleSize: '--dasar-drawer-resize-handle-size',
+  resizeHandleHoverColor: '--dasar-drawer-resize-handle-hover-color',
+};
 export const modalMap: Record<keyof DasarThemeModal, string> = {
   background: '--modal-background',
   bodyColor: '--modal-body-color',
@@ -921,6 +941,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.modal) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.modal, modalMap);
+    }
+    if (config.tokens?.[config.mode]?.drawer) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.drawer, drawerMap);
     }
     this.themeState.next(config);
   }

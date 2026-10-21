@@ -25,6 +25,7 @@ export * from './lib/components/dasar-breakpoint/dasar-breakpoint';
 export * from './lib/services/breakpoint.service';
 export * from './lib/components/dasar-input/dasar-input';
 export * from './lib/components/dasar-modal/dasar-modal';
+export * from './lib/components/dasar-drawer/dasar-drawer';
 export * from './lib/components/dasar-overlay/dasar-overlay';
 export * from './lib/components/dasar-theme-provider/dasar-theme-provider';
 export * from './lib/components/dasar-button/dasar-button';

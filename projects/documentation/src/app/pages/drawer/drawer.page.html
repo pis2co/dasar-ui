@@ -1,0 +1,65 @@
+<docs-layout
+  title="Drawer"
+  description="A panel that slides in from any edge of the screen. It uses dasar-overlay for the backdrop and supports ngModel, resizing, slots and open/close callbacks."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic"
+  >
+    <app-drawer-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: placementHtml },
+      { label: 'TypeScript', lang: 'typescript', value: placementTs },
+    ]"
+    title="Placement"
+  >
+    <app-drawer-placement-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: resizableHtml },
+      { label: 'TypeScript', lang: 'typescript', value: resizableTs },
+    ]"
+    title="Resizable"
+  >
+    <app-drawer-resizable-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: slotsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: slotsTs },
+    ]"
+    title="Slots"
+  >
+    <app-drawer-slots-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: ngModelHtml },
+      { label: 'TypeScript', lang: 'typescript', value: ngModelTs },
+    ]"
+    title="ngModel"
+  >
+    <app-drawer-ng-model-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: callbacksHtml },
+      { label: 'TypeScript', lang: 'typescript', value: callbacksTs },
+    ]"
+    title="Callbacks"
+  >
+    <app-drawer-callbacks-example />
+  </doc-example-component>
+</docs-layout>

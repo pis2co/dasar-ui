@@ -1,0 +1,17 @@
+<dasar-button (click)="show.set(true)">Open drawer</dasar-button>
+
+<dasar-drawer
+  [(show)]="show"
+  label="Lifecycle"
+  (onAfterEnter)="log('after enter')"
+  (onAfterLeave)="log('after leave')"
+  (onUpdateValue)="log('value changed to ' + $event)"
+>
+  <p>Open and close the drawer to see the lifecycle events.</p>
+</dasar-drawer>
+
+<ul style="font-size: 12px; margin-top: 8px; color: gray">
+  @for (entry of logs(); track $index) {
+    <li>{{ entry }}</li>
+  }
+</ul>

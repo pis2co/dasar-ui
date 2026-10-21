@@ -1,0 +1,89 @@
+@if (rendered()) {
+  <dasar-overlay
+    [z-index]="zIndex"
+    [blur]="overlayBlur"
+    [background]="overlayBackground"
+    [overlay-class]="overlayClasses"
+    (onClick)="handleOverlayClick()"
+  >
+    <div
+      #panel
+      class="dasar-drawer-container placement-{{ placement }}"
+      [class.leaving]="leaving()"
+      [class.resizing]="resizing()"
+      [style.width]="panelWidth"
+      [style.height]="panelHeight"
+      [style.min-width]="panelMinWidth"
+      [style.max-width]="panelMaxWidth"
+      [style.min-height]="panelMinHeight"
+      [style.max-height]="panelMaxHeight"
+      [ngClass]="containerClass"
+      [ngStyle]="containerStyle"
+      role="dialog"
+      aria-modal="true"
+      tabindex="-1"
+      [attr.aria-label]="label || null"
+      (animationend)="onAnimationEnd($event)"
+    >
+      @if (resizable) {
+        <div
+          class="dasar-drawer-resize-handle"
+          role="separator"
+          tabindex="0"
+          [attr.aria-orientation]="isHorizontal ? 'vertical' : 'horizontal'"
+          [attr.aria-label]="'Resize drawer'"
+          (pointerdown)="onResizeStart($event)"
+          (pointermove)="onResizeMove($event)"
+          (pointerup)="onResizeEnd($event)"
+          (pointercancel)="onResizeEnd($event)"
+          (keydown)="onResizeKeydown($event)"
+        ></div>
+      }
+      @if (label || hasHeader || closable || hasCloseable) {
+        <div
+          class="dasar-drawer-header"
+          [class.fluid]="headerFluid"
+          [ngClass]="headerClass"
+          [ngStyle]="headerStyle"
+        >
+          <div class="dasar-drawer-header-content">
+            @if (hasHeader) {
+              <ng-content select="[header-slot]"></ng-content>
+            } @else if (label) {
+              <span class="dasar-drawer-title">{{ label }}</span>
+            }
+          </div>
+          @if (hasCloseable || closable) {
+            <div class="dasar-drawer-close">
+              @if (hasCloseable) {
+                <ng-content select="[closeable-slot]"></ng-content>
+              } @else {
+                <dasar-button variant="ghost" icon-only aria-label="Close" (click)="close()">
+                  <dasar-icon name="x"></dasar-icon>
+                </dasar-button>
+              }
+            </div>
+          }
+        </div>
+      }
+      <div
+        class="dasar-drawer-body"
+        [class.fluid]="bodyFluid"
+        [ngClass]="bodyClass"
+        [ngStyle]="bodyStyle"
+      >
+        <ng-content></ng-content>
+      </div>
+      @if (hasAction) {
+        <div
+          class="dasar-drawer-actions"
+          [class.fluid]="actionFluid"
+          [ngClass]="actionClass"
+          [ngStyle]="actionStyle"
+        >
+          <ng-content select="[action-slot]"></ng-content>
+        </div>
+      }
+    </div>
+  </dasar-overlay>
+}

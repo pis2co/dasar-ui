@@ -1,0 +1,9 @@
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+  @for (item of placements; track item) {
+    <dasar-button appearance="outline" (click)="open(item)">{{ item }}</dasar-button>
+  }
+</div>
+
+<dasar-drawer [(show)]="show" [placement]="placement()" [label]="'Placement: ' + placement()">
+  <p>This drawer slides in from the {{ placement() }} edge.</p>
+</dasar-drawer>

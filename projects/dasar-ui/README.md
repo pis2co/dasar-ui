@@ -15,7 +15,7 @@ Angular UI component library based on danarakca design system. Standalone compon
 
 ## Components
 
-Button, Icon, Chip, Input, Number Input, Select, Calendar, Datepicker, Card, Modal, Overlay, Menu, Table, Tabs, List.
+Button, Icon, Chip, Input, Number Input, Select, Calendar, Datepicker, Card, Modal, Drawer, Overlay, Menu, Table, Tabs, List.
 
 ## Quick start
 
