@@ -77,12 +77,16 @@
 }
 
 .dasar-checkbox-label {
-  font-size: var(--dasar-font-size-sm);
+  font-size: var(--dasar-checkbox-label-font-size-md, var(--dasar-font-size-base));
   color: var(--dasar-checkbox-label-color, inherit);
 }
 
+.dasar-checkbox.sm .dasar-checkbox-label {
+  font-size: var(--dasar-checkbox-label-font-size-sm, var(--dasar-font-size-sm));
+}
+
 .dasar-checkbox.lg .dasar-checkbox-label {
-  font-size: var(--dasar-font-size-base);
+  font-size: var(--dasar-checkbox-label-font-size-lg, var(--dasar-font-size-lg));
 }
 
 .dasar-checkbox.error .dasar-checkbox-box {

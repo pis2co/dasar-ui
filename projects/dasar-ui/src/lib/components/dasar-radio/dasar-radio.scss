@@ -82,12 +82,16 @@
 }
 
 .dasar-radio-label {
-  font-size: var(--dasar-font-size-sm);
+  font-size: var(--dasar-radio-label-font-size-md, var(--dasar-font-size-base));
   color: var(--dasar-radio-label-color, inherit);
 }
 
+.dasar-radio.sm .dasar-radio-label {
+  font-size: var(--dasar-radio-label-font-size-sm, var(--dasar-font-size-sm));
+}
+
 .dasar-radio.lg .dasar-radio-label {
-  font-size: var(--dasar-font-size-base);
+  font-size: var(--dasar-radio-label-font-size-lg, var(--dasar-font-size-lg));
 }
 
 .dasar-radio.error .dasar-radio-circle {

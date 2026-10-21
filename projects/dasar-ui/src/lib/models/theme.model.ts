@@ -272,6 +272,9 @@ export interface DasarThemeCheckbox {
   hintColor?: string;
   hintFontSize?: string;
   groupGap?: string;
+  labelFontSizeSm?: string;
+  labelFontSizeMd?: string;
+  labelFontSizeLg?: string;
 }
 export interface DasarThemeRadio {
   gap?: string;
@@ -291,6 +294,9 @@ export interface DasarThemeRadio {
   hintColor?: string;
   hintFontSize?: string;
   groupGap?: string;
+  labelFontSizeSm?: string;
+  labelFontSizeMd?: string;
+  labelFontSizeLg?: string;
 }
 export interface DasarThemeDivider {
   color?: string;

@@ -343,3 +343,40 @@ describe('DasarCheckbox indeterminate', () => {
     expect(host.value()).toBe(true);
   });
 });
+
+@Component({
+  selector: 'test-checkbox-label-size-host',
+  standalone: true,
+  imports: [DasarCheckboxComponent],
+  template: `<dasar-checkbox label="Label" [size]="size()" />`,
+})
+class CheckboxLabelSizeHost {
+  size = signal<'sm' | 'md' | 'lg'>('md');
+}
+
+describe('DasarCheckbox label size', () => {
+  let fixture: ComponentFixture<CheckboxLabelSizeHost>;
+
+  const fontSize = () =>
+    getComputedStyle(fixture.nativeElement.querySelector('.dasar-checkbox-label')).fontSize;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [CheckboxLabelSizeHost] }).compileComponents();
+    fixture = TestBed.createComponent(CheckboxLabelSizeHost);
+    await fixture.whenStable();
+  });
+
+  it('follows the same font scale as the other components', async () => {
+    fixture.componentInstance.size.set('sm');
+    await fixture.whenStable();
+    expect(fontSize()).toContain('--dasar-font-size-sm');
+
+    fixture.componentInstance.size.set('md');
+    await fixture.whenStable();
+    expect(fontSize()).toContain('--dasar-font-size-base');
+
+    fixture.componentInstance.size.set('lg');
+    await fixture.whenStable();
+    expect(fontSize()).toContain('--dasar-font-size-lg');
+  });
+});
