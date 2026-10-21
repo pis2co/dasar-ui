@@ -136,14 +136,26 @@ export class DasarThemeProviderComponent implements OnChanges {
   @Input() componentConfig?: DasarComponentConfig;
   @Input() tokenConfig?: DasarThemeConfig['tokens'];
   @Input() colorConfig?: DasarThemeConfig['colors'];
-  @Input() mode: DasarThemeMode = 'light';
+  private readonly ownMode = signal<DasarThemeMode | undefined>(undefined);
+
+  /**
+   * Light or dark. A provider inside another provider follows the parent unless it sets its own
+   * mode, and a top-level provider falls back to light.
+   */
+  @Input()
+  set mode(value: DasarThemeMode | undefined) {
+    this.ownMode.set(value);
+  }
+  get mode(): DasarThemeMode | undefined {
+    return this.ownMode();
+  }
 
   constructor(private el: ElementRef) {
     if (this.parentProvider) {
       effect(() => {
-        const parentMode = this.parentProvider!.activeMode();
+        const ownMode = this.ownMode();
         const hostElement = this.el.nativeElement;
-        this.activeMode.set(parentMode);
+        this.activeMode.set(ownMode ?? this.parentProvider!.activeMode());
         this.applyTokenConfig(hostElement);
       });
     }
@@ -152,7 +164,7 @@ export class DasarThemeProviderComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     const hostElement = this.el.nativeElement;
     if (changes['mode'] && !this.parentProvider) {
-      this.activeMode.set(this.mode);
+      this.activeMode.set(this.mode ?? 'light');
       this.applyTokenConfig(hostElement);
     }
     if (changes['tokenConfig']) {

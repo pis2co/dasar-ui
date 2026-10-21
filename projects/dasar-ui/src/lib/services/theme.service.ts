@@ -897,7 +897,12 @@ export class DasarThemeService {
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
     if (this.initialConfig) {
-      this.setGlobalTheme(this.initialConfig);
+      this.setGlobalTheme({
+        mode: this.initialConfig.mode ?? 'light',
+        components: this.initialConfig.componentConfig,
+        tokens: this.initialConfig.tokenConfig,
+        colors: this.initialConfig.colorConfig,
+      });
     }
   }
 

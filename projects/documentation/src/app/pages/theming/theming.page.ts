@@ -129,9 +129,9 @@ export class ThemingDocPage {
     {
       name: '[mode]',
       type: "'light' | 'dark'",
-      defaultValue: "'light'",
+      defaultValue: "'light', or the parent provider's mode",
       description:
-        'On dasar-theme-provider. Picks the light or dark token set and toggles data-theme="dark".',
+        'On dasar-theme-provider. Picks the light or dark token set and sets data-theme. A provider inside another provider follows its parent unless it sets its own mode.',
     },
     {
       name: 'setGlobalTheme',
