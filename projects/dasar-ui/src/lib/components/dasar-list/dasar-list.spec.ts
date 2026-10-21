@@ -697,3 +697,24 @@ describe('DasarList reactive form', () => {
     expect(itemElsOf(fixture)[0].classList).not.toContain('active');
   });
 });
+
+describe('DasarList scroll container', () => {
+  const overflowOf = (fixture: ComponentFixture<unknown>) =>
+    getComputedStyle(fixture.nativeElement.querySelector('.dasar-list-content')).overflowY;
+
+  it('does not trap the wheel when the list has no max height', async () => {
+    await TestBed.configureTestingModule({ imports: [ListThemeHost] }).compileComponents();
+    const fixture = TestBed.createComponent(ListThemeHost);
+    await fixture.whenStable();
+
+    expect(overflowOf(fixture)).not.toBe('auto');
+  });
+
+  it('scrolls inside the list when a max height is set', async () => {
+    await TestBed.configureTestingModule({ imports: [ListValueHost] }).compileComponents();
+    const fixture = TestBed.createComponent(ListValueHost);
+    await fixture.whenStable();
+
+    expect(overflowOf(fixture)).toBe('auto');
+  });
+});

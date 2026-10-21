@@ -134,6 +134,9 @@
   display: flex;
   flex-direction: column;
   max-height: var(--list-max-height, none);
+}
+
+.dasar-list-container.scrollable .dasar-list-content {
   overflow-y: auto;
   overscroll-behavior: contain;
 }
