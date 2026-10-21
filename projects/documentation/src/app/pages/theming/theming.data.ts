@@ -23,6 +23,7 @@ import {
   tabsMap,
 } from 'dasar-ui';
 import { DocApiProperty } from '../../layouts/doc.layout';
+import { FOUNDATION_ROWS } from './theming-foundation.data';
 
 export interface ThemingTokenGroup {
   component: string;
@@ -62,14 +63,17 @@ export const TOKEN_GROUPS: ThemingTokenGroup[] = [
   { component: 'modal', path: 'tokens.light.modal', map: modalMap },
 ];
 
-export const TOKEN_ROWS: ThemingTokenRow[] = TOKEN_GROUPS.flatMap((group) =>
-  Object.entries(group.map).map(([token, cssVar]) => ({
-    component: group.component,
-    token,
-    cssVar,
-    path: group.path,
-  })),
-);
+export const TOKEN_ROWS: ThemingTokenRow[] = [
+  ...FOUNDATION_ROWS,
+  ...TOKEN_GROUPS.flatMap((group) =>
+    Object.entries(group.map).map(([token, cssVar]) => ({
+      component: group.component,
+      token,
+      cssVar,
+      path: group.path,
+    })),
+  ),
+];
 
 export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
   common: [
