@@ -1,7 +1,18 @@
-import { DasarTableColumn, DasarTableComponent } from 'dasar-ui';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Component, Input } from '@angular/core';
+import { DasarListComponent, DasarTableColumn, DasarTableComponent } from 'dasar-ui';
+import { NavigationEnd, Router } from '@angular/router';
+import {
+  afterNextRender,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  Input,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 export interface DocApiProperty {
   name: string;
@@ -28,7 +39,7 @@ export interface DocNavGroup {
 }
 
 @Component({
-  imports: [CommonModule, RouterLink, RouterLinkActive, DasarTableComponent],
+  imports: [CommonModule, DasarListComponent, DasarTableComponent],
   selector: 'docs-layout',
   standalone: true,
   template: `
@@ -36,27 +47,24 @@ export interface DocNavGroup {
       <aside class="docs-sidebar">
         <nav class="docs-nav">
           @for (group of navigation; track group.title) {
-            <div class="nav-group">
-              <div class="nav-group-title">
-                <span>{{ group.title }}</span>
-              </div>
-              <div class="nav-items">
-                @for (item of group.items; track item.label) {
-                  <a
-                    [routerLink]="item.route"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
-                    class="nav-link"
-                  >
-                    {{ item.label }}
-                  </a>
-                }
-              </div>
-            </div>
+            <dasar-list
+              class="nav-group"
+              selectable
+              hoverable
+              size="sm"
+              radius="none"
+              [value]="activeRoute()"
+              (onItemClick)="onNavigate($event.value)"
+            >
+              <div header-slot class="nav-group-title">{{ group.title }}</div>
+              @for (item of group.items; track item.label) {
+                <dasar-list-item [value]="item.route">{{ item.label }}</dasar-list-item>
+              }
+            </dasar-list>
           }
         </nav>
       </aside>
-      <main class="docs-main">
+      <main class="docs-main" #main>
         <div class="docs-layout">
           <header class="docs-header">
             <h1 class="docs-title">{{ title }}</h1>
@@ -147,26 +155,11 @@ export interface DocNavGroup {
         font-size: var(--font-size-xs);
         text-transform: uppercase;
       }
-      .nav-items {
-        display: flex;
-        flex-direction: column;
-      }
-      .nav-link {
-        display: block;
-        color: var(--theme-text-secondary-color);
-        text-decoration: none;
-        border-right: 1px solid transparent;
-        padding: var(--space-base);
-        &:hover {
-          color: var(--theme-text-primary-color);
-          background-color: var(--theme-bg-hover-color);
-        }
-        &.active {
-          color: var(--theme-primary-color);
-          font-weight: var(--font-weight-medium);
-          background-color: var(--theme-primary-surface-color);
-          border-right-color: var(--theme-primary-color);
-        }
+      .docs-sidebar {
+        --list-background: transparent;
+        --list-header-padding: 0;
+        --list-header-border: transparent;
+        --list-header-background: transparent;
       }
       .api-title {
         font-weight: var(--font-weight-semibold);
@@ -191,6 +184,54 @@ export class DocsLayoutComponent {
   @Input() title = '';
   @Input() description = '';
   @Input() apiData: DocApiProperty[] = [];
+
+  @ViewChild('main') private main?: ElementRef<HTMLElement>;
+  private readonly router = inject(Router);
+  private readonly host = inject(ElementRef<HTMLElement>);
+  protected readonly activeRoute = signal('');
+
+  constructor() {
+    this.activeRoute.set(this.resolveActiveRoute(this.router.url));
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(inject(DestroyRef)),
+      )
+      .subscribe((event) => this.activeRoute.set(this.resolveActiveRoute(event.urlAfterRedirects)));
+
+    afterNextRender(() => {
+      this.scrollMainToTop();
+      this.revealActiveItem();
+    });
+  }
+
+  protected onNavigate(route: string): void {
+    if (this.router.url.split(/[?#]/)[0] === route) {
+      this.scrollMainToTop();
+      return;
+    }
+    this.router.navigateByUrl(route);
+  }
+
+  private scrollMainToTop(): void {
+    this.main?.nativeElement.scrollTo({ top: 0 });
+  }
+
+  private revealActiveItem(): void {
+    const active = this.host.nativeElement.querySelector('.docs-sidebar .dasar-list-item.active');
+    active?.scrollIntoView({ block: 'nearest' });
+  }
+
+  private resolveActiveRoute(url: string): string {
+    const path = url.split(/[?#]/)[0];
+    const items = this.navigation.flatMap((group) => group.items);
+    const exact = items.find((item) => item.route === path);
+    if (exact) return exact.route;
+    const prefixed = items
+      .filter((item) => !item.exact && path.startsWith(`${item.route}/`))
+      .sort((a, b) => b.route.length - a.route.length);
+    return prefixed[0]?.route ?? '';
+  }
 
   navigation: DocNavGroup[] = [
     {
