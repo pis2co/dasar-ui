@@ -1,0 +1,21 @@
+<div style="display: flex; flex-direction: column; gap: 24px">
+  <div>
+    <p style="font-size: 12px; color: gray">tree-leaf-slot replaces the arrow of parents.</p>
+    <dasar-tree default-expand-all [items]="items">
+      <ng-template tree-leaf-slot let-item let-expanded="expanded">
+        <dasar-icon [name]="expanded ? 'chevron-down' : 'chevron-right'" />
+      </ng-template>
+    </dasar-tree>
+  </div>
+
+  <div>
+    <p style="font-size: 12px; color: gray">
+      tree-icon-slot replaces the arrow with your own icon.
+    </p>
+    <dasar-tree default-expand-all [items]="items">
+      <ng-template tree-icon-slot let-item let-level="level">
+        <dasar-icon [name]="level === 0 ? 'sun' : 'planet'" />
+      </ng-template>
+    </dasar-tree>
+  </div>
+</div>

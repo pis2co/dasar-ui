@@ -29,6 +29,7 @@ import {
   overlayMap,
   modalMap,
   drawerMap,
+  treeMap,
 } from '../../services/theme.service';
 import {
   InjectionToken,
@@ -356,6 +357,11 @@ export class DasarThemeProviderComponent implements OnChanges {
         payload: drawerTokens,
         dictionary: drawerMap,
       });
+    }
+
+    const treeTokens = this.tokenConfig?.[currentMode]?.tree || this.tokenConfig?.light?.tree;
+    if (treeTokens) {
+      this.injectMappedTokens({ element: hostElement, payload: treeTokens, dictionary: treeMap });
     }
   }
 

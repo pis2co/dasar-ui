@@ -223,6 +223,7 @@ export class DocsLayoutComponent {
         { label: 'Card', route: '/components/card' },
         { label: 'Modal', route: '/components/modal' },
         { label: 'Drawer', route: '/components/drawer' },
+        { label: 'Tree', route: '/components/tree' },
         { label: 'Menu', route: '/components/menu' },
         { label: 'Tabs', route: '/components/tabs' },
         { label: 'List', route: '/components/list' },

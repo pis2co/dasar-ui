@@ -17,6 +17,7 @@ import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-rad
 import { DasarBreakpointConfig } from '../components/dasar-breakpoint/dasar-breakpoint';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
 import { DasarDrawerConfig } from '../components/dasar-drawer/dasar-drawer';
+import { DasarTreeConfig } from '../components/dasar-tree/dasar-tree';
 import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
 import { DasarMenuConfig } from '../components/dasar-menu/dasar-menu';
@@ -803,6 +804,38 @@ export interface DasarThemeOverlay {
   background?: string;
   blur?: string;
 }
+export interface DasarThemeTree {
+  color?: string;
+  fontSizeSm?: string;
+  fontSizeMd?: string;
+  fontSizeLg?: string;
+  rowHeightSm?: string;
+  rowHeightMd?: string;
+  rowHeightLg?: string;
+  rowRadius?: string;
+  rowGap?: string;
+  rowPaddingX?: string;
+  indent?: string;
+  expanderSize?: string;
+  hoverBg?: string;
+  selectedBg?: string;
+  selectedColor?: string;
+  selectedFontWeight?: string;
+  focusColor?: string;
+  lineColor?: string;
+  iconColor?: string;
+  folderColor?: string;
+  dropColor?: string;
+  draggingOpacity?: string;
+  disabledOpacity?: string;
+  disabledColor?: string;
+  labelColor?: string;
+  labelFontWeight?: string;
+  hintColor?: string;
+  hintFontSize?: string;
+  emptyColor?: string;
+  gap?: string;
+}
 export interface DasarThemeDrawer {
   background?: string;
   bodyColor?: string;
@@ -883,6 +916,7 @@ export type DasarComponentConfig = {
   breakpoint?: DasarBreakpointConfig;
   modal?: DasarModalConfig;
   drawer?: DasarDrawerConfig;
+  tree?: DasarTreeConfig;
   overlay?: DasarOverlayConfig;
   icon?: DasarIconConfig;
   menu?: DasarMenuConfig;
@@ -924,6 +958,7 @@ export interface DasarThemeConfig {
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;
       drawer?: DasarThemeDrawer;
+      tree?: DasarThemeTree;
     };
     dark?: {
       common?: DasarThemeCommon;
@@ -949,6 +984,7 @@ export interface DasarThemeConfig {
       overlay?: DasarThemeOverlay;
       modal?: DasarThemeModal;
       drawer?: DasarThemeDrawer;
+      tree?: DasarThemeTree;
     };
   };
 }

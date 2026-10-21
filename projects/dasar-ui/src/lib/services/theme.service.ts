@@ -20,6 +20,7 @@ import {
   DasarThemeOverlay,
   DasarThemeModal,
   DasarThemeDrawer,
+  DasarThemeTree,
   DasarThemeSkeleton,
 } from '@models/theme.model';
 import {
@@ -757,6 +758,38 @@ export const overlayMap: Record<keyof DasarThemeOverlay, string> = {
   background: '--overlay-background',
   blur: '--overlay-blur',
 };
+export const treeMap: Record<keyof DasarThemeTree, string> = {
+  color: '--dasar-tree-color',
+  fontSizeSm: '--dasar-tree-font-size-sm',
+  fontSizeMd: '--dasar-tree-font-size-md',
+  fontSizeLg: '--dasar-tree-font-size-lg',
+  rowHeightSm: '--dasar-tree-row-height-sm',
+  rowHeightMd: '--dasar-tree-row-height-md',
+  rowHeightLg: '--dasar-tree-row-height-lg',
+  rowRadius: '--dasar-tree-row-radius',
+  rowGap: '--dasar-tree-row-gap',
+  rowPaddingX: '--dasar-tree-row-padding-x',
+  indent: '--dasar-tree-indent',
+  expanderSize: '--dasar-tree-expander-size',
+  hoverBg: '--dasar-tree-hover-bg',
+  selectedBg: '--dasar-tree-selected-bg',
+  selectedColor: '--dasar-tree-selected-color',
+  selectedFontWeight: '--dasar-tree-selected-font-weight',
+  focusColor: '--dasar-tree-focus-color',
+  lineColor: '--dasar-tree-line-color',
+  iconColor: '--dasar-tree-icon-color',
+  folderColor: '--dasar-tree-folder-color',
+  dropColor: '--dasar-tree-drop-color',
+  draggingOpacity: '--dasar-tree-dragging-opacity',
+  disabledOpacity: '--dasar-tree-disabled-opacity',
+  disabledColor: '--dasar-tree-disabled-color',
+  labelColor: '--dasar-tree-label-color',
+  labelFontWeight: '--dasar-tree-label-font-weight',
+  hintColor: '--dasar-tree-hint-color',
+  hintFontSize: '--dasar-tree-hint-font-size',
+  emptyColor: '--dasar-tree-empty-color',
+  gap: '--dasar-tree-gap',
+};
 export const drawerMap: Record<keyof DasarThemeDrawer, string> = {
   background: '--dasar-drawer-background',
   bodyColor: '--dasar-drawer-body-color',
@@ -944,6 +977,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.drawer) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.drawer, drawerMap);
+    }
+    if (config.tokens?.[config.mode]?.tree) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.tree, treeMap);
     }
     this.themeState.next(config);
   }

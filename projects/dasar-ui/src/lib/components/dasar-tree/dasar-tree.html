@@ -1,0 +1,160 @@
+<div class="dasar-tree-container" [ngClass]="containerClasses" [ngStyle]="containerStyle">
+  @if (label || hasLabelSlot || hasExtraHeaderSlot) {
+    <div class="dasar-tree-header">
+      <span class="dasar-tree-label" [id]="labelId">
+        @if (hasLabelSlot) {
+          <ng-content select="[label-slot]"></ng-content>
+        } @else {
+          {{ label }}
+        }
+      </span>
+      @if (hasExtraHeaderSlot) {
+        <div class="dasar-tree-extra-header">
+          <ng-content select="[extra-header-slot]"></ng-content>
+        </div>
+      }
+    </div>
+  }
+  @if (search || hasSearchSlot) {
+    <div class="dasar-tree-search">
+      @if (hasSearchSlot) {
+        <ng-content select="[search-slot]"></ng-content>
+      } @else {
+        <dasar-input
+          type="search"
+          full-width
+          [size]="size"
+          [placeholder]="searchPlaceholder"
+          [value]="searchValue"
+          [disabled]="isDisabled"
+          (valueChange)="onSearch($event)"
+        >
+          <dasar-icon prefix-slot name="search" [size]="iconSize"></dasar-icon>
+        </dasar-input>
+      }
+    </div>
+  }
+  <div
+    class="dasar-tree-list"
+    role="tree"
+    [attr.aria-labelledby]="label ? labelId : null"
+    [attr.aria-describedby]="hint || hasHintSlot ? hintId : null"
+    [attr.aria-multiselectable]="isMultiple || null"
+    [attr.aria-disabled]="isDisabled || null"
+    (keydown)="onTreeKeydown($event)"
+  >
+    @for (row of visibleRows; track row.item.key; let position = $index) {
+      <div
+        #rowEl
+        class="dasar-tree-row"
+        role="treeitem"
+        [ngClass]="rowClasses(row)"
+        [ngStyle]="itemStyle"
+        [attr.aria-level]="row.level + 1"
+        [attr.aria-expanded]="row.hasChildren ? row.expanded : null"
+        [attr.aria-selected]="isSelectable ? row.selected : null"
+        [attr.aria-checked]="isMultiple ? (row.indeterminate ? 'mixed' : row.checked) : null"
+        [attr.aria-disabled]="row.disabled || null"
+        [attr.draggable]="isDragAllowed(row) ? 'true' : null"
+        [attr.tabindex]="tabIndexFor(row, position)"
+        (click)="onRowClick(row)"
+        (focus)="focusedKey.set(row.item.key)"
+        (dragstart)="onDragStartRow(row, $event)"
+        (dragenter)="onDragEnterRow(row, $event)"
+        (dragover)="onDragOverRow(row, $event)"
+        (dragleave)="onDragLeaveRow(row, $event)"
+        (drop)="onDropRow(row, $event)"
+        (dragend)="onDragEndRow()"
+      >
+        @for (guide of row.guides; track $index) {
+          <span class="dasar-tree-indent" [class.line]="showLine"></span>
+        }
+        <span
+          class="dasar-tree-expander"
+          [class.has-children]="row.hasChildren"
+          [class.custom]="row.hasChildren && !!leafSlot"
+          [class.elbow]="showLine && !row.hasChildren && row.level > 0"
+          [class.last]="row.isLast"
+          (click)="toggleExpand(row, $event)"
+        >
+          @if (row.hasChildren && leafSlot) {
+            <ng-container
+              *ngTemplateOutlet="leafSlot.templateRef; context: slotContext(row)"
+            ></ng-container>
+          } @else if (!isFile && iconSlot) {
+            <ng-container
+              *ngTemplateOutlet="iconSlot.templateRef; context: slotContext(row)"
+            ></ng-container>
+          } @else if (row.hasChildren) {
+            <dasar-icon class="dasar-tree-arrow" name="caret-right" [size]="arrowSize"></dasar-icon>
+          }
+        </span>
+
+        @if (isMultiple) {
+          <span class="dasar-tree-check" (click)="$event.stopPropagation()">
+            <dasar-checkbox
+              [size]="size"
+              [value]="row.checked"
+              [indeterminate]="row.indeterminate"
+              [disabled]="row.disabled"
+              (onUpdate)="toggleCheck(row)"
+            ></dasar-checkbox>
+          </span>
+        }
+
+        @if (isFile) {
+          <span class="dasar-tree-icon" [class.folder]="row.isFolder">
+            @if (iconSlot) {
+              <ng-container
+                *ngTemplateOutlet="iconSlot.templateRef; context: slotContext(row)"
+              ></ng-container>
+            } @else {
+              <dasar-icon [name]="nodeIcon(row)" [size]="iconSize"></dasar-icon>
+            }
+          </span>
+        } @else if (!iconSlot && row.item.iconName) {
+          <span class="dasar-tree-icon">
+            <dasar-icon [name]="row.item.iconName" [size]="iconSize"></dasar-icon>
+          </span>
+        }
+
+        @if (prefixSlot) {
+          <span class="dasar-tree-prefix">
+            <ng-container
+              *ngTemplateOutlet="prefixSlot.templateRef; context: slotContext(row)"
+            ></ng-container>
+          </span>
+        }
+
+        <span class="dasar-tree-content">
+          @if (childrenSlotFor(row.item.key); as custom) {
+            <ng-container
+              *ngTemplateOutlet="custom.templateRef; context: slotContext(row)"
+            ></ng-container>
+          } @else {
+            <span class="dasar-tree-label-text">{{ row.item.label }}</span>
+          }
+        </span>
+
+        @if (suffixSlot) {
+          <span class="dasar-tree-suffix">
+            <ng-container
+              *ngTemplateOutlet="suffixSlot.templateRef; context: slotContext(row)"
+            ></ng-container>
+          </span>
+        }
+      </div>
+    } @empty {
+      <div class="dasar-tree-empty">{{ isSearching ? 'No matching items' : 'No data' }}</div>
+    }
+  </div>
+  @if (hint || hasHintSlot) {
+    <div class="dasar-tree-hint" [id]="hintId" [ngClass]="hintClass" [ngStyle]="hintStyle">
+      @if (hasHintSlot) {
+        <ng-content select="[hint-slot]"></ng-content>
+      } @else {
+        {{ hint }}
+      }
+    </div>
+  }
+</div>

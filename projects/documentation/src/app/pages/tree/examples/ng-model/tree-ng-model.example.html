@@ -1,0 +1,17 @@
+<div style="display: flex; flex-direction: column; gap: 16px">
+  <div>
+    <p style="font-size: 12px; color: gray">ngModel on a multiple tree holds the checked keys.</p>
+    <dasar-tree type="multiple" default-expand-all [items]="items" [(ngModel)]="checked" />
+    <p style="font-size: 12px; margin-top: 8px; color: gray">
+      Value: {{ checked.join(', ') || '-' }}
+    </p>
+  </div>
+
+  <div>
+    <p style="font-size: 12px; color: gray">
+      [(value)] on a selectable tree holds the selected key.
+    </p>
+    <dasar-tree type="selectable" default-expand-all [items]="items" [(value)]="selected" />
+    <p style="font-size: 12px; margin-top: 8px; color: gray">Value: {{ selected ?? '-' }}</p>
+  </div>
+</div>

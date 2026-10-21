@@ -10,6 +10,7 @@ import {
   commonMap,
   datepickerMap,
   drawerMap,
+  treeMap,
   dividerMap,
   inputMap,
   listMap,
@@ -63,6 +64,7 @@ export const TOKEN_GROUPS: ThemingTokenGroup[] = [
   { component: 'overlay', path: 'tokens.light.overlay', map: overlayMap },
   { component: 'modal', path: 'tokens.light.modal', map: modalMap },
   { component: 'drawer', path: 'tokens.light.drawer', map: drawerMap },
+  { component: 'tree', path: 'tokens.light.tree', map: treeMap },
 ];
 
 export const TOKEN_ROWS: ThemingTokenRow[] = [
@@ -1023,6 +1025,50 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       type: 'ClassType',
       defaultValue: '-',
       description: 'Classes for the card parts.',
+    },
+  ],
+  tree: [
+    {
+      name: 'type',
+      type: 'DasarTreeType',
+      defaultValue: 'null',
+      description: "null, 'file', 'selectable' or 'multiple'.",
+    },
+    {
+      name: 'size',
+      type: 'DasarTreeSize',
+      defaultValue: "'md'",
+      description: 'Row height and font size.',
+    },
+    {
+      name: 'selectable / multiple',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Row selection and checkbox column.',
+    },
+    {
+      name: 'disabled / draggable / showLine / search / defaultExpandAll',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Behavior flags.',
+    },
+    {
+      name: 'label / hint / searchPlaceholder',
+      type: 'string',
+      defaultValue: "''",
+      description: 'Text parts of the tree.',
+    },
+    {
+      name: 'containerStyle / itemStyle / hintStyle',
+      type: 'StyleType',
+      defaultValue: '-',
+      description: 'Inline styles for the tree parts.',
+    },
+    {
+      name: 'containerClass / itemClass / hintClass',
+      type: 'ClassType',
+      defaultValue: '-',
+      description: 'Classes for the tree parts.',
     },
   ],
   drawer: [
