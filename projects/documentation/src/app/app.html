@@ -4,77 +4,98 @@
   [mode]="customize.mode()"
 >
   <div [ngStyle]="{ height: '100vh', overflow: 'hidden' }">
-    <dasar-card
-      appearance="borderless"
-      radius="none"
-      [container-style]="{
-        padding: '0 var(--dasar-space-base)',
-        'border-bottom': '1px solid var(--dasar-theme-border-subtle-color)',
-        'justify-content': 'center',
-        'align-items': 'center',
-        display: 'flex',
-        height: '50px',
-      }"
-      [body-style]="{
-        'justify-content': 'space-between',
-        'align-items': 'center',
-        display: 'flex',
-        width: '100%',
-      }"
-    >
-      <div style="display: flex; align-items: center; gap: var(--dasar-space-base)">
-        <span style="font-weight: 800; font-family: var(--dasar-font-hero)">Dasar UI Library</span>
-        <dasar-chip variant="secondary" size="xs">v{{ version }}</dasar-chip>
-        @if (latestVersion() !== null) {
-          <dasar-chip variant="primary" size="xs">latest v{{ latestVersion() }}</dasar-chip>
-        }
-      </div>
-      <div class="docs-navbar-actions">
-        <dasar-button
-          size="md"
-          radius="md"
-          appearance="outline"
-          variant="secondary"
-          (click)="openExternal('https://github.com/pis2co/dasar-ui/blob/main/CHANGELOG.md')"
-          aria-label="Open changelog on GitHub"
-          >Changelog</dasar-button
-        >
-        <dasar-button
-          appearance="outline"
-          variant="secondary"
-          icon-only
-          (click)="openExternal('https://github.com/pis2co/dasar-ui')"
-          aria-label="Open dasar-ui on GitHub"
-          ><dasar-icon name="brand-github"
-        /></dasar-button>
-        <dasar-button
-          appearance="outline"
-          variant="danger"
-          icon-only
-          (click)="openExternal('https://www.npmjs.com/package/dasar-ui')"
-          aria-label="Open dasar-ui on npm"
-          ><dasar-icon name="brand-npm"
-        /></dasar-button>
-        <dasar-button
-          icon-only
-          appearance="outline"
-          variant="secondary"
-          (click)="customizeOpen.set(true)"
-          ><dasar-icon name="pencil"
-        /></dasar-button>
-        <dasar-button icon-only appearance="solid" (click)="customize.toggleMode()">
-          <dasar-icon name="{{ customize.mode() == 'light' ? 'moon' : 'sun' }}" />
-        </dasar-button>
-      </div>
-    </dasar-card>
+    @for (key of [customize.renderKey()]; track key) {
+      <dasar-card
+        appearance="borderless"
+        radius="none"
+        [container-style]="{
+          padding: '0 var(--dasar-space-base)',
+          'border-bottom': '1px solid var(--dasar-theme-border-subtle-color)',
+          'justify-content': 'center',
+          'align-items': 'center',
+          display: 'flex',
+          height: '50px',
+        }"
+        [body-style]="{
+          'justify-content': 'space-between',
+          'align-items': 'center',
+          display: 'flex',
+          width: '100%',
+        }"
+      >
+        <div class="docs-navbar-brand">
+          <span class="docs-navbar-title">Dasar UI Library</span>
+          <span class="docs-navbar-versions">
+            <ng-container *ngTemplateOutlet="versions" />
+          </span>
+        </div>
+        <div class="docs-navbar-actions docs-navbar-desktop">
+          @for (action of actions(); track action.key) {
+            <dasar-button
+              [appearance]="action.appearance"
+              [variant]="action.variant"
+              [icon-only]="!action.textOnDesktop"
+              [attr.aria-label]="action.label"
+              (click)="runAction(action)"
+            >
+              @if (action.textOnDesktop) {
+                {{ action.label }}
+              } @else {
+                <dasar-icon [name]="action.icon" />
+              }
+            </dasar-button>
+          }
+        </div>
+        <div class="docs-navbar-hamburger">
+          <dasar-button
+            icon-only
+            appearance="outline"
+            variant="secondary"
+            aria-label="Open menu"
+            aria-haspopup="dialog"
+            [attr.aria-expanded]="menuOpen()"
+            (click)="menuOpen.set(true)"
+          >
+            <dasar-icon name="menu-2" />
+          </dasar-button>
+        </div>
+      </dasar-card>
+    }
     <div [ngStyle]="{ height: 'calc(100vh - 50px)' }">
       @for (key of [customize.renderKey()]; track key) {
         <router-outlet></router-outlet>
       }
     </div>
-    <doc-customize-modal
-      [open]="customizeOpen()"
-      (closed)="customizeOpen.set(false)"
-    ></doc-customize-modal>
+    @for (key of [customize.renderKey()]; track key) {
+      <dasar-drawer [(show)]="menuOpen" placement="right" label="Menu" width="280px">
+        <div class="docs-menu-versions">
+          <ng-container *ngTemplateOutlet="versions" />
+        </div>
+        <div class="docs-menu-actions">
+          @for (action of actions(); track action.key) {
+            <dasar-button
+              full-width
+              [appearance]="action.appearance"
+              [variant]="action.variant"
+              (click)="runAction(action, true)"
+            >
+              <dasar-icon [name]="action.icon" />
+              {{ action.label }}
+            </dasar-button>
+          }
+        </div>
+      </dasar-drawer>
+      <doc-customize-modal
+        [open]="customizeOpen()"
+        (closed)="customizeOpen.set(false)"
+      ></doc-customize-modal>
+    }
   </div>
 </dasar-theme-provider>
+
+<ng-template #versions>
+  <dasar-chip variant="secondary" size="xs">v{{ version }}</dasar-chip>
+  @if (latestVersion() !== null) {
+    <dasar-chip variant="primary" size="xs">latest v{{ latestVersion() }}</dasar-chip>
+  }
+</ng-template>
