@@ -33,6 +33,8 @@ import {
   computeSmartPlacement,
   DasarPanelPlacement,
   listenViewportChanges,
+  matchTriggerWidth,
+  watchPanel,
 } from '../../utils/panel-placement';
 import { fieldIconSize } from '../../utils/icon-size';
 
@@ -131,7 +133,19 @@ export interface DasarSelectOption {
 export class DasarSelect implements ControlValueAccessor {
   @ViewChild('searchInput') searchInput?: ElementRef<HTMLInputElement>;
   @ViewChild('triggerEl') triggerEl?: ElementRef<HTMLElement>;
-  @ViewChild('panelEl') panelEl?: ElementRef<HTMLElement>;
+  panelEl?: ElementRef<HTMLElement>;
+  private stopWatchingPanel: (() => void) | null = null;
+  private readonly watchPanelCleanup = inject(DestroyRef).onDestroy(() =>
+    this.stopWatchingPanel?.(),
+  );
+  @ViewChild('panelEl')
+  set panelElRef(ref: ElementRef<HTMLElement> | undefined) {
+    this.stopWatchingPanel?.();
+    this.stopWatchingPanel = null;
+    this.panelEl = ref;
+    if (ref)
+      this.stopWatchingPanel = watchPanel(ref.nativeElement, () => this.recalculatePlacement());
+  }
 
   @ContentChild(DasarSelectOptionLoadingSlot) optionLoadingSlot?: DasarSelectOptionLoadingSlot;
   @ContentChild(DasarSelectOptionEmptySlot) optionEmptySlot?: DasarSelectOptionEmptySlot;
@@ -467,7 +481,6 @@ export class DasarSelect implements ControlValueAccessor {
     this.onPanelOpened.emit();
     const openEvent = new CustomEvent('dasar-select:opened', { detail: this });
     document.dispatchEvent(openEvent);
-    setTimeout(() => this.recalculatePlacement(), 0);
     if (this.searchable) {
       setTimeout(() => {
         this.searchInput?.nativeElement.focus();
@@ -481,6 +494,7 @@ export class DasarSelect implements ControlValueAccessor {
 
   private recalculatePlacement(): void {
     if (!this.triggerEl?.nativeElement || !this.panelEl?.nativeElement) return;
+    matchTriggerWidth(this.triggerEl.nativeElement, this.panelEl.nativeElement);
     const next = computeSmartPlacement(
       this.triggerEl.nativeElement,
       this.panelEl.nativeElement,

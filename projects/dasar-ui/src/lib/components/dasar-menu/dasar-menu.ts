@@ -29,6 +29,7 @@ import {
   computeSmartPlacement,
   DasarPanelPlacement,
   listenViewportChanges,
+  watchPanel,
 } from '../../utils/panel-placement';
 import { fieldIconSize } from '../../utils/icon-size';
 
@@ -94,7 +95,19 @@ export class DasarMenu {
   isOpen = signal<boolean>(false);
 
   @ViewChild('triggerEl') triggerEl?: ElementRef<HTMLElement>;
-  @ViewChild('panelEl') panelEl?: ElementRef<HTMLElement>;
+  panelEl?: ElementRef<HTMLElement>;
+  private stopWatchingPanel: (() => void) | null = null;
+  private readonly watchPanelCleanup = inject(DestroyRef).onDestroy(() =>
+    this.stopWatchingPanel?.(),
+  );
+  @ViewChild('panelEl')
+  set panelElRef(ref: ElementRef<HTMLElement> | undefined) {
+    this.stopWatchingPanel?.();
+    this.stopWatchingPanel = null;
+    this.panelEl = ref;
+    if (ref)
+      this.stopWatchingPanel = watchPanel(ref.nativeElement, () => this.recalculatePlacement());
+  }
 
   private _placement: DasarMenuPlacementType = resolveThemeDefault(
     'menu',
@@ -259,7 +272,6 @@ export class DasarMenu {
     this.onPanelClose.emit();
     const openEvent = new CustomEvent('dasar-menu:opened', { detail: this });
     document.dispatchEvent(openEvent);
-    setTimeout(() => this.recalculatePlacement(), 0);
   }
   close(): void {
     if (!this.isOpen()) return;

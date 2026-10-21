@@ -55,6 +55,14 @@ export function computeSmartPlacement(
 }
 
 /**
+ * Gives a fixed panel the width of its trigger. Do it before measuring the panel, because a fixed
+ * panel is as wide as the viewport until it has a width.
+ */
+export function matchTriggerWidth(trigger: HTMLElement, panel: HTMLElement): void {
+  panel.style.width = `${trigger.getBoundingClientRect().width}px`;
+}
+
+/**
  * Positions a panel with `position: fixed` using viewport coordinates, so it is not
  * clipped by ancestors with `overflow: hidden` (e.g. a card with `hide-overflow`).
  * Hides the panel while its trigger is scrolled out of the clipping ancestors.
@@ -66,6 +74,9 @@ export function applyFixedPanelPosition(
   options: { offset?: number; matchWidth?: boolean } = {},
 ): void {
   const { offset = 6, matchWidth = false } = options;
+  // Apply the width first: a fixed panel is as wide as the viewport until then, and measuring it
+  // that way puts end and top placements in the wrong place.
+  if (matchWidth) matchTriggerWidth(trigger, panel);
   const triggerRect = trigger.getBoundingClientRect();
   const panelRect = panel.getBoundingClientRect();
   const [vertical, horizontal] = placement.split('-') as ['bottom' | 'top', 'start' | 'end'];
@@ -80,7 +91,6 @@ export function applyFixedPanelPosition(
   panel.style.left = `${left}px`;
   panel.style.right = 'auto';
   panel.style.bottom = 'auto';
-  if (matchWidth) panel.style.width = `${triggerRect.width}px`;
   panel.style.visibility = isVisibleInClippingAncestors(trigger) ? 'visible' : 'hidden';
 }
 
@@ -117,4 +127,33 @@ export function listenViewportChanges(callback: () => void, destroyRef: DestroyR
     window.removeEventListener('resize', callback);
     window.removeEventListener('scroll', callback, true);
   });
+}
+
+/**
+ * Keeps a fixed panel positioned while it exists. The first update runs in a microtask, right
+ * after the render that created the panel, so it never depends on a timer racing change detection.
+ * It repeats when the panel changes size and once more on the next frame if the panel is still
+ * hidden. Returns a function that stops watching.
+ */
+export function watchPanel(panel: HTMLElement, update: () => void): () => void {
+  let active = true;
+  const run = () => {
+    if (active) update();
+  };
+  queueMicrotask(run);
+
+  let frame: number | null = null;
+  if (typeof requestAnimationFrame === 'function') {
+    frame = requestAnimationFrame(() => {
+      if (getComputedStyle(panel).visibility === 'hidden') run();
+    });
+  }
+  const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(run) : null;
+  observer?.observe(panel);
+
+  return () => {
+    active = false;
+    if (frame !== null && typeof cancelAnimationFrame === 'function') cancelAnimationFrame(frame);
+    observer?.disconnect();
+  };
 }
