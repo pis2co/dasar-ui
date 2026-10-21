@@ -939,7 +939,7 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       description: 'Locale for the calendar.',
     },
     {
-      name: 'fullWidth / clearable / disabled / fluid / error',
+      name: 'fullWidth / clearable / disabled / fluid / error / range',
       type: 'boolean',
       defaultValue: 'false',
       description: 'State flags.',

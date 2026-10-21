@@ -134,3 +134,106 @@ describe('DasarDatepicker hint slot', () => {
     );
   });
 });
+
+@Component({
+  standalone: true,
+  imports: [DasarDatepickerComponent],
+  template: `
+    <dasar-datepicker
+      range
+      clearable
+      value-format="yyyy-MM-dd"
+      display-format="dd-MM-yyyy"
+      [value]="value()"
+      (valueChange)="changes.push($event)"
+    />
+  `,
+})
+class DatepickerRangeHost {
+  value = signal<string[] | null>(null);
+  changes: unknown[] = [];
+}
+
+describe('DasarDatepicker range', () => {
+  let fixture: ComponentFixture<DatepickerRangeHost>;
+  let host: DatepickerRangeHost;
+
+  const trigger = () =>
+    fixture.nativeElement.querySelector('.dasar-datepicker-trigger') as HTMLElement;
+  const dropdown = () =>
+    fixture.nativeElement.querySelector('.dasar-datepicker-dropdown') as HTMLElement;
+  const currentMonthDay = (day: number) =>
+    (
+      Array.from(
+        fixture.nativeElement.querySelectorAll('.day-cell:not(.other-month)'),
+      ) as HTMLElement[]
+    )[day - 1];
+  const open = async () => {
+    trigger().click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [DatepickerRangeHost] }).compileComponents();
+    fixture = TestBed.createComponent(DatepickerRangeHost);
+    host = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('shows the range placeholder', () => {
+    expect(trigger().textContent).toContain('Select date range');
+  });
+
+  it('emits an array of two values only when both dates are picked', async () => {
+    host.value.set(['2026-10-01', '2026-10-02']);
+    fixture.detectChanges();
+    host.value.set(null);
+    fixture.detectChanges();
+    host.changes.length = 0;
+
+    await open();
+    currentMonthDay(3).click();
+    fixture.detectChanges();
+    expect(host.changes).toEqual([]);
+    expect(dropdown()).toBeTruthy();
+
+    currentMonthDay(8).click();
+    fixture.detectChanges();
+    expect(host.changes.length).toBe(1);
+    const [start, end] = host.changes[0] as string[];
+    expect(start.endsWith('-03')).toBe(true);
+    expect(end.endsWith('-08')).toBe(true);
+    expect(dropdown()).toBeNull();
+  });
+
+  it('starts over when the second click is before the start', async () => {
+    host.changes.length = 0;
+    await open();
+    currentMonthDay(10).click();
+    fixture.detectChanges();
+    currentMonthDay(4).click();
+    fixture.detectChanges();
+    expect(host.changes).toEqual([]);
+    currentMonthDay(6).click();
+    fixture.detectChanges();
+    const [start, end] = host.changes[0] as string[];
+    expect(start.endsWith('-04')).toBe(true);
+    expect(end.endsWith('-06')).toBe(true);
+  });
+
+  it('displays both ends of a written range', () => {
+    host.value.set(['2026-10-01', '2026-10-07']);
+    fixture.detectChanges();
+    expect(trigger().textContent).toContain('01-10-2026 – 07-10-2026');
+  });
+
+  it('clears the range with null', () => {
+    host.value.set(['2026-10-01', '2026-10-07']);
+    fixture.detectChanges();
+    host.changes.length = 0;
+    (fixture.nativeElement.querySelector('.clear-icon') as HTMLElement).click();
+    fixture.detectChanges();
+    expect(host.changes).toEqual([null]);
+  });
+});

@@ -1,0 +1,14 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 320px">
+  <dasar-datepicker
+    label="Select a Date Range"
+    display-format="dd MMM yyyy"
+    [(value)]="selectedRange"
+    clearable
+    full-width
+    range
+  ></dasar-datepicker>
+
+  <p style="margin: 0; font-size: 14px; color: var(--theme-text-secondary-color)">
+    Returned Value: <strong>{{ selectedRange() ? selectedRange()!.join(' → ') : 'None' }}</strong>
+  </p>
+</div>

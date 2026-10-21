@@ -47,13 +47,19 @@ export interface DasarCalendarConfig {
   fullWidth?: boolean;
   disabled?: boolean;
   locale?: string;
+  range?: boolean;
 }
+
+export type DasarCalendarRange = [Date | null, Date | null];
 
 interface CalendarDay {
   isCurrentMonth: boolean;
   weekdayStr?: string;
   fullDateStr: string;
   isSelected: boolean;
+  isRangeStart: boolean;
+  isRangeEnd: boolean;
+  isInRange: boolean;
   dayNumber: number;
   isToday: boolean;
   date: Date;
@@ -221,6 +227,14 @@ export class DasarCalendar implements OnInit, OnChanges, ControlValueAccessor {
   @Input({ alias: 'hide-full-date', transform: booleanAttribute }) hideFullDate =
     resolveThemeDefault('calendar', 'hideFullDate', false, this.themeProvider, this.themeService);
 
+  @Input({ transform: booleanAttribute }) range = resolveThemeDefault(
+    'calendar',
+    'range',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
+
   @Output() onMonthChange = new EventEmitter<Date>();
   @Output() onYearChange = new EventEmitter<Date>();
   @Output() onPrevMonthClick = new EventEmitter<Date>();
@@ -262,12 +276,38 @@ export class DasarCalendar implements OnInit, OnChanges, ControlValueAccessor {
   }
   @Output() valueChange = new EventEmitter<Date | null>();
 
+  private _rangeValue: DasarCalendarRange = [null, null];
+  @Input()
+  get rangeValue(): DasarCalendarRange {
+    return this._rangeValue;
+  }
+  set rangeValue(val: DasarCalendarRange | null | undefined) {
+    const start = val?.[0] ? new Date(val[0]) : null;
+    const end = val?.[1] ? new Date(val[1]) : null;
+    if (
+      this.getTimeSafe(this._rangeValue[0]) === this.getTimeSafe(start) &&
+      this.getTimeSafe(this._rangeValue[1]) === this.getTimeSafe(end)
+    ) {
+      return;
+    }
+    this._rangeValue = [start, end];
+    if (start) {
+      this.currentViewDate = new Date(start);
+    }
+    this.generateCalendar();
+    this.cdr.markForCheck();
+  }
+  @Output() rangeValueChange = new EventEmitter<DasarCalendarRange>();
+
   ngOnInit() {
-    if (this.value) this.currentViewDate = new Date(this.value);
+    if (this.range && this.rangeValue[0]) this.currentViewDate = new Date(this.rangeValue[0]);
+    else if (this.value) this.currentViewDate = new Date(this.value);
     this.generateCalendar();
   }
   ngOnChanges() {
-    if (this.value) {
+    if (this.range) {
+      this.generateCalendar();
+    } else if (this.value) {
       this.currentViewDate = new Date(this.value);
       this.generateCalendar();
     }
@@ -396,9 +436,29 @@ export class DasarCalendar implements OnInit, OnChanges, ControlValueAccessor {
       }
     }
     const newDate = new Date(day.date);
+    if (this.range) {
+      this.selectRangeDate(newDate);
+      return;
+    }
     this.value = newDate;
     this.valueChange.emit(newDate);
     this.generateCalendar();
+  }
+  private selectRangeDate(date: Date) {
+    const [start, end] = this._rangeValue;
+    const clicked = new Date(date);
+    clicked.setHours(0, 0, 0, 0);
+    const startTime = start ? new Date(start).setHours(0, 0, 0, 0) : null;
+    let next: DasarCalendarRange;
+    if (!start || end || (startTime !== null && clicked.getTime() < startTime)) {
+      next = [clicked, null];
+    } else {
+      next = [start, clicked];
+    }
+    this._rangeValue = next;
+    this.generateCalendar();
+    this.cdr.markForCheck();
+    this.rangeValueChange.emit(next);
   }
   generateCalendar() {
     const totalCell = 42;
@@ -409,21 +469,26 @@ export class DasarCalendar implements OnInit, OnChanges, ControlValueAccessor {
     const daysInPrevMonth = new Date(year, month, 0).getDate();
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const selected = this.value ? new Date(this.value) : null;
+    const selected = !this.range && this.value ? new Date(this.value) : null;
     if (selected) selected.setHours(0, 0, 0, 0);
+    const rangeStart = this.range && this._rangeValue[0] ? new Date(this._rangeValue[0]) : null;
+    const rangeEnd = this.range && this._rangeValue[1] ? new Date(this._rangeValue[1]) : null;
+    rangeStart?.setHours(0, 0, 0, 0);
+    rangeEnd?.setHours(0, 0, 0, 0);
+    const range = { start: rangeStart, end: rangeEnd };
     const days: CalendarDay[] = [];
     for (let i = firstDayOfMonth - 1; i >= 0; i--) {
       const date = new Date(year, month - 1, daysInPrevMonth - i);
-      days.push(this.createCalendarDay(date, days.length, false, today, selected));
+      days.push(this.createCalendarDay(date, days.length, false, today, selected, range));
     }
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(year, month, i);
-      days.push(this.createCalendarDay(date, days.length, true, today, selected));
+      days.push(this.createCalendarDay(date, days.length, true, today, selected, range));
     }
     const remainingDays = totalCell - days.length;
     for (let i = 1; i <= remainingDays; i++) {
       const date = new Date(year, month + 1, i);
-      days.push(this.createCalendarDay(date, days.length, false, today, selected));
+      days.push(this.createCalendarDay(date, days.length, false, today, selected, range));
     }
     this.calendarDays = days;
   }
@@ -433,10 +498,18 @@ export class DasarCalendar implements OnInit, OnChanges, ControlValueAccessor {
     isCurrentMonth: boolean,
     today: Date,
     selected: Date | null,
+    range: { start: Date | null; end: Date | null },
   ): CalendarDay {
+    const time = date.getTime();
+    const isRangeStart = !!range.start && time === range.start.getTime();
+    const isRangeEnd = !!range.end && time === range.end.getTime();
     return {
       weekdayStr: index < 7 ? safeFormat(date, this.weekdayFormat, this.locale) : undefined,
-      isSelected: selected ? date.getTime() === selected.getTime() : false,
+      isSelected: selected ? time === selected.getTime() : isRangeStart || isRangeEnd,
+      isInRange:
+        !!range.start && !!range.end && time > range.start.getTime() && time < range.end.getTime(),
+      isRangeStart,
+      isRangeEnd,
       fullDateStr: safeFormat(date, this.valueFormat, this.locale),
       isToday: date.getTime() === today.getTime(),
       dayNumber: date.getDate(),

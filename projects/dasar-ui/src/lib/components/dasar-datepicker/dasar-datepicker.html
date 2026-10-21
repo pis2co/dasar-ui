@@ -38,7 +38,7 @@
         radius
       }}"
       (click)="toggleDropdown($event)"
-      [class.has-value]="!!internalDate"
+      [class.has-value]="hasValue"
       [class.active]="isOpen"
       [ngClass]="triggerClass"
       [ngStyle]="triggerStyle"
@@ -47,9 +47,9 @@
       tabindex="0"
     >
       <ng-content select="[prefix-slot]"></ng-content>
-      <span class="value-text">{{ internalDate ? formattedDisplay : placeholder }}</span>
+      <span class="value-text">{{ displayText }}</span>
       <div class="datepicker-actions">
-        @if (clearable && internalDate) {
+        @if (clearable && hasValue) {
           <dasar-icon
             class="clear-icon"
             name="x"
@@ -76,6 +76,9 @@
         <dasar-calendar
           variant="dropdown"
           [size]="size"
+          [range]="range"
+          [rangeValue]="internalRange"
+          (rangeValueChange)="onRangeSelect($event)"
           (valueChange)="onCalendarSelect($event)"
           (prevMonth)="onPrevMonthClick.emit()"
           (nextMonth)="onNextMonthClick.emit()"

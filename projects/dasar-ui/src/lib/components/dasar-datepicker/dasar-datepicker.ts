@@ -20,7 +20,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
-import { DasarCalendarComponent } from '../dasar-calendar/dasar-calendar';
+import { DasarCalendarComponent, DasarCalendarRange } from '../dasar-calendar/dasar-calendar';
 import { resolveThemeDefault, safeFormat } from '../../utils/common';
 import {
   applyFixedPanelPosition,
@@ -46,6 +46,7 @@ export interface DasarDatepickerConfig {
   disabled?: boolean;
   fluid?: boolean;
   error?: boolean;
+  range?: boolean;
   displayFormat?: string;
   valueFormat?: string;
   placement?: DasarDatepickerPlacement;
@@ -331,6 +332,13 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
+  @Input({ transform: booleanAttribute }) range = resolveThemeDefault(
+    'datepicker',
+    'range',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
   @Input({ transform: booleanAttribute }) error = resolveThemeDefault(
     'datepicker',
     'error',
@@ -365,6 +373,7 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
 
   private _value: any = null;
   internalDate: Date | null = null;
+  internalRange: DasarCalendarRange = [null, null];
   isOpen: boolean = false;
   private isFocused: boolean = false;
 
@@ -373,7 +382,7 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     return this._value;
   }
   set value(val: any) {
-    if (this._value !== val) {
+    if (!this.isSameValue(this._value, val)) {
       this._value = val ?? null;
       this.syncInternalDate();
       this.cdr.markForCheck();
@@ -394,6 +403,33 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   get hasHintRow(): boolean {
     return !!(this.hint || this.hintSlot);
   }
+  get hasValue(): boolean {
+    return this.range ? !!this.internalRange[0] : !!this.internalDate;
+  }
+  get displayText(): string {
+    if (!this.hasValue) {
+      return this.range && this.placeholder === 'Select date'
+        ? 'Select date range'
+        : this.placeholder;
+    }
+    if (!this.range) return this.formattedDisplay;
+    const [start, end] = this.internalRange;
+    return `${this.formatDisplayDate(start)} –${end ? ` ${this.formatDisplayDate(end)}` : ''}`;
+  }
+  private formatDisplayDate(date: Date | null): string {
+    if (!date || isNaN(date.getTime())) return '';
+    try {
+      return safeFormat(date, this.displayFormat, this.locale);
+    } catch {
+      return date.toDateString();
+    }
+  }
+  private isSameValue(a: any, b: any): boolean {
+    if (Array.isArray(a) && Array.isArray(b)) {
+      return a.length === b.length && a.every((item, index) => item === b[index]);
+    }
+    return a === b;
+  }
   get formattedDisplay(): string {
     if (!this.internalDate || isNaN(this.internalDate.getTime())) return '';
     try {
@@ -407,7 +443,7 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value: any): void {
-    if (this._value === value) return;
+    if (this.isSameValue(this._value, value)) return;
     this._value = value ?? null;
     this.syncInternalDate();
     this.cdr.markForCheck();
@@ -427,11 +463,19 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   onClickOutside(event: Event) {
     if (this.isOpen && !this.elementRef.nativeElement.contains(event.target)) {
       this.isOpen = false;
+      if (this.range) this.syncInternalDate();
       this.onClickOut.emit(event);
       this.setFocus(false, event);
     }
   }
   private syncInternalDate() {
+    if (this.range) {
+      this.internalDate = null;
+      const [start, end] = Array.isArray(this._value) ? this._value : [null, null];
+      this.internalRange = [start ? new Date(start) : null, end ? new Date(end) : null];
+      return;
+    }
+    this.internalRange = [null, null];
     if (!this._value) {
       this.internalDate = null;
       return;
@@ -447,7 +491,7 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       } else {
         this.onBlur.emit(event);
         this.onTouched();
-        this.onTouched.emit();
+        this.onCouched.emit();
       }
     }
   }
@@ -465,6 +509,7 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       this.currentPlacement = this.placement;
       setTimeout(() => this.calculateSmartPlacement(), 0);
     } else {
+      if (this.range) this.syncInternalDate();
       this.onClickOut.emit(event);
       this.setFocus(false, event);
     }
@@ -477,11 +522,28 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     if (this.disabled) return;
     this._value = null;
     this.internalDate = null;
+    this.internalRange = [null, null];
     this.onChange(null);
     this.valueChange.emit(null);
     this.onCleared.emit();
     this.setFocus(true, event);
     this.cdr.markForCheck();
+  }
+  onRangeSelect(range: DasarCalendarRange) {
+    this.internalRange = range;
+    const [start, end] = range;
+    if (!start || !end) return;
+
+    const returnValue = [this.formatReturnValue(start), this.formatReturnValue(end)];
+    this._value = returnValue;
+
+    this.onChange(returnValue);
+    this.valueChange.emit(returnValue);
+    this.onDateSelected.emit(returnValue);
+
+    this.isOpen = false;
+    this.setFocus(false);
+    this.cdr.detectChanges();
   }
   onCalendarSelect(date: Date | null) {
     if (!date) return;
