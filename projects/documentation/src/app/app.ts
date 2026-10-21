@@ -9,10 +9,11 @@ import {
 } from 'dasar-ui';
 import { Component, computed, effect, inject, signal, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DocCustomizeService } from './services/doc-customize.service';
 import { DocCustomizeModalComponent } from './components/doc-customize-modal.component';
+import { DasarUiLogoComponent } from './components/dasar-ui-logo.component';
 
 interface HeaderAction {
   key: 'changelog' | 'github' | 'npm' | 'customize' | 'theme';
@@ -30,6 +31,7 @@ import packageJson from '../../../../projects/dasar-ui/package.json' with { load
   imports: [
     CommonModule,
     RouterOutlet,
+    RouterLink,
     DasarThemeProviderComponent,
     DasarButtonComponent,
     DasarCardComponent,
@@ -37,6 +39,7 @@ import packageJson from '../../../../projects/dasar-ui/package.json' with { load
     DasarDrawerComponent,
     DasarIconComponent,
     DocCustomizeModalComponent,
+    DasarUiLogoComponent,
   ],
   templateUrl: './app.html',
   selector: 'app-root',
@@ -46,6 +49,9 @@ export class App {
   private readonly breakpoint = inject(DasarBreakpointService);
   protected readonly customizeOpen = signal(false);
   protected readonly menuOpen = signal(false);
+  protected readonly logoVariant = computed(() =>
+    this.customize.mode() === 'dark' ? 'horizontal-dark' : 'horizontal-light',
+  );
   protected readonly actions = computed<HeaderAction[]>(() => [
     {
       key: 'changelog',

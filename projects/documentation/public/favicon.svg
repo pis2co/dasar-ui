@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Left Shield Facet: #1b4d8e Highlight Gradient -->
+    <linearGradient id="dasar-left-shield" x1="68" y1="32" x2="256" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563B0" />
+      <stop offset="50%" stop-color="#1B4D8E" />
+      <stop offset="100%" stop-color="#153E75" />
+    </linearGradient>
+
+    <!-- Right Shield Facet: #1b4d8e Deep Gradient -->
+    <linearGradient id="dasar-right-shield" x1="256" y1="32" x2="444" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1B4D8E" />
+      <stop offset="55%" stop-color="#143B6E" />
+      <stop offset="100%" stop-color="#0D284D" />
+    </linearGradient>
+
+    <!-- Inner 'D' Monogram Gradient -->
+    <linearGradient id="dasar-d-grad" x1="164" y1="112" x2="364" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+
+    <!-- 2nd Foundation Line Accent Gradient -->
+    <linearGradient id="dasar-line2-grad" x1="196" y1="362" x2="316" y2="386" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7DD3FC" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow for Inner Emblem -->
+    <filter id="dasar-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#06152D" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Outer Angular Shield Base (Left Half) -->
+  <path d="M256 32 L68 112 L100 364 L256 480 Z" fill="url(#dasar-left-shield)" />
+
+  <!-- Outer Angular Shield Base (Right Half) -->
+  <path d="M256 32 L444 112 L412 364 L256 480 Z" fill="url(#dasar-right-shield)" />
+
+  <!-- Subtle Inner Shield Bevel -->
+  <path d="M256 54 L92 124 L120 350 L256 452 L392 350 L420 124 Z" fill="#071936" fill-opacity="0.22" />
+
+  <!-- Core 'D' + 2 Foundation Lines Below -->
+  <g filter="url(#dasar-shadow)">
+    <!-- Bold Geometric 'D' -->
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M164 126 C164 118.268 170.268 112 178 112 H264 C317.019 112 360 154.981 360 208 C360 261.019 317.019 304 264 304 H178 C170.268 304 164 297.732 164 290 V126 Z
+         M208 152 V264 H264 C294.928 264 320 238.928 320 208 C320 177.072 294.928 152 264 152 H208 Z"
+      fill="url(#dasar-d-grad)" />
+
+    <!-- Line 1 Below 'D' (Primary Base Line) -->
+    <rect x="164" y="326" width="184" height="24" rx="12" fill="#FFFFFF" />
+
+    <!-- Line 2 Below 'D' (Secondary Foundation Line) -->
+    <rect x="196" y="364" width="120" height="24" rx="12" fill="url(#dasar-line2-grad)" />
+  </g>
+</svg>

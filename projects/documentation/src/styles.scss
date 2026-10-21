@@ -19,9 +19,14 @@ p {
   gap: var(--dasar-space-base);
 }
 
-.docs-navbar-title {
-  font-family: var(--dasar-font-hero);
-  font-weight: 800;
+.docs-navbar-logo {
+  align-items: center;
+  display: inline-flex;
+  color: inherit;
+}
+
+.docs-navbar-logo .docs-navbar-logo-icon {
+  display: none;
 }
 
 .docs-navbar-versions {
@@ -55,8 +60,13 @@ p {
 
 @media (max-width: 767px) {
   .docs-navbar-desktop,
-  .docs-navbar-versions {
+  .docs-navbar-versions,
+  .docs-navbar-logo .docs-navbar-logo-wide {
     display: none;
+  }
+
+  .docs-navbar-logo .docs-navbar-logo-icon {
+    display: inline-flex;
   }
 
   .docs-navbar-hamburger {

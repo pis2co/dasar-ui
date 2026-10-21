@@ -24,7 +24,15 @@
         }"
       >
         <div class="docs-navbar-brand">
-          <span class="docs-navbar-title">Dasar UI Library</span>
+          <a class="docs-navbar-logo" routerLink="/" aria-label="Dasar UI home">
+            <dasar-ui-logo
+              class="docs-navbar-logo-wide"
+              [variant]="logoVariant()"
+              [size]="34"
+              [showTagline]="false"
+            />
+            <dasar-ui-logo class="docs-navbar-logo-icon" variant="icon" [size]="32" />
+          </a>
           <span class="docs-navbar-versions">
             <ng-container *ngTemplateOutlet="versions" />
           </span>
