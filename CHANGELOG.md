@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/pis2co/dasar-ui/compare/v2.3.1...v2.4.0) (2026-10-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename any CSS variable overrides in your own styles by inserting dasar- after the leading dashes. Tokens set through setGlobalTheme or [tokenConfig] need no change.
+
+### Features
+
+* add dasar-drawer component ([8d8cb38](https://github.com/pis2co/dasar-ui/commit/8d8cb38e8ca733ef1287505202212e1c0ac859c9))
+* add dasar-tree component ([305ad56](https://github.com/pis2co/dasar-ui/commit/305ad56c786e194aa8cead3f0d074021bcd7e47d))
+* add indeterminate state to dasar-checkbox ([f6bc573](https://github.com/pis2co/dasar-ui/commit/f6bc57303928f8ab820658c45a73f33ef44b409e))
+* prefix all css variables with dasar ([f1b5364](https://github.com/pis2co/dasar-ui/commit/f1b53642a1a94002d01027dcb4580611dfffbd1f))
+* use dasar-list for the docs sidebar and reset scroll on navigation ([c83f0a6](https://github.com/pis2co/dasar-ui/commit/c83f0a6a8e005b0e81d7afda822a0852cb079bb1))
+
+
+### Bug Fixes
+
+* only scroll inside dasar-list when a max height is set ([622345e](https://github.com/pis2co/dasar-ui/commit/622345e6649a5b8e94b74b5b84814df6272b4498))
+* treat numeric string sizes as px in dasar-skeleton ([c5e09ea](https://github.com/pis2co/dasar-ui/commit/c5e09ea7655b07607f8aaa735b87d6c8b3d0e4c1))
+
 ### [2.3.1](https://github.com/pis2co/dasar-ui/compare/v2.3.0...v2.3.1) (2026-10-21)
 
 
