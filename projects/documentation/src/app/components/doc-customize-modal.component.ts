@@ -180,13 +180,13 @@ const DEFAULT_SENTINEL = '__default__';
 
       <div
         action-slot
-        style="width: 100%; display: flex; gap: var(--space-base); justify-content: space-between; align-items: center;"
+        style="width: 100%; display: flex; gap: var(--dasar-space-base); justify-content: space-between; align-items: center;"
       >
         <dasar-button appearance="outline" variant="danger" (click)="resetDraft()">
           Reset to defaults
         </dasar-button>
         <span class="cm-spacer"></span>
-        <div style="display: flex; gap: var(--space-base); align-items: center;">
+        <div style="display: flex; gap: var(--dasar-space-base); align-items: center;">
           <dasar-button appearance="outline" variant="secondary" (click)="cancel()">
             Cancel
           </dasar-button>
@@ -209,12 +209,12 @@ const DEFAULT_SENTINEL = '__default__';
         margin: 0;
         font-size: 13px;
         text-transform: uppercase;
-        color: var(--theme-text-secondary-color);
+        color: var(--dasar-theme-text-secondary-color);
       }
       .cm-hint {
         margin: 0;
         font-size: 12px;
-        color: var(--theme-text-secondary-color);
+        color: var(--dasar-theme-text-secondary-color);
       }
       .cm-color {
         display: flex;
@@ -229,9 +229,9 @@ const DEFAULT_SENTINEL = '__default__';
         width: 48px;
         height: 32px;
         padding: 2px;
-        border: 1px solid var(--theme-border-strong-color);
+        border: 1px solid var(--dasar-theme-border-strong-color);
         border-radius: 6px;
-        background: var(--theme-bg-default-color);
+        background: var(--dasar-theme-bg-default-color);
       }
       .cm-spacer {
         flex: 1;

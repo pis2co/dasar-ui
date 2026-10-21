@@ -278,8 +278,8 @@ describe('DasarAlert theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--alert-padding')).toBe('20px');
-    expect(host.style.getPropertyValue('--alert-danger-bg')).toBe('red');
+    expect(host.style.getPropertyValue('--dasar-alert-padding')).toBe('20px');
+    expect(host.style.getPropertyValue('--dasar-alert-danger-bg')).toBe('red');
   });
 });
 
@@ -338,12 +338,12 @@ describe('alertMap radius tokens', () => {
   });
 
   it('maps the per-size radius tokens', () => {
-    expect(alertMap.radiusNone).toBe('--alert-radius-none');
-    expect(alertMap.radiusXs).toBe('--alert-radius-xs');
-    expect(alertMap.radiusSm).toBe('--alert-radius-sm');
-    expect(alertMap.radiusMd).toBe('--alert-radius-md');
-    expect(alertMap.radiusLg).toBe('--alert-radius-lg');
-    expect(alertMap.radiusXl).toBe('--alert-radius-xl');
-    expect(alertMap.radiusFull).toBe('--alert-radius-full');
+    expect(alertMap.radiusNone).toBe('--dasar-alert-radius-none');
+    expect(alertMap.radiusXs).toBe('--dasar-alert-radius-xs');
+    expect(alertMap.radiusSm).toBe('--dasar-alert-radius-sm');
+    expect(alertMap.radiusMd).toBe('--dasar-alert-radius-md');
+    expect(alertMap.radiusLg).toBe('--dasar-alert-radius-lg');
+    expect(alertMap.radiusXl).toBe('--dasar-alert-radius-xl');
+    expect(alertMap.radiusFull).toBe('--dasar-alert-radius-full');
   });
 });

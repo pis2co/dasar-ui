@@ -114,6 +114,17 @@ describe('DasarSkeleton', () => {
     expect(item.style.height).toBe('2rem');
   });
 
+  it('treats numeric strings from plain attributes as pixels', async () => {
+    fixture.componentInstance.circle.set(true);
+    fixture.componentInstance.height.set('48');
+    await fixture.whenStable();
+
+    const item = itemOf(fixture, 0);
+
+    expect(item.style.width).toBe('48px');
+    expect(item.style.height).toBe('48px');
+  });
+
   it('forces the full width when fullWidth is set', async () => {
     fixture.componentInstance.type.set('box');
     fixture.componentInstance.fullWidth.set(true);
@@ -212,9 +223,9 @@ describe('DasarSkeleton theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--skeleton-base-color')).toBe('red');
-    expect(host.style.getPropertyValue('--skeleton-highlight-color')).toBe('blue');
-    expect(host.style.getPropertyValue('--skeleton-animation-duration')).toBe('2s');
-    expect(host.style.getPropertyValue('--skeleton-gap')).toBe('4px');
+    expect(host.style.getPropertyValue('--dasar-skeleton-base-color')).toBe('red');
+    expect(host.style.getPropertyValue('--dasar-skeleton-highlight-color')).toBe('blue');
+    expect(host.style.getPropertyValue('--dasar-skeleton-animation-duration')).toBe('2s');
+    expect(host.style.getPropertyValue('--dasar-skeleton-gap')).toBe('4px');
   });
 });

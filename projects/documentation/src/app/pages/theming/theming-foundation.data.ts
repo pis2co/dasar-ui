@@ -40,21 +40,21 @@ const spacing = [
 const radius = ['none', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', 'full'];
 
 const colors = [
-  '--text-white-color',
-  '--text-black-color',
-  '--theme-text-color',
-  '--theme-success-color',
-  '--theme-success-surface-color',
-  '--theme-danger-color',
-  '--theme-danger-surface-color',
-  '--theme-warning-color',
-  '--theme-warning-surface-color',
+  '--dasar-text-white-color',
+  '--dasar-text-black-color',
+  '--dasar-theme-text-color',
+  '--dasar-theme-success-color',
+  '--dasar-theme-success-surface-color',
+  '--dasar-theme-danger-color',
+  '--dasar-theme-danger-surface-color',
+  '--dasar-theme-warning-color',
+  '--dasar-theme-warning-surface-color',
 ];
 
 /** Variables defined in `theme.scss` that no theme token map writes. */
 export const FOUNDATION_ROWS: ThemingTokenRow[] = [
-  ...spacing.map((step) => row('spacing', `--space-${step}`)),
-  ...radius.map((step) => row('radius', `--radius-${step}`)),
+  ...spacing.map((step) => row('spacing', `--dasar-space-${step}`)),
+  ...radius.map((step) => row('radius', `--dasar-radius-${step}`)),
   ...colors.map((cssVar) => row('colors', cssVar)),
   ...palette('primary', ['900', '800', '700', 'base', '500', '300', '200', '100', '50']),
   ...palette('neutral', ['900', '800', '700', 'base', '500', '400', '300', '200', '100', '50']),

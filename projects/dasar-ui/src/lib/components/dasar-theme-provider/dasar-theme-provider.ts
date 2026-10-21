@@ -28,6 +28,8 @@ import {
   tabsMap,
   overlayMap,
   modalMap,
+  drawerMap,
+  treeMap,
 } from '../../services/theme.service';
 import {
   InjectionToken,
@@ -103,12 +105,12 @@ export const defaultDarkCommonTokens: DasarThemeCommon = {
         margin: 0;
       }
       .dasar-theme-wrapper {
-        background-color: var(--theme-bg-window-color);
-        font-weight: var(--font-weight-regular);
-        line-height: var(--line-height-normal);
-        font-size: var(--font-size-base);
-        color: var(--theme-text-color);
-        font-family: var(--font-sans);
+        background-color: var(--dasar-theme-bg-window-color);
+        font-weight: var(--dasar-font-weight-regular);
+        line-height: var(--dasar-line-height-normal);
+        font-size: var(--dasar-font-size-base);
+        color: var(--dasar-theme-text-color);
+        font-family: var(--dasar-font-sans);
         transition: background-color 0.3s ease;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -134,14 +136,26 @@ export class DasarThemeProviderComponent implements OnChanges {
   @Input() componentConfig?: DasarComponentConfig;
   @Input() tokenConfig?: DasarThemeConfig['tokens'];
   @Input() colorConfig?: DasarThemeConfig['colors'];
-  @Input() mode: DasarThemeMode = 'light';
+  private readonly ownMode = signal<DasarThemeMode | undefined>(undefined);
+
+  /**
+   * Light or dark. A provider inside another provider follows the parent unless it sets its own
+   * mode, and a top-level provider falls back to light.
+   */
+  @Input()
+  set mode(value: DasarThemeMode | undefined) {
+    this.ownMode.set(value);
+  }
+  get mode(): DasarThemeMode | undefined {
+    return this.ownMode();
+  }
 
   constructor(private el: ElementRef) {
     if (this.parentProvider) {
       effect(() => {
-        const parentMode = this.parentProvider!.activeMode();
+        const ownMode = this.ownMode();
         const hostElement = this.el.nativeElement;
-        this.activeMode.set(parentMode);
+        this.activeMode.set(ownMode ?? this.parentProvider!.activeMode());
         this.applyTokenConfig(hostElement);
       });
     }
@@ -150,7 +164,7 @@ export class DasarThemeProviderComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     const hostElement = this.el.nativeElement;
     if (changes['mode'] && !this.parentProvider) {
-      this.activeMode.set(this.mode);
+      this.activeMode.set(this.mode ?? 'light');
       this.applyTokenConfig(hostElement);
     }
     if (changes['tokenConfig']) {
@@ -346,6 +360,20 @@ export class DasarThemeProviderComponent implements OnChanges {
     const modalTokens = this.tokenConfig?.[currentMode]?.modal || this.tokenConfig?.light?.modal;
     if (modalTokens) {
       this.injectMappedTokens({ element: hostElement, payload: modalTokens, dictionary: modalMap });
+    }
+
+    const drawerTokens = this.tokenConfig?.[currentMode]?.drawer || this.tokenConfig?.light?.drawer;
+    if (drawerTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: drawerTokens,
+        dictionary: drawerMap,
+      });
+    }
+
+    const treeTokens = this.tokenConfig?.[currentMode]?.tree || this.tokenConfig?.light?.tree;
+    if (treeTokens) {
+      this.injectMappedTokens({ element: hostElement, payload: treeTokens, dictionary: treeMap });
     }
   }
 

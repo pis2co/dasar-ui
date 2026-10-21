@@ -13,7 +13,7 @@ export class ListCustomStyleExample {
   protected containerStyle = { 'max-width': '320px' };
 
   protected highlightStyle = {
-    'background-color': 'var(--theme-primary-surface-color)',
+    'background-color': 'var(--dasar-theme-primary-surface-color)',
     'font-weight': '600',
   };
 }

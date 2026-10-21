@@ -10,9 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-4, 16px);
+  padding: var(--dasar-space-4, 16px);
   box-sizing: border-box;
-  background: var(--overlay-background, rgba(0, 0, 0, 0.45));
-  backdrop-filter: blur(var(--overlay-blur, 4px));
-  -webkit-backdrop-filter: blur(var(--overlay-blur, 4px));
+  background: var(--dasar-overlay-background, rgba(0, 0, 0, 0.45));
+  backdrop-filter: blur(var(--dasar-overlay-blur, 4px));
+  -webkit-backdrop-filter: blur(var(--dasar-overlay-blur, 4px));
 }

@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { vi } from 'vitest';
 import { DasarMenu, DasarMenuComponent } from './dasar-menu';
 
 @Component({
@@ -69,10 +70,19 @@ describe('DasarMenu', () => {
   });
 
   it('panel starts at the requested placement', async () => {
+    const roomy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      left: 100,
+      top: 400,
+      right: 300,
+      bottom: 430,
+      width: 200,
+      height: 30,
+    } as DOMRect);
     host.placement.set('top-start');
     await open();
 
     expect(panel().classList).toContain('placement-top-start');
+    roomy.mockRestore();
   });
 
   it('item icons scale with the menu size', async () => {

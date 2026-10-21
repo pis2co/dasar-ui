@@ -1,0 +1,11 @@
+<dasar-tree
+  draggable
+  type="file"
+  default-expand-all
+  [(items)]="items"
+  (onDrop)="last.set($event.dragNode.label + ' → ' + $event.position + ' ' + $event.dropNode.label)"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Drag a row above, below or onto another one. Last drop: {{ last() }}
+</p>

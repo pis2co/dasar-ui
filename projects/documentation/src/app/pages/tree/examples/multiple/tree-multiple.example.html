@@ -1,0 +1,11 @@
+<dasar-tree
+  type="multiple"
+  default-expand-all
+  [items]="items"
+  [checked-keys]="['app.ts']"
+  (onUpdateCheckedKeys)="checked.set($event)"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Checked: {{ checked().join(', ') || '-' }}
+</p>

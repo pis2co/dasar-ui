@@ -23,7 +23,7 @@
   }
 
   &:not(.attached) {
-    gap: var(--btn-group-gap, var(--space-base));
+    gap: var(--dasar-btn-group-gap, var(--dasar-space-base));
   }
 
   &.full-width {
@@ -48,7 +48,7 @@
     > .dasar-button:hover,
     > .dasar-button:focus-within {
       position: relative;
-      z-index: var(--btn-group-focus-z-index, 2);
+      z-index: var(--dasar-btn-group-focus-z-index, 2);
     }
 
     &.horizontal {
@@ -57,17 +57,29 @@
       }
 
       > .dasar-button:not(:first-child) .dasar-button-native {
-        border-left-color: var(--btn-group-divider-color, currentColor);
+        border-left-color: var(--dasar-btn-group-divider-color, currentColor);
       }
 
       > .dasar-button:first-child .dasar-button-native {
-        border-top-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
-        border-bottom-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-top-left-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
+        border-bottom-left-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
       }
 
       > .dasar-button:last-child .dasar-button-native {
-        border-top-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
-        border-bottom-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-top-right-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
+        border-bottom-right-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
       }
     }
 
@@ -77,42 +89,54 @@
       }
 
       > .dasar-button:first-child .dasar-button-native {
-        border-top-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
-        border-top-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-top-left-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
+        border-top-right-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
       }
 
       > .dasar-button:last-child .dasar-button-native {
-        border-bottom-left-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
-        border-bottom-right-radius: var(--btn-group-radius, var(--btn-group-radius-local, var(--radius-md)));
+        border-bottom-left-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
+        border-bottom-right-radius: var(
+          --dasar-btn-group-radius,
+          var(--dasar-btn-group-radius-local, var(--dasar-radius-md))
+        );
       }
     }
   }
 
   &.radius-none {
-    --btn-group-radius-local: var(--radius-none);
+    --dasar-btn-group-radius-local: var(--dasar-radius-none);
   }
 
   &.radius-xs {
-    --btn-group-radius-local: var(--radius-xs);
+    --dasar-btn-group-radius-local: var(--dasar-radius-xs);
   }
 
   &.radius-sm {
-    --btn-group-radius-local: var(--radius-sm);
+    --dasar-btn-group-radius-local: var(--dasar-radius-sm);
   }
 
   &.radius-md {
-    --btn-group-radius-local: var(--radius-md);
+    --dasar-btn-group-radius-local: var(--dasar-radius-md);
   }
 
   &.radius-lg {
-    --btn-group-radius-local: var(--radius-lg);
+    --dasar-btn-group-radius-local: var(--dasar-radius-lg);
   }
 
   &.radius-xl {
-    --btn-group-radius-local: var(--radius-xl);
+    --dasar-btn-group-radius-local: var(--dasar-radius-xl);
   }
 
   &.radius-full {
-    --btn-group-radius-local: var(--radius-full);
+    --dasar-btn-group-radius-local: var(--dasar-radius-full);
   }
 }

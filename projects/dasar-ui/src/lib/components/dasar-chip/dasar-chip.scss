@@ -4,7 +4,7 @@
   display: inline-flex;
 
   .chip-inner-content {
-    gap: var(--chip-inner-gap, var(--space-1));
+    gap: var(--dasar-chip-inner-gap, var(--dasar-space-1));
     justify-content: space-between;
     display: inline-flex;
     align-items: center;
@@ -20,11 +20,11 @@
   }
 
   .chip-close-wrapper {
-    margin-right: var(--chip-close-margin-right, -6px);
-    margin-left: var(--chip-close-margin-left, 2px);
+    margin-right: var(--dasar-chip-close-margin-right, -6px);
+    margin-left: var(--dasar-chip-close-margin-left, 2px);
     transition: background-color 0.15s ease;
-    padding: var(--chip-close-padding, 0);
-    border-radius: var(--radius-full);
+    padding: var(--dasar-chip-close-padding, 0);
+    border-radius: var(--dasar-radius-full);
     justify-content: center;
     display: inline-flex;
     align-items: center;
@@ -34,5 +34,5 @@
 
 :host-context(.appearance-filled) .chip-close-wrapper:hover,
 .dasar-chip-container[ng-reflect-appearance='filled'] .chip-close-wrapper:hover {
-  background-color: var(--chip-close-hover-bg, rgba(255, 255, 255, 0.2));
+  background-color: var(--dasar-chip-close-hover-bg, rgba(255, 255, 255, 0.2));
 }

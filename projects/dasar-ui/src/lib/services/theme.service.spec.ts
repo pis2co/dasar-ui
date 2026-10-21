@@ -76,12 +76,12 @@ describe('DasarThemeService component tokens', () => {
   afterEach(() => {
     root().removeAttribute('data-theme');
     [
-      '--tabs-gap-normal',
-      '--tabs-scroll-gap',
-      '--overlay-blur',
-      '--overlay-background',
-      '--modal-background',
-      '--modal-width-md',
+      '--dasar-tabs-gap-normal',
+      '--dasar-tabs-scroll-gap',
+      '--dasar-overlay-blur',
+      '--dasar-overlay-background',
+      '--dasar-modal-background',
+      '--dasar-modal-width-md',
     ].forEach((cssVar) => root().style.removeProperty(cssVar));
   });
 
@@ -97,12 +97,12 @@ describe('DasarThemeService component tokens', () => {
       },
     });
 
-    expect(root().style.getPropertyValue('--tabs-gap-normal')).toBe('9px');
-    expect(root().style.getPropertyValue('--tabs-scroll-gap')).toBe('7px');
-    expect(root().style.getPropertyValue('--overlay-blur')).toBe('7px');
-    expect(root().style.getPropertyValue('--overlay-background')).toBe('rgba(1, 2, 3, 0.5)');
-    expect(root().style.getPropertyValue('--modal-background')).toBe('red');
-    expect(root().style.getPropertyValue('--modal-width-md')).toBe('480px');
+    expect(root().style.getPropertyValue('--dasar-tabs-gap-normal')).toBe('9px');
+    expect(root().style.getPropertyValue('--dasar-tabs-scroll-gap')).toBe('7px');
+    expect(root().style.getPropertyValue('--dasar-overlay-blur')).toBe('7px');
+    expect(root().style.getPropertyValue('--dasar-overlay-background')).toBe('rgba(1, 2, 3, 0.5)');
+    expect(root().style.getPropertyValue('--dasar-modal-background')).toBe('red');
+    expect(root().style.getPropertyValue('--dasar-modal-width-md')).toBe('480px');
     expect(root().getAttribute('data-theme')).toBeNull();
   });
 
@@ -116,7 +116,7 @@ describe('DasarThemeService component tokens', () => {
     });
 
     expect(root().getAttribute('data-theme')).toBe('dark');
-    expect(root().style.getPropertyValue('--modal-background')).toBe('navy');
+    expect(root().style.getPropertyValue('--dasar-modal-background')).toBe('navy');
   });
 
   it('ignores unknown token keys', () => {
@@ -125,6 +125,6 @@ describe('DasarThemeService component tokens', () => {
       tokens: { light: { modal: { notARealToken: 'x' } as any } },
     });
 
-    expect(root().style.getPropertyValue('--modal-not-a-real-token')).toBe('');
+    expect(root().style.getPropertyValue('--dasar-modal-not-a-real-token')).toBe('');
   });
 });

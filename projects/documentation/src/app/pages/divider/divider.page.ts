@@ -189,7 +189,7 @@ export class DividerDocPage {
       type: 'DasarThemeDivider',
       defaultValue: '-',
       description:
-        'Set through tokens.light.divider (or tokens.dark.divider) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: color -> --divider-color. Full list on the Theme Tokens page.',
+        'Set through tokens.light.divider (or tokens.dark.divider) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: color -> --dasar-divider-color. Full list on the Theme Tokens page.',
     },
     {
       name: 'component config',

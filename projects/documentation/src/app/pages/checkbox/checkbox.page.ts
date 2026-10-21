@@ -169,6 +169,13 @@ export class CheckboxDocPage {
       description: 'Error styling for the box and hint.',
     },
     {
+      name: 'indeterminate',
+      type: 'boolean',
+      defaultValue: 'false',
+      description:
+        'Shows the mixed state (a dash) and sets aria-checked to mixed. Use it for a parent whose children are partly checked. Clicking still toggles the value from its current state.',
+    },
+    {
       name: 'dasar-checkbox: hint',
       type: 'string',
       defaultValue: "''",
@@ -302,7 +309,7 @@ export class CheckboxDocPage {
       type: 'DasarThemeCheckbox',
       defaultValue: '-',
       description:
-        'Set through tokens.light.checkbox (or tokens.dark.checkbox) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: checkedBg -> --checkbox-checked-bg. Full list on the Theme Tokens page.',
+        'Set through tokens.light.checkbox (or tokens.dark.checkbox) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: checkedBg -> --dasar-checkbox-checked-bg. Full list on the Theme Tokens page.',
     },
     {
       name: 'component config',

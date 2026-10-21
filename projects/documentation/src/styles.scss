@@ -13,14 +13,58 @@ p {
   padding: 0;
 }
 
+.docs-navbar-brand {
+  gap: var(--dasar-space-base);
+  align-items: center;
+  display: flex;
+}
+
+.docs-navbar-logo {
+  align-items: center;
+  display: inline-flex;
+  color: inherit;
+}
+
+.docs-navbar-versions {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--dasar-space-base);
+}
+
 .docs-navbar-actions {
   align-items: center;
   display: flex;
   gap: 8px;
 }
 
-@media (max-width: 640px) {
-  .docs-navbar-actions dasar-chip {
+.docs-navbar-hamburger {
+  display: none;
+}
+
+.docs-menu-versions {
+  align-items: center;
+  margin-bottom: var(--dasar-space-4);
+  display: flex;
+  gap: var(--dasar-space-base);
+}
+
+.docs-menu-actions {
+  flex-direction: column;
+  display: flex;
+  gap: var(--dasar-space-base);
+}
+
+@media (max-width: 767px) {
+  .docs-navbar-desktop,
+  .docs-navbar-logo .docs-navbar-logo-wide {
     display: none;
+  }
+
+  .docs-navbar-logo .docs-navbar-logo-icon {
+    display: inline-flex;
+  }
+
+  .docs-navbar-hamburger {
+    display: flex;
   }
 }

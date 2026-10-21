@@ -1,4 +1,10 @@
-import { computeSmartPlacement, DasarPanelPlacement } from './panel-placement';
+import { vi } from 'vitest';
+import {
+  applyFixedPanelPosition,
+  computeSmartPlacement,
+  DasarPanelPlacement,
+  watchPanel,
+} from './panel-placement';
 
 interface FakeRect {
   top: number;
@@ -86,5 +92,95 @@ describe('computeSmartPlacement', () => {
 
     const result: DasarPanelPlacement = computeSmartPlacement(trigger, panel, 'bottom-start');
     expect(result).toBe('bottom-start');
+  });
+});
+
+const domRect = (left: number, top: number, width: number, height: number) =>
+  ({ left, top, width, height, right: left + width, bottom: top + height }) as DOMRect;
+
+/** A fixed panel is as wide as the viewport until its width is set, like the select panel. */
+const fakePanel = (height: number, viewportWidth = 1024) => {
+  const panel = document.createElement('div');
+  panel.getBoundingClientRect = () =>
+    domRect(0, 0, parseFloat(panel.style.width) || viewportWidth, height);
+  return panel;
+};
+
+const fakeTrigger = (left: number, top: number, width: number, height: number) => {
+  const trigger = document.createElement('div');
+  trigger.getBoundingClientRect = () => domRect(left, top, width, height);
+  return trigger;
+};
+
+describe('applyFixedPanelPosition', () => {
+  it('sets the width before measuring, so end placements line up with the trigger', () => {
+    const trigger = fakeTrigger(600, 400, 389, 35);
+    const panel = fakePanel(86);
+
+    applyFixedPanelPosition(trigger, panel, 'bottom-end', { offset: 4, matchWidth: true });
+
+    expect(panel.style.width).toBe('389px');
+    expect(panel.style.left).toBe('600px');
+    expect(panel.style.top).toBe('439px');
+  });
+
+  it('keeps start placements on the trigger edge', () => {
+    const trigger = fakeTrigger(187, 261, 320, 35);
+    const panel = fakePanel(170);
+
+    applyFixedPanelPosition(trigger, panel, 'bottom-start', { offset: 4, matchWidth: true });
+
+    expect(panel.style.left).toBe('187px');
+    expect(panel.style.top).toBe('300px');
+  });
+
+  it('places top placements right above the trigger', () => {
+    const trigger = fakeTrigger(600, 400, 389, 35);
+    const panel = fakePanel(100);
+
+    applyFixedPanelPosition(trigger, panel, 'top-end', { offset: 4, matchWidth: true });
+
+    expect(panel.style.left).toBe('600px');
+    expect(panel.style.top).toBe('296px');
+  });
+
+  it('uses the natural panel width when matchWidth is off', () => {
+    const trigger = fakeTrigger(600, 400, 100, 30);
+    const panel = document.createElement('div');
+    panel.getBoundingClientRect = () => domRect(0, 0, 180, 60);
+
+    applyFixedPanelPosition(trigger, panel, 'bottom-end');
+
+    expect(panel.style.left).toBe('520px');
+  });
+
+  it('makes the panel visible when the trigger is not clipped', () => {
+    const trigger = fakeTrigger(10, 10, 100, 30);
+    const panel = fakePanel(50);
+
+    applyFixedPanelPosition(trigger, panel, 'bottom-start');
+
+    expect(panel.style.visibility).toBe('visible');
+  });
+});
+
+describe('watchPanel', () => {
+  it('runs the update right after the current task, without a timer', async () => {
+    const update = vi.fn();
+    const stop = watchPanel(document.createElement('div'), update);
+
+    expect(update).not.toHaveBeenCalled();
+    await Promise.resolve();
+    expect(update).toHaveBeenCalledTimes(1);
+    stop();
+  });
+
+  it('does not update after it has been stopped', async () => {
+    const update = vi.fn();
+    const stop = watchPanel(document.createElement('div'), update);
+    stop();
+    await Promise.resolve();
+
+    expect(update).not.toHaveBeenCalled();
   });
 });

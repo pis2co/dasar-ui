@@ -40,11 +40,11 @@ describe('DasarThemeProviderComponent component tokens', () => {
     });
     await fixture.whenStable();
 
-    expect(host().style.getPropertyValue('--tabs-list-padding-normal')).toBe('11px');
-    expect(host().style.getPropertyValue('--tabs-scroll-fade')).toBe('20px');
-    expect(host().style.getPropertyValue('--overlay-background')).toBe('rgba(9, 9, 9, 0.2)');
-    expect(host().style.getPropertyValue('--modal-title-color')).toBe('#123456');
-    expect(host().style.getPropertyValue('--modal-elevated-shadow')).toBe('none');
+    expect(host().style.getPropertyValue('--dasar-tabs-list-padding-normal')).toBe('11px');
+    expect(host().style.getPropertyValue('--dasar-tabs-scroll-fade')).toBe('20px');
+    expect(host().style.getPropertyValue('--dasar-overlay-background')).toBe('rgba(9, 9, 9, 0.2)');
+    expect(host().style.getPropertyValue('--dasar-modal-title-color')).toBe('#123456');
+    expect(host().style.getPropertyValue('--dasar-modal-elevated-shadow')).toBe('none');
   });
 
   it('falls back to the light tokens when the mode has none', async () => {
@@ -56,8 +56,8 @@ describe('DasarThemeProviderComponent component tokens', () => {
     fixture.componentInstance.mode.set('dark');
     await fixture.whenStable();
 
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('3px');
-    expect(host().style.getPropertyValue('--modal-width-sm')).toBe('240px');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('3px');
+    expect(host().style.getPropertyValue('--dasar-modal-width-sm')).toBe('240px');
   });
 
   it('prefers the dark tokens for the dark mode', async () => {
@@ -70,20 +70,114 @@ describe('DasarThemeProviderComponent component tokens', () => {
     fixture.componentInstance.mode.set('dark');
     await fixture.whenStable();
 
-    expect(host().style.getPropertyValue('--modal-width-sm')).toBe('320px');
+    expect(host().style.getPropertyValue('--dasar-modal-width-sm')).toBe('320px');
   });
 
   it('removes tokens that are no longer part of the config', async () => {
     fixture.componentInstance.tokens.set({ light: { overlay: { blur: '3px' } } });
     await fixture.whenStable();
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('3px');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('3px');
 
     fixture.componentInstance.tokens.set({ light: { overlay: { blur: '9px' } } });
     await fixture.whenStable();
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('9px');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('9px');
 
     fixture.componentInstance.tokens.set({});
     await fixture.whenStable();
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('');
+  });
+});
+
+@Component({
+  selector: 'app-nested-theme-provider-host',
+  standalone: true,
+  imports: [DasarThemeProviderComponent],
+  template: `
+    <dasar-theme-provider id="outer" [mode]="outer()" [tokenConfig]="tokens">
+      <dasar-theme-provider id="own" [mode]="inner()"></dasar-theme-provider>
+      <dasar-theme-provider id="inherit"></dasar-theme-provider>
+    </dasar-theme-provider>
+  `,
+})
+class NestedProviderHost {
+  outer = signal<DasarThemeMode | undefined>('light');
+  inner = signal<DasarThemeMode | undefined>(undefined);
+  tokens: DasarThemeConfig['tokens'] = {
+    light: { common: { primaryColor: '#111111' } },
+    dark: { common: { primaryColor: '#eeeeee' } },
+  };
+}
+
+describe('DasarThemeProviderComponent nested modes', () => {
+  let fixture: ComponentFixture<NestedProviderHost>;
+  const provider = (id: string) => fixture.nativeElement.querySelector(`#${id}`) as HTMLElement;
+  const theme = (id: string) => provider(id).getAttribute('data-theme');
+  const settle = async () => {
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [NestedProviderHost] }).compileComponents();
+    fixture = TestBed.createComponent(NestedProviderHost);
+    await settle();
+  });
+
+  it('defaults a top-level provider to light', async () => {
+    fixture.componentInstance.outer.set(undefined);
+    await settle();
+
+    expect(theme('outer')).toBe('light');
+  });
+
+  it('follows the parent when it has no mode of its own', async () => {
+    expect(theme('inherit')).toBe('light');
+
+    fixture.componentInstance.outer.set('dark');
+    await settle();
+
+    expect(theme('outer')).toBe('dark');
+    expect(theme('inherit')).toBe('dark');
+    expect(theme('own')).toBe('dark');
+  });
+
+  it('uses its own mode inside a parent with another mode', async () => {
+    fixture.componentInstance.inner.set('dark');
+    await settle();
+
+    expect(theme('outer')).toBe('light');
+    expect(theme('own')).toBe('dark');
+    expect(theme('inherit')).toBe('light');
+  });
+
+  it('keeps its own mode when the parent changes', async () => {
+    fixture.componentInstance.inner.set('light');
+    fixture.componentInstance.outer.set('dark');
+    await settle();
+
+    expect(theme('own')).toBe('light');
+    expect(theme('inherit')).toBe('dark');
+  });
+
+  it('switches back to the parent mode when its own mode is removed', async () => {
+    fixture.componentInstance.inner.set('dark');
+    await settle();
+    expect(theme('own')).toBe('dark');
+
+    fixture.componentInstance.inner.set(undefined);
+    await settle();
+
+    expect(theme('own')).toBe('light');
+  });
+
+  it('uses the parent tokens of its own mode', async () => {
+    expect(provider('own').style.getPropertyValue('--dasar-theme-primary-color')).toBe('#111111');
+
+    fixture.componentInstance.inner.set('dark');
+    await settle();
+
+    expect(provider('own').style.getPropertyValue('--dasar-theme-primary-color')).toBe('#eeeeee');
+    expect(provider('outer').style.getPropertyValue('--dasar-theme-primary-color')).toBe('#111111');
   });
 });

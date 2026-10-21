@@ -3,10 +3,10 @@
 .dasar-radio {
   display: inline-flex;
   flex-direction: column;
-  gap: var(--radio-hint-gap, 4px);
+  gap: var(--dasar-radio-hint-gap, 4px);
 
   &.disabled {
-    opacity: var(--radio-disabled-opacity, 0.5);
+    opacity: var(--dasar-radio-disabled-opacity, 0.5);
   }
 }
 
@@ -14,7 +14,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: var(--radio-gap, var(--space-base));
+  gap: var(--dasar-radio-gap, var(--dasar-space-base));
   cursor: pointer;
 
   &.disabled {
@@ -42,67 +42,71 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: var(--radio-size-md, 18px);
-  height: var(--radio-size-md, 18px);
+  width: var(--dasar-radio-size-md, 18px);
+  height: var(--dasar-radio-size-md, 18px);
   box-sizing: border-box;
-  border: var(--radio-border-width, 1px) solid
-    var(--radio-border-color, var(--theme-border-subtle-color));
+  border: var(--dasar-radio-border-width, 1px) solid
+    var(--dasar-radio-border-color, var(--dasar-theme-border-subtle-color));
   border-radius: 50%;
-  background: var(--radio-bg, transparent);
+  background: var(--dasar-radio-bg, transparent);
   transition: border-color 150ms ease;
 }
 
 .dasar-radio-native:checked + .dasar-radio-circle,
 .dasar-radio-circle.checked {
-  border-color: var(--radio-checked-color, var(--dasar-primary-base));
+  border-color: var(--dasar-radio-checked-color, var(--dasar-primary-base));
 }
 
 .dasar-radio-native:checked + .dasar-radio-circle::after,
 .dasar-radio-circle.checked::after {
   content: '';
-  width: var(--radio-dot-size, 50%);
-  height: var(--radio-dot-size, 50%);
+  width: var(--dasar-radio-dot-size, 50%);
+  height: var(--dasar-radio-dot-size, 50%);
   border-radius: 50%;
-  background: var(--radio-checked-color, var(--dasar-primary-base));
+  background: var(--dasar-radio-checked-color, var(--dasar-primary-base));
 }
 
 .dasar-radio-native:focus-visible + .dasar-radio-circle {
-  outline: 2px solid var(--radio-focus-color, var(--dasar-primary-200));
+  outline: 2px solid var(--dasar-radio-focus-color, var(--dasar-primary-200));
   outline-offset: 1px;
 }
 
 .dasar-radio.sm .dasar-radio-circle {
-  width: var(--radio-size-sm, 14px);
-  height: var(--radio-size-sm, 14px);
+  width: var(--dasar-radio-size-sm, 14px);
+  height: var(--dasar-radio-size-sm, 14px);
 }
 
 .dasar-radio.lg .dasar-radio-circle {
-  width: var(--radio-size-lg, 22px);
-  height: var(--radio-size-lg, 22px);
+  width: var(--dasar-radio-size-lg, 22px);
+  height: var(--dasar-radio-size-lg, 22px);
 }
 
 .dasar-radio-label {
-  font-size: var(--font-size-sm);
-  color: var(--radio-label-color, inherit);
+  font-size: var(--dasar-radio-label-font-size-md, var(--dasar-font-size-base));
+  color: var(--dasar-radio-label-color, inherit);
+}
+
+.dasar-radio.sm .dasar-radio-label {
+  font-size: var(--dasar-radio-label-font-size-sm, var(--dasar-font-size-sm));
 }
 
 .dasar-radio.lg .dasar-radio-label {
-  font-size: var(--font-size-base);
+  font-size: var(--dasar-radio-label-font-size-lg, var(--dasar-font-size-lg));
 }
 
 .dasar-radio.error .dasar-radio-circle {
-  border-color: var(--radio-error-color, var(--dasar-danger-base));
+  border-color: var(--dasar-radio-error-color, var(--dasar-danger-base));
 }
 
 .dasar-radio-hint {
-  font-size: var(--radio-hint-font-size, 12px);
-  color: var(--radio-hint-color, var(--theme-text-secondary-color));
+  font-size: var(--dasar-radio-hint-font-size, 12px);
+  color: var(--dasar-radio-hint-color, var(--dasar-theme-text-secondary-color));
 
   &.error {
-    color: var(--radio-error-color, var(--dasar-danger-base));
+    color: var(--dasar-radio-error-color, var(--dasar-danger-base));
   }
 
   &.disabled {
-    opacity: var(--radio-disabled-opacity, 0.5);
+    opacity: var(--dasar-radio-disabled-opacity, 0.5);
   }
 }

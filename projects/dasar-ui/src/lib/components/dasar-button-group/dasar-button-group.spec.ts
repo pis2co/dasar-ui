@@ -197,8 +197,8 @@ describe('DasarButtonGroup theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--btn-group-gap')).toBe('20px');
-    expect(host.style.getPropertyValue('--btn-group-radius')).toBe('999px');
+    expect(host.style.getPropertyValue('--dasar-btn-group-gap')).toBe('20px');
+    expect(host.style.getPropertyValue('--dasar-btn-group-radius')).toBe('999px');
   });
 });
 

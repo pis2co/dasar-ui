@@ -77,32 +77,32 @@ interface DocExampleCodeOption {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        gap: var(--space-4);
-        margin-bottom: var(--space-6);
-        padding-bottom: var(--space-4);
-        border-bottom: 1px solid var(--theme-border-subtle-color);
+        gap: var(--dasar-space-4);
+        margin-bottom: var(--dasar-space-6);
+        padding-bottom: var(--dasar-space-4);
+        border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
       }
       .example-desc p {
         margin: 0;
-        color: var(--theme-text-secondary-color);
+        color: var(--dasar-theme-text-secondary-color);
         line-height: 1.5;
       }
       .segmented-control {
         display: flex;
         flex-shrink: 0;
-        gap: var(--space-1);
-        background: var(--theme-bg-hover-color);
-        padding: var(--space-1);
-        border-radius: var(--radius-sm);
-        border: 1px solid var(--theme-border-subtle-color);
+        gap: var(--dasar-space-1);
+        background: var(--dasar-theme-bg-hover-color);
+        padding: var(--dasar-space-1);
+        border-radius: var(--dasar-radius-sm);
+        border: 1px solid var(--dasar-theme-border-subtle-color);
       }
       .preview-area {
         width: 100%;
       }
       .code-area {
         background: #1e1e1e;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--theme-border-subtle-color);
+        border-radius: var(--dasar-radius-md);
+        border: 1px solid var(--dasar-theme-border-subtle-color);
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -112,42 +112,42 @@ interface DocExampleCodeOption {
         justify-content: space-between;
         align-items: center;
         background: #2d2d2d;
-        padding: var(--space-base);
+        padding: var(--dasar-space-base);
         border-bottom: 1px solid #404040;
       }
       .code-lang-badge {
         display: flex;
         align-items: center;
 
-        gap: var(--space-2);
+        gap: var(--dasar-space-2);
       }
       .lang-text {
         color: #9cdcfe;
-        font-family: var(--font-sans);
+        font-family: var(--dasar-font-sans);
         font-weight: 600;
         letter-spacing: 0.05em;
-        margin-left: var(--space-2);
+        margin-left: var(--dasar-space-2);
       }
       .copy-btn {
         background: transparent;
         border: 1px solid #555;
         color: #cccccc;
         padding: 4px 12px;
-        border-radius: var(--radius-xs);
+        border-radius: var(--dasar-radius-xs);
         cursor: pointer;
-        font-family: var(--font-sans);
+        font-family: var(--dasar-font-sans);
       }
       .copy-btn:hover {
         background: #444;
         color: #ffffff;
       }
       .copy-btn.copied {
-        background: var(--theme-success-color);
-        border-color: var(--theme-success-color);
+        background: var(--dasar-theme-success-color);
+        border-color: var(--dasar-theme-success-color);
         color: #ffffff;
       }
       .code-content {
-        padding: var(--space-base);
+        padding: var(--dasar-space-base);
         overflow-x: auto;
       }
       .code-content pre {

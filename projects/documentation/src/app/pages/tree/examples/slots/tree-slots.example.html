@@ -1,0 +1,18 @@
+<dasar-tree type="selectable" default-expand-all [items]="items">
+  <span label-slot><strong>Files</strong></span>
+  <dasar-chip extra-header-slot size="xs">{{ items.length }} roots</dasar-chip>
+
+  <ng-template tree-prefix-slot let-item>
+    <dasar-icon [name]="item.children ? 'folder' : 'file'" />
+  </ng-template>
+  <ng-template tree-suffix-slot let-item>
+    @if (item.children) {
+      <dasar-chip size="xs" variant="secondary">{{ item.children.length }}</dasar-chip>
+    }
+  </ng-template>
+  <ng-template tree-children-slot="package.json" let-item>
+    <strong>{{ item.label }}</strong> <em>(manifest)</em>
+  </ng-template>
+
+  <span hint-slot>Rows can be customized with templates.</span>
+</dasar-tree>

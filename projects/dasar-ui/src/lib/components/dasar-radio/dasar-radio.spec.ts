@@ -307,7 +307,44 @@ describe('DasarRadio theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--radio-checked-color')).toBe('red');
-    expect(host.style.getPropertyValue('--radio-group-gap')).toBe('20px');
+    expect(host.style.getPropertyValue('--dasar-radio-checked-color')).toBe('red');
+    expect(host.style.getPropertyValue('--dasar-radio-group-gap')).toBe('20px');
+  });
+});
+
+@Component({
+  selector: 'test-radio-label-size-host',
+  standalone: true,
+  imports: [DasarRadioComponent],
+  template: `<dasar-radio label="Label" [size]="size()" />`,
+})
+class RadioLabelSizeHost {
+  size = signal<'sm' | 'md' | 'lg'>('md');
+}
+
+describe('DasarRadio label size', () => {
+  let fixture: ComponentFixture<RadioLabelSizeHost>;
+
+  const fontSize = () =>
+    getComputedStyle(fixture.nativeElement.querySelector('.dasar-radio-label')).fontSize;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({ imports: [RadioLabelSizeHost] }).compileComponents();
+    fixture = TestBed.createComponent(RadioLabelSizeHost);
+    await fixture.whenStable();
+  });
+
+  it('follows the same font scale as the other components', async () => {
+    fixture.componentInstance.size.set('sm');
+    await fixture.whenStable();
+    expect(fontSize()).toContain('--dasar-font-size-sm');
+
+    fixture.componentInstance.size.set('md');
+    await fixture.whenStable();
+    expect(fontSize()).toContain('--dasar-font-size-base');
+
+    fixture.componentInstance.size.set('lg');
+    await fixture.whenStable();
+    expect(fontSize()).toContain('--dasar-font-size-lg');
   });
 });

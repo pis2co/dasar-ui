@@ -3,6 +3,8 @@
     type="checkbox"
     class="dasar-checkbox-native"
     [checked]="isChecked"
+    [indeterminate]="indeterminate"
+    [attr.aria-checked]="indeterminate ? 'mixed' : null"
     [disabled]="isDisabled"
     [attr.aria-invalid]="hasError || null"
     [attr.aria-describedby]="hint ? hintId : null"
@@ -10,7 +12,9 @@
     (blur)="onTouched()"
   />
   <span [ngClass]="boxClasses" [ngStyle]="boxStyle" aria-hidden="true">
-    @if (isChecked) {
+    @if (indeterminate) {
+      <dasar-icon name="minus" size="sm" />
+    } @else if (isChecked) {
       <dasar-icon name="check" size="sm" />
     }
   </span>

@@ -10,7 +10,7 @@
 }
 
 .dasar-card-container {
-  background-color: var(--card-background, var(--theme-bg-surface-color));
+  background-color: var(--dasar-card-background, var(--dasar-theme-bg-surface-color));
   flex-direction: column;
   box-sizing: border-box;
   display: flex;
@@ -21,23 +21,23 @@
   }
 
   &.size-xs {
-    font-size: var(--card-font-size-xs, var(--font-size-xs));
+    font-size: var(--dasar-card-font-size-xs, var(--dasar-font-size-xs));
   }
   &.size-sm {
-    font-size: var(--card-font-size-sm, var(--font-size-sm));
+    font-size: var(--dasar-card-font-size-sm, var(--dasar-font-size-sm));
   }
   &.size-md {
-    font-size: var(--card-font-size-md, var(--font-size-base));
+    font-size: var(--dasar-card-font-size-md, var(--dasar-font-size-base));
   }
   &.size-lg {
-    font-size: var(--card-font-size-lg, var(--font-size-lg));
+    font-size: var(--dasar-card-font-size-lg, var(--dasar-font-size-lg));
   }
   &.size-xl {
-    font-size: var(--card-font-size-xl, var(--font-size-xl));
+    font-size: var(--dasar-card-font-size-xl, var(--dasar-font-size-xl));
   }
 
   &.appearance-outline {
-    border: 1px solid var(--card-outline-border, var(--theme-border-strong-color));
+    border: 1px solid var(--dasar-card-outline-border, var(--dasar-theme-border-strong-color));
   }
 
   &.appearance-borderless {
@@ -45,59 +45,59 @@
   }
 
   &.appearance-elevated {
-    border: 1px solid var(--card-elevated-border, var(--theme-border-strong-color));
+    border: 1px solid var(--dasar-card-elevated-border, var(--dasar-theme-border-strong-color));
     box-shadow: var(
-      --card-elevated-shadow,
+      --dasar-card-elevated-shadow,
       0 10px 15px -3px rgba(0, 0, 0, 0.05),
       0 4px 6px -4px rgba(0, 0, 0, 0.03)
     );
   }
 
   &.radius-none {
-    border-radius: var(--card-radius-none, var(--radius-none));
+    border-radius: var(--dasar-card-radius-none, var(--dasar-radius-none));
   }
   &.radius-xs {
-    border-radius: var(--card-radius-xs, var(--radius-xs));
+    border-radius: var(--dasar-card-radius-xs, var(--dasar-radius-xs));
   }
   &.radius-sm {
-    border-radius: var(--card-radius-sm, var(--radius-sm));
+    border-radius: var(--dasar-card-radius-sm, var(--dasar-radius-sm));
   }
   &.radius-md {
-    border-radius: var(--card-radius-md, var(--radius-md));
+    border-radius: var(--dasar-card-radius-md, var(--dasar-radius-md));
   }
   &.radius-lg {
-    border-radius: var(--card-radius-lg, var(--radius-lg));
+    border-radius: var(--dasar-card-radius-lg, var(--dasar-radius-lg));
   }
   &.radius-xl {
-    border-radius: var(--card-radius-xl, var(--radius-xl));
+    border-radius: var(--dasar-card-radius-xl, var(--dasar-radius-xl));
   }
   &.radius-full {
-    border-radius: var(--card-radius-full, var(--radius-full));
+    border-radius: var(--dasar-card-radius-full, var(--dasar-radius-full));
   }
 
   &.spacing-normal {
     .dasar-card-header {
-      padding: var(--card-normal-header-padding-vertical, var(--space-base))
-        var(--card-normal-header-padding-horizontal, var(--space-4));
+      padding: var(--dasar-card-normal-header-padding-vertical, var(--dasar-space-base))
+        var(--dasar-card-normal-header-padding-horizontal, var(--dasar-space-4));
     }
     .dasar-card-body {
-      padding: var(--card-normal-body-padding-vertical, var(--space-4))
-        var(--card-normal-body-padding-horizontal, var(--space-4));
+      padding: var(--dasar-card-normal-body-padding-vertical, var(--dasar-space-4))
+        var(--dasar-card-normal-body-padding-horizontal, var(--dasar-space-4));
     }
     .dasar-card-actions {
-      padding: var(--card-normal-actions-padding, var(--space-4));
+      padding: var(--dasar-card-normal-actions-padding, var(--dasar-space-4));
     }
   }
 
   &.spacing-compact {
     .dasar-card-header {
-      padding: var(--card-compact-header-padding, var(--space-base));
+      padding: var(--dasar-card-compact-header-padding, var(--dasar-space-base));
     }
     .dasar-card-body {
-      padding: var(--card-compact-body-padding, var(--space-base));
+      padding: var(--dasar-card-compact-body-padding, var(--dasar-space-base));
     }
     .dasar-card-actions {
-      padding: var(--card-compact-actions-padding, var(--space-base));
+      padding: var(--dasar-card-compact-actions-padding, var(--dasar-space-base));
     }
   }
 
@@ -113,14 +113,14 @@
 }
 
 .dasar-card-header {
-  border-bottom: 1px solid var(--card-header-border, var(--theme-border-strong-color));
+  border-bottom: 1px solid var(--dasar-card-header-border, var(--dasar-theme-border-strong-color));
   justify-content: space-between;
   align-items: center;
   display: flex;
 
   .dasar-card-title {
-    color: var(--card-title-color, var(--theme-text-primary-color));
-    font-weight: var(--card-title-font-weight, var(--font-weight-semibold));
+    color: var(--dasar-card-title-color, var(--dasar-theme-text-primary-color));
+    font-weight: var(--dasar-card-title-font-weight, var(--dasar-font-weight-semibold));
     font-size: inherit;
     margin: 0;
   }
@@ -146,8 +146,8 @@
 }
 
 .dasar-card-body {
-  color: var(--card-body-color, var(--theme-text-primary-color));
-  line-height: var(--line-height-normal);
+  color: var(--dasar-card-body-color, var(--dasar-theme-text-primary-color));
+  line-height: var(--dasar-line-height-normal);
   flex: 1;
 
   &.fluid {
@@ -157,8 +157,8 @@
 }
 
 .dasar-card-caption {
-  color: var(--card-caption-color, var(--theme-text-secondary-color));
-  font-size: var(--card-caption-font-size, var(--font-size-xs));
+  color: var(--dasar-card-caption-color, var(--dasar-theme-text-secondary-color));
+  font-size: var(--dasar-card-caption-font-size, var(--dasar-font-size-xs));
 
   &.fluid {
     padding: 0 !important;
@@ -167,11 +167,11 @@
 }
 
 .dasar-card-actions {
-  background-color: var(--card-actions-background, transparent);
+  background-color: var(--dasar-card-actions-background, transparent);
   align-items: center;
   border-top: none;
   display: flex;
-  gap: var(--card-actions-gap, 12px);
+  gap: var(--dasar-card-actions-gap, 12px);
 
   &.fluid {
     padding: 0 !important;

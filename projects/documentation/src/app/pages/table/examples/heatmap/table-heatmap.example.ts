@@ -19,7 +19,7 @@ export class TableHeatmapExample implements OnInit {
         key: 'day',
         label: 'Day',
         width: '100px',
-        cellStyle: { fontWeight: '600', backgroundColor: 'var(--theme-bg-surface-color)' },
+        cellStyle: { fontWeight: '600', backgroundColor: 'var(--dasar-theme-bg-surface-color)' },
       },
     ];
     hours.forEach((hour) => {
@@ -33,8 +33,8 @@ export class TableHeatmapExample implements OnInit {
           const intensity = Math.min(1, val / 100);
           return {
             backgroundColor: `rgba(16, 185, 129, ${intensity})`,
-            color: intensity > 0.55 ? '#ffffff' : 'var(--theme-text-primary-color)',
-            border: '1px solid var(--theme-bg-default-color)',
+            color: intensity > 0.55 ? '#ffffff' : 'var(--dasar-theme-text-primary-color)',
+            border: '1px solid var(--dasar-theme-bg-default-color)',
             fontSize: '12px',
             fontWeight: '500',
           };

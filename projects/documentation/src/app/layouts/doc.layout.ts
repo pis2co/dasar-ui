@@ -1,7 +1,18 @@
-import { DasarTableColumn, DasarTableComponent } from 'dasar-ui';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Component, Input } from '@angular/core';
+import { DasarListComponent, DasarTableColumn, DasarTableComponent } from 'dasar-ui';
+import { NavigationEnd, Router } from '@angular/router';
+import {
+  afterNextRender,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  Input,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 export interface DocApiProperty {
   name: string;
@@ -28,7 +39,7 @@ export interface DocNavGroup {
 }
 
 @Component({
-  imports: [CommonModule, RouterLink, RouterLinkActive, DasarTableComponent],
+  imports: [CommonModule, DasarListComponent, DasarTableComponent],
   selector: 'docs-layout',
   standalone: true,
   template: `
@@ -36,27 +47,23 @@ export interface DocNavGroup {
       <aside class="docs-sidebar">
         <nav class="docs-nav">
           @for (group of navigation; track group.title) {
-            <div class="nav-group">
-              <div class="nav-group-title">
-                <span>{{ group.title }}</span>
-              </div>
-              <div class="nav-items">
-                @for (item of group.items; track item.label) {
-                  <a
-                    [routerLink]="item.route"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
-                    class="nav-link"
-                  >
-                    {{ item.label }}
-                  </a>
-                }
-              </div>
-            </div>
+            <dasar-list
+              class="nav-group"
+              selectable
+              hoverable
+              radius="none"
+              [value]="activeRoute()"
+              (onItemClick)="onNavigate($event.value)"
+            >
+              <div header-slot class="nav-group-title">{{ group.title }}</div>
+              @for (item of group.items; track item.label) {
+                <dasar-list-item [value]="item.route">{{ item.label }}</dasar-list-item>
+              }
+            </dasar-list>
           }
         </nav>
       </aside>
-      <main class="docs-main">
+      <main class="docs-main" #main>
         <div class="docs-layout">
           <header class="docs-header">
             <h1 class="docs-title">{{ title }}</h1>
@@ -102,14 +109,14 @@ export interface DocNavGroup {
         gap: 12px;
       }
       .docs-page-wrapper {
-        background-color: var(--theme-bg-default-color);
-        font-family: var(--font-sans);
+        background-color: var(--dasar-theme-bg-default-color);
+        font-family: var(--dasar-font-sans);
         display: flex;
         height: 100%;
       }
       .docs-sidebar {
-        border-right: 1px solid var(--theme-border-subtle-color);
-        background: var(--theme-bg-surface-color);
+        border-right: 1px solid var(--dasar-theme-border-subtle-color);
+        background: var(--dasar-theme-bg-surface-color);
         overflow-y: auto;
         flex-shrink: 0;
         width: 150px;
@@ -121,68 +128,53 @@ export interface DocNavGroup {
         flex: 1;
       }
       .docs-layout {
-        padding: var(--space-6);
-        color: var(--theme-text-primary-color);
+        padding: var(--dasar-space-6);
+        color: var(--dasar-theme-text-primary-color);
         margin: 0 auto;
       }
       .docs-header {
-        margin-bottom: var(--space-base);
-        border-bottom: 1px solid var(--theme-border-subtle-color);
-        padding-bottom: var(--space-6);
+        margin-bottom: var(--dasar-space-base);
+        border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
+        padding-bottom: var(--dasar-space-6);
       }
       .docs-title {
-        font-weight: var(--font-weight-semibold);
-        color: var(--theme-text-primary-color);
-        font-family: var(--font-hero);
+        font-weight: var(--dasar-font-weight-semibold);
+        color: var(--dasar-theme-text-primary-color);
+        font-family: var(--dasar-font-hero);
         margin: 0;
       }
       .docs-description {
-        color: var(--theme-text-secondary-color);
+        color: var(--dasar-theme-text-secondary-color);
         line-height: 1.5;
         margin: 0;
       }
       .nav-group-title {
-        padding: var(--space-base) var(--space-3) var(--space-base);
-        font-weight: var(--font-weight-semibold);
-        font-size: var(--font-size-xs);
+        padding: var(--dasar-space-base) var(--dasar-space-3) var(--dasar-space-base);
+        font-weight: var(--dasar-font-weight-semibold);
+        font-size: var(--dasar-font-size-xs);
         text-transform: uppercase;
       }
-      .nav-items {
-        display: flex;
-        flex-direction: column;
-      }
-      .nav-link {
-        display: block;
-        color: var(--theme-text-secondary-color);
-        text-decoration: none;
-        border-right: 1px solid transparent;
-        padding: var(--space-base);
-        &:hover {
-          color: var(--theme-text-primary-color);
-          background-color: var(--theme-bg-hover-color);
-        }
-        &.active {
-          color: var(--theme-primary-color);
-          font-weight: var(--font-weight-medium);
-          background-color: var(--theme-primary-surface-color);
-          border-right-color: var(--theme-primary-color);
-        }
+      .docs-sidebar {
+        --dasar-list-background: transparent;
+        --dasar-list-header-padding: 0;
+        --dasar-list-header-border: transparent;
+        --dasar-list-header-background: transparent;
       }
       .api-title {
-        font-weight: var(--font-weight-semibold);
-        color: var(--theme-text-primary-color);
-        margin: var(--space-base) 0;
-        border-bottom: 1px solid var(--theme-border-subtle-color);
+        font-weight: var(--dasar-font-weight-semibold);
+        color: var(--dasar-theme-text-primary-color);
+        margin: var(--dasar-space-base) 0;
+        border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
       }
       .api-reference-section code {
         font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-        background-color: var(--theme-bg-hover-color);
-        color: var(--theme-primary-color);
-        padding: var(--space-0-5) var(--space-1);
-        border-radius: var(--radius-xs);
+        background-color: var(--dasar-theme-bg-hover-color);
+        color: var(--dasar-theme-primary-color);
+        padding: var(--dasar-space-0-5) var(--dasar-space-1);
+        border-radius: var(--dasar-radius-xs);
       }
       .prop-cell code {
-        font-weight: var(--font-weight-medium);
+        font-weight: var(--dasar-font-weight-medium);
       }
     `,
   ],
@@ -191,6 +183,54 @@ export class DocsLayoutComponent {
   @Input() title = '';
   @Input() description = '';
   @Input() apiData: DocApiProperty[] = [];
+
+  @ViewChild('main') private main?: ElementRef<HTMLElement>;
+  private readonly router = inject(Router);
+  private readonly host = inject(ElementRef<HTMLElement>);
+  protected readonly activeRoute = signal('');
+
+  constructor() {
+    this.activeRoute.set(this.resolveActiveRoute(this.router.url));
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(inject(DestroyRef)),
+      )
+      .subscribe((event) => this.activeRoute.set(this.resolveActiveRoute(event.urlAfterRedirects)));
+
+    afterNextRender(() => {
+      this.scrollMainToTop();
+      this.revealActiveItem();
+    });
+  }
+
+  protected onNavigate(route: string): void {
+    if (this.router.url.split(/[?#]/)[0] === route) {
+      this.scrollMainToTop();
+      return;
+    }
+    this.router.navigateByUrl(route);
+  }
+
+  private scrollMainToTop(): void {
+    this.main?.nativeElement.scrollTo({ top: 0 });
+  }
+
+  private revealActiveItem(): void {
+    const active = this.host.nativeElement.querySelector('.docs-sidebar .dasar-list-item.active');
+    active?.scrollIntoView({ block: 'nearest' });
+  }
+
+  private resolveActiveRoute(url: string): string {
+    const path = url.split(/[?#]/)[0];
+    const items = this.navigation.flatMap((group) => group.items);
+    const exact = items.find((item) => item.route === path);
+    if (exact) return exact.route;
+    const prefixed = items
+      .filter((item) => !item.exact && path.startsWith(`${item.route}/`))
+      .sort((a, b) => b.route.length - a.route.length);
+    return prefixed[0]?.route ?? '';
+  }
 
   navigation: DocNavGroup[] = [
     {
@@ -222,6 +262,8 @@ export class DocsLayoutComponent {
         { label: 'Calendar', route: '/components/calendar' },
         { label: 'Card', route: '/components/card' },
         { label: 'Modal', route: '/components/modal' },
+        { label: 'Drawer', route: '/components/drawer' },
+        { label: 'Tree', route: '/components/tree' },
         { label: 'Menu', route: '/components/menu' },
         { label: 'Tabs', route: '/components/tabs' },
         { label: 'List', route: '/components/list' },

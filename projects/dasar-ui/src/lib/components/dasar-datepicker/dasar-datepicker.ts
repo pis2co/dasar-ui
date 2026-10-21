@@ -27,6 +27,7 @@ import {
   computeSmartPlacement,
   DasarPanelPlacement,
   listenViewportChanges,
+  watchPanel,
 } from '../../utils/panel-placement';
 import { fieldIconSize } from '../../utils/icon-size';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
@@ -123,7 +124,19 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   @ContentChild(DasarDatepickerPrefixSlot) prefixSlot?: DasarDatepickerPrefixSlot;
 
   @ViewChild('triggerElement') triggerEl?: ElementRef<HTMLElement>;
-  @ViewChild('dropdownElement') dropdownEl?: ElementRef<HTMLElement>;
+  dropdownEl?: ElementRef<HTMLElement>;
+  private stopWatchingPanel: (() => void) | null = null;
+  private readonly watchPanelCleanup = inject(DestroyRef).onDestroy(() =>
+    this.stopWatchingPanel?.(),
+  );
+  @ViewChild('dropdownElement')
+  set dropdownElRef(ref: ElementRef<HTMLElement> | undefined) {
+    this.stopWatchingPanel?.();
+    this.stopWatchingPanel = null;
+    this.dropdownEl = ref;
+    if (ref)
+      this.stopWatchingPanel = watchPanel(ref.nativeElement, () => this.calculateSmartPlacement());
+  }
 
   @Input({ alias: 'display-format' }) displayFormat = resolveThemeDefault(
     'datepicker',
@@ -507,7 +520,6 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       this.onClickIn.emit(event);
       this.setFocus(true, event);
       this.currentPlacement = this.placement;
-      setTimeout(() => this.calculateSmartPlacement(), 0);
     } else {
       if (this.range) this.syncInternalDate();
       this.onClickOut.emit(event);

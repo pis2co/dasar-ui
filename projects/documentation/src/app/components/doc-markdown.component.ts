@@ -38,60 +38,60 @@ const INTERNAL_DOC_LINKS: Array<[string, string]> = [
       .doc-markdown {
         display: block;
         max-width: 860px;
-        color: var(--theme-text-primary-color);
-        line-height: var(--line-height-normal);
+        color: var(--dasar-theme-text-primary-color);
+        line-height: var(--dasar-line-height-normal);
       }
       .doc-markdown h1 {
-        font-size: var(--font-size-xl);
-        margin: 0 0 var(--space-4);
+        font-size: var(--dasar-font-size-xl);
+        margin: 0 0 var(--dasar-space-4);
       }
       .doc-markdown h2 {
-        font-size: var(--font-size-lg);
-        margin: var(--space-8) 0 var(--space-3);
+        font-size: var(--dasar-font-size-lg);
+        margin: var(--dasar-space-8) 0 var(--dasar-space-3);
       }
       .doc-markdown h3 {
-        font-size: var(--font-size-base);
-        margin: var(--space-6) 0 var(--space-base);
+        font-size: var(--dasar-font-size-base);
+        margin: var(--dasar-space-6) 0 var(--dasar-space-base);
       }
       .doc-markdown p {
-        margin: 0 0 var(--space-4);
+        margin: 0 0 var(--dasar-space-4);
       }
       .doc-markdown ul,
       .doc-markdown ol {
-        margin: 0 0 var(--space-4);
-        padding-left: var(--space-6);
+        margin: 0 0 var(--dasar-space-4);
+        padding-left: var(--dasar-space-6);
       }
       .doc-markdown li {
-        margin-bottom: var(--space-base);
+        margin-bottom: var(--dasar-space-base);
       }
       .doc-markdown a {
-        color: var(--theme-primary-color);
+        color: var(--dasar-theme-primary-color);
       }
       .doc-markdown table {
         width: 100%;
         border-collapse: collapse;
-        margin: 0 0 var(--space-6);
-        font-size: var(--font-size-sm);
+        margin: 0 0 var(--dasar-space-6);
+        font-size: var(--dasar-font-size-sm);
       }
       .doc-markdown th,
       .doc-markdown td {
         text-align: left;
-        padding: var(--space-base) var(--space-3);
-        border-bottom: 1px solid var(--theme-border-subtle-color);
+        padding: var(--dasar-space-base) var(--dasar-space-3);
+        border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
       }
       .doc-markdown th {
-        font-weight: var(--font-weight-semibold);
+        font-weight: var(--dasar-font-weight-semibold);
       }
       .doc-markdown code:not(pre code) {
-        font-size: var(--font-size-sm);
-        padding: 0 var(--space-1);
-        border-radius: var(--radius-xs);
-        background: var(--theme-bg-hover-color);
+        font-size: var(--dasar-font-size-sm);
+        padding: 0 var(--dasar-space-1);
+        border-radius: var(--dasar-radius-xs);
+        background: var(--dasar-theme-bg-hover-color);
       }
       .doc-markdown pre {
-        margin: 0 0 var(--space-6);
-        padding: var(--space-4);
-        border-radius: var(--radius-md);
+        margin: 0 0 var(--dasar-space-6);
+        padding: var(--dasar-space-4);
+        border-radius: var(--dasar-radius-md);
         overflow: auto;
       }
       .doc-markdown pre code {
@@ -99,14 +99,14 @@ const INTERNAL_DOC_LINKS: Array<[string, string]> = [
         padding: 0;
       }
       .doc-markdown blockquote {
-        margin: 0 0 var(--space-4);
-        padding-left: var(--space-4);
-        border-left: 3px solid var(--theme-border-strong-color);
-        color: var(--theme-text-secondary-color);
+        margin: 0 0 var(--dasar-space-4);
+        padding-left: var(--dasar-space-4);
+        border-left: 3px solid var(--dasar-theme-border-strong-color);
+        color: var(--dasar-theme-text-secondary-color);
       }
       .doc-markdown img {
         max-width: 100%;
-        border-radius: var(--radius-full);
+        border-radius: var(--dasar-radius-full);
         vertical-align: middle;
       }
       .doc-markdown td img {

@@ -9,6 +9,8 @@ import {
   chipMap,
   commonMap,
   datepickerMap,
+  drawerMap,
+  treeMap,
   dividerMap,
   inputMap,
   listMap,
@@ -61,6 +63,8 @@ export const TOKEN_GROUPS: ThemingTokenGroup[] = [
   { component: 'tabs', path: 'tokens.light.tabs', map: tabsMap },
   { component: 'overlay', path: 'tokens.light.overlay', map: overlayMap },
   { component: 'modal', path: 'tokens.light.modal', map: modalMap },
+  { component: 'drawer', path: 'tokens.light.drawer', map: drawerMap },
+  { component: 'tree', path: 'tokens.light.tree', map: treeMap },
 ];
 
 export const TOKEN_ROWS: ThemingTokenRow[] = [
@@ -625,6 +629,12 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       description: 'Disables the checkbox.',
     },
     {
+      name: 'indeterminate',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Mixed state shown as a dash.',
+    },
+    {
       name: 'error',
       type: 'boolean',
       defaultValue: 'false',
@@ -1015,6 +1025,118 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       type: 'ClassType',
       defaultValue: '-',
       description: 'Classes for the card parts.',
+    },
+  ],
+  tree: [
+    {
+      name: 'type',
+      type: 'DasarTreeType',
+      defaultValue: 'null',
+      description: "null, 'file', 'selectable' or 'multiple'.",
+    },
+    {
+      name: 'size',
+      type: 'DasarTreeSize',
+      defaultValue: "'md'",
+      description: 'Row height and font size.',
+    },
+    {
+      name: 'selectable / multiple',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Row selection and checkbox column.',
+    },
+    {
+      name: 'disabled / draggable / showLine / search / defaultExpandAll',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Behavior flags.',
+    },
+    {
+      name: 'label / hint / searchPlaceholder',
+      type: 'string',
+      defaultValue: "''",
+      description: 'Text parts of the tree.',
+    },
+    {
+      name: 'containerStyle / itemStyle / hintStyle',
+      type: 'StyleType',
+      defaultValue: '-',
+      description: 'Inline styles for the tree parts.',
+    },
+    {
+      name: 'containerClass / itemClass / hintClass',
+      type: 'ClassType',
+      defaultValue: '-',
+      description: 'Classes for the tree parts.',
+    },
+  ],
+  drawer: [
+    {
+      name: 'placement',
+      type: 'DasarDrawerPlacement',
+      defaultValue: "'right'",
+      description: 'Edge the drawer slides in from.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      defaultValue: "''",
+      description: 'Drawer title.',
+    },
+    {
+      name: 'closable / resizable',
+      type: 'boolean',
+      defaultValue: 'true / false',
+      description: 'Close button and resize handle.',
+    },
+    {
+      name: 'width / height',
+      type: 'string | number',
+      defaultValue: "'378px'",
+      description: 'Default size for horizontal and vertical placements.',
+    },
+    {
+      name: 'minWidth / maxWidth / minHeight / maxHeight',
+      type: 'string | number',
+      defaultValue: '-',
+      description: 'Resize limits.',
+    },
+    {
+      name: 'zIndex',
+      type: 'number',
+      defaultValue: '1000',
+      description: 'Stacking order.',
+    },
+    {
+      name: 'closeOnOverlay / closeOnEscape',
+      type: 'boolean',
+      defaultValue: 'true',
+      description: 'Close behavior.',
+    },
+    {
+      name: 'overlayBlur / overlayBackground',
+      type: 'string',
+      defaultValue: '-',
+      description: 'Forwarded to the overlay.',
+    },
+    {
+      name: 'headerFluid / bodyFluid / actionFluid',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Remove section padding.',
+    },
+    {
+      name: 'containerStyle / headerStyle / bodyStyle / actionStyle',
+      type: 'StyleType',
+      defaultValue: '-',
+      description: 'Inline styles for the drawer parts.',
+    },
+    {
+      name: 'containerClass / headerClass / bodyClass / actionClass',
+      type: 'ClassType',
+      defaultValue: '-',
+      description: 'Classes for the drawer parts.',
     },
   ],
   modal: [

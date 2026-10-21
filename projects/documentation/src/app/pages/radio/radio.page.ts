@@ -306,7 +306,7 @@ export class RadioDocPage {
       type: 'DasarThemeRadio',
       defaultValue: '-',
       description:
-        'Set through tokens.light.radio (or tokens.dark.radio) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: checkedColor -> --radio-checked-color. Full list on the Theme Tokens page.',
+        'Set through tokens.light.radio (or tokens.dark.radio) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: checkedColor -> --dasar-radio-checked-color. Full list on the Theme Tokens page.',
     },
     {
       name: 'component config',

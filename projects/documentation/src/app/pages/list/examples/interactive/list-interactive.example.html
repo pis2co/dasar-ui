@@ -3,7 +3,8 @@
     <dasar-list-item
       (click)="select(item.id)"
       [item-style]="{
-        'background-color': selected() === item.id ? 'var(--theme-primary-surface-color)' : '',
+        'background-color':
+          selected() === item.id ? 'var(--dasar-theme-primary-surface-color)' : '',
         'font-weight': selected() === item.id ? '600' : '',
       }"
     >

@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { vi } from 'vitest';
 import { DasarDatepicker, DasarDatepickerComponent } from './dasar-datepicker';
 
 @Component({
@@ -78,10 +79,19 @@ describe('DasarDatepicker', () => {
   });
 
   it('dropdown starts at the requested placement', async () => {
+    const roomy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      left: 100,
+      top: 400,
+      right: 300,
+      bottom: 430,
+      width: 200,
+      height: 30,
+    } as DOMRect);
     host.placement.set('top-start');
     await open();
 
     expect(dropdown().classList).toContain('placement-top-start');
+    roomy.mockRestore();
   });
 
   it('never writes the flipped placement back to the placement input', async () => {

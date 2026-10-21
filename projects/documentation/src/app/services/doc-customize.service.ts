@@ -78,7 +78,10 @@ export class DocCustomizeService {
     const common: Record<string, string> = {};
     if (s.primaryColor) common['primaryColor'] = s.primaryColor;
     if (s.fontSizeBase) common['fontSizeBase'] = s.fontSizeBase;
-    if (s.fontSans) common['fontSans'] = s.fontSans;
+    if (s.fontSans) {
+      common['fontSans'] = s.fontSans;
+      common['fontHero'] = s.fontSans;
+    }
     return { light: { common }, dark: { common } };
   });
 

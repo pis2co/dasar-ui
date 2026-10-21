@@ -1,0 +1,10 @@
+<dasar-tree
+  type="selectable"
+  default-expand-all
+  [items]="items"
+  (onUpdateSelectedKeys)="selected.set($event)"
+/>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">
+  Selected: {{ selected().join(', ') || '-' }}
+</p>

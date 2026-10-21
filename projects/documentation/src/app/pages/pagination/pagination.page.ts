@@ -267,7 +267,8 @@ export class PaginationDocPage {
       name: 'spacing',
       type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'",
       defaultValue: "'xs'",
-      description: 'Gap between items using the --space-* scale through --pagination-gap.',
+      description:
+        'Gap between items using the --dasar-space-* scale through --dasar-pagination-gap.',
     },
     {
       name: 'prev-icon / next-icon',

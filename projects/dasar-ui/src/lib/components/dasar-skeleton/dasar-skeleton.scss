@@ -3,44 +3,44 @@
 .dasar-skeleton {
   display: flex;
   flex-direction: column;
-  gap: var(--skeleton-gap, var(--space-base));
+  gap: var(--dasar-skeleton-gap, var(--dasar-space-base));
 }
 
 .dasar-skeleton-item {
   display: block;
   width: 100%;
-  height: var(--skeleton-text-height, 12px);
-  background-color: var(--skeleton-base-color, var(--theme-border-subtle-color));
-  border-radius: var(--radius-full);
+  height: var(--dasar-skeleton-text-height, 12px);
+  background-color: var(--dasar-skeleton-base-color, var(--dasar-theme-border-subtle-color));
+  border-radius: var(--dasar-radius-full);
   overflow: hidden;
   position: relative;
 
   &.type-box {
-    border-radius: var(--radius-md);
+    border-radius: var(--dasar-radius-md);
   }
 
   &.radius-none {
-    border-radius: var(--radius-none);
+    border-radius: var(--dasar-radius-none);
   }
 
   &.radius-xs {
-    border-radius: var(--radius-xs);
+    border-radius: var(--dasar-radius-xs);
   }
 
   &.radius-sm {
-    border-radius: var(--radius-sm);
+    border-radius: var(--dasar-radius-sm);
   }
 
   &.radius-md {
-    border-radius: var(--radius-md);
+    border-radius: var(--dasar-radius-md);
   }
 
   &.radius-lg {
-    border-radius: var(--radius-lg);
+    border-radius: var(--dasar-radius-lg);
   }
 
   &.radius-xl {
-    border-radius: var(--radius-xl);
+    border-radius: var(--dasar-radius-xl);
   }
 
   &.circle {
@@ -52,12 +52,13 @@
     background-image: linear-gradient(
       90deg,
       transparent 0%,
-      var(--skeleton-highlight-color, rgba(255, 255, 255, 0.6)) 50%,
+      var(--dasar-skeleton-highlight-color, rgba(255, 255, 255, 0.6)) 50%,
       transparent 100%
     );
     background-repeat: no-repeat;
     background-size: 200% 100%;
-    animation: dasar-skeleton-shimmer var(--skeleton-animation-duration, 1.5s) ease-in-out infinite;
+    animation: dasar-skeleton-shimmer var(--dasar-skeleton-animation-duration, 1.5s) ease-in-out
+      infinite;
   }
 }
 

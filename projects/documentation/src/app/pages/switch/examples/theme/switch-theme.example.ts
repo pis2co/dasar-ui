@@ -22,7 +22,7 @@ export class SwitchThemeExample {
   protected tokenConfig: DasarThemeConfig['tokens'] = {
     light: {
       switch: {
-        trackCheckedBg: 'var(--theme-success-color)',
+        trackCheckedBg: 'var(--dasar-theme-success-color)',
       },
     },
   };

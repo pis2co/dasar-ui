@@ -126,113 +126,113 @@ $dasar-warning-800: #92400e;
   --dasar-warning-base: #{$dasar-warning-base};
   --dasar-warning-800: #{$dasar-warning-800};
 
-  --font-sans: #{$dasar-font-sans};
-  --font-hero: #{$dasar-font-hero};
+  --dasar-font-sans: #{$dasar-font-sans};
+  --dasar-font-hero: #{$dasar-font-hero};
 
-  --font-weight-regular: #{$dasar-font-weight-regular};
-  --font-weight-medium: #{$dasar-font-weight-medium};
-  --font-weight-semibold: #{$dasar-font-weight-semibold};
-  --font-weight-bold: #{$dasar-font-weight-bold};
+  --dasar-font-weight-regular: #{$dasar-font-weight-regular};
+  --dasar-font-weight-medium: #{$dasar-font-weight-medium};
+  --dasar-font-weight-semibold: #{$dasar-font-weight-semibold};
+  --dasar-font-weight-bold: #{$dasar-font-weight-bold};
 
-  --font-size-xss: #{$dasar-text-xss};
-  --font-size-xs: #{$dasar-text-xs};
-  --font-size-sm: #{$dasar-text-sm};
-  --font-size-base: #{$dasar-text-base};
-  --font-size-lg: #{$dasar-text-lg};
-  --font-size-xl: #{$dasar-text-xl};
+  --dasar-font-size-xss: #{$dasar-text-xss};
+  --dasar-font-size-xs: #{$dasar-text-xs};
+  --dasar-font-size-sm: #{$dasar-text-sm};
+  --dasar-font-size-base: #{$dasar-text-base};
+  --dasar-font-size-lg: #{$dasar-text-lg};
+  --dasar-font-size-xl: #{$dasar-text-xl};
 
-  --line-height-normal: #{$dasar-line-height-normal};
-  --line-height-tight: #{$dasar-line-height-tight};
+  --dasar-line-height-normal: #{$dasar-line-height-normal};
+  --dasar-line-height-tight: #{$dasar-line-height-tight};
 
-  --radius-none: #{$dasar-radius-none};
-  --radius-xxs: #{$dasar-radius-xxs};
-  --radius-xs: #{$dasar-radius-xs};
-  --radius-sm: #{$dasar-radius-sm};
-  --radius-md: #{$dasar-radius-md};
-  --radius-lg: #{$dasar-radius-lg};
-  --radius-xl: #{$dasar-radius-xl};
-  --radius-2xl: #{$dasar-radius-2xl};
-  --radius-3xl: #{$dasar-radius-3xl};
-  --radius-4xl: #{$dasar-radius-4xl};
-  --radius-full: #{$dasar-radius-full};
+  --dasar-radius-none: #{$dasar-radius-none};
+  --dasar-radius-xxs: #{$dasar-radius-xxs};
+  --dasar-radius-xs: #{$dasar-radius-xs};
+  --dasar-radius-sm: #{$dasar-radius-sm};
+  --dasar-radius-md: #{$dasar-radius-md};
+  --dasar-radius-lg: #{$dasar-radius-lg};
+  --dasar-radius-xl: #{$dasar-radius-xl};
+  --dasar-radius-2xl: #{$dasar-radius-2xl};
+  --dasar-radius-3xl: #{$dasar-radius-3xl};
+  --dasar-radius-4xl: #{$dasar-radius-4xl};
+  --dasar-radius-full: #{$dasar-radius-full};
 
-  --space-0: #{$dasar-space-0};
-  --space-0-5: #{$dasar-space-0-5};
-  --space-1: #{$dasar-space-1};
-  --space-base: #{$dasar-space-base};
-  --space-3: #{$dasar-space-3};
-  --space-4: #{$dasar-space-4};
-  --space-5: #{$dasar-space-5};
-  --space-6: #{$dasar-space-6};
-  --space-8: #{$dasar-space-8};
-  --space-10: #{$dasar-space-10};
-  --space-12: #{$dasar-space-12};
-  --space-16: #{$dasar-space-16};
-  --space-18: #{$dasar-space-18};
-  --space-24: #{$dasar-space-24};
-  --space-32: #{$dasar-space-32};
-  --space-40: #{$dasar-space-40};
-  --space-48: #{$dasar-space-48};
-  --space-56: #{$dasar-space-56};
-  --space-64: #{$dasar-space-64};
-  --space-80: #{$dasar-space-80};
-  --space-96: #{$dasar-space-96};
-  --space-120: #{$dasar-space-120};
+  --dasar-space-0: #{$dasar-space-0};
+  --dasar-space-0-5: #{$dasar-space-0-5};
+  --dasar-space-1: #{$dasar-space-1};
+  --dasar-space-base: #{$dasar-space-base};
+  --dasar-space-3: #{$dasar-space-3};
+  --dasar-space-4: #{$dasar-space-4};
+  --dasar-space-5: #{$dasar-space-5};
+  --dasar-space-6: #{$dasar-space-6};
+  --dasar-space-8: #{$dasar-space-8};
+  --dasar-space-10: #{$dasar-space-10};
+  --dasar-space-12: #{$dasar-space-12};
+  --dasar-space-16: #{$dasar-space-16};
+  --dasar-space-18: #{$dasar-space-18};
+  --dasar-space-24: #{$dasar-space-24};
+  --dasar-space-32: #{$dasar-space-32};
+  --dasar-space-40: #{$dasar-space-40};
+  --dasar-space-48: #{$dasar-space-48};
+  --dasar-space-56: #{$dasar-space-56};
+  --dasar-space-64: #{$dasar-space-64};
+  --dasar-space-80: #{$dasar-space-80};
+  --dasar-space-96: #{$dasar-space-96};
+  --dasar-space-120: #{$dasar-space-120};
 
-  --text-white-color: #{$dasar-neutral-50};
-  --text-black-color: #{$dasar-neutral-900};
+  --dasar-text-white-color: #{$dasar-neutral-50};
+  --dasar-text-black-color: #{$dasar-neutral-900};
 
-  --theme-bg-window-color: #{$dasar-neutral-50};
-  --theme-bg-default-color: #{$dasar-neutral-50};
-  --theme-bg-surface-color: #{$dasar-neutral-50};
-  --theme-bg-hover-color: #{$dasar-neutral-100};
+  --dasar-theme-bg-window-color: #{$dasar-neutral-50};
+  --dasar-theme-bg-default-color: #{$dasar-neutral-50};
+  --dasar-theme-bg-surface-color: #{$dasar-neutral-50};
+  --dasar-theme-bg-hover-color: #{$dasar-neutral-100};
 
-  --theme-text-color: #{$dasar-neutral-900};
-  --theme-text-primary-color: #{$dasar-neutral-900};
-  --theme-text-secondary-color: #{$dasar-neutral-500};
-  --theme-text-disabled-color: #{$dasar-neutral-400};
-  --theme-text-inverse-color: #{$dasar-neutral-50};
+  --dasar-theme-text-color: #{$dasar-neutral-900};
+  --dasar-theme-text-primary-color: #{$dasar-neutral-900};
+  --dasar-theme-text-secondary-color: #{$dasar-neutral-500};
+  --dasar-theme-text-disabled-color: #{$dasar-neutral-400};
+  --dasar-theme-text-inverse-color: #{$dasar-neutral-50};
 
-  --theme-border-subtle-color: #{$dasar-neutral-200};
-  --theme-border-strong-color: #{$dasar-neutral-300};
+  --dasar-theme-border-subtle-color: #{$dasar-neutral-200};
+  --dasar-theme-border-strong-color: #{$dasar-neutral-300};
 
-  --theme-primary-color: #{$dasar-primary-base};
-  --theme-primary-hover-color: #{$dasar-primary-700};
-  --theme-primary-active-color: #{$dasar-primary-800};
-  --theme-primary-surface-color: #{$dasar-primary-50};
+  --dasar-theme-primary-color: #{$dasar-primary-base};
+  --dasar-theme-primary-hover-color: #{$dasar-primary-700};
+  --dasar-theme-primary-active-color: #{$dasar-primary-800};
+  --dasar-theme-primary-surface-color: #{$dasar-primary-50};
 
-  --theme-success-color: #{$dasar-success-base};
-  --theme-success-surface-color: #{$dasar-success-50};
-  --theme-danger-color: #{$dasar-danger-base};
-  --theme-danger-surface-color: #{$dasar-danger-50};
-  --theme-warning-color: #{$dasar-warning-base};
-  --theme-warning-surface-color: #{$dasar-warning-50};
+  --dasar-theme-success-color: #{$dasar-success-base};
+  --dasar-theme-success-surface-color: #{$dasar-success-50};
+  --dasar-theme-danger-color: #{$dasar-danger-base};
+  --dasar-theme-danger-surface-color: #{$dasar-danger-50};
+  --dasar-theme-warning-color: #{$dasar-warning-base};
+  --dasar-theme-warning-surface-color: #{$dasar-warning-50};
 }
 
 [data-theme='dark'] {
-  --theme-bg-window-color: #{$dasar-neutral-900};
-  --theme-bg-default-color: #{$dasar-neutral-900};
-  --theme-bg-surface-color: #{$dasar-neutral-800};
-  --theme-bg-hover-color: #{$dasar-neutral-700};
+  --dasar-theme-bg-window-color: #{$dasar-neutral-900};
+  --dasar-theme-bg-default-color: #{$dasar-neutral-900};
+  --dasar-theme-bg-surface-color: #{$dasar-neutral-800};
+  --dasar-theme-bg-hover-color: #{$dasar-neutral-700};
 
-  --theme-text-color: #{$dasar-neutral-50};
-  --theme-text-primary-color: #{$dasar-neutral-50};
-  --theme-text-secondary-color: #{$dasar-neutral-300};
-  --theme-text-disabled-color: #{$dasar-neutral-500};
-  --theme-text-inverse-color: #{$dasar-neutral-900};
+  --dasar-theme-text-color: #{$dasar-neutral-50};
+  --dasar-theme-text-primary-color: #{$dasar-neutral-50};
+  --dasar-theme-text-secondary-color: #{$dasar-neutral-300};
+  --dasar-theme-text-disabled-color: #{$dasar-neutral-500};
+  --dasar-theme-text-inverse-color: #{$dasar-neutral-900};
 
-  --theme-border-subtle-color: #{$dasar-neutral-700};
-  --theme-border-strong-color: #{$dasar-neutral-700};
+  --dasar-theme-border-subtle-color: #{$dasar-neutral-700};
+  --dasar-theme-border-strong-color: #{$dasar-neutral-700};
 
-  --theme-primary-color: #{$dasar-primary-300};
-  --theme-primary-hover-color: #{$dasar-primary-200};
-  --theme-primary-active-color: #{$dasar-primary-100};
-  --theme-primary-surface-color: rgba(96, 165, 250, 0.1);
+  --dasar-theme-primary-color: #{$dasar-primary-300};
+  --dasar-theme-primary-hover-color: #{$dasar-primary-200};
+  --dasar-theme-primary-active-color: #{$dasar-primary-100};
+  --dasar-theme-primary-surface-color: rgba(96, 165, 250, 0.1);
 
-  --theme-success-color: #{$dasar-success-base};
-  --theme-success-surface-color: rgba(52, 211, 153, 0.1);
-  --theme-danger-color: #{$dasar-danger-base};
-  --theme-danger-surface-color: rgba(248, 113, 113, 0.1);
-  --theme-warning-color: #{$dasar-warning-base};
-  --theme-warning-surface-color: rgba(251, 191, 36, 0.1);
+  --dasar-theme-success-color: #{$dasar-success-base};
+  --dasar-theme-success-surface-color: rgba(52, 211, 153, 0.1);
+  --dasar-theme-danger-color: #{$dasar-danger-base};
+  --dasar-theme-danger-surface-color: rgba(248, 113, 113, 0.1);
+  --dasar-theme-warning-color: #{$dasar-warning-base};
+  --dasar-theme-warning-surface-color: rgba(251, 191, 36, 0.1);
 }

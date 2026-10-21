@@ -208,7 +208,7 @@ describe('DasarDivider theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--divider-color')).toBe('red');
-    expect(host.style.getPropertyValue('--divider-thickness')).toBe('2px');
+    expect(host.style.getPropertyValue('--dasar-divider-color')).toBe('red');
+    expect(host.style.getPropertyValue('--dasar-divider-thickness')).toBe('2px');
   });
 });

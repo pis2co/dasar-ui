@@ -4,7 +4,7 @@
       <div
         style="
           padding: 24px;
-          background: var(--theme-bg-hover-color);
+          background: var(--dasar-theme-bg-hover-color);
           border-radius: 8px;
           margin: 8px;
         "
@@ -14,19 +14,21 @@
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; font-size: 14px">
           <div>
-            <div style="color: var(--theme-text-secondary-color); margin-bottom: 4px">
+            <div style="color: var(--dasar-theme-text-secondary-color); margin-bottom: 4px">
               Shipping Address
             </div>
             <div>{{ row.address }}</div>
           </div>
           <div>
-            <div style="color: var(--theme-text-secondary-color); margin-bottom: 4px">
+            <div style="color: var(--dasar-theme-text-secondary-color); margin-bottom: 4px">
               Tracking Number
             </div>
             <div style="font-family: monospace">{{ row.tracking }}</div>
           </div>
           <div>
-            <div style="color: var(--theme-text-secondary-color); margin-bottom: 4px">Carrier</div>
+            <div style="color: var(--dasar-theme-text-secondary-color); margin-bottom: 4px">
+              Carrier
+            </div>
             <div>{{ row.carrier }}</div>
           </div>
         </div>

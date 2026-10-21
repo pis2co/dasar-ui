@@ -8,8 +8,8 @@
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--pagination-gap, var(--space-1));
-  font-size: var(--pagination-font-size, inherit);
+  gap: var(--dasar-pagination-gap, var(--dasar-space-1));
+  font-size: var(--dasar-pagination-font-size, inherit);
 
   &.fluid {
     display: flex;
@@ -22,27 +22,27 @@
   }
 
   &.spacing-none {
-    --pagination-gap: var(--space-0);
+    --dasar-pagination-gap: var(--dasar-space-0);
   }
 
   &.spacing-xs {
-    --pagination-gap: var(--space-1);
+    --dasar-pagination-gap: var(--dasar-space-1);
   }
 
   &.spacing-sm {
-    --pagination-gap: var(--space-base);
+    --dasar-pagination-gap: var(--dasar-space-base);
   }
 
   &.spacing-md {
-    --pagination-gap: var(--space-3);
+    --dasar-pagination-gap: var(--dasar-space-3);
   }
 
   &.spacing-lg {
-    --pagination-gap: var(--space-4);
+    --dasar-pagination-gap: var(--dasar-space-4);
   }
 
   &.spacing-xl {
-    --pagination-gap: var(--space-6);
+    --dasar-pagination-gap: var(--dasar-space-6);
   }
 }
 
@@ -64,25 +64,40 @@
 
 .dasar-pagination-container .dasar-pagination-item .dasar-button-native.icon-only {
   width: auto;
-  min-width: var(--pagination-item-min-width, var(--btn-icon-size-md, var(--space-10)));
-  padding-left: var(--space-1);
-  padding-right: var(--space-1);
+  min-width: var(
+    --dasar-pagination-item-min-width,
+    var(--dasar-btn-icon-size-md, var(--dasar-space-10))
+  );
+  padding-left: var(--dasar-space-1);
+  padding-right: var(--dasar-space-1);
 }
 
 .dasar-pagination-container.size-xs .dasar-pagination-item .dasar-button-native.icon-only {
-  min-width: var(--pagination-item-min-width, var(--btn-icon-size-xs, var(--space-6)));
+  min-width: var(
+    --dasar-pagination-item-min-width,
+    var(--dasar-btn-icon-size-xs, var(--dasar-space-6))
+  );
 }
 
 .dasar-pagination-container.size-sm .dasar-pagination-item .dasar-button-native.icon-only {
-  min-width: var(--pagination-item-min-width, var(--btn-icon-size-sm, var(--space-8)));
+  min-width: var(
+    --dasar-pagination-item-min-width,
+    var(--dasar-btn-icon-size-sm, var(--dasar-space-8))
+  );
 }
 
 .dasar-pagination-container.size-lg .dasar-pagination-item .dasar-button-native.icon-only {
-  min-width: var(--pagination-item-min-width, var(--btn-icon-size-lg, var(--space-12)));
+  min-width: var(
+    --dasar-pagination-item-min-width,
+    var(--dasar-btn-icon-size-lg, var(--dasar-space-12))
+  );
 }
 
 .dasar-pagination-container.size-xl .dasar-pagination-item .dasar-button-native.icon-only {
-  min-width: var(--pagination-item-min-width, var(--btn-icon-size-xl, var(--space-16)));
+  min-width: var(
+    --dasar-pagination-item-min-width,
+    var(--dasar-btn-icon-size-xl, var(--dasar-space-16))
+  );
 }
 
 .dasar-pagination-ellipsis {
@@ -90,8 +105,8 @@
   align-items: center;
   justify-content: center;
   min-width: $dasar-space-10;
-  color: var(--pagination-ellipsis-color, var(--theme-text-secondary-color));
-  font-weight: var(--font-weight-medium, $dasar-font-weight-medium);
+  color: var(--dasar-pagination-ellipsis-color, var(--dasar-theme-text-secondary-color));
+  font-weight: var(--dasar-font-weight-medium, $dasar-font-weight-medium);
   letter-spacing: 2px;
   user-select: none;
 }
@@ -110,16 +125,16 @@
 }
 
 .dasar-pagination-ellipsis-menu .dasar-menu-trigger:hover {
-  background-color: var(--theme-border-subtle-color);
+  background-color: var(--dasar-theme-border-subtle-color);
 }
 
 .dasar-pagination-ellipsis-panel {
-  max-height: var(--pagination-dropdown-max-height, 240px);
+  max-height: var(--dasar-pagination-dropdown-max-height, 240px);
   overflow-y: auto;
 }
 
 .dasar-pagination-summary {
-  color: var(--pagination-summary-color, var(--theme-text-secondary-color));
+  color: var(--dasar-pagination-summary-color, var(--dasar-theme-text-secondary-color));
   white-space: nowrap;
 }
 

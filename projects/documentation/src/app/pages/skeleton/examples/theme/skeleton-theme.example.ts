@@ -20,7 +20,7 @@ export class SkeletonThemeExample {
   protected tokenConfig: DasarThemeConfig['tokens'] = {
     light: {
       skeleton: {
-        baseColor: 'var(--theme-primary-surface-color)',
+        baseColor: 'var(--dasar-theme-primary-surface-color)',
         animationDuration: '2.5s',
       },
     },

@@ -7,8 +7,8 @@
         display: flex;
         align-items: center;
         font-weight: 500;
-        background: var(--theme-bg-hover-color);
-        border-right: 1px solid var(--theme-border-strong-color);
+        background: var(--dasar-theme-bg-hover-color);
+        border-right: 1px solid var(--dasar-theme-border-strong-color);
         height: 100%;
       "
     >
@@ -21,7 +21,7 @@
         display: flex;
         align-items: center;
         font-size: 14px;
-        color: var(--theme-text-secondary-color);
+        color: var(--dasar-theme-text-secondary-color);
       "
     >
       / month
@@ -40,7 +40,7 @@
         padding: 0 12px;
         display: flex;
         align-items: center;
-        color: var(--theme-text-secondary-color);
+        color: var(--dasar-theme-text-secondary-color);
       "
     >
       <dasar-icon name="mail" size="sm"></dasar-icon>
@@ -59,7 +59,9 @@
     <div
       extra-label-slot
       [style.color]="
-        bioText.length > 50 ? 'var(--theme-danger-color)' : 'var(--theme-text-secondary-color)'
+        bioText.length > 50
+          ? 'var(--dasar-theme-danger-color)'
+          : 'var(--dasar-theme-text-secondary-color)'
       "
     >
       {{ bioText.length }} / 50

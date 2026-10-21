@@ -18,29 +18,29 @@
 .dasar-input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--input-wrapper-gap, var(--space-1));
+  gap: var(--dasar-input-wrapper-gap, var(--dasar-space-1));
   position: relative;
 }
 
 .dasar-input-label-row {
-  font-weight: var(--input-label-font-weight, var(--font-weight-medium));
-  color: var(--input-label-color, var(--theme-text-primary-color));
-  line-height: var(--line-height-tight);
+  font-weight: var(--dasar-input-label-font-weight, var(--dasar-font-weight-medium));
+  color: var(--dasar-input-label-color, var(--dasar-theme-text-primary-color));
+  line-height: var(--dasar-line-height-tight);
   justify-content: space-between;
   align-items: center;
   display: flex;
 
   .dasar-input-label {
-    font-size: var(--input-label-font-size, var(--font-size-md));
+    font-size: var(--dasar-input-label-font-size, var(--dasar-font-size-md));
   }
 
   .dasar-input-label-right {
-    color: var(--input-label-right-color, var(--theme-text-secondary-color));
-    font-size: var(--input-label-right-font-size, var(--font-size-sm));
-    font-weight: var(--font-weight-regular);
+    color: var(--dasar-input-label-right-color, var(--dasar-theme-text-secondary-color));
+    font-size: var(--dasar-input-label-right-font-size, var(--dasar-font-size-sm));
+    font-weight: var(--dasar-font-weight-regular);
     display: inline-flex;
     align-items: center;
-    gap: var(--space-1);
+    gap: var(--dasar-space-1);
   }
 }
 
@@ -50,18 +50,18 @@
   display: inline-flex;
   align-items: center;
   width: auto;
-  gap: var(--input-gap, var(--space-base));
-  color: var(--input-color, var(--theme-text-primary-color));
-  border-radius: var(--input-radius-sm, var(--radius-sm));
+  gap: var(--dasar-input-gap, var(--dasar-space-base));
+  color: var(--dasar-input-color, var(--dasar-theme-text-primary-color));
+  border-radius: var(--dasar-input-radius-sm, var(--dasar-radius-sm));
 
   &.hide-overflow {
     overflow: hidden;
   }
 
   &.size-xs {
-    padding: 0 var(--input-padding-horizontal-xs, var(--space-base));
-    height: var(--input-height-xs, var(--space-6));
-    font-size: var(--font-size-xs);
+    padding: 0 var(--dasar-input-padding-horizontal-xs, var(--dasar-space-base));
+    height: var(--dasar-input-height-xs, var(--dasar-space-6));
+    font-size: var(--dasar-font-size-xs);
 
     &:has([prefix-slot]) {
       padding-left: 0;
@@ -73,9 +73,9 @@
   }
 
   &.size-sm {
-    padding: 0 var(--input-padding-horizontal-sm, var(--space-3));
-    height: var(--input-height-sm, var(--space-8));
-    font-size: var(--font-size-sm);
+    padding: 0 var(--dasar-input-padding-horizontal-sm, var(--dasar-space-3));
+    height: var(--dasar-input-height-sm, var(--dasar-space-8));
+    font-size: var(--dasar-font-size-sm);
 
     &:has([prefix-slot]) {
       padding-left: 0;
@@ -87,9 +87,9 @@
   }
 
   &.size-md {
-    padding: 0 var(--input-padding-horizontal-md, var(--space-4));
-    height: var(--input-height-md, var(--space-10));
-    font-size: var(--font-size-base);
+    padding: 0 var(--dasar-input-padding-horizontal-md, var(--dasar-space-4));
+    height: var(--dasar-input-height-md, var(--dasar-space-10));
+    font-size: var(--dasar-font-size-base);
 
     &:has([prefix-slot]) {
       padding-left: 0;
@@ -101,9 +101,9 @@
   }
 
   &.size-lg {
-    padding: 0 var(--input-padding-horizontal-lg, var(--space-5));
-    height: var(--input-height-lg, var(--space-12));
-    font-size: var(--font-size-lg);
+    padding: 0 var(--dasar-input-padding-horizontal-lg, var(--dasar-space-5));
+    height: var(--dasar-input-height-lg, var(--dasar-space-12));
+    font-size: var(--dasar-font-size-lg);
 
     &:has([prefix-slot]) {
       padding-left: 0;
@@ -115,9 +115,9 @@
   }
 
   &.size-xl {
-    padding: 0 var(--input-padding-horizontal-xl, var(--space-6));
-    height: var(--input-height-xl, var(--space-16));
-    font-size: var(--font-size-xl);
+    padding: 0 var(--dasar-input-padding-horizontal-xl, var(--dasar-space-6));
+    height: var(--dasar-input-height-xl, var(--dasar-space-16));
+    font-size: var(--dasar-font-size-xl);
 
     &:has([prefix-slot]) {
       padding-left: 0;
@@ -129,69 +129,72 @@
   }
 
   &.radius-none {
-    border-radius: var(--input-radius-none, var(--radius-none));
+    border-radius: var(--dasar-input-radius-none, var(--dasar-radius-none));
   }
   &.radius-xs {
-    border-radius: var(--input-radius-xs, var(--radius-xs));
+    border-radius: var(--dasar-input-radius-xs, var(--dasar-radius-xs));
   }
   &.radius-sm {
-    border-radius: var(--input-radius-sm, var(--radius-sm));
+    border-radius: var(--dasar-input-radius-sm, var(--dasar-radius-sm));
   }
   &.radius-md {
-    border-radius: var(--input-radius-md, var(--radius-md));
+    border-radius: var(--dasar-input-radius-md, var(--dasar-radius-md));
   }
   &.radius-lg {
-    border-radius: var(--input-radius-lg, var(--radius-lg));
+    border-radius: var(--dasar-input-radius-lg, var(--dasar-radius-lg));
   }
   &.radius-xl {
-    border-radius: var(--input-radius-xl, var(--radius-xl));
+    border-radius: var(--dasar-input-radius-xl, var(--dasar-radius-xl));
   }
   &.radius-full {
-    border-radius: var(--input-radius-full, var(--radius-full));
+    border-radius: var(--dasar-input-radius-full, var(--dasar-radius-full));
   }
 
   &.appearance-outline {
-    background-color: var(--input-outline-bg, transparent);
-    border: 1px solid var(--input-outline-border, var(--theme-border-strong-color));
+    background-color: var(--dasar-input-outline-bg, transparent);
+    border: 1px solid var(--dasar-input-outline-border, var(--dasar-theme-border-strong-color));
 
     &:hover:not(.disabled) {
-      border-color: var(--input-outline-hover-border, var(--theme-primary-color));
+      border-color: var(--dasar-input-outline-hover-border, var(--dasar-theme-primary-color));
     }
 
     &:focus-within {
-      border-color: var(--input-outline-focus-border, var(--theme-primary-color));
-      box-shadow: 0 0 0 3px var(--input-outline-focus-ring, var(--theme-primary-surface-color));
+      border-color: var(--dasar-input-outline-focus-border, var(--dasar-theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-input-outline-focus-ring, var(--dasar-theme-primary-surface-color));
     }
   }
 
   &.appearance-filled {
-    background-color: var(--input-filled-bg, var(--theme-bg-hover-color));
-    border: 1px solid var(--input-filled-border, transparent);
+    background-color: var(--dasar-input-filled-bg, var(--dasar-theme-bg-hover-color));
+    border: 1px solid var(--dasar-input-filled-border, transparent);
 
     &:hover:not(.disabled) {
-      background-color: var(--input-filled-hover-bg, var(--theme-border-subtle-color));
+      background-color: var(--dasar-input-filled-hover-bg, var(--dasar-theme-border-subtle-color));
     }
 
     &:focus-within {
-      background-color: var(--input-filled-focus-bg, var(--theme-bg-surface-color));
-      border-color: var(--input-filled-focus-border, var(--theme-primary-color));
-      box-shadow: 0 0 0 3px var(--input-filled-focus-ring, var(--theme-primary-surface-color));
+      background-color: var(--dasar-input-filled-focus-bg, var(--dasar-theme-bg-surface-color));
+      border-color: var(--dasar-input-filled-focus-border, var(--dasar-theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-input-filled-focus-ring, var(--dasar-theme-primary-surface-color));
     }
   }
 
   &.error {
-    border-color: var(--input-error-border, var(--theme-danger-color)) !important;
+    border-color: var(--dasar-input-error-border, var(--dasar-theme-danger-color)) !important;
 
     &:focus-within {
-      box-shadow: 0 0 0 3px var(--input-error-focus-ring, var(--theme-danger-surface-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-input-error-focus-ring, var(--dasar-theme-danger-surface-color));
     }
   }
 
   &.disabled {
-    background-color: var(--input-disabled-bg, var(--theme-bg-hover-color)) !important;
-    border-color: var(--input-disabled-border, transparent) !important;
+    background-color: var(--dasar-input-disabled-bg, var(--dasar-theme-bg-hover-color)) !important;
+    border-color: var(--dasar-input-disabled-border, transparent) !important;
     cursor: not-allowed;
-    opacity: var(--input-disabled-opacity, 0.6);
+    opacity: var(--dasar-input-disabled-opacity, 0.6);
     pointer-events: none;
   }
 
@@ -220,32 +223,33 @@
   padding: 0;
 
   &::placeholder {
-    color: var(--input-placeholder-color, var(--theme-text-secondary-color));
+    color: var(--dasar-input-placeholder-color, var(--dasar-theme-text-secondary-color));
   }
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 30px var(--input-autofill-bg, var(--theme-bg-default-color)) inset !important;
+    -webkit-box-shadow: 0 0 0 30px
+      var(--dasar-input-autofill-bg, var(--dasar-theme-bg-default-color)) inset !important;
     -webkit-text-fill-color: var(
-      --input-autofill-color,
-      var(--theme-text-primary-color)
+      --dasar-input-autofill-color,
+      var(--dasar-theme-text-primary-color)
     ) !important;
   }
 }
 
 .dasar-input-hint {
-  font-size: var(--input-hint-font-size, var(--font-size-xs));
-  color: var(--input-hint-color, var(--theme-text-secondary-color));
-  line-height: var(--line-height-normal);
-  margin-top: calc(var(--space-0-5) * -1);
+  font-size: var(--dasar-input-hint-font-size, var(--dasar-font-size-xs));
+  color: var(--dasar-input-hint-color, var(--dasar-theme-text-secondary-color));
+  line-height: var(--dasar-line-height-normal);
+  margin-top: calc(var(--dasar-space-0-5) * -1);
 
   &.error {
-    color: var(--input-hint-error-color, var(--theme-danger-color));
+    color: var(--dasar-input-hint-error-color, var(--dasar-theme-danger-color));
   }
 
   &.disabled {
-    opacity: var(--input-disabled-opacity, 0.6);
+    opacity: var(--dasar-input-disabled-opacity, 0.6);
     cursor: not-allowed;
   }
 }

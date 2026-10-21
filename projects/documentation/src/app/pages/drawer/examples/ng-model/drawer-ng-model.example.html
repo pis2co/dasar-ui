@@ -1,0 +1,7 @@
+<dasar-button (click)="visible = true">Open drawer</dasar-button>
+
+<dasar-drawer [(ngModel)]="visible" label="Bound with ngModel">
+  <p>The drawer writes false back to the model when it closes.</p>
+</dasar-drawer>
+
+<p style="font-size: 12px; margin-top: 8px; color: gray">visible = {{ visible }}</p>
