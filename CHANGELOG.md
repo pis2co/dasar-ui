@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/pis2co/dasar-ui/compare/v2.2.2...v2.3.0) (2026-10-21)
+
+
+### Features
+
+* add component dasar-datepicker ([b137c9b](https://github.com/pis2co/dasar-ui/commit/b137c9b8f4900f957a66e614dfbfa380d874d79b))
+
 ### [2.2.2](https://github.com/pis2co/dasar-ui/compare/v2.2.1...v2.2.2) (2026-10-19)
 
 
