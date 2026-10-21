@@ -114,6 +114,17 @@ describe('DasarSkeleton', () => {
     expect(item.style.height).toBe('2rem');
   });
 
+  it('treats numeric strings from plain attributes as pixels', async () => {
+    fixture.componentInstance.circle.set(true);
+    fixture.componentInstance.height.set('48');
+    await fixture.whenStable();
+
+    const item = itemOf(fixture, 0);
+
+    expect(item.style.width).toBe('48px');
+    expect(item.style.height).toBe('48px');
+  });
+
   it('forces the full width when fullWidth is set', async () => {
     fixture.componentInstance.type.set('box');
     fixture.componentInstance.fullWidth.set(true);

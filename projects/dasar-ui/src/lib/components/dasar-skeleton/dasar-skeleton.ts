@@ -57,7 +57,7 @@ const skeletonCircleSizes: Record<DasarSkeletonSizeType, number> = {
 };
 
 const toCssValue = (value: string | number): string =>
-  typeof value === 'number' ? `${value}px` : value;
+  typeof value === 'number' || /^\d+(\.\d+)?$/.test(value) ? `${value}px` : value;
 
 @Component({
   encapsulation: ViewEncapsulation.None,
