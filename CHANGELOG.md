@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/pis2co/dasar-ui/compare/v2.4.0...v2.4.1) (2026-10-21)
+
+
+### Features
+
+* add a mobile menu to the docs header and make it follow the customized theme ([cc65b48](https://github.com/pis2co/dasar-ui/commit/cc65b487c137723270d7c8661b2520bedc0d6af5))
+* add the dasar ui logo and favicon to the docs header ([fc269cd](https://github.com/pis2co/dasar-ui/commit/fc269cd17407833cca952b10dc6a9133d9e3c933))
+
+
+### Bug Fixes
+
+* align dasar-checkbox and dasar-radio label sizes with the other components ([b6d1189](https://github.com/pis2co/dasar-ui/commit/b6d1189b73e51e862fed95795f3bbf2fe7930818))
+* header navigation and more ([9831dc4](https://github.com/pis2co/dasar-ui/commit/9831dc4281baf5da50cf057a606a51658332dd2f))
+* position dasar-select, menu and datepicker panels correctly on first open ([fb65736](https://github.com/pis2co/dasar-ui/commit/fb657369cfad850c12ffba0590a9ee34b34c6a94))
+
 ## [2.4.0](https://github.com/pis2co/dasar-ui/compare/v2.3.1...v2.4.0) (2026-10-21)
 
 
