@@ -25,14 +25,15 @@
       >
         <div class="docs-navbar-brand">
           <a class="docs-navbar-logo" routerLink="/" aria-label="Dasar UI home">
-            <dasar-ui-logo
+            <!-- <dasar-ui-logo
               class="docs-navbar-logo-wide"
               [variant]="logoVariant()"
               [size]="34"
               [showTagline]="false"
-            />
+            /> -->
             <dasar-ui-logo class="docs-navbar-logo-icon" variant="icon" [size]="32" />
           </a>
+          <strong style="font-weight: bold">Dasar UI</strong>
           <span class="docs-navbar-versions">
             <ng-container *ngTemplateOutlet="versions" />
           </span>
@@ -76,9 +77,6 @@
     </div>
     @for (key of [customize.renderKey()]; track key) {
       <dasar-drawer [(show)]="menuOpen" placement="right" label="Menu" width="280px">
-        <div class="docs-menu-versions">
-          <ng-container *ngTemplateOutlet="versions" />
-        </div>
         <div class="docs-menu-actions">
           @for (action of actions(); track action.key) {
             <dasar-button

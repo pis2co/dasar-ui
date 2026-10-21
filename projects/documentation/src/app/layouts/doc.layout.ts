@@ -51,7 +51,6 @@ export interface DocNavGroup {
               class="nav-group"
               selectable
               hoverable
-              size="sm"
               radius="none"
               [value]="activeRoute()"
               (onItemClick)="onNavigate($event.value)"

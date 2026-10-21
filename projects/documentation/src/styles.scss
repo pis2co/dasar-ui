@@ -14,19 +14,15 @@ p {
 }
 
 .docs-navbar-brand {
+  gap: var(--dasar-space-base);
   align-items: center;
   display: flex;
-  gap: var(--dasar-space-base);
 }
 
 .docs-navbar-logo {
   align-items: center;
   display: inline-flex;
   color: inherit;
-}
-
-.docs-navbar-logo .docs-navbar-logo-icon {
-  display: none;
 }
 
 .docs-navbar-versions {
@@ -60,7 +56,6 @@ p {
 
 @media (max-width: 767px) {
   .docs-navbar-desktop,
-  .docs-navbar-versions,
   .docs-navbar-logo .docs-navbar-logo-wide {
     display: none;
   }
