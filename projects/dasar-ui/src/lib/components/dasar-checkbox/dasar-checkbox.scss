@@ -55,7 +55,8 @@
 }
 
 .dasar-checkbox-native:checked + .dasar-checkbox-box,
-.dasar-checkbox-box.checked {
+.dasar-checkbox-box.checked,
+.dasar-checkbox-box.indeterminate {
   background: var(--checkbox-checked-bg, var(--dasar-primary-base));
   border-color: var(--checkbox-checked-bg, var(--dasar-primary-base));
 }

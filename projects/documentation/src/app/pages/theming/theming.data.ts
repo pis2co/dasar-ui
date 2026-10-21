@@ -625,6 +625,12 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       description: 'Disables the checkbox.',
     },
     {
+      name: 'indeterminate',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Mixed state shown as a dash.',
+    },
+    {
       name: 'error',
       type: 'boolean',
       defaultValue: 'false',

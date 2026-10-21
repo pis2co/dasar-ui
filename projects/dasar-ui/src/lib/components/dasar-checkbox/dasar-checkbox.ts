@@ -34,6 +34,7 @@ export interface DasarCheckboxConfig {
   error?: boolean;
   hint?: string;
   label?: string;
+  indeterminate?: boolean;
   checkedValue?: any;
   uncheckedValue?: any;
   containerClass?: ClassType;
@@ -128,6 +129,13 @@ export class DasarCheckbox implements ControlValueAccessor {
   get disabled(): boolean {
     return this.ownDisabled();
   }
+  @Input({ transform: booleanAttribute }) indeterminate = resolveThemeDefault(
+    'checkbox',
+    'indeterminate',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
   @Input({ alias: 'checked-value' }) checkedValue = resolveThemeDefault(
     'checkbox',
     'checkedValue',
@@ -258,6 +266,7 @@ export class DasarCheckbox implements ControlValueAccessor {
     const baseClass = {
       'dasar-checkbox-box': true,
       checked: this.isChecked,
+      indeterminate: this.indeterminate,
     };
     if (overrideClass && overrideClass?.length > 0) {
       return {

@@ -286,3 +286,60 @@ describe('DasarCheckbox theme tokens', () => {
     expect(host.style.getPropertyValue('--checkbox-group-gap')).toBe('20px');
   });
 });
+
+@Component({
+  selector: 'test-checkbox-indeterminate-host',
+  standalone: true,
+  imports: [DasarCheckboxComponent],
+  template: `<dasar-checkbox
+    label="Partial"
+    [indeterminate]="indeterminate()"
+    [(value)]="value"
+  />`,
+})
+class CheckboxIndeterminateHost {
+  indeterminate = signal(true);
+  value = signal<any>(false);
+}
+
+describe('DasarCheckbox indeterminate', () => {
+  let fixture: ComponentFixture<CheckboxIndeterminateHost>;
+  let host: CheckboxIndeterminateHost;
+
+  const input = () =>
+    fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLInputElement;
+  const box = () => fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [CheckboxIndeterminateHost],
+    }).compileComponents();
+    fixture = TestBed.createComponent(CheckboxIndeterminateHost);
+    host = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('shows the mixed state with a dash instead of a check', () => {
+    expect(input().indeterminate).toBe(true);
+    expect(input().getAttribute('aria-checked')).toBe('mixed');
+    expect(box().classList).toContain('indeterminate');
+    expect(box().querySelector('dasar-icon')?.getAttribute('name')).toBe('minus');
+  });
+
+  it('goes back to the normal look when indeterminate is cleared', () => {
+    host.indeterminate.set(false);
+    fixture.detectChanges();
+
+    expect(input().indeterminate).toBe(false);
+    expect(input().getAttribute('aria-checked')).toBeNull();
+    expect(box().classList).not.toContain('indeterminate');
+    expect(box().querySelector('dasar-icon')).toBeNull();
+  });
+
+  it('still toggles the value from the unchecked state when clicked', () => {
+    input().click();
+    fixture.detectChanges();
+
+    expect(host.value()).toBe(true);
+  });
+});

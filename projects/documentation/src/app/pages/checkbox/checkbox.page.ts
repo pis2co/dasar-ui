@@ -169,6 +169,13 @@ export class CheckboxDocPage {
       description: 'Error styling for the box and hint.',
     },
     {
+      name: 'indeterminate',
+      type: 'boolean',
+      defaultValue: 'false',
+      description:
+        'Shows the mixed state (a dash) and sets aria-checked to mixed. Use it for a parent whose children are partly checked. Clicking still toggles the value from its current state.',
+    },
+    {
       name: 'dasar-checkbox: hint',
       type: 'string',
       defaultValue: "''",
