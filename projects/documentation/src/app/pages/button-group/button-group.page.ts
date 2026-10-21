@@ -201,7 +201,7 @@ export class ButtonGroupDocPage {
       type: 'DasarThemeButtonGroup',
       defaultValue: '-',
       description:
-        'Set through tokens.light.buttonGroup (or tokens.dark.buttonGroup) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: gap -> --btn-group-gap.',
+        'Set through tokens.light.buttonGroup (or tokens.dark.buttonGroup) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: gap -> --dasar-btn-group-gap.',
     },
     {
       name: 'component config',

@@ -14,8 +14,8 @@
 }
 
 .dasar-button-native {
-  font-weight: var(--btn-font-weight, var(--font-weight-medium));
-  gap: var(--btn-gap, var(--space-base));
+  font-weight: var(--dasar-btn-font-weight, var(--dasar-font-weight-medium));
+  gap: var(--dasar-btn-gap, var(--dasar-space-base));
   border: 1px solid transparent;
   justify-content: center;
   box-sizing: border-box;
@@ -28,126 +28,136 @@
   width: auto;
 
   &.size-xs {
-    padding: 0 var(--btn-padding-horizontal-xs, var(--space-base));
-    height: var(--btn-height-xs, var(--space-6));
-    font-size: var(--font-size-xs);
+    padding: 0 var(--dasar-btn-padding-horizontal-xs, var(--dasar-space-base));
+    height: var(--dasar-btn-height-xs, var(--dasar-space-6));
+    font-size: var(--dasar-font-size-xs);
   }
 
   &.size-sm {
-    padding: 0 var(--btn-padding-horizontal-sm, var(--space-3));
-    height: var(--btn-height-sm, var(--space-8));
-    font-size: var(--font-size-sm);
+    padding: 0 var(--dasar-btn-padding-horizontal-sm, var(--dasar-space-3));
+    height: var(--dasar-btn-height-sm, var(--dasar-space-8));
+    font-size: var(--dasar-font-size-sm);
   }
 
   &.size-md {
-    padding: 0 var(--btn-padding-horizontal-md, var(--space-4));
-    height: var(--btn-height-md, var(--space-10));
-    font-size: var(--font-size-base);
+    padding: 0 var(--dasar-btn-padding-horizontal-md, var(--dasar-space-4));
+    height: var(--dasar-btn-height-md, var(--dasar-space-10));
+    font-size: var(--dasar-font-size-base);
   }
 
   &.size-lg {
-    padding: 0 var(--btn-padding-horizontal-lg, var(--space-5));
-    height: var(--btn-height-lg, var(--space-12));
-    font-size: var(--font-size-lg);
+    padding: 0 var(--dasar-btn-padding-horizontal-lg, var(--dasar-space-5));
+    height: var(--dasar-btn-height-lg, var(--dasar-space-12));
+    font-size: var(--dasar-font-size-lg);
   }
 
   &.size-xl {
-    padding: 0 var(--btn-padding-horizontal-xl, var(--space-6));
-    height: var(--btn-height-xl, var(--space-16));
-    font-size: var(--font-size-xl);
+    padding: 0 var(--dasar-btn-padding-horizontal-xl, var(--dasar-space-6));
+    height: var(--dasar-btn-height-xl, var(--dasar-space-16));
+    font-size: var(--dasar-font-size-xl);
   }
 
   &.icon-only {
     padding: 0;
     &.size-xs {
-      width: var(--btn-icon-size-xs, var(--space-6));
+      width: var(--dasar-btn-icon-size-xs, var(--dasar-space-6));
     }
     &.size-sm {
-      width: var(--btn-icon-size-sm, var(--space-8));
+      width: var(--dasar-btn-icon-size-sm, var(--dasar-space-8));
     }
     &.size-md {
-      width: var(--btn-icon-size-md, var(--space-10));
+      width: var(--dasar-btn-icon-size-md, var(--dasar-space-10));
     }
     &.size-lg {
-      width: var(--btn-icon-size-lg, var(--space-12));
+      width: var(--dasar-btn-icon-size-lg, var(--dasar-space-12));
     }
     &.size-xl {
-      width: var(--btn-icon-size-xl, var(--space-16));
+      width: var(--dasar-btn-icon-size-xl, var(--dasar-space-16));
     }
   }
 
   &.radius-none {
-    border-radius: var(--btn-radius-none, var(--radius-none));
+    border-radius: var(--dasar-btn-radius-none, var(--dasar-radius-none));
   }
 
   &.radius-xs {
-    border-radius: var(--btn-radius-xs, var(--radius-xs));
+    border-radius: var(--dasar-btn-radius-xs, var(--dasar-radius-xs));
   }
 
   &.radius-sm {
-    border-radius: var(--btn-radius-sm, var(--radius-sm));
+    border-radius: var(--dasar-btn-radius-sm, var(--dasar-radius-sm));
   }
 
   &.radius-md {
-    border-radius: var(--btn-radius-md, var(--radius-md));
+    border-radius: var(--dasar-btn-radius-md, var(--dasar-radius-md));
   }
 
   &.radius-lg {
-    border-radius: var(--btn-radius-lg, var(--radius-lg));
+    border-radius: var(--dasar-btn-radius-lg, var(--dasar-radius-lg));
   }
 
   &.radius-xl {
-    border-radius: var(--btn-radius-xl, var(--radius-xl));
+    border-radius: var(--dasar-btn-radius-xl, var(--dasar-radius-xl));
   }
 
   &.radius-full {
-    border-radius: var(--btn-radius-full, var(--radius-full));
+    border-radius: var(--dasar-btn-radius-full, var(--dasar-radius-full));
   }
 
   &.primary {
-    background-color: var(--btn-primary-bg, var(--theme-primary-color));
-    border-color: var(--btn-primary-border, var(--theme-primary-color));
-    color: var(--btn-primary-color, var(--theme-text-inverse-color));
+    background-color: var(--dasar-btn-primary-bg, var(--dasar-theme-primary-color));
+    border-color: var(--dasar-btn-primary-border, var(--dasar-theme-primary-color));
+    color: var(--dasar-btn-primary-color, var(--dasar-theme-text-inverse-color));
 
     &:hover:not(:disabled) {
-      background-color: var(--btn-primary-hover-bg, var(--theme-primary-hover-color));
-      border-color: var(--btn-primary-hover-border, var(--theme-primary-hover-color));
+      background-color: var(--dasar-btn-primary-hover-bg, var(--dasar-theme-primary-hover-color));
+      border-color: var(--dasar-btn-primary-hover-border, var(--dasar-theme-primary-hover-color));
       transition: all 0.2s ease-in-out;
     }
 
     &:focus-visible {
-      outline: 3px solid var(--btn-primary-focus-ring, var(--theme-primary-surface-color));
+      outline: 3px solid
+        var(--dasar-btn-primary-focus-ring, var(--dasar-theme-primary-surface-color));
       border-color: transparent;
     }
 
     &.subtle {
-      background-color: var(--btn-primary-subtle-bg, var(--theme-primary-surface-color));
-      color: var(--btn-primary-subtle-color, var(--theme-primary-color));
+      background-color: var(
+        --dasar-btn-primary-subtle-bg,
+        var(--dasar-theme-primary-surface-color)
+      );
+      color: var(--dasar-btn-primary-subtle-color, var(--dasar-theme-primary-color));
       border-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-primary-subtle-hover-bg, var(--theme-primary-color));
-        color: var(--btn-primary-subtle-hover-color, var(--theme-text-inverse-color));
+        background-color: var(
+          --dasar-btn-primary-subtle-hover-bg,
+          var(--dasar-theme-primary-color)
+        );
+        color: var(--dasar-btn-primary-subtle-hover-color, var(--dasar-theme-text-inverse-color));
         transition: all 0.2s ease-in-out;
       }
     }
 
     &.outline {
-      border-color: var(--btn-primary-outline-border, var(--theme-primary-color));
-      color: var(--btn-primary-outline-color, var(--theme-primary-color));
+      border-color: var(--dasar-btn-primary-outline-border, var(--dasar-theme-primary-color));
+      color: var(--dasar-btn-primary-outline-color, var(--dasar-theme-primary-color));
       background-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-primary-outline-hover-bg, var(--theme-primary-surface-color));
+        background-color: var(
+          --dasar-btn-primary-outline-hover-bg,
+          var(--dasar-theme-primary-surface-color)
+        );
         transition: all 0.2s ease-in-out;
       }
     }
   }
 
   &.success {
-    background-color: var(--btn-success-bg, var(--theme-success-color));
-    border-color: var(--btn-success-border, var(--theme-success-color));
-    color: var(--btn-success-color, var(--theme-text-inverse-color));
+    background-color: var(--dasar-btn-success-bg, var(--dasar-theme-success-color));
+    border-color: var(--dasar-btn-success-border, var(--dasar-theme-success-color));
+    color: var(--dasar-btn-success-color, var(--dasar-theme-text-inverse-color));
 
     &:hover:not(:disabled) {
       transition: all 0.2s ease-in-out;
@@ -155,38 +165,48 @@
     }
 
     &:focus-visible {
-      outline: 3px solid var(--btn-success-focus-ring, var(--theme-success-surface-color));
+      outline: 3px solid
+        var(--dasar-btn-success-focus-ring, var(--dasar-theme-success-surface-color));
       border-color: transparent;
     }
 
     &.subtle {
-      background-color: var(--btn-success-subtle-bg, var(--theme-success-surface-color));
-      color: var(--btn-success-subtle-color, var(--theme-success-color));
+      background-color: var(
+        --dasar-btn-success-subtle-bg,
+        var(--dasar-theme-success-surface-color)
+      );
+      color: var(--dasar-btn-success-subtle-color, var(--dasar-theme-success-color));
       border-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-success-subtle-hover-bg, var(--theme-success-color));
-        color: var(--btn-success-subtle-hover-color, var(--theme-text-inverse-color));
+        background-color: var(
+          --dasar-btn-success-subtle-hover-bg,
+          var(--dasar-theme-success-color)
+        );
+        color: var(--dasar-btn-success-subtle-hover-color, var(--dasar-theme-text-inverse-color));
         transition: all 0.2s ease-in-out;
       }
     }
 
     &.outline {
-      border-color: var(--btn-success-outline-border, var(--theme-success-color));
-      color: var(--btn-success-outline-color, var(--theme-success-color));
+      border-color: var(--dasar-btn-success-outline-border, var(--dasar-theme-success-color));
+      color: var(--dasar-btn-success-outline-color, var(--dasar-theme-success-color));
       background-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-success-outline-hover-bg, var(--theme-success-surface-color));
+        background-color: var(
+          --dasar-btn-success-outline-hover-bg,
+          var(--dasar-theme-success-surface-color)
+        );
         transition: all 0.2s ease-in-out;
       }
     }
   }
 
   &.warning {
-    background-color: var(--btn-warning-bg, var(--theme-warning-color));
-    border-color: var(--btn-warning-border, var(--theme-warning-color));
-    color: var(--btn-warning-color, var(--theme-text-inverse-color));
+    background-color: var(--dasar-btn-warning-bg, var(--dasar-theme-warning-color));
+    border-color: var(--dasar-btn-warning-border, var(--dasar-theme-warning-color));
+    color: var(--dasar-btn-warning-color, var(--dasar-theme-text-inverse-color));
 
     &:hover:not(:disabled) {
       transition: all 0.2s ease-in-out;
@@ -194,38 +214,48 @@
     }
 
     &:focus-visible {
-      outline: 3px solid var(--btn-warning-focus-ring, var(--theme-warning-surface-color));
+      outline: 3px solid
+        var(--dasar-btn-warning-focus-ring, var(--dasar-theme-warning-surface-color));
       border-color: transparent;
     }
 
     &.subtle {
-      background-color: var(--btn-warning-subtle-bg, var(--theme-warning-surface-color));
-      color: var(--btn-warning-subtle-color, var(--theme-warning-color));
+      background-color: var(
+        --dasar-btn-warning-subtle-bg,
+        var(--dasar-theme-warning-surface-color)
+      );
+      color: var(--dasar-btn-warning-subtle-color, var(--dasar-theme-warning-color));
       border-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-warning-subtle-hover-bg, var(--theme-warning-color));
-        color: var(--btn-warning-subtle-hover-color, var(--theme-text-inverse-color));
+        background-color: var(
+          --dasar-btn-warning-subtle-hover-bg,
+          var(--dasar-theme-warning-color)
+        );
+        color: var(--dasar-btn-warning-subtle-hover-color, var(--dasar-theme-text-inverse-color));
         transition: all 0.2s ease-in-out;
       }
     }
 
     &.outline {
-      border-color: var(--btn-warning-outline-border, var(--theme-warning-color));
-      color: var(--btn-warning-outline-color, var(--theme-warning-color));
+      border-color: var(--dasar-btn-warning-outline-border, var(--dasar-theme-warning-color));
+      color: var(--dasar-btn-warning-outline-color, var(--dasar-theme-warning-color));
       background-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-warning-outline-hover-bg, var(--theme-warning-surface-color));
+        background-color: var(
+          --dasar-btn-warning-outline-hover-bg,
+          var(--dasar-theme-warning-surface-color)
+        );
         transition: all 0.2s ease-in-out;
       }
     }
   }
 
   &.danger {
-    background-color: var(--btn-danger-bg, var(--theme-danger-color));
-    border-color: var(--btn-danger-border, var(--theme-danger-color));
-    color: var(--btn-danger-color, var(--text-white-color));
+    background-color: var(--dasar-btn-danger-bg, var(--dasar-theme-danger-color));
+    border-color: var(--dasar-btn-danger-border, var(--dasar-theme-danger-color));
+    color: var(--dasar-btn-danger-color, var(--dasar-text-white-color));
 
     &:hover:not(:disabled) {
       transition: all 0.2s ease-in-out;
@@ -233,92 +263,105 @@
     }
 
     &:focus-visible {
-      outline: 3px solid var(--btn-danger-focus-ring, var(--theme-danger-surface-color));
+      outline: 3px solid var(--dasar-btn-danger-focus-ring, var(--dasar-theme-danger-surface-color));
       border-color: transparent;
     }
 
     &.subtle {
-      background-color: var(--btn-danger-subtle-bg, var(--theme-danger-surface-color));
-      color: var(--btn-danger-subtle-color, var(--theme-danger-color));
+      background-color: var(--dasar-btn-danger-subtle-bg, var(--dasar-theme-danger-surface-color));
+      color: var(--dasar-btn-danger-subtle-color, var(--dasar-theme-danger-color));
       border-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-danger-subtle-hover-bg, var(--theme-danger-color));
-        color: var(--btn-danger-subtle-hover-color, var(--theme-text-inverse-color));
+        background-color: var(--dasar-btn-danger-subtle-hover-bg, var(--dasar-theme-danger-color));
+        color: var(--dasar-btn-danger-subtle-hover-color, var(--dasar-theme-text-inverse-color));
         transition: all 0.2s ease-in-out;
       }
     }
 
     &.outline {
-      border-color: var(--btn-danger-outline-border, var(--theme-danger-color));
-      color: var(--btn-danger-outline-color, var(--theme-danger-color));
+      border-color: var(--dasar-btn-danger-outline-border, var(--dasar-theme-danger-color));
+      color: var(--dasar-btn-danger-outline-color, var(--dasar-theme-danger-color));
       background-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-danger-outline-hover-bg, var(--theme-danger-surface-color));
+        background-color: var(
+          --dasar-btn-danger-outline-hover-bg,
+          var(--dasar-theme-danger-surface-color)
+        );
         transition: all 0.2s ease-in-out;
       }
     }
   }
 
   &.secondary {
-    background-color: var(--btn-secondary-bg, var(--theme-bg-hover-color));
-    border-color: var(--btn-secondary-border, var(--theme-border-strong-color));
-    color: var(--btn-secondary-color, var(--theme-text-primary-color));
+    background-color: var(--dasar-btn-secondary-bg, var(--dasar-theme-bg-hover-color));
+    border-color: var(--dasar-btn-secondary-border, var(--dasar-theme-border-strong-color));
+    color: var(--dasar-btn-secondary-color, var(--dasar-theme-text-primary-color));
 
     &:hover:not(:disabled) {
-      background-color: var(--btn-secondary-hover-bg, var(--theme-border-subtle-color));
+      background-color: var(--dasar-btn-secondary-hover-bg, var(--dasar-theme-border-subtle-color));
       transition: all 0.2s ease-in-out;
     }
 
     &:focus-visible {
-      outline: 3px solid var(--btn-secondary-focus-ring, var(--theme-border-subtle-color));
+      outline: 3px solid
+        var(--dasar-btn-secondary-focus-ring, var(--dasar-theme-border-subtle-color));
     }
 
     &.subtle {
-      background-color: var(--btn-secondary-subtle-bg, var(--theme-bg-surface-color));
-      color: var(--btn-secondary-subtle-color, var(--theme-text-secondary-color));
+      background-color: var(--dasar-btn-secondary-subtle-bg, var(--dasar-theme-bg-surface-color));
+      color: var(--dasar-btn-secondary-subtle-color, var(--dasar-theme-text-secondary-color));
       border-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-secondary-subtle-hover-bg, var(--theme-bg-hover-color));
-        color: var(--btn-secondary-subtle-hover-color, var(--theme-text-primary-color));
+        background-color: var(
+          --dasar-btn-secondary-subtle-hover-bg,
+          var(--dasar-theme-bg-hover-color)
+        );
+        color: var(--dasar-btn-secondary-subtle-hover-color, var(--dasar-theme-text-primary-color));
         transition: all 0.2s ease-in-out;
       }
     }
 
     &.outline {
-      border-color: var(--btn-secondary-outline-border, var(--theme-border-strong-color));
-      color: var(--btn-secondary-outline-color, var(--theme-text-primary-color));
+      border-color: var(
+        --dasar-btn-secondary-outline-border,
+        var(--dasar-theme-border-strong-color)
+      );
+      color: var(--dasar-btn-secondary-outline-color, var(--dasar-theme-text-primary-color));
       background-color: transparent;
 
       &:hover:not(:disabled) {
-        background-color: var(--btn-secondary-outline-hover-bg, var(--theme-bg-hover-color));
+        background-color: var(
+          --dasar-btn-secondary-outline-hover-bg,
+          var(--dasar-theme-bg-hover-color)
+        );
         transition: all 0.2s ease-in-out;
       }
     }
   }
 
   &.ghost {
-    color: var(--btn-ghost-color, var(--theme-text-secondary-color));
+    color: var(--dasar-btn-ghost-color, var(--dasar-theme-text-secondary-color));
     background-color: transparent;
     border-color: transparent;
 
     &:hover:not(:disabled) {
-      background-color: var(--btn-ghost-hover-bg, var(--theme-bg-hover-color));
-      color: var(--btn-ghost-hover-color, var(--theme-text-primary-color));
+      background-color: var(--dasar-btn-ghost-hover-bg, var(--dasar-theme-bg-hover-color));
+      color: var(--dasar-btn-ghost-hover-color, var(--dasar-theme-text-primary-color));
       transition: all 0.2s ease-in-out;
     }
 
     &:focus-visible {
-      outline: 3px solid var(--btn-ghost-focus-ring, var(--theme-border-subtle-color));
+      outline: 3px solid var(--dasar-btn-ghost-focus-ring, var(--dasar-theme-border-subtle-color));
     }
   }
 
   &:disabled {
-    border-color: var(--btn-disabled-border, var(--theme-border-subtle-color));
-    background-color: var(--btn-disabled-bg, var(--theme-bg-hover-color));
-    color: var(--btn-disabled-color, var(--theme-text-disabled-color));
+    border-color: var(--dasar-btn-disabled-border, var(--dasar-theme-border-subtle-color));
+    background-color: var(--dasar-btn-disabled-bg, var(--dasar-theme-bg-hover-color));
+    color: var(--dasar-btn-disabled-color, var(--dasar-theme-text-disabled-color));
     cursor: not-allowed;
     box-shadow: none;
     opacity: 0.7;

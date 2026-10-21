@@ -1,24 +1,24 @@
 @use '../../styles/theme.scss' as *;
 
 .dasar-pivot-container {
-  --dt-primary: var(--theme-primary-color);
-  --dt-primary-hover: var(--theme-primary-hover-color);
-  --dt-primary-surface: var(--theme-primary-surface-color);
-  --dt-text-inverse: var(--theme-text-inverse-color);
+  --dasar-dt-primary: var(--dasar-theme-primary-color);
+  --dasar-dt-primary-hover: var(--dasar-theme-primary-hover-color);
+  --dasar-dt-primary-surface: var(--dasar-theme-primary-surface-color);
+  --dasar-dt-text-inverse: var(--dasar-theme-text-inverse-color);
 
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-radius: var(--radius-md, $dasar-radius-md);
+  border-radius: var(--dasar-radius-md, $dasar-radius-md);
   overflow: hidden;
-  background-color: var(--theme-bg-surface-color);
+  background-color: var(--dasar-theme-bg-surface-color);
 
   &.appearance-outline {
-    border: 1px solid var(--theme-border-strong-color);
+    border: 1px solid var(--dasar-theme-border-strong-color);
   }
 
   &.appearance-filled {
-    background-color: var(--theme-bg-default-color);
+    background-color: var(--dasar-theme-bg-default-color);
     border: 1px solid transparent;
   }
 
@@ -76,7 +76,7 @@
   border-spacing: 0;
   text-align: left;
   font-size: inherit;
-  color: var(--theme-text-primary-color);
+  color: var(--dasar-theme-text-primary-color);
 
   th,
   td {
@@ -85,27 +85,27 @@
   }
 
   thead {
-    background-color: var(--dt-primary);
+    background-color: var(--dasar-dt-primary);
 
     th {
-      font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
-      color: var(--dt-text-inverse);
+      font-weight: var(--dasar-font-weight-semibold, $dasar-font-weight-semibold);
+      color: var(--dasar-dt-text-inverse);
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid var(--dt-primary-hover);
+      border-bottom: 1px solid var(--dasar-dt-primary-hover);
     }
   }
 
   .corner-cell {
-    background-color: var(--dt-primary);
+    background-color: var(--dasar-dt-primary);
     position: sticky;
     left: 0;
     top: 0;
     z-index: 15;
     min-width: 120px;
     vertical-align: top;
-    border-right: 1px solid var(--dt-primary-hover);
+    border-right: 1px solid var(--dasar-dt-primary-hover);
   }
 
   .corner-labels {
@@ -116,7 +116,7 @@
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--dt-text-inverse);
+    color: var(--dasar-dt-text-inverse);
     opacity: 0.9;
 
     .col-label {
@@ -130,11 +130,11 @@
 
   tbody {
     tr.dasar-table-row {
-      border-bottom: 1px solid var(--theme-border-subtle-color);
+      border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
       transition:
         background-color 0.2s ease,
         box-shadow 0.2s ease;
-      background-color: var(--theme-bg-surface-color);
+      background-color: var(--dasar-theme-bg-surface-color);
 
       &:last-child:not(.expanded) {
         border-bottom: none;
@@ -143,12 +143,12 @@
   }
 
   .row-header {
-    background-color: var(--theme-bg-surface-color);
-    font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
+    background-color: var(--dasar-theme-bg-surface-color);
+    font-weight: var(--dasar-font-weight-semibold, $dasar-font-weight-semibold);
     position: sticky;
     left: 0;
     z-index: 5;
-    box-shadow: 1px 0 0 0 var(--theme-border-subtle-color);
+    box-shadow: 1px 0 0 0 var(--dasar-theme-border-subtle-color);
     transition:
       background-color 0.2s ease,
       box-shadow 0.2s ease;
@@ -159,50 +159,50 @@
   }
 
   &.hoverable tbody tr.dasar-table-row:not(.state-row):hover {
-    background-color: var(--dt-primary-surface);
+    background-color: var(--dasar-dt-primary-surface);
     cursor: pointer;
 
     .row-header {
-      background-color: var(--dt-primary-surface);
+      background-color: var(--dasar-dt-primary-surface);
       box-shadow:
-        inset $dasar-space-0-5 0 0 0 var(--dt-primary),
-        1px 0 0 0 var(--theme-border-subtle-color);
+        inset $dasar-space-0-5 0 0 0 var(--dasar-dt-primary),
+        1px 0 0 0 var(--dasar-theme-border-subtle-color);
     }
   }
 
   .total-header {
-    font-weight: var(--font-weight-bold, $dasar-font-weight-bold);
+    font-weight: var(--dasar-font-weight-bold, $dasar-font-weight-bold);
   }
 
   thead .total-header {
-    background-color: var(--dt-primary-hover);
-    color: var(--dt-text-inverse);
+    background-color: var(--dasar-dt-primary-hover);
+    color: var(--dasar-dt-text-inverse);
   }
 
   .total-cell {
-    background-color: var(--theme-bg-hover-color);
-    font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
+    background-color: var(--dasar-theme-bg-hover-color);
+    font-weight: var(--dasar-font-weight-semibold, $dasar-font-weight-semibold);
     text-align: right;
   }
 
   tfoot {
     tr {
-      border-top: 1px solid var(--theme-border-strong-color);
+      border-top: 1px solid var(--dasar-theme-border-strong-color);
     }
 
     .total-header {
-      background-color: var(--theme-bg-hover-color);
+      background-color: var(--dasar-theme-bg-hover-color);
       position: sticky;
       left: 0;
       z-index: 5;
-      box-shadow: 1px 0 0 0 var(--theme-border-subtle-color);
+      box-shadow: 1px 0 0 0 var(--dasar-theme-border-subtle-color);
     }
   }
 
   .grand-total {
-    background-color: var(--dt-primary-surface);
-    color: var(--dt-primary);
-    font-weight: var(--font-weight-bold, $dasar-font-weight-bold);
+    background-color: var(--dasar-dt-primary-surface);
+    color: var(--dasar-dt-primary);
+    font-weight: var(--dasar-font-weight-bold, $dasar-font-weight-bold);
   }
 }
 
@@ -225,14 +225,14 @@
   align-items: center;
   justify-content: center;
   gap: $dasar-space-3;
-  color: var(--theme-text-secondary-color);
+  color: var(--dasar-theme-text-secondary-color);
 }
 
 .dasar-spinner {
   width: 24px;
   height: 24px;
-  border: 3px solid var(--theme-border-subtle-color);
-  border-top-color: var(--dt-primary);
+  border: 3px solid var(--dasar-theme-border-subtle-color);
+  border-top-color: var(--dasar-dt-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -251,13 +251,13 @@
   gap: $dasar-space-1;
   h5 {
     margin: 0;
-    font-weight: var(--font-weight-semibold, $dasar-font-weight-semibold);
-    color: var(--theme-text-primary-color);
+    font-weight: var(--dasar-font-weight-semibold, $dasar-font-weight-semibold);
+    color: var(--dasar-theme-text-primary-color);
     font-size: 16px;
   }
   p {
     margin: 0;
-    color: var(--theme-text-secondary-color);
+    color: var(--dasar-theme-text-secondary-color);
     font-size: 14px;
   }
 }
@@ -267,6 +267,6 @@
   align-items: center;
   justify-content: flex-end;
   padding: $dasar-space-3 $dasar-space-4;
-  border-top: 1px solid var(--theme-border-subtle-color);
-  background-color: var(--theme-bg-surface-color);
+  border-top: 1px solid var(--dasar-theme-border-subtle-color);
+  background-color: var(--dasar-theme-bg-surface-color);
 }

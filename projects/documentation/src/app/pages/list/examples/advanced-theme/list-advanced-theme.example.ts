@@ -23,7 +23,7 @@ export class ListAdvancedThemeExample {
     light: {
       list: {
         radius: '12px',
-        headerBackground: 'var(--theme-primary-surface-color)',
+        headerBackground: 'var(--dasar-theme-primary-surface-color)',
       },
     },
   };

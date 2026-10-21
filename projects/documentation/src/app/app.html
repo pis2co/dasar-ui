@@ -8,8 +8,8 @@
       appearance="borderless"
       radius="none"
       [container-style]="{
-        padding: '0 var(--space-base)',
-        'border-bottom': '1px solid var(--theme-border-subtle-color)',
+        padding: '0 var(--dasar-space-base)',
+        'border-bottom': '1px solid var(--dasar-theme-border-subtle-color)',
         'justify-content': 'center',
         'align-items': 'center',
         display: 'flex',
@@ -22,8 +22,8 @@
         width: '100%',
       }"
     >
-      <div style="display: flex; align-items: center; gap: var(--space-base)">
-        <span style="font-weight: 800; font-family: var(--font-hero)">Dasar UI Library</span>
+      <div style="display: flex; align-items: center; gap: var(--dasar-space-base)">
+        <span style="font-weight: 800; font-family: var(--dasar-font-hero)">Dasar UI Library</span>
         <dasar-chip variant="secondary" size="xs">v{{ version }}</dasar-chip>
         @if (latestVersion() !== null) {
           <dasar-chip variant="primary" size="xs">latest v{{ latestVersion() }}</dasar-chip>

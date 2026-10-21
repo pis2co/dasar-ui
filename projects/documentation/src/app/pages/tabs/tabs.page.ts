@@ -257,7 +257,7 @@ export class TabsDocPage {
       type: 'object',
       defaultValue: 'null',
       description:
-        'Inline style for the outer container. A good place to set the --tabs-* CSS variables.',
+        'Inline style for the outer container. A good place to set the --dasar-tabs-* CSS variables.',
     },
     {
       name: 'list-style',
@@ -327,7 +327,7 @@ export class TabsDocPage {
       type: 'DasarThemeTabs',
       defaultValue: '-',
       description:
-        'Set through tokens.light.tabs (or tokens.dark.tabs) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Each key writes one CSS variable, for example gapNormal -> --tabs-gap-normal and scrollFade -> --tabs-scroll-fade.',
+        'Set through tokens.light.tabs (or tokens.dark.tabs) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Each key writes one CSS variable, for example gapNormal -> --dasar-tabs-gap-normal and scrollFade -> --dasar-tabs-scroll-fade.',
     },
     {
       name: '[tab-item-slot]',

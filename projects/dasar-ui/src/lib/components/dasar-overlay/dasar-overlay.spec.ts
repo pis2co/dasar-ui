@@ -49,8 +49,8 @@ describe('DasarOverlay', () => {
     fixture.detectChanges();
     const backdrop = fixture.nativeElement.querySelector('.dasar-overlay-backdrop') as HTMLElement;
 
-    expect(backdrop.style.getPropertyValue('--overlay-blur')).toBe('');
-    expect(backdrop.style.getPropertyValue('--overlay-background')).toBe('');
+    expect(backdrop.style.getPropertyValue('--dasar-overlay-blur')).toBe('');
+    expect(backdrop.style.getPropertyValue('--dasar-overlay-background')).toBe('');
   });
 });
 
@@ -63,12 +63,12 @@ describe('DasarOverlay interactions', () => {
     const fixture: ComponentFixture<OverlayHost> = TestBed.createComponent(OverlayHost);
     fixture.detectChanges();
 
-    expect(backdrop(fixture).style.getPropertyValue('--overlay-blur')).toBe('4px');
+    expect(backdrop(fixture).style.getPropertyValue('--dasar-overlay-blur')).toBe('4px');
 
     fixture.componentInstance.blur.set('10px');
     await fixture.whenStable();
 
-    expect(backdrop(fixture).style.getPropertyValue('--overlay-blur')).toBe('10px');
+    expect(backdrop(fixture).style.getPropertyValue('--dasar-overlay-blur')).toBe('10px');
   });
 
   it('reflects the background input into a CSS custom property', async () => {
@@ -79,7 +79,7 @@ describe('DasarOverlay interactions', () => {
     fixture.componentInstance.blur.set('0px');
     await fixture.whenStable();
 
-    expect(backdrop(fixture).style.getPropertyValue('--overlay-blur')).toBe('0px');
+    expect(backdrop(fixture).style.getPropertyValue('--dasar-overlay-blur')).toBe('0px');
   });
 
   it('emits onClick when the backdrop itself is clicked', async () => {

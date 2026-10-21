@@ -223,9 +223,9 @@ describe('DasarSkeleton theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--skeleton-base-color')).toBe('red');
-    expect(host.style.getPropertyValue('--skeleton-highlight-color')).toBe('blue');
-    expect(host.style.getPropertyValue('--skeleton-animation-duration')).toBe('2s');
-    expect(host.style.getPropertyValue('--skeleton-gap')).toBe('4px');
+    expect(host.style.getPropertyValue('--dasar-skeleton-base-color')).toBe('red');
+    expect(host.style.getPropertyValue('--dasar-skeleton-highlight-color')).toBe('blue');
+    expect(host.style.getPropertyValue('--dasar-skeleton-animation-duration')).toBe('2s');
+    expect(host.style.getPropertyValue('--dasar-skeleton-gap')).toBe('4px');
   });
 });

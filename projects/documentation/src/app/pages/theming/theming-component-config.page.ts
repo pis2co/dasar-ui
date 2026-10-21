@@ -25,11 +25,11 @@ import { COMPONENT_CONFIG_DOCS } from './theming.data';
   styles: [
     `
       .theming-group-title {
-        font-size: var(--font-size-lg);
+        font-size: var(--dasar-font-size-lg);
       }
       dasar-table {
         display: block;
-        margin-bottom: var(--space-6);
+        margin-bottom: var(--dasar-space-6);
       }
     `,
   ],

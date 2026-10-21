@@ -110,14 +110,14 @@ export interface DocNavGroup {
         gap: 12px;
       }
       .docs-page-wrapper {
-        background-color: var(--theme-bg-default-color);
-        font-family: var(--font-sans);
+        background-color: var(--dasar-theme-bg-default-color);
+        font-family: var(--dasar-font-sans);
         display: flex;
         height: 100%;
       }
       .docs-sidebar {
-        border-right: 1px solid var(--theme-border-subtle-color);
-        background: var(--theme-bg-surface-color);
+        border-right: 1px solid var(--dasar-theme-border-subtle-color);
+        background: var(--dasar-theme-bg-surface-color);
         overflow-y: auto;
         flex-shrink: 0;
         width: 150px;
@@ -129,53 +129,53 @@ export interface DocNavGroup {
         flex: 1;
       }
       .docs-layout {
-        padding: var(--space-6);
-        color: var(--theme-text-primary-color);
+        padding: var(--dasar-space-6);
+        color: var(--dasar-theme-text-primary-color);
         margin: 0 auto;
       }
       .docs-header {
-        margin-bottom: var(--space-base);
-        border-bottom: 1px solid var(--theme-border-subtle-color);
-        padding-bottom: var(--space-6);
+        margin-bottom: var(--dasar-space-base);
+        border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
+        padding-bottom: var(--dasar-space-6);
       }
       .docs-title {
-        font-weight: var(--font-weight-semibold);
-        color: var(--theme-text-primary-color);
-        font-family: var(--font-hero);
+        font-weight: var(--dasar-font-weight-semibold);
+        color: var(--dasar-theme-text-primary-color);
+        font-family: var(--dasar-font-hero);
         margin: 0;
       }
       .docs-description {
-        color: var(--theme-text-secondary-color);
+        color: var(--dasar-theme-text-secondary-color);
         line-height: 1.5;
         margin: 0;
       }
       .nav-group-title {
-        padding: var(--space-base) var(--space-3) var(--space-base);
-        font-weight: var(--font-weight-semibold);
-        font-size: var(--font-size-xs);
+        padding: var(--dasar-space-base) var(--dasar-space-3) var(--dasar-space-base);
+        font-weight: var(--dasar-font-weight-semibold);
+        font-size: var(--dasar-font-size-xs);
         text-transform: uppercase;
       }
       .docs-sidebar {
-        --list-background: transparent;
-        --list-header-padding: 0;
-        --list-header-border: transparent;
-        --list-header-background: transparent;
+        --dasar-list-background: transparent;
+        --dasar-list-header-padding: 0;
+        --dasar-list-header-border: transparent;
+        --dasar-list-header-background: transparent;
       }
       .api-title {
-        font-weight: var(--font-weight-semibold);
-        color: var(--theme-text-primary-color);
-        margin: var(--space-base) 0;
-        border-bottom: 1px solid var(--theme-border-subtle-color);
+        font-weight: var(--dasar-font-weight-semibold);
+        color: var(--dasar-theme-text-primary-color);
+        margin: var(--dasar-space-base) 0;
+        border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
       }
       .api-reference-section code {
         font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-        background-color: var(--theme-bg-hover-color);
-        color: var(--theme-primary-color);
-        padding: var(--space-0-5) var(--space-1);
-        border-radius: var(--radius-xs);
+        background-color: var(--dasar-theme-bg-hover-color);
+        color: var(--dasar-theme-primary-color);
+        padding: var(--dasar-space-0-5) var(--dasar-space-1);
+        border-radius: var(--dasar-radius-xs);
       }
       .prop-cell code {
-        font-weight: var(--font-weight-medium);
+        font-weight: var(--dasar-font-weight-medium);
       }
     `,
   ],

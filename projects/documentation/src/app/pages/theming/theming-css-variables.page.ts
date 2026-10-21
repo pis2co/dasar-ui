@@ -15,11 +15,11 @@ import { TOKEN_ROWS } from './theming.data';
   ],
   template: `<docs-layout
     title="CSS Variables"
-    description="Flat list of every CSS variable the library reads, with the component and token behind it. Override any of them in plain CSS. Foundation variables (spacing, radius, colors, palette) come from theme.scss and have no token key, so set them directly, for example :root { --space-base: 0.75em; }."
+    description="Flat list of every CSS variable the library reads, with the component and token behind it. Override any of them in plain CSS. Foundation variables (spacing, radius, colors, palette) come from theme.scss and have no token key, so set them directly, for example :root { --dasar-space-base: 0.75em; }."
   >
     <dasar-input
       label="Search variables"
-      placeholder="For example --btn- or --list-"
+      placeholder="For example --dasar-btn- or --dasar-list-"
       full-width
       [(ngModel)]="query"
       hint="{{ rows().length }} variables"
@@ -36,12 +36,12 @@ import { TOKEN_ROWS } from './theming.data';
   styles: [
     `
       .theming-count {
-        font-size: var(--font-size-sm);
-        color: var(--theme-text-secondary-color);
+        font-size: var(--dasar-font-size-sm);
+        color: var(--dasar-theme-text-secondary-color);
       }
       dasar-table {
         display: block;
-        margin-top: var(--space-4);
+        margin-top: var(--dasar-space-4);
       }
     `,
   ],

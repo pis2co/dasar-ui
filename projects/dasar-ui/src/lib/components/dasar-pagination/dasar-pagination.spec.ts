@@ -582,11 +582,11 @@ describe('paginationMap tokens', () => {
   });
 
   it('maps pagination tokens to css variables', () => {
-    expect(paginationMap['gap']).toBe('--pagination-gap');
-    expect(paginationMap['fontSize']).toBe('--pagination-font-size');
-    expect(paginationMap['itemMinWidth']).toBe('--pagination-item-min-width');
-    expect(paginationMap['ellipsisColor']).toBe('--pagination-ellipsis-color');
-    expect(paginationMap['summaryColor']).toBe('--pagination-summary-color');
-    expect(paginationMap['dropdownMaxHeight']).toBe('--pagination-dropdown-max-height');
+    expect(paginationMap['gap']).toBe('--dasar-pagination-gap');
+    expect(paginationMap['fontSize']).toBe('--dasar-pagination-font-size');
+    expect(paginationMap['itemMinWidth']).toBe('--dasar-pagination-item-min-width');
+    expect(paginationMap['ellipsisColor']).toBe('--dasar-pagination-ellipsis-color');
+    expect(paginationMap['summaryColor']).toBe('--dasar-pagination-summary-color');
+    expect(paginationMap['dropdownMaxHeight']).toBe('--dasar-pagination-dropdown-max-height');
   });
 });

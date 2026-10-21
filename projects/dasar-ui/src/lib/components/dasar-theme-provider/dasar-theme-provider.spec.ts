@@ -40,11 +40,11 @@ describe('DasarThemeProviderComponent component tokens', () => {
     });
     await fixture.whenStable();
 
-    expect(host().style.getPropertyValue('--tabs-list-padding-normal')).toBe('11px');
-    expect(host().style.getPropertyValue('--tabs-scroll-fade')).toBe('20px');
-    expect(host().style.getPropertyValue('--overlay-background')).toBe('rgba(9, 9, 9, 0.2)');
-    expect(host().style.getPropertyValue('--modal-title-color')).toBe('#123456');
-    expect(host().style.getPropertyValue('--modal-elevated-shadow')).toBe('none');
+    expect(host().style.getPropertyValue('--dasar-tabs-list-padding-normal')).toBe('11px');
+    expect(host().style.getPropertyValue('--dasar-tabs-scroll-fade')).toBe('20px');
+    expect(host().style.getPropertyValue('--dasar-overlay-background')).toBe('rgba(9, 9, 9, 0.2)');
+    expect(host().style.getPropertyValue('--dasar-modal-title-color')).toBe('#123456');
+    expect(host().style.getPropertyValue('--dasar-modal-elevated-shadow')).toBe('none');
   });
 
   it('falls back to the light tokens when the mode has none', async () => {
@@ -56,8 +56,8 @@ describe('DasarThemeProviderComponent component tokens', () => {
     fixture.componentInstance.mode.set('dark');
     await fixture.whenStable();
 
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('3px');
-    expect(host().style.getPropertyValue('--modal-width-sm')).toBe('240px');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('3px');
+    expect(host().style.getPropertyValue('--dasar-modal-width-sm')).toBe('240px');
   });
 
   it('prefers the dark tokens for the dark mode', async () => {
@@ -70,20 +70,20 @@ describe('DasarThemeProviderComponent component tokens', () => {
     fixture.componentInstance.mode.set('dark');
     await fixture.whenStable();
 
-    expect(host().style.getPropertyValue('--modal-width-sm')).toBe('320px');
+    expect(host().style.getPropertyValue('--dasar-modal-width-sm')).toBe('320px');
   });
 
   it('removes tokens that are no longer part of the config', async () => {
     fixture.componentInstance.tokens.set({ light: { overlay: { blur: '3px' } } });
     await fixture.whenStable();
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('3px');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('3px');
 
     fixture.componentInstance.tokens.set({ light: { overlay: { blur: '9px' } } });
     await fixture.whenStable();
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('9px');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('9px');
 
     fixture.componentInstance.tokens.set({});
     await fixture.whenStable();
-    expect(host().style.getPropertyValue('--overlay-blur')).toBe('');
+    expect(host().style.getPropertyValue('--dasar-overlay-blur')).toBe('');
   });
 });

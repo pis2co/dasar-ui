@@ -307,7 +307,7 @@ describe('DasarRadio theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--radio-checked-color')).toBe('red');
-    expect(host.style.getPropertyValue('--radio-group-gap')).toBe('20px');
+    expect(host.style.getPropertyValue('--dasar-radio-checked-color')).toBe('red');
+    expect(host.style.getPropertyValue('--dasar-radio-group-gap')).toBe('20px');
   });
 });

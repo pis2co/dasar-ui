@@ -21,8 +21,8 @@ export class DividerAdvancedThemeExample {
     light: {
       divider: {
         thickness: '2px',
-        color: 'var(--theme-primary-color)',
-        labelColor: 'var(--theme-primary-color)',
+        color: 'var(--dasar-theme-primary-color)',
+        labelColor: 'var(--dasar-theme-primary-color)',
       },
     },
   };

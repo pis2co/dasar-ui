@@ -195,14 +195,14 @@ export class ModalDocPage {
       type: 'string | null',
       defaultValue: 'null',
       description:
-        'Backdrop blur radius, forwarded to the underlying dasar-overlay. Falls back to the --overlay-blur theme token, then 4px.',
+        'Backdrop blur radius, forwarded to the underlying dasar-overlay. Falls back to the --dasar-overlay-blur theme token, then 4px.',
     },
     {
       name: 'overlay-background',
       type: 'string | null',
       defaultValue: 'null',
       description:
-        'Backdrop color, forwarded to the underlying dasar-overlay. Falls back to the --overlay-background theme token, then rgba(0, 0, 0, 0.45).',
+        'Backdrop color, forwarded to the underlying dasar-overlay. Falls back to the --dasar-overlay-background theme token, then rgba(0, 0, 0, 0.45).',
     },
     {
       name: 'fluid / ...-fluid',
@@ -254,7 +254,7 @@ export class ModalDocPage {
       type: 'DasarThemeModal',
       defaultValue: '-',
       description:
-        'Set through tokens.light.modal (or tokens.dark.modal) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Each key writes one CSS variable, for example widthMd -> --modal-width-md.',
+        'Set through tokens.light.modal (or tokens.dark.modal) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Each key writes one CSS variable, for example widthMd -> --dasar-modal-width-md.',
     },
     {
       name: 'default slot',

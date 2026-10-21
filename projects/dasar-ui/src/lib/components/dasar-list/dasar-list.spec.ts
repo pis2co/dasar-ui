@@ -235,20 +235,20 @@ describe('listMap tokens', () => {
   });
 
   it('maps the per-size radius tokens', () => {
-    expect(listMap['radiusNone']).toBe('--list-radius-none');
-    expect(listMap['radiusXs']).toBe('--list-radius-xs');
-    expect(listMap['radiusSm']).toBe('--list-radius-sm');
-    expect(listMap['radiusMd']).toBe('--list-radius-md');
-    expect(listMap['radiusLg']).toBe('--list-radius-lg');
-    expect(listMap['radiusXl']).toBe('--list-radius-xl');
-    expect(listMap['radiusFull']).toBe('--list-radius-full');
+    expect(listMap['radiusNone']).toBe('--dasar-list-radius-none');
+    expect(listMap['radiusXs']).toBe('--dasar-list-radius-xs');
+    expect(listMap['radiusSm']).toBe('--dasar-list-radius-sm');
+    expect(listMap['radiusMd']).toBe('--dasar-list-radius-md');
+    expect(listMap['radiusLg']).toBe('--dasar-list-radius-lg');
+    expect(listMap['radiusXl']).toBe('--dasar-list-radius-xl');
+    expect(listMap['radiusFull']).toBe('--dasar-list-radius-full');
   });
 
   it('maps the scroll and active tokens', () => {
-    expect(listMap['maxHeight']).toBe('--list-max-height');
-    expect(listMap['activeItemBackground']).toBe('--list-active-item-background');
-    expect(listMap['activeItemColor']).toBe('--list-active-item-color');
-    expect(listMap['focusItemOutline']).toBe('--list-focus-item-outline');
+    expect(listMap['maxHeight']).toBe('--dasar-list-max-height');
+    expect(listMap['activeItemBackground']).toBe('--dasar-list-active-item-background');
+    expect(listMap['activeItemColor']).toBe('--dasar-list-active-item-color');
+    expect(listMap['focusItemOutline']).toBe('--dasar-list-focus-item-outline');
   });
 });
 

@@ -279,7 +279,7 @@ export class AlertDocPage {
       type: 'DasarThemeAlert',
       defaultValue: '-',
       description:
-        'Set through tokens.light.alert (or tokens.dark.alert) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: dangerBg -> --alert-danger-bg. Full list on the Theme Tokens page.',
+        'Set through tokens.light.alert (or tokens.dark.alert) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: dangerBg -> --dasar-alert-danger-bg. Full list on the Theme Tokens page.',
     },
     {
       name: 'component config',

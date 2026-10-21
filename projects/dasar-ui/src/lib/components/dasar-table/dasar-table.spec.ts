@@ -114,12 +114,12 @@ describe('tableMap container radius tokens', () => {
   });
 
   it('maps the per-size container radius tokens', () => {
-    expect(tableMap['containerRadiusNone']).toBe('--table-container-radius-none');
-    expect(tableMap['containerRadiusXs']).toBe('--table-container-radius-xs');
-    expect(tableMap['containerRadiusSm']).toBe('--table-container-radius-sm');
-    expect(tableMap['containerRadiusMd']).toBe('--table-container-radius-md');
-    expect(tableMap['containerRadiusLg']).toBe('--table-container-radius-lg');
-    expect(tableMap['containerRadiusXl']).toBe('--table-container-radius-xl');
-    expect(tableMap['containerRadiusFull']).toBe('--table-container-radius-full');
+    expect(tableMap['containerRadiusNone']).toBe('--dasar-table-container-radius-none');
+    expect(tableMap['containerRadiusXs']).toBe('--dasar-table-container-radius-xs');
+    expect(tableMap['containerRadiusSm']).toBe('--dasar-table-container-radius-sm');
+    expect(tableMap['containerRadiusMd']).toBe('--dasar-table-container-radius-md');
+    expect(tableMap['containerRadiusLg']).toBe('--dasar-table-container-radius-lg');
+    expect(tableMap['containerRadiusXl']).toBe('--dasar-table-container-radius-xl');
+    expect(tableMap['containerRadiusFull']).toBe('--dasar-table-container-radius-full');
   });
 });

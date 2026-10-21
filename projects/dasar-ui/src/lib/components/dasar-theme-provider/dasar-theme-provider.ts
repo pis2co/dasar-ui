@@ -105,12 +105,12 @@ export const defaultDarkCommonTokens: DasarThemeCommon = {
         margin: 0;
       }
       .dasar-theme-wrapper {
-        background-color: var(--theme-bg-window-color);
-        font-weight: var(--font-weight-regular);
-        line-height: var(--line-height-normal);
-        font-size: var(--font-size-base);
-        color: var(--theme-text-color);
-        font-family: var(--font-sans);
+        background-color: var(--dasar-theme-bg-window-color);
+        font-weight: var(--dasar-font-weight-regular);
+        line-height: var(--dasar-line-height-normal);
+        font-size: var(--dasar-font-size-base);
+        color: var(--dasar-theme-text-color);
+        font-family: var(--dasar-font-sans);
         transition: background-color 0.3s ease;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;

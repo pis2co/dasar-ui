@@ -29,12 +29,12 @@ import { TOKEN_GROUPS } from './theming.data';
         text-transform: capitalize;
       }
       .theming-group-path {
-        font-size: var(--font-size-sm);
-        color: var(--theme-text-secondary-color);
+        font-size: var(--dasar-font-size-sm);
+        color: var(--dasar-theme-text-secondary-color);
       }
       dasar-table {
         display: block;
-        margin-bottom: var(--space-6);
+        margin-bottom: var(--dasar-space-6);
       }
     `,
   ],

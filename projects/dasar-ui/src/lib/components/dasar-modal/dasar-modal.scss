@@ -5,40 +5,40 @@
 }
 
 .dasar-modal-container {
-  background-color: var(--modal-background, var(--theme-bg-surface-color));
+  background-color: var(--dasar-modal-background, var(--dasar-theme-bg-surface-color));
   flex-direction: column;
   box-sizing: border-box;
   display: flex;
   overflow: hidden;
   max-width: 100%;
-  max-height: calc(100vh - 2 * var(--space-4, 16px));
-  max-height: calc(100dvh - 2 * var(--space-4, 16px));
+  max-height: calc(100vh - 2 * var(--dasar-space-4, 16px));
+  max-height: calc(100dvh - 2 * var(--dasar-space-4, 16px));
 
   &.full-width {
     width: 100%;
   }
 
   &.size-xs {
-    font-size: var(--modal-font-size-xs, var(--font-size-xs));
+    font-size: var(--dasar-modal-font-size-xs, var(--dasar-font-size-xs));
   }
   &.size-sm {
-    width: var(--modal-width-sm, 400px);
-    font-size: var(--modal-font-size-sm, var(--font-size-sm));
+    width: var(--dasar-modal-width-sm, 400px);
+    font-size: var(--dasar-modal-font-size-sm, var(--dasar-font-size-sm));
   }
   &.size-md {
-    width: var(--modal-width-md, 560px);
-    font-size: var(--modal-font-size-md, var(--font-size-base));
+    width: var(--dasar-modal-width-md, 560px);
+    font-size: var(--dasar-modal-font-size-md, var(--dasar-font-size-base));
   }
   &.size-lg {
-    width: var(--modal-width-lg, 800px);
-    font-size: var(--modal-font-size-lg, var(--font-size-lg));
+    width: var(--dasar-modal-width-lg, 800px);
+    font-size: var(--dasar-modal-font-size-lg, var(--dasar-font-size-lg));
   }
   &.size-xl {
-    font-size: var(--modal-font-size-xl, var(--font-size-xl));
+    font-size: var(--dasar-modal-font-size-xl, var(--dasar-font-size-xl));
   }
 
   &.appearance-outline {
-    border: 1px solid var(--modal-outline-border, var(--theme-border-strong-color));
+    border: 1px solid var(--dasar-modal-outline-border, var(--dasar-theme-border-strong-color));
   }
 
   &.appearance-borderless {
@@ -46,55 +46,55 @@
   }
 
   &.appearance-elevated {
-    border: 1px solid var(--modal-elevated-border, var(--theme-border-strong-color));
-    box-shadow: var(--modal-elevated-shadow, 0 20px 50px rgba(0, 0, 0, 0.25));
+    border: 1px solid var(--dasar-modal-elevated-border, var(--dasar-theme-border-strong-color));
+    box-shadow: var(--dasar-modal-elevated-shadow, 0 20px 50px rgba(0, 0, 0, 0.25));
   }
 
   &.radius-none {
-    border-radius: var(--modal-radius-none, var(--radius-none));
+    border-radius: var(--dasar-modal-radius-none, var(--dasar-radius-none));
   }
   &.radius-xs {
-    border-radius: var(--modal-radius-xs, var(--radius-xs));
+    border-radius: var(--dasar-modal-radius-xs, var(--dasar-radius-xs));
   }
   &.radius-sm {
-    border-radius: var(--modal-radius-sm, var(--radius-sm));
+    border-radius: var(--dasar-modal-radius-sm, var(--dasar-radius-sm));
   }
   &.radius-md {
-    border-radius: var(--modal-radius-md, var(--radius-md));
+    border-radius: var(--dasar-modal-radius-md, var(--dasar-radius-md));
   }
   &.radius-lg {
-    border-radius: var(--modal-radius-lg, var(--radius-lg));
+    border-radius: var(--dasar-modal-radius-lg, var(--dasar-radius-lg));
   }
   &.radius-xl {
-    border-radius: var(--modal-radius-xl, var(--radius-xl));
+    border-radius: var(--dasar-modal-radius-xl, var(--dasar-radius-xl));
   }
   &.radius-full {
-    border-radius: var(--modal-radius-full, var(--radius-full));
+    border-radius: var(--dasar-modal-radius-full, var(--dasar-radius-full));
   }
 
   &.spacing-normal {
     .dasar-modal-header {
-      padding: var(--modal-normal-header-padding-vertical, var(--space-base))
-        var(--modal-normal-header-padding-horizontal, var(--space-4));
+      padding: var(--dasar-modal-normal-header-padding-vertical, var(--dasar-space-base))
+        var(--dasar-modal-normal-header-padding-horizontal, var(--dasar-space-4));
     }
     .dasar-modal-body {
-      padding: var(--modal-normal-body-padding-vertical, var(--space-4))
-        var(--modal-normal-body-padding-horizontal, var(--space-4));
+      padding: var(--dasar-modal-normal-body-padding-vertical, var(--dasar-space-4))
+        var(--dasar-modal-normal-body-padding-horizontal, var(--dasar-space-4));
     }
     .dasar-modal-actions {
-      padding: var(--modal-normal-actions-padding, var(--space-4));
+      padding: var(--dasar-modal-normal-actions-padding, var(--dasar-space-4));
     }
   }
 
   &.spacing-compact {
     .dasar-modal-header {
-      padding: var(--modal-compact-header-padding, var(--space-base));
+      padding: var(--dasar-modal-compact-header-padding, var(--dasar-space-base));
     }
     .dasar-modal-body {
-      padding: var(--modal-compact-body-padding, var(--space-base));
+      padding: var(--dasar-modal-compact-body-padding, var(--dasar-space-base));
     }
     .dasar-modal-actions {
-      padding: var(--modal-compact-actions-padding, var(--space-base));
+      padding: var(--dasar-modal-compact-actions-padding, var(--dasar-space-base));
     }
   }
 
@@ -109,15 +109,15 @@
 }
 
 .dasar-modal-header {
-  border-bottom: 1px solid var(--modal-header-border, var(--theme-border-strong-color));
+  border-bottom: 1px solid var(--dasar-modal-header-border, var(--dasar-theme-border-strong-color));
   justify-content: space-between;
   align-items: center;
   display: flex;
   flex-shrink: 0;
 
   .dasar-modal-title {
-    color: var(--modal-title-color, var(--theme-text-primary-color));
-    font-weight: var(--modal-title-font-weight, var(--font-weight-semibold));
+    color: var(--dasar-modal-title-color, var(--dasar-theme-text-primary-color));
+    font-weight: var(--dasar-modal-title-font-weight, var(--dasar-font-weight-semibold));
     font-size: inherit;
     margin: 0;
   }
@@ -142,8 +142,8 @@
 }
 
 .dasar-modal-body {
-  color: var(--modal-body-color, var(--theme-text-primary-color));
-  line-height: var(--line-height-normal);
+  color: var(--dasar-modal-body-color, var(--dasar-theme-text-primary-color));
+  line-height: var(--dasar-line-height-normal);
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
@@ -155,13 +155,13 @@
 }
 
 .dasar-modal-actions {
-  background-color: var(--modal-actions-background, transparent);
-  border-top: 1px solid var(--modal-actions-border, var(--theme-border-strong-color));
+  background-color: var(--dasar-modal-actions-background, transparent);
+  border-top: 1px solid var(--dasar-modal-actions-border, var(--dasar-theme-border-strong-color));
   justify-content: flex-end;
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  gap: var(--modal-actions-gap, 12px);
+  gap: var(--dasar-modal-actions-gap, 12px);
 
   &.fluid {
     padding: 0 !important;

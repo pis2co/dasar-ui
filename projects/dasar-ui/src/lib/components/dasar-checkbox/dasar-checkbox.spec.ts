@@ -282,8 +282,8 @@ describe('DasarCheckbox theme tokens', () => {
 
     const host = fixture.nativeElement.querySelector('dasar-theme-provider') as HTMLElement;
 
-    expect(host.style.getPropertyValue('--checkbox-checked-bg')).toBe('red');
-    expect(host.style.getPropertyValue('--checkbox-group-gap')).toBe('20px');
+    expect(host.style.getPropertyValue('--dasar-checkbox-checked-bg')).toBe('red');
+    expect(host.style.getPropertyValue('--dasar-checkbox-group-gap')).toBe('20px');
   });
 });
 

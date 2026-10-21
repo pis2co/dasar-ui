@@ -16,7 +16,8 @@ export class TableDynamicStyleExample {
       label: '24h Change',
       align: 'right',
       cellStyle: (row: any) => ({
-        color: row.change >= 0 ? 'var(--theme-success-color)' : 'var(--theme-danger-color)',
+        color:
+          row.change >= 0 ? 'var(--dasar-theme-success-color)' : 'var(--dasar-theme-danger-color)',
         fontWeight: '600',
       }),
     },
@@ -26,7 +27,7 @@ export class TableDynamicStyleExample {
       align: 'center',
       cellStyle: (row: any) => ({
         backgroundColor: row.isOpen ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-        color: row.isOpen ? 'var(--theme-success-color)' : 'var(--theme-danger-color)',
+        color: row.isOpen ? 'var(--dasar-theme-success-color)' : 'var(--dasar-theme-danger-color)',
         borderRadius: '4px',
         padding: '4px 8px',
         fontSize: '12px',

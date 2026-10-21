@@ -239,7 +239,7 @@ export class ListDocPage {
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description:
-        'Sets the font size and the item padding. Uses --list-font-size-sm/md/lg and --list-item-padding.',
+        'Sets the font size and the item padding. Uses --dasar-list-font-size-sm/md/lg and --dasar-list-item-padding.',
     },
     {
       name: 'radius',
@@ -251,26 +251,26 @@ export class ListDocPage {
       name: 'bordered',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Adds a 1px border around the container using --list-border.',
+      description: 'Adds a 1px border around the container using --dasar-list-border.',
     },
     {
       name: 'show-divider',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Separates items with a 1px line using --list-divider.',
+      description: 'Separates items with a 1px line using --dasar-list-divider.',
     },
     {
       name: 'hoverable',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Highlights an item on hover using --list-hover-background.',
+      description: 'Highlights an item on hover using --dasar-list-hover-background.',
     },
     {
       name: 'clickable',
       type: 'boolean',
       defaultValue: 'false',
       description:
-        'Shows a pointer cursor and an active background using --list-active-background. The click event stays on the item, the component does not emit anything.',
+        'Shows a pointer cursor and an active background using --dasar-list-active-background. The click event stays on the item, the component does not emit anything.',
     },
     {
       name: 'value / [(ngModel)]',
@@ -283,7 +283,7 @@ export class ListDocPage {
       type: 'boolean',
       defaultValue: 'false',
       description:
-        'Clicking an item selects it and highlights it using --list-active-item-background. Default via components.list.selectable.',
+        'Clicking an item selects it and highlights it using --dasar-list-active-item-background. Default via components.list.selectable.',
     },
     {
       name: 'value-field',
@@ -297,7 +297,7 @@ export class ListDocPage {
       type: 'string | null',
       defaultValue: 'null',
       description:
-        'Max height of the content area, for example "200px". Only the content scrolls, the header and footer stay fixed. Also settable with the --list-max-height token.',
+        'Max height of the content area, for example "200px". Only the content scrolls, the header and footer stay fixed. Also settable with the --dasar-list-max-height token.',
     },
     {
       name: 'scroll-offset',
@@ -336,7 +336,7 @@ export class ListDocPage {
       type: 'boolean',
       defaultValue: 'false',
       description:
-        'Shows the focus outline (--list-focus-item-outline) on the keyboard-focused item. Navigation works either way.',
+        'Shows the focus outline (--dasar-list-focus-item-outline) on the keyboard-focused item. Navigation works either way.',
     },
     {
       name: '(valueChange) / (onUpdate)',
@@ -442,7 +442,7 @@ export class ListDocPage {
       type: 'DasarThemeList',
       defaultValue: '-',
       description:
-        'Set through tokens.light.list (or tokens.dark.list) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: hoverBackground -> --list-hover-background.',
+        'Set through tokens.light.list (or tokens.dark.list) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: hoverBackground -> --dasar-list-hover-background.',
     },
     {
       name: 'component config',

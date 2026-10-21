@@ -309,7 +309,7 @@ export class CheckboxDocPage {
       type: 'DasarThemeCheckbox',
       defaultValue: '-',
       description:
-        'Set through tokens.light.checkbox (or tokens.dark.checkbox) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: checkedBg -> --checkbox-checked-bg. Full list on the Theme Tokens page.',
+        'Set through tokens.light.checkbox (or tokens.dark.checkbox) in DasarThemeService.setGlobalTheme, or [tokenConfig] on dasar-theme-provider. Example: checkedBg -> --dasar-checkbox-checked-bg. Full list on the Theme Tokens page.',
     },
     {
       name: 'component config',
