@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/pis2co/dasar-ui/compare/v2.4.2...v2.5.0) (2026-10-21)
+
+
+### Features
+
+* add dasar-split component ([341acfc](https://github.com/pis2co/dasar-ui/commit/341acfcb3f05d6fdac8216ee1664bab0bb71e5bd))
+
 ### [2.4.2](https://github.com/pis2co/dasar-ui/compare/v2.4.1...v2.4.2) (2026-10-21)
 
 
