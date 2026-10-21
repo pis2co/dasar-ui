@@ -15,7 +15,7 @@ import { TOKEN_ROWS } from './theming.data';
   ],
   template: `<docs-layout
     title="CSS Variables"
-    description="Flat list of every CSS variable the library reads, with the component and token behind it. Override any of them in plain CSS."
+    description="Flat list of every CSS variable the library reads, with the component and token behind it. Override any of them in plain CSS. Foundation variables (spacing, radius, colors, palette) come from theme.scss and have no token key, so set them directly, for example :root { --space-base: 0.75em; }."
   >
     <dasar-input
       label="Search variables"
