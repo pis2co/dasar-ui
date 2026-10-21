@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.2](https://github.com/pis2co/dasar-ui/compare/v2.4.1...v2.4.2) (2026-10-21)
+
+
+### Bug Fixes
+
+* adjust script ([ac2be88](https://github.com/pis2co/dasar-ui/commit/ac2be8839b842d0beab4e767a13a09a78dd41d53))
+* let a nested dasar-theme-provider use its own light or dark mode ([696aec9](https://github.com/pis2co/dasar-ui/commit/696aec94b74911650164d085fde65f47120acf12))
+
 ### [2.4.1](https://github.com/pis2co/dasar-ui/compare/v2.4.0...v2.4.1) (2026-10-21)
 
 
