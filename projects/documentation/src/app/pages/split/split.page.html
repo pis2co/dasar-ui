@@ -1,0 +1,93 @@
+<docs-layout
+  title="Split"
+  description="Divides a container into two resizable panels. Drag the bar or use the arrow keys. It supports both directions, size limits, events and slots."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic"
+    description="Horizontal split with a draggable bar. The first panel starts at 40%."
+  >
+    <app-split-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: verticalHtml },
+      { label: 'TypeScript', lang: 'typescript', value: verticalTs },
+    ]"
+    title="Vertical"
+    description="Stacks the panels. The bar moves along the y axis."
+  >
+    <app-split-vertical-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: limitsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: limitsTs },
+    ]"
+    title="Min and max"
+    description="The first panel stays between 150px and 60% of the container."
+  >
+    <app-split-limits-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: controlledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: controlledTs },
+    ]"
+    title="Controlled size"
+    description="Two way binding of the first panel size in pixels."
+  >
+    <app-split-controlled-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled"
+    description="The bar cannot be dragged or moved with the keyboard."
+  >
+    <app-split-disabled-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: triggerHtml },
+      { label: 'TypeScript', lang: 'typescript', value: triggerTs },
+    ]"
+    title="Trigger slot and panel styles"
+    description="Custom bar content and per panel class and style."
+  >
+    <app-split-trigger-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: eventsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: eventsTs },
+    ]"
+    title="Events"
+    description="Logs onDragStart, onUpdateSize and onDragEnd."
+  >
+    <app-split-events-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: nestedHtml },
+      { label: 'TypeScript', lang: 'typescript', value: nestedTs },
+    ]"
+    title="Nested"
+    description="A vertical split inside the second panel of a horizontal split."
+  >
+    <app-split-nested-example />
+  </doc-example-component>
+</docs-layout>

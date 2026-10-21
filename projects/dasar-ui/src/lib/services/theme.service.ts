@@ -20,6 +20,7 @@ import {
   DasarThemeOverlay,
   DasarThemeModal,
   DasarThemeDrawer,
+  DasarThemeSplit,
   DasarThemeTree,
   DasarThemeSkeleton,
 } from '@models/theme.model';
@@ -796,6 +797,15 @@ export const treeMap: Record<keyof DasarThemeTree, string> = {
   emptyColor: '--dasar-tree-empty-color',
   gap: '--dasar-tree-gap',
 };
+export const splitMap: Record<keyof DasarThemeSplit, string> = {
+  barSize: '--dasar-split-bar-size',
+  barHitArea: '--dasar-split-bar-hit-area',
+  barColor: '--dasar-split-bar-color',
+  barHoverColor: '--dasar-split-bar-hover-color',
+  barActiveColor: '--dasar-split-bar-active-color',
+  gripColor: '--dasar-split-grip-color',
+};
+
 export const drawerMap: Record<keyof DasarThemeDrawer, string> = {
   background: '--dasar-drawer-background',
   bodyColor: '--dasar-drawer-body-color',
@@ -988,6 +998,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.drawer) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.drawer, drawerMap);
+    }
+    if (config.tokens?.[config.mode]?.split) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.split, splitMap);
     }
     if (config.tokens?.[config.mode]?.tree) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.tree, treeMap);

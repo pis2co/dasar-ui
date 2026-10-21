@@ -29,6 +29,7 @@ import {
   overlayMap,
   modalMap,
   drawerMap,
+  splitMap,
   treeMap,
 } from '../../services/theme.service';
 import {
@@ -369,6 +370,11 @@ export class DasarThemeProviderComponent implements OnChanges {
         payload: drawerTokens,
         dictionary: drawerMap,
       });
+    }
+
+    const splitTokens = this.tokenConfig?.[currentMode]?.split || this.tokenConfig?.light?.split;
+    if (splitTokens) {
+      this.injectMappedTokens({ element: hostElement, payload: splitTokens, dictionary: splitMap });
     }
 
     const treeTokens = this.tokenConfig?.[currentMode]?.tree || this.tokenConfig?.light?.tree;

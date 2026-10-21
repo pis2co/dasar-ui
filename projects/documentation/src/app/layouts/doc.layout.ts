@@ -264,6 +264,7 @@ export class DocsLayoutComponent {
         { label: 'Modal', route: '/components/modal' },
         { label: 'Drawer', route: '/components/drawer' },
         { label: 'Tree', route: '/components/tree' },
+        { label: 'Split', route: '/components/split' },
         { label: 'Menu', route: '/components/menu' },
         { label: 'Tabs', route: '/components/tabs' },
         { label: 'List', route: '/components/list' },
