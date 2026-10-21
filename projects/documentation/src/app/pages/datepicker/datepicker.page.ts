@@ -9,12 +9,17 @@ import { DatepickerFormatExample } from './examples/format/datepicker-format.exa
 import { DatepickerStatesExample } from './examples/states/datepicker-states.example';
 import { DatepickerFooterExample } from './examples/footer/datepicker-footer.example';
 import { DatepickerBasicExample } from './examples/basic/datepicker-basic.example';
+import { DatepickerRangeExample } from './examples/range/datepicker-range.example';
 import { DatepickerSlotsExample } from './examples/slots/datepicker-slots.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/datepicker-basic.example.html' with { loader: 'text' };
 // @ts-ignore
 import basicTs from './examples/basic/datepicker-basic.example.ts' with { loader: 'text' };
+// @ts-ignore
+import rangeHtml from './examples/range/datepicker-range.example.html' with { loader: 'text' };
+// @ts-ignore
+import rangeTs from './examples/range/datepicker-range.example.ts' with { loader: 'text' };
 // @ts-ignore
 import appearanceHtml from './examples/appearance/datepicker-appearance.example.html' with {
   loader: 'text',
@@ -62,6 +67,7 @@ import footerTs from './examples/footer/datepicker-footer.example.ts' with {
     DocsLayoutComponent,
     DocExampleComponent,
     DatepickerBasicExample,
+    DatepickerRangeExample,
     DatepickerAppearanceExample,
     DatepickerFormatExample,
     DatepickerStatesExample,
@@ -76,6 +82,8 @@ import footerTs from './examples/footer/datepicker-footer.example.ts' with {
 export class DatepickerDocPage {
   public basicHtml = basicHtml;
   public basicTs = basicTs;
+  public rangeHtml = rangeHtml;
+  public rangeTs = rangeTs;
   public appearanceHtml = appearanceHtml;
   public appearanceTs = appearanceTs;
   public formatHtml = formatHtml;
@@ -96,6 +104,13 @@ export class DatepickerDocPage {
       defaultValue: 'null',
       description:
         'The currently selected date. Supports Angular two-way binding [(value)] and Reactive Forms.',
+    },
+    {
+      name: 'range',
+      type: 'boolean',
+      defaultValue: 'false',
+      description:
+        'Enables range selection. The value becomes an array of two items [start, end], each formatted with value-format. It is emitted only after both dates are picked, and cleared with null.',
     },
     {
       name: 'display-format',

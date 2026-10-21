@@ -98,6 +98,9 @@
             class="day-cell"
             [class.other-month]="!day.isCurrentMonth"
             [class.selected]="day.isSelected"
+            [class.in-range]="day.isInRange"
+            [class.range-start]="day.isRangeStart && !!rangeValue[1]"
+            [class.range-end]="day.isRangeEnd"
             (click)="selectDate(day, $event)"
           >
             @if (variant === 'dashboard') {
