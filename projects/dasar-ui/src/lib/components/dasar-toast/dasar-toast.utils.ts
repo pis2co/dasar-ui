@@ -1,4 +1,3 @@
-// Countdown that can be paused and resumed with the remaining time kept.
 export class DasarToastTimer {
   private remaining: number;
   private startedAt = 0;
@@ -42,6 +41,5 @@ export class DasarToastTimer {
   }
 }
 
-// Internal paths go through the router, anything with a scheme or a target stays a normal link.
 export const isInternalLink = (to: string): boolean =>
   !/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(to.trim());

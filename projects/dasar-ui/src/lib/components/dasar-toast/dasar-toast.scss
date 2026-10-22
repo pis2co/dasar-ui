@@ -115,6 +115,10 @@ dasar-toast {
   line-height: var(--dasar-line-height-tight);
 }
 
+.dasar-toast-label-capitalized {
+  text-transform: capitalize;
+}
+
 .dasar-toast-caption,
 .dasar-toast-description {
   color: var(--dasar-toast-caption-color, var(--dasar-theme-text-secondary-color));

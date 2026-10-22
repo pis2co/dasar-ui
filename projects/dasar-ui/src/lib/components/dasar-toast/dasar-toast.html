@@ -19,11 +19,11 @@
           <span class="dasar-toast-icon"><dasar-icon [name]="item.options.icon" size="sm" /></span>
         }
         @if (labelSlot) {
-          <div class="dasar-toast-label">
-            <ng-container *ngTemplateOutlet="labelSlot; context: context"></ng-container>
-          </div>
+          <ng-container *ngTemplateOutlet="labelSlot; context: context"></ng-container>
         } @else if (item.options.label) {
-          <div class="dasar-toast-label">{{ item.options.label }}</div>
+          <div class="dasar-toast-label dasar-toast-label-capitalized">
+            {{ item.options.label }}
+          </div>
         }
       </div>
       @if (captionSlot) {
