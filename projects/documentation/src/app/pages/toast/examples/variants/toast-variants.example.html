@@ -1,0 +1,7 @@
+<div class="toast-row">
+  @for (item of items; track item.variant) {
+    <dasar-button size="sm" [variant]="item.variant" (click)="show(item)">{{
+      item.variant
+    }}</dasar-button>
+  }
+</div>

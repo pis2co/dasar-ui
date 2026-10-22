@@ -21,6 +21,7 @@ import {
   DasarThemeModal,
   DasarThemeDrawer,
   DasarThemeSplit,
+  DasarThemeToast,
   DasarThemeTree,
   DasarThemeSkeleton,
 } from '@models/theme.model';
@@ -797,6 +798,31 @@ export const treeMap: Record<keyof DasarThemeTree, string> = {
   emptyColor: '--dasar-tree-empty-color',
   gap: '--dasar-tree-gap',
 };
+export const toastMap: Record<keyof DasarThemeToast, string> = {
+  background: '--dasar-toast-background',
+  color: '--dasar-toast-color',
+  captionColor: '--dasar-toast-caption-color',
+  border: '--dasar-toast-border',
+  shadow: '--dasar-toast-shadow',
+  radius: '--dasar-toast-radius',
+  padding: '--dasar-toast-padding',
+  gap: '--dasar-toast-gap',
+  stackGap: '--dasar-toast-stack-gap',
+  width: '--dasar-toast-width',
+  gutter: '--dasar-toast-gutter',
+  zIndex: '--dasar-toast-z-index',
+  fontSize: '--dasar-toast-font-size',
+  labelFontSize: '--dasar-toast-label-font-size',
+  animationDuration: '--dasar-toast-animation-duration',
+  enterOffset: '--dasar-toast-enter-offset',
+  blur: '--dasar-toast-blur',
+  primaryAccent: '--dasar-toast-primary-accent',
+  secondaryAccent: '--dasar-toast-secondary-accent',
+  successAccent: '--dasar-toast-success-accent',
+  warningAccent: '--dasar-toast-warning-accent',
+  dangerAccent: '--dasar-toast-danger-accent',
+};
+
 export const splitMap: Record<keyof DasarThemeSplit, string> = {
   barSize: '--dasar-split-bar-size',
   barHitArea: '--dasar-split-bar-hit-area',
@@ -998,6 +1024,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.drawer) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.drawer, drawerMap);
+    }
+    if (config.tokens?.[config.mode]?.toast) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.toast, toastMap);
     }
     if (config.tokens?.[config.mode]?.split) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.split, splitMap);

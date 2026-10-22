@@ -3,100 +3,102 @@
   [tokenConfig]="customize.tokenConfig()"
   [mode]="customize.mode()"
 >
-  <div [ngStyle]="{ height: '100vh', overflow: 'hidden' }">
-    @for (key of [customize.renderKey()]; track key) {
-      <dasar-card
-        appearance="borderless"
-        radius="none"
-        [container-style]="{
-          padding: '0 var(--dasar-space-base)',
-          'border-bottom': '1px solid var(--dasar-theme-border-subtle-color)',
-          'justify-content': 'center',
-          'align-items': 'center',
-          display: 'flex',
-          height: '50px',
-        }"
-        [body-style]="{
-          'justify-content': 'space-between',
-          'align-items': 'center',
-          display: 'flex',
-          width: '100%',
-        }"
-      >
-        <div class="docs-navbar-brand">
-          <a class="docs-navbar-logo" routerLink="/" aria-label="Dasar UI home">
-            <!-- <dasar-ui-logo
+  <dasar-toast-provider>
+    <div [ngStyle]="{ height: '100vh', overflow: 'hidden' }">
+      @for (key of [customize.renderKey()]; track key) {
+        <dasar-card
+          appearance="borderless"
+          radius="none"
+          [container-style]="{
+            padding: '0 var(--dasar-space-base)',
+            'border-bottom': '1px solid var(--dasar-theme-border-subtle-color)',
+            'justify-content': 'center',
+            'align-items': 'center',
+            display: 'flex',
+            height: '50px',
+          }"
+          [body-style]="{
+            'justify-content': 'space-between',
+            'align-items': 'center',
+            display: 'flex',
+            width: '100%',
+          }"
+        >
+          <div class="docs-navbar-brand">
+            <a class="docs-navbar-logo" routerLink="/" aria-label="Dasar UI home">
+              <!-- <dasar-ui-logo
               class="docs-navbar-logo-wide"
               [variant]="logoVariant()"
               [size]="34"
               [showTagline]="false"
             /> -->
-            <dasar-ui-logo class="docs-navbar-logo-icon" variant="icon" [size]="32" />
-          </a>
-          <strong style="font-weight: bold">Dasar UI</strong>
-          <span class="docs-navbar-versions">
-            <ng-container *ngTemplateOutlet="versions" />
-          </span>
-        </div>
-        <div class="docs-navbar-actions docs-navbar-desktop">
-          @for (action of actions(); track action.key) {
+              <dasar-ui-logo class="docs-navbar-logo-icon" variant="icon" [size]="32" />
+            </a>
+            <strong style="font-weight: bold">Dasar UI</strong>
+            <span class="docs-navbar-versions">
+              <ng-container *ngTemplateOutlet="versions" />
+            </span>
+          </div>
+          <div class="docs-navbar-actions docs-navbar-desktop">
+            @for (action of actions(); track action.key) {
+              <dasar-button
+                [appearance]="action.appearance"
+                [variant]="action.variant"
+                [icon-only]="!action.textOnDesktop"
+                [attr.aria-label]="action.label"
+                (click)="runAction(action)"
+              >
+                @if (action.textOnDesktop) {
+                  {{ action.label }}
+                } @else {
+                  <dasar-icon [name]="action.icon" />
+                }
+              </dasar-button>
+            }
+          </div>
+          <div class="docs-navbar-hamburger">
             <dasar-button
-              [appearance]="action.appearance"
-              [variant]="action.variant"
-              [icon-only]="!action.textOnDesktop"
-              [attr.aria-label]="action.label"
-              (click)="runAction(action)"
+              icon-only
+              appearance="outline"
+              variant="secondary"
+              aria-label="Open menu"
+              aria-haspopup="dialog"
+              [attr.aria-expanded]="menuOpen()"
+              (click)="menuOpen.set(true)"
             >
-              @if (action.textOnDesktop) {
-                {{ action.label }}
-              } @else {
-                <dasar-icon [name]="action.icon" />
-              }
+              <dasar-icon name="menu-2" />
             </dasar-button>
-          }
-        </div>
-        <div class="docs-navbar-hamburger">
-          <dasar-button
-            icon-only
-            appearance="outline"
-            variant="secondary"
-            aria-label="Open menu"
-            aria-haspopup="dialog"
-            [attr.aria-expanded]="menuOpen()"
-            (click)="menuOpen.set(true)"
-          >
-            <dasar-icon name="menu-2" />
-          </dasar-button>
-        </div>
-      </dasar-card>
-    }
-    <div [ngStyle]="{ height: 'calc(100vh - 50px)' }">
+          </div>
+        </dasar-card>
+      }
+      <div [ngStyle]="{ height: 'calc(100vh - 50px)' }">
+        @for (key of [customize.renderKey()]; track key) {
+          <router-outlet></router-outlet>
+        }
+      </div>
       @for (key of [customize.renderKey()]; track key) {
-        <router-outlet></router-outlet>
+        <dasar-drawer [(show)]="menuOpen" placement="right" label="Menu" width="280px">
+          <div class="docs-menu-actions">
+            @for (action of actions(); track action.key) {
+              <dasar-button
+                full-width
+                [appearance]="action.appearance"
+                [variant]="action.variant"
+                (click)="runAction(action, true)"
+              >
+                <dasar-icon [name]="action.icon" />
+                {{ action.label }}
+              </dasar-button>
+            }
+          </div>
+        </dasar-drawer>
+        <doc-customize-modal
+          [open]="customizeOpen()"
+          (closed)="customizeOpen.set(false)"
+        ></doc-customize-modal>
       }
     </div>
-    @for (key of [customize.renderKey()]; track key) {
-      <dasar-drawer [(show)]="menuOpen" placement="right" label="Menu" width="280px">
-        <div class="docs-menu-actions">
-          @for (action of actions(); track action.key) {
-            <dasar-button
-              full-width
-              [appearance]="action.appearance"
-              [variant]="action.variant"
-              (click)="runAction(action, true)"
-            >
-              <dasar-icon [name]="action.icon" />
-              {{ action.label }}
-            </dasar-button>
-          }
-        </div>
-      </dasar-drawer>
-      <doc-customize-modal
-        [open]="customizeOpen()"
-        (closed)="customizeOpen.set(false)"
-      ></doc-customize-modal>
-    }
-  </div>
+  </dasar-toast-provider>
 </dasar-theme-provider>
 
 <ng-template #versions>

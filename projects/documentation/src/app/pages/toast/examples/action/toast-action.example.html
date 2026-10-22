@@ -1,0 +1,7 @@
+<dasar-button (click)="show()">Create event</dasar-button>
+
+<ng-template #undo let-close="close">
+  <dasar-button size="xs" appearance="outline" variant="secondary" (click)="close()">
+    Undo
+  </dasar-button>
+</ng-template>

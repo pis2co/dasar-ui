@@ -1,0 +1,137 @@
+<docs-layout
+  title="Toast"
+  description="Short messages that appear in a corner and close by themselves. Create them through DasarToastService from any component inside a dasar-toast-provider. Toasts stack, expand on hover and pause their timer while hovered."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic"
+    description="Inject DasarToastService and call create. The page is wrapped by one dasar-toast-provider."
+  >
+    <app-toast-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: variantsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: variantsTs },
+    ]"
+    title="Variants and icon"
+    description="The variant colors the left icon and the close button. The surface stays neutral."
+  >
+    <app-toast-variants-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: actionHtml },
+      { label: 'TypeScript', lang: 'typescript', value: actionTs },
+    ]"
+    title="Action content"
+    description="Content can be a template. The context gives a close function, so the toast can hold an Undo button."
+  >
+    <app-toast-action-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: linkHtml },
+      { label: 'TypeScript', lang: 'typescript', value: linkTs },
+    ]"
+    title="Link"
+    description="The label and caption become a link. Internal paths use DASAR_TOAST_NAVIGATOR, which this docs app wires to the Angular router."
+  >
+    <app-toast-link-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: durationHtml },
+      { label: 'TypeScript', lang: 'typescript', value: durationTs },
+    ]"
+    title="Duration and hover"
+    description="The default duration is 4000ms. Use 0 to keep a toast until it is closed. alive-on-hover pauses the countdown."
+  >
+    <app-toast-duration-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: eventsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: eventsTs },
+    ]"
+    title="Events"
+    description="onEnter, onClose (with a reason) and onLeave are callbacks on the options."
+  >
+    <app-toast-events-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: controlHtml },
+      { label: 'TypeScript', lang: 'typescript', value: controlTs },
+    ]"
+    title="Control"
+    description="create returns a ref. Close one toast with ref.close() or destroy(ref), update it, or call destroyEverything."
+  >
+    <app-toast-control-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: placementHtml },
+      { label: 'TypeScript', lang: 'typescript', value: placementTs },
+    ]"
+    title="Placement"
+    description="A nested provider can sit anywhere in the app. Pick one of six placements."
+  >
+    <app-toast-placement-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: maxHtml },
+      { label: 'TypeScript', lang: 'typescript', value: maxTs },
+    ]"
+    title="Max and queue"
+    description="Only max toasts are shown. The rest wait in a queue and appear when space frees up."
+  >
+    <app-toast-max-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: scrollableHtml },
+      { label: 'TypeScript', lang: 'typescript', value: scrollableTs },
+    ]"
+    title="Scrollable"
+    description="With scrollable the stack stays expanded and scrolls when it is taller than the viewport."
+  >
+    <app-toast-scrollable-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: blurHtml },
+      { label: 'TypeScript', lang: 'typescript', value: blurTs },
+    ]"
+    title="Blur"
+    description="The blur only covers the box of each toast, not the page or the provider."
+  >
+    <app-toast-blur-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: slotsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: slotsTs },
+    ]"
+    title="Slots"
+    description="label-slot, caption-slot, content-slot and closeable-slot replace a part of every toast in the provider."
+  >
+    <app-toast-slots-example />
+  </doc-example-component>
+</docs-layout>

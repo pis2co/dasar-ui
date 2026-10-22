@@ -1,0 +1,112 @@
+@use '../../styles/theme.scss' as *;
+
+dasar-toast-provider {
+  display: contents;
+}
+
+.dasar-toast-container {
+  --dasar-toast-gutter-local: var(--dasar-toast-gutter, var(--dasar-space-4));
+  --dasar-toast-peek: 10px;
+
+  position: fixed;
+  z-index: var(--dasar-toast-z-index, 1100);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: var(--dasar-toast-width, 360px);
+  max-width: calc(100vw - 2 * var(--dasar-toast-gutter-local));
+  box-sizing: border-box;
+  pointer-events: none;
+
+  &.placement-top-left,
+  &.placement-top,
+  &.placement-top-right {
+    top: var(--dasar-toast-gutter-local);
+    align-content: start;
+  }
+
+  &.placement-bottom-left,
+  &.placement-bottom,
+  &.placement-bottom-right {
+    bottom: var(--dasar-toast-gutter-local);
+    align-content: end;
+  }
+
+  &.placement-top-left,
+  &.placement-bottom-left {
+    left: var(--dasar-toast-gutter-local);
+  }
+
+  &.placement-top-right,
+  &.placement-bottom-right {
+    right: var(--dasar-toast-gutter-local);
+  }
+
+  &.placement-top,
+  &.placement-bottom {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  // Collapsed stack, the newest toast is in front and older ones peek out behind it.
+  dasar-toast {
+    align-self: end;
+    z-index: calc(100 - var(--dasar-toast-index, 0));
+    transform-origin: bottom center;
+    transform: translateY(calc(var(--dasar-toast-index, 0) * var(--dasar-toast-peek) * -1))
+      scale(calc(1 - var(--dasar-toast-index, 0) * 0.05));
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  &.top dasar-toast {
+    align-self: start;
+    transform-origin: top center;
+    transform: translateY(calc(var(--dasar-toast-index, 0) * var(--dasar-toast-peek)))
+      scale(calc(1 - var(--dasar-toast-index, 0) * 0.05));
+  }
+
+  dasar-toast:nth-last-child(n + 5) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  // Expanded list, used on hover, on focus and always when scrollable.
+  &.expanded {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dasar-toast-stack-gap, var(--dasar-space-2));
+
+    dasar-toast {
+      transform: none;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &.top {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &.expanded {
+    pointer-events: auto;
+  }
+
+  &.scrollable {
+    max-height: calc(100vh - 2 * var(--dasar-toast-gutter-local));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    pointer-events: auto;
+  }
+
+  // The blur only covers the box of each toast.
+  &.blurred .dasar-toast {
+    background: color-mix(
+      in srgb,
+      var(--dasar-toast-background, var(--dasar-theme-bg-surface-color)) 70%,
+      transparent
+    );
+    backdrop-filter: blur(var(--dasar-toast-blur));
+    -webkit-backdrop-filter: blur(var(--dasar-toast-blur));
+  }
+}

@@ -1,0 +1,27 @@
+<ng-content></ng-content>
+@if (visibleItems().length > 0) {
+  <div
+    class="dasar-toast-container"
+    role="region"
+    aria-live="polite"
+    aria-label="Notifications"
+    [ngClass]="containerClasses"
+    [ngStyle]="containerStyle"
+    [style.--dasar-toast-blur]="blur"
+    (mouseenter)="expanded.set(true)"
+    (mouseleave)="expanded.set(false)"
+    (focusin)="expanded.set(true)"
+    (focusout)="expanded.set(false)"
+  >
+    @for (item of visibleItems(); track item.id; let position = $index) {
+      <dasar-toast
+        [item]="item"
+        [index]="indexOf(position)"
+        [labelSlot]="labelSlot?.templateRef"
+        [captionSlot]="captionSlot?.templateRef"
+        [contentSlot]="contentSlot?.templateRef"
+        [closeSlot]="closeableSlot?.templateRef"
+      />
+    }
+  </div>
+}

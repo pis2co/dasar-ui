@@ -1,0 +1,11 @@
+<div class="toast-row">
+  @for (item of placements; track item) {
+    <dasar-button size="sm" appearance="outline" (click)="placement.set(item)">{{
+      item
+    }}</dasar-button>
+  }
+</div>
+
+<dasar-toast-provider [placement]="placement()">
+  <app-toast-placement-fire [placement]="placement()" />
+</dasar-toast-provider>
