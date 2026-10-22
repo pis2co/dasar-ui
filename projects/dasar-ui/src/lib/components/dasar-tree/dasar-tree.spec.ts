@@ -33,6 +33,7 @@ const sample = (): DasarTreeItem[] => [
       [items]="items()"
       [type]="type()"
       [size]="size()"
+      [spacing]="spacing()"
       [label]="label()"
       [hint]="hint()"
       [disabled]="disabled()"
@@ -56,6 +57,7 @@ const sample = (): DasarTreeItem[] => [
 class TreeHost {
   items = signal<DasarTreeItem[]>(sample());
   type = signal<DasarTreeType>(null);
+  spacing = signal<'normal' | 'compact'>('normal');
   size = signal<'sm' | 'md' | 'lg'>('md');
   label = signal('');
   hint = signal('');
@@ -234,6 +236,27 @@ describe('DasarTree', () => {
       'Gamma',
       'Gamma One',
     ]);
+  });
+
+  it('uses normal spacing by default and switches to compact', async () => {
+    const container = () => fixture.nativeElement.querySelector('.dasar-tree-container');
+    expect(container().classList).toContain('spacing-normal');
+
+    host.spacing.set('compact');
+    await settle();
+
+    expect(container().classList).toContain('spacing-compact');
+    expect(container().classList).not.toContain('spacing-normal');
+  });
+
+  it('combines spacing with the size class', async () => {
+    host.size.set('sm');
+    host.spacing.set('compact');
+    await settle();
+
+    const classes = fixture.nativeElement.querySelector('.dasar-tree-container').classList;
+    expect(classes).toContain('size-sm');
+    expect(classes).toContain('spacing-compact');
   });
 
   it('applies the size class', async () => {

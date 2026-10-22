@@ -7,6 +7,7 @@ import { TreeBasicExample } from './examples/basic/tree-basic.example';
 import { TreeFileExample } from './examples/file/tree-file.example';
 import { TreeSelectableExample } from './examples/selectable/tree-selectable.example';
 import { TreeMultipleExample } from './examples/multiple/tree-multiple.example';
+import { TreeSpacingExample } from './examples/spacing/tree-spacing.example';
 import { TreeShowLineExample } from './examples/show-line/tree-show-line.example';
 import { TreeSearchExample } from './examples/search/tree-search.example';
 import { TreeDraggableExample } from './examples/draggable/tree-draggable.example';
@@ -32,6 +33,10 @@ import selectableTs from './examples/selectable/tree-selectable.example.ts' with
 import multipleHtml from './examples/multiple/tree-multiple.example.html' with { loader: 'text' };
 // @ts-ignore
 import multipleTs from './examples/multiple/tree-multiple.example.ts' with { loader: 'text' };
+// @ts-ignore
+import spacingHtml from './examples/spacing/tree-spacing.example.html' with { loader: 'text' };
+// @ts-ignore
+import spacingTs from './examples/spacing/tree-spacing.example.ts' with { loader: 'text' };
 // @ts-ignore
 import showLineHtml from './examples/show-line/tree-show-line.example.html' with { loader: 'text' };
 // @ts-ignore
@@ -73,6 +78,7 @@ import ngModelTs from './examples/ng-model/tree-ng-model.example.ts' with { load
     TreeSelectableExample,
     TreeMultipleExample,
     TreeShowLineExample,
+    TreeSpacingExample,
     TreeSearchExample,
     TreeDraggableExample,
     TreeCustomIconsExample,
@@ -95,6 +101,9 @@ export class TreeDocPage {
 
   protected multipleHtml = multipleHtml;
   protected multipleTs = multipleTs;
+
+  protected spacingHtml = spacingHtml;
+  protected spacingTs = spacingTs;
 
   protected showLineHtml = showLineHtml;
   protected showLineTs = showLineTs;
@@ -147,6 +156,13 @@ export class TreeDocPage {
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Row height and font size.',
+    },
+    {
+      name: 'spacing',
+      type: "'normal' | 'compact'",
+      defaultValue: "'normal'",
+      description:
+        'Horizontal spacing. compact narrows the indent of each level, the expander and the gaps inside a row. The row height does not change.',
     },
     {
       name: 'disabled',

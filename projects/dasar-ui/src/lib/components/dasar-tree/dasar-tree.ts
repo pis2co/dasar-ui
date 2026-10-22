@@ -60,11 +60,13 @@ export type {
 
 export type DasarTreeType = 'file' | 'selectable' | 'multiple' | null;
 export type DasarTreeSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarTreeSpacing = 'normal' | 'compact';
 export type DasarTreeFilterMethod = (item: DasarTreeItem, query: string) => boolean;
 
 export interface DasarTreeConfig {
   type?: DasarTreeType;
   size?: DasarTreeSize;
+  spacing?: DasarTreeSpacing;
   disabled?: boolean;
   label?: string;
   hint?: string;
@@ -277,6 +279,13 @@ export class DasarTree implements ControlValueAccessor, OnInit, OnChanges {
     'tree',
     'size',
     'md' as DasarTreeSize,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() spacing = resolveThemeDefault(
+    'tree',
+    'spacing',
+    'normal' as DasarTreeSpacing,
     this.themeProvider,
     this.themeService,
   );
@@ -523,6 +532,7 @@ export class DasarTree implements ControlValueAccessor, OnInit, OnChanges {
     return {
       ...Object.fromEntries(parseClassesToArray(this.containerClass).map((name) => [name, true])),
       [`size-${this.size}`]: true,
+      [`spacing-${this.spacing}`]: true,
       'show-line': this.showLine,
       'is-file': this.isFile,
       'is-selectable': this.isSelectable,

@@ -6,6 +6,10 @@
 
 .dasar-tree-container {
   --dasar-tree-row-height: var(--dasar-tree-row-height-md, 32px);
+  --dasar-tree-indent-local: var(--dasar-tree-indent, 20px);
+  --dasar-tree-expander-local: var(--dasar-tree-expander-size, 20px);
+  --dasar-tree-row-gap-local: var(--dasar-tree-row-gap, var(--dasar-space-1));
+  --dasar-tree-row-padding-x-local: var(--dasar-tree-row-padding-x, var(--dasar-space-base));
   font-size: var(--dasar-tree-font-size-md, var(--dasar-font-size-base));
   color: var(--dasar-tree-color, var(--dasar-theme-text-primary-color));
   flex-direction: column;
@@ -21,6 +25,14 @@
   &.size-lg {
     --dasar-tree-row-height: var(--dasar-tree-row-height-lg, 40px);
     font-size: var(--dasar-tree-font-size-lg, var(--dasar-font-size-lg));
+  }
+
+  // Compact narrows the indent and the expander by the same amount, so the guide lines stay centered.
+  &.spacing-compact {
+    --dasar-tree-indent-local: var(--dasar-tree-compact-indent, 12px);
+    --dasar-tree-expander-local: var(--dasar-tree-compact-expander-size, 12px);
+    --dasar-tree-row-gap-local: var(--dasar-tree-compact-row-gap, 2px);
+    --dasar-tree-row-padding-x-local: var(--dasar-tree-compact-row-padding-x, 4px);
   }
 
   &.disabled {
@@ -48,11 +60,10 @@
 }
 
 .dasar-tree-row {
-  --dasar-tree-indent-size: var(--dasar-tree-indent, 20px);
   height: var(--dasar-tree-row-height);
-  padding-right: var(--dasar-tree-row-padding-x, var(--dasar-space-base));
+  padding-right: var(--dasar-tree-row-padding-x-local);
   border-radius: var(--dasar-tree-row-radius, var(--dasar-radius-sm));
-  gap: var(--dasar-tree-row-gap, var(--dasar-space-1));
+  gap: var(--dasar-tree-row-gap-local);
   transition: background-color 0.15s ease;
   box-sizing: border-box;
   align-items: center;
@@ -113,7 +124,7 @@
 }
 
 .dasar-tree-indent {
-  width: var(--dasar-tree-indent-size);
+  width: var(--dasar-tree-indent-local);
   height: 100%;
   position: relative;
   flex: none;
@@ -163,7 +174,7 @@
 }
 
 .dasar-tree-expander {
-  width: var(--dasar-tree-expander-size, 20px);
+  width: var(--dasar-tree-expander-local);
   color: var(--dasar-tree-icon-color, var(--dasar-theme-text-secondary-color));
   justify-content: center;
   align-items: center;
