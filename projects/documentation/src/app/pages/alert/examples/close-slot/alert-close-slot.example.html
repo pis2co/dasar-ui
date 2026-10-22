@@ -1,0 +1,21 @@
+<dasar-alert
+  variant="warning"
+  icon-name="alert-triangle"
+  title="Session expiring"
+  [(visible)]="visible"
+>
+  Your session ends in five minutes.
+  <dasar-button
+    closeable-slot
+    size="sm"
+    appearance="outline"
+    variant="warning"
+    (click)="visible.set(false)"
+  >
+    Dismiss
+  </dasar-button>
+</dasar-alert>
+
+<dasar-button size="sm" style="margin-top: 8px" (click)="visible.set(true)"
+  >Show again</dasar-button
+>

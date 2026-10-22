@@ -1,0 +1,17 @@
+<dasar-toast-provider>
+  <ng-template label-slot let-toast>
+    <strong>{{ toast.options.label }} (custom)</strong>
+  </ng-template>
+  <ng-template caption-slot let-toast>
+    <em>{{ toast.options.caption }}</em>
+  </ng-template>
+  <ng-template content-slot let-close="close">
+    <dasar-button size="xs" appearance="outline" variant="secondary" (click)="close()"
+      >Got it</dasar-button
+    >
+  </ng-template>
+  <ng-template closeable-slot let-close="close">
+    <dasar-button size="xs" variant="ghost" (click)="close()">Close</dasar-button>
+  </ng-template>
+  <app-toast-slots-fire />
+</dasar-toast-provider>

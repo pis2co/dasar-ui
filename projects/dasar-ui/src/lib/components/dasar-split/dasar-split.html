@@ -1,0 +1,48 @@
+<div
+  #container
+  class="dasar-split"
+  [class.horizontal]="isHorizontal"
+  [class.vertical]="!isHorizontal"
+  [class.dragging]="dragging()"
+  [class.disabled]="disabled"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+>
+  <div
+    #firstPanel
+    class="dasar-split-panel dasar-split-first"
+    [style.flex-basis]="firstPanelBasis"
+    [style.min-width]="isHorizontal ? minCss : null"
+    [style.max-width]="isHorizontal ? maxCss : null"
+    [style.min-height]="!isHorizontal ? minCss : null"
+    [style.max-height]="!isHorizontal ? maxCss : null"
+    [ngClass]="firstPanelClass"
+    [ngStyle]="firstPanelStyle"
+  >
+    <ng-content select="[first-panel-slot]"></ng-content>
+  </div>
+  <div
+    class="dasar-split-bar"
+    role="separator"
+    [attr.aria-orientation]="isHorizontal ? 'vertical' : 'horizontal'"
+    [attr.aria-disabled]="disabled"
+    [attr.aria-valuenow]="currentSize"
+    [attr.aria-valuemin]="minPx"
+    [attr.aria-valuemax]="maxPx"
+    [attr.tabindex]="disabled ? -1 : 0"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+    (keydown)="onKeydown($event)"
+  >
+    <span class="dasar-split-trigger"><ng-content select="[trigger-panel]"></ng-content></span>
+  </div>
+  <div
+    class="dasar-split-panel dasar-split-second"
+    [ngClass]="secondPanelClass"
+    [ngStyle]="secondPanelStyle"
+  >
+    <ng-content select="[second-panel-slot]"></ng-content>
+  </div>
+</div>

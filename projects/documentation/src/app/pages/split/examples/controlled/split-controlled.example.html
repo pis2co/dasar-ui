@@ -1,0 +1,7 @@
+<div class="split-demo">
+  <dasar-split [(size)]="size">
+    <div first-panel-slot class="split-pane">First: {{ size() }}px</div>
+    <div second-panel-slot class="split-pane">Second panel</div>
+  </dasar-split>
+</div>
+<dasar-button size="sm" (click)="size.set(200)">Reset to 200px</dasar-button>

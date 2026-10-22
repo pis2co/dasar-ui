@@ -26,10 +26,23 @@
         <ng-content></ng-content>
       </div>
     </div>
-    @if (closeable) {
-      <dasar-button icon-only aria-label="Close" (click)="close($event)">
-        <dasar-icon [name]="closeIconName" size="sm" />
-      </dasar-button>
+    @if (closeable || closeableSlot) {
+      <div class="dasar-alert-close-section">
+        @if (closeableSlot) {
+          <ng-content select="[closeable-slot]"></ng-content>
+        } @else {
+          <dasar-button
+            class="dasar-alert-close"
+            variant="ghost"
+            size="sm"
+            icon-only
+            aria-label="Close"
+            (click)="close($event)"
+          >
+            <dasar-icon [name]="closeIconName" size="sm" />
+          </dasar-button>
+        }
+      </div>
     }
   </div>
 }

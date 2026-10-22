@@ -9,6 +9,7 @@ import { AlertBorderedExample } from './examples/bordered/alert-bordered.example
 import { AlertTitleExample } from './examples/title/alert-title.example';
 import { AlertIconExample } from './examples/icon/alert-icon.example';
 import { AlertCloseableExample } from './examples/closeable/alert-closeable.example';
+import { AlertCloseSlotExample } from './examples/close-slot/alert-close-slot.example';
 import { AlertVisibleExample } from './examples/visible/alert-visible.example';
 import { AlertSlotsExample } from './examples/slots/alert-slots.example';
 import { AlertCustomStyleExample } from './examples/custom-style/alert-custom-style.example';
@@ -50,6 +51,14 @@ import closeableHtml from './examples/closeable/alert-closeable.example.html' wi
 // @ts-ignore
 import closeableTs from './examples/closeable/alert-closeable.example.ts' with { loader: 'text' };
 
+// @ts-ignore
+import closeSlotHtml from './examples/close-slot/alert-close-slot.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import closeSlotTs from './examples/close-slot/alert-close-slot.example.ts' with {
+  loader: 'text',
+};
 // @ts-ignore
 import visibleHtml from './examples/visible/alert-visible.example.html' with { loader: 'text' };
 // @ts-ignore
@@ -104,6 +113,7 @@ import radiusThemeTs from './examples/radius-theme/alert-radius-theme.example.ts
     AlertIconExample,
     AlertCloseableExample,
     AlertVisibleExample,
+    AlertCloseSlotExample,
     AlertSlotsExample,
     AlertCustomStyleExample,
     AlertAdvancedThemeExample,
@@ -132,6 +142,9 @@ export class AlertDocPage {
 
   protected closeableHtml = closeableHtml;
   protected closeableTs = closeableTs;
+
+  protected closeSlotHtml = closeSlotHtml;
+  protected closeSlotTs = closeSlotTs;
 
   protected visibleHtml = visibleHtml;
   protected visibleTs = visibleTs;
@@ -175,7 +188,7 @@ export class AlertDocPage {
       type: 'boolean',
       defaultValue: 'false',
       description:
-        'Shows a close button. Clicking it plays the leave animation, then hides the alert.',
+        'Shows the default ghost close button. Clicking it plays the leave animation, then hides the alert.',
     },
     {
       name: '[(visible)]',
@@ -237,6 +250,13 @@ export class AlertDocPage {
       type: 'object',
       defaultValue: 'null',
       description: 'Inline style for the content.',
+    },
+    {
+      name: '[closeable-slot]',
+      type: 'Content Slot',
+      defaultValue: '-',
+      description:
+        'Replaces the default close button with custom content. It shows even when closeable is false. Close the alert yourself with [(visible)].',
     },
     {
       name: '(onClose)',

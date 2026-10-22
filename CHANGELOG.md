@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/pis2co/dasar-ui/compare/v2.5.1...v2.6.0) (2026-10-22)
+
+
+### Features
+
+* add dasar-toast service and provider ([f91405a](https://github.com/pis2co/dasar-ui/commit/f91405a6302a3bbfca720ea7fc395be03ca50a34))
+* ghost close button and closeable-slot for alert ([8fd45f4](https://github.com/pis2co/dasar-ui/commit/8fd45f455ea61b77c6db87937f0bef343690131a))
+
+
+### Bug Fixes
+
+* align toast icon, label and close button, and make the scroll container full height ([9b5b004](https://github.com/pis2co/dasar-ui/commit/9b5b0045acbfea7dfca8928da3e31092f5cd6ae2))
+* keep toast width on hover and stop clipping the scroll container ([134324f](https://github.com/pis2co/dasar-ui/commit/134324fa4b7dfd710fcb950470963ad279cfb8ea))
+
+### [2.5.1](https://github.com/pis2co/dasar-ui/compare/v2.5.0...v2.5.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* unmatched height ([b9a872b](https://github.com/pis2co/dasar-ui/commit/b9a872b41a7e2009c2e177d8c343d81560c4c566))
+
+## [2.5.0](https://github.com/pis2co/dasar-ui/compare/v2.4.2...v2.5.0) (2026-10-21)
+
+
+### Features
+
+* add dasar-split component ([341acfc](https://github.com/pis2co/dasar-ui/commit/341acfcb3f05d6fdac8216ee1664bab0bb71e5bd))
+
 ### [2.4.2](https://github.com/pis2co/dasar-ui/compare/v2.4.1...v2.4.2) (2026-10-21)
 
 

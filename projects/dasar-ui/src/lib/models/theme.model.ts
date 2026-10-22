@@ -17,6 +17,8 @@ import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-rad
 import { DasarBreakpointConfig } from '../components/dasar-breakpoint/dasar-breakpoint';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
 import { DasarDrawerConfig } from '../components/dasar-drawer/dasar-drawer';
+import { DasarSplitConfig } from '../components/dasar-split/dasar-split';
+import { DasarToastConfig } from '../components/dasar-toast/dasar-toast.model';
 import { DasarTreeConfig } from '../components/dasar-tree/dasar-tree';
 import { DasarOverlayConfig } from '../components/dasar-overlay/dasar-overlay';
 import { DasarIconConfig } from '../components/dasar-icon/dasar-icon';
@@ -861,6 +863,40 @@ export interface DasarThemeDrawer {
   resizeHandleSize?: string;
   resizeHandleHoverColor?: string;
 }
+export interface DasarThemeSplit {
+  barSize?: string;
+  barHitArea?: string;
+  barColor?: string;
+  barHoverColor?: string;
+  barActiveColor?: string;
+  gripColor?: string;
+}
+export interface DasarThemeToast {
+  background?: string;
+  color?: string;
+  captionColor?: string;
+  border?: string;
+  shadow?: string;
+  radius?: string;
+  padding?: string;
+  gap?: string;
+  stackGap?: string;
+  scrollPadding?: string;
+  iconSize?: string;
+  width?: string;
+  gutter?: string;
+  zIndex?: string;
+  fontSize?: string;
+  labelFontSize?: string;
+  animationDuration?: string;
+  enterOffset?: string;
+  blur?: string;
+  primaryAccent?: string;
+  secondaryAccent?: string;
+  successAccent?: string;
+  warningAccent?: string;
+  dangerAccent?: string;
+}
 export interface DasarThemeModal {
   background?: string;
   bodyColor?: string;
@@ -923,6 +959,8 @@ export type DasarComponentConfig = {
   modal?: DasarModalConfig;
   drawer?: DasarDrawerConfig;
   tree?: DasarTreeConfig;
+  split?: DasarSplitConfig;
+  toast?: DasarToastConfig;
   overlay?: DasarOverlayConfig;
   icon?: DasarIconConfig;
   menu?: DasarMenuConfig;
@@ -965,6 +1003,8 @@ export interface DasarThemeConfig {
       modal?: DasarThemeModal;
       drawer?: DasarThemeDrawer;
       tree?: DasarThemeTree;
+      split?: DasarThemeSplit;
+      toast?: DasarThemeToast;
     };
     dark?: {
       common?: DasarThemeCommon;
@@ -991,6 +1031,8 @@ export interface DasarThemeConfig {
       modal?: DasarThemeModal;
       drawer?: DasarThemeDrawer;
       tree?: DasarThemeTree;
+      split?: DasarThemeSplit;
+      toast?: DasarThemeToast;
     };
   };
 }

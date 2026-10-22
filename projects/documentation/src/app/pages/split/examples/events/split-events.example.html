@@ -1,0 +1,12 @@
+<div class="split-demo">
+  <dasar-split
+    size="50%"
+    (onDragStart)="log('start ' + $event)"
+    (onUpdateSize)="last.set($event)"
+    (onDragEnd)="log('end ' + $event)"
+  >
+    <div first-panel-slot class="split-pane">Drag the bar</div>
+    <div second-panel-slot class="split-pane">Size: {{ last() }}px</div>
+  </dasar-split>
+</div>
+<pre class="split-log">{{ lines().join('\n') }}</pre>

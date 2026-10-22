@@ -6,10 +6,12 @@ import {
   DasarChipComponent,
   DasarDrawerComponent,
   DasarIconComponent,
+  DasarToastComponent,
+  DASAR_TOAST_NAVIGATOR,
 } from 'dasar-ui';
 import { Component, computed, effect, inject, signal, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DocCustomizeService } from './services/doc-customize.service';
 import { DocCustomizeModalComponent } from './components/doc-customize-modal.component';
@@ -38,8 +40,18 @@ import packageJson from '../../../../projects/dasar-ui/package.json' with { load
     DasarChipComponent,
     DasarDrawerComponent,
     DasarIconComponent,
+    DasarToastComponent,
     DocCustomizeModalComponent,
     DasarUiLogoComponent,
+  ],
+  providers: [
+    {
+      provide: DASAR_TOAST_NAVIGATOR,
+      useFactory: () => {
+        const router = inject(Router);
+        return (to: string) => void router.navigateByUrl(to);
+      },
+    },
   ],
   templateUrl: './app.html',
   selector: 'app-root',

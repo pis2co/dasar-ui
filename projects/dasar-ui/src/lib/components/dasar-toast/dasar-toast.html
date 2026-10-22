@@ -1,1 +1,83 @@
-<p>dasar-toast works!</p>
+<div
+  class="dasar-toast"
+  [ngClass]="['variant-' + variant, 'state-' + item.state]"
+  [class.with-icon]="!!item.options.icon"
+  [attr.role]="role"
+  [attr.data-id]="item.id"
+  tabindex="-1"
+  (mouseenter)="pause()"
+  (mouseleave)="resume()"
+  (focusin)="pause()"
+  (focusout)="resume()"
+  (keydown)="onKeydown($event)"
+  (animationend)="onAnimationEnd($event)"
+>
+  <div class="dasar-toast-main">
+    <ng-template #heading>
+      <div class="dasar-toast-title">
+        @if (item.options.icon) {
+          <span class="dasar-toast-icon"><dasar-icon [name]="item.options.icon" size="sm" /></span>
+        }
+        @if (labelSlot) {
+          <ng-container *ngTemplateOutlet="labelSlot; context: context"></ng-container>
+        } @else if (item.options.label) {
+          <div class="dasar-toast-label dasar-toast-label-capitalized">
+            {{ item.options.label }}
+          </div>
+        }
+      </div>
+      @if (captionSlot) {
+        <div class="dasar-toast-caption">
+          <ng-container *ngTemplateOutlet="captionSlot; context: context"></ng-container>
+        </div>
+      } @else if (item.options.caption) {
+        <div class="dasar-toast-caption">{{ item.options.caption }}</div>
+      }
+    </ng-template>
+    @if (item.options.to) {
+      <a
+        class="dasar-toast-head dasar-toast-link"
+        [attr.href]="item.options.to"
+        (click)="onLinkClick($event)"
+      >
+        <ng-container *ngTemplateOutlet="heading"></ng-container>
+      </a>
+    } @else {
+      <div class="dasar-toast-head">
+        <ng-container *ngTemplateOutlet="heading"></ng-container>
+      </div>
+    }
+    @if (item.options.description) {
+      <div class="dasar-toast-description">{{ item.options.description }}</div>
+    }
+    @if (contentSlot || templateContent || stringContent) {
+      <div class="dasar-toast-content">
+        @if (contentSlot) {
+          <ng-container *ngTemplateOutlet="contentSlot; context: context"></ng-container>
+        } @else if (templateContent) {
+          <ng-container *ngTemplateOutlet="templateContent; context: context"></ng-container>
+        } @else {
+          {{ stringContent }}
+        }
+      </div>
+    }
+  </div>
+  @if (closeSlot || closeable) {
+    <div class="dasar-toast-close">
+      @if (closeSlot) {
+        <ng-container *ngTemplateOutlet="closeSlot; context: context"></ng-container>
+      } @else {
+        <dasar-button
+          class="dasar-toast-close-button"
+          variant="ghost"
+          size="sm"
+          icon-only
+          aria-label="Close"
+          (click)="closeByButton()"
+        >
+          <dasar-icon [name]="closeIconName" size="sm" />
+        </dasar-button>
+      }
+    </div>
+  }
+</div>

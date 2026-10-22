@@ -11,6 +11,8 @@ import {
   datepickerMap,
   drawerMap,
   treeMap,
+  splitMap,
+  toastMap,
   dividerMap,
   inputMap,
   listMap,
@@ -65,6 +67,8 @@ export const TOKEN_GROUPS: ThemingTokenGroup[] = [
   { component: 'modal', path: 'tokens.light.modal', map: modalMap },
   { component: 'drawer', path: 'tokens.light.drawer', map: drawerMap },
   { component: 'tree', path: 'tokens.light.tree', map: treeMap },
+  { component: 'split', path: 'tokens.light.split', map: splitMap },
+  { component: 'toast', path: 'tokens.light.toast', map: toastMap },
 ];
 
 export const TOKEN_ROWS: ThemingTokenRow[] = [
@@ -1069,6 +1073,58 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       type: 'ClassType',
       defaultValue: '-',
       description: 'Classes for the tree parts.',
+    },
+  ],
+  toast: [
+    {
+      name: 'duration / closeable / variant / aliveOnHover',
+      type: 'number / boolean / DasarToastVariant / boolean',
+      defaultValue: '4000 / false / secondary / true',
+      description: 'Defaults for every toast. Options passed to create win.',
+    },
+    {
+      name: 'closeIconName',
+      type: 'string',
+      defaultValue: "'x'",
+      description: 'Icon of the close button.',
+    },
+    {
+      name: 'max / placement / scrollable / blur',
+      type: 'number / DasarToastPlacement / boolean / string',
+      defaultValue: "5 / 'bottom-right' / false / null",
+      description: 'Defaults for dasar-toast-provider.',
+    },
+    {
+      name: 'containerStyle / containerClass',
+      type: 'StyleType / ClassType',
+      defaultValue: '-',
+      description: 'Style and class for the toast container.',
+    },
+  ],
+  split: [
+    {
+      name: 'direction',
+      type: "'horizontal' | 'vertical'",
+      defaultValue: "'horizontal'",
+      description: 'Layout direction of the panels.',
+    },
+    {
+      name: 'size / min / max',
+      type: 'string | number',
+      defaultValue: "'50%' / 0 / '100%'",
+      description: 'Size and limits of the first panel.',
+    },
+    {
+      name: 'containerStyle / firstPanelStyle / secondPanelStyle',
+      type: 'StyleType',
+      defaultValue: '-',
+      description: 'Inline styles for the split parts.',
+    },
+    {
+      name: 'containerClass / firstPanelClass / secondPanelClass',
+      type: 'ClassType',
+      defaultValue: '-',
+      description: 'Classes for the split parts.',
     },
   ],
   drawer: [

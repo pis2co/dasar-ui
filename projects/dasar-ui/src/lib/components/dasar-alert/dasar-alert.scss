@@ -146,26 +146,22 @@
   font-size: var(--dasar-alert-title-font-size, var(--dasar-font-size-base));
 }
 
+.dasar-alert-close-section {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+}
+
 .dasar-alert-close {
   flex: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--dasar-alert-close-padding, 2px);
-  margin: 0;
-  border: 0;
-  border-radius: var(--dasar-radius-md);
-  background: transparent;
   color: inherit;
-  cursor: pointer;
 
-  &:hover {
-    background: var(--dasar-alert-close-hover-bg, var(--dasar-theme-bg-hover-color));
+  .dasar-button-native {
+    padding: var(--dasar-alert-close-padding, 2px);
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--dasar-alert-icon-local);
-    outline-offset: 1px;
+  .dasar-button-native:hover:not(:disabled) {
+    background: var(--dasar-alert-close-hover-bg, var(--dasar-theme-bg-hover-color));
   }
 }
 

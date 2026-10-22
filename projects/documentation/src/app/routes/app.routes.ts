@@ -15,6 +15,8 @@ import { InputDocPage } from '../pages/input/input.page';
 import { TableDocPage } from '../pages/table/table.page';
 import { ModalDocPage } from '../pages/modal/modal.page';
 import { DrawerDocPage } from '../pages/drawer/drawer.page';
+import { SplitDocPage } from '../pages/split/split.page';
+import { ToastDocPage } from '../pages/toast/toast.page';
 import { TreeDocPage } from '../pages/tree/tree.page';
 import { ChipDocPage } from '../pages/chip/chip.page';
 import { DividerDocPage } from '../pages/divider/divider.page';
@@ -132,6 +134,16 @@ export const routes: Routes = [
     path: 'components/drawer',
     component: DrawerDocPage,
     title: 'Drawer Docs | Dasar UI',
+  },
+  {
+    path: 'components/split',
+    component: SplitDocPage,
+    title: 'Split Docs | Dasar UI',
+  },
+  {
+    path: 'components/toast',
+    component: ToastDocPage,
+    title: 'Toast Docs | Dasar UI',
   },
   {
     path: 'components/tree',

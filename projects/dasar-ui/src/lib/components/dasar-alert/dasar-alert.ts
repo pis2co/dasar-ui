@@ -45,6 +45,9 @@ export class DasarAlertHeaderSlot {}
 @Directive({ selector: '[icon-slot]', standalone: true })
 export class DasarAlertIconSlot {}
 
+@Directive({ selector: '[closeable-slot]', standalone: true })
+export class DasarAlertCloseableSlot {}
+
 @Component({
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dasar-alert.scss'],
@@ -160,6 +163,7 @@ export class DasarAlert implements OnDestroy {
 
   @ContentChild(DasarAlertHeaderSlot) headerSlot?: DasarAlertHeaderSlot;
   @ContentChild(DasarAlertIconSlot) iconSlot?: DasarAlertIconSlot;
+  @ContentChild(DasarAlertCloseableSlot) closeableSlot?: DasarAlertCloseableSlot;
 
   @HostBinding('class')
   get hostClasses(): string {
@@ -254,4 +258,9 @@ export class DasarAlert implements OnDestroy {
   }
 }
 
-export const DasarAlertComponent = [DasarAlert, DasarAlertHeaderSlot, DasarAlertIconSlot] as const;
+export const DasarAlertComponent = [
+  DasarAlert,
+  DasarAlertHeaderSlot,
+  DasarAlertIconSlot,
+  DasarAlertCloseableSlot,
+] as const;

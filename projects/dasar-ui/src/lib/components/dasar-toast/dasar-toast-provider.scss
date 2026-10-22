@@ -1,0 +1,126 @@
+@use '../../styles/theme.scss' as *;
+
+dasar-toast-provider {
+  display: contents;
+}
+
+.dasar-toast-container {
+  --dasar-toast-gutter-local: var(--dasar-toast-gutter, var(--dasar-space-4));
+  --dasar-toast-peek: 10px;
+  --dasar-toast-pad: 0px;
+
+  position: fixed;
+  z-index: var(--dasar-toast-z-index, 1100);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: calc(var(--dasar-toast-width, 360px) + 2 * var(--dasar-toast-pad));
+  max-width: calc(100vw - 2 * var(--dasar-toast-gutter-local) + 2 * var(--dasar-toast-pad));
+  box-sizing: border-box;
+  pointer-events: none;
+
+  &.placement-top-left,
+  &.placement-top,
+  &.placement-top-right {
+    top: calc(var(--dasar-toast-gutter-local) - var(--dasar-toast-pad));
+    align-content: start;
+  }
+
+  &.placement-bottom-left,
+  &.placement-bottom,
+  &.placement-bottom-right {
+    bottom: calc(var(--dasar-toast-gutter-local) - var(--dasar-toast-pad));
+    align-content: end;
+  }
+
+  &.placement-top-left,
+  &.placement-bottom-left {
+    left: calc(var(--dasar-toast-gutter-local) - var(--dasar-toast-pad));
+  }
+
+  &.placement-top-right,
+  &.placement-bottom-right {
+    right: calc(var(--dasar-toast-gutter-local) - var(--dasar-toast-pad));
+  }
+
+  &.placement-top,
+  &.placement-bottom {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  // Collapsed stack, the newest toast is in front and older ones peek out behind it.
+  dasar-toast {
+    z-index: calc(100 - var(--dasar-toast-index, 0));
+    transform-origin: bottom center;
+    transform: translateY(calc(var(--dasar-toast-index, 0) * var(--dasar-toast-peek) * -1))
+      scale(calc(1 - var(--dasar-toast-index, 0) * 0.05));
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  &:not(.expanded) dasar-toast {
+    align-self: end;
+  }
+
+  &.top:not(.expanded) dasar-toast {
+    align-self: start;
+  }
+
+  &.top dasar-toast {
+    transform-origin: top center;
+    transform: translateY(calc(var(--dasar-toast-index, 0) * var(--dasar-toast-peek)))
+      scale(calc(1 - var(--dasar-toast-index, 0) * 0.05));
+  }
+
+  dasar-toast.dasar-toast-deep {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  // Expanded list, used on hover, on focus and always when scrollable.
+  &.expanded {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--dasar-toast-stack-gap, var(--dasar-space-2));
+
+    dasar-toast {
+      transform: none;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &.top {
+      flex-direction: column;
+    }
+  }
+
+  &.expanded {
+    pointer-events: auto;
+  }
+
+  // The container spans the viewport height, so the list leaves through the real edge of the page.
+  // The horizontal padding keeps the shadow and the rounded corners from being clipped.
+  &.scrollable {
+    --dasar-toast-pad: var(--dasar-toast-scroll-padding, 24px);
+
+    top: 0;
+    bottom: 0;
+    padding: var(--dasar-toast-gutter-local) var(--dasar-toast-pad);
+    overflow-y: auto;
+    scrollbar-width: none;
+    overscroll-behavior: contain;
+    pointer-events: none;
+  }
+
+  // The blur only covers the box of each toast.
+  &.blurred .dasar-toast {
+    background: color-mix(
+      in srgb,
+      var(--dasar-toast-background, var(--dasar-theme-bg-surface-color)) 70%,
+      transparent
+    );
+    backdrop-filter: blur(var(--dasar-toast-blur));
+    -webkit-backdrop-filter: blur(var(--dasar-toast-blur));
+  }
+}
