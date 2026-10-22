@@ -114,7 +114,7 @@ describe('DasarToastProvider', () => {
     expect(el.querySelector('.dasar-toast-description')?.textContent).toContain('Body');
     expect(el.querySelector('.dasar-toast-content')?.textContent).toContain('Extra');
     expect(el.querySelector('.dasar-toast-title .dasar-toast-icon dasar-icon')).not.toBeNull();
-    expect(el.querySelector('.dasar-toast-title .dasar-toast-label')).not.toBeNull();
+    expect(el.querySelector('.dasar-toast-title .slot-label')).not.toBeNull();
     expect(el.querySelector('.dasar-toast-title .dasar-toast-caption')).toBeNull();
     expect(el.querySelector('.dasar-toast.with-icon')).not.toBeNull();
   });
