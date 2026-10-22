@@ -1,13 +1,13 @@
 {
   "name": "dasar-ui",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "author": "dxxta",
   "packageManager": "npm@10.9.8",
   "scripts": {
     "lib:create": "bash -c 'read -p \"name:\" NAME && ng generate component $NAME --project=dasar-ui'",
-    "git:patch:push": "bash -c 'read -p \"branch:\" BRANCH && npm run git:patch && git push --follow-tags origin HEAD:$BRANCH'",
-    "git:minor:push": "bash -c 'read -p \"branch:\" BRANCH && npm run git:minor && git push --follow-tags origin HEAD:$BRANCH'",
-    "git:major:push": "bash -c 'read -p \"branch:\" BRANCH && npm run git:major && git push --follow-tags origin HEAD:$BRANCH'",
+    "git:patch:push": "bash -c 'read -r -p \"branch: \" BRANCH </dev/tty && [ -n \"$BRANCH\" ] && npm run git:patch && git push --follow-tags origin HEAD:\"$BRANCH\"'",
+    "git:minor:push": "bash -c 'read -r -p \"branch: \" BRANCH </dev/tty && [ -n \"$BRANCH\" ] && npm run git:minor && git push --follow-tags origin HEAD:\"$BRANCH\"'",
+    "git:major:push": "bash -c 'read -r -p \"branch: \" BRANCH </dev/tty && [ -n \"$BRANCH\" ] && npm run git:major && git push --follow-tags origin HEAD:\"$BRANCH\"'",
     "git:patch": "npx standard-version --release-as patch",
     "git:minor": "npx standard-version --release-as minor",
     "git:major": "npx standard-version --release-as major",

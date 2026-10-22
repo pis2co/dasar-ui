@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.1](https://github.com/pis2co/dasar-ui/compare/v2.5.0...v2.5.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* unmatched height ([b9a872b](https://github.com/pis2co/dasar-ui/commit/b9a872b41a7e2009c2e177d8c343d81560c4c566))
+
 ## [2.5.0](https://github.com/pis2co/dasar-ui/compare/v2.4.2...v2.5.0) (2026-10-21)
 
 
