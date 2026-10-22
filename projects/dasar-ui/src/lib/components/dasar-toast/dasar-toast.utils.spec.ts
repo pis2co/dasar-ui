@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { DasarToastTimer, isInternalLink, stackIndex } from './dasar-toast.utils';
+import { DasarToastTimer, isInternalLink } from './dasar-toast.utils';
 
 describe('DasarToastTimer', () => {
   beforeEach(() => vi.useFakeTimers());
@@ -43,13 +43,6 @@ describe('DasarToastTimer', () => {
     timer.clear();
     vi.advanceTimersByTime(1000);
     expect(spy).not.toHaveBeenCalled();
-  });
-});
-
-describe('stackIndex', () => {
-  it('counts from the newest toast', () => {
-    expect(stackIndex(2, 3)).toBe(0);
-    expect(stackIndex(0, 3)).toBe(2);
   });
 });
 

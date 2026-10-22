@@ -137,7 +137,7 @@ describe('DasarToastProvider', () => {
     host.child.toast.create({ label: 'A', duration: 0 });
     host.child.toast.create({ label: 'B', closeable: true, duration: 0 });
     await flush();
-    const [a, b] = toastsOf(fixture);
+    const [b, a] = toastsOf(fixture);
     expect(a.querySelector('.dasar-toast-close')).toBeNull();
     expect(b.querySelector('.dasar-toast-close .dasar-toast-close-button')).not.toBeNull();
   });
@@ -163,7 +163,7 @@ describe('DasarToastProvider', () => {
     await new Promise((resolve) => setTimeout(resolve, 450));
     await flush();
     expect(toastsOf(fixture)).toHaveLength(2);
-    expect(toastsOf(fixture)[1].textContent).toContain('T3');
+    expect(toastsOf(fixture)[0].textContent).toContain('T3');
   });
 
   it('closes after the duration with the timeout reason', async () => {
@@ -261,20 +261,34 @@ describe('DasarToastProvider', () => {
     expect(container.classList).toContain('blurred');
   });
 
-  it('marks stack order with the newest toast at index 0', async () => {
+  it('renders the newest toast first with index 0 at the front', async () => {
     host.child.toast.create({ label: 'A', duration: 0 });
     host.child.toast.create({ label: 'B', duration: 0 });
+    host.child.toast.create({ label: 'C', duration: 0 });
     await flush();
-    const [first, second] = toastsOf(fixture);
-    expect(first.style.getPropertyValue('--dasar-toast-index')).toBe('1');
-    expect(second.style.getPropertyValue('--dasar-toast-index')).toBe('0');
+    const toasts = toastsOf(fixture);
+    expect(toasts.map((el) => el.textContent?.trim().slice(0, 1))).toEqual(['C', 'B', 'A']);
+    expect(toasts.map((el) => el.style.getPropertyValue('--dasar-toast-index'))).toEqual([
+      '0',
+      '1',
+      '2',
+    ]);
+  });
+
+  it('marks layers deeper than the third as deep', async () => {
+    host.max.set(8);
+    await flush();
+    for (let n = 0; n < 6; n++) host.child.toast.create({ label: `T${n}`, duration: 0 });
+    await flush();
+    const deep = toastsOf(fixture).map((el) => el.classList.contains('dasar-toast-deep'));
+    expect(deep).toEqual([false, false, false, false, true, true]);
   });
 
   it('uses alert role for danger and warning', async () => {
     host.child.toast.create({ label: 'A', variant: 'danger', duration: 0 });
     host.child.toast.create({ label: 'B', duration: 0 });
     await flush();
-    const [a, b] = toastsOf(fixture).map((el) => el.querySelector('.dasar-toast') as HTMLElement);
+    const [b, a] = toastsOf(fixture).map((el) => el.querySelector('.dasar-toast') as HTMLElement);
     expect(a.getAttribute('role')).toBe('alert');
     expect(b.getAttribute('role')).toBe('status');
   });

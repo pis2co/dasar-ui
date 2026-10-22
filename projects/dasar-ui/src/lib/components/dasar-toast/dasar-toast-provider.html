@@ -13,10 +13,10 @@
     (focusin)="expanded.set(true)"
     (focusout)="expanded.set(false)"
   >
-    @for (item of visibleItems(); track item.id; let position = $index) {
+    @for (item of renderItems(); track item.id; let position = $index) {
       <dasar-toast
         [item]="item"
-        [index]="indexOf(position)"
+        [index]="position"
         [labelSlot]="labelSlot?.templateRef"
         [captionSlot]="captionSlot?.templateRef"
         [contentSlot]="contentSlot?.templateRef"

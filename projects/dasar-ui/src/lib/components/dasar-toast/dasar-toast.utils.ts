@@ -42,9 +42,6 @@ export class DasarToastTimer {
   }
 }
 
-// Position of a toast counted from the front of the stack, where the newest toast is 0.
-export const stackIndex = (position: number, total: number): number => total - 1 - position;
-
 // Internal paths go through the router, anything with a scheme or a target stays a normal link.
 export const isInternalLink = (to: string): boolean =>
   !/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(to.trim());

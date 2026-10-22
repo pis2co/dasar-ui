@@ -20,7 +20,6 @@ import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { DasarToast } from './dasar-toast';
 import { DasarToastService } from './dasar-toast.service';
 import { DasarToastContext, DasarToastPlacement } from './dasar-toast.model';
-import { stackIndex } from './dasar-toast.utils';
 
 @Directive({ selector: 'ng-template[label-slot]', standalone: true })
 export class DasarToastLabelSlot {
@@ -115,6 +114,9 @@ export class DasarToastProvider {
     this.service.items().slice(0, this.service.max()),
   );
 
+  // Newest first, so index 0 is the front of the stack and the scroll starts at the newest toast.
+  protected readonly renderItems = computed(() => [...this.visibleItems()].reverse());
+
   constructor() {
     // The container is removed with its last toast, so the hover state would never reset on its own.
     effect(() => {
@@ -139,10 +141,6 @@ export class DasarToastProvider {
     };
     for (const name of parseClassesToArray(this.containerClass)) base[name] = true;
     return base;
-  }
-
-  protected indexOf(position: number): number {
-    return stackIndex(position, this.visibleItems().length);
   }
 }
 

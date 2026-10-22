@@ -41,6 +41,7 @@ const ANIMATION_FALLBACK_MS = 400;
   host: {
     '[class.dasar-toast-host]': 'true',
     '[style.--dasar-toast-index]': 'index',
+    '[class.dasar-toast-deep]': 'index > 3',
   },
 })
 export class DasarToast implements OnInit, OnChanges, OnDestroy {
