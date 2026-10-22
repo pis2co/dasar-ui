@@ -825,6 +825,10 @@ export interface DasarThemeTree {
   rowPaddingX?: string;
   indent?: string;
   expanderSize?: string;
+  compactIndent?: string;
+  compactExpanderSize?: string;
+  compactRowGap?: string;
+  compactRowPaddingX?: string;
   hoverBg?: string;
   selectedBg?: string;
   selectedColor?: string;

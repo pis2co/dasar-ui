@@ -1045,6 +1045,12 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
       description: 'Row height and font size.',
     },
     {
+      name: 'spacing',
+      type: 'DasarTreeSpacing',
+      defaultValue: "'normal'",
+      description: "'normal' or 'compact'. Compact uses the compact* tokens.",
+    },
+    {
       name: 'selectable / multiple',
       type: 'boolean',
       defaultValue: 'false',
