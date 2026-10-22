@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.1](https://github.com/pis2co/dasar-ui/compare/v2.6.0...v2.6.1) (2026-10-22)
+
+
+### Features
+
+* add compact spacing to tree ([3750a18](https://github.com/pis2co/dasar-ui/commit/3750a1878d317afbc21db61e137a36dd658cb8f0))
+
+
+### Bug Fixes
+
+* slot padding and more ([91b0bd4](https://github.com/pis2co/dasar-ui/commit/91b0bd4752e205d91ce7b79cc61bfed2ae39cbf7))
+
 ## [2.6.0](https://github.com/pis2co/dasar-ui/compare/v2.5.1...v2.6.0) (2026-10-22)
 
 
