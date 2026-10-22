@@ -99,16 +99,18 @@ dasar-toast-provider {
     pointer-events: auto;
   }
 
-  // The padding keeps the shadow and the rounded corners from being clipped by the scroll box.
+  // The container spans the viewport height, so the list leaves through the real edge of the page.
+  // The horizontal padding keeps the shadow and the rounded corners from being clipped.
   &.scrollable {
     --dasar-toast-pad: var(--dasar-toast-scroll-padding, 24px);
 
-    max-height: calc(100vh - 2 * var(--dasar-toast-gutter-local) + 2 * var(--dasar-toast-pad));
-    padding: var(--dasar-toast-pad);
+    top: 0;
+    bottom: 0;
+    padding: var(--dasar-toast-gutter-local) var(--dasar-toast-pad);
     overflow-y: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     overscroll-behavior: contain;
-    pointer-events: auto;
+    pointer-events: none;
   }
 
   // The blur only covers the box of each toast.

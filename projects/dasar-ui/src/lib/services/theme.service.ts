@@ -809,6 +809,7 @@ export const toastMap: Record<keyof DasarThemeToast, string> = {
   gap: '--dasar-toast-gap',
   stackGap: '--dasar-toast-stack-gap',
   scrollPadding: '--dasar-toast-scroll-padding',
+  iconSize: '--dasar-toast-icon-size',
   width: '--dasar-toast-width',
   gutter: '--dasar-toast-gutter',
   zIndex: '--dasar-toast-z-index',

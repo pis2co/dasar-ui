@@ -882,6 +882,7 @@ export interface DasarThemeToast {
   gap?: string;
   stackGap?: string;
   scrollPadding?: string;
+  iconSize?: string;
   width?: string;
   gutter?: string;
   zIndex?: string;

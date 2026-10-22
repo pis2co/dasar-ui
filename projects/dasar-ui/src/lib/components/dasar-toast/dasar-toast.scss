@@ -11,8 +11,9 @@ dasar-toast {
   --dasar-toast-accent-local: var(--dasar-toast-secondary-accent, var(--dasar-neutral-500));
 
   display: flex;
-  flex-direction: column;
-  gap: var(--dasar-toast-gap, var(--dasar-space-2));
+  flex-direction: row;
+  align-items: center;
+  gap: var(--dasar-toast-gap, var(--dasar-space-3));
   box-sizing: border-box;
   width: 100%;
   padding: var(--dasar-toast-padding, var(--dasar-space-4));
@@ -62,25 +63,35 @@ dasar-toast {
   }
 }
 
-.dasar-toast-header {
+.dasar-toast-main {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--dasar-toast-gap, var(--dasar-space-2));
+}
+
+.dasar-toast-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dasar-toast-title {
+  display: flex;
+  align-items: center;
   gap: var(--dasar-toast-gap, var(--dasar-space-3));
+  min-width: 0;
 }
 
 .dasar-toast-icon {
   flex: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: var(--dasar-toast-icon-size, 16px);
   color: var(--dasar-toast-accent-local);
-}
-
-.dasar-toast-heading {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 .dasar-toast-link {
@@ -109,10 +120,22 @@ dasar-toast {
   color: var(--dasar-toast-caption-color, var(--dasar-theme-text-secondary-color));
 }
 
+// Everything under the title lines up with the label when there is an icon.
+.dasar-toast.with-icon {
+  .dasar-toast-caption,
+  .dasar-toast-description,
+  .dasar-toast-content {
+    padding-left: calc(
+      var(--dasar-toast-icon-size, 16px) + var(--dasar-toast-gap, var(--dasar-space-3))
+    );
+  }
+}
+
 .dasar-toast-close {
   flex: none;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  align-self: center;
   color: var(--dasar-toast-accent-local);
 
   .dasar-toast-close-button .dasar-button-native {

@@ -4,7 +4,7 @@ import { DasarButtonComponent, DasarToastComponent, DasarToastService } from 'da
 @Component({
   selector: 'app-toast-scrollable-fire',
   imports: [DasarButtonComponent],
-  template: `<dasar-button size="sm" (click)="show()">Create 8 persistent toasts</dasar-button>
+  template: `<dasar-button size="sm" (click)="show()">Create 20 persistent toasts</dasar-button>
     <dasar-button size="sm" variant="secondary" (click)="toast.destroyEverything()"
       >Clear</dasar-button
     >`,
@@ -14,7 +14,7 @@ export class ToastScrollableFire {
   protected toast = inject(DasarToastService);
 
   protected show() {
-    for (let n = 1; n <= 8; n++) {
+    for (let n = 1; n <= 20; n++) {
       this.toast.create({
         label: `Toast ${n}`,
         caption: 'Scroll the list',

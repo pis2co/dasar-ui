@@ -113,8 +113,10 @@ describe('DasarToastProvider', () => {
     expect(el.querySelector('.dasar-toast-caption')?.textContent).toContain('Sunday');
     expect(el.querySelector('.dasar-toast-description')?.textContent).toContain('Body');
     expect(el.querySelector('.dasar-toast-content')?.textContent).toContain('Extra');
-    expect(el.querySelector('.dasar-toast-header .dasar-toast-icon dasar-icon')).not.toBeNull();
-    expect(el.querySelector('.dasar-toast-header .dasar-toast-heading')).not.toBeNull();
+    expect(el.querySelector('.dasar-toast-title .dasar-toast-icon dasar-icon')).not.toBeNull();
+    expect(el.querySelector('.dasar-toast-title .dasar-toast-label')).not.toBeNull();
+    expect(el.querySelector('.dasar-toast-title .dasar-toast-caption')).toBeNull();
+    expect(el.querySelector('.dasar-toast.with-icon')).not.toBeNull();
   });
 
   it('uses the provider label slot', async () => {
@@ -131,6 +133,22 @@ describe('DasarToastProvider', () => {
     undo.click();
     await flush();
     expect(host.child.toast.items()[0].state).toBe('leaving');
+  });
+
+  it('keeps the close section outside the main column so it centers on the whole toast', async () => {
+    host.child.toast.create({ label: 'A', description: 'Body', closeable: true, duration: 0 });
+    await flush();
+    const toast = toastsOf(fixture)[0].querySelector('.dasar-toast') as HTMLElement;
+    const close = toast.querySelector('.dasar-toast-close') as HTMLElement;
+    expect(close.parentElement).toBe(toast);
+    expect(close.closest('.dasar-toast-main')).toBeNull();
+    expect(toast.querySelector('.dasar-toast-main .dasar-toast-description')).not.toBeNull();
+  });
+
+  it('adds the with-icon class only when an icon is set', async () => {
+    host.child.toast.create({ label: 'A', duration: 0 });
+    await flush();
+    expect(toastsOf(fixture)[0].querySelector('.dasar-toast.with-icon')).toBeNull();
   });
 
   it('shows the close button only when closeable', async () => {
