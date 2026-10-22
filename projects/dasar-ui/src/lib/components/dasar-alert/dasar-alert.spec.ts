@@ -46,6 +46,19 @@ class AlertHost {
 class AlertSlotHost {}
 
 @Component({
+  selector: 'test-alert-close-slot-host',
+  standalone: true,
+  imports: [DasarAlertComponent],
+  template: `<dasar-alert [closeable]="closeable()">
+    <button closeable-slot class="my-close">Dismiss</button>
+    Body
+  </dasar-alert>`,
+})
+class AlertCloseSlotHost {
+  closeable = signal(false);
+}
+
+@Component({
   selector: 'test-alert-theme-host',
   standalone: true,
   imports: [DasarAlertComponent],
@@ -345,5 +358,32 @@ describe('alertMap radius tokens', () => {
     expect(alertMap.radiusLg).toBe('--dasar-alert-radius-lg');
     expect(alertMap.radiusXl).toBe('--dasar-alert-radius-xl');
     expect(alertMap.radiusFull).toBe('--dasar-alert-radius-full');
+  });
+});
+
+describe('DasarAlert close button', () => {
+  it('renders a ghost default close button', async () => {
+    const fixture = TestBed.createComponent(AlertHost);
+    fixture.componentInstance.closeable.set(true);
+    await fixture.whenStable();
+
+    const close = closeOf(fixture);
+    expect(close).not.toBeNull();
+    expect(close?.querySelector('.dasar-button-native')?.classList).toContain('ghost');
+  });
+
+  it('replaces the default button with the closeable slot, even when not closeable', async () => {
+    const fixture = TestBed.createComponent(AlertCloseSlotHost);
+    await fixture.whenStable();
+
+    expect(
+      fixture.nativeElement.querySelector('.dasar-alert-close-section .my-close'),
+    ).not.toBeNull();
+    expect(closeOf(fixture)).toBeNull();
+
+    fixture.componentInstance.closeable.set(true);
+    await fixture.whenStable();
+
+    expect(closeOf(fixture)).toBeNull();
   });
 });
