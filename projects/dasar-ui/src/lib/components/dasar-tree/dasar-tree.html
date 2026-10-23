@@ -29,7 +29,12 @@
           [disabled]="isDisabled"
           (valueChange)="onSearch($event)"
         >
-          <dasar-icon prefix-slot name="search" [size]="iconSize"></dasar-icon>
+          <dasar-icon
+            prefix-slot
+            name="search"
+            [size]="iconSize"
+            style="padding-left: var(--dasar-space-base)"
+          ></dasar-icon>
         </dasar-input>
       }
     </div>

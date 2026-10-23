@@ -202,11 +202,11 @@
     padding: 0;
   }
 
-  &:has([suffix]) {
+  &:has([suffix-slot]) {
     padding-right: 0;
   }
 
-  &:has([prefix]) {
+  &:has([prefix-slot]) {
     padding-left: 0;
   }
 }
