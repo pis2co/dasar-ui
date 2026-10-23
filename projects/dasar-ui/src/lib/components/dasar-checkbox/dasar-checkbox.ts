@@ -17,7 +17,7 @@ import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provid
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { DasarThemeService } from '../../services/theme.service';
-import { DasarIcon } from '../dasar-icon/dasar-icon';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 
 export type DasarCheckboxSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 
@@ -78,7 +78,7 @@ export const isEqualValue = (first: any, second: any): boolean => {
   styleUrls: ['./dasar-checkbox.scss'],
   templateUrl: './dasar-checkbox.html',
   selector: 'dasar-checkbox',
-  imports: [CommonModule, DasarIcon],
+  imports: [CommonModule, DasarIconComponent],
   standalone: true,
 })
 export class DasarCheckbox implements ControlValueAccessor {

@@ -19,7 +19,7 @@ import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provid
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { DasarThemeService } from '../../services/theme.service';
-import { DasarIcon } from '../dasar-icon/dasar-icon';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { isEqualValue } from '../dasar-checkbox/dasar-checkbox';
 
 export type DasarSwitchSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
@@ -72,7 +72,7 @@ let nextDasarSwitchId = 0;
   styleUrls: ['./dasar-switch.scss'],
   templateUrl: './dasar-switch.html',
   selector: 'dasar-switch',
-  imports: [CommonModule, DasarIcon],
+  imports: [CommonModule, DasarIconComponent],
   standalone: true,
 })
 export class DasarSwitch implements ControlValueAccessor, OnInit {
