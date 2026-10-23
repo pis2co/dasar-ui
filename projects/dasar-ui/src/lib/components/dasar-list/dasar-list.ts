@@ -23,14 +23,14 @@ import {
   signal,
   ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DasarThemeService } from '../../services/theme.service';
-import { resolveThemeDefault } from '../../utils/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isEqualValue } from '../dasar-checkbox/dasar-checkbox';
+import { resolveThemeDefault } from '../../utils/common';
 
 export type DasarListScrollBehavior = 'auto' | 'smooth';
 export type DasarListScrollReason = 'init' | 'value' | 'click' | 'keyboard' | 'api';

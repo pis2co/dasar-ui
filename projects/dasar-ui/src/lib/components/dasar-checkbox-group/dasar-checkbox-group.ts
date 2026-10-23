@@ -13,14 +13,13 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
-import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, StyleType } from '../../models/type.model';
-import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
-import { DasarThemeService } from '../../services/theme.service';
 import { DasarCheckbox, DasarCheckboxSizeType } from '../dasar-checkbox/dasar-checkbox';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DasarThemeService } from '../../services/theme.service';
+import { ClassType, StyleType } from '../../models/type.model';
+import { CommonModule } from '@angular/common';
 
 export type DasarCheckboxGroupDirectionType = 'horizontal' | 'vertical';
 

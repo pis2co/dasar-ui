@@ -14,12 +14,11 @@ import {
   ContentChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { DasarThemeService } from '../../services/theme.service';
 import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
 
 export type DasarInputType = 'text' | 'password' | 'email' | 'number' | 'search' | 'url' | 'tel';
 export type DasarInputMaskType = 'thousand' | 'date' | 'decimal' | ((val: string) => string);

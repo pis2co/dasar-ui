@@ -9,18 +9,17 @@ import {
   Input,
   contentChildren,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
-import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
-import { DasarThemeService } from '../../services/theme.service';
 import {
   DasarButtonAppearanceType,
   DasarButtonSizeType,
   DasarButtonVariantType,
   DasarButton,
 } from '../dasar-button/dasar-button';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
+import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
+import { DasarThemeService } from '../../services/theme.service';
+import { CommonModule } from '@angular/common';
 
 export type DasarButtonGroupOrientationType = 'horizontal' | 'vertical';
 export type DasarButtonGroupRadiusType = ScaleAttributeType;

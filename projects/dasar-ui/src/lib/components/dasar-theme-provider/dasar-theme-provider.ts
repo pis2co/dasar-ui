@@ -1,11 +1,4 @@
 import {
-  DasarComponentConfig,
-  DasarThemeConfig,
-  DasarThemeColors,
-  DasarThemeMode,
-  DasarThemeCommon,
-} from '@models/theme.model';
-import {
   datepickerMap,
   calendarMap,
   dividerMap,
@@ -45,6 +38,13 @@ import {
   effect,
   signal,
 } from '@angular/core';
+import {
+  DasarComponentConfig,
+  DasarThemeConfig,
+  DasarThemeColors,
+  DasarThemeMode,
+  DasarThemeCommon,
+} from '@models/theme.model';
 import { dasarVariables, dasarVariablesTypography } from '../../styles/theme';
 import { CommonModule } from '@angular/common';
 

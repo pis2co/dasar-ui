@@ -11,15 +11,14 @@ import {
   signal,
   TemplateRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, StyleType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
-import { DasarToast } from './dasar-toast';
-import { DasarToastService } from './dasar-toast.service';
 import { DasarToastContext, DasarToastPlacement } from './dasar-toast.model';
+import { DasarThemeService } from '../../services/theme.service';
+import { ClassType, StyleType } from '../../models/type.model';
+import { DasarToastService } from './dasar-toast.service';
+import { CommonModule } from '@angular/common';
+import { DasarToast } from './dasar-toast';
 
 @Directive({ selector: 'ng-template[label-slot]', standalone: true })
 export class DasarToastLabelSlot {

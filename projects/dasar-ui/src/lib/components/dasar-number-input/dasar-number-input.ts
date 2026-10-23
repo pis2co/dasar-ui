@@ -13,14 +13,13 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
-import { resolveThemeDefault } from '../../utils/common';
+import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
 
 export type DasarNumberInputSize = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarNumberInputAppearanceType = 'outline' | 'filled';

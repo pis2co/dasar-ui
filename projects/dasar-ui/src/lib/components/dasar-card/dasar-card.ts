@@ -12,14 +12,13 @@ import {
   signal,
   Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
-import { resolveThemeDefault } from '../../utils/common';
+import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
 
 export type DasarCardSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarCardAppearance = 'outline' | 'borderless' | 'elevated';

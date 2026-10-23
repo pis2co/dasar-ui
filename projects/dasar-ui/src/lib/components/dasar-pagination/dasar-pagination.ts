@@ -14,17 +14,17 @@ import {
   signal,
   TemplateRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { DasarButtonComponent, DasarButtonVariantType } from '../dasar-button/dasar-button';
+import { DasarSelectComponent, DasarSelectOption } from '../dasar-select/dasar-select';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
-import { resolveThemeDefault } from '../../utils/common';
-import { DasarButtonComponent, DasarButtonVariantType } from '../dasar-button/dasar-button';
 import type { DasarButtonAppearanceType } from '../dasar-button/dasar-button';
-import { DasarSelectComponent, DasarSelectOption } from '../dasar-select/dasar-select';
 import { DasarMenuComponent, DasarMenuItem } from '../dasar-menu/dasar-menu';
+import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export type DasarPaginationSizeType = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarPaginationRadiusType = ScaleAttributeType;

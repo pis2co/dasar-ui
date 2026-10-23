@@ -1,10 +1,10 @@
-import { Injectable, signal } from '@angular/core';
 import {
   DasarToastCloseReason,
   DasarToastItem,
   DasarToastOptions,
   DasarToastRef,
 } from './dasar-toast.model';
+import { Injectable, signal } from '@angular/core';
 
 // Provided by dasar-toast-provider, so every provider owns its own instance.
 @Injectable()

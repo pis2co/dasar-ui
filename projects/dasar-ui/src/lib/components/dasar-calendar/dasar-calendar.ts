@@ -15,15 +15,14 @@ import {
   inject,
   HostBinding,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { safeFormat, resolveThemeDefault } from '../../utils/common';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { CommonModule } from '@angular/common';
 
 export type DasarCalendarSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarCalendarAppearance = 'outline' | 'borderless';

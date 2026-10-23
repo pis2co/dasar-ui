@@ -23,19 +23,7 @@ import {
   afterNextRender,
   TemplateRef,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
-import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
-import { DasarCheckboxComponent } from '../dasar-checkbox/dasar-checkbox';
-import { DasarInputComponent } from '../dasar-input/dasar-input';
-import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
-import { fieldIconSize } from '../../utils/icon-size';
-import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import {
-  DasarTreeCheckState,
   DasarTreeDropPosition,
   DasarTreeItem,
   DasarTreeKey,
@@ -50,18 +38,28 @@ import {
   normalizeChecked,
   toggleChecked,
 } from './dasar-tree.utils';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
+import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
+import { DasarCheckboxComponent } from '../dasar-checkbox/dasar-checkbox';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DasarInputComponent } from '../dasar-input/dasar-input';
+import { DasarThemeService } from '../../services/theme.service';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { fieldIconSize } from '../../utils/icon-size';
+import { CommonModule } from '@angular/common';
 
 export type {
-  DasarTreeCheckState,
   DasarTreeDropPosition,
+  DasarTreeCheckState,
   DasarTreeItem,
   DasarTreeKey,
 } from './dasar-tree.utils';
 
-export type DasarTreeType = 'file' | 'selectable' | 'multiple' | null;
-export type DasarTreeSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
-export type DasarTreeSpacing = 'normal' | 'compact';
 export type DasarTreeFilterMethod = (item: DasarTreeItem, query: string) => boolean;
+export type DasarTreeSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarTreeType = 'file' | 'selectable' | 'multiple' | null;
+export type DasarTreeSpacing = 'normal' | 'compact';
 
 export interface DasarTreeConfig {
   type?: DasarTreeType;
