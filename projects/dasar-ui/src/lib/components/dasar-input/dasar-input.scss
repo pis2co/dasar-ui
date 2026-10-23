@@ -54,14 +54,6 @@
   color: var(--dasar-input-color, var(--dasar-theme-text-primary-color));
   border-radius: var(--dasar-input-radius-sm, var(--dasar-radius-sm));
 
-  &:has([suffix-slot]) {
-    gap: 0;
-  }
-
-  &:has([prefix-slot]) {
-    gap: 0;
-  }
-
   &.hide-overflow {
     overflow: hidden;
   }
@@ -70,30 +62,70 @@
     padding: 0 var(--dasar-input-padding-horizontal-xs, var(--dasar-space-base));
     height: var(--dasar-input-height-xs, var(--dasar-space-6));
     font-size: var(--dasar-font-size-xs);
+
+    &:has([prefix-slot]) {
+      padding-left: 0;
+    }
+
+    &:has([suffix-slot]) {
+      padding-right: 0;
+    }
   }
 
   &.size-sm {
     padding: 0 var(--dasar-input-padding-horizontal-sm, var(--dasar-space-3));
     height: var(--dasar-input-height-sm, var(--dasar-space-8));
     font-size: var(--dasar-font-size-sm);
+
+    &:has([prefix-slot]) {
+      padding-left: 0;
+    }
+
+    &:has([suffix-slot]) {
+      padding-right: 0;
+    }
   }
 
   &.size-md {
     padding: 0 var(--dasar-input-padding-horizontal-md, var(--dasar-space-4));
     height: var(--dasar-input-height-md, var(--dasar-space-10));
     font-size: var(--dasar-font-size-base);
+
+    &:has([prefix-slot]) {
+      padding-left: 0;
+    }
+
+    &:has([suffix-slot]) {
+      padding-right: 0;
+    }
   }
 
   &.size-lg {
     padding: 0 var(--dasar-input-padding-horizontal-lg, var(--dasar-space-5));
     height: var(--dasar-input-height-lg, var(--dasar-space-12));
     font-size: var(--dasar-font-size-lg);
+
+    &:has([prefix-slot]) {
+      padding-left: 0;
+    }
+
+    &:has([suffix-slot]) {
+      padding-right: 0;
+    }
   }
 
   &.size-xl {
     padding: 0 var(--dasar-input-padding-horizontal-xl, var(--dasar-space-6));
     height: var(--dasar-input-height-xl, var(--dasar-space-16));
     font-size: var(--dasar-font-size-xl);
+
+    &:has([prefix-slot]) {
+      padding-left: 0;
+    }
+
+    &:has([suffix-slot]) {
+      padding-right: 0;
+    }
   }
 
   &.radius-none {
@@ -170,11 +202,11 @@
     padding: 0;
   }
 
-  &:has([suffix-slot]) {
+  &:has([suffix]) {
     padding-right: 0;
   }
 
-  &:has([prefix-slot]) {
+  &:has([prefix]) {
     padding-left: 0;
   }
 }
@@ -189,14 +221,6 @@
   font-size: inherit;
   color: inherit;
   padding: 0;
-
-  :has([suffix-slot]) & {
-    padding-right: var(--dasar-space-base);
-  }
-
-  :has([prefix-slot]) & {
-    padding-left: var(--dasar-space-base);
-  }
 
   &::placeholder {
     color: var(--dasar-input-placeholder-color, var(--dasar-theme-text-secondary-color));
