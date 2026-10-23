@@ -23,6 +23,17 @@ import {
   afterNextRender,
   TemplateRef,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
+import { DasarThemeService } from '../../services/theme.service';
+import { DasarCheckbox } from '../dasar-checkbox/dasar-checkbox';
+import { DasarInput, DasarInputPrefixSlot } from '../dasar-input/dasar-input';
+import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
+import { fieldIconSize } from '../../utils/icon-size';
+import { DasarIcon } from '../dasar-icon/dasar-icon';
 import {
   DasarTreeCheckState,
   DasarTreeDropPosition,
@@ -39,18 +50,6 @@ import {
   normalizeChecked,
   toggleChecked,
 } from './dasar-tree.utils';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
-import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
-import { DasarCheckbox, DasarCheckboxComponent } from '../dasar-checkbox/dasar-checkbox';
-import { DasarInput, DasarInputComponent, DasarInputPrefixSlot } from '../dasar-input/dasar-input';
-import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
-import { fieldIconSize } from '../../utils/icon-size';
-import { DasarIconComponent } from '../dasar-icon/dasar-icon';
-import { DasarButtonComponent } from '../dasar-button/dasar-button';
 
 export type {
   DasarTreeCheckState,
@@ -167,13 +166,7 @@ let nextDasarTreeId = 0;
       multi: true,
     },
   ],
-  imports: [
-    CommonModule,
-    DasarIconComponent,
-    DasarCheckboxComponent,
-    DasarInputComponent,
-    DasarButtonComponent,
-  ],
+  imports: [CommonModule, DasarIcon, DasarCheckbox, DasarInput, DasarInputPrefixSlot],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './dasar-tree.html',
   styleUrls: ['./dasar-tree.scss'],
