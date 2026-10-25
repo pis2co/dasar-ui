@@ -34,8 +34,8 @@
   }
 
   .dasar-number-input-label-right {
-    color: var(--dasar-input-label-right-color, var(--dasar-theme-text-secondary-color));
-    font-size: var(--dasar-input-label-right-font-size, var(--dasar-font-size-sm));
+    color: var(--dasar-number-input-label-right-color, var(--dasar-theme-text-secondary-color));
+    font-size: var(--dasar-number-input-label-right-font-size, var(--dasar-font-size-sm));
     font-weight: var(--dasar-font-weight-regular);
     display: inline-flex;
     align-items: center;
@@ -122,7 +122,7 @@
     ) !important;
     border-color: var(--dasar-number-input-disabled-border, transparent) !important;
     cursor: not-allowed;
-    opacity: var(--dasar-number-input-disabled-opacity, 0.7);
+    opacity: var(--dasar-number-input-disabled-opacity, 0.6);
 
     .dasar-action-zone {
       pointer-events: none;
@@ -367,7 +367,7 @@
   }
 
   &.disabled {
-    opacity: var(--dasar-number-input-disabled-opacity, 0.7);
+    opacity: var(--dasar-number-input-disabled-opacity, 0.6);
     cursor: not-allowed;
   }
 }
