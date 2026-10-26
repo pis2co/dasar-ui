@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.5](https://github.com/pis2co/dasar-ui/compare/v2.6.4...v2.6.5) (2026-10-26)
+
+
+### Bug Fixes
+
+* **style:** default input container color ([da3c021](https://github.com/pis2co/dasar-ui/commit/da3c021a890f7c3b335e94356157a3e6b9b4d742))
+
 ### [2.6.4](https://github.com/pis2co/dasar-ui/compare/v2.6.3...v2.6.4) (2026-10-26)
 
 
