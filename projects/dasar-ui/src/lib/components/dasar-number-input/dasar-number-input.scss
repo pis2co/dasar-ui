@@ -44,6 +44,7 @@
 }
 
 .dasar-number-input-container {
+  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
   background-color: var(--dasar-number-input-bg, var(--dasar-theme-bg-hover-color));
   border-radius: var(--dasar-number-input-radius-sm, var(--dasar-radius-sm));
   box-sizing: border-box;
@@ -297,7 +298,7 @@
 }
 
 .dasar-number-input-native {
-  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
+  color: inherit;
   background: transparent;
   font-family: inherit;
   text-align: left;
@@ -312,7 +313,6 @@
   }
 
   &:disabled {
-    color: var(--dasar-number-input-disabled-color, var(--dasar-theme-text-disabled-color));
     cursor: not-allowed;
   }
 

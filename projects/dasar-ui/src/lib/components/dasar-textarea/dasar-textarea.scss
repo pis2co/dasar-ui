@@ -38,6 +38,7 @@
 }
 
 .dasar-textarea-container {
+  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
   background-color: var(--dasar-textarea-background, var(--dasar-theme-bg-hover-color));
   padding: var(--dasar-textarea-padding, var(--dasar-space-base));
   font-family: inherit;
@@ -168,7 +169,6 @@
   }
 
   &:disabled {
-    color: var(--dasar-textarea-disabled-color, var(--dasar-theme-text-disabled-color));
     cursor: not-allowed;
   }
 
