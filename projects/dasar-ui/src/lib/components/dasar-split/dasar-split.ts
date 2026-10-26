@@ -14,13 +14,12 @@ import {
   PLATFORM_ID,
   Injector,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-
-import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, StyleType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
-import { resolveThemeDefault } from '../../utils/common';
 import { clampSplitSize, DasarSplitLength, resolveSplitLength } from './dasar-split.utils';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { DasarThemeService } from '../../services/theme.service';
+import { ClassType, StyleType } from '../../models/type.model';
+import { resolveThemeDefault } from '../../utils/common';
 
 export type DasarSplitDirection = 'horizontal' | 'vertical';
 

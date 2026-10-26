@@ -15,15 +15,14 @@ import {
   Input,
   PLATFORM_ID,
 } from '@angular/core';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DasarOverlayComponent } from '../dasar-overlay/dasar-overlay';
+import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
-import { DasarButton } from '../dasar-button/dasar-button';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
-import { DasarIcon } from '../dasar-icon/dasar-icon';
-import { DasarOverlay } from '../dasar-overlay/dasar-overlay';
 
 export type DasarModalSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarModalAppearance = 'outline' | 'borderless' | 'elevated';
@@ -66,7 +65,7 @@ export class DasarModalCloseSlot {}
 export class DasarModalActionSlot {}
 
 @Component({
-  imports: [CommonModule, DasarButton, DasarIcon, DasarOverlay],
+  imports: [CommonModule, DasarButtonComponent, DasarIconComponent, DasarOverlayComponent],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './dasar-modal.html',
   styleUrls: ['./dasar-modal.scss'],

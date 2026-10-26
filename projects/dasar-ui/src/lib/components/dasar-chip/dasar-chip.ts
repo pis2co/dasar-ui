@@ -14,8 +14,6 @@ import {
   HostBinding,
   HostListener,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import {
   DasarButtonAppearanceType,
   DasarButtonVariantType,
@@ -26,8 +24,9 @@ import {
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarThemeService } from '../../services/theme.service';
 import { ClassType, StyleType } from '../../models/type.model';
-import { resolveThemeDefault } from '../../utils/common';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
 
 export type DasarChipAppearanceType = DasarButtonAppearanceType;
 export type DasarChipVariantType = DasarButtonVariantType;

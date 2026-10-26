@@ -45,7 +45,7 @@
 }
 
 .dasar-select-container {
-  color: var(--dasar-select-color, var(--dasar-theme-text-secondary-color));
+  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
   padding: 0 0 0 var(--dasar-select-padding-left, var(--dasar-space-base));
   border-radius: var(--dasar-select-radius-sm, var(--dasar-radius-sm));
   gap: var(--dasar-select-gap, var(--dasar-space-base));
@@ -191,7 +191,7 @@
 }
 
 .dasar-select-value-display {
-  color: var(--dasar-select-value-color, var(--dasar-theme-text-primary-color));
+  color: inherit;
   align-items: center;
   gap: var(--dasar-space-1);
   overflow: hidden;

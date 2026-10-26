@@ -14,8 +14,8 @@ import {
   ContentChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { ScaleAttributeType } from '@models/type.model';
+import { CommonModule } from '@angular/common';
 
 export type DasarTextareaSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarTextareaAppearanceType = 'outline' | 'filled';

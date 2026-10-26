@@ -13,8 +13,6 @@ import {
   HostBinding,
   inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarChipComponent, DasarChipVariantType } from '../dasar-chip/dasar-chip';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
@@ -22,6 +20,7 @@ import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
 
 export type DasarTableAppearance = 'outline' | 'filled' | 'elevated' | 'borderless';
 export type DasarTableRadiusType = ScaleAttributeType;

@@ -12,12 +12,12 @@ import {
   Output,
   PLATFORM_ID,
 } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { DasarBreakpointService, DasarBreakpointState } from '../../services/breakpoint.service';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { DasarThemeService } from '../../services/theme.service';
 import { DasarBreakpointName } from '../../models/theme.model';
 import { resolveThemeDefault } from '../../utils/common';
-import { DasarThemeService } from '../../services/theme.service';
-import { DasarBreakpointService, DasarBreakpointState } from '../../services/breakpoint.service';
 
 export interface DasarBreakpointConfig {
   hiddenAt?: DasarBreakpointName[] | null;

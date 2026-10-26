@@ -1,5 +1,5 @@
-import { TemplateRef } from '@angular/core';
 import { ClassType, StyleType } from '../../models/type.model';
+import { TemplateRef } from '@angular/core';
 
 export type DasarToastVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
 export type DasarToastPlacement =

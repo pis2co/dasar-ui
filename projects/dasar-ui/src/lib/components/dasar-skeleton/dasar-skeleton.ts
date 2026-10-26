@@ -6,12 +6,11 @@ import {
   inject,
   Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { DasarThemeService } from '../../services/theme.service';
+import { CommonModule } from '@angular/common';
 
 export type DasarSkeletonType = 'text' | 'box';
 export type DasarSkeletonSizeType = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;

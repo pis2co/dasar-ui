@@ -38,6 +38,7 @@
 }
 
 .dasar-textarea-container {
+  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
   background-color: var(--dasar-textarea-background, var(--dasar-theme-bg-hover-color));
   padding: var(--dasar-textarea-padding, var(--dasar-space-base));
   font-family: inherit;
@@ -99,7 +100,7 @@
     ) !important;
     border-color: var(--dasar-textarea-disabled-border, transparent) !important;
     cursor: not-allowed;
-    opacity: var(--dasar-textarea-disabled-opacity, 0.7);
+    opacity: var(--dasar-textarea-disabled-opacity, 0.6);
   }
 
   &.size-sm {
@@ -168,7 +169,6 @@
   }
 
   &:disabled {
-    color: var(--dasar-textarea-disabled-color, var(--dasar-theme-text-disabled-color));
     cursor: not-allowed;
   }
 
@@ -195,7 +195,7 @@
   }
 
   &.disabled {
-    opacity: var(--dasar-textarea-disabled-opacity, 0.7);
+    opacity: var(--dasar-textarea-disabled-opacity, 0.6);
     cursor: not-allowed;
   }
 }

@@ -17,13 +17,6 @@ import {
   ContentChild,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
-import { DasarThemeService } from '../../services/theme.service';
-import { DasarIconComponent } from '../dasar-icon/dasar-icon';
-import { resolveThemeDefault } from '../../utils/common';
 import {
   applyFixedPanelPosition,
   computeSmartPlacement,
@@ -31,7 +24,13 @@ import {
   listenViewportChanges,
   watchPanel,
 } from '../../utils/panel-placement';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
+import { DasarThemeService } from '../../services/theme.service';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { resolveThemeDefault } from '../../utils/common';
 import { fieldIconSize } from '../../utils/icon-size';
+import { CommonModule } from '@angular/common';
 
 export type DasarMenuPlacementType = DasarPanelPlacement;
 export type DasarMenuSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;

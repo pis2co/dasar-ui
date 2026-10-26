@@ -226,6 +226,10 @@
     color: var(--dasar-input-placeholder-color, var(--dasar-theme-text-secondary-color));
   }
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {

@@ -8,14 +8,13 @@ import {
   OnInit,
   Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { DasarThemeService } from '../../services/theme.service';
 import { ScaleAttributeType } from '../../models/type.model';
 import { resolveThemeDefault } from '../../utils/common';
 import { ICON_REGISTRY } from './dasar-icon.registry';
+import { CommonModule } from '@angular/common';
 
 export type DasarIconSizeType = ScaleAttributeType | number;
 

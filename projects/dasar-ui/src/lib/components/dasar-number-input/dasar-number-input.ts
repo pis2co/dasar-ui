@@ -13,14 +13,13 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
+import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
-import { DasarButton } from '../dasar-button/dasar-button';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
-import { DasarIcon } from '../dasar-icon/dasar-icon';
+import { CommonModule } from '@angular/common';
 
 export type DasarNumberInputSize = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarNumberInputAppearanceType = 'outline' | 'filled';
@@ -69,7 +68,7 @@ let nextDasarNumberInputId = 0;
       multi: true,
     },
   ],
-  imports: [CommonModule, FormsModule, DasarIcon, DasarButton],
+  imports: [CommonModule, FormsModule, DasarIconComponent, DasarButtonComponent],
   templateUrl: './dasar-number-input.html',
   styleUrls: ['./dasar-number-input.scss'],
   encapsulation: ViewEncapsulation.None,

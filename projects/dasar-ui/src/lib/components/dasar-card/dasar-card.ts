@@ -12,14 +12,13 @@ import {
   signal,
   Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
+import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
-import { DasarButton } from '../dasar-button/dasar-button';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
-import { DasarIcon } from '../dasar-icon/dasar-icon';
+import { CommonModule } from '@angular/common';
 
 export type DasarCardSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarCardAppearance = 'outline' | 'borderless' | 'elevated';
@@ -66,7 +65,7 @@ export class DasarCardHeaderSlot {}
 export class DasarCardActionSlot {}
 
 @Component({
-  imports: [CommonModule, DasarButton, DasarIcon],
+  imports: [CommonModule, DasarButtonComponent, DasarIconComponent],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './dasar-card.html',
   styleUrls: ['./dasar-card.scss'],

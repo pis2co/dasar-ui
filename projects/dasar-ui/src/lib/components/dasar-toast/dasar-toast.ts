@@ -13,16 +13,15 @@ import {
   TemplateRef,
   InjectionToken,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-
-import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { DasarThemeService } from '../../services/theme.service';
-import { resolveThemeDefault } from '../../utils/common';
-import { DasarButton } from '../dasar-button/dasar-button';
-import { DasarIcon } from '../dasar-icon/dasar-icon';
-import { DasarToastService } from './dasar-toast.service';
 import { DasarToastContext, DasarToastItem, DasarToastVariant } from './dasar-toast.model';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarToastTimer, isInternalLink } from './dasar-toast.utils';
+import { DasarButtonComponent } from '../dasar-button/dasar-button';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { DasarThemeService } from '../../services/theme.service';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
+import { DasarToastService } from './dasar-toast.service';
+import { resolveThemeDefault } from '../../utils/common';
 
 // Optional function that handles internal links, for example with the Angular router.
 export const DASAR_TOAST_NAVIGATOR = new InjectionToken<(to: string) => void>(
@@ -32,7 +31,7 @@ export const DASAR_TOAST_NAVIGATOR = new InjectionToken<(to: string) => void>(
 const ANIMATION_FALLBACK_MS = 400;
 
 @Component({
-  imports: [CommonModule, DasarButton, DasarIcon],
+  imports: [CommonModule, DasarButtonComponent, DasarIconComponent],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './dasar-toast.html',
   styleUrls: ['./dasar-toast.scss'],

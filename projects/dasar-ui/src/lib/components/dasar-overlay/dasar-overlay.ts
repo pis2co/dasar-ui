@@ -8,12 +8,11 @@ import {
   inject,
   Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
-import { ClassType, StyleType } from '../../models/type.model';
 import { DasarThemeService } from '../../services/theme.service';
+import { ClassType, StyleType } from '../../models/type.model';
 import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
 
 export interface DasarOverlayConfig {
   blur?: string;

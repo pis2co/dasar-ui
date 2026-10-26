@@ -23,14 +23,13 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-
+import { DasarButtonComponent, DasarButtonSizeType } from '../dasar-button/dasar-button';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DasarThemeService } from '../../services/theme.service';
+import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
-import { DasarButton, DasarButtonSizeType } from '../dasar-button/dasar-button';
-import { DasarIcon } from '../dasar-icon/dasar-icon';
 
 export type DasarTabsRadiusType = ScaleAttributeType;
 export type DasarTabsAppearanceType = 'solid' | 'subtle' | 'outline';
@@ -83,7 +82,7 @@ export class DasarTabsScrollRightSlotDirective {
   selector: 'dasar-tabs',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, DasarButton, DasarIcon],
+  imports: [CommonModule, DasarButtonComponent, DasarIconComponent],
   templateUrl: './dasar-tabs.html',
   styleUrls: ['./dasar-tabs.scss'],
 })

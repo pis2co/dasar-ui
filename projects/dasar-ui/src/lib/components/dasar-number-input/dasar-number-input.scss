@@ -34,8 +34,8 @@
   }
 
   .dasar-number-input-label-right {
-    color: var(--dasar-input-label-right-color, var(--dasar-theme-text-secondary-color));
-    font-size: var(--dasar-input-label-right-font-size, var(--dasar-font-size-sm));
+    color: var(--dasar-number-input-label-right-color, var(--dasar-theme-text-secondary-color));
+    font-size: var(--dasar-number-input-label-right-font-size, var(--dasar-font-size-sm));
     font-weight: var(--dasar-font-weight-regular);
     display: inline-flex;
     align-items: center;
@@ -44,6 +44,7 @@
 }
 
 .dasar-number-input-container {
+  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
   background-color: var(--dasar-number-input-bg, var(--dasar-theme-bg-hover-color));
   border-radius: var(--dasar-number-input-radius-sm, var(--dasar-radius-sm));
   box-sizing: border-box;
@@ -122,7 +123,7 @@
     ) !important;
     border-color: var(--dasar-number-input-disabled-border, transparent) !important;
     cursor: not-allowed;
-    opacity: var(--dasar-number-input-disabled-opacity, 0.7);
+    opacity: var(--dasar-number-input-disabled-opacity, 0.6);
 
     .dasar-action-zone {
       pointer-events: none;
@@ -297,7 +298,7 @@
 }
 
 .dasar-number-input-native {
-  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
+  color: inherit;
   background: transparent;
   font-family: inherit;
   text-align: left;
@@ -312,7 +313,6 @@
   }
 
   &:disabled {
-    color: var(--dasar-number-input-disabled-color, var(--dasar-theme-text-disabled-color));
     cursor: not-allowed;
   }
 
@@ -367,7 +367,7 @@
   }
 
   &.disabled {
-    opacity: var(--dasar-number-input-disabled-opacity, 0.7);
+    opacity: var(--dasar-number-input-disabled-opacity, 0.6);
     cursor: not-allowed;
   }
 }
