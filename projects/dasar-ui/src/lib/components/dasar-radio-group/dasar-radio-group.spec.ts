@@ -99,7 +99,7 @@ class RadioGroupDynamicHost {
 }
 
 const nativesOf = (fixture: ComponentFixture<unknown>) =>
-  Array.from(fixture.nativeElement.querySelectorAll('.dasar-radio-native')) as HTMLInputElement[];
+  Array.from(fixture.nativeElement.querySelectorAll('.dasar-radio-native')) as HTMLButtonElement[];
 const clickNative = async (fixture: ComponentFixture<unknown>, index: number) => {
   nativesOf(fixture)[index].click();
   await fixture.whenStable();
@@ -147,9 +147,9 @@ describe('DasarRadioGroup', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(false);
-    expect(natives[1].checked).toBe(true);
-    expect(natives[2].checked).toBe(false);
+    expect(natives[0].getAttribute('aria-checked')).toBe('false');
+    expect(natives[1].getAttribute('aria-checked')).toBe('true');
+    expect(natives[2].getAttribute('aria-checked')).toBe('false');
   });
 
   it('selects the clicked child, unchecks the previous one and emits onUpdate', async () => {
@@ -162,8 +162,8 @@ describe('DasarRadioGroup', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(false);
-    expect(natives[2].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('false');
+    expect(natives[2].getAttribute('aria-checked')).toBe('true');
   });
 
   it('emits nothing when the selected child is clicked again', async () => {
@@ -253,8 +253,8 @@ describe('DasarRadioGroup with objects', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(false);
-    expect(natives[1].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('false');
+    expect(natives[1].getAttribute('aria-checked')).toBe('true');
 
     natives[0].click();
     await fixture.whenStable();
@@ -270,11 +270,13 @@ describe('DasarRadioGroup forms', () => {
     }).compileComponents();
 
     const fixture = TestBed.createComponent(RadioGroupNgModelHost);
+    fixture.detectChanges();
     await fixture.whenStable();
+    fixture.detectChanges();
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('true');
 
     natives[1].click();
     await fixture.whenStable();
@@ -301,7 +303,7 @@ describe('DasarRadioGroup dynamic children', () => {
     const natives = nativesOf(fixture);
 
     expect(natives.length).toBe(3);
-    expect(natives[1].checked).toBe(true);
+    expect(natives[1].getAttribute('aria-checked')).toBe('true');
 
     natives[2].click();
     await fixture.whenStable();

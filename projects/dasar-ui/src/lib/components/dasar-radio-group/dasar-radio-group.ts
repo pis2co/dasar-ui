@@ -300,6 +300,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
 
   writeValue(value: any): void {
     this.selected.set(value ?? null);
+    (this.ngpRadioGroup as any).state?.setValue(value ?? null);
   }
 
   registerOnChange(fn: any): void {
