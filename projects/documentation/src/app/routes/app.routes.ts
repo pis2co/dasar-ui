@@ -5,6 +5,7 @@ import { IntroductionDocPage } from '../pages/introduction/introduction.page';
 import { InstallationDocPage } from '../pages/installation/installation.page';
 import { NumberInputDocPage } from '../pages/number-input/number-input.page';
 import { TextareaDocPage } from '../pages/textarea/textarea.page';
+import { SliderDocPage } from '../pages/slider/slider.page';
 import { ThemingTokensDocPage } from '../pages/theming/theming-tokens.page';
 import { DatepickerDocPage } from '../pages/datepicker/datepicker.page';
 import { CalendarDocPage } from '../pages/calendar/calendar.page';
@@ -210,6 +211,11 @@ export const routes: Routes = [
     path: 'components/textarea',
     component: TextareaDocPage,
     title: 'Textarea Docs | Dasar UI',
+  },
+  {
+    path: 'components/slider',
+    component: SliderDocPage,
+    title: 'Slider Docs | Dasar UI',
   },
   {
     path: 'components/menu',

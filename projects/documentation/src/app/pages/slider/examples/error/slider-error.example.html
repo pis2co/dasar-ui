@@ -1,0 +1,16 @@
+<div style="display: flex; flex-direction: column; gap: 24px; max-width: 480px; width: 100%">
+  <dasar-slider
+    label="Volume Level"
+    [value]="30"
+    hint="Adjust volume between 0 and 100%"
+    [fullWidth]="true"
+  ></dasar-slider>
+
+  <dasar-slider
+    label="Threshold Limit"
+    [value]="90"
+    [error]="true"
+    hint="Value exceeds recommended safety threshold (80%)."
+    [fullWidth]="true"
+  ></dasar-slider>
+</div>

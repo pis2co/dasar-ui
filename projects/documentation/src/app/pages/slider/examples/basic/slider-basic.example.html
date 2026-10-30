@@ -1,0 +1,6 @@
+<div style="display: flex; flex-direction: column; gap: 24px; max-width: 480px; width: 100%">
+  <dasar-slider [value]="value" (valueChange)="value = $event"></dasar-slider>
+  <p style="margin: 0; font-size: 14px; color: var(--dasar-theme-text-secondary-color)">
+    Current value: <strong>{{ value }}</strong>
+  </p>
+</div>
