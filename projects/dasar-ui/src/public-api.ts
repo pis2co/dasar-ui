@@ -5,7 +5,6 @@ export * from './lib/components/dasar-textarea/dasar-textarea';
 export * from './lib/components/dasar-table/dasar-table';
 export * from './lib/components/dasar-menu/dasar-menu';
 export * from './lib/components/dasar-tabs/dasar-tabs';
-export * from './lib/components/dasar-pivot-table/dasar-pivot-table';
 export * from './lib/components/dasar-datepicker/dasar-datepicker';
 export * from './lib/components/dasar-calendar/dasar-calendar';
 export * from './lib/components/dasar-select/dasar-select';
