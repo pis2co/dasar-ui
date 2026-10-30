@@ -101,7 +101,7 @@ export class CalendarDocPage {
     },
     {
       name: 'appearance',
-      type: "'outline' | 'borderless'",
+      type: "'outline' | 'borderless' | 'elevated'",
       defaultValue: "'outline'",
       description: 'Defines the outer border visual style of the container.',
     },

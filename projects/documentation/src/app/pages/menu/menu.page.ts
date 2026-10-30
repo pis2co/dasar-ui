@@ -63,7 +63,7 @@ export class MenuDocPage {
     },
     {
       name: 'appearance',
-      type: "'none' | 'outline' | 'filled'",
+      type: "'none' | 'outline' | 'filled' | 'elevated'",
       defaultValue: "'outline'",
       description: 'Defines the visual appearance style of the trigger button.',
     },

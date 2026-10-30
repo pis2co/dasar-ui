@@ -133,7 +133,7 @@ export class DatepickerDocPage {
     },
     {
       name: 'appearance',
-      type: "'outline' | 'filled' | 'subtle'",
+      type: "'outline' | 'filled' | 'subtle' | 'elevated'",
       defaultValue: "'outline'",
       description: 'The visual style of the trigger input.',
     },

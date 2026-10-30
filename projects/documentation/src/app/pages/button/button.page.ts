@@ -77,7 +77,7 @@ export class ButtonDocPage {
     },
     {
       name: 'appearance',
-      type: "'solid' | 'subtle' | 'outline'",
+      type: "'solid' | 'subtle' | 'outline' | 'elevated'",
       defaultValue: "'solid'",
       description: 'Defines the fill and border appearance style.',
     },
