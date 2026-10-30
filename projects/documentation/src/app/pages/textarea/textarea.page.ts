@@ -173,19 +173,19 @@ export class TextareaDocPage {
       description: 'Custom template projected on the top-right of the label row.',
     },
     {
-      name: 'containerClass / containerStyle',
+      name: 'container-class / container-style',
       type: 'any / Record<string, any>',
       defaultValue: '-',
       description: 'Class and inline style bindings for the container element.',
     },
     {
-      name: 'textareaClass / textareaStyle',
+      name: 'textarea-class / textarea-style',
       type: 'any / Record<string, any>',
       defaultValue: '-',
       description: 'Class and inline style bindings for the native textarea element.',
     },
     {
-      name: 'hostClass / hostStyle',
+      name: 'host-class / host-style',
       type: 'any / Record<string, any>',
       defaultValue: '-',
       description: 'Class and inline style bindings for the host element wrapper.',

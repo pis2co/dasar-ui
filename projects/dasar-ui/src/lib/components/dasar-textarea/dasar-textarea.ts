@@ -1,5 +1,6 @@
 import {
   booleanAttribute,
+  numberAttribute,
   Component,
   HostBinding,
   Input,
@@ -119,14 +120,14 @@ export class DasarTextarea implements ControlValueAccessor {
     this.themeProvider,
     this.themeService,
   );
-  @Input() rows: number = resolveThemeDefault(
+  @Input({ transform: numberAttribute }) rows: number = resolveThemeDefault(
     'textarea',
     'rows',
     4,
     this.themeProvider,
     this.themeService,
   );
-  @Input() cols: number = resolveThemeDefault(
+  @Input({ transform: numberAttribute }) cols: number = resolveThemeDefault(
     'textarea',
     'cols',
     20,

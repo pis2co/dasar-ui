@@ -38,7 +38,7 @@
 }
 
 .dasar-textarea-container {
-  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
+  color: var(--dasar-textarea-color, var(--dasar-theme-text-primary-color));
   background-color: var(--dasar-textarea-background, var(--dasar-theme-bg-hover-color));
   padding: var(--dasar-textarea-padding, var(--dasar-space-base));
   font-family: inherit;
@@ -85,9 +85,11 @@
   }
 
   &.appearance-elevated {
-    border: 1px solid
-      var(--dasar-textarea-elevated-border, var(--dasar-theme-border-strong-color));
-    background-color: var(--dasar-textarea-elevated-background, var(--dasar-theme-bg-surface-color));
+    border: 1px solid var(--dasar-textarea-elevated-border, var(--dasar-theme-border-strong-color));
+    background-color: var(
+      --dasar-textarea-elevated-background,
+      var(--dasar-theme-bg-surface-color)
+    );
     box-shadow: var(
       --dasar-textarea-elevated-shadow,
       0 10px 15px -3px rgba(0, 0, 0, 0.05),
