@@ -13,6 +13,7 @@ import {
   DasarThemeDatepicker,
   DasarThemeInput,
   DasarThemeTextarea,
+  DasarThemeSlider,
   DasarThemeSelect,
   DasarThemeCommon,
   DasarThemeMenu,
@@ -271,6 +272,55 @@ export const textareaMap: Record<keyof DasarThemeTextarea, string> = {
   hintFontSize: '--dasar-textarea-hint-font-size',
   hintColor: '--dasar-textarea-hint-color',
   hintErrorColor: '--dasar-textarea-hint-error-color',
+};
+export const sliderMap: Record<keyof DasarThemeSlider, string> = {
+  wrapperGap: '--dasar-slider-wrapper-gap',
+  radius: '--dasar-slider-radius',
+  labelFontSize: '--dasar-slider-label-font-size',
+  labelFontWeight: '--dasar-slider-label-font-weight',
+  labelColor: '--dasar-slider-label-color',
+  heightSm: '--dasar-slider-height-sm',
+  paddingHorizontalSm: '--dasar-slider-padding-horizontal-sm',
+  trackHeightSm: '--dasar-slider-track-height-sm',
+  thumbSizeSm: '--dasar-slider-thumb-size-sm',
+  heightMd: '--dasar-slider-height-md',
+  paddingHorizontalMd: '--dasar-slider-padding-horizontal-md',
+  trackHeightMd: '--dasar-slider-track-height-md',
+  thumbSizeMd: '--dasar-slider-thumb-size-md',
+  heightLg: '--dasar-slider-height-lg',
+  paddingHorizontalLg: '--dasar-slider-padding-horizontal-lg',
+  trackHeightLg: '--dasar-slider-track-height-lg',
+  thumbSizeLg: '--dasar-slider-thumb-size-lg',
+  trackBg: '--dasar-slider-track-bg',
+  rangeBg: '--dasar-slider-range-bg',
+  thumbBg: '--dasar-slider-thumb-bg',
+  thumbBorder: '--dasar-slider-thumb-border',
+  thumbShadow: '--dasar-slider-thumb-shadow',
+  outlineBg: '--dasar-slider-outline-bg',
+  outlineBorder: '--dasar-slider-outline-border',
+  outlineHoverBorder: '--dasar-slider-outline-hover-border',
+  outlineFocusBorder: '--dasar-slider-outline-focus-border',
+  outlineFocusRing: '--dasar-slider-outline-focus-ring',
+  filledBg: '--dasar-slider-filled-bg',
+  filledBorder: '--dasar-slider-filled-border',
+  filledHoverBg: '--dasar-slider-filled-hover-bg',
+  filledFocusBg: '--dasar-slider-filled-focus-bg',
+  filledFocusBorder: '--dasar-slider-filled-focus-border',
+  filledFocusRing: '--dasar-slider-filled-focus-ring',
+  elevatedBg: '--dasar-slider-elevated-bg',
+  elevatedBorder: '--dasar-slider-elevated-border',
+  elevatedShadow: '--dasar-slider-elevated-shadow',
+  elevatedHoverBorder: '--dasar-slider-elevated-hover-border',
+  elevatedFocusBorder: '--dasar-slider-elevated-focus-border',
+  elevatedFocusRing: '--dasar-slider-elevated-focus-ring',
+  errorBorder: '--dasar-slider-error-border',
+  errorFocusRing: '--dasar-slider-error-focus-ring',
+  disabledBg: '--dasar-slider-disabled-bg',
+  disabledBorder: '--dasar-slider-disabled-border',
+  disabledOpacity: '--dasar-slider-disabled-opacity',
+  hintFontSize: '--dasar-slider-hint-font-size',
+  hintColor: '--dasar-slider-hint-color',
+  hintErrorColor: '--dasar-slider-hint-error-color',
 };
 export const calendarMap: Record<keyof DasarThemeCalendar, string> = {
   calendarBg: '--dasar-calendar-bg',
@@ -1030,6 +1080,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.textarea) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.textarea, textareaMap);
+    }
+    if (config.tokens?.[config.mode]?.slider) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.slider, sliderMap);
     }
     if (config.tokens?.[config.mode]?.calendar) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.calendar, calendarMap);

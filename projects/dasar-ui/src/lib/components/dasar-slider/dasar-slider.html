@@ -1,1 +1,37 @@
-<p>dasar-slider works!</p>
+<div class="dasar-slider-wrapper">
+  @if (label) {
+    <div class="dasar-slider-label-row">
+      <label class="dasar-slider-label">{{ label }}</label>
+    </div>
+  }
+  <div
+    ngpSlider
+    [ngpSliderMin]="min"
+    [ngpSliderMax]="max"
+    [ngpSliderStep]="step"
+    [ngpSliderDisabled]="disabled"
+    (ngpSliderValueChange)="onPrimitiveValueChange($event)"
+    class="dasar-slider-container appearance-{{ appearance }} size-{{ size }}"
+    [class.full-width]="fullWidth"
+    [class.disabled]="disabled"
+    [class.error]="error"
+    [ngClass]="containerClass"
+    [ngStyle]="containerStyle"
+  >
+    <div ngpSliderTrack class="dasar-slider-track" [ngClass]="trackClass" [ngStyle]="trackStyle">
+      <div ngpSliderRange class="dasar-slider-range"></div>
+    </div>
+    <div
+      ngpSliderThumb
+      class="dasar-slider-thumb"
+      [ngClass]="thumbClass"
+      [ngStyle]="thumbStyle"
+      (blur)="onBlur()"
+    ></div>
+  </div>
+  @if (hint) {
+    <div class="dasar-slider-hint" [class.error]="error" [class.disabled]="disabled">
+      {{ hint }}
+    </div>
+  }
+</div>

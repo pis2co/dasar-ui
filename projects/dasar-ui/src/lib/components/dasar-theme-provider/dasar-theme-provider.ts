@@ -11,6 +11,7 @@ import {
   commonMap,
   inputMap,
   textareaMap,
+  sliderMap,
   chipMap,
   cardMap,
   menuMap,
@@ -235,6 +236,14 @@ export class DasarThemeProviderComponent implements OnChanges {
         element: hostElement,
         payload: textareaTokens,
         dictionary: textareaMap,
+      });
+    }
+    const sliderTokens = this.tokenConfig?.[currentMode]?.slider || this.tokenConfig?.light?.slider;
+    if (sliderTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: sliderTokens,
+        dictionary: sliderMap,
       });
     }
     const calendarTokens =
