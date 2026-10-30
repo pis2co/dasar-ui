@@ -154,7 +154,7 @@ export class ButtonGroupDocPage {
     },
     {
       name: 'appearance',
-      type: "'solid' | 'subtle' | 'outline'",
+      type: "'solid' | 'subtle' | 'outline' | 'elevated'",
       defaultValue: 'null',
       description:
         'Overrides the appearance of every button in the group. Null keeps each button appearance.',
