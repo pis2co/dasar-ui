@@ -86,42 +86,128 @@
     }
   }
   @if (viewMode === 'days') {
-    <div class="calendar-grid-wrapper radius-{{ radius }}">
-      <div class="calendar-grid">
-        @if (variant === 'dropdown') {
-          @for (wd of localizedDropdownWeekdays; track wd) {
-            <div class="weekday-header">{{ wd }}</div>
-          }
-        }
-        @for (day of calendarDays; track day.date.getTime()) {
-          <div
-            class="day-cell"
-            [class.other-month]="!day.isCurrentMonth"
-            [class.selected]="day.isSelected"
-            [class.in-range]="day.isInRange"
-            [class.range-start]="day.isRangeStart && !!rangeValue[1]"
-            [class.range-end]="day.isRangeEnd"
-            (click)="selectDate(day, $event)"
-          >
-            @if (variant === 'dashboard') {
-              <div class="cell-top">
-                <div class="day-number" [class.today]="day.isToday">{{ day.dayNumber }}</div>
-                @if (day.weekdayStr) {
-                  <div class="weekday-label">{{ day.weekdayStr }}</div>
-                }
-              </div>
-              @if (!hideFullDate) {
-                <div class="cell-content">{{ day.fullDateStr }}</div>
-              }
-            } @else {
-              <div class="day-number" [class.today]="day.isToday">
-                {{ day.dayNumber }}
-              </div>
+    @if (range) {
+      <div
+        class="calendar-grid-wrapper radius-{{ radius }}"
+        ngpDateRangePicker
+        [ngpDateRangePickerMin]="min"
+        [ngpDateRangePickerMax]="max"
+        [ngpDateRangePickerDisabled]="disabled"
+        [ngpDateRangePickerDateDisabled]="dateDisabled"
+        [ngpDateRangePickerDefaultFocusedDate]="currentViewDate"
+        (ngpDateRangePickerStartDateChange)="onNgpRangeStartChange($event)"
+        (ngpDateRangePickerEndDateChange)="onNgpRangeEndChange($event)"
+        (ngpDateRangePickerFocusedDateChange)="onNgpFocusedDateChange($event)"
+      >
+        <div class="calendar-grid" ngpDatePickerGrid (keydown)="onGridKeydown($event)">
+          @if (variant === 'dropdown') {
+            @for (wd of localizedDropdownWeekdays; track wd) {
+              <div class="weekday-header">{{ wd }}</div>
             }
-          </div>
-        }
+          }
+          <ng-container *ngpDatePickerRowRender>
+            <div
+              *ngpDatePickerCellRender="let date"
+              ngpDatePickerCell
+              class="calendar-cell-host"
+              (click)="onCellClick(date, dateBtn.disabled(), $event)"
+            >
+              <button
+                type="button"
+                ngpDatePickerDateButton
+                #dateBtn="ngpDatePickerDateButton"
+                class="day-cell"
+                [class.other-month]="!isCurrentMonthDate(date)"
+                [class.selected]="isSelectedDate(date)"
+                [class.in-range]="isInRangeDate(date)"
+                [class.range-start]="isRangeStartDate(date) && !!rangeValue[1]"
+                [class.range-end]="isRangeEndDate(date)"
+                [class.disabled]="dateBtn.disabled()"
+                [disabled]="dateBtn.disabled()"
+              >
+                @if (variant === 'dashboard') {
+                  <div class="cell-top">
+                    <div class="day-number" [class.today]="isTodayDate(date)">
+                      {{ date.getDate() }}
+                    </div>
+                    @if (isFirstRowDate(date)) {
+                      <div class="weekday-label" [attr.data-weekday]="formatWeekday(date)"></div>
+                    }
+                  </div>
+                  @if (!hideFullDate) {
+                    <div class="cell-content" [attr.data-full-date]="formatFullDate(date)"></div>
+                  }
+                } @else {
+                  <div class="day-number" [class.today]="isTodayDate(date)">
+                    {{ date.getDate() }}
+                  </div>
+                }
+              </button>
+            </div>
+          </ng-container>
+        </div>
       </div>
-    </div>
+    } @else {
+      <div
+        class="calendar-grid-wrapper radius-{{ radius }}"
+        ngpDatePicker
+        [ngpDatePickerMin]="min"
+        [ngpDatePickerMax]="max"
+        [ngpDatePickerDisabled]="disabled"
+        [ngpDatePickerDateDisabled]="dateDisabled"
+        [ngpDatePickerDefaultFocusedDate]="currentViewDate"
+        (ngpDatePickerDateChange)="onNgpSingleDateChange($event)"
+        (ngpDatePickerFocusedDateChange)="onNgpFocusedDateChange($event)"
+      >
+        <div class="calendar-grid" ngpDatePickerGrid (keydown)="onGridKeydown($event)">
+          @if (variant === 'dropdown') {
+            @for (wd of localizedDropdownWeekdays; track wd) {
+              <div class="weekday-header">{{ wd }}</div>
+            }
+          }
+          <ng-container *ngpDatePickerRowRender>
+            <div
+              *ngpDatePickerCellRender="let date"
+              ngpDatePickerCell
+              class="calendar-cell-host"
+              (click)="onCellClick(date, dateBtn.disabled(), $event)"
+            >
+              <button
+                type="button"
+                ngpDatePickerDateButton
+                #dateBtn="ngpDatePickerDateButton"
+                class="day-cell"
+                [class.other-month]="!isCurrentMonthDate(date)"
+                [class.selected]="isSelectedDate(date)"
+                [class.in-range]="isInRangeDate(date)"
+                [class.range-start]="isRangeStartDate(date) && !!rangeValue[1]"
+                [class.range-end]="isRangeEndDate(date)"
+                [class.disabled]="dateBtn.disabled()"
+                [disabled]="dateBtn.disabled()"
+              >
+                @if (variant === 'dashboard') {
+                  <div class="cell-top">
+                    <div class="day-number" [class.today]="isTodayDate(date)">
+                      {{ date.getDate() }}
+                    </div>
+                    @if (isFirstRowDate(date)) {
+                      <div class="weekday-label" [attr.data-weekday]="formatWeekday(date)"></div>
+                    }
+                  </div>
+                  @if (!hideFullDate) {
+                    <div class="cell-content" [attr.data-full-date]="formatFullDate(date)"></div>
+                  }
+                } @else {
+                  <div class="day-number" [class.today]="isTodayDate(date)">
+                    {{ date.getDate() }}
+                  </div>
+                }
+              </button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    }
   }
   @if (viewMode === 'months') {
     <div class="picker-grid-wrapper radius-{{ radius }}">

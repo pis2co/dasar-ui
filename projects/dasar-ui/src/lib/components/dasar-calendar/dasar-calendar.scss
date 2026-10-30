@@ -43,6 +43,17 @@
     padding: 0;
   }
 
+  &.appearance-elevated {
+    border: 1px solid var(--dasar-calendar-elevated-border, var(--dasar-theme-border-strong-color));
+    background-color: var(--dasar-calendar-elevated-bg, var(--dasar-theme-bg-surface-color));
+    padding: var(--dasar-calendar-padding, var(--dasar-space-base));
+    box-shadow: var(
+      --dasar-calendar-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+  }
+
   &.radius-none {
     border-radius: var(--dasar-calendar-radius-none, var(--dasar-radius-none));
   }
@@ -171,12 +182,22 @@
     display: flex;
   }
 
+  .calendar-cell-host {
+    display: contents;
+  }
+
   .day-cell {
     background-color: var(--dasar-calendar-cell-bg, transparent);
     flex-direction: column;
     box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
     display: flex;
+    width: 100%;
 
     &.other-month {
       .cell-top {
@@ -232,6 +253,9 @@
         color: var(--dasar-theme-text-secondary-color);
         font-weight: var(--dasar-font-weight-medium);
         font-size: inherit;
+        &::after {
+          content: attr(data-weekday);
+        }
       }
 
       .day-number {
@@ -257,6 +281,9 @@
         word-break: break-word;
         font-size: inherit;
         text-align: start;
+        &::after {
+          content: attr(data-full-date);
+        }
       }
 
       &.in-range {
