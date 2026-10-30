@@ -50,6 +50,7 @@
     "@angular/platform-server": "^22.1.0",
     "@angular/router": "^22.1.0",
     "@angular/ssr": "^22.1.8",
+    "date-fns": "4.4.0",
     "express": "^5.1.0",
     "ng-primitives": "0.131.4",
     "prismjs": "1.30.0",
