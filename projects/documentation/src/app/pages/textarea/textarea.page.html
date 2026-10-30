@@ -1,0 +1,65 @@
+<docs-layout
+  title="Textarea"
+  description="A multi-line text input component supporting labels, appearance variants, size scales, error states, and helper text."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Usage"
+  >
+    <app-textarea-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+  >
+    <app-textarea-appearance-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: sizesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: sizesTs },
+    ]"
+    title="Sizes"
+  >
+    <app-textarea-sizes-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: labelHintHtml },
+      { label: 'TypeScript', lang: 'typescript', value: labelHintTs },
+    ]"
+    title="Label & Hint"
+  >
+    <app-textarea-label-hint-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: errorHtml },
+      { label: 'TypeScript', lang: 'typescript', value: errorTs },
+    ]"
+    title="Validation & Error State"
+  >
+    <app-textarea-error-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled & Readonly"
+  >
+    <app-textarea-disabled-example />
+  </doc-example-component>
+</docs-layout>

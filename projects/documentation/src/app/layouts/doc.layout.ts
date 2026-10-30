@@ -280,6 +280,7 @@ export class DocsLayoutComponent {
       title: 'Input',
       items: [
         { label: 'Input', route: '/components/input' },
+        { label: 'Textarea', route: '/components/textarea' },
         { label: 'Number Input', route: '/components/number-input' },
         { label: 'Checkbox', route: '/components/checkbox' },
         { label: 'Radio', route: '/components/radio' },

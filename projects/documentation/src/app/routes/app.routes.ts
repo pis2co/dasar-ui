@@ -4,6 +4,7 @@ import { GettingStartedDocPage } from '../pages/getting-started/getting-started.
 import { IntroductionDocPage } from '../pages/introduction/introduction.page';
 import { InstallationDocPage } from '../pages/installation/installation.page';
 import { NumberInputDocPage } from '../pages/number-input/number-input.page';
+import { TextareaDocPage } from '../pages/textarea/textarea.page';
 import { ThemingTokensDocPage } from '../pages/theming/theming-tokens.page';
 import { DatepickerDocPage } from '../pages/datepicker/datepicker.page';
 import { CalendarDocPage } from '../pages/calendar/calendar.page';
@@ -204,6 +205,11 @@ export const routes: Routes = [
     path: 'components/number-input',
     component: NumberInputDocPage,
     title: 'Number Input Docs | Dasar UI',
+  },
+  {
+    path: 'components/textarea',
+    component: TextareaDocPage,
+    title: 'Textarea Docs | Dasar UI',
   },
   {
     path: 'components/menu',
