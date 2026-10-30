@@ -88,6 +88,19 @@ class AlertRadiusHost {
   radius = signal<DasarAlertRadiusType>('md');
 }
 
+@Component({
+  selector: 'test-alert-appearance-host',
+  standalone: true,
+  imports: [DasarAlertComponent],
+  template: `<dasar-alert [appearance]="$any(appearance())" [bordered]="bordered()"
+    >Body</dasar-alert
+  >`,
+})
+class AlertAppearanceHost {
+  appearance = signal<'outline' | 'borderless' | 'elevated' | undefined>('outline');
+  bordered = signal(true);
+}
+
 const hostOf = (fixture: ComponentFixture<unknown>) =>
   fixture.nativeElement.querySelector('dasar-alert') as HTMLElement;
 const containerOf = (fixture: ComponentFixture<unknown>) =>
@@ -385,5 +398,105 @@ describe('DasarAlert close button', () => {
     await fixture.whenStable();
 
     expect(closeOf(fixture)).toBeNull();
+  });
+});
+
+describe('DasarAlert appearance', () => {
+  let fixture: ComponentFixture<AlertAppearanceHost>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AlertAppearanceHost, AlertThemeHost],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AlertAppearanceHost);
+    await fixture.whenStable();
+  });
+
+  it('defaults to appearance-outline and sets appearance property to outline', () => {
+    const alertDebug = fixture.nativeElement.querySelector('dasar-alert');
+    const alertInstance = fixture.debugElement.children[0].componentInstance as any;
+    expect(alertInstance.appearance).toBe('outline');
+    expect(containerOf(fixture)?.classList).toContain('appearance-outline');
+  });
+
+  it('applies appearance-outline class when appearance is outline', async () => {
+    fixture.componentInstance.appearance.set('outline');
+    await fixture.whenStable();
+
+    const container = containerOf(fixture);
+    expect(container?.classList).toContain('appearance-outline');
+    expect(container?.classList).not.toContain('appearance-borderless');
+    expect(container?.classList).not.toContain('appearance-elevated');
+  });
+
+  it('applies appearance-borderless class when appearance is borderless', async () => {
+    fixture.componentInstance.appearance.set('borderless');
+    await fixture.whenStable();
+
+    const container = containerOf(fixture);
+    expect(container?.classList).toContain('appearance-borderless');
+    expect(container?.classList).not.toContain('appearance-outline');
+    expect(container?.classList).not.toContain('appearance-elevated');
+  });
+
+  it('applies appearance-elevated class when appearance is elevated', async () => {
+    fixture.componentInstance.appearance.set('elevated');
+    await fixture.whenStable();
+
+    const container = containerOf(fixture);
+    expect(container?.classList).toContain('appearance-elevated');
+    expect(container?.classList).not.toContain('appearance-outline');
+    expect(container?.classList).not.toContain('appearance-borderless');
+  });
+
+  it('works independently with bordered input without conflict', async () => {
+    // bordered=true + appearance='elevated'
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.componentInstance.bordered.set(true);
+    await fixture.whenStable();
+
+    let container = containerOf(fixture);
+    expect(container?.classList).toContain('appearance-elevated');
+    expect(container?.classList).toContain('bordered');
+
+    // bordered=false + appearance='outline'
+    fixture.componentInstance.appearance.set('outline');
+    fixture.componentInstance.bordered.set(false);
+    await fixture.whenStable();
+
+    container = containerOf(fixture);
+    expect(container?.classList).toContain('appearance-outline');
+    expect(container?.classList).not.toContain('bordered');
+
+    // bordered=false + appearance='elevated'
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.componentInstance.bordered.set(false);
+    await fixture.whenStable();
+
+    container = containerOf(fixture);
+    expect(container?.classList).toContain('appearance-elevated');
+    expect(container?.classList).not.toContain('bordered');
+  });
+});
+
+describe('DasarAlert appearance theme default', () => {
+  it('reads appearance from component config theme provider', async () => {
+    await TestBed.configureTestingModule({
+      imports: [AlertThemeHost],
+      providers: [
+        {
+          provide: DASAR_THEME_PROVIDER,
+          useValue: { componentConfig: { alert: { appearance: 'elevated' } } },
+        },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(AlertThemeHost);
+    await fixture.whenStable();
+
+    const alertInstance = fixture.debugElement.children[0].componentInstance as any;
+    expect(alertInstance.appearance).toBe('elevated');
+    expect(containerOf(fixture)?.classList).toContain('appearance-elevated');
   });
 });
