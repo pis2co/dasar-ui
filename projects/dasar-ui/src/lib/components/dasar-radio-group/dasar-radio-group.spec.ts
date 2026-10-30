@@ -19,6 +19,7 @@ import { DasarRadioGroupComponent } from './dasar-radio-group';
     [size]="size()"
     [value-field]="valueField()"
     (onUpdate)="updates.set([...updates(), $event])"
+    (valueChange)="valueChanges.set([...valueChanges(), $event])"
   >
     <dasar-radio
       label="A"
@@ -38,6 +39,7 @@ class RadioGroupHost {
   size = signal<'sm' | 'md' | 'lg' | null>(null);
   valueField = signal<string | null>(null);
   updates = signal<any[]>([]);
+  valueChanges = signal<any[]>([]);
   childDisabled = signal(false);
   childUpdates = signal(0);
 }
@@ -126,7 +128,11 @@ describe('DasarRadioGroup', () => {
     expect(ngpGroupDebugEl).not.toBeNull();
 
     const ngpGroup = ngpGroupDebugEl.injector.get(NgpRadioGroup);
-    expect(ngpGroup.value()).toBeNull();
+    // `value` is driven internally via `state.setValue`, not a template-bound input
+    // (see dasar-radio-group.ts for why: binding it would put NgpRadioGroup into
+    // "controlled mode" and break the synchronous dedup needed for a real click, which
+    // fires both focus and click listeners).
+    expect((ngpGroup as any).state.value()).toBeNull();
     expect(ngpGroup.disabled()).toBe(false);
     expect(ngpGroup.orientation()).toBe('vertical');
 
@@ -136,7 +142,7 @@ describe('DasarRadioGroup', () => {
     fixture.componentInstance.direction.set('horizontal');
     await fixture.whenStable();
 
-    expect(ngpGroup.value()).toBe('b');
+    expect((ngpGroup as any).state.value()).toBe('b');
     expect(ngpGroup.disabled()).toBe(true);
     expect(ngpGroup.orientation()).toBe('horizontal');
   });
@@ -200,6 +206,44 @@ describe('DasarRadioGroup', () => {
 
     expect(nativesOf(fixture)[1].disabled).toBe(true);
     expect(nativesOf(fixture)[0].disabled).toBe(false);
+  });
+
+  it('emits valueChange exactly once per click selection', async () => {
+    fixture.componentInstance.value.set('a');
+    await fixture.whenStable();
+    fixture.componentInstance.valueChanges.set([]);
+
+    await clickNative(fixture, 2);
+
+    expect(fixture.componentInstance.valueChanges()).toEqual(['c']);
+  });
+
+  it('does not emit valueChange on a programmatic writeValue/[value] write', async () => {
+    fixture.componentInstance.valueChanges.set([]);
+
+    fixture.componentInstance.value.set('b');
+    await fixture.whenStable();
+
+    expect(fixture.componentInstance.valueChanges()).toEqual([]);
+  });
+
+  it('syncs setDisabledState into the hosted NgpRadioGroup state', async () => {
+    const ngpGroupDebugEl = fixture.debugElement.query(By.directive(NgpRadioGroup));
+    const ngpGroup = ngpGroupDebugEl.injector.get(NgpRadioGroup);
+
+    const dasarRadioGroupDebugEl = fixture.debugElement.query(By.css('dasar-radio-group'));
+    const dasarRadioGroup = dasarRadioGroupDebugEl.injector.get(DasarRadioGroupComponent[0]);
+    dasarRadioGroup.setDisabledState(true);
+    await fixture.whenStable();
+
+    expect((ngpGroup as any).state.disabled()).toBe(true);
+    expect(dasarRadioGroup.disabled).toBe(true);
+
+    dasarRadioGroup.setDisabledState(false);
+    await fixture.whenStable();
+
+    expect((ngpGroup as any).state.disabled()).toBe(false);
+    expect(dasarRadioGroup.disabled).toBe(false);
   });
 
   it('overrides child sizes and renders hint and error', async () => {

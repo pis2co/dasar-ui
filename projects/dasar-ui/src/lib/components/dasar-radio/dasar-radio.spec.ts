@@ -463,7 +463,10 @@ describe('DasarRadio dual-path grouped vs standalone', () => {
     const groupDebugEl = fixture.debugElement.query(By.directive(NgpRadioGroup));
     expect(groupDebugEl).not.toBeNull();
     const ngpGroup = groupDebugEl.injector.get(NgpRadioGroup);
-    expect(ngpGroup.value()).toEqual({ id: '1' });
+    // `value` is driven internally via `state.setValue` (not a template-bound input,
+    // which would put NgpRadioGroup's internal state into "controlled mode" and break
+    // the synchronous dedup needed when both focus+click fire on a real click).
+    expect((ngpGroup as any).state.value()).toEqual({ id: '1' });
 
     // Verify both child radios resolved NgpRadioItem via DI (no NG0201 crash!)
     const ngpItems = fixture.debugElement.queryAll(By.directive(NgpRadioItem));

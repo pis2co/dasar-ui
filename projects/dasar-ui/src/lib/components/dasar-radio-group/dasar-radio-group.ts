@@ -59,13 +59,7 @@ const keyOf = (value: any, valueField: string | null): any => {
   hostDirectives: [
     {
       directive: NgpRadioGroup,
-      inputs: [
-        'ngpRadioGroupValue: value',
-        'ngpRadioGroupDisabled: disabled',
-        'ngpRadioGroupOrientation: direction',
-        'ngpRadioGroupCompareWith: compareWith',
-      ],
-      outputs: ['ngpRadioGroupValueChange: valueChange'],
+      inputs: ['ngpRadioGroupDisabled: disabled', 'ngpRadioGroupOrientation: direction'],
     },
   ],
   encapsulation: ViewEncapsulation.None,
@@ -107,11 +101,14 @@ export class DasarRadioGroup implements ControlValueAccessor {
   };
 
   constructor() {
-    // Inject comparator to NgpRadioGroup's compareWith InputSignal so internal NgpRadioGroup
-    // comparison matches DasarRadioGroup's valueField comparator
+    // NgpRadioGroup's `compareWith` is a readonly input() with no public setter, and
+    // nothing in a consumer's template binds it (it's derived internally from valueField,
+    // not meant to be set by consumers) — so hostDirectives input aliasing never fires for
+    // it. Driving it requires reaching into the signal node directly; this must be redone
+    // if ng-primitives changes its internal signal representation.
     const compareWithInput = this.ngpRadioGroup.compareWith as any;
-    const sym = Object.getOwnPropertySymbols(compareWithInput).find(
-      (s) => s.description === 'SIGNAL' || s.toString().includes('SIGNAL'),
+    const sym = Object.getOwnPropertySymbols(compareWithInput).find((s) =>
+      s.toString().includes('SIGNAL'),
     );
     if (sym && compareWithInput[sym]) {
       compareWithInput[sym].value = (a: any, b: any) => this.compareWith(a, b);
@@ -195,6 +192,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
   @Input()
   set value(val: any) {
     this.selected.set(val ?? null);
+    (this.ngpRadioGroup as any).state?.setValue(val ?? null, { emit: false });
   }
   get value(): any {
     return this.selected();
@@ -300,7 +298,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
 
   writeValue(value: any): void {
     this.selected.set(value ?? null);
-    (this.ngpRadioGroup as any).state?.setValue(value ?? null);
+    (this.ngpRadioGroup as any).state?.setValue(value ?? null, { emit: false });
   }
 
   registerOnChange(fn: any): void {
@@ -313,6 +311,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.ownDisabled.set(isDisabled);
+    (this.ngpRadioGroup as any).state?.setDisabled(isDisabled);
   }
 
   ngOnDestroy() {

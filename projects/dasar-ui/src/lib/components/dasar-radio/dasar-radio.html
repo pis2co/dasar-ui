@@ -10,7 +10,6 @@
       [disabled]="isDisabled"
       [attr.aria-invalid]="hasError || null"
       [attr.aria-describedby]="hint ? hintId : null"
-      (click)="select($event)"
       (blur)="onTouched()"
     >
       <span
