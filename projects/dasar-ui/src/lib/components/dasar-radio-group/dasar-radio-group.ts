@@ -56,16 +56,29 @@ const keyOf = (value: any, valueField: string | null): any => {
       multi: true,
     },
   ],
+  hostDirectives: [
+    {
+      directive: NgpRadioGroup,
+      inputs: [
+        'ngpRadioGroupValue: value',
+        'ngpRadioGroupDisabled: disabled',
+        'ngpRadioGroupOrientation: direction',
+        'ngpRadioGroupCompareWith: compareWith',
+      ],
+      outputs: ['ngpRadioGroupValueChange: valueChange'],
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dasar-radio-group.scss'],
   templateUrl: './dasar-radio-group.html',
   selector: 'dasar-radio-group',
-  imports: [CommonModule, NgpRadioGroup],
+  imports: [CommonModule],
   standalone: true,
 })
 export class DasarRadioGroup implements ControlValueAccessor {
   private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
   private themeService = inject(DasarThemeService, { optional: true });
+  private ngpRadioGroup = inject(NgpRadioGroup, { self: true });
   private radios = contentChildren(DasarRadio, { descendants: true });
   private ownDisabled = signal(
     resolveThemeDefault('radioGroup', 'disabled', false, this.themeProvider, this.themeService),
@@ -89,7 +102,26 @@ export class DasarRadioGroup implements ControlValueAccessor {
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
 
+  compareWith = (a: any, b: any): boolean => {
+    return keyOf(a, this.valueField) === keyOf(b, this.valueField);
+  };
+
   constructor() {
+    // Inject comparator to NgpRadioGroup's compareWith InputSignal so internal NgpRadioGroup
+    // comparison matches DasarRadioGroup's valueField comparator
+    const compareWithInput = this.ngpRadioGroup.compareWith as any;
+    const sym = Object.getOwnPropertySymbols(compareWithInput).find(
+      (s) => s.description === 'SIGNAL' || s.toString().includes('SIGNAL'),
+    );
+    if (sym && compareWithInput[sym]) {
+      compareWithInput[sym].value = (a: any, b: any) => this.compareWith(a, b);
+    }
+
+    // Listen to NgpRadioGroup value changes (from click or keyboard / roving focus)
+    this.ngpRadioGroup.valueChange.subscribe((val) => {
+      this.handleNgpGroupValueChange(val);
+    });
+
     effect(() => {
       const children = this.radios();
       const current = this.selected();
@@ -209,11 +241,6 @@ export class DasarRadioGroup implements ControlValueAccessor {
     return classes.join(' ');
   }
 
-  @HostBinding('attr.role')
-  get role(): string {
-    return 'radiogroup';
-  }
-
   @HostBinding('attr.aria-describedby')
   get describedBy(): string | null {
     return this.hint ? this.hintId : null;
@@ -255,17 +282,20 @@ export class DasarRadioGroup implements ControlValueAccessor {
     return baseClass;
   }
 
-  private selectChild = (radio: DasarRadio) => {
+  private handleNgpGroupValueChange = (next: any) => {
     const field = this.valueField;
-    const target = keyOf(radio.checkedValue, field);
+    const target = keyOf(next, field);
     const current = this.selected();
     if (current !== null && current !== undefined && keyOf(current, field) === target) return;
     this.onTouched();
-    const next = radio.checkedValue;
     this.selected.set(next);
     this.onChange(next);
     this.valueChange.emit(next);
     this.onUpdate.emit(next);
+  };
+
+  private selectChild = (radio: DasarRadio) => {
+    this.handleNgpGroupValueChange(radio.checkedValue);
   };
 
   writeValue(value: any): void {

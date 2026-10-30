@@ -6,6 +6,7 @@ import { NgpRadioGroup, NgpRadioIndicator, NgpRadioItem } from 'ng-primitives/ra
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarThemeProviderComponent } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarRadio, DasarRadioComponent } from './dasar-radio';
+import { DasarRadioGroupComponent } from '../dasar-radio-group/dasar-radio-group';
 import { DasarThemeConfig } from '../../models/theme.model';
 
 @Component({
@@ -426,5 +427,77 @@ describe('DasarRadio dual-path grouped vs standalone', () => {
 
     const indicatorDebugEl = fixture.debugElement.query(By.directive(NgpRadioIndicator));
     expect(indicatorDebugEl).not.toBeNull();
+  });
+
+  it('resolves NgpRadioGroup via DI in real DasarRadioGroup with DasarRadio children, syncing selection and compareWith', async () => {
+    @Component({
+      selector: 'test-real-radio-group-integration',
+      standalone: true,
+      imports: [DasarRadioGroupComponent, DasarRadioComponent],
+      template: `
+        <dasar-radio-group
+          [(value)]="selectedValue"
+          [value-field]="'id'"
+          (onUpdate)="updates.set([...updates(), $event])"
+        >
+          <dasar-radio label="Option 1" [checked-value]="item1" />
+          <dasar-radio label="Option 2" [checked-value]="item2" />
+        </dasar-radio-group>
+      `,
+    })
+    class RealRadioGroupIntegrationHost {
+      item1 = { id: '1', title: 'One' };
+      item2 = { id: '2', title: 'Two' };
+      selectedValue = signal<any>({ id: '1' });
+      updates = signal<any[]>([]);
+    }
+
+    await TestBed.configureTestingModule({
+      imports: [RealRadioGroupIntegrationHost],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(RealRadioGroupIntegrationHost);
+    await fixture.whenStable();
+
+    // Verify NgpRadioGroup is hosted on the group
+    const groupDebugEl = fixture.debugElement.query(By.directive(NgpRadioGroup));
+    expect(groupDebugEl).not.toBeNull();
+    const ngpGroup = groupDebugEl.injector.get(NgpRadioGroup);
+    expect(ngpGroup.value()).toEqual({ id: '1' });
+
+    // Verify both child radios resolved NgpRadioItem via DI (no NG0201 crash!)
+    const ngpItems = fixture.debugElement.queryAll(By.directive(NgpRadioItem));
+    expect(ngpItems.length).toBe(2);
+
+    const button1 = ngpItems[0].nativeElement as HTMLButtonElement;
+    const button2 = ngpItems[1].nativeElement as HTMLButtonElement;
+
+    // Check ARIA attributes and name attribute
+    expect(button1.getAttribute('role')).toBe('radio');
+    expect(button1.getAttribute('aria-checked')).toBe('true');
+    expect(button2.getAttribute('aria-checked')).toBe('false');
+    expect(button1.getAttribute('name')).toBeTruthy();
+    expect(button1.getAttribute('name')).toBe(button2.getAttribute('name'));
+
+    // Trigger focus on button2 (testing roving focus / arrow selection)
+    button2.dispatchEvent(new Event('focus'));
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(fixture.componentInstance.selectedValue()).toEqual({ id: '2', title: 'Two' });
+    expect(fixture.componentInstance.updates()).toEqual([{ id: '2', title: 'Two' }]);
+    expect(button1.getAttribute('aria-checked')).toBe('false');
+    expect(button2.getAttribute('aria-checked')).toBe('true');
+
+    // Trigger click on button1
+    button1.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(fixture.componentInstance.selectedValue()).toEqual({ id: '1', title: 'One' });
+    expect(fixture.componentInstance.updates()).toEqual([
+      { id: '2', title: 'Two' },
+      { id: '1', title: 'One' },
+    ]);
   });
 });
