@@ -12,6 +12,7 @@ import {
   DasarThemeConfig,
   DasarThemeDatepicker,
   DasarThemeInput,
+  DasarThemeTextarea,
   DasarThemeSelect,
   DasarThemeCommon,
   DasarThemeMenu,
@@ -217,6 +218,59 @@ export const inputMap: Record<keyof DasarThemeInput, string> = {
   hintFontSize: '--dasar-input-hint-font-size',
   hintColor: '--dasar-input-hint-color',
   hintErrorColor: '--dasar-input-hint-error-color',
+};
+export const textareaMap: Record<keyof DasarThemeTextarea, string> = {
+  wrapperGap: '--dasar-textarea-wrapper-gap',
+  gap: '--dasar-textarea-gap',
+  color: '--dasar-textarea-color',
+  background: '--dasar-textarea-background',
+  padding: '--dasar-textarea-padding',
+  labelFontsize: '--dasar-textarea-label-font-size',
+  labelFontWeight: '--dasar-textarea-label-font-weight',
+  labelColor: '--dasar-textarea-label-color',
+  labelRightFontsize: '--dasar-textarea-label-right-font-size',
+  labelRightColor: '--dasar-textarea-label-right-color',
+  labelRightGap: '--dasar-textarea-label-right-gap',
+  paddingSm: '--dasar-textarea-padding-sm',
+  fontSizeSm: '--dasar-textarea-font-size-sm',
+  paddingMd: '--dasar-textarea-padding-md',
+  fontSizeMd: '--dasar-textarea-font-size-md',
+  paddingLg: '--dasar-textarea-padding-lg',
+  fontSizeLg: '--dasar-textarea-font-size-lg',
+  radiusNone: '--dasar-textarea-radius-none',
+  radiusXs: '--dasar-textarea-radius-xs',
+  radiusSm: '--dasar-textarea-radius-sm',
+  radiusMd: '--dasar-textarea-radius-md',
+  radiusLg: '--dasar-textarea-radius-lg',
+  radiusXl: '--dasar-textarea-radius-xl',
+  radiusFull: '--dasar-textarea-radius-full',
+  outlineBg: '--dasar-textarea-outline-background',
+  outlineBorder: '--dasar-textarea-outline-border',
+  outlineHoverBorder: '--dasar-textarea-outline-hover-border',
+  outlineFocusBorder: '--dasar-textarea-outline-focus-border',
+  outlineFocusRing: '--dasar-textarea-outline-focus-ring',
+  filledBorder: '--dasar-textarea-filled-border',
+  filledHoverBg: '--dasar-textarea-filled-hover-background',
+  filledFocusBg: '--dasar-textarea-filled-focus-background',
+  filledFocusBorder: '--dasar-textarea-filled-focus-border',
+  filledFocusRing: '--dasar-textarea-filled-focus-ring',
+  elevatedBorder: '--dasar-textarea-elevated-border',
+  elevatedBackground: '--dasar-textarea-elevated-background',
+  elevatedShadow: '--dasar-textarea-elevated-shadow',
+  elevatedHoverBorder: '--dasar-textarea-elevated-hover-border',
+  elevatedFocusBorder: '--dasar-textarea-elevated-focus-border',
+  elevatedFocusRing: '--dasar-textarea-elevated-focus-ring',
+  errorBorder: '--dasar-textarea-error-border',
+  errorFocusRing: '--dasar-textarea-error-focus-ring',
+  disabledBg: '--dasar-textarea-disabled-background',
+  disabledBorder: '--dasar-textarea-disabled-border',
+  disabledOpacity: '--dasar-textarea-disabled-opacity',
+  placeholderColor: '--dasar-textarea-placeholder-color',
+  autofillBg: '--dasar-textarea-autofill-background',
+  autofillColor: '--dasar-textarea-autofill-color',
+  hintFontSize: '--dasar-textarea-hint-font-size',
+  hintColor: '--dasar-textarea-hint-color',
+  hintErrorColor: '--dasar-textarea-hint-error-color',
 };
 export const calendarMap: Record<keyof DasarThemeCalendar, string> = {
   calendarBg: '--dasar-calendar-bg',
@@ -973,6 +1027,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.input) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.input, inputMap);
+    }
+    if (config.tokens?.[config.mode]?.textarea) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.textarea, textareaMap);
     }
     if (config.tokens?.[config.mode]?.calendar) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.calendar, calendarMap);

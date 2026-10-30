@@ -10,6 +10,7 @@ import {
   buttonGroupMap,
   commonMap,
   inputMap,
+  textareaMap,
   chipMap,
   cardMap,
   menuMap,
@@ -226,6 +227,15 @@ export class DasarThemeProviderComponent implements OnChanges {
     const inputTokens = this.tokenConfig?.[currentMode]?.input || this.tokenConfig?.light?.input;
     if (inputTokens) {
       this.injectMappedTokens({ element: hostElement, payload: inputTokens, dictionary: inputMap });
+    }
+    const textareaTokens =
+      this.tokenConfig?.[currentMode]?.textarea || this.tokenConfig?.light?.textarea;
+    if (textareaTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: textareaTokens,
+        dictionary: textareaMap,
+      });
     }
     const calendarTokens =
       this.tokenConfig?.[currentMode]?.calendar || this.tokenConfig?.light?.calendar;
