@@ -9,6 +9,7 @@ import {
   Input,
   Output,
   signal,
+  viewChild,
 } from '@angular/core';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
@@ -90,6 +91,7 @@ export class DasarCheckbox implements ControlValueAccessor {
     resolveThemeDefault('checkbox', 'disabled', false, this.themeProvider, this.themeService),
   );
   private groupState = signal<DasarCheckboxGroupState | null>(null);
+  private ngpCheckbox = viewChild(NgpCheckbox);
 
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
@@ -313,6 +315,12 @@ export class DasarCheckbox implements ControlValueAccessor {
   ) {
     this.groupState.set(state);
     this.groupToggleFn = toggle;
+  }
+
+  onIndeterminateChange(value: boolean) {
+    if (this.indeterminate && !value) {
+      this.ngpCheckbox()?.setIndeterminate(true);
+    }
   }
 
   toggle(event?: any) {

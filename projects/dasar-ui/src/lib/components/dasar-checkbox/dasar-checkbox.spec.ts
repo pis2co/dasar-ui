@@ -179,7 +179,11 @@ describe('DasarCheckbox', () => {
     fixture.componentInstance.disabled.set(true);
     await fixture.whenStable();
 
-    nativeOf(fixture).click();
+    const nativeBtn = nativeOf(fixture);
+    expect(nativeBtn.disabled).toBe(true);
+    expect(nativeBtn.getAttribute('aria-disabled')).toBe('true');
+
+    nativeBtn.click();
     await fixture.whenStable();
 
     expect(fixture.componentInstance.value()).toBe(false);
@@ -223,9 +227,7 @@ describe('DasarCheckbox forms', () => {
     const fixture = TestBed.createComponent(CheckboxNgModelHost);
     await fixture.whenStable();
 
-    const native = fixture.nativeElement.querySelector(
-      '.dasar-checkbox-native',
-    ) as HTMLElement;
+    const native = fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLElement;
 
     native.click();
     await fixture.whenStable();
@@ -338,8 +340,7 @@ describe('DasarCheckbox indeterminate', () => {
   let fixture: ComponentFixture<CheckboxIndeterminateHost>;
   let host: CheckboxIndeterminateHost;
 
-  const input = () =>
-    fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLElement;
+  const input = () => fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLElement;
   const box = () => fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
 
   beforeEach(async () => {
@@ -371,6 +372,16 @@ describe('DasarCheckbox indeterminate', () => {
     fixture.detectChanges();
 
     expect(host.value()).toBe(true);
+  });
+
+  it('keeps indeterminate state and mixed aria-checked when parent maintains indeterminate input true across click', () => {
+    expect(input().getAttribute('aria-checked')).toBe('mixed');
+    input().click();
+    fixture.detectChanges();
+
+    expect(host.value()).toBe(true);
+    expect(input().getAttribute('aria-checked')).toBe('mixed');
+    expect(box().classList).toContain('indeterminate');
   });
 });
 

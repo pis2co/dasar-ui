@@ -3,10 +3,12 @@
     type="button"
     ngpCheckbox
     class="dasar-checkbox-native"
+    [disabled]="isDisabled"
     [ngpCheckboxChecked]="isChecked"
     [ngpCheckboxIndeterminate]="indeterminate"
     [ngpCheckboxDisabled]="isDisabled"
     (ngpCheckboxCheckedChange)="toggle()"
+    (ngpCheckboxIndeterminateChange)="onIndeterminateChange($event)"
     (blur)="onTouched()"
     [attr.aria-invalid]="hasError || null"
     [attr.aria-describedby]="hint ? hintId : null"
