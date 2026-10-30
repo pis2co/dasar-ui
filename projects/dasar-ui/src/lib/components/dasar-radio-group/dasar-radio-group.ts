@@ -20,6 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DasarThemeService } from '../../services/theme.service';
 import { ClassType, StyleType } from '../../models/type.model';
 import { CommonModule } from '@angular/common';
+import { NgpRadioGroup } from 'ng-primitives/radio';
 
 export type DasarRadioGroupDirectionType = 'horizontal' | 'vertical';
 
@@ -59,7 +60,7 @@ const keyOf = (value: any, valueField: string | null): any => {
   styleUrls: ['./dasar-radio-group.scss'],
   templateUrl: './dasar-radio-group.html',
   selector: 'dasar-radio-group',
-  imports: [CommonModule],
+  imports: [CommonModule, NgpRadioGroup],
   standalone: true,
 })
 export class DasarRadioGroup implements ControlValueAccessor {

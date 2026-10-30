@@ -1,6 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { NgpRadioGroup } from 'ng-primitives/radio';
 import { DasarRadioComponent } from '../dasar-radio/dasar-radio';
 import { DasarRadioGroupComponent } from './dasar-radio-group';
 
@@ -10,6 +12,7 @@ import { DasarRadioGroupComponent } from './dasar-radio-group';
   imports: [DasarRadioGroupComponent, DasarRadioComponent],
   template: `<dasar-radio-group
     [(value)]="value"
+    [direction]="direction()"
     [disabled]="disabled()"
     [error]="error()"
     [hint]="hint()"
@@ -28,6 +31,7 @@ import { DasarRadioGroupComponent } from './dasar-radio-group';
 })
 class RadioGroupHost {
   value = signal<any>(null);
+  direction = signal<'horizontal' | 'vertical'>('vertical');
   disabled = signal(false);
   error = signal(false);
   hint = signal('');
@@ -115,6 +119,26 @@ describe('DasarRadioGroup', () => {
 
   it('should create', () => {
     expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('hosts NgpRadioGroup on the radio group element with bound inputs', async () => {
+    const ngpGroupDebugEl = fixture.debugElement.query(By.directive(NgpRadioGroup));
+    expect(ngpGroupDebugEl).not.toBeNull();
+
+    const ngpGroup = ngpGroupDebugEl.injector.get(NgpRadioGroup);
+    expect(ngpGroup.value()).toBeNull();
+    expect(ngpGroup.disabled()).toBe(false);
+    expect(ngpGroup.orientation()).toBe('vertical');
+
+    // Update value, disabled, and direction
+    fixture.componentInstance.value.set('b');
+    fixture.componentInstance.disabled.set(true);
+    fixture.componentInstance.direction.set('horizontal');
+    await fixture.whenStable();
+
+    expect(ngpGroup.value()).toBe('b');
+    expect(ngpGroup.disabled()).toBe(true);
+    expect(ngpGroup.orientation()).toBe('horizontal');
   });
 
   it('checks only the matching child from the initial value', async () => {
