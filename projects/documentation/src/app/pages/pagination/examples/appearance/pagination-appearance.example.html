@@ -8,4 +8,11 @@
       [display-order]="['pages']"
     />
   }
+  <dasar-pagination
+    [page-count]="5"
+    [page]="page()"
+    (onUpdatePage)="page.set($event)"
+    appearance="elevated"
+    [display-order]="['pages']"
+  />
 </div>

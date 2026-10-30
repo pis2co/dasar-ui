@@ -251,7 +251,7 @@ export class PaginationDocPage {
     },
     {
       name: 'appearance',
-      type: "'ghost' | 'solid' | 'subtle' | 'outline'",
+      type: "'ghost' | 'solid' | 'subtle' | 'outline' | 'elevated'",
       defaultValue: "'ghost'",
       description:
         'Look of the page buttons. Inactive buttons are ghost (bordered for outline); the active page uses primary.',

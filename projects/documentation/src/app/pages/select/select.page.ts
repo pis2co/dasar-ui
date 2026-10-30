@@ -120,7 +120,7 @@ export class SelectDocPage {
     },
     {
       name: 'appearance',
-      type: "'outline' | 'filled'",
+      type: "'outline' | 'filled' | 'elevated'",
       defaultValue: "'outline'",
       description: 'Visual style of the main trigger container.',
     },
