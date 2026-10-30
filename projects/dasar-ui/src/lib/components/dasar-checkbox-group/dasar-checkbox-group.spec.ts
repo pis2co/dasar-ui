@@ -84,7 +84,7 @@ class CheckboxGroupDynamicHost {
 const nativesOf = (fixture: ComponentFixture<unknown>) =>
   Array.from(
     fixture.nativeElement.querySelectorAll('.dasar-checkbox-native'),
-  ) as HTMLInputElement[];
+  ) as HTMLButtonElement[];
 const clickNative = async (fixture: ComponentFixture<unknown>, index: number) => {
   nativesOf(fixture)[index].click();
   await fixture.whenStable();
@@ -112,9 +112,9 @@ describe('DasarCheckboxGroup', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(true);
-    expect(natives[1].checked).toBe(false);
-    expect(natives[2].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('true');
+    expect(natives[1].getAttribute('aria-checked')).toBe('false');
+    expect(natives[2].getAttribute('aria-checked')).toBe('true');
   });
 
   it('appends the checked value and emits onUpdate and valueChange', async () => {
@@ -123,7 +123,7 @@ describe('DasarCheckboxGroup', () => {
     expect(fixture.componentInstance.value()).toEqual(['a']);
     expect(fixture.componentInstance.updates()).toEqual([['a']]);
     expect(fixture.componentInstance.valueChanges()).toEqual([['a']]);
-    expect(nativesOf(fixture)[0].checked).toBe(true);
+    expect(nativesOf(fixture)[0].getAttribute('aria-checked')).toBe('true');
   });
 
   it('removes the value when an already checked child is clicked', async () => {
@@ -210,8 +210,8 @@ describe('DasarCheckboxGroup with objects', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(true);
-    expect(natives[1].checked).toBe(false);
+    expect(natives[0].getAttribute('aria-checked')).toBe('true');
+    expect(natives[1].getAttribute('aria-checked')).toBe('false');
 
     natives[1].click();
     await fixture.whenStable();
@@ -236,7 +236,7 @@ describe('DasarCheckboxGroup forms', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('true');
 
     natives[1].click();
     await fixture.whenStable();
@@ -263,7 +263,7 @@ describe('DasarCheckboxGroup dynamic children', () => {
     const natives = nativesOf(fixture);
 
     expect(natives.length).toBe(3);
-    expect(natives[1].checked).toBe(true);
+    expect(natives[1].getAttribute('aria-checked')).toBe('true');
 
     natives[2].click();
     await fixture.whenStable();

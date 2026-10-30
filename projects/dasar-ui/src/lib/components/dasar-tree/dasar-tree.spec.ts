@@ -368,7 +368,7 @@ describe('DasarTree', () => {
     const box = (label: string) =>
       row(label).querySelector('.dasar-tree-check dasar-checkbox') as HTMLElement;
     const input = (label: string) =>
-      row(label).querySelector('.dasar-tree-check input') as HTMLInputElement;
+      row(label).querySelector('.dasar-tree-check .dasar-checkbox-native') as HTMLElement;
 
     it('renders a checkbox per row', () => {
       expect(fixture.nativeElement.querySelectorAll('.dasar-tree-check').length).toBe(7);
@@ -378,7 +378,7 @@ describe('DasarTree', () => {
       await click(input('Alpha One'));
 
       expect(host.checked).toEqual([['a1']]);
-      expect(input('Alpha').indeterminate).toBe(true);
+      expect(input('Alpha').getAttribute('aria-checked')).toBe('mixed');
       expect(row('Alpha').getAttribute('aria-checked')).toBe('mixed');
       expect(row('Alpha One').getAttribute('aria-checked')).toBe('true');
     });
@@ -404,7 +404,9 @@ describe('DasarTree', () => {
     });
 
     it('does not check disabled rows', async () => {
-      expect(box('Gamma').querySelector('input')?.disabled).toBe(true);
+      expect(
+        (box('Gamma').querySelector('.dasar-checkbox-native') as HTMLButtonElement)?.disabled,
+      ).toBe(true);
       await click(row('Gamma One'));
 
       expect(host.checked).toEqual([]);
@@ -794,7 +796,7 @@ describe('DasarTree ngModel', () => {
     expect(rows[1].getAttribute('aria-checked')).toBe('true');
     expect(rows[0].getAttribute('aria-checked')).toBe('mixed');
 
-    (rows[2].querySelector('.dasar-tree-check input') as HTMLElement).click();
+    (rows[2].querySelector('.dasar-tree-check .dasar-checkbox-native') as HTMLElement).click();
     fixture.detectChanges();
     expect(fixture.componentInstance.model).toEqual(['a', 'a1', 'a2', 'a2x']);
   });
@@ -848,7 +850,7 @@ describe('DasarTree value binding', () => {
   });
 
   it('writes the checked keys back through [(value)]', () => {
-    (rowsOf(1)[2].querySelector('.dasar-tree-check input') as HTMLElement).click();
+    (rowsOf(1)[2].querySelector('.dasar-tree-check .dasar-checkbox-native') as HTMLElement).click();
     fixture.detectChanges();
 
     expect(fixture.componentInstance.checked()).toEqual(['a', 'a1', 'a2', 'a2x']);
