@@ -2,9 +2,10 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { NgpRadioGroup, NgpRadioIndicator, NgpRadioItem } from 'ng-primitives/radio';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarThemeProviderComponent } from '../dasar-theme-provider/dasar-theme-provider';
-import { DasarRadioComponent } from './dasar-radio';
+import { DasarRadio, DasarRadioComponent } from './dasar-radio';
 import { DasarThemeConfig } from '../../models/theme.model';
 
 @Component({
@@ -346,5 +347,84 @@ describe('DasarRadio label size', () => {
     fixture.componentInstance.size.set('lg');
     await fixture.whenStable();
     expect(fontSize()).toContain('--dasar-font-size-lg');
+  });
+});
+
+@Component({
+  selector: 'test-radio-grouped-host',
+  standalone: true,
+  imports: [DasarRadioComponent, NgpRadioGroup],
+  template: `
+    <div
+      ngpRadioGroup
+      [ngpRadioGroupValue]="groupValue()"
+      (ngpRadioGroupValueChange)="groupValue.set($event)"
+    >
+      <dasar-radio label="A" checked-value="a" />
+      <dasar-radio label="B" checked-value="b" [disabled]="bDisabled()" />
+    </div>
+  `,
+})
+class RadioGroupedTestHost {
+  groupValue = signal<any>('a');
+  bDisabled = signal(false);
+}
+
+describe('DasarRadio dual-path grouped vs standalone', () => {
+  it('when groupState is null (standalone, default), does NOT host NgpRadioItem and keeps native radio input', async () => {
+    await TestBed.configureTestingModule({
+      imports: [RadioHost],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(RadioHost);
+    await fixture.whenStable();
+
+    const ngpItemDebugEl = fixture.debugElement.query(By.directive(NgpRadioItem));
+    expect(ngpItemDebugEl).toBeNull();
+
+    const nativeInput = fixture.nativeElement.querySelector(
+      'input.dasar-radio-native',
+    ) as HTMLInputElement;
+    expect(nativeInput).not.toBeNull();
+    expect(nativeInput.tagName.toLowerCase()).toBe('input');
+    expect(nativeInput.type).toBe('radio');
+  });
+
+  it('when groupState is set inside an NgpRadioGroup, hosts NgpRadioItem with value and disabled', async () => {
+    await TestBed.configureTestingModule({
+      imports: [RadioGroupedTestHost],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(RadioGroupedTestHost);
+    await fixture.whenStable();
+
+    const radios = fixture.debugElement.queryAll(By.directive(DasarRadio));
+    const radioA = radios[0].componentInstance as DasarRadio;
+    const radioB = radios[1].componentInstance as DasarRadio;
+
+    // Simulate groupState propagation
+    radioA.applyGroupState(
+      { checked: true, disabled: false, error: false, size: 'md', name: 'group-1' },
+      () => {},
+    );
+    radioB.applyGroupState(
+      { checked: false, disabled: true, error: false, size: 'md', name: 'group-1' },
+      () => {},
+    );
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const ngpItems = fixture.debugElement.queryAll(By.directive(NgpRadioItem));
+    expect(ngpItems.length).toBe(2);
+
+    const itemA = ngpItems[0].injector.get(NgpRadioItem);
+    const itemB = ngpItems[1].injector.get(NgpRadioItem);
+    expect(itemA.value()).toBe('a');
+    expect(itemA.disabled()).toBe(false);
+    expect(itemB.value()).toBe('b');
+    expect(itemB.disabled()).toBe(true);
+
+    const indicatorDebugEl = fixture.debugElement.query(By.directive(NgpRadioIndicator));
+    expect(indicatorDebugEl).not.toBeNull();
   });
 });

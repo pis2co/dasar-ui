@@ -17,6 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DasarThemeService } from '../../services/theme.service';
 import { isEqualValue } from '../dasar-checkbox/dasar-checkbox';
 import { CommonModule } from '@angular/common';
+import { NgpRadioIndicator, NgpRadioItem } from 'ng-primitives/radio';
 
 let nextDasarRadioId = 0;
 
@@ -58,7 +59,7 @@ export interface DasarRadioConfig {
   styleUrls: ['./dasar-radio.scss'],
   templateUrl: './dasar-radio.html',
   selector: 'dasar-radio',
-  imports: [CommonModule],
+  imports: [CommonModule, NgpRadioItem, NgpRadioIndicator],
   standalone: true,
 })
 export class DasarRadio implements ControlValueAccessor {
@@ -190,6 +191,10 @@ export class DasarRadio implements ControlValueAccessor {
 
   get hasError(): boolean {
     return this.error || (this.groupState()?.error ?? false);
+  }
+
+  get isGrouped(): boolean {
+    return this.groupState() !== null;
   }
 
   get isChecked(): boolean {

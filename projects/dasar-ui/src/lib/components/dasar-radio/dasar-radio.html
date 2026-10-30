@@ -1,16 +1,38 @@
 <label [ngClass]="containerClasses" [ngStyle]="containerStyle">
-  <input
-    type="radio"
-    class="dasar-radio-native"
-    [attr.name]="currentName"
-    [checked]="isChecked"
-    [disabled]="isDisabled"
-    [attr.aria-invalid]="hasError || null"
-    [attr.aria-describedby]="hint ? hintId : null"
-    (change)="select($event)"
-    (blur)="onTouched()"
-  />
-  <span [ngClass]="circleClasses" [ngStyle]="circleStyle" aria-hidden="true"></span>
+  @if (isGrouped) {
+    <button
+      type="button"
+      ngpRadioItem
+      class="dasar-radio-native"
+      [ngpRadioItemValue]="checkedValue"
+      [ngpRadioItemDisabled]="isDisabled"
+      [disabled]="isDisabled"
+      [attr.aria-invalid]="hasError || null"
+      [attr.aria-describedby]="hint ? hintId : null"
+      (click)="select($event)"
+      (blur)="onTouched()"
+    >
+      <span
+        [ngClass]="circleClasses"
+        [ngStyle]="circleStyle"
+        ngpRadioIndicator
+        aria-hidden="true"
+      ></span>
+    </button>
+  } @else {
+    <input
+      type="radio"
+      class="dasar-radio-native"
+      [attr.name]="currentName"
+      [checked]="isChecked"
+      [disabled]="isDisabled"
+      [attr.aria-invalid]="hasError || null"
+      [attr.aria-describedby]="hint ? hintId : null"
+      (change)="select($event)"
+      (blur)="onTouched()"
+    />
+    <span [ngClass]="circleClasses" [ngStyle]="circleStyle" aria-hidden="true"></span>
+  }
   @if (label) {
     <span [ngClass]="labelClasses" [ngStyle]="labelStyle">{{ label }}</span>
   }
