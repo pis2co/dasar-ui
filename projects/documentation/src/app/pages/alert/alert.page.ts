@@ -4,6 +4,7 @@ import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
 import { AlertBasicExample } from './examples/basic/alert-basic.example';
+import { AlertAppearanceExample } from './examples/appearance/alert-appearance.example';
 import { AlertVariantExample } from './examples/variant/alert-variant.example';
 import { AlertBorderedExample } from './examples/bordered/alert-bordered.example';
 import { AlertTitleExample } from './examples/title/alert-title.example';
@@ -21,6 +22,15 @@ import { AlertRadiusThemeExample } from './examples/radius-theme/alert-radius-th
 import basicHtml from './examples/basic/alert-basic.example.html' with { loader: 'text' };
 // @ts-ignore
 import basicTs from './examples/basic/alert-basic.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import appearanceHtml from './examples/appearance/alert-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import appearanceTs from './examples/appearance/alert-appearance.example.ts' with {
+  loader: 'text',
+};
 
 // @ts-ignore
 import variantHtml from './examples/variant/alert-variant.example.html' with { loader: 'text' };
@@ -107,6 +117,7 @@ import radiusThemeTs from './examples/radius-theme/alert-radius-theme.example.ts
     DocsLayoutComponent,
     DocExampleComponent,
     AlertBasicExample,
+    AlertAppearanceExample,
     AlertVariantExample,
     AlertBorderedExample,
     AlertTitleExample,
@@ -127,6 +138,9 @@ import radiusThemeTs from './examples/radius-theme/alert-radius-theme.example.ts
 export class AlertDocPage {
   protected basicHtml = basicHtml;
   protected basicTs = basicTs;
+
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
 
   protected variantHtml = variantHtml;
   protected variantTs = variantTs;
@@ -170,6 +184,12 @@ export class AlertDocPage {
       type: "'primary' | 'secondary' | 'success' | 'warning' | 'danger'",
       defaultValue: "'primary'",
       description: 'Color variant.',
+    },
+    {
+      name: 'appearance',
+      type: "'outline' | 'borderless' | 'elevated'",
+      defaultValue: "'outline'",
+      description: 'Visual style of the alert container.',
     },
     {
       name: 'bordered',
