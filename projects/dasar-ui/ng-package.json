@@ -4,7 +4,6 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
-  "assets": [
-    { "input": "src/lib/styles", "glob": "**/*.scss", "output": "styles" }
-  ]
+  "assets": [{ "input": "src/lib/styles", "glob": "**/*.scss", "output": "styles" }],
+  "allowedNonPeerDependencies": ["ng-primitives"]
 }
