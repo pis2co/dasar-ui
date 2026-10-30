@@ -30,6 +30,23 @@
     border-color: var(--dasar-alert-border-local);
   }
 
+  &.appearance-outline {
+    border: 1px solid var(--dasar-alert-outline-border, var(--dasar-theme-border-strong-color));
+  }
+
+  &.appearance-borderless {
+    border: none;
+  }
+
+  &.appearance-elevated {
+    border: 1px solid var(--dasar-alert-elevated-border, var(--dasar-theme-border-strong-color));
+    box-shadow: var(
+      --dasar-alert-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+  }
+
   &.radius-none {
     border-radius: var(--dasar-alert-radius-none, var(--dasar-radius-none));
   }
