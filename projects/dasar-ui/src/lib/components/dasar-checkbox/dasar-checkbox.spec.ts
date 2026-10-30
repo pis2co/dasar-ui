@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { NgpCheckbox } from 'ng-primitives/checkbox';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarThemeProviderComponent } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarCheckboxComponent } from './dasar-checkbox';
@@ -100,7 +101,7 @@ describe('DasarCheckbox', () => {
   });
 
   it('is unchecked with the md class by default', () => {
-    expect(nativeOf(fixture).checked).toBe(false);
+    expect(nativeOf(fixture).getAttribute('aria-checked')).toBe('false');
     expect(boxOf(fixture).classList).not.toContain('checked');
     expect(hostOf(fixture).classList).toContain('md');
     expect(fixture.nativeElement.querySelector('.dasar-checkbox-label')?.textContent).toBe(
@@ -109,13 +110,44 @@ describe('DasarCheckbox', () => {
     expect(fixture.nativeElement.textContent).toContain('Extra');
   });
 
+  it('hosts the NgpCheckbox directive on the interactive element', () => {
+    const ngpCheckboxDebugEl = fixture.debugElement.query(By.directive(NgpCheckbox));
+    expect(ngpCheckboxDebugEl).not.toBeNull();
+    expect(ngpCheckboxDebugEl.nativeElement.tagName.toLowerCase()).toBe('button');
+    expect(ngpCheckboxDebugEl.nativeElement.getAttribute('type')).toBe('button');
+  });
+
+  it('reflects checked state into NgpCheckbox directive and aria-checked attribute', async () => {
+    const ngpCheckboxDebugEl = fixture.debugElement.query(By.directive(NgpCheckbox));
+    expect(ngpCheckboxDebugEl).not.toBeNull();
+
+    const ngpCheckbox = ngpCheckboxDebugEl.injector.get(NgpCheckbox);
+    expect(ngpCheckbox.checked()).toBe(false);
+    expect(ngpCheckboxDebugEl.nativeElement.getAttribute('aria-checked')).toBe('false');
+
+    fixture.componentInstance.value.set(true);
+    await fixture.whenStable();
+
+    expect(ngpCheckbox.checked()).toBe(true);
+    expect(ngpCheckboxDebugEl.nativeElement.getAttribute('aria-checked')).toBe('true');
+  });
+
+  it('toggles value via keyboard Space key interaction on the interactive element', async () => {
+    const el = nativeOf(fixture);
+    el.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }));
+    await fixture.whenStable();
+
+    expect(fixture.componentInstance.value()).toBe(true);
+    expect(fixture.componentInstance.updates()).toEqual([true]);
+  });
+
   it('toggles and emits the checked value on click', async () => {
     nativeOf(fixture).click();
     await fixture.whenStable();
 
     expect(fixture.componentInstance.value()).toBe(true);
     expect(fixture.componentInstance.updates()).toEqual([true]);
-    expect(nativeOf(fixture).checked).toBe(true);
+    expect(nativeOf(fixture).getAttribute('aria-checked')).toBe('true');
   });
 
   it('emits custom checked and unchecked values', async () => {
@@ -139,7 +171,7 @@ describe('DasarCheckbox', () => {
     fixture.componentInstance.value.set(true);
     await fixture.whenStable();
 
-    expect(nativeOf(fixture).checked).toBe(true);
+    expect(nativeOf(fixture).getAttribute('aria-checked')).toBe('true');
     expect(boxOf(fixture).classList).toContain('checked');
   });
 
@@ -193,7 +225,7 @@ describe('DasarCheckbox forms', () => {
 
     const native = fixture.nativeElement.querySelector(
       '.dasar-checkbox-native',
-    ) as HTMLInputElement;
+    ) as HTMLElement;
 
     native.click();
     await fixture.whenStable();
@@ -206,7 +238,7 @@ describe('DasarCheckbox forms', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(native.checked).toBe(false);
+    expect(native.getAttribute('aria-checked')).toBe('false');
   });
 
   it('respects a disabled reactive FormControl', async () => {
@@ -307,7 +339,7 @@ describe('DasarCheckbox indeterminate', () => {
   let host: CheckboxIndeterminateHost;
 
   const input = () =>
-    fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLInputElement;
+    fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLElement;
   const box = () => fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
 
   beforeEach(async () => {
@@ -320,7 +352,6 @@ describe('DasarCheckbox indeterminate', () => {
   });
 
   it('shows the mixed state with a dash instead of a check', () => {
-    expect(input().indeterminate).toBe(true);
     expect(input().getAttribute('aria-checked')).toBe('mixed');
     expect(box().classList).toContain('indeterminate');
     expect(box().querySelector('dasar-icon')?.getAttribute('name')).toBe('minus');
@@ -330,8 +361,7 @@ describe('DasarCheckbox indeterminate', () => {
     host.indeterminate.set(false);
     fixture.detectChanges();
 
-    expect(input().indeterminate).toBe(false);
-    expect(input().getAttribute('aria-checked')).toBeNull();
+    expect(input().getAttribute('aria-checked')).toBe('false');
     expect(box().classList).not.toContain('indeterminate');
     expect(box().querySelector('dasar-icon')).toBeNull();
   });

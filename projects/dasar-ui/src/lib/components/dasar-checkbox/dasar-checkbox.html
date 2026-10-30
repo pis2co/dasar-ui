@@ -1,16 +1,16 @@
 <label [ngClass]="containerClasses" [ngStyle]="containerStyle">
-  <input
-    type="checkbox"
+  <button
+    type="button"
+    ngpCheckbox
     class="dasar-checkbox-native"
-    [checked]="isChecked"
-    [indeterminate]="indeterminate"
-    [attr.aria-checked]="indeterminate ? 'mixed' : null"
-    [disabled]="isDisabled"
+    [ngpCheckboxChecked]="isChecked"
+    [ngpCheckboxIndeterminate]="indeterminate"
+    [ngpCheckboxDisabled]="isDisabled"
+    (ngpCheckboxCheckedChange)="toggle()"
+    (blur)="onTouched()"
     [attr.aria-invalid]="hasError || null"
     [attr.aria-describedby]="hint ? hintId : null"
-    (change)="toggle($event)"
-    (blur)="onTouched()"
-  />
+  ></button>
   <span [ngClass]="boxClasses" [ngStyle]="boxStyle" aria-hidden="true">
     @if (indeterminate) {
       <dasar-icon name="minus" size="sm" />

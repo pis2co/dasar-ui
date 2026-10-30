@@ -17,6 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { CommonModule } from '@angular/common';
+import { NgpCheckbox } from 'ng-primitives/checkbox';
 
 export type DasarCheckboxSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 
@@ -77,7 +78,7 @@ export const isEqualValue = (first: any, second: any): boolean => {
   styleUrls: ['./dasar-checkbox.scss'],
   templateUrl: './dasar-checkbox.html',
   selector: 'dasar-checkbox',
-  imports: [CommonModule, DasarIconComponent],
+  imports: [CommonModule, DasarIconComponent, NgpCheckbox],
   standalone: true,
 })
 export class DasarCheckbox implements ControlValueAccessor {
@@ -314,15 +315,13 @@ export class DasarCheckbox implements ControlValueAccessor {
     this.groupToggleFn = toggle;
   }
 
-  toggle(event?: Event) {
+  toggle(event?: any) {
     if (this.isDisabled) {
-      if (event) (event.target as HTMLInputElement).checked = this.isChecked;
       return;
     }
     this.onTouched();
     if (this.groupToggleFn) {
       this.groupToggleFn(this);
-      if (event) (event.target as HTMLInputElement).checked = this.isChecked;
       return;
     }
     const next = this.isChecked ? this.uncheckedValue : this.checkedValue;
@@ -330,7 +329,6 @@ export class DasarCheckbox implements ControlValueAccessor {
     this.onChange(next);
     this.valueChange.emit(next);
     this.onUpdate.emit(next);
-    if (event) (event.target as HTMLInputElement).checked = this.isChecked;
   }
 
   writeValue(value: any): void {
