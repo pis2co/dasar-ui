@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { NgpButton } from 'ng-primitives/button';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarButton, DasarButtonComponent } from './dasar-button';
 
@@ -11,13 +13,23 @@ import { DasarButton, DasarButtonComponent } from './dasar-button';
 })
 class DisabledHost {}
 
+@Component({
+  selector: 'test-button-host',
+  standalone: true,
+  imports: [DasarButtonComponent],
+  template: `<dasar-button [disabled]="disabled">A</dasar-button>`,
+})
+class TestButtonHost {
+  disabled = false;
+}
+
 describe('DasarButton', () => {
   let component: DasarButton;
   let fixture: ComponentFixture<DasarButton>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DasarButton],
+      imports: [DasarButton, TestButtonHost],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DasarButton);
@@ -27,6 +39,28 @@ describe('DasarButton', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('hosts the NgpButton directive on the native button element', () => {
+    const ngpButtonDebugEl = fixture.debugElement.query(By.directive(NgpButton));
+    expect(ngpButtonDebugEl).not.toBeNull();
+    expect(ngpButtonDebugEl.nativeElement.tagName.toLowerCase()).toBe('button');
+  });
+
+  it('reflects disabled state to NgpButton directive and attributes when disabled is true', async () => {
+    const hostFixture = TestBed.createComponent(TestButtonHost);
+    hostFixture.componentInstance.disabled = true;
+    hostFixture.detectChanges();
+    await hostFixture.whenStable();
+
+    const ngpButtonDebugEl = hostFixture.debugElement.query(By.directive(NgpButton));
+    expect(ngpButtonDebugEl).not.toBeNull();
+
+    const ngpButton = ngpButtonDebugEl.injector.get(NgpButton);
+    expect(ngpButton.disabled()).toBe(true);
+
+    const buttonEl = ngpButtonDebugEl.nativeElement as HTMLButtonElement;
+    expect(buttonEl.disabled || buttonEl.getAttribute('aria-disabled') === 'true').toBe(true);
   });
 });
 

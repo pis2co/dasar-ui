@@ -51,6 +51,7 @@
     "@angular/router": "^22.1.0",
     "@angular/ssr": "^22.1.8",
     "express": "^5.1.0",
+    "ng-primitives": "0.131.4",
     "prismjs": "1.30.0",
     "rxjs": "~7.8.0"
   }
