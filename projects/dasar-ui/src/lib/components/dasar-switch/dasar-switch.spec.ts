@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { vi } from 'vitest';
+import { NgpSwitch, NgpSwitchThumb } from 'ng-primitives/switch';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarIcon } from '../dasar-icon/dasar-icon';
 import { switchMap } from '../../services/theme.service';
@@ -144,6 +145,36 @@ describe('DasarSwitch', () => {
     expect(trackOf(fixture).classList).not.toContain('checked');
   });
 
+  it('hosts the NgpSwitch directive on the button and NgpSwitchThumb on the thumb', () => {
+    const ngpSwitchDebugEl = fixture.debugElement.query(By.directive(NgpSwitch));
+    expect(ngpSwitchDebugEl).not.toBeNull();
+    expect(ngpSwitchDebugEl.nativeElement).toBe(trackOf(fixture));
+
+    const ngpThumbDebugEl = fixture.debugElement.query(By.directive(NgpSwitchThumb));
+    expect(ngpThumbDebugEl).not.toBeNull();
+    expect(ngpThumbDebugEl.nativeElement.classList).toContain('dasar-switch-thumb');
+  });
+
+  it('reflects checked and disabled state into NgpSwitch directive and attributes', async () => {
+    const ngpSwitchDebugEl = fixture.debugElement.query(By.directive(NgpSwitch));
+    const ngpSwitch = ngpSwitchDebugEl.injector.get(NgpSwitch);
+    expect(ngpSwitch.checked()).toBe(false);
+    expect(trackOf(fixture).getAttribute('aria-checked')).toBe('false');
+
+    fixture.componentInstance.value.set(true);
+    await fixture.whenStable();
+
+    expect(ngpSwitch.checked()).toBe(true);
+    expect(trackOf(fixture).getAttribute('aria-checked')).toBe('true');
+
+    fixture.componentInstance.disabled.set(true);
+    await fixture.whenStable();
+
+    expect(ngpSwitch.disabled()).toBe(true);
+    expect((trackOf(fixture) as HTMLButtonElement).disabled).toBe(true);
+    expect(trackOf(fixture).getAttribute('aria-disabled')).toBe('true');
+  });
+
   it('toggles on click and emits the new value', async () => {
     trackOf(fixture).click();
     await fixture.whenStable();
@@ -220,15 +251,22 @@ describe('DasarSwitch', () => {
     expect(switchOf(fixture).hint).toBe('');
   });
 
-  it('toggles on Space and Enter', async () => {
+  it('toggles on Space and Enter exactly once per keydown', async () => {
+    fixture.componentInstance.updates.set([]);
     const track = trackOf(fixture);
-    track.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+    track.dispatchEvent(
+      new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }),
+    );
     await fixture.whenStable();
     expect(fixture.componentInstance.value()).toBe(true);
+    expect(fixture.componentInstance.updates()).toEqual([true]);
 
-    track.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    track.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }),
+    );
     await fixture.whenStable();
     expect(fixture.componentInstance.value()).toBe(false);
+    expect(fixture.componentInstance.updates()).toEqual([true, false]);
   });
 
   it('applies the size class', async () => {
