@@ -1,193 +1,206 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DasarModal, DasarModalComponent } from './dasar-modal';
+import { DasarModalComponent } from './dasar-modal';
 import { DasarThemeService } from '../../services/theme.service';
 
 @Component({
   standalone: true,
   imports: [DasarModalComponent],
   template: `
-    <dasar-modal [open]="open()" [label]="'Title'" (onClose)="closed.set(closed() + 1)">
-      <p>Body</p>
-      <div action-slot><button class="action-btn">OK</button></div>
-    </dasar-modal>
+    <button class="trigger-btn" [dasarModalTrigger]="modalTpl">Open</button>
+    <ng-template #modalTpl let-close="close">
+      <dasar-modal label="Title">
+        <p>Body</p>
+        <div action-slot><button class="action-btn" (click)="close()">OK</button></div>
+      </dasar-modal>
+    </ng-template>
   `,
 })
-class ModalHost {
-  open = signal(false);
-  closed = signal(0);
-}
-
-@Component({
-  standalone: true,
-  imports: [DasarModalComponent],
-  template: `<dasar-modal [open]="true" label="Title"></dasar-modal>`,
-})
-class ThemeDefaultHost {}
+class ModalHost {}
 
 describe('DasarModal', () => {
   let fixture: ComponentFixture<ModalHost>;
-  let host: ModalHost;
 
-  const container = () => fixture.nativeElement.querySelector('.dasar-modal-container');
-  const modalElement = () => fixture.nativeElement.querySelector('dasar-modal') as HTMLElement;
-  const open = async (value = true) => {
-    host.open.set(value);
+  const triggerBtn = () => fixture.nativeElement.querySelector('.trigger-btn') as HTMLElement;
+  const container = () => document.querySelector('.dasar-modal-container');
+  const modalElement = () => document.querySelector('dasar-modal') as HTMLElement | null;
+
+  const openDialog = async () => {
+    triggerBtn().click();
     await fixture.whenStable();
+    fixture.detectChanges();
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({ imports: [ModalHost] }).compileComponents();
-
     fixture = TestBed.createComponent(ModalHost);
-    host = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   afterEach(() => {
-    document.body.style.overflow = '';
+    document.querySelectorAll('dasar-modal').forEach((el) => el.remove());
   });
 
-  it('should create', () => {
-    expect(fixture.debugElement.query(By.directive(DasarModal))).toBeTruthy();
+  it('should create', async () => {
+    await openDialog();
+    expect(document.querySelector('.dasar-modal-container')).toBeTruthy();
   });
 
-  it('always has the dasar-modal host class', () => {
-    expect(modalElement().classList).toContain('dasar-modal');
-  });
-
-  it('renders nothing while closed', () => {
+  it('renders nothing before the trigger is activated', () => {
     expect(container()).toBeNull();
-    expect(modalElement().classList).not.toContain('open');
   });
 
-  it('renders header, body and actions while open', async () => {
-    await open();
+  it('renders header, body and actions when opened', async () => {
+    await openDialog();
 
     expect(container()).toBeTruthy();
-    expect(container().classList).toContain('size-md');
-    expect(container().classList).toContain('radius-lg');
-    expect(container().classList).toContain('appearance-elevated');
-    expect(fixture.nativeElement.querySelector('.dasar-modal-title').textContent).toContain(
-      'Title',
-    );
-    expect(fixture.nativeElement.querySelector('.dasar-modal-body p').textContent).toContain(
-      'Body',
-    );
-    expect(fixture.nativeElement.querySelector('.dasar-modal-actions .action-btn')).toBeTruthy();
-    expect(modalElement().classList).toContain('open');
+    expect(container()!.classList).toContain('size-md');
+    expect(container()!.classList).toContain('radius-lg');
+    expect(container()!.classList).toContain('appearance-elevated');
+    expect(document.querySelector('.dasar-modal-title')!.textContent).toContain('Title');
+    expect(document.querySelector('.dasar-modal-body p')!.textContent).toContain('Body');
+    expect(document.querySelector('.dasar-modal-actions .action-btn')).toBeTruthy();
   });
 
-  it('emits onClose from the default close button', async () => {
-    await open();
+  it('closes when the template close() callback is invoked', async () => {
+    await openDialog();
+    expect(container()).toBeTruthy();
 
-    (fixture.nativeElement.querySelector('.dasar-modal-close dasar-button') as HTMLElement).click();
+    (document.querySelector('.action-btn') as HTMLElement).click();
     await fixture.whenStable();
+    fixture.detectChanges();
 
-    expect(host.closed()).toBe(1);
+    expect(container()).toBeNull();
   });
 
-  it('emits onClose on Escape', async () => {
-    await open();
+  it('closes when the default close button is clicked', async () => {
+    await openDialog();
 
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    (document.querySelector('.dasar-modal-close dasar-button') as HTMLElement).click();
     await fixture.whenStable();
+    fixture.detectChanges();
 
-    expect(host.closed()).toBe(1);
+    expect(container()).toBeNull();
   });
 
-  it('emits onClose when the overlay backdrop is clicked, but not the panel', async () => {
-    await open();
+  it('closes on Escape by default', async () => {
+    await openDialog();
 
-    (fixture.nativeElement.querySelector('.dasar-overlay-backdrop') as HTMLElement).click();
+    container()!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await fixture.whenStable();
-    expect(host.closed()).toBe(1);
+    fixture.detectChanges();
+    // The escape handler is attached outside the Angular zone, so its async close()
+    // chain settles on a real macrotask rather than one `whenStable()` can observe.
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    fixture.detectChanges();
 
-    (fixture.nativeElement.querySelector('.dasar-modal-body') as HTMLElement).click();
-    await fixture.whenStable();
-    expect(host.closed()).toBe(1);
+    expect(container()).toBeNull();
   });
 
-  it('does not emit onClose on Escape while closed', async () => {
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-    await fixture.whenStable();
+  it('honours dasarModalTriggerCloseOnEscape=false', async () => {
+    @Component({
+      standalone: true,
+      imports: [DasarModalComponent],
+      template: `
+        <button
+          class="trigger-btn"
+          [dasarModalTrigger]="modalTpl"
+          [dasarModalTriggerCloseOnEscape]="false"
+        >
+          Open
+        </button>
+        <ng-template #modalTpl>
+          <dasar-modal label="Title"><p>Body</p></dasar-modal>
+        </ng-template>
+      `,
+    })
+    class NoEscapeHost {}
 
-    expect(host.closed()).toBe(0);
-  });
+    TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({ imports: [NoEscapeHost] }).compileComponents();
+    const noEscapeFixture = TestBed.createComponent(NoEscapeHost);
+    noEscapeFixture.detectChanges();
 
-  it('honours close-on-escape=false', async () => {
-    const modal = fixture.debugElement.query(By.directive(DasarModal)).componentInstance;
-    modal.closeOnEscape = false;
-    await open();
+    (noEscapeFixture.nativeElement.querySelector('.trigger-btn') as HTMLElement).click();
+    await noEscapeFixture.whenStable();
+    noEscapeFixture.detectChanges();
+    expect(container()).toBeTruthy();
 
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-    await fixture.whenStable();
+    container()!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    await noEscapeFixture.whenStable();
+    noEscapeFixture.detectChanges();
 
-    expect(host.closed()).toBe(0);
-  });
-
-  it('honours close-on-overlay=false', async () => {
-    const modal = fixture.debugElement.query(By.directive(DasarModal)).componentInstance;
-    modal.closeOnOverlay = false;
-    await open();
-
-    (fixture.nativeElement.querySelector('.dasar-overlay-backdrop') as HTMLElement).click();
-    await fixture.whenStable();
-
-    expect(host.closed()).toBe(0);
+    expect(container()).toBeTruthy();
+    document.querySelectorAll('dasar-modal').forEach((el) => el.remove());
   });
 
   it('honours closable=false by hiding the close affordance', async () => {
-    await open();
-    expect(fixture.nativeElement.querySelector('.dasar-modal-close dasar-button')).toBeTruthy();
+    @Component({
+      standalone: true,
+      imports: [DasarModalComponent],
+      template: `
+        <button class="trigger-btn" [dasarModalTrigger]="modalTpl">Open</button>
+        <ng-template #modalTpl>
+          <dasar-modal label="Title" [closable]="false"><p>Body</p></dasar-modal>
+        </ng-template>
+      `,
+    })
+    class NotClosableHost {}
 
-    await open(false);
-    const modal = fixture.debugElement.query(By.directive(DasarModal)).componentInstance;
-    modal.closable = false;
-    await open();
+    TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({ imports: [NotClosableHost] }).compileComponents();
+    const f = TestBed.createComponent(NotClosableHost);
+    f.detectChanges();
+    (f.nativeElement.querySelector('.trigger-btn') as HTMLElement).click();
+    await f.whenStable();
+    f.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.dasar-modal-close')).toBeNull();
+    expect(document.querySelector('.dasar-modal-close')).toBeNull();
   });
 
   it('sets an explicit width over the size default', async () => {
-    await open();
-    expect(container().style.width).toBe('');
+    @Component({
+      standalone: true,
+      imports: [DasarModalComponent],
+      template: `
+        <button class="trigger-btn" [dasarModalTrigger]="modalTpl">Open</button>
+        <ng-template #modalTpl>
+          <dasar-modal label="Title" width="320px"><p>Body</p></dasar-modal>
+        </ng-template>
+      `,
+    })
+    class WidthHost {}
 
-    await open(false);
-    const modal = fixture.debugElement.query(By.directive(DasarModal)).componentInstance;
-    modal.width = '320px';
-    await open();
+    TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({ imports: [WidthHost] }).compileComponents();
+    const f = TestBed.createComponent(WidthHost);
+    f.detectChanges();
+    (f.nativeElement.querySelector('.trigger-btn') as HTMLElement).click();
+    await f.whenStable();
+    f.detectChanges();
 
-    expect(container().style.width).toBe('320px');
-  });
-
-  it('locks body scroll while open and restores it when closed', async () => {
-    await open();
-    expect(document.body.style.overflow).toBe('hidden');
-
-    await open(false);
-    expect(document.body.style.overflow).toBe('');
-  });
-
-  it('restores body scroll when destroyed while open', async () => {
-    await open();
-    expect(document.body.style.overflow).toBe('hidden');
-
-    fixture.destroy();
-    expect(document.body.style.overflow).toBe('');
+    expect((document.querySelector('.dasar-modal-container') as HTMLElement).style.width).toBe(
+      '320px',
+    );
   });
 });
 
 describe('DasarModal slots and theme defaults', () => {
+  afterEach(() => {
+    document.querySelectorAll('dasar-modal').forEach((el) => el.remove());
+  });
+
   it('replaces the label with the header slot content', async () => {
     @Component({
       standalone: true,
       imports: [DasarModalComponent],
       template: `
-        <dasar-modal [open]="true" label="Title">
-          <div header-slot><span class="custom-header">Custom</span></div>
-        </dasar-modal>
+        <button class="trigger-btn" [dasarModalTrigger]="modalTpl">Open</button>
+        <ng-template #modalTpl>
+          <dasar-modal label="Title">
+            <div header-slot><span class="custom-header">Custom</span></div>
+          </dasar-modal>
+        </ng-template>
       `,
     })
     class HeaderSlotHost {}
@@ -195,9 +208,12 @@ describe('DasarModal slots and theme defaults', () => {
     await TestBed.configureTestingModule({ imports: [HeaderSlotHost] }).compileComponents();
     const fixture = TestBed.createComponent(HeaderSlotHost);
     fixture.detectChanges();
+    (fixture.nativeElement.querySelector('.trigger-btn') as HTMLElement).click();
+    await fixture.whenStable();
+    fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.custom-header')).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('.dasar-modal-title')).toBeNull();
+    expect(document.querySelector('.custom-header')).toBeTruthy();
+    expect(document.querySelector('.dasar-modal-title')).toBeNull();
   });
 
   it('replaces the default close button with the close slot', async () => {
@@ -205,9 +221,12 @@ describe('DasarModal slots and theme defaults', () => {
       standalone: true,
       imports: [DasarModalComponent],
       template: `
-        <dasar-modal [open]="true" label="Title">
-          <button class="custom-close" close-slot>X</button>
-        </dasar-modal>
+        <button class="trigger-btn" [dasarModalTrigger]="modalTpl">Open</button>
+        <ng-template #modalTpl>
+          <dasar-modal label="Title">
+            <button class="custom-close" close-slot>X</button>
+          </dasar-modal>
+        </ng-template>
       `,
     })
     class CloseSlotHost {}
@@ -215,12 +234,27 @@ describe('DasarModal slots and theme defaults', () => {
     await TestBed.configureTestingModule({ imports: [CloseSlotHost] }).compileComponents();
     const fixture = TestBed.createComponent(CloseSlotHost);
     fixture.detectChanges();
+    (fixture.nativeElement.querySelector('.trigger-btn') as HTMLElement).click();
+    await fixture.whenStable();
+    fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.custom-close')).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('.dasar-modal-close dasar-button')).toBeNull();
+    expect(document.querySelector('.custom-close')).toBeTruthy();
+    expect(document.querySelector('.dasar-modal-close dasar-button')).toBeNull();
   });
 
-  it('takes the default size from the theme service config', async () => {
+  it('takes the default size and appearance from the theme service config', async () => {
+    @Component({
+      standalone: true,
+      imports: [DasarModalComponent],
+      template: `
+        <button class="trigger-btn" [dasarModalTrigger]="modalTpl">Open</button>
+        <ng-template #modalTpl>
+          <dasar-modal label="Title"><p>Body</p></dasar-modal>
+        </ng-template>
+      `,
+    })
+    class ThemeDefaultHost {}
+
     await TestBed.configureTestingModule({
       imports: [ThemeDefaultHost],
       providers: [DasarThemeService],
@@ -228,40 +262,17 @@ describe('DasarModal slots and theme defaults', () => {
 
     TestBed.inject(DasarThemeService).setGlobalTheme({
       mode: 'light',
-      components: { modal: { size: 'lg' } },
+      components: { modal: { size: 'lg', appearance: 'outline' } },
     });
 
     const fixture = TestBed.createComponent(ThemeDefaultHost);
     fixture.detectChanges();
-
-    expect(fixture.nativeElement.querySelector('.dasar-modal-container').classList).toContain(
-      'size-lg',
-    );
-  });
-
-  it('takes the default appearance from the theme service config', async () => {
-    @Component({
-      standalone: true,
-      imports: [DasarModalComponent],
-      template: `<dasar-modal [open]="true" label="Title"></dasar-modal>`,
-    })
-    class AppearanceHost {}
-
-    await TestBed.configureTestingModule({
-      imports: [AppearanceHost],
-      providers: [DasarThemeService],
-    }).compileComponents();
-
-    TestBed.inject(DasarThemeService).setGlobalTheme({
-      mode: 'light',
-      components: { modal: { appearance: 'outline', closable: false } },
-    });
-
-    const fixture = TestBed.createComponent(AppearanceHost);
+    (fixture.nativeElement.querySelector('.trigger-btn') as HTMLElement).click();
+    await fixture.whenStable();
     fixture.detectChanges();
 
-    const container = fixture.nativeElement.querySelector('.dasar-modal-container');
-    expect(container.classList).toContain('appearance-outline');
-    expect(container.classList).toContain('size-md');
+    const el = document.querySelector('.dasar-modal-container')!;
+    expect(el.classList).toContain('size-lg');
+    expect(el.classList).toContain('appearance-outline');
   });
 });

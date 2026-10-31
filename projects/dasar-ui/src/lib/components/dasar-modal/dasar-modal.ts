@@ -1,28 +1,26 @@
 import {
   booleanAttribute,
   ViewEncapsulation,
-  EventEmitter,
   ContentChild,
-  HostBinding,
-  HostListener,
   Component,
   Directive,
-  Output,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
   inject,
   Input,
-  PLATFORM_ID,
 } from '@angular/core';
+import {
+  NgpDialog,
+  NgpDialogOverlay,
+  NgpDialogTrigger,
+  injectDialogState,
+  provideDialogState,
+} from 'ng-primitives/dialog';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { DasarOverlayComponent } from '../dasar-overlay/dasar-overlay';
-import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarThemeService } from '../../services/theme.service';
+import { DasarButtonComponent } from '../dasar-button/dasar-button';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
+import { CommonModule } from '@angular/common';
 
 export type DasarModalSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarModalAppearance = 'outline' | 'borderless' | 'elevated';
@@ -52,9 +50,13 @@ export interface DasarModalConfig {
   fullWidth?: boolean;
   closable?: boolean;
   closeOnOverlay?: boolean;
-  closeOnEscape?: boolean;
   overlayBlur?: string;
   overlayBackground?: string;
+}
+
+export interface DasarModalTriggerConfig {
+  closeOnEscape?: boolean;
+  closeOnOutsideClick?: boolean;
 }
 
 @Directive({ selector: '[header-slot]', standalone: true })
@@ -64,26 +66,53 @@ export class DasarModalCloseSlot {}
 @Directive({ selector: '[action-slot]', standalone: true })
 export class DasarModalActionSlot {}
 
+/**
+ * Applied to a launcher element with a `<ng-template let-close="close">` reference to open
+ * a dasar-modal as a dialog, using NgpDialogTrigger's trigger+template lifecycle.
+ */
+@Directive({
+  selector: '[dasarModalTrigger]',
+  standalone: true,
+  hostDirectives: [
+    {
+      directive: NgpDialogTrigger,
+      inputs: [
+        'ngpDialogTrigger: dasarModalTrigger',
+        'ngpDialogTriggerCloseOnEscape: dasarModalTriggerCloseOnEscape',
+        'ngpDialogTriggerCloseOnOutsideClick: dasarModalTriggerCloseOnOutsideClick',
+        'ngpDialogTriggerContainer: dasarModalTriggerContainer',
+      ],
+      outputs: ['ngpDialogTriggerClosed: dasarModalTriggerClosed'],
+    },
+  ],
+})
+export class DasarModalTrigger {}
+
 @Component({
-  imports: [CommonModule, DasarButtonComponent, DasarIconComponent, DasarOverlayComponent],
+  imports: [CommonModule, DasarButtonComponent, DasarIconComponent, NgpDialog],
+  providers: [provideDialogState()],
+  hostDirectives: [
+    { directive: NgpDialogOverlay, inputs: ['ngpDialogOverlayCloseOnClick: close-on-overlay'] },
+  ],
+  host: {
+    class: 'dasar-modal',
+    '[style.--dasar-modal-overlay-background]': 'overlayBackground',
+    '[style.--dasar-modal-overlay-blur]': 'overlayBlur',
+  },
   encapsulation: ViewEncapsulation.None,
   templateUrl: './dasar-modal.html',
   styleUrls: ['./dasar-modal.scss'],
   selector: 'dasar-modal',
   standalone: true,
 })
-export class DasarModal implements OnChanges, OnDestroy {
+export class DasarModal {
   @ContentChild(DasarModalHeaderSlot) providedHeader?: DasarModalHeaderSlot;
   @ContentChild(DasarModalCloseSlot) providedClose?: DasarModalCloseSlot;
   @ContentChild(DasarModalActionSlot) providedAction?: DasarModalActionSlot;
 
   private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
   private themeService = inject(DasarThemeService, { optional: true });
-
-  private platformId = inject(PLATFORM_ID);
-  private document = inject(DOCUMENT);
-
-  @Input({ transform: booleanAttribute }) open = false;
+  private dialogState = injectDialogState();
 
   @Input() appearance = resolveThemeDefault(
     'modal',
@@ -226,10 +255,6 @@ export class DasarModal implements OnChanges, OnDestroy {
     this.themeProvider,
     this.themeService,
   );
-  @Input({ alias: 'close-on-overlay', transform: booleanAttribute }) closeOnOverlay =
-    resolveThemeDefault('modal', 'closeOnOverlay', true, this.themeProvider, this.themeService);
-  @Input({ alias: 'close-on-escape', transform: booleanAttribute }) closeOnEscape =
-    resolveThemeDefault('modal', 'closeOnEscape', true, this.themeProvider, this.themeService);
   @Input({ alias: 'overlay-blur' }) overlayBlur = resolveThemeDefault(
     'modal',
     'overlayBlur',
@@ -244,23 +269,6 @@ export class DasarModal implements OnChanges, OnDestroy {
     this.themeProvider,
     this.themeService,
   );
-
-  @Output() onClose = new EventEmitter<void>();
-
-  @HostBinding('class.dasar-modal') readonly baseClass = true;
-  @HostBinding('class.open') get isOpen(): boolean {
-    return this.open;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['open']) {
-      this.toggleScrollLock(this.open);
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.toggleScrollLock(false);
-  }
 
   get hasHeader(): boolean {
     return !!this.providedHeader;
@@ -278,21 +286,7 @@ export class DasarModal implements OnChanges, OnDestroy {
   }
 
   close(): void {
-    this.onClose.emit();
-  }
-
-  handleOverlayClick(): void {
-    if (this.closeOnOverlay) this.close();
-  }
-
-  @HostListener('document:keydown.escape')
-  handleEscape(): void {
-    if (this.open && this.closeOnEscape) this.close();
-  }
-
-  private toggleScrollLock(lock: boolean): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.document.body.style.overflow = lock ? 'hidden' : '';
+    this.dialogState().close();
   }
 }
 
@@ -300,5 +294,6 @@ export const DasarModalComponent = [
   DasarModalHeaderSlot,
   DasarModalCloseSlot,
   DasarModalActionSlot,
+  DasarModalTrigger,
   DasarModal,
 ] as const;
