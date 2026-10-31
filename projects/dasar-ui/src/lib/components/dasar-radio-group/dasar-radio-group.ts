@@ -15,7 +15,11 @@ import {
 } from '@angular/core';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
-import { DasarRadio, DasarRadioSizeType } from '../dasar-radio/dasar-radio';
+import {
+  DasarRadio,
+  DasarRadioAppearanceType,
+  DasarRadioSizeType,
+} from '../dasar-radio/dasar-radio';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DasarThemeService } from '../../services/theme.service';
 import { ClassType, StyleType } from '../../models/type.model';
@@ -26,6 +30,7 @@ export type DasarRadioGroupDirectionType = 'horizontal' | 'vertical';
 
 export interface DasarRadioGroupConfig {
   direction?: DasarRadioGroupDirectionType;
+  appearance?: DasarRadioAppearanceType;
   size?: DasarRadioSizeType | null;
   disabled?: boolean;
   error?: boolean;
@@ -125,6 +130,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
       const disabled = this.ownDisabled();
       const error = this.ownError();
       const size = this.ownSize();
+      const appearance = this.appearance;
       const valueField = this.valueField;
       const name = this.ownName() ?? this.groupName;
       for (const child of children) {
@@ -133,7 +139,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
           current !== undefined &&
           keyOf(current, valueField) === keyOf(child.checkedValue, valueField);
         child.applyGroupState(
-          { checked, disabled: disabled || child.disabled, error, size, name },
+          { checked, disabled: disabled || child.disabled, error, size, appearance, name },
           this.selectChild,
         );
       }
@@ -144,6 +150,13 @@ export class DasarRadioGroup implements ControlValueAccessor {
     'radioGroup',
     'direction',
     'vertical' as DasarRadioGroupDirectionType,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() appearance = resolveThemeDefault(
+    'radioGroup',
+    'appearance',
+    'outline' as DasarRadioAppearanceType,
     this.themeProvider,
     this.themeService,
   );

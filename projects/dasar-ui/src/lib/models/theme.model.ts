@@ -20,7 +20,7 @@ import {
   DasarCheckboxAppearanceType,
 } from '../components/dasar-checkbox/dasar-checkbox';
 import { DasarCheckboxGroupConfig } from '../components/dasar-checkbox-group/dasar-checkbox-group';
-import { DasarRadioConfig } from '../components/dasar-radio/dasar-radio';
+import { DasarRadioConfig, DasarRadioAppearanceType } from '../components/dasar-radio/dasar-radio';
 import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-radio-group';
 import { DasarBreakpointConfig } from '../components/dasar-breakpoint/dasar-breakpoint';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
@@ -46,6 +46,8 @@ export type {
   DasarPinAppearanceType,
   DasarCheckboxConfig,
   DasarCheckboxAppearanceType,
+  DasarRadioConfig,
+  DasarRadioAppearanceType,
   DasarDrawerConfig,
   DasarDrawerAppearanceType,
 };
@@ -300,6 +302,7 @@ export interface DasarThemeCheckbox {
   labelFontSizeLg?: string;
 }
 export interface DasarThemeRadio {
+  appearance?: DasarRadioAppearanceType;
   gap?: string;
   hintGap?: string;
   sizeSm?: string;

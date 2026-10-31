@@ -693,6 +693,7 @@ export const checkboxMap: Record<keyof DasarThemeCheckbox, string> = {
   groupGap: '--dasar-checkbox-group-gap',
 };
 export const radioMap: Record<keyof DasarThemeRadio, string> = {
+  appearance: '--dasar-radio-appearance',
   gap: '--dasar-radio-gap',
   hintGap: '--dasar-radio-hint-gap',
   sizeSm: '--dasar-radio-size-sm',

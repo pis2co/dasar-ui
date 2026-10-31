@@ -4,6 +4,7 @@ import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
 import { RadioBasicExample } from './examples/basic/radio-basic.example';
+import { RadioAppearanceExample } from './examples/appearance/radio-appearance.example';
 import { RadioSizeExample } from './examples/size/radio-size.example';
 import { RadioUpdateExample } from './examples/update/radio-update.example';
 import { RadioLabelHintExample } from './examples/label-hint/radio-label-hint.example';
@@ -11,6 +12,7 @@ import { RadioErrorExample } from './examples/error/radio-error.example';
 import { RadioDisabledExample } from './examples/disabled/radio-disabled.example';
 import { RadioReactiveExample } from './examples/reactive/radio-reactive.example';
 import { RadioGroupExample } from './examples/group/radio-group.example';
+import { RadioGroupAppearanceExample } from './examples/group-appearance/radio-group-appearance.example';
 import { RadioGroupLayoutExample } from './examples/group-layout/radio-group-layout.example';
 import { RadioGroupValueFieldExample } from './examples/group-value-field/radio-group-value-field.example';
 import { RadioAdvancedThemeExample } from './examples/advanced-theme/radio-advanced-theme.example';
@@ -19,6 +21,15 @@ import { RadioAdvancedThemeExample } from './examples/advanced-theme/radio-advan
 import basicHtml from './examples/basic/radio-basic.example.html' with { loader: 'text' };
 // @ts-ignore
 import basicTs from './examples/basic/radio-basic.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import appearanceHtml from './examples/appearance/radio-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import appearanceTs from './examples/appearance/radio-appearance.example.ts' with {
+  loader: 'text',
+};
 
 // @ts-ignore
 import sizeHtml from './examples/size/radio-size.example.html' with { loader: 'text' };
@@ -64,6 +75,15 @@ import groupHtml from './examples/group/radio-group.example.html' with { loader:
 import groupTs from './examples/group/radio-group.example.ts' with { loader: 'text' };
 
 // @ts-ignore
+import groupAppearanceHtml from './examples/group-appearance/radio-group-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import groupAppearanceTs from './examples/group-appearance/radio-group-appearance.example.ts' with {
+  loader: 'text',
+};
+
+// @ts-ignore
 import groupLayoutHtml from './examples/group-layout/radio-group-layout.example.html' with {
   loader: 'text',
 };
@@ -96,6 +116,7 @@ import advancedThemeTs from './examples/advanced-theme/radio-advanced-theme.exam
     DocsLayoutComponent,
     DocExampleComponent,
     RadioBasicExample,
+    RadioAppearanceExample,
     RadioSizeExample,
     RadioUpdateExample,
     RadioLabelHintExample,
@@ -103,6 +124,7 @@ import advancedThemeTs from './examples/advanced-theme/radio-advanced-theme.exam
     RadioDisabledExample,
     RadioReactiveExample,
     RadioGroupExample,
+    RadioGroupAppearanceExample,
     RadioGroupLayoutExample,
     RadioGroupValueFieldExample,
     RadioAdvancedThemeExample,
@@ -114,6 +136,9 @@ import advancedThemeTs from './examples/advanced-theme/radio-advanced-theme.exam
 export class RadioDocPage {
   protected basicHtml = basicHtml;
   protected basicTs = basicTs;
+
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
 
   protected sizeHtml = sizeHtml;
   protected sizeTs = sizeTs;
@@ -136,6 +161,9 @@ export class RadioDocPage {
   protected groupHtml = groupHtml;
   protected groupTs = groupTs;
 
+  protected groupAppearanceHtml = groupAppearanceHtml;
+  protected groupAppearanceTs = groupAppearanceTs;
+
   protected groupLayoutHtml = groupLayoutHtml;
   protected groupLayoutTs = groupLayoutTs;
 
@@ -151,6 +179,12 @@ export class RadioDocPage {
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Size of the radio.',
+    },
+    {
+      name: 'appearance',
+      type: "'outline' | 'filled' | 'elevated'",
+      defaultValue: "'outline'",
+      description: 'Visual appearance style of the radio.',
     },
     {
       name: 'label',
@@ -252,6 +286,13 @@ export class RadioDocPage {
       type: "'sm' | 'md' | 'lg' | null",
       defaultValue: 'null',
       description: 'Overrides the size of every child. Null keeps each child size.',
+    },
+    {
+      name: 'dasar-radio-group: appearance',
+      type: "'outline' | 'filled' | 'elevated' | null",
+      defaultValue: 'null',
+      description:
+        'Overrides the appearance of every child radio. Null keeps each child appearance.',
     },
     {
       name: 'dasar-radio-group: direction',

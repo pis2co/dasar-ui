@@ -3,8 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgpRadioGroup } from 'ng-primitives/radio';
-import { DasarRadioComponent } from '../dasar-radio/dasar-radio';
-import { DasarRadioGroupComponent } from './dasar-radio-group';
+import {
+  DasarRadio,
+  DasarRadioAppearanceType,
+  DasarRadioComponent,
+} from '../dasar-radio/dasar-radio';
+import { DasarRadioGroup, DasarRadioGroupComponent } from './dasar-radio-group';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 
 @Component({
   selector: 'test-radio-group-host',
@@ -353,5 +358,98 @@ describe('DasarRadioGroup dynamic children', () => {
     await fixture.whenStable();
 
     expect(fixture.componentInstance.value()).toBe('c');
+  });
+});
+
+@Component({
+  selector: 'test-radio-group-appearance-host',
+  standalone: true,
+  imports: [DasarRadioGroupComponent, DasarRadioComponent],
+  template: `
+    @if (appearance()) {
+      <dasar-radio-group [appearance]="appearance()!">
+        <dasar-radio label="One" [checked-value]="'1'" />
+        <dasar-radio label="Two" [checked-value]="'2'" />
+      </dasar-radio-group>
+    } @else {
+      <dasar-radio-group>
+        <dasar-radio label="One" [checked-value]="'1'" />
+        <dasar-radio label="Two" [checked-value]="'2'" />
+      </dasar-radio-group>
+    }
+  `,
+})
+class RadioGroupAppearanceHost {
+  appearance = signal<DasarRadioAppearanceType | undefined>(undefined);
+}
+
+@Component({
+  selector: 'test-radio-group-appearance-theme-host',
+  standalone: true,
+  imports: [DasarRadioGroupComponent, DasarRadioComponent],
+  template: `
+    <dasar-radio-group>
+      <dasar-radio label="Theme Child" [checked-value]="'tc'" />
+    </dasar-radio-group>
+  `,
+})
+class RadioGroupAppearanceThemeHost {}
+
+describe('DasarRadioGroup appearance propagation', () => {
+  it('propagates default outline appearance to child radios', async () => {
+    await TestBed.configureTestingModule({
+      imports: [RadioGroupAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(RadioGroupAppearanceHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const circles = fixture.nativeElement.querySelectorAll('.dasar-radio-circle');
+    expect(circles.length).toBe(2);
+    for (const circle of Array.from(circles)) {
+      expect((circle as HTMLElement).classList.contains('appearance-outline')).toBe(true);
+      expect((circle as HTMLElement).classList.contains('appearance-elevated')).toBe(false);
+    }
+  });
+
+  it('propagates explicit appearance to all child radios', async () => {
+    await TestBed.configureTestingModule({
+      imports: [RadioGroupAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(RadioGroupAppearanceHost);
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const circles = fixture.nativeElement.querySelectorAll('.dasar-radio-circle');
+    expect(circles.length).toBe(2);
+    for (const circle of Array.from(circles)) {
+      expect((circle as HTMLElement).classList.contains('appearance-elevated')).toBe(true);
+      expect((circle as HTMLElement).classList.contains('appearance-outline')).toBe(false);
+    }
+  });
+
+  it('respects theme-configured default appearance on radioGroup', async () => {
+    const customThemeConfig = {
+      componentConfig: {
+        radioGroup: {
+          appearance: 'elevated' as const,
+        },
+      },
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [RadioGroupAppearanceThemeHost],
+      providers: [{ provide: DASAR_THEME_PROVIDER, useValue: customThemeConfig }],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(RadioGroupAppearanceThemeHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const group = fixture.debugElement.children[0].componentInstance as DasarRadioGroup;
+    expect(group.appearance).toBe('elevated');
+
+    const circle = fixture.nativeElement.querySelector('.dasar-radio-circle') as HTMLElement;
+    expect(circle.classList.contains('appearance-elevated')).toBe(true);
   });
 });
