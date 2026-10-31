@@ -1109,6 +1109,9 @@ export interface DasarThemeToast {
   successAccent?: string;
   warningAccent?: string;
   dangerAccent?: string;
+  elevatedBg?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
 }
 export interface DasarThemeModal {
   background?: string;

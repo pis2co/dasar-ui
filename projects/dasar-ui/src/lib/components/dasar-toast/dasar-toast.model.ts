@@ -46,6 +46,7 @@ export interface DasarToastConfig {
   duration?: number;
   closeable?: boolean;
   variant?: DasarToastVariant;
+  appearance?: 'solid' | 'elevated';
   aliveOnHover?: boolean;
   closeIconName?: string;
   max?: number;

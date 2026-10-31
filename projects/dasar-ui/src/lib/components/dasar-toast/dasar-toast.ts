@@ -28,6 +28,8 @@ export const DASAR_TOAST_NAVIGATOR = new InjectionToken<(to: string) => void>(
   'DASAR_TOAST_NAVIGATOR',
 );
 
+export type DasarToastAppearanceType = 'solid' | 'elevated';
+
 const ANIMATION_FALLBACK_MS = 400;
 
 @Component({
@@ -86,6 +88,14 @@ export class DasarToast implements OnInit, OnChanges, OnDestroy {
     'toast',
     'closeIconName',
     'x',
+    this.themeProvider,
+    this.themeService,
+  );
+
+  @Input() appearance: DasarToastAppearanceType = resolveThemeDefault(
+    'toast',
+    'appearance',
+    'solid',
     this.themeProvider,
     this.themeService,
   );

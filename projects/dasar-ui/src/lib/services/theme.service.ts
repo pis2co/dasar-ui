@@ -1036,6 +1036,9 @@ export const toastMap: Record<keyof DasarThemeToast, string> = {
   successAccent: '--dasar-toast-success-accent',
   warningAccent: '--dasar-toast-warning-accent',
   dangerAccent: '--dasar-toast-danger-accent',
+  elevatedBg: '--dasar-toast-elevated-bg',
+  elevatedBorder: '--dasar-toast-elevated-border',
+  elevatedShadow: '--dasar-toast-elevated-shadow',
 };
 
 export const splitMap: Record<keyof DasarThemeSplit, string> = {

@@ -61,6 +61,12 @@ dasar-toast {
   [data-theme='dark'] &.variant-danger {
     --dasar-toast-accent-local: var(--dasar-toast-danger-accent, var(--dasar-danger-500));
   }
+
+  &.appearance-elevated {
+    background: var(--dasar-toast-elevated-bg, var(--dasar-theme-bg-surface-color));
+    border: 1px solid var(--dasar-toast-elevated-border, transparent);
+    box-shadow: var(--dasar-toast-elevated-shadow, 0 20px 45px rgba(0, 0, 0, 0.18));
+  }
 }
 
 .dasar-toast-main {
