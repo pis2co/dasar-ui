@@ -6,12 +6,21 @@ import { Component } from '@angular/core';
 
 import { MenuCustomTemplateExample } from './examples/custom-template/menu-custom-template.example';
 import { MenuPlacementExample } from './examples/placement/menu-placement.example';
+import { MenuAppearanceExample } from './examples/appearance/menu-appearance.example';
 import { MenuBasicExample } from './examples/basic/menu-basic.example';
 
 // @ts-ignore - raw example
 import basicHtml from './examples/basic/menu-basic.example.html' with { loader: 'text' };
 // @ts-ignore - raw example
 import basicTs from './examples/basic/menu-basic.example.ts' with { loader: 'text' };
+// @ts-ignore - raw example
+import appearanceHtml from './examples/appearance/menu-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore - raw example
+import appearanceTs from './examples/appearance/menu-appearance.example.ts' with {
+  loader: 'text',
+};
 // @ts-ignore - raw example
 import placementHtml from './examples/placement/menu-placement.example.html' with {
   loader: 'text',
@@ -31,6 +40,7 @@ import templateTs from './examples/custom-template/menu-custom-template.example.
   imports: [
     MenuCustomTemplateExample,
     MenuPlacementExample,
+    MenuAppearanceExample,
     DocExampleComponent,
     DocsLayoutComponent,
     MenuBasicExample,
@@ -43,6 +53,8 @@ import templateTs from './examples/custom-template/menu-custom-template.example.
 export class MenuDocPage {
   protected basicHtml = basicHtml;
   protected basicTs = basicTs;
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
   protected placementHtml = placementHtml;
   protected placementTs = placementTs;
   protected templateHtml = templateHtml;
