@@ -255,6 +255,7 @@ export class DocsLayoutComponent {
       items: [
         { label: 'Button', route: '/components/button' },
         { label: 'Button Group', route: '/components/button-group' },
+        { label: 'Toggle', route: '/components/toggle' },
         { label: 'Icon', route: '/components/icon' },
         { label: 'Chip', route: '/components/chip' },
         { label: 'Divider', route: '/components/divider' },

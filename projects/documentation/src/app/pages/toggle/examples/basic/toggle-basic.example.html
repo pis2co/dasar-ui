@@ -1,0 +1,9 @@
+<div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+  <dasar-toggle [(selected)]="isSelected">
+    {{ isSelected ? 'Selected' : 'Unselected' }}
+  </dasar-toggle>
+
+  <p style="margin: 0; font-size: 14px; color: var(--dasar-theme-text-secondary-color)">
+    Toggle state: <strong>{{ isSelected ? 'Active (true)' : 'Inactive (false)' }}</strong>
+  </p>
+</div>
