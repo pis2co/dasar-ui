@@ -1,7 +1,13 @@
-import { DasarListComponent, DasarTableColumn, DasarTableComponent } from 'dasar-ui';
+import {
+  DasarChipComponent,
+  DasarListComponent,
+  DasarTableColumn,
+  DasarTableComponent,
+} from 'dasar-ui';
 import { NavigationEnd, Router } from '@angular/router';
 import {
   afterNextRender,
+  booleanAttribute,
   Component,
   DestroyRef,
   ElementRef,
@@ -39,7 +45,7 @@ export interface DocNavGroup {
 }
 
 @Component({
-  imports: [CommonModule, DasarListComponent, DasarTableComponent],
+  imports: [CommonModule, DasarListComponent, DasarTableComponent, DasarChipComponent],
   selector: 'docs-layout',
   standalone: true,
   template: `
@@ -66,7 +72,14 @@ export interface DocNavGroup {
       <main class="docs-main" #main>
         <div class="docs-layout">
           <header class="docs-header">
-            <h1 class="docs-title">{{ title }}</h1>
+            <div class="docs-title-row">
+              <h1 class="docs-title">{{ title }}</h1>
+              @if (builtOnPrimitive) {
+                <dasar-chip variant="primary" appearance="subtle" size="xs">
+                  Built on ng-primitives
+                </dasar-chip>
+              }
+            </div>
             <span class="docs-description">{{ description }}</span>
           </header>
           <div class="docs-content">
@@ -137,6 +150,12 @@ export interface DocNavGroup {
         border-bottom: 1px solid var(--dasar-theme-border-subtle-color);
         padding-bottom: var(--dasar-space-6);
       }
+      .docs-title-row {
+        display: flex;
+        align-items: center;
+        gap: var(--dasar-space-3, 12px);
+        flex-wrap: wrap;
+      }
       .docs-title {
         font-weight: var(--dasar-font-weight-semibold);
         color: var(--dasar-theme-text-primary-color);
@@ -182,6 +201,7 @@ export interface DocNavGroup {
 export class DocsLayoutComponent {
   @Input() title = '';
   @Input() description = '';
+  @Input({ transform: booleanAttribute }) builtOnPrimitive = false;
   @Input() apiData: DocApiProperty[] = [];
 
   @ViewChild('main') private main?: ElementRef<HTMLElement>;
