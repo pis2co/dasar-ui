@@ -4,6 +4,7 @@ import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
 import { DrawerBasicExample } from './examples/basic/drawer-basic.example';
+import { DrawerAppearanceExample } from './examples/appearance/drawer-appearance.example';
 import { DrawerPlacementExample } from './examples/placement/drawer-placement.example';
 import { DrawerResizableExample } from './examples/resizable/drawer-resizable.example';
 import { DrawerSlotsExample } from './examples/slots/drawer-slots.example';
@@ -14,6 +15,14 @@ import { DrawerCallbacksExample } from './examples/callbacks/drawer-callbacks.ex
 import basicHtml from './examples/basic/drawer-basic.example.html' with { loader: 'text' };
 // @ts-ignore
 import basicTs from './examples/basic/drawer-basic.example.ts' with { loader: 'text' };
+// @ts-ignore
+import appearanceHtml from './examples/appearance/drawer-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import appearanceTs from './examples/appearance/drawer-appearance.example.ts' with {
+  loader: 'text',
+};
 // @ts-ignore
 import placementHtml from './examples/placement/drawer-placement.example.html' with {
   loader: 'text',
@@ -47,6 +56,7 @@ import callbacksTs from './examples/callbacks/drawer-callbacks.example.ts' with 
     DocsLayoutComponent,
     DocExampleComponent,
     DrawerBasicExample,
+    DrawerAppearanceExample,
     DrawerPlacementExample,
     DrawerResizableExample,
     DrawerSlotsExample,
@@ -60,6 +70,9 @@ import callbacksTs from './examples/callbacks/drawer-callbacks.example.ts' with 
 export class DrawerDocPage {
   protected basicHtml = basicHtml;
   protected basicTs = basicTs;
+
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
 
   protected placementHtml = placementHtml;
   protected placementTs = placementTs;
@@ -95,6 +108,13 @@ export class DrawerDocPage {
       type: "'top' | 'right' | 'bottom' | 'left'",
       defaultValue: "'right'",
       description: 'Edge the drawer slides in from.',
+    },
+    {
+      name: 'appearance',
+      type: "'outline' | 'elevated'",
+      defaultValue: "'outline'",
+      description:
+        'Visual appearance style of the drawer container. Elevated mode provides deeper shadow styling.',
     },
     {
       name: 'closable',

@@ -1,0 +1,16 @@
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+  <dasar-button (click)="openOutline.set(true)">Open Outline Drawer</dasar-button>
+  <dasar-button appearance="elevated" (click)="openElevated.set(true)">
+    Open Elevated Drawer
+  </dasar-button>
+</div>
+
+<dasar-drawer [(show)]="openOutline" [appearance]="'outline'" label="Outline Drawer (Default)">
+  <p>
+    This drawer uses the standard <strong>outline</strong> appearance with subtle border styling.
+  </p>
+</dasar-drawer>
+
+<dasar-drawer [(show)]="openElevated" [appearance]="'elevated'" label="Elevated Drawer">
+  <p>This drawer uses the <strong>elevated</strong> appearance with enhanced shadow depth.</p>
+</dasar-drawer>
