@@ -15,6 +15,7 @@ import {
   DasarThemeTextarea,
   DasarThemeSlider,
   DasarThemeToggle,
+  DasarThemeTooltip,
   DasarThemeSelect,
   DasarThemeCommon,
   DasarThemeMenu,
@@ -410,6 +411,21 @@ export const toggleMap: Record<keyof DasarThemeToggle, string> = {
   ghostHoverColor: '--dasar-toggle-ghost-hover-color',
   ghostFocusRing: '--dasar-toggle-ghost-focus-ring',
   elevatedShadow: '--dasar-toggle-elevated-shadow',
+};
+export const tooltipMap: Record<keyof DasarThemeTooltip, string> = {
+  fontSize: '--dasar-tooltip-font-size',
+  lineHeight: '--dasar-tooltip-line-height',
+  padding: '--dasar-tooltip-padding',
+  radius: '--dasar-tooltip-radius',
+  maxWidth: '--dasar-tooltip-max-width',
+  zIndex: '--dasar-tooltip-z-index',
+  bg: '--dasar-tooltip-bg',
+  color: '--dasar-tooltip-color',
+  shadow: '--dasar-tooltip-shadow',
+  elevatedBg: '--dasar-tooltip-elevated-bg',
+  elevatedColor: '--dasar-tooltip-elevated-color',
+  elevatedBorder: '--dasar-tooltip-elevated-border',
+  elevatedShadow: '--dasar-tooltip-elevated-shadow',
 };
 export const calendarMap: Record<keyof DasarThemeCalendar, string> = {
   calendarBg: '--dasar-calendar-bg',
@@ -1175,6 +1191,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.toggle) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.toggle, toggleMap);
+    }
+    if (config.tokens?.[config.mode]?.tooltip) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.tooltip, tooltipMap);
     }
     if (config.tokens?.[config.mode]?.calendar) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.calendar, calendarMap);

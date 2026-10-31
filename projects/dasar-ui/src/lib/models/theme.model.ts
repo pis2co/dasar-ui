@@ -8,6 +8,7 @@ import { DasarInputConfig } from '../components/dasar-input/dasar-input';
 import { DasarTextareaConfig } from '../components/dasar-textarea/dasar-textarea';
 import { DasarSliderConfig } from '../components/dasar-slider/dasar-slider';
 import { DasarToggleConfig } from '../components/dasar-toggle/dasar-toggle';
+import { DasarTooltipConfig } from '../components/dasar-tooltip/dasar-tooltip';
 import { DasarTableConfig } from '../components/dasar-table/dasar-table';
 import { DasarCardConfig } from '../components/dasar-card/dasar-card';
 import { DasarChipConfig } from '../components/dasar-chip/dasar-chip';
@@ -558,6 +559,21 @@ export interface DasarThemeToggle {
   ghostHoverBg?: string;
   ghostHoverColor?: string;
   ghostFocusRing?: string;
+  elevatedShadow?: string;
+}
+export interface DasarThemeTooltip {
+  fontSize?: string;
+  lineHeight?: string;
+  padding?: string;
+  radius?: string;
+  maxWidth?: string;
+  zIndex?: string;
+  bg?: string;
+  color?: string;
+  shadow?: string;
+  elevatedBg?: string;
+  elevatedColor?: string;
+  elevatedBorder?: string;
   elevatedShadow?: string;
 }
 export interface DasarThemeCalendar {
@@ -1147,6 +1163,7 @@ export type DasarComponentConfig = {
   textarea?: DasarTextareaConfig;
   slider?: DasarSliderConfig;
   toggle?: DasarToggleConfig;
+  tooltip?: DasarTooltipConfig;
   card?: DasarCardConfig;
   chip?: DasarChipConfig;
   divider?: DasarDividerConfig;
@@ -1186,6 +1203,7 @@ export interface DasarThemeConfig {
       textarea?: DasarThemeTextarea;
       slider?: DasarThemeSlider;
       toggle?: DasarThemeToggle;
+      tooltip?: DasarThemeTooltip;
       calendar?: DasarThemeCalendar;
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
@@ -1217,6 +1235,7 @@ export interface DasarThemeConfig {
       textarea?: DasarThemeTextarea;
       slider?: DasarThemeSlider;
       toggle?: DasarThemeToggle;
+      tooltip?: DasarThemeTooltip;
       calendar?: DasarThemeCalendar;
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;

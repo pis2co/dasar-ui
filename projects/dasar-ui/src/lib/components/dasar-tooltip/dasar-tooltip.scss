@@ -1,0 +1,37 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-tooltip-content {
+  position: absolute;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: var(--dasar-tooltip-font-size, var(--dasar-font-size-xs));
+  line-height: var(--dasar-tooltip-line-height, var(--dasar-line-height-tight));
+  padding: var(--dasar-tooltip-padding, var(--dasar-space-1) var(--dasar-space-2));
+  border-radius: var(--dasar-tooltip-radius, var(--dasar-radius-sm));
+  max-width: var(--dasar-tooltip-max-width, 240px);
+  z-index: var(--dasar-tooltip-z-index, 1000);
+  pointer-events: none;
+  white-space: normal;
+  word-break: break-word;
+
+  &.appearance-solid {
+    background-color: var(--dasar-tooltip-bg, var(--dasar-theme-text-primary-color));
+    color: var(--dasar-tooltip-color, var(--dasar-theme-text-inverse-color));
+    box-shadow: var(
+      --dasar-tooltip-shadow,
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1)
+    );
+  }
+
+  &.appearance-elevated {
+    background-color: var(--dasar-tooltip-elevated-bg, var(--dasar-theme-bg-surface-color));
+    color: var(--dasar-tooltip-elevated-color, var(--dasar-theme-text-primary-color));
+    border: 1px solid var(--dasar-tooltip-elevated-border, var(--dasar-theme-border-strong-color));
+    box-shadow: var(
+      --dasar-tooltip-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.05)
+    );
+  }
+}
