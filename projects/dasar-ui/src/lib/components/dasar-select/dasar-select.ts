@@ -17,6 +17,7 @@ import {
   AfterViewInit,
   Directive,
   ContentChild,
+  computed,
 } from '@angular/core';
 import {
   applyFixedPanelPosition,
@@ -36,12 +37,18 @@ import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
 import { fieldIconSize } from '../../utils/icon-size';
 import { CommonModule } from '@angular/common';
+import {
+  provideSelectState,
+  ngpSelect,
+  NgpSelectOption,
+  injectSelectState,
+} from 'ng-primitives/select';
 
 export type DasarSelectSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarSelectPlacementType = DasarPanelPlacement;
 export type DasarSelectChipSizeType = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarSelectMultipleDisplayType = 'text' | 'chip' | null;
-export type DasarSelectAppearanceType = 'outline' | 'filled';
+export type DasarSelectAppearanceType = 'outline' | 'filled' | 'elevated';
 export type DasarSelectRadiusType = ScaleAttributeType;
 
 export interface DasarSelectConfig {
@@ -115,6 +122,7 @@ export interface DasarSelectOption {
       useExisting: forwardRef(() => DasarSelect),
       multi: true,
     },
+    provideSelectState(),
   ],
   imports: [
     CommonModule,
@@ -122,6 +130,7 @@ export interface DasarSelectOption {
     DasarIconComponent,
     DasarButtonComponent,
     DasarChipComponent,
+    NgpSelectOption,
   ],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './dasar-select.html',
@@ -162,6 +171,12 @@ export class DasarSelect implements ControlValueAccessor {
   private debounceTimer: any = null;
   searchQuery = '';
   isOpen = false;
+
+  private ngpState = ngpSelect({
+    value: computed(() => this._value),
+    multiple: computed(() => this.isMultiple),
+    disabled: computed(() => !!this.disabled),
+  });
 
   @Input({ alias: 'multiple-type' }) multipleType: DasarSelectMultipleDisplayType =
     resolveThemeDefault('select', 'multipleType', null, this.themeProvider, this.themeService);

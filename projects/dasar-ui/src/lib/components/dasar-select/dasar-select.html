@@ -153,8 +153,12 @@
           </div>
         }
       } @else {
-        @for (option of filteredOptions; track option.value) {
+        @for (option of filteredOptions; track option.value; let idx = $index) {
           <div
+            ngpSelectOption
+            [ngpSelectOptionValue]="option.value"
+            [ngpSelectOptionDisabled]="option.disabled ?? false"
+            [ngpSelectOptionIndex]="idx"
             class="dasar-select-option"
             [class.selected]="isOptionSelected(option)"
             [class.disabled]="option.disabled"

@@ -94,6 +94,27 @@
     }
   }
 
+  &.appearance-elevated {
+    background-color: var(--dasar-select-elevated-bg, var(--dasar-theme-bg-surface-color));
+    border: 1px solid var(--dasar-select-elevated-border, var(--dasar-theme-border-strong-color));
+    box-shadow: var(
+      --dasar-select-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+
+    &:hover:not(.disabled) {
+      border-color: var(--dasar-select-elevated-hover-border, var(--dasar-theme-primary-color));
+    }
+
+    &.open,
+    &:focus-within {
+      border-color: var(--dasar-select-elevated-focus-border, var(--dasar-theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-select-elevated-focus-ring, var(--dasar-theme-primary-surface-color));
+    }
+  }
+
   &.error {
     border-color: var(--dasar-select-error-border, var(--dasar-theme-danger-color)) !important;
 
@@ -336,11 +357,14 @@
       var(--dasar-select-option-padding-x, var(--dasar-space-5));
   }
 
-  &:hover:not(.disabled) {
+  &:hover:not(.disabled),
+  &[data-hover]:not(.disabled):not([data-disabled]),
+  &[data-active]:not(.disabled):not([data-disabled]) {
     background-color: var(--dasar-select-option-hover-bg, var(--dasar-theme-bg-hover-color));
   }
 
-  &.selected {
+  &.selected,
+  &[data-selected] {
     background-color: var(
       --dasar-select-option-selected-bg,
       var(--dasar-theme-primary-surface-color)
@@ -349,7 +373,8 @@
     font-weight: var(--dasar-select-option-selected-font-weight, var(--dasar-font-weight-medium));
   }
 
-  &.disabled {
+  &.disabled,
+  &[data-disabled] {
     color: var(--dasar-select-option-disabled-color, var(--dasar-theme-text-disabled-color));
     cursor: not-allowed;
   }
