@@ -1,0 +1,55 @@
+<docs-layout
+  title="Tooltip"
+  description="An attribute directive that displays informative text or template content when hovering or focusing an element, supporting positions, appearance variants, and configurable delays."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Usage"
+  >
+    <app-tooltip-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: placementsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: placementsTs },
+    ]"
+    title="Placements"
+  >
+    <app-tooltip-placements-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+  >
+    <app-tooltip-appearance-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: delayHtml },
+      { label: 'TypeScript', lang: 'typescript', value: delayTs },
+    ]"
+    title="Show & Hide Delay"
+  >
+    <app-tooltip-delay-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled State"
+  >
+    <app-tooltip-disabled-example />
+  </doc-example-component>
+</docs-layout>

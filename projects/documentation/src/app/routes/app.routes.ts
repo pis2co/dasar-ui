@@ -7,6 +7,7 @@ import { NumberInputDocPage } from '../pages/number-input/number-input.page';
 import { TextareaDocPage } from '../pages/textarea/textarea.page';
 import { SliderDocPage } from '../pages/slider/slider.page';
 import { ToggleDocPage } from '../pages/toggle/toggle.page';
+import { TooltipDocPage } from '../pages/tooltip/tooltip.page';
 import { ThemingTokensDocPage } from '../pages/theming/theming-tokens.page';
 import { DatepickerDocPage } from '../pages/datepicker/datepicker.page';
 import { CalendarDocPage } from '../pages/calendar/calendar.page';
@@ -222,6 +223,11 @@ export const routes: Routes = [
     path: 'components/toggle',
     component: ToggleDocPage,
     title: 'Toggle Docs | Dasar UI',
+  },
+  {
+    path: 'components/tooltip',
+    component: TooltipDocPage,
+    title: 'Tooltip Docs | Dasar UI',
   },
   {
     path: 'components/menu',

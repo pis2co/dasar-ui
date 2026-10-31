@@ -267,6 +267,7 @@ export class DocsLayoutComponent {
         { label: 'Tree', route: '/components/tree' },
         { label: 'Split', route: '/components/split' },
         { label: 'Toast', route: '/components/toast' },
+        { label: 'Tooltip', route: '/components/tooltip' },
         { label: 'Menu', route: '/components/menu' },
         { label: 'Tabs', route: '/components/tabs' },
         { label: 'List', route: '/components/list' },
