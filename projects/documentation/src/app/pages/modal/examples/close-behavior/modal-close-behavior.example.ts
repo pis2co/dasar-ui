@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { DasarModalComponent, DasarButtonComponent } from 'dasar-ui';
 
 @Component({
@@ -7,8 +7,4 @@ import { DasarModalComponent, DasarButtonComponent } from 'dasar-ui';
   imports: [DasarModalComponent, DasarButtonComponent],
   standalone: true,
 })
-export class ModalCloseBehaviorExample {
-  protected openNotClosable = signal(false);
-  protected openNoOverlay = signal(false);
-  protected openNoEscape = signal(false);
-}
+export class ModalCloseBehaviorExample {}

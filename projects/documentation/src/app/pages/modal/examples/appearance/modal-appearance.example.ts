@@ -10,12 +10,10 @@ type Appearance = 'elevated' | 'outline' | 'borderless';
   standalone: true,
 })
 export class ModalAppearanceExample {
-  protected open = signal(false);
   protected appearance = signal<Appearance>('elevated');
   protected appearances: Appearance[] = ['elevated', 'outline', 'borderless'];
 
-  show(appearance: Appearance) {
+  setAppearance(appearance: Appearance) {
     this.appearance.set(appearance);
-    this.open.set(true);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { DasarModalComponent, DasarButtonComponent, DasarIconComponent } from 'dasar-ui';
 
 @Component({
@@ -7,6 +7,4 @@ import { DasarModalComponent, DasarButtonComponent, DasarIconComponent } from 'd
   imports: [DasarModalComponent, DasarButtonComponent, DasarIconComponent],
   standalone: true,
 })
-export class ModalSlotsExample {
-  protected open = signal(false);
-}
+export class ModalSlotsExample {}

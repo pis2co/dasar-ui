@@ -10,12 +10,10 @@ type Size = 'sm' | 'md' | 'lg';
   standalone: true,
 })
 export class ModalSizeExample {
-  protected open = signal(false);
   protected size = signal<Size>('md');
   protected sizes: Size[] = ['sm', 'md', 'lg'];
 
-  show(size: Size) {
+  setSize(size: Size) {
     this.size.set(size);
-    this.open.set(true);
   }
 }

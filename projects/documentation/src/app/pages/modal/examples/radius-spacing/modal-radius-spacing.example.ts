@@ -8,20 +8,17 @@ import { DasarModalComponent, DasarButtonComponent, DasarModalRadius } from 'das
   standalone: true,
 })
 export class ModalRadiusSpacingExample {
-  protected open = signal(false);
   protected radius = signal<DasarModalRadius>('lg');
   protected spacing = signal<'normal' | 'compact'>('normal');
 
   protected radii: DasarModalRadius[] = ['none', 'xs', 'sm', 'md', 'lg', 'xl', 'full'];
   protected spacings: Array<'normal' | 'compact'> = ['normal', 'compact'];
 
-  showRadius(radius: DasarModalRadius) {
+  setRadius(radius: DasarModalRadius) {
     this.radius.set(radius);
-    this.open.set(true);
   }
 
-  showSpacing(spacing: 'normal' | 'compact') {
+  setSpacing(spacing: 'normal' | 'compact') {
     this.spacing.set(spacing);
-    this.open.set(true);
   }
 }

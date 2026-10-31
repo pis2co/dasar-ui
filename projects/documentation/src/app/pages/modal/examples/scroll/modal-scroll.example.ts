@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { DasarModalComponent, DasarButtonComponent } from 'dasar-ui';
 
 @Component({
@@ -8,6 +8,5 @@ import { DasarModalComponent, DasarButtonComponent } from 'dasar-ui';
   standalone: true,
 })
 export class ModalScrollExample {
-  protected open = signal(false);
   protected paragraphs = Array.from({ length: 40 }, (_, i) => i + 1);
 }
