@@ -1,6 +1,21 @@
 <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
-  <dasar-menu label="Outline (Default)" appearance="outline" [items]="menuItems" />
-  <dasar-menu label="Filled Menu" appearance="filled" [items]="menuItems" />
-  <dasar-menu label="Elevated Menu" appearance="elevated" [items]="menuItems" />
-  <dasar-menu label="No Appearance" appearance="none" [items]="menuItems" />
+  <dasar-button [dasarMenuTrigger]="outlineTpl">Outline (Default)</dasar-button>
+  <ng-template #outlineTpl>
+    <dasar-menu appearance="outline" [items]="menuItems" />
+  </ng-template>
+
+  <dasar-button [dasarMenuTrigger]="filledTpl">Filled Menu</dasar-button>
+  <ng-template #filledTpl>
+    <dasar-menu appearance="filled" [items]="menuItems" />
+  </ng-template>
+
+  <dasar-button [dasarMenuTrigger]="elevatedTpl">Elevated Menu</dasar-button>
+  <ng-template #elevatedTpl>
+    <dasar-menu appearance="elevated" [items]="menuItems" />
+  </ng-template>
+
+  <dasar-button [dasarMenuTrigger]="noneTpl">No Appearance</dasar-button>
+  <ng-template #noneTpl>
+    <dasar-menu appearance="none" [items]="menuItems" />
+  </ng-template>
 </div>

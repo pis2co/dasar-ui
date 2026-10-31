@@ -61,6 +61,32 @@ export class MenuDocPage {
   protected templateTs = templateTs;
   protected readonly apiProps: DocApiProperty[] = [
     {
+      name: '[dasarMenuTrigger]',
+      type: 'TemplateRef<any>',
+      defaultValue: 'undefined',
+      description:
+        'Directive applied to the launcher element pointing to an <ng-template> that contains <dasar-menu>.',
+    },
+    {
+      name: '[dasarMenuTriggerPlacement]',
+      type: 'NgpMenuPlacement',
+      defaultValue: "'bottom-start'",
+      description:
+        'Position of the menu panel relative to the trigger button (e.g. "bottom-start", "bottom-end", "top-start", "top-end").',
+    },
+    {
+      name: '[dasarMenuTriggerDisabled]',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Disables the trigger, preventing the menu from opening.',
+    },
+    {
+      name: '[dasarMenuTriggerOffset]',
+      type: 'number | [number, number]',
+      defaultValue: '0',
+      description: 'Pixel offset of the menu panel from the trigger element.',
+    },
+    {
       name: 'items',
       type: 'DasarMenuItem[]',
       defaultValue: '[]',
@@ -68,47 +94,40 @@ export class MenuDocPage {
         'Array of objects representing the menu items. Each item can have a label, value, iconName, disabled, or divider property.',
     },
     {
-      name: 'label',
-      type: 'string',
-      defaultValue: 'undefined',
-      description: 'The text label displayed on the menu trigger button.',
-    },
-    {
       name: 'appearance',
       type: "'none' | 'outline' | 'filled' | 'elevated'",
       defaultValue: "'outline'",
-      description: 'Defines the visual appearance style of the trigger button.',
+      description: 'Defines the visual appearance style of the menu panel.',
     },
     {
       name: 'placement',
-      type: "'bottom-start' | 'bottom-end' | 'top-start' | 'top-end'",
+      type: 'DasarMenuPlacementType',
       defaultValue: "'bottom-start'",
-      description:
-        'Preferred side of the trigger for the panel. It flips to the other side automatically when the viewport has no room.',
+      description: 'Fallback/default placement configured on the menu panel component.',
     },
     {
       name: 'size',
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
-      description: 'Sets the sizing of the menu trigger, the panel and the items inside it.',
+      description: 'Sets the sizing of the menu panel and the items inside it.',
     },
     {
       name: 'radius',
       type: 'ScaleAttributeType',
       defaultValue: "'md'",
-      description: 'Controls the border radius of the trigger button and of the dropdown panel.',
+      description: 'Controls the border radius of the dropdown menu panel.',
     },
     {
       name: 'disabled',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Disables user interactions and prevents the menu from opening.',
+      description: 'Disables user interactions on all menu items.',
     },
     {
       name: 'fluid',
       type: 'boolean',
       defaultValue: 'false',
-      description: 'Allows the trigger button to expand to the full width of its container.',
+      description: 'Allows the menu panel to expand to 100% width of its container.',
     },
     {
       name: 'container-class / panel-class / item-class',
@@ -131,31 +150,11 @@ export class MenuDocPage {
       description: 'Emitted when a user clicks on an active menu item. Returns the item object.',
     },
     {
-      name: '(opened) / (closed)',
-      type: 'EventEmitter<void>',
-      defaultValue: '-',
-      description: 'Emitted when the menu panel opens or closes.',
-    },
-    {
-      name: '[prefix] / [suffix] (Directives)',
-      type: 'Content Slot',
-      defaultValue: '-',
-      description:
-        'Projects content (like icons) to the left (prefix) or right (suffix) of the trigger label.',
-    },
-    {
-      name: '[menu-label] (Directive)',
-      type: 'Content Slot',
-      defaultValue: '-',
-      description:
-        'Completely replaces the default text label with custom HTML content inside the trigger.',
-    },
-    {
-      name: '*menu-item (Structural Directive)',
+      name: '[menu-item-template]',
       type: 'TemplateRef<any>',
       defaultValue: '-',
       description:
-        'Allows custom rendering of menu items. Exposes the item object via `let-item` and the loop index via `let-index`.',
+        'Allows custom rendering of menu items using `<ng-template menu-item-template let-item let-i="index">`.',
     },
   ];
 }

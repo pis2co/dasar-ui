@@ -1,31 +1,41 @@
 <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
-  <dasar-menu [items]="customItems" (itemClick)="onMenuClick($event)" appearance="filled">
-    <dasar-icon prefix name="dots-vertical" size="sm"></dasar-icon>
-    <span menu-label>Custom Actions</span>
-    <dasar-icon suffix name="chevron-down" size="sm"></dasar-icon>
-    <ng-template menu-item let-item>
-      <div style="display: flex; flex-direction: column; gap: 2px">
-        <span style="font-weight: 500">{{ item.label }}</span>
-        <span style="color: lightsalmon; font-size: 10px"> Action key: {{ item.value }} </span>
-      </div>
-    </ng-template>
-  </dasar-menu>
+  <dasar-button [dasarMenuTrigger]="customTpl">
+    <dasar-icon name="dots-vertical" size="sm"></dasar-icon>
+    <span>Custom Actions</span>
+    <dasar-icon name="chevron-down" size="sm"></dasar-icon>
+  </dasar-button>
+
+  <ng-template #customTpl>
+    <dasar-menu [items]="customItems" (onItemClick)="onMenuClick($event)" appearance="filled">
+      <ng-template menu-item-template let-item>
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <span style="font-weight: 500">{{ item.label }}</span>
+          <span style="color: lightsalmon; font-size: 10px"> Action key: {{ item.value }} </span>
+        </div>
+      </ng-template>
+    </dasar-menu>
+  </ng-template>
 </div>
 <br />
 <div style="display: flex; gap: 12px; flex-direction: column">
   <dasar-card appearance="outline" label="Project Overview" style="width: 320px">
     <div extra-header-slot>
-      <dasar-menu
-        fluid
-        appearance="none"
-        placement="bottom-end"
-        [items]="actionItems"
-        (itemClick)="onActionClick($event)"
+      <dasar-button
+        [dasarMenuTrigger]="cardMenuTpl"
+        [dasarMenuTriggerPlacement]="'bottom-end'"
+        variant="ghost"
+        icon-only
       >
-        <dasar-button prefix variant="ghost" icon-only>
-          <dasar-icon name="dots-vertical"></dasar-icon>
-        </dasar-button>
-      </dasar-menu>
+        <dasar-icon name="dots-vertical"></dasar-icon>
+      </dasar-button>
+
+      <ng-template #cardMenuTpl>
+        <dasar-menu
+          appearance="elevated"
+          [items]="actionItems"
+          (onItemClick)="onActionClick($event)"
+        />
+      </ng-template>
     </div>
 
     <p style="margin: 0; font-size: 14px; color: var(--dasar-theme-text-secondary-color)">

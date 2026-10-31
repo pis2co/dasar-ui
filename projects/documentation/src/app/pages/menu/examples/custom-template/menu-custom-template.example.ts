@@ -20,26 +20,6 @@ export class MenuCustomTemplateExample {
     { divider: true, label: '', value: 'divider' },
     { label: 'Archive Project', value: 'archive' },
   ];
-  protected navItems: DasarMenuItem[] = [
-    {
-      label: 'Analytics',
-      value: 'analytics',
-      iconName: 'pie-chart',
-      description: 'Get real-time insights into your product metrics.',
-    },
-    {
-      label: 'Security',
-      value: 'security',
-      iconName: 'shield',
-      description: 'Protect your data with enterprise-grade security.',
-    },
-    {
-      label: 'Integrations',
-      value: 'integrations',
-      iconName: 'cpu',
-      description: 'Connect with your favorite tools seamlessly.',
-    },
-  ];
 
   protected actionItems: DasarMenuItem[] = [
     { label: 'Edit Project', value: 'edit', iconName: 'edit-2' },
@@ -48,10 +28,11 @@ export class MenuCustomTemplateExample {
     { label: 'Delete', value: 'delete', iconName: 'trash', disabled: true },
   ];
 
-  onMenuClick(item: any) {
+  onMenuClick(item: DasarMenuItem) {
     alert(`You clicked on: ${item.label}`);
   }
-  onActionClick(item: any) {
+
+  onActionClick(item: DasarMenuItem) {
     console.log('Action clicked:', item.value);
   }
 }

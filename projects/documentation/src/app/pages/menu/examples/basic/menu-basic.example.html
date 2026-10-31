@@ -1,3 +1,5 @@
-<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
-  <dasar-menu label="Options" [items]="menuItems" />
-</div>
+<dasar-button [dasarMenuTrigger]="menuTpl">Options</dasar-button>
+
+<ng-template #menuTpl>
+  <dasar-menu [items]="menuItems" (onItemClick)="onItemClick($event)" />
+</ng-template>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { DasarMenuComponent, DasarMenuItem } from 'dasar-ui';
+import { DasarMenuComponent, DasarButtonComponent, DasarMenuItem } from 'dasar-ui';
 
 @Component({
   templateUrl: './menu-appearance.example.html',
   selector: 'app-menu-appearance-example',
-  imports: [DasarMenuComponent],
+  imports: [DasarMenuComponent, DasarButtonComponent],
   standalone: true,
 })
 export class MenuAppearanceExample {
