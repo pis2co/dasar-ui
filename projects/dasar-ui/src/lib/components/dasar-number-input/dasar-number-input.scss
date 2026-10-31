@@ -104,6 +104,34 @@
     }
   }
 
+  &.appearance-elevated {
+    border: 1px solid
+      var(--dasar-number-input-elevated-border, var(--dasar-theme-border-strong-color));
+    background-color: var(--dasar-number-input-elevated-bg, var(--dasar-theme-bg-surface-color));
+    box-shadow: var(
+      --dasar-number-input-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+
+    &:hover:not(.disabled) {
+      border-color: var(
+        --dasar-number-input-elevated-hover-border,
+        var(--dasar-theme-primary-color)
+      );
+      transition: all 0.2s ease;
+    }
+
+    &:focus-within {
+      border-color: var(
+        --dasar-number-input-elevated-focus-border,
+        var(--dasar-theme-primary-color)
+      );
+      box-shadow: 0 0 0 3px
+        var(--dasar-number-input-elevated-focus-ring, var(--dasar-theme-primary-surface-color));
+    }
+  }
+
   &.error {
     border-color: var(
       --dasar-number-input-error-border,
