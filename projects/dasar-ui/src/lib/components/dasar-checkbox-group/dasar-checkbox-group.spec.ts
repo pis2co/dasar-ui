@@ -1,8 +1,13 @@
 import { Component, signal, viewChildren } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { DasarCheckbox, DasarCheckboxComponent } from '../dasar-checkbox/dasar-checkbox';
+import {
+  DasarCheckbox,
+  DasarCheckboxAppearanceType,
+  DasarCheckboxComponent,
+} from '../dasar-checkbox/dasar-checkbox';
 import { DasarCheckboxGroup, DasarCheckboxGroupComponent } from './dasar-checkbox-group';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 
 @Component({
   selector: 'test-checkbox-group-host',
@@ -425,5 +430,101 @@ describe('DasarCheckboxGroup applyGroupState and regression coverage', () => {
     expect(host.valueChangeEvents()).toEqual([['opt1', 'opt3'], ['opt3'], []]);
     expect(host.updateEvents()).toEqual([['opt1', 'opt3'], ['opt3'], []]);
     expect(host.checkboxes()[2].isChecked).toBe(false);
+  });
+});
+
+@Component({
+  selector: 'test-checkbox-group-appearance-host',
+  standalone: true,
+  imports: [DasarCheckboxGroupComponent, DasarCheckboxComponent],
+  template: `
+    @if (appearance()) {
+      <dasar-checkbox-group [appearance]="appearance()!">
+        <dasar-checkbox label="One" [checked-value]="'1'" />
+        <dasar-checkbox label="Two" [checked-value]="'2'" />
+      </dasar-checkbox-group>
+    } @else {
+      <dasar-checkbox-group>
+        <dasar-checkbox label="One" [checked-value]="'1'" />
+        <dasar-checkbox label="Two" [checked-value]="'2'" />
+      </dasar-checkbox-group>
+    }
+  `,
+})
+class CheckboxGroupAppearanceHost {
+  appearance = signal<DasarCheckboxAppearanceType | undefined>(undefined);
+  checkboxes = viewChildren(DasarCheckbox);
+}
+
+@Component({
+  selector: 'test-checkbox-group-appearance-theme-host',
+  standalone: true,
+  imports: [DasarCheckboxGroupComponent, DasarCheckboxComponent],
+  template: `
+    <dasar-checkbox-group>
+      <dasar-checkbox label="Theme Child" [checked-value]="'tc'" />
+    </dasar-checkbox-group>
+  `,
+})
+class CheckboxGroupAppearanceThemeHost {
+  checkboxes = viewChildren(DasarCheckbox);
+}
+
+describe('DasarCheckboxGroup appearance propagation', () => {
+  it('propagates default outline appearance to child checkboxes', async () => {
+    await TestBed.configureTestingModule({
+      imports: [CheckboxGroupAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(CheckboxGroupAppearanceHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const boxes = fixture.nativeElement.querySelectorAll('.dasar-checkbox-box');
+    expect(boxes.length).toBe(2);
+    for (const box of Array.from(boxes)) {
+      expect((box as HTMLElement).classList.contains('appearance-outline')).toBe(true);
+      expect((box as HTMLElement).classList.contains('appearance-elevated')).toBe(false);
+    }
+  });
+
+  it('propagates explicit appearance to all child checkboxes', async () => {
+    await TestBed.configureTestingModule({
+      imports: [CheckboxGroupAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(CheckboxGroupAppearanceHost);
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const boxes = fixture.nativeElement.querySelectorAll('.dasar-checkbox-box');
+    expect(boxes.length).toBe(2);
+    for (const box of Array.from(boxes)) {
+      expect((box as HTMLElement).classList.contains('appearance-elevated')).toBe(true);
+      expect((box as HTMLElement).classList.contains('appearance-outline')).toBe(false);
+    }
+  });
+
+  it('respects theme-configured default appearance on checkboxGroup', async () => {
+    const customThemeConfig = {
+      componentConfig: {
+        checkboxGroup: {
+          appearance: 'elevated' as const,
+        },
+      },
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [CheckboxGroupAppearanceThemeHost],
+      providers: [{ provide: DASAR_THEME_PROVIDER, useValue: customThemeConfig }],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(CheckboxGroupAppearanceThemeHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const group = fixture.debugElement.children[0].componentInstance as DasarCheckboxGroup;
+    expect(group.appearance).toBe('elevated');
+
+    const box = fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+    expect(box.classList.contains('appearance-elevated')).toBe(true);
   });
 });

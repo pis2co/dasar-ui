@@ -15,7 +15,10 @@ import { DasarCardConfig } from '../components/dasar-card/dasar-card';
 import { DasarChipConfig } from '../components/dasar-chip/dasar-chip';
 import { DasarDividerConfig } from '../components/dasar-divider/dasar-divider';
 import { DasarAlertConfig } from '../components/dasar-alert/dasar-alert';
-import { DasarCheckboxConfig } from '../components/dasar-checkbox/dasar-checkbox';
+import {
+  DasarCheckboxConfig,
+  DasarCheckboxAppearanceType,
+} from '../components/dasar-checkbox/dasar-checkbox';
 import { DasarCheckboxGroupConfig } from '../components/dasar-checkbox-group/dasar-checkbox-group';
 import { DasarRadioConfig } from '../components/dasar-radio/dasar-radio';
 import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-radio-group';
@@ -41,6 +44,8 @@ import { DasarSkeletonConfig } from '@components/dasar-skeleton/dasar-skeleton';
 export type {
   DasarPinConfig,
   DasarPinAppearanceType,
+  DasarCheckboxConfig,
+  DasarCheckboxAppearanceType,
   DasarDrawerConfig,
   DasarDrawerAppearanceType,
 };
@@ -271,6 +276,7 @@ export interface DasarThemeAlert {
   dangerIconColor?: string;
 }
 export interface DasarThemeCheckbox {
+  appearance?: DasarCheckboxAppearanceType;
   gap?: string;
   hintGap?: string;
   sizeSm?: string;

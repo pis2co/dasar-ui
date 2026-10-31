@@ -5,7 +5,11 @@ import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular
 import { NgpCheckbox } from 'ng-primitives/checkbox';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarThemeProviderComponent } from '../dasar-theme-provider/dasar-theme-provider';
-import { DasarCheckboxComponent } from './dasar-checkbox';
+import {
+  DasarCheckbox,
+  DasarCheckboxAppearanceType,
+  DasarCheckboxComponent,
+} from './dasar-checkbox';
 import { DasarThemeConfig } from '../../models/theme.model';
 
 @Component({
@@ -419,5 +423,99 @@ describe('DasarCheckbox label size', () => {
     fixture.componentInstance.size.set('lg');
     await fixture.whenStable();
     expect(fontSize()).toContain('--dasar-font-size-lg');
+  });
+});
+
+@Component({
+  selector: 'test-checkbox-appearance-host',
+  standalone: true,
+  imports: [DasarCheckboxComponent],
+  template: `
+    @if (appearance()) {
+      <dasar-checkbox label="Appearance" [appearance]="appearance()!" />
+    } @else {
+      <dasar-checkbox label="Appearance" />
+    }
+  `,
+})
+class CheckboxAppearanceHost {
+  appearance = signal<DasarCheckboxAppearanceType | undefined>(undefined);
+}
+
+@Component({
+  selector: 'test-checkbox-appearance-theme-host',
+  standalone: true,
+  imports: [DasarCheckboxComponent],
+  template: `<dasar-checkbox label="Themed" />`,
+})
+class CheckboxAppearanceThemeHost {}
+
+describe('DasarCheckbox appearance', () => {
+  it("defaults to 'outline' appearance and applies appearance-outline class", async () => {
+    await TestBed.configureTestingModule({
+      imports: [CheckboxAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(CheckboxAppearanceHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const box = fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+    expect(box).toBeTruthy();
+    expect(box.classList.contains('appearance-outline')).toBe(true);
+    expect(box.classList.contains('appearance-elevated')).toBe(false);
+    expect(box.classList.contains('appearance-filled')).toBe(false);
+
+    const checkbox = fixture.debugElement.query(By.directive(DasarCheckbox))
+      .componentInstance as DasarCheckbox;
+    expect(checkbox.appearance).toBe('outline');
+    expect(checkbox.currentAppearance).toBe('outline');
+  });
+
+  it("applies 'appearance-elevated' class when appearance is set to 'elevated'", async () => {
+    await TestBed.configureTestingModule({
+      imports: [CheckboxAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(CheckboxAppearanceHost);
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const box = fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+    expect(box).toBeTruthy();
+    expect(box.classList.contains('appearance-elevated')).toBe(true);
+    expect(box.classList.contains('appearance-outline')).toBe(false);
+
+    const checkbox = fixture.debugElement.query(By.directive(DasarCheckbox))
+      .componentInstance as DasarCheckbox;
+    expect(checkbox.appearance).toBe('elevated');
+    expect(checkbox.currentAppearance).toBe('elevated');
+  });
+
+  it('respects theme-provided default appearance from DASAR_THEME_PROVIDER', async () => {
+    const customThemeConfig = {
+      componentConfig: {
+        checkbox: {
+          appearance: 'elevated' as const,
+        },
+      },
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [CheckboxAppearanceThemeHost],
+      providers: [{ provide: DASAR_THEME_PROVIDER, useValue: customThemeConfig }],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(CheckboxAppearanceThemeHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const box = fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+    expect(box).toBeTruthy();
+    expect(box.classList.contains('appearance-elevated')).toBe(true);
+
+    const checkbox = fixture.debugElement.query(By.directive(DasarCheckbox))
+      .componentInstance as DasarCheckbox;
+    expect(checkbox.appearance).toBe('elevated');
+    expect(checkbox.currentAppearance).toBe('elevated');
   });
 });

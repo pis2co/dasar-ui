@@ -669,6 +669,7 @@ export const alertMap: Record<keyof DasarThemeAlert, string> = {
   dangerIconColor: '--dasar-alert-danger-icon-color',
 };
 export const checkboxMap: Record<keyof DasarThemeCheckbox, string> = {
+  appearance: '--dasar-checkbox-appearance',
   gap: '--dasar-checkbox-gap',
   hintGap: '--dasar-checkbox-hint-gap',
   sizeSm: '--dasar-checkbox-size-sm',

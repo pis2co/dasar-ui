@@ -21,16 +21,19 @@ import { CommonModule } from '@angular/common';
 import { NgpCheckbox } from 'ng-primitives/checkbox';
 
 export type DasarCheckboxSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarCheckboxAppearanceType = 'outline' | 'filled' | 'elevated';
 
 export interface DasarCheckboxGroupState {
   checked: boolean;
   disabled: boolean;
   error?: boolean;
   size?: DasarCheckboxSizeType | null;
+  appearance?: DasarCheckboxAppearanceType;
 }
 
 export interface DasarCheckboxConfig {
   size?: DasarCheckboxSizeType;
+  appearance?: DasarCheckboxAppearanceType;
   disabled?: boolean;
   error?: boolean;
   hint?: string;
@@ -95,6 +98,14 @@ export class DasarCheckbox implements ControlValueAccessor {
 
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
+
+  @Input() appearance: DasarCheckboxAppearanceType = resolveThemeDefault(
+    'checkbox',
+    'appearance',
+    'outline',
+    this.themeProvider,
+    this.themeService,
+  );
 
   @Input() size = resolveThemeDefault(
     'checkbox',
@@ -233,6 +244,10 @@ export class DasarCheckbox implements ControlValueAccessor {
     return this.groupState()?.size ?? this.size;
   }
 
+  get currentAppearance(): DasarCheckboxAppearanceType {
+    return this.groupState()?.appearance ?? this.appearance;
+  }
+
   get hasError(): boolean {
     return this.error || (this.groupState()?.error ?? false);
   }
@@ -267,6 +282,7 @@ export class DasarCheckbox implements ControlValueAccessor {
     const overrideClass = parseClassesToArray(this.boxClass);
     const baseClass = {
       'dasar-checkbox-box': true,
+      [`appearance-${this.currentAppearance}`]: true,
       checked: this.isChecked,
       indeterminate: this.indeterminate,
     };
