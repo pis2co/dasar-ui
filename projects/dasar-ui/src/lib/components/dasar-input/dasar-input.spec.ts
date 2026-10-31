@@ -9,12 +9,18 @@ import { DasarInput } from './dasar-input';
   selector: 'test-input-host',
   standalone: true,
   imports: [DasarInput],
-  template: `<dasar-input [hint]="hint()" [error]="error()" [disabled]="disabled()" />`,
+  template: `<dasar-input
+    [hint]="hint()"
+    [error]="error()"
+    [disabled]="disabled()"
+    [appearance]="appearance()"
+  />`,
 })
 class InputHost {
   hint = signal('');
   error = signal(false);
   disabled = signal(false);
+  appearance = signal<'outline' | 'filled' | 'elevated'>('outline');
 }
 
 const inputOf = (fixture: ComponentFixture<unknown>) =>
@@ -65,6 +71,16 @@ describe('DasarInput', () => {
     const themed = TestBed.createComponent(DasarInput);
     await themed.whenStable();
     expect(themed.componentInstance.hint).toBe('Global hint');
+  });
+
+  it("applies 'appearance-elevated' class when appearance is set to 'elevated'", async () => {
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const container = fixture.nativeElement.querySelector('.dasar-input-container') as HTMLElement;
+    expect(container.classList.contains('appearance-elevated')).toBe(true);
+    expect(container.classList.contains('appearance-outline')).toBe(false);
   });
 
   describe('ng-primitives NgpInput integration', () => {

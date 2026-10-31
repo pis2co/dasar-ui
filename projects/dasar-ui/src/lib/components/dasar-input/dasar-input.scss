@@ -181,6 +181,26 @@
     }
   }
 
+  &.appearance-elevated {
+    background-color: var(--dasar-input-elevated-bg, var(--dasar-theme-bg-surface-color));
+    border: 1px solid var(--dasar-input-elevated-border, var(--dasar-theme-border-strong-color));
+    box-shadow: var(
+      --dasar-input-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+
+    &:hover:not(.disabled) {
+      border-color: var(--dasar-input-elevated-hover-border, var(--dasar-theme-primary-color));
+    }
+
+    &:focus-within {
+      border-color: var(--dasar-input-elevated-focus-border, var(--dasar-theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-input-elevated-focus-ring, var(--dasar-theme-primary-surface-color));
+    }
+  }
+
   &.error {
     border-color: var(--dasar-input-error-border, var(--dasar-theme-danger-color)) !important;
 
