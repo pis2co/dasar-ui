@@ -12,6 +12,7 @@ import {
   inputMap,
   textareaMap,
   sliderMap,
+  toggleMap,
   chipMap,
   cardMap,
   menuMap,
@@ -244,6 +245,14 @@ export class DasarThemeProviderComponent implements OnChanges {
         element: hostElement,
         payload: sliderTokens,
         dictionary: sliderMap,
+      });
+    }
+    const toggleTokens = this.tokenConfig?.[currentMode]?.toggle || this.tokenConfig?.light?.toggle;
+    if (toggleTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: toggleTokens,
+        dictionary: toggleMap,
       });
     }
     const calendarTokens =

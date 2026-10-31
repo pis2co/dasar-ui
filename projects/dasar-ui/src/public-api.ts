@@ -3,6 +3,7 @@ export * from './lib/components/dasar-number-input/dasar-number-input';
 export * from './lib/components/dasar-pagination/dasar-pagination';
 export * from './lib/components/dasar-textarea/dasar-textarea';
 export * from './lib/components/dasar-slider/dasar-slider';
+export * from './lib/components/dasar-toggle/dasar-toggle';
 export * from './lib/components/dasar-table/dasar-table';
 export * from './lib/components/dasar-menu/dasar-menu';
 export * from './lib/components/dasar-tabs/dasar-tabs';
