@@ -354,8 +354,25 @@ describe('DasarPagination ellipsis dropdown', () => {
     await fixture.whenStable();
   });
 
+  afterEach(() => {
+    document.querySelectorAll('dasar-menu').forEach((el) => el.remove());
+  });
+
   it('renders a dropdown per ellipsis by default', () => {
     expect(menusOf(fixture).length).toBe(2);
+  });
+
+  it('opens the ellipsis menu panel when clicked', async () => {
+    const triggers = menusOf(fixture);
+    expect(triggers.length).toBe(2);
+
+    triggers[0].click();
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    fixture.detectChanges();
+
+    const panel = document.querySelector('.dasar-pagination-ellipsis-panel');
+    expect(panel).toBeTruthy();
   });
 
   it('jumps to a picked hidden page', async () => {
