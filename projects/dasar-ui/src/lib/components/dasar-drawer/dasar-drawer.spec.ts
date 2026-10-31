@@ -2,7 +2,13 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { vi } from 'vitest';
-import { DasarDrawerComponent, DasarDrawerPlacement } from './dasar-drawer';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import {
+  DasarDrawer,
+  DasarDrawerAppearanceType,
+  DasarDrawerComponent,
+  DasarDrawerPlacement,
+} from './dasar-drawer';
 
 @Component({
   standalone: true,
@@ -349,5 +355,97 @@ describe('DasarDrawer ngModel', () => {
     fixture.detectChanges();
     await fixture.whenStable();
     expect(fixture.componentInstance.model).toBe(false);
+  });
+});
+
+@Component({
+  standalone: true,
+  imports: [DasarDrawerComponent],
+  template: `
+    @if (appearance()) {
+      <dasar-drawer [show]="true" [appearance]="appearance()!">
+        <p>Content</p>
+      </dasar-drawer>
+    } @else {
+      <dasar-drawer [show]="true">
+        <p>Content</p>
+      </dasar-drawer>
+    }
+  `,
+})
+class DrawerAppearanceHost {
+  appearance = signal<DasarDrawerAppearanceType | undefined>(undefined);
+}
+
+@Component({
+  standalone: true,
+  imports: [DasarDrawerComponent],
+  template: `
+    <dasar-drawer [show]="true">
+      <p>Content</p>
+    </dasar-drawer>
+  `,
+})
+class ThemedDrawerHost {}
+
+describe('DasarDrawer appearance', () => {
+  it("defaults to 'outline' appearance and does not add appearance-elevated class", async () => {
+    await TestBed.configureTestingModule({ imports: [DrawerAppearanceHost] }).compileComponents();
+    const fixture = TestBed.createComponent(DrawerAppearanceHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const panel = fixture.nativeElement.querySelector('.dasar-drawer-container') as HTMLElement;
+    expect(panel).toBeTruthy();
+    expect(panel.classList.contains('appearance-outline')).toBe(true);
+    expect(panel.classList.contains('appearance-elevated')).toBe(false);
+
+    const drawer = fixture.debugElement.children[0].componentInstance as DasarDrawer;
+    expect(drawer.appearance).toBe('outline');
+  });
+
+  it("applies 'appearance-elevated' class when appearance is set to 'elevated'", async () => {
+    await TestBed.configureTestingModule({ imports: [DrawerAppearanceHost] }).compileComponents();
+    const fixture = TestBed.createComponent(DrawerAppearanceHost);
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const panel = fixture.nativeElement.querySelector('.dasar-drawer-container') as HTMLElement;
+    expect(panel).toBeTruthy();
+    expect(panel.classList.contains('appearance-elevated')).toBe(true);
+    expect(panel.classList.contains('appearance-outline')).toBe(false);
+
+    const drawer = fixture.debugElement.children[0].componentInstance as DasarDrawer;
+    expect(drawer.appearance).toBe('elevated');
+  });
+
+  it('respects theme-provided default appearance when configured via DASAR_THEME_PROVIDER', async () => {
+    const customThemeConfig = {
+      componentConfig: {
+        drawer: {
+          appearance: 'elevated' as const,
+        },
+      },
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [ThemedDrawerHost],
+      providers: [{ provide: DASAR_THEME_PROVIDER, useValue: customThemeConfig }],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(ThemedDrawerHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const panel = fixture.nativeElement.querySelector('.dasar-drawer-container') as HTMLElement;
+    expect(panel).toBeTruthy();
+    expect(panel.classList.contains('appearance-elevated')).toBe(true);
+
+    const drawer = fixture.debugElement.children[0].componentInstance as DasarDrawer;
+    expect(drawer.appearance).toBe('elevated');
   });
 });

@@ -21,7 +21,10 @@ import { DasarRadioConfig } from '../components/dasar-radio/dasar-radio';
 import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-radio-group';
 import { DasarBreakpointConfig } from '../components/dasar-breakpoint/dasar-breakpoint';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
-import { DasarDrawerConfig } from '../components/dasar-drawer/dasar-drawer';
+import {
+  DasarDrawerConfig,
+  DasarDrawerAppearanceType,
+} from '../components/dasar-drawer/dasar-drawer';
 import { DasarSplitConfig } from '../components/dasar-split/dasar-split';
 import { DasarToastConfig } from '../components/dasar-toast/dasar-toast.model';
 import { DasarTreeConfig } from '../components/dasar-tree/dasar-tree';
@@ -35,7 +38,12 @@ import { DasarPaginationConfig } from '@components/dasar-pagination/dasar-pagina
 import { DasarSwitchConfig } from '@components/dasar-switch/dasar-switch';
 import { DasarSkeletonConfig } from '@components/dasar-skeleton/dasar-skeleton';
 
-export type { DasarPinConfig, DasarPinAppearanceType };
+export type {
+  DasarPinConfig,
+  DasarPinAppearanceType,
+  DasarDrawerConfig,
+  DasarDrawerAppearanceType,
+};
 
 export type DasarThemeMode = 'light' | 'dark';
 export type DasarBreakpointName = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -1107,6 +1115,7 @@ export interface DasarThemeTree {
   gap?: string;
 }
 export interface DasarThemeDrawer {
+  appearance?: DasarDrawerAppearanceType;
   background?: string;
   bodyColor?: string;
   titleColor?: string;
@@ -1124,6 +1133,9 @@ export interface DasarThemeDrawer {
   animationDuration?: string;
   resizeHandleSize?: string;
   resizeHandleHoverColor?: string;
+  elevatedBg?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
 }
 export interface DasarThemeSplit {
   barSize?: string;

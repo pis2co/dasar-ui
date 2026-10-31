@@ -1098,6 +1098,7 @@ export const splitMap: Record<keyof DasarThemeSplit, string> = {
 };
 
 export const drawerMap: Record<keyof DasarThemeDrawer, string> = {
+  appearance: '--dasar-drawer-appearance',
   background: '--dasar-drawer-background',
   bodyColor: '--dasar-drawer-body-color',
   titleColor: '--dasar-drawer-title-color',
@@ -1115,6 +1116,9 @@ export const drawerMap: Record<keyof DasarThemeDrawer, string> = {
   animationDuration: '--dasar-drawer-animation-duration',
   resizeHandleSize: '--dasar-drawer-resize-handle-size',
   resizeHandleHoverColor: '--dasar-drawer-resize-handle-hover-color',
+  elevatedBg: '--dasar-drawer-elevated-bg',
+  elevatedBorder: '--dasar-drawer-elevated-border',
+  elevatedShadow: '--dasar-drawer-elevated-shadow',
 };
 export const modalMap: Record<keyof DasarThemeModal, string> = {
   background: '--dasar-modal-background',
