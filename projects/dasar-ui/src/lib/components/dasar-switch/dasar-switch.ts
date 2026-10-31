@@ -24,9 +24,11 @@ import { CommonModule } from '@angular/common';
 import { NgpSwitch, NgpSwitchThumb } from 'ng-primitives/switch';
 
 export type DasarSwitchSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarSwitchAppearanceType = 'outline' | 'filled' | 'elevated';
 
 export interface DasarSwitchConfig {
   size?: DasarSwitchSizeType;
+  appearance?: DasarSwitchAppearanceType;
   disabled?: boolean;
   error?: boolean;
   checkedValue?: any;
@@ -93,6 +95,14 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
 
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
+
+  @Input() appearance: DasarSwitchAppearanceType = resolveThemeDefault(
+    'switch',
+    'appearance',
+    'outline',
+    this.themeProvider,
+    this.themeService,
+  );
 
   @Input() size = resolveThemeDefault(
     'switch',
@@ -274,6 +284,7 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
     const overrideClass = parseClassesToArray(this.trackClass);
     const baseClass = {
       'dasar-switch-track': true,
+      [`appearance-${this.appearance}`]: true,
       checked: this.isChecked,
     };
     if (overrideClass && overrideClass?.length > 0) {

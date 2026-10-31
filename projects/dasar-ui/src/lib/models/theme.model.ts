@@ -38,7 +38,10 @@ import { DasarTabsConfig } from '../components/dasar-tabs/dasar-tabs';
 import { ScaleAttributeType } from './type.model';
 import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/dasar-list';
 import { DasarPaginationConfig } from '@components/dasar-pagination/dasar-pagination';
-import { DasarSwitchConfig } from '@components/dasar-switch/dasar-switch';
+import {
+  DasarSwitchConfig,
+  DasarSwitchAppearanceType,
+} from '@components/dasar-switch/dasar-switch';
 import { DasarSkeletonConfig } from '@components/dasar-skeleton/dasar-skeleton';
 
 export type {
@@ -50,6 +53,8 @@ export type {
   DasarRadioAppearanceType,
   DasarDrawerConfig,
   DasarDrawerAppearanceType,
+  DasarSwitchConfig,
+  DasarSwitchAppearanceType,
 };
 
 export type DasarThemeMode = 'light' | 'dark';
@@ -1033,6 +1038,7 @@ export interface DasarThemePagination {
   dropdownMaxHeight?: string;
 }
 export interface DasarThemeSwitch {
+  appearance?: DasarSwitchAppearanceType;
   gap?: string;
   radius?: string;
   thumbRadius?: string;

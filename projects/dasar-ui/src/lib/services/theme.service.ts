@@ -970,6 +970,7 @@ export const paginationMap: Record<string, string> = {
   dropdownMaxHeight: '--dasar-pagination-dropdown-max-height',
 };
 export const switchMap: Record<string, string> = {
+  appearance: '--dasar-switch-appearance',
   gap: '--dasar-switch-gap',
   radius: '--dasar-switch-radius',
   thumbRadius: '--dasar-switch-thumb-radius',
