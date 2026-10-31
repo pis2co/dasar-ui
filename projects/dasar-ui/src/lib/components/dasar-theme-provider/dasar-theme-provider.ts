@@ -12,6 +12,7 @@ import {
   inputMap,
   textareaMap,
   sliderMap,
+  pinMap,
   toggleMap,
   tooltipMap,
   chipMap,
@@ -246,6 +247,14 @@ export class DasarThemeProviderComponent implements OnChanges {
         element: hostElement,
         payload: sliderTokens,
         dictionary: sliderMap,
+      });
+    }
+    const pinTokens = this.tokenConfig?.[currentMode]?.pin || this.tokenConfig?.light?.pin;
+    if (pinTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: pinTokens,
+        dictionary: pinMap,
       });
     }
     const toggleTokens = this.tokenConfig?.[currentMode]?.toggle || this.tokenConfig?.light?.toggle;

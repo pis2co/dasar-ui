@@ -7,6 +7,7 @@ import { DasarSelectConfig } from '../components/dasar-select/dasar-select';
 import { DasarInputConfig } from '../components/dasar-input/dasar-input';
 import { DasarTextareaConfig } from '../components/dasar-textarea/dasar-textarea';
 import { DasarSliderConfig } from '../components/dasar-slider/dasar-slider';
+import { DasarPinConfig, DasarPinAppearanceType } from '../components/dasar-pin/dasar-pin';
 import { DasarToggleConfig } from '../components/dasar-toggle/dasar-toggle';
 import { DasarTooltipConfig } from '../components/dasar-tooltip/dasar-tooltip';
 import { DasarTableConfig } from '../components/dasar-table/dasar-table';
@@ -33,6 +34,8 @@ import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/das
 import { DasarPaginationConfig } from '@components/dasar-pagination/dasar-pagination';
 import { DasarSwitchConfig } from '@components/dasar-switch/dasar-switch';
 import { DasarSkeletonConfig } from '@components/dasar-skeleton/dasar-skeleton';
+
+export type { DasarPinConfig, DasarPinAppearanceType };
 
 export type DasarThemeMode = 'light' | 'dark';
 export type DasarBreakpointName = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -472,6 +475,52 @@ export interface DasarThemeSlider {
   hintFontSize?: string;
   hintColor?: string;
   hintErrorColor?: string;
+}
+export interface DasarThemePin {
+  gap?: string;
+  color?: string;
+  fontWeight?: string;
+  sizeSm?: string;
+  heightSm?: string;
+  fontSizeSm?: string;
+  sizeMd?: string;
+  heightMd?: string;
+  fontSizeMd?: string;
+  sizeLg?: string;
+  heightLg?: string;
+  fontSizeLg?: string;
+  radiusNone?: string;
+  radiusXs?: string;
+  radiusSm?: string;
+  radiusMd?: string;
+  radiusLg?: string;
+  radiusXl?: string;
+  radiusFull?: string;
+  outlineBg?: string;
+  outlineBorder?: string;
+  outlineHoverBorder?: string;
+  outlineFocusBorder?: string;
+  outlineFocusRing?: string;
+  filledBg?: string;
+  filledBorder?: string;
+  filledHoverBg?: string;
+  filledFocusBg?: string;
+  filledFocusBorder?: string;
+  filledFocusRing?: string;
+  elevatedBg?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
+  elevatedHoverBorder?: string;
+  elevatedFocusBorder?: string;
+  elevatedFocusRing?: string;
+  errorBorder?: string;
+  errorFocusRing?: string;
+  disabledBg?: string;
+  disabledBorder?: string;
+  disabledColor?: string;
+  disabledOpacity?: string;
+  placeholderColor?: string;
+  caretColor?: string;
 }
 export interface DasarThemeToggle {
   fontWeight?: string;
@@ -1165,6 +1214,7 @@ export type DasarComponentConfig = {
   input?: DasarInputConfig;
   textarea?: DasarTextareaConfig;
   slider?: DasarSliderConfig;
+  pin?: DasarPinConfig;
   toggle?: DasarToggleConfig;
   tooltip?: DasarTooltipConfig;
   card?: DasarCardConfig;
@@ -1205,6 +1255,7 @@ export interface DasarThemeConfig {
       input?: DasarThemeInput;
       textarea?: DasarThemeTextarea;
       slider?: DasarThemeSlider;
+      pin?: DasarThemePin;
       toggle?: DasarThemeToggle;
       tooltip?: DasarThemeTooltip;
       calendar?: DasarThemeCalendar;
@@ -1237,6 +1288,7 @@ export interface DasarThemeConfig {
       input?: DasarThemeInput;
       textarea?: DasarThemeTextarea;
       slider?: DasarThemeSlider;
+      pin?: DasarThemePin;
       toggle?: DasarThemeToggle;
       tooltip?: DasarThemeTooltip;
       calendar?: DasarThemeCalendar;

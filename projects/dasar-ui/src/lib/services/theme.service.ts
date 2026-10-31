@@ -14,6 +14,7 @@ import {
   DasarThemeInput,
   DasarThemeTextarea,
   DasarThemeSlider,
+  DasarThemePin,
   DasarThemeToggle,
   DasarThemeTooltip,
   DasarThemeSelect,
@@ -323,6 +324,52 @@ export const sliderMap: Record<keyof DasarThemeSlider, string> = {
   hintFontSize: '--dasar-slider-hint-font-size',
   hintColor: '--dasar-slider-hint-color',
   hintErrorColor: '--dasar-slider-hint-error-color',
+};
+export const pinMap: Record<keyof DasarThemePin, string> = {
+  gap: '--dasar-pin-gap',
+  color: '--dasar-pin-color',
+  fontWeight: '--dasar-pin-font-weight',
+  sizeSm: '--dasar-pin-size-sm',
+  heightSm: '--dasar-pin-height-sm',
+  fontSizeSm: '--dasar-pin-font-size-sm',
+  sizeMd: '--dasar-pin-size-md',
+  heightMd: '--dasar-pin-height-md',
+  fontSizeMd: '--dasar-pin-font-size-md',
+  sizeLg: '--dasar-pin-size-lg',
+  heightLg: '--dasar-pin-height-lg',
+  fontSizeLg: '--dasar-pin-font-size-lg',
+  radiusNone: '--dasar-pin-radius-none',
+  radiusXs: '--dasar-pin-radius-xs',
+  radiusSm: '--dasar-pin-radius-sm',
+  radiusMd: '--dasar-pin-radius-md',
+  radiusLg: '--dasar-pin-radius-lg',
+  radiusXl: '--dasar-pin-radius-xl',
+  radiusFull: '--dasar-pin-radius-full',
+  outlineBg: '--dasar-pin-outline-bg',
+  outlineBorder: '--dasar-pin-outline-border',
+  outlineHoverBorder: '--dasar-pin-outline-hover-border',
+  outlineFocusBorder: '--dasar-pin-outline-focus-border',
+  outlineFocusRing: '--dasar-pin-outline-focus-ring',
+  filledBg: '--dasar-pin-filled-bg',
+  filledBorder: '--dasar-pin-filled-border',
+  filledHoverBg: '--dasar-pin-filled-hover-bg',
+  filledFocusBg: '--dasar-pin-filled-focus-bg',
+  filledFocusBorder: '--dasar-pin-filled-focus-border',
+  filledFocusRing: '--dasar-pin-filled-focus-ring',
+  elevatedBg: '--dasar-pin-elevated-bg',
+  elevatedBorder: '--dasar-pin-elevated-border',
+  elevatedShadow: '--dasar-pin-elevated-shadow',
+  elevatedHoverBorder: '--dasar-pin-elevated-hover-border',
+  elevatedFocusBorder: '--dasar-pin-elevated-focus-border',
+  elevatedFocusRing: '--dasar-pin-elevated-focus-ring',
+  errorBorder: '--dasar-pin-error-border',
+  errorFocusRing: '--dasar-pin-error-focus-ring',
+  disabledBg: '--dasar-pin-disabled-bg',
+  disabledBorder: '--dasar-pin-disabled-border',
+  disabledColor: '--dasar-pin-disabled-color',
+  disabledOpacity: '--dasar-pin-disabled-opacity',
+  placeholderColor: '--dasar-pin-placeholder-color',
+  caretColor: '--dasar-pin-caret-color',
 };
 export const toggleMap: Record<keyof DasarThemeToggle, string> = {
   fontWeight: '--dasar-toggle-font-weight',
@@ -1191,6 +1238,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.slider) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.slider, sliderMap);
+    }
+    if (config.tokens?.[config.mode]?.pin) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.pin, pinMap);
     }
     if (config.tokens?.[config.mode]?.toggle) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.toggle, toggleMap);

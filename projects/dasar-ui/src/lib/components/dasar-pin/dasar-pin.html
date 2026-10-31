@@ -1,1 +1,26 @@
-<p>dasar-pin works!</p>
+<div
+  ngpInputOtp
+  [ngpInputOtpDisabled]="disabled"
+  [ngpInputOtpPattern]="pattern"
+  [ngpInputOtpPlaceholder]="placeholder"
+  [ngpInputOtpInputMode]="inputMode"
+  (ngpInputOtpValueChange)="onPrimitiveValueChange($event)"
+  (ngpInputOtpComplete)="onPrimitiveComplete($event)"
+  class="dasar-pin-container"
+  [class.disabled]="disabled"
+  [class.error]="error"
+  [ngClass]="containerClass"
+  [ngStyle]="containerStyle"
+>
+  <input ngpInputOtpInput (blur)="onBlur()" />
+  <div class="dasar-pin-slots">
+    @for (_ of slots; track $index) {
+      <div
+        ngpInputOtpSlot
+        class="dasar-pin-slot appearance-{{ appearance }} size-{{ size }} radius-{{ radius }}"
+        [class.disabled]="disabled"
+        [class.error]="error"
+      ></div>
+    }
+  </div>
+</div>
