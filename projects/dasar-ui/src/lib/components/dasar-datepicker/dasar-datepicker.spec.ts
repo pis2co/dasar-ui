@@ -14,6 +14,7 @@ import { DasarDatepicker, DasarDatepickerComponent } from './dasar-datepicker';
       [value]="value()"
       [hint]="hint()"
       [error]="error()"
+      [appearance]="appearance()"
       clearable
       placeholder="Pick a date"
     />
@@ -26,6 +27,7 @@ class DatepickerHost {
   value = signal<string | null>(null);
   hint = signal<string | undefined>(undefined);
   error = signal(false);
+  appearance = signal<'outline' | 'filled' | 'subtle' | 'elevated'>('outline');
 }
 
 describe('DasarDatepicker', () => {
@@ -116,6 +118,15 @@ describe('DasarDatepicker', () => {
     expect(hint.getAttribute('id')).toBe(component.hintId);
     expect(trigger().getAttribute('aria-invalid')).toBe('true');
     expect(trigger().getAttribute('aria-describedby')).toBe(component.hintId);
+  });
+
+  it("applies 'appearance-elevated' class when appearance is set to 'elevated'", async () => {
+    host.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(trigger().classList.contains('appearance-elevated')).toBe(true);
+    expect(trigger().classList.contains('appearance-outline')).toBe(false);
   });
 });
 

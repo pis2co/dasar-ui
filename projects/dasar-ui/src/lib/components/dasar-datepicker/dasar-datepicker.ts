@@ -37,7 +37,7 @@ import { CommonModule } from '@angular/common';
 
 export type DasarDatepickerPlacement = DasarPanelPlacement;
 export type DasarDatepickerSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
-export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle';
+export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle' | 'elevated';
 export type DasarDatepickerRadius = ScaleAttributeType;
 export type DasarDatepickerType = 'date';
 

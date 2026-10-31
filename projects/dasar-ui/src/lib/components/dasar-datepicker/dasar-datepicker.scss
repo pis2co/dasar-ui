@@ -238,6 +238,29 @@
       background-color: var(--dasar-datepicker-subtle-focus-bg, var(--dasar-theme-bg-hover-color));
     }
   }
+
+  &.appearance-elevated {
+    background-color: var(--dasar-datepicker-elevated-bg, var(--dasar-theme-bg-surface-color));
+    border: 1px solid
+      var(--dasar-datepicker-elevated-border, var(--dasar-theme-border-strong-color));
+    box-shadow: var(
+      --dasar-datepicker-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+
+    &:hover {
+      border-color: var(--dasar-datepicker-elevated-hover-border, var(--dasar-theme-primary-color));
+    }
+
+    &.active,
+    &:focus,
+    &.open {
+      border-color: var(--dasar-datepicker-elevated-focus-border, var(--dasar-theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-datepicker-elevated-focus-ring, var(--dasar-theme-primary-surface-color));
+    }
+  }
 }
 
 .dasar-datepicker-dropdown {
