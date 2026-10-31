@@ -15,6 +15,17 @@
 
   <doc-example-component
     [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+    description="Supports outline (default), filled, and elevated appearance variants."
+  >
+    <app-checkbox-appearance-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
       { label: 'HTML', lang: 'html', value: sizeHtml },
       { label: 'TypeScript', lang: 'typescript', value: sizeTs },
     ]"
@@ -81,6 +92,17 @@
     title="Checkbox Group"
   >
     <app-checkbox-group-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupAppearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupAppearanceTs },
+    ]"
+    title="Group Appearance Passthrough"
+    description="The appearance input set on dasar-checkbox-group passes down to all child checkboxes unless overridden."
+  >
+    <app-checkbox-group-appearance-example />
   </doc-example-component>
 
   <doc-example-component
