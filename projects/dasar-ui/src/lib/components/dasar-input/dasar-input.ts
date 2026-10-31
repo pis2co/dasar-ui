@@ -19,11 +19,12 @@ import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.mode
 import { DasarThemeService } from '../../services/theme.service';
 import { resolveThemeDefault } from '../../utils/common';
 import { CommonModule } from '@angular/common';
+import { NgpInput } from 'ng-primitives/input';
 
 export type DasarInputType = 'text' | 'password' | 'email' | 'number' | 'search' | 'url' | 'tel';
 export type DasarInputMaskType = 'thousand' | 'date' | 'decimal' | ((val: string) => string);
 export type DasarInputSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
-export type DasarInputAppearanceType = 'outline' | 'filled';
+export type DasarInputAppearanceType = 'outline' | 'filled' | 'elevated';
 export type DasarInputRadiusType = ScaleAttributeType;
 
 export interface DasarInputConfig {
@@ -70,7 +71,7 @@ let nextDasarInputId = 0;
     },
   ],
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgpInput],
   templateUrl: './dasar-input.html',
   styleUrls: ['./dasar-input.scss'],
   selector: 'dasar-input',
