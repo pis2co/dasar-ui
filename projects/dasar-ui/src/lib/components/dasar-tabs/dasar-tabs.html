@@ -1,4 +1,6 @@
 <div
+  ngpTabset
+  (ngpTabsetValueChange)="onPrimitiveTabChange($event)"
   class="dasar-tabs-container appearance-{{ appearance }} size-{{ size }} spacing-{{
     spacing
   }} radius-{{ radius }}"
@@ -34,6 +36,7 @@
 
     <div
       #tabsList
+      ngpTabList
       class="dasar-tabs-list"
       role="tablist"
       [ngClass]="listClass"
@@ -42,6 +45,8 @@
       @if (items.length > 0) {
         @for (item of items; track $index; let i = $index) {
           <dasar-button
+            ngpTabButton
+            [ngpTabButtonValue]="i + ''"
             [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
             [radius]="appearance === 'outline' ? 'none' : radius"
             [size]="buttonSize"
@@ -59,6 +64,8 @@
       } @else {
         @for (tabSlotDirective of tabItemSlotDirectives; track tabSlotDirective; let i = $index) {
           <dasar-button
+            ngpTabButton
+            [ngpTabButtonValue]="i + ''"
             [variant]="activeIndex === i && appearance !== 'outline' ? 'primary' : 'ghost'"
             [radius]="appearance === 'outline' ? 'none' : radius"
             [size]="buttonSize"

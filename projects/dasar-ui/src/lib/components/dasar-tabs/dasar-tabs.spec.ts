@@ -290,6 +290,65 @@ describe('DasarTabs', () => {
     }
     expect(contentOf(fixture).getAttribute('role')).toBe('tabpanel');
   });
+
+  it('navigates between tabs via ArrowRight and ArrowLeft keyboard keys', async () => {
+    const triggerButtons = triggers();
+    expect(host.active()).toBe(0);
+
+    // Focus the first tab
+    triggerButtons[0].focus();
+    await fixture.whenStable();
+
+    // ArrowRight to next tab
+    triggerButtons[0].dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }),
+    );
+    await fixture.whenStable();
+
+    expect(host.active()).toBe(1);
+    expect(host.changed()).toBe(1);
+
+    // ArrowRight to third tab
+    triggerButtons[1].dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }),
+    );
+    await fixture.whenStable();
+
+    expect(host.active()).toBe(2);
+    expect(host.changed()).toBe(2);
+
+    // ArrowLeft back to second tab
+    triggerButtons[2].dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }),
+    );
+    await fixture.whenStable();
+
+    expect(host.active()).toBe(1);
+    expect(host.changed()).toBe(3);
+  });
+
+  it('emits onTabsChange exactly once per tab selection across click and keyboard', async () => {
+    host.changed.set(0);
+    host.clicked.set(0);
+
+    // Click selection
+    await clickTab(2);
+    expect(host.changed()).toBe(1);
+    expect(host.clicked()).toBe(1);
+    expect(host.active()).toBe(2);
+
+    // Click same tab again - no additional changed emission
+    await clickTab(2);
+    expect(host.changed()).toBe(1);
+    expect(host.clicked()).toBe(2);
+
+    // Keyboard navigation to tab 0 (wrapping with ArrowRight from tab 2)
+    triggers()[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    await fixture.whenStable();
+
+    expect(host.active()).toBe(0);
+    expect(host.changed()).toBe(2);
+  });
 });
 
 describe('DasarTabs with tab-item-slot', () => {
