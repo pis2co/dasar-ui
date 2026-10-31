@@ -358,6 +358,14 @@
     }
   }
 
+  &.elevated {
+    box-shadow: var(
+      --dasar-btn-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+  }
+
   &:disabled {
     border-color: var(--dasar-btn-disabled-border, var(--dasar-theme-border-subtle-color));
     background-color: var(--dasar-btn-disabled-bg, var(--dasar-theme-bg-hover-color));

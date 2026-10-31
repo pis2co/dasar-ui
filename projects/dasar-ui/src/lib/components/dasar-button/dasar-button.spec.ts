@@ -17,10 +17,11 @@ class DisabledHost {}
   selector: 'test-button-host',
   standalone: true,
   imports: [DasarButtonComponent],
-  template: `<dasar-button [disabled]="disabled">A</dasar-button>`,
+  template: `<dasar-button [disabled]="disabled" [appearance]="appearance">A</dasar-button>`,
 })
 class TestButtonHost {
   disabled = false;
+  appearance: any = 'solid';
 }
 
 describe('DasarButton', () => {
@@ -61,6 +62,18 @@ describe('DasarButton', () => {
 
     const buttonEl = ngpButtonDebugEl.nativeElement as HTMLButtonElement;
     expect(buttonEl.disabled || buttonEl.getAttribute('aria-disabled') === 'true').toBe(true);
+  });
+
+  it("applies 'elevated' class to native button when appearance is 'elevated'", async () => {
+    const hostFixture = TestBed.createComponent(TestButtonHost);
+    hostFixture.componentInstance.appearance = 'elevated';
+    hostFixture.detectChanges();
+    await hostFixture.whenStable();
+
+    const nativeBtn = hostFixture.nativeElement.querySelector(
+      '.dasar-button-native',
+    ) as HTMLButtonElement;
+    expect(nativeBtn.classList.contains('elevated')).toBe(true);
   });
 });
 
