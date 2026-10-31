@@ -1,0 +1,26 @@
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 480px; width: 100%">
+  <dasar-pin [length]="4" [error]="hasError" [(ngModel)]="pinValue"></dasar-pin>
+
+  <div style="display: flex; gap: 12px; align-items: center">
+    <button
+      type="button"
+      style="
+        padding: 6px 12px;
+        font-size: 13px;
+        border-radius: 6px;
+        border: 1px solid var(--dasar-theme-border-subtle-color);
+        background: var(--dasar-theme-bg-surface-color);
+        cursor: pointer;
+      "
+      (click)="hasError = !hasError"
+    >
+      Toggle Error State
+    </button>
+    <span style="font-size: 13px; color: var(--dasar-theme-text-secondary-color)">
+      Error:
+      <strong [style.color]="hasError ? 'var(--dasar-danger-500)' : 'inherit'">{{
+        hasError
+      }}</strong>
+    </span>
+  </div>
+</div>

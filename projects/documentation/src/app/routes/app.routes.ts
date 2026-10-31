@@ -5,6 +5,7 @@ import { IntroductionDocPage } from '../pages/introduction/introduction.page';
 import { InstallationDocPage } from '../pages/installation/installation.page';
 import { NumberInputDocPage } from '../pages/number-input/number-input.page';
 import { TextareaDocPage } from '../pages/textarea/textarea.page';
+import { PinDocPage } from '../pages/pin/pin.page';
 import { SliderDocPage } from '../pages/slider/slider.page';
 import { ToggleDocPage } from '../pages/toggle/toggle.page';
 import { TooltipDocPage } from '../pages/tooltip/tooltip.page';
@@ -213,6 +214,11 @@ export const routes: Routes = [
     path: 'components/textarea',
     component: TextareaDocPage,
     title: 'Textarea Docs | Dasar UI',
+  },
+  {
+    path: 'components/pin',
+    component: PinDocPage,
+    title: 'Pin Docs | Dasar UI',
   },
   {
     path: 'components/slider',
