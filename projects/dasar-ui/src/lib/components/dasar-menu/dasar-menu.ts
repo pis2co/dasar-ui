@@ -34,7 +34,7 @@ import { CommonModule } from '@angular/common';
 
 export type DasarMenuPlacementType = DasarPanelPlacement;
 export type DasarMenuSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
-export type DasarMenuAppearanceType = 'none' | 'outline' | 'filled';
+export type DasarMenuAppearanceType = 'none' | 'outline' | 'filled' | 'elevated';
 export type DasarMenuRadiusType = ScaleAttributeType;
 
 export interface DasarMenuItem {

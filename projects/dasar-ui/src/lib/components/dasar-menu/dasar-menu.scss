@@ -58,6 +58,27 @@
     }
   }
 
+  &.appearance-elevated {
+    border: 1px solid var(--dasar-menu-elevated-border, var(--dasar-theme-border-strong-color));
+    background-color: var(--dasar-menu-elevated-background, var(--dasar-theme-bg-surface-color));
+    box-shadow: var(
+      --dasar-menu-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+
+    &:hover:not(.disabled) {
+      border-color: var(--dasar-menu-elevated-hover-border, var(--dasar-theme-primary-color));
+    }
+
+    &.open,
+    &:focus-within {
+      border-color: var(--dasar-menu-elevated-focus-border, var(--dasar-theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-menu-elevated-focus-ring, var(--dasar-theme-primary-surface-color));
+    }
+  }
+
   &.disabled {
     opacity: var(--dasar-menu-disabled-opacity, 0.6);
     cursor: not-allowed;

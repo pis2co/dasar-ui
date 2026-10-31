@@ -11,6 +11,7 @@ import { DasarMenu, DasarMenuComponent } from './dasar-menu';
       [size]="size()"
       [radius]="radius()"
       [placement]="placement()"
+      [appearance]="appearance()"
       label="Menu"
       [items]="items"
     />
@@ -20,6 +21,7 @@ class MenuHost {
   size = signal<'sm' | 'md' | 'lg'>('sm');
   radius = signal<'none' | 'md' | 'lg' | 'full'>('lg');
   placement = signal<'bottom-start' | 'top-start'>('bottom-start');
+  appearance = signal<'none' | 'outline' | 'filled' | 'elevated'>('outline');
   items = [{ label: 'One', value: 1, iconName: 'info-circle' }];
 }
 
@@ -51,6 +53,13 @@ describe('DasarMenu', () => {
 
   it('renders no panel while closed', () => {
     expect(panel()).toBeNull();
+  });
+
+  it('trigger applies appearance-elevated when appearance is elevated', () => {
+    host.appearance.set('elevated');
+    fixture.detectChanges();
+    const trigger = fixture.nativeElement.querySelector('.dasar-menu-trigger') as HTMLElement;
+    expect(trigger.classList).toContain('appearance-elevated');
   });
 
   it('panel follows size and radius of the trigger', async () => {
