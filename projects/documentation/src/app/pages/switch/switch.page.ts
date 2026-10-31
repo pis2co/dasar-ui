@@ -4,6 +4,7 @@ import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
 import { SwitchBasicExample } from './examples/basic/switch-basic.example';
+import { SwitchAppearanceExample } from './examples/appearance/switch-appearance.example';
 import { SwitchSizeExample } from './examples/size/switch-size.example';
 import { SwitchDisabledExample } from './examples/disabled/switch-disabled.example';
 import { SwitchErrorExample } from './examples/error/switch-error.example';
@@ -20,6 +21,15 @@ import { SwitchThemeExample } from './examples/theme/switch-theme.example';
 import basicHtml from './examples/basic/switch-basic.example.html' with { loader: 'text' };
 // @ts-ignore
 import basicTs from './examples/basic/switch-basic.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import appearanceHtml from './examples/appearance/switch-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import appearanceTs from './examples/appearance/switch-appearance.example.ts' with {
+  loader: 'text',
+};
 
 // @ts-ignore
 import sizeHtml from './examples/size/switch-size.example.html' with { loader: 'text' };
@@ -104,6 +114,7 @@ import themeTs from './examples/theme/switch-theme.example.ts' with { loader: 't
     DocsLayoutComponent,
     DocExampleComponent,
     SwitchBasicExample,
+    SwitchAppearanceExample,
     SwitchSizeExample,
     SwitchDisabledExample,
     SwitchErrorExample,
@@ -123,6 +134,9 @@ import themeTs from './examples/theme/switch-theme.example.ts' with { loader: 't
 export class SwitchDocPage {
   protected basicHtml = basicHtml;
   protected basicTs = basicTs;
+
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
 
   protected sizeHtml = sizeHtml;
   protected sizeTs = sizeTs;
@@ -212,6 +226,12 @@ export class SwitchDocPage {
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Track and thumb size.',
+    },
+    {
+      name: 'appearance',
+      type: "'outline' | 'filled' | 'elevated'",
+      defaultValue: "'outline'",
+      description: 'Visual appearance variant.',
     },
     {
       name: 'checked-icon-name / unchecked-icon-name',
