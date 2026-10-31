@@ -32,7 +32,7 @@ import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
 
 export type DasarTabsRadiusType = ScaleAttributeType;
-export type DasarTabsAppearanceType = 'solid' | 'subtle' | 'outline';
+export type DasarTabsAppearanceType = 'solid' | 'subtle' | 'outline' | 'elevated';
 export type DasarTabsSizeType = ScaleAttributeType;
 export type DasarTabsSpacingType = 'compact' | 'normal';
 

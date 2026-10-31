@@ -33,7 +33,7 @@ class ItemsHost {
   size = signal<ScaleAttributeType>('md');
   spacing = signal<'compact' | 'normal'>('normal');
   radius = signal<ScaleAttributeType>('md');
-  appearance = signal<'solid' | 'subtle' | 'outline'>('subtle');
+  appearance = signal<'solid' | 'subtle' | 'outline' | 'elevated'>('subtle');
   fluid = signal(false);
   active = signal(0);
   changed = signal(0);
@@ -234,6 +234,13 @@ describe('DasarTabs', () => {
     for (const debug of buttonDebugs) {
       expect(debug.componentInstance.radius).toBe('none');
     }
+  });
+
+  it('supports elevated appearance', async () => {
+    host.appearance.set('elevated');
+    await fixture.whenStable();
+
+    expect(containerOf(fixture).classList).toContain('appearance-elevated');
   });
 
   it('selecting a tab updates the active state and emits both outputs', async () => {
