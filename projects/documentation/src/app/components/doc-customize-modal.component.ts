@@ -370,6 +370,7 @@ export class DocCustomizeModalComponent implements OnChanges {
 
   resetDraft() {
     this.draft.set({ ...DOC_DEFAULT_SETTINGS });
+    this.customize.apply(this.draft());
   }
 
   apply() {

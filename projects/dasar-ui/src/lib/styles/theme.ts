@@ -1,6 +1,6 @@
 export const dasarVariables = {
   font: {
-    sans: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     hero: "'Space Grotesk', sans-serif",
   },
   fontWeight: {
