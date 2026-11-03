@@ -10,6 +10,9 @@ import { CalendarFormatExample } from './examples/format/calendar-format.example
 import { CalendarCustomHeaderExample } from './examples/custom-header/calendar-custom-header.example';
 import { CalendarActionsExample } from './examples/actions/calendar-actions.example';
 import { CalendarStylesExample } from './examples/styles/calendar-styles.example';
+import { CalendarRangeExample } from './examples/range/calendar-range.example';
+import { CalendarDisabledDatesExample } from './examples/disabled-dates/calendar-disabled-dates.example';
+import { CalendarComparisonExample } from './examples/comparison/calendar-comparison.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/calendar-basic.example.html' with { loader: 'text' };
@@ -22,6 +25,29 @@ import dropdownHtml from './examples/dropdown/calendar-dropdown.example.html' wi
 };
 // @ts-ignore
 import dropdownTs from './examples/dropdown/calendar-dropdown.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import rangeHtml from './examples/range/calendar-range.example.html' with { loader: 'text' };
+// @ts-ignore
+import rangeTs from './examples/range/calendar-range.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import disabledDatesHtml from './examples/disabled-dates/calendar-disabled-dates.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import disabledDatesTs from './examples/disabled-dates/calendar-disabled-dates.example.ts' with {
+  loader: 'text',
+};
+
+// @ts-ignore
+import comparisonHtml from './examples/comparison/calendar-comparison.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import comparisonTs from './examples/comparison/calendar-comparison.example.ts' with {
+  loader: 'text',
+};
 
 // @ts-ignore
 import localeHtml from './examples/locale/calendar-locale.example.html' with { loader: 'text' };
@@ -58,6 +84,9 @@ import stylesTs from './examples/styles/calendar-styles.example.ts' with { loade
     DocsLayoutComponent,
     DocExampleComponent,
     CalendarBasicExample,
+    CalendarComparisonExample,
+    CalendarRangeExample,
+    CalendarDisabledDatesExample,
     CalendarDropdownExample,
     CalendarLocaleExample,
     CalendarFormatExample,
@@ -72,6 +101,12 @@ import stylesTs from './examples/styles/calendar-styles.example.ts' with { loade
 export class CalendarDocPage {
   protected basicHtml = basicHtml;
   protected basicTs = basicTs;
+  protected comparisonHtml = comparisonHtml;
+  protected comparisonTs = comparisonTs;
+  protected rangeHtml = rangeHtml;
+  protected rangeTs = rangeTs;
+  protected disabledDatesHtml = disabledDatesHtml;
+  protected disabledDatesTs = disabledDatesTs;
   protected dropdownHtml = dropdownHtml;
   protected dropdownTs = dropdownTs;
   protected localeHtml = localeHtml;

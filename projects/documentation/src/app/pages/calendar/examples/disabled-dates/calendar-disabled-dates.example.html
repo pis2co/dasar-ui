@@ -1,0 +1,15 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%">
+  <p style="margin: 0">
+    Weekends are disabled via custom <code>[dateDisabled]</code> predicate:
+    <strong>{{ selectedDate() | date: 'fullDate' }}</strong>
+  </p>
+
+  <dasar-calendar
+    variant="dashboard"
+    appearance="outline"
+    full-width
+    [value]="selectedDate()"
+    (valueChange)="selectedDate.set($event)"
+    [dateDisabled]="isWeekendDisabled"
+  ></dasar-calendar>
+</div>
