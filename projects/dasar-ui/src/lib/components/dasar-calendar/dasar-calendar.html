@@ -145,15 +145,19 @@
               >
                 @if (variant === 'dashboard') {
                   <div class="cell-top">
-                    <div class="day-number" [class.today]="isTodayDate(date)">
-                      {{ date.getDate() }}
-                    </div>
-                    @if (isFirstRowDate(date)) {
-                      <div class="weekday-label" [attr.data-weekday]="formatWeekday(date)"></div>
+                    @if (isSelectedDate(date)) {
+                      <div class="day-badge">
+                        <span class="day-badge-number">{{ date.getDate() }}</span>
+                      </div>
+                    } @else {
+                      <div class="day-number" [class.today]="isTodayDate(date)">
+                        {{ date.getDate() }}
+                      </div>
                     }
                   </div>
+                  <div class="cell-weekday">{{ formatWeekday(date) }}</div>
                   @if (!hideFullDate) {
-                    <div class="cell-content" [attr.data-full-date]="formatFullDate(date)"></div>
+                    <div class="cell-date">{{ formatFullDate(date) }}</div>
                   }
                 } @else {
                   <div class="day-number" [class.today]="isTodayDate(date)">
@@ -205,15 +209,19 @@
               >
                 @if (variant === 'dashboard') {
                   <div class="cell-top">
-                    <div class="day-number" [class.today]="isTodayDate(date)">
-                      {{ date.getDate() }}
-                    </div>
-                    @if (isFirstRowDate(date)) {
-                      <div class="weekday-label" [attr.data-weekday]="formatWeekday(date)"></div>
+                    @if (isSelectedDate(date)) {
+                      <div class="day-badge">
+                        <span class="day-badge-number">{{ date.getDate() }}</span>
+                      </div>
+                    } @else {
+                      <div class="day-number" [class.today]="isTodayDate(date)">
+                        {{ date.getDate() }}
+                      </div>
                     }
                   </div>
+                  <div class="cell-weekday">{{ formatWeekday(date) }}</div>
                   @if (!hideFullDate) {
-                    <div class="cell-content" [attr.data-full-date]="formatFullDate(date)"></div>
+                    <div class="cell-date">{{ formatFullDate(date) }}</div>
                   }
                 } @else {
                   <div class="day-number" [class.today]="isTodayDate(date)">
