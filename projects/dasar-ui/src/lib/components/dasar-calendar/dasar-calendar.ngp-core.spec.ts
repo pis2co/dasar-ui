@@ -93,7 +93,11 @@ describe('DasarCalendar NgpDatePicker Core Single-Value Migration', () => {
       // Under ng-primitives, buttons inside grid cells act as interactive date buttons
       const dayButtons = fixture.debugElement
         .queryAll(By.css('.day-cell, [ngpDatePickerCell], [ngpDatePickerDateButton]'))
-        .filter((el) => el.nativeElement.textContent?.trim() === '18');
+        .filter((el) => {
+          const numEl = el.nativeElement.querySelector('.day-number, .day-badge-number');
+          const text = (numEl ? numEl.textContent : el.nativeElement.textContent)?.trim();
+          return text === '18';
+        });
 
       expect(dayButtons.length).toBeGreaterThan(0);
       const targetDay = dayButtons[0].nativeElement as HTMLElement;
@@ -168,7 +172,11 @@ describe('DasarCalendar NgpDatePicker Core Single-Value Migration', () => {
       // Check date disabled via dateDisabled callback (day 20)
       const day20 = fixture.debugElement
         .queryAll(By.css('.day-cell, [ngpDatePickerCell], [ngpDatePickerDateButton]'))
-        .find((el) => el.nativeElement.textContent?.trim() === '20')?.nativeElement as HTMLElement;
+        .find((el) => {
+          const numEl = el.nativeElement.querySelector('.day-number, .day-badge-number');
+          const text = (numEl ? numEl.textContent : el.nativeElement.textContent)?.trim();
+          return text === '20';
+        })?.nativeElement as HTMLElement;
 
       expect(day20).toBeTruthy();
       const isDay20Disabled =
