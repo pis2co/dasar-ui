@@ -332,7 +332,7 @@
         width: var(--dasar-calendar-badge-size, 26px);
         height: var(--dasar-calendar-badge-size, 26px);
         border-radius: var(--dasar-radius-full);
-        background-color: var(--dasar-calendar-badge-bg, #1b4d8e);
+        background-color: var(--dasar-calendar-badge-bg, var(--dasar-theme-primary-color));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -395,12 +395,12 @@
       }
 
       &.selected {
-        background-color: var(--dasar-calendar-dashboard-selected-bg, #eff6ff);
+        background-color: var(--dasar-calendar-dashboard-selected-bg, var(--dasar-theme-primary-surface-color));
         box-shadow: none;
       }
 
       &.other-month {
-        background-color: var(--dasar-calendar-dashboard-other-month-bg, #f3f4f6);
+        background-color: var(--dasar-calendar-dashboard-other-month-bg, var(--dasar-theme-bg-hover-color));
 
         .day-number,
         .cell-weekday,
