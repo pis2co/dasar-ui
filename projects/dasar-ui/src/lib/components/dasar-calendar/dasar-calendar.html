@@ -135,6 +135,7 @@
                 ngpDatePickerDateButton
                 #dateBtn="ngpDatePickerDateButton"
                 class="day-cell"
+                [attr.aria-label]="variant === 'dashboard' ? formatFullDate(date) : null"
                 [class.other-month]="!isCurrentMonthDate(date)"
                 [class.selected]="isSelectedDate(date)"
                 [class.in-range]="isInRangeDate(date)"
@@ -199,6 +200,7 @@
                 ngpDatePickerDateButton
                 #dateBtn="ngpDatePickerDateButton"
                 class="day-cell"
+                [attr.aria-label]="variant === 'dashboard' ? formatFullDate(date) : null"
                 [class.other-month]="!isCurrentMonthDate(date)"
                 [class.selected]="isSelectedDate(date)"
                 [class.in-range]="isInRangeDate(date)"
