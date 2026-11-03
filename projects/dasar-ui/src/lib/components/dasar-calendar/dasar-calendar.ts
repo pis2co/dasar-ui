@@ -298,6 +298,7 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
   private cdr = inject(ChangeDetectorRef);
   weekdays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   viewMode: 'days' | 'months' | 'years' = 'days';
+  private _decadeStart: number | null = null;
   private _currentViewDate: Date = new Date();
   get currentViewDate(): Date {
     return this._currentViewDate;
@@ -422,14 +423,18 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
       };
     });
   }
-  get yearsList(): number[] {
-    const currentYear = new Date().getFullYear();
-    const startYear = 1999;
-    const years: number[] = [];
-    for (let y = startYear; y <= currentYear; y++) {
-      years.push(y);
+  get decadeStart(): number {
+    if (this._decadeStart === null) {
+      this._decadeStart = new Date().getFullYear() - 11;
     }
-    return years;
+    return this._decadeStart;
+  }
+  get decadeLabel(): string {
+    return `${this.decadeStart} - ${this.decadeStart + 11}`;
+  }
+  get yearsList(): number[] {
+    const start = this.decadeStart;
+    return Array.from({ length: 12 }, (_, i) => start + i);
   }
   get localizedDropdownWeekdays(): string[] {
     const baseDate = new Date(2026, 5, 7);
@@ -444,10 +449,27 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
     if (this.viewMode === 'days') {
       this.viewMode = 'months';
     } else if (this.viewMode === 'months') {
+      this._decadeStart = null;
+      this._decadeStart = this.currentViewDate.getFullYear() - 11;
       this.viewMode = 'years';
     } else {
       this.viewMode = 'days';
     }
+  }
+  changeViewYear(direction: 1 | -1, event: Event): void {
+    event.stopPropagation();
+    this.currentViewDate = new Date(
+      this.currentViewDate.getFullYear() + direction,
+      this.currentViewDate.getMonth(),
+      1,
+    );
+    this.generateCalendar();
+    this.cdr.markForCheck();
+  }
+  changeDecade(direction: 1 | -1, event: Event): void {
+    event.stopPropagation();
+    this._decadeStart = this.decadeStart + direction * 12;
+    this.cdr.markForCheck();
   }
   selectMonth(monthIndex: number, event: Event) {
     event.stopPropagation();

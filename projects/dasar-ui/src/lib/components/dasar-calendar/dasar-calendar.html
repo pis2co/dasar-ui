@@ -22,7 +22,7 @@
             } @else if (viewMode === 'months') {
               {{ currentViewDate.getFullYear() }}
             } @else {
-              Select Year
+              {{ decadeLabel }}
             }
           </span>
           @if (variant != 'dashboard') {
@@ -80,6 +80,24 @@
                 <dasar-icon name="arrow-right"></dasar-icon>
               </dasar-button>
             }
+          </div>
+        } @else if (viewMode === 'months') {
+          <div class="header-actions">
+            <dasar-button size="sm" variant="ghost" icon-only (click)="changeViewYear(-1, $event)">
+              <dasar-icon name="chevron-left"></dasar-icon>
+            </dasar-button>
+            <dasar-button size="sm" variant="ghost" icon-only (click)="changeViewYear(1, $event)">
+              <dasar-icon name="chevron-right"></dasar-icon>
+            </dasar-button>
+          </div>
+        } @else if (viewMode === 'years') {
+          <div class="header-actions">
+            <dasar-button size="sm" variant="ghost" icon-only (click)="changeDecade(-1, $event)">
+              <dasar-icon name="chevron-left"></dasar-icon>
+            </dasar-button>
+            <dasar-button size="sm" variant="ghost" icon-only (click)="changeDecade(1, $event)">
+              <dasar-icon name="chevron-right"></dasar-icon>
+            </dasar-button>
           </div>
         }
       </div>
