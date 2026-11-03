@@ -73,28 +73,90 @@
         [ngClass]="dropdownClass"
         [ngStyle]="dropdownStyle"
       >
-        <dasar-calendar
-          variant="dropdown"
-          [size]="size"
-          [range]="range"
-          [rangeValue]="internalRange"
-          (rangeValueChange)="onRangeSelect($event)"
-          (valueChange)="onCalendarSelect($event)"
-          (prevMonth)="onPrevMonthClick.emit()"
-          (nextMonth)="onNextMonthClick.emit()"
-          (prevYear)="onPrevYearClick.emit()"
-          (nextYear)="onNextYearClick.emit()"
-          [value-format]="valueFormat"
-          [(value)]="internalDate"
-          [locale]="locale"
-        >
-          @if (extraFooterSlot) {
-            <ng-content
-              ngProjectAs="[calendar-footer-slot]"
-              select="[extra-footer-slot]"
-            ></ng-content>
+        <div class="dasar-datepicker-panel-body">
+          <dasar-calendar
+            variant="dropdown"
+            [size]="size"
+            [range]="range"
+            [rangeValue]="internalRange"
+            (rangeValueChange)="onRangeSelect($event)"
+            (valueChange)="onCalendarSelect($event)"
+            (prevMonth)="onPrevMonthClick.emit()"
+            (nextMonth)="onNextMonthClick.emit()"
+            (prevYear)="onPrevYearClick.emit()"
+            (nextYear)="onNextYearClick.emit()"
+            [value-format]="valueFormat"
+            [(value)]="internalDate"
+            [locale]="locale"
+          >
+            @if (extraFooterSlot) {
+              <ng-content
+                ngProjectAs="[calendar-footer-slot]"
+                select="[extra-footer-slot]"
+              ></ng-content>
+            }
+          </dasar-calendar>
+          @if (showTimeSection) {
+            <div class="dasar-datepicker-time-section">
+              <span class="time-section-label">Time</span>
+              <div class="time-fields-row">
+                <dasar-number-input
+                  [min]="0"
+                  [max]="showMeridiemToggle ? 12 : 23"
+                  [size]="size"
+                  [value]="displayHours"
+                  (valueChange)="onHoursChange($event)"
+                ></dasar-number-input>
+                <span class="time-separator">:</span>
+                <dasar-number-input
+                  [min]="0"
+                  [max]="59"
+                  [size]="size"
+                  [value]="timeMinutes"
+                  (valueChange)="onMinutesChange($event)"
+                ></dasar-number-input>
+                @if (showSecondsSection) {
+                  <span class="time-separator">:</span>
+                  <dasar-number-input
+                    [min]="0"
+                    [max]="59"
+                    [size]="size"
+                    [value]="timeSeconds"
+                    (valueChange)="onSecondsChange($event)"
+                  ></dasar-number-input>
+                }
+              </div>
+              @if (showMeridiemToggle) {
+                <div class="time-meridiem-row">
+                  <dasar-button
+                    [size]="size"
+                    [appearance]="timeMeridiem === 'AM' ? 'solid' : 'outline'"
+                    [class.active]="timeMeridiem === 'AM'"
+                    (click)="onMeridiemToggle('AM')"
+                  >
+                    AM
+                  </dasar-button>
+                  <dasar-button
+                    [size]="size"
+                    [appearance]="timeMeridiem === 'PM' ? 'solid' : 'outline'"
+                    [class.active]="timeMeridiem === 'PM'"
+                    (click)="onMeridiemToggle('PM')"
+                  >
+                    PM
+                  </dasar-button>
+                </div>
+              }
+              <dasar-button
+                class="time-done-button"
+                variant="primary"
+                [size]="size"
+                (click)="confirmDateTime()"
+              >
+                Done
+              </dasar-button>
+            </div>
           }
-        </dasar-calendar>
+        </div>
       </div>
     }
   </div>

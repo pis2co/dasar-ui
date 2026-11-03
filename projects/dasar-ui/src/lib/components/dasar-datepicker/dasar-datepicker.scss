@@ -357,6 +357,79 @@
   }
 }
 
+.dasar-datepicker-panel-body {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dasar-space-base, 12px);
+
+  @media (max-width: ($breakpoint-sm - 0.02)) {
+    flex-direction: column;
+  }
+}
+
+.dasar-datepicker-time-section {
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dasar-space-1, 8px);
+  border-left: 1px solid var(--dasar-theme-border-subtle-color);
+  padding-left: var(--dasar-space-base, 12px);
+
+  @media (max-width: ($breakpoint-sm - 0.02)) {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--dasar-theme-border-subtle-color);
+    padding-top: var(--dasar-space-base, 12px);
+    width: 100%;
+  }
+
+  .time-section-label {
+    font-weight: var(--dasar-font-weight-semibold);
+    color: var(--dasar-theme-text-primary-color);
+    font-size: var(--dasar-font-size-sm);
+  }
+
+  .time-fields-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    dasar-number-input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .time-separator {
+      font-weight: var(--dasar-font-weight-semibold);
+      color: var(--dasar-theme-text-secondary-color);
+      user-select: none;
+    }
+  }
+
+  .time-meridiem-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    dasar-button {
+      flex: 1;
+
+      .dasar-button-container {
+        width: 100%;
+      }
+    }
+  }
+
+  .time-done-button {
+    width: 100%;
+    margin-top: var(--dasar-space-1, 4px);
+
+    .dasar-button-container {
+      width: 100%;
+    }
+  }
+}
+
 .dasar-datepicker .hidden {
   display: none;
 }

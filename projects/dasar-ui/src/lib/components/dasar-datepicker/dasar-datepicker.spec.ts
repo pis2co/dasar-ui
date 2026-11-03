@@ -130,6 +130,187 @@ describe('DasarDatepicker', () => {
   });
 });
 
+describe('DasarDatepicker datetime mode logic', () => {
+  let component: DasarDatepicker;
+  let fixture: ComponentFixture<DatepickerHost>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [DatepickerHost],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(DatepickerHost);
+    component = fixture.debugElement.children[0].componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('type defaults to date and existing date-only behavior is unchanged', () => {
+    expect(component.type).toBe('date');
+    expect(component.showTimeSection).toBe(false);
+    expect(component.showMeridiemToggle).toBe(false);
+    component.value = '2026-05-15';
+    fixture.detectChanges();
+    expect(component.displayText).toBe('15-05-2026');
+  });
+
+  it("setting type = 'datetime' makes showTimeSection return true; leaving it 'date' makes it false", () => {
+    expect(component.type).toBe('date');
+    expect(component.showTimeSection).toBe(false);
+
+    component.type = 'datetime';
+    expect(component.showTimeSection).toBe(true);
+
+    component.type = 'date';
+    expect(component.showTimeSection).toBe(false);
+  });
+
+  it('onHoursChange/onMinutesChange/onSecondsChange correctly update time and merge into internalDate without changing date portion', () => {
+    component.type = 'datetime';
+    component.value = '2026-07-20';
+    fixture.detectChanges();
+
+    expect(component.internalDate).not.toBeNull();
+    const initialDate = component.internalDate!;
+    expect(initialDate.getFullYear()).toBe(2026);
+    expect(initialDate.getMonth()).toBe(6); // 0-indexed: July
+    expect(initialDate.getDate()).toBe(20);
+
+    component.timeFormat = '24';
+    component.onHoursChange(14);
+    component.onMinutesChange(35);
+    component.onSecondsChange(42);
+
+    expect(component.timeHours).toBe(14);
+    expect(component.timeMinutes).toBe(35);
+    expect(component.timeSeconds).toBe(42);
+    expect(component.timeMeridiem).toBe('PM');
+
+    const merged = component.internalDate!;
+    expect(merged.getFullYear()).toBe(2026);
+    expect(merged.getMonth()).toBe(6);
+    expect(merged.getDate()).toBe(20);
+    expect(merged.getHours()).toBe(14);
+    expect(merged.getMinutes()).toBe(35);
+    expect(merged.getSeconds()).toBe(42);
+  });
+
+  it('onMeridiemToggle correctly shifts timeHours by 12 in the right direction and updates timeMeridiem', () => {
+    component.type = 'datetime';
+    component.timeFormat = '12';
+    component.timeHours = 9;
+    component.timeMeridiem = 'AM';
+
+    component.onMeridiemToggle('PM');
+    expect(component.timeHours).toBe(21);
+    expect(component.timeMeridiem).toBe('PM');
+
+    component.onMeridiemToggle('PM');
+    expect(component.timeHours).toBe(21);
+    expect(component.timeMeridiem).toBe('PM');
+
+    component.onMeridiemToggle('AM');
+    expect(component.timeHours).toBe(9);
+    expect(component.timeMeridiem).toBe('AM');
+  });
+
+  it('displayHours getter correctly converts between 24h internal storage and 12h display', () => {
+    component.timeFormat = '12';
+
+    component.timeHours = 0;
+    expect(component.displayHours).toBe(12);
+
+    component.timeHours = 12;
+    expect(component.displayHours).toBe(12);
+
+    component.timeHours = 13;
+    expect(component.displayHours).toBe(1);
+
+    component.timeHours = 23;
+    expect(component.displayHours).toBe(11);
+
+    component.timeHours = 5;
+    expect(component.displayHours).toBe(5);
+
+    component.timeFormat = '24';
+    component.timeHours = 0;
+    expect(component.displayHours).toBe(0);
+
+    component.timeHours = 13;
+    expect(component.displayHours).toBe(13);
+  });
+
+  it('confirmDateTime() closes the dropdown and the final internalDate includes the merged time', () => {
+    component.type = 'datetime';
+    component.value = '2026-08-10';
+    component.isOpen = true;
+    fixture.detectChanges();
+
+    let emittedValue: any = null;
+    component.valueChange.subscribe((val) => {
+      emittedValue = val;
+    });
+
+    component.timeHours = 16;
+    component.timeMinutes = 45;
+    component.timeSeconds = 0;
+
+    component.confirmDateTime();
+
+    expect(component.isOpen).toBe(false);
+    expect(component.internalDate?.getHours()).toBe(16);
+    expect(component.internalDate?.getMinutes()).toBe(45);
+    expect(emittedValue).toBeDefined();
+  });
+
+  it('in datetime mode onCalendarSelect does NOT emit valueChange, while in date mode it does', () => {
+    // 1. datetime mode
+    component.type = 'datetime';
+    component.timeHours = 10;
+    component.timeMinutes = 15;
+    let datetimeEmitted = false;
+    component.valueChange.subscribe(() => {
+      datetimeEmitted = true;
+    });
+    component.onCalendarSelect(new Date(2026, 5, 20));
+    expect(datetimeEmitted).toBe(false);
+    expect(component.internalDate?.getFullYear()).toBe(2026);
+    expect(component.internalDate?.getHours()).toBe(10);
+    expect(component.internalDate?.getMinutes()).toBe(15);
+
+    // 2. date mode (regression check)
+    component.type = 'date';
+    let dateEmitted: any = null;
+    component.valueChange.subscribe((val) => {
+      dateEmitted = val;
+    });
+    component.onCalendarSelect(new Date(2026, 5, 21));
+    expect(dateEmitted).toBeDefined();
+  });
+
+  it('in 12h mode onHoursChange treats 0 as 12', () => {
+    component.type = 'datetime';
+    component.timeFormat = '12';
+    component.timeMeridiem = 'AM';
+    component.onHoursChange(0);
+    expect(component.timeHours).toBe(0); // 12 AM is hour 0 internally
+    expect(component.displayHours).toBe(12);
+
+    component.timeMeridiem = 'PM';
+    component.onHoursChange(0);
+    expect(component.timeHours).toBe(12); // 12 PM is hour 12 internally
+    expect(component.displayHours).toBe(12);
+  });
+
+  it('mergeTimeIntoInternalDate does nothing when internalDate is null', () => {
+    component.internalDate = null;
+    component.timeHours = 10;
+    component.timeMinutes = 30;
+
+    expect(() => component.mergeTimeIntoInternalDate()).not.toThrow();
+    expect(component.internalDate).toBeNull();
+  });
+});
+
 @Component({
   standalone: true,
   imports: [DasarDatepickerComponent],

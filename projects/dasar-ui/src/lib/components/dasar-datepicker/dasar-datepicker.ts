@@ -30,6 +30,7 @@ import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provid
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { resolveThemeDefault, safeFormat } from '../../utils/common';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
+import { DasarNumberInputComponent } from '../dasar-number-input/dasar-number-input';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { fieldIconSize } from '../../utils/icon-size';
@@ -39,7 +40,7 @@ export type DasarDatepickerPlacement = DasarPanelPlacement;
 export type DasarDatepickerSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle' | 'elevated';
 export type DasarDatepickerRadius = ScaleAttributeType;
-export type DasarDatepickerType = 'date';
+export type DasarDatepickerType = 'date' | 'datetime';
 
 export interface DasarDatepickerConfig {
   fullWidth?: boolean;
@@ -50,6 +51,8 @@ export interface DasarDatepickerConfig {
   range?: boolean;
   displayFormat?: string;
   valueFormat?: string;
+  showSeconds?: boolean;
+  timeFormat?: '12' | '24';
   placement?: DasarDatepickerPlacement;
   appearance?: DasarDatepickerAppearance;
   extraLabel?: string;
@@ -98,6 +101,7 @@ let nextDasarDatepickerId = 0;
     DasarCalendarComponent,
     DasarIconComponent,
     DasarButtonComponent,
+    DasarNumberInputComponent,
   ],
   templateUrl: './dasar-datepicker.html',
   styleUrls: ['./dasar-datepicker.scss'],
@@ -149,6 +153,20 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     'datepicker',
     'valueFormat',
     'yyyy-MM-dd',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'show-seconds', transform: booleanAttribute }) showSeconds = resolveThemeDefault(
+    'datepicker',
+    'showSeconds',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'time-format' }) timeFormat: '12' | '24' = resolveThemeDefault(
+    'datepicker',
+    'timeFormat',
+    '24',
     this.themeProvider,
     this.themeService,
   );
@@ -390,6 +408,11 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   isOpen: boolean = false;
   private isFocused: boolean = false;
 
+  timeHours: number = 0;
+  timeMinutes: number = 0;
+  timeSeconds: number = 0;
+  timeMeridiem: 'AM' | 'PM' = 'AM';
+
   @Input()
   get value(): any {
     return this._value;
@@ -447,6 +470,17 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     if (!this.internalDate || isNaN(this.internalDate.getTime())) return '';
     try {
       const formatToUse = () => {
+        if (this.type === 'datetime') {
+          const timePart =
+            this.timeFormat === '12'
+              ? this.showSeconds
+                ? 'h:mm:ss A'
+                : 'h:mm A'
+              : this.showSeconds
+                ? 'HH:mm:ss'
+                : 'HH:mm';
+          return `${this.displayFormat} ${timePart}`;
+        }
         return this.displayFormat;
       };
       return safeFormat(this.internalDate, formatToUse(), this.locale);
@@ -494,6 +528,12 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       return;
     }
     this.internalDate = new Date(this._value);
+    if (!isNaN(this.internalDate.getTime())) {
+      this.timeHours = this.internalDate.getHours();
+      this.timeMinutes = this.internalDate.getMinutes();
+      this.timeSeconds = this.internalDate.getSeconds();
+      this.timeMeridiem = this.timeHours >= 12 ? 'PM' : 'AM';
+    }
   }
   private setFocus(state: boolean, event?: Event) {
     if (this.disabled) return;
@@ -510,6 +550,90 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   }
   get iconSize(): number {
     return fieldIconSize(this.size);
+  }
+
+  get displayHours(): number {
+    if (this.timeFormat === '12') {
+      return this.timeHours % 12 || 12;
+    }
+    return this.timeHours;
+  }
+
+  get showTimeSection(): boolean {
+    return this.type === 'datetime';
+  }
+
+  get showSecondsSection(): boolean {
+    return this.showSeconds;
+  }
+
+  get showMeridiemToggle(): boolean {
+    return this.timeFormat === '12';
+  }
+
+  onHoursChange(value: number | null): void {
+    if (value === null) return;
+    if (this.timeFormat === '12') {
+      const normalizedValue = value === 0 ? 12 : value;
+      const clampedDisplay = Math.min(12, Math.max(1, normalizedValue));
+      if (this.timeMeridiem === 'AM') {
+        this.timeHours = clampedDisplay === 12 ? 0 : clampedDisplay;
+      } else {
+        this.timeHours = clampedDisplay === 12 ? 12 : clampedDisplay + 12;
+      }
+    } else {
+      this.timeHours = Math.min(23, Math.max(0, value));
+      this.timeMeridiem = this.timeHours >= 12 ? 'PM' : 'AM';
+    }
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  onMinutesChange(value: number | null): void {
+    if (value === null) return;
+    this.timeMinutes = Math.min(59, Math.max(0, value));
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  onSecondsChange(value: number | null): void {
+    if (value === null) return;
+    this.timeSeconds = Math.min(59, Math.max(0, value));
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  onMeridiemToggle(value: 'AM' | 'PM'): void {
+    if (value === this.timeMeridiem) return;
+    if (value === 'PM' && this.timeHours < 12) {
+      this.timeHours += 12;
+    } else if (value === 'AM' && this.timeHours >= 12) {
+      this.timeHours -= 12;
+    }
+    this.timeMeridiem = value;
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  confirmDateTime(): void {
+    this.mergeTimeIntoInternalDate();
+    if (this.internalDate) {
+      const returnValue = this.formatReturnValue(this.internalDate);
+      this._value = returnValue;
+      this.onChange(returnValue);
+      this.valueChange.emit(returnValue);
+      this.onDateSelected.emit(returnValue);
+    }
+    this.isOpen = false;
+    this.setFocus(false);
+    this.cdr.detectChanges();
+  }
+
+  mergeTimeIntoInternalDate(): void {
+    if (!this.internalDate) return;
+    const updated = new Date(this.internalDate.getTime());
+    updated.setHours(this.timeHours, this.timeMinutes, this.timeSeconds, 0);
+    this.internalDate = updated;
   }
 
   toggleDropdown(event: Event) {
@@ -559,18 +683,27 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   }
   onCalendarSelect(date: Date | null) {
     if (!date) return;
-    this.internalDate = date;
+    if (this.type === 'datetime') {
+      const merged = new Date(date.getTime());
+      merged.setHours(this.timeHours, this.timeMinutes, this.timeSeconds, 0);
+      this.internalDate = merged;
+      const returnValue = this.formatReturnValue(merged);
+      this._value = returnValue;
+      this.onDateSelected.emit(returnValue);
+    } else {
+      this.internalDate = date;
 
-    const returnValue = this.formatReturnValue(date);
-    this._value = returnValue;
+      const returnValue = this.formatReturnValue(date);
+      this._value = returnValue;
 
-    this.onChange(returnValue);
-    this.valueChange.emit(returnValue);
-    this.onDateSelected.emit(returnValue);
+      this.onChange(returnValue);
+      this.valueChange.emit(returnValue);
+      this.onDateSelected.emit(returnValue);
 
-    if (this.type === 'date') {
-      this.isOpen = false;
-      this.setFocus(false);
+      if (this.type === 'date') {
+        this.isOpen = false;
+        this.setFocus(false);
+      }
     }
     this.cdr.detectChanges();
   }
