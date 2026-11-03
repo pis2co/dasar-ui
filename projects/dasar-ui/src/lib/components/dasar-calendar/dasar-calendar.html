@@ -53,15 +53,6 @@
                 <dasar-icon name="chevron-left"></dasar-icon>
               </dasar-button>
             }
-            @if (todayTemplate && variant === 'dashboard') {
-              <ng-container
-                *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
-              ></ng-container>
-            } @else if (variant === 'dashboard') {
-              <dasar-button size="sm" variant="primary" (click)="goToToday($event)"
-                >Today</dasar-button
-              >
-            }
             @if (nextMonthTemplate) {
               <ng-container
                 *ngTemplateOutlet="nextMonthTemplate.templateRef; context: { $implicit: this }"
@@ -144,26 +135,12 @@
                 [class.disabled]="dateBtn.disabled()"
                 [disabled]="dateBtn.disabled()"
               >
-                @if (variant === 'dashboard') {
-                  <div class="cell-top">
-                    @if (isSelectedDate(date)) {
-                      <div class="day-badge">
-                        <span class="day-badge-number">{{ date.getDate() }}</span>
-                      </div>
-                    } @else {
-                      <div class="day-number" [class.today]="isTodayDate(date)">
-                        {{ date.getDate() }}
-                      </div>
-                    }
-                  </div>
+                <div class="day-number" [class.today]="isTodayDate(date)">
+                  {{ date.getDate() }}
+                </div>
+                @if (variant === 'dashboard' && !hideFullDate) {
                   <div class="cell-weekday">{{ formatWeekday(date) }}</div>
-                  @if (!hideFullDate) {
-                    <div class="cell-date">{{ formatFullDate(date) }}</div>
-                  }
-                } @else {
-                  <div class="day-number" [class.today]="isTodayDate(date)">
-                    {{ date.getDate() }}
-                  </div>
+                  <div class="cell-date">{{ formatFullDate(date) }}</div>
                 }
               </button>
             </div>
@@ -209,31 +186,31 @@
                 [class.disabled]="dateBtn.disabled()"
                 [disabled]="dateBtn.disabled()"
               >
-                @if (variant === 'dashboard') {
-                  <div class="cell-top">
-                    @if (isSelectedDate(date)) {
-                      <div class="day-badge">
-                        <span class="day-badge-number">{{ date.getDate() }}</span>
-                      </div>
-                    } @else {
-                      <div class="day-number" [class.today]="isTodayDate(date)">
-                        {{ date.getDate() }}
-                      </div>
-                    }
-                  </div>
+                <div class="day-number" [class.today]="isTodayDate(date)">
+                  {{ date.getDate() }}
+                </div>
+                @if (variant === 'dashboard' && !hideFullDate) {
                   <div class="cell-weekday">{{ formatWeekday(date) }}</div>
-                  @if (!hideFullDate) {
-                    <div class="cell-date">{{ formatFullDate(date) }}</div>
-                  }
-                } @else {
-                  <div class="day-number" [class.today]="isTodayDate(date)">
-                    {{ date.getDate() }}
-                  </div>
+                  <div class="cell-date">{{ formatFullDate(date) }}</div>
                 }
               </button>
             </div>
           </ng-container>
         </div>
+      </div>
+    }
+
+    @if (variant === 'dashboard') {
+      <div class="calendar-footer-bar">
+        @if (todayTemplate) {
+          <ng-container
+            *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
+          ></ng-container>
+        } @else {
+          <dasar-button size="sm" variant="primary" (click)="goToToday($event)"
+            >Today</dasar-button
+          >
+        }
       </div>
     }
   }

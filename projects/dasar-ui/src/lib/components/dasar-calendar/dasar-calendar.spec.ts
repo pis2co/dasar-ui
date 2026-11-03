@@ -261,32 +261,34 @@ describe('DasarCalendar', () => {
       fixture.detectChanges();
 
       expect(component.viewMode).toBe('days');
-      const buttons = fixture.nativeElement.querySelectorAll('.header-actions dasar-button');
-      // Dashboard has 5 buttons: prevYear, prevMonth, Today, nextMonth, nextYear
-      expect(buttons.length).toBe(5);
+      const headerButtons = fixture.nativeElement.querySelectorAll('.header-actions dasar-button');
+      // Dashboard has 4 header buttons: prevYear, prevMonth, nextMonth, nextYear
+      expect(headerButtons.length).toBe(4);
 
       // Prev Month click
-      (buttons[1] as HTMLElement).click();
+      (headerButtons[1] as HTMLElement).click();
       fixture.detectChanges();
       expect(component.currentViewDate.getMonth()).toBe(3); // April
 
       // Next Month click
-      (buttons[3] as HTMLElement).click();
+      (headerButtons[2] as HTMLElement).click();
       fixture.detectChanges();
       expect(component.currentViewDate.getMonth()).toBe(4); // May
 
       // Prev Year click
-      (buttons[0] as HTMLElement).click();
+      (headerButtons[0] as HTMLElement).click();
       fixture.detectChanges();
       expect(component.currentViewDate.getFullYear()).toBe(2025);
 
       // Next Year click
-      (buttons[4] as HTMLElement).click();
+      (headerButtons[3] as HTMLElement).click();
       fixture.detectChanges();
       expect(component.currentViewDate.getFullYear()).toBe(2026);
 
-      // Today button click
-      (buttons[2] as HTMLElement).click();
+      // Today button in footer click
+      const todayBtn = fixture.nativeElement.querySelector('.calendar-footer-bar dasar-button');
+      expect(todayBtn).not.toBeNull();
+      (todayBtn as HTMLElement).click();
       fixture.detectChanges();
       const today = new Date();
       expect(component.currentViewDate.getFullYear()).toBe(today.getFullYear());
