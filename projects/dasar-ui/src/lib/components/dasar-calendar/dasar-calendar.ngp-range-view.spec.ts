@@ -286,7 +286,7 @@ describe('DasarCalendar NgpDateRangePicker and View-Switcher Integration', () =>
       expect(fixture.debugElement.query(By.css('.calendar-grid-wrapper'))).not.toBeNull();
     });
 
-    it('applies variant-dropdown class and renders compact weekdays header and chevron', () => {
+    it('applies variant-dropdown class and renders compact weekdays header without a chevron', () => {
       const fixture = TestBed.createComponent(DasarCalendar);
       const comp = fixture.componentInstance;
       comp.variant = 'dropdown';
@@ -295,7 +295,11 @@ describe('DasarCalendar NgpDateRangePicker and View-Switcher Integration', () =>
 
       const container = fixture.debugElement.query(By.css('.dasar-calendar-container'));
       expect(container.nativeElement.classList.contains('variant-dropdown')).toBe(true);
-      expect(fixture.debugElement.query(By.css('.header-chevron'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.header-chevron'))).toBeNull();
+      const label = fixture.debugElement.query(By.css('.header-title-wrapper'));
+      expect(label).not.toBeNull();
+      label.triggerEventHandler('click');
+      expect(comp.viewMode).toBe('months');
       expect(fixture.debugElement.queryAll(By.css('.weekday-header')).length).toBe(7);
     });
   });

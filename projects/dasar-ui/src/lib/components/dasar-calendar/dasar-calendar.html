@@ -4,6 +4,8 @@
   }} variant-{{ variant }} "
   [ngStyle]="containerStyle"
   [ngClass]="containerClass"
+  [class.picker-view-active]="variant === 'dropdown' && viewMode !== 'days'"
+  [class.dropdown-day-view]="variant === 'dropdown' && viewMode === 'days'"
 >
   @if (!hideHeader) {
     @if (headerTemplate) {
@@ -25,13 +27,6 @@
               {{ decadeLabel }}
             }
           </span>
-          @if (variant != 'dashboard') {
-            <dasar-icon
-              [name]="viewMode === 'days' ? 'chevron-down' : 'chevron-up'"
-              class="header-chevron"
-            >
-            </dasar-icon>
-          }
         </div>
         @if (viewMode === 'days') {
           <div class="header-actions">
@@ -112,7 +107,7 @@
         [ngpDateRangePickerMax]="max"
         [ngpDateRangePickerDisabled]="disabled"
         [ngpDateRangePickerDateDisabled]="dateDisabled"
-        [ngpDateRangePickerDefaultFocusedDate]="currentViewDate"
+        [ngpDateRangePickerFocusedDate]="currentViewDate"
         (ngpDateRangePickerStartDateChange)="onNgpRangeStartChange($event)"
         (ngpDateRangePickerEndDateChange)="onNgpRangeEndChange($event)"
         (ngpDateRangePickerFocusedDateChange)="onNgpFocusedDateChange($event)"
@@ -155,11 +150,13 @@
                         {{ date.getDate() }}
                       </div>
                     }
+                    @if (!hideFullDate) {
+                      <div class="cell-date-info">
+                        <div class="cell-weekday">{{ formatWeekday(date) }}</div>
+                        <div class="cell-date">{{ formatFullDate(date) }}</div>
+                      </div>
+                    }
                   </div>
-                  <div class="cell-weekday">{{ formatWeekday(date) }}</div>
-                  @if (!hideFullDate) {
-                    <div class="cell-date">{{ formatFullDate(date) }}</div>
-                  }
                 } @else {
                   <div class="day-number" [class.today]="isTodayDate(date)">
                     {{ date.getDate() }}
@@ -170,6 +167,24 @@
           </ng-container>
         </div>
       </div>
+      @if (variant === 'dropdown') {
+        <div class="calendar-footer-divider"></div>
+        <div class="calendar-footer-bar">
+          @if (todayTemplate) {
+            <ng-container
+              *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
+            ></ng-container>
+          } @else {
+            <button
+              type="button"
+              class="calendar-today-button"
+              (click)="goToToday($event)"
+            >
+              Today
+            </button>
+          }
+        </div>
+      }
     } @else {
       <div
         class="calendar-grid-wrapper radius-{{ radius }}"
@@ -178,7 +193,7 @@
         [ngpDatePickerMax]="max"
         [ngpDatePickerDisabled]="disabled"
         [ngpDatePickerDateDisabled]="dateDisabled"
-        [ngpDatePickerDefaultFocusedDate]="currentViewDate"
+        [ngpDatePickerFocusedDate]="currentViewDate"
         (ngpDatePickerDateChange)="onNgpSingleDateChange($event)"
         (ngpDatePickerFocusedDateChange)="onNgpFocusedDateChange($event)"
       >
@@ -220,11 +235,13 @@
                         {{ date.getDate() }}
                       </div>
                     }
+                    @if (!hideFullDate) {
+                      <div class="cell-date-info">
+                        <div class="cell-weekday">{{ formatWeekday(date) }}</div>
+                        <div class="cell-date">{{ formatFullDate(date) }}</div>
+                      </div>
+                    }
                   </div>
-                  <div class="cell-weekday">{{ formatWeekday(date) }}</div>
-                  @if (!hideFullDate) {
-                    <div class="cell-date">{{ formatFullDate(date) }}</div>
-                  }
                 } @else {
                   <div class="day-number" [class.today]="isTodayDate(date)">
                     {{ date.getDate() }}
@@ -235,6 +252,24 @@
           </ng-container>
         </div>
       </div>
+      @if (variant === 'dropdown') {
+        <div class="calendar-footer-divider"></div>
+        <div class="calendar-footer-bar">
+          @if (todayTemplate) {
+            <ng-container
+              *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
+            ></ng-container>
+          } @else {
+            <button
+              type="button"
+              class="calendar-today-button"
+              (click)="goToToday($event)"
+            >
+              Today
+            </button>
+          }
+        </div>
+      }
     }
   }
   @if (viewMode === 'months') {
@@ -252,6 +287,30 @@
         }
       </div>
     </div>
+    @if (variant === 'dropdown') {
+      <div class="calendar-modal-footer">
+        @if (todayTemplate) {
+          <ng-container
+            *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
+          ></ng-container>
+        } @else {
+          <button
+            type="button"
+            class="picker-footer-action today-action"
+            (click)="viewMode = 'days'; goToToday($event)"
+          >
+            Today
+          </button>
+        }
+        <button
+          type="button"
+          class="picker-footer-action"
+          (click)="viewMode = 'days'"
+        >
+          Close
+        </button>
+      </div>
+    }
   }
   @if (viewMode === 'years') {
     <div class="picker-grid-wrapper radius-{{ radius }}">
@@ -268,6 +327,30 @@
         }
       </div>
     </div>
+    @if (variant === 'dropdown') {
+      <div class="calendar-modal-footer">
+        @if (todayTemplate) {
+          <ng-container
+            *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
+          ></ng-container>
+        } @else {
+          <button
+            type="button"
+            class="picker-footer-action today-action"
+            (click)="viewMode = 'days'; goToToday($event)"
+          >
+            Today
+          </button>
+        }
+        <button
+          type="button"
+          class="picker-footer-action"
+          (click)="viewMode = 'days'"
+        >
+          Close
+        </button>
+      </div>
+    }
   }
   @if (footerSlot) {
     <ng-content select="[calendar-footer-slot]"></ng-content>
