@@ -13,7 +13,23 @@
         *ngTemplateOutlet="headerTemplate.templateRef; context: { $implicit: this }"
       ></ng-container>
     } @else {
-      <div class="calendar-header" [ngStyle]="headerStyle" [ngClass]="headerClass">
+      <div
+        class="calendar-header"
+        [class.dropdown-day-nav-row]="variant === 'dropdown' && viewMode === 'days'"
+        [ngStyle]="headerStyle"
+        [ngClass]="headerClass"
+      >
+        @if (viewMode === 'days' && variant === 'dropdown') {
+          @if (prevMonthTemplate) {
+            <ng-container
+              *ngTemplateOutlet="prevMonthTemplate.templateRef; context: { $implicit: this }"
+            ></ng-container>
+          } @else {
+            <dasar-button size="sm" variant="ghost" icon-only (click)="changeMonth(-1, $event)">
+              <dasar-icon name="chevron-left"></dasar-icon>
+            </dasar-button>
+          }
+        }
         <div
           class="header-title-wrapper"
           (click)="variant != 'dashboard' ? toggleViewMode() : null"
@@ -28,7 +44,17 @@
             }
           </span>
         </div>
-        @if (viewMode === 'days') {
+        @if (viewMode === 'days' && variant === 'dropdown') {
+          @if (nextMonthTemplate) {
+            <ng-container
+              *ngTemplateOutlet="nextMonthTemplate.templateRef; context: { $implicit: this }"
+            ></ng-container>
+          } @else {
+            <dasar-button size="sm" variant="ghost" icon-only (click)="changeMonth(1, $event)">
+              <dasar-icon name="chevron-right"></dasar-icon>
+            </dasar-button>
+          }
+        } @else if (viewMode === 'days') {
           <div class="header-actions">
             @if (prevYearTemplate && variant === 'dashboard') {
               <ng-container

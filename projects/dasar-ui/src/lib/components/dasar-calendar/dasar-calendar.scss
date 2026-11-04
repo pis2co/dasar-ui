@@ -301,6 +301,31 @@
   }
 }
 
+.dasar-calendar-container.variant-dropdown.dropdown-day-view .dropdown-day-nav-row {
+  align-items: center;
+  border-bottom: 1px solid var(--dasar-theme-border-subtle-color, #eaecf0);
+  display: flex;
+  font-size: 16px;
+  gap: 0;
+  justify-content: space-between;
+  margin-bottom: 0;
+  padding: var(--dasar-space-base);
+
+  > .header-title-wrapper .current-month {
+    color: var(--dasar-theme-text-primary-color);
+    font-size: 18px;
+    font-weight: var(--dasar-font-weight-bold, 700);
+  }
+
+  > dasar-button dasar-icon,
+  > dasar-button .dasar-icon {
+    color: var(--dasar-theme-text-secondary-color, #6b7280);
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+  }
+}
+
 .calendar-grid-wrapper {
   .variant-dropdown & {
     border: none;
