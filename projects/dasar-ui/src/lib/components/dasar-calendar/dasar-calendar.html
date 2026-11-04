@@ -16,6 +16,8 @@
       <div
         class="calendar-header"
         [class.dropdown-day-nav-row]="variant === 'dropdown' && viewMode === 'days'"
+        [class.dropdown-grid-nav-row]="variant === 'dropdown' && (viewMode === 'months' || viewMode === 'years')"
+        [class.header-actions]="variant === 'dropdown' && (viewMode === 'months' || viewMode === 'years')"
         [ngStyle]="headerStyle"
         [ngClass]="headerClass"
       >
@@ -29,9 +31,30 @@
               <dasar-icon name="chevron-left"></dasar-icon>
             </dasar-button>
           }
+        } @else if (variant === 'dropdown' && viewMode === 'months') {
+          <dasar-button
+            size="sm"
+            variant="ghost"
+            icon-only
+            aria-label="Previous year"
+            (click)="changeViewYear(-1, $event)"
+          >
+            <dasar-icon name="chevron-left"></dasar-icon>
+          </dasar-button>
+        } @else if (variant === 'dropdown' && viewMode === 'years') {
+          <dasar-button
+            size="sm"
+            variant="ghost"
+            icon-only
+            aria-label="Previous decade"
+            (click)="changeDecade(-1, $event)"
+          >
+            <dasar-icon name="chevron-left"></dasar-icon>
+          </dasar-button>
         }
         <div
           class="header-title-wrapper"
+          [class.decade-chip]="variant === 'dropdown' && viewMode === 'years'"
           (click)="variant != 'dashboard' ? toggleViewMode() : null"
         >
           <span class="current-month">
@@ -54,6 +77,26 @@
               <dasar-icon name="chevron-right"></dasar-icon>
             </dasar-button>
           }
+        } @else if (variant === 'dropdown' && viewMode === 'months') {
+          <dasar-button
+            size="sm"
+            variant="ghost"
+            icon-only
+            aria-label="Next year"
+            (click)="changeViewYear(1, $event)"
+          >
+            <dasar-icon name="chevron-right"></dasar-icon>
+          </dasar-button>
+        } @else if (variant === 'dropdown' && viewMode === 'years') {
+          <dasar-button
+            size="sm"
+            variant="ghost"
+            icon-only
+            aria-label="Next decade"
+            (click)="changeDecade(1, $event)"
+          >
+            <dasar-icon name="chevron-right"></dasar-icon>
+          </dasar-button>
         } @else if (viewMode === 'days') {
           <div class="header-actions">
             @if (prevYearTemplate && variant === 'dashboard') {
@@ -102,7 +145,7 @@
               </dasar-button>
             }
           </div>
-        } @else if (viewMode === 'months') {
+        } @else if (viewMode === 'months' && variant !== 'dropdown') {
           <div class="header-actions">
             <dasar-button size="sm" variant="ghost" icon-only (click)="changeViewYear(-1, $event)">
               <dasar-icon name="chevron-left"></dasar-icon>
@@ -111,7 +154,7 @@
               <dasar-icon name="chevron-right"></dasar-icon>
             </dasar-button>
           </div>
-        } @else if (viewMode === 'years') {
+        } @else if (viewMode === 'years' && variant !== 'dropdown') {
           <div class="header-actions">
             <dasar-button size="sm" variant="ghost" icon-only (click)="changeDecade(-1, $event)">
               <dasar-icon name="chevron-left"></dasar-icon>
