@@ -32,6 +32,7 @@ import { NgpDateFnsDateAdapter } from 'ng-primitives/date-time-date-fns';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { safeFormat, resolveThemeDefault } from '../../utils/common';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
+import { DasarDividerComponent } from '../dasar-divider/dasar-divider';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { provideDateAdapter } from 'ng-primitives/date-time';
@@ -116,6 +117,7 @@ export class DasarCalendarFooterSlot {}
   imports: [
     CommonModule,
     DasarButtonComponent,
+    DasarDividerComponent,
     DasarIconComponent,
     NgpDatePicker,
     NgpDateRangePicker,

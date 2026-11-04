@@ -16,8 +16,12 @@
       <div
         class="calendar-header"
         [class.dropdown-day-nav-row]="variant === 'dropdown' && viewMode === 'days'"
-        [class.dropdown-grid-nav-row]="variant === 'dropdown' && (viewMode === 'months' || viewMode === 'years')"
-        [class.header-actions]="variant === 'dropdown' && (viewMode === 'months' || viewMode === 'years')"
+        [class.dropdown-grid-nav-row]="
+          variant === 'dropdown' && (viewMode === 'months' || viewMode === 'years')
+        "
+        [class.header-actions]="
+          variant === 'dropdown' && (viewMode === 'months' || viewMode === 'years')
+        "
         [ngStyle]="headerStyle"
         [ngClass]="headerClass"
       >
@@ -237,20 +241,22 @@
         </div>
       </div>
       @if (variant === 'dropdown') {
-        <div class="calendar-footer-divider"></div>
+        <dasar-divider class="calendar-footer-divider" spacing="none"></dasar-divider>
         <div class="calendar-footer-bar">
           @if (todayTemplate) {
             <ng-container
               *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
             ></ng-container>
           } @else {
-            <button
-              type="button"
-              class="calendar-today-button"
+            <dasar-button
+              size="sm"
+              variant="primary"
+              radius="md"
+              button-class="calendar-today-button"
               (click)="goToToday($event)"
             >
               Today
-            </button>
+            </dasar-button>
           }
         </div>
       }
@@ -322,20 +328,22 @@
         </div>
       </div>
       @if (variant === 'dropdown') {
-        <div class="calendar-footer-divider"></div>
+        <dasar-divider class="calendar-footer-divider" spacing="none"></dasar-divider>
         <div class="calendar-footer-bar">
           @if (todayTemplate) {
             <ng-container
               *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
             ></ng-container>
           } @else {
-            <button
-              type="button"
-              class="calendar-today-button"
+            <dasar-button
+              size="sm"
+              variant="primary"
+              radius="md"
+              button-class="calendar-today-button"
               (click)="goToToday($event)"
             >
               Today
-            </button>
+            </dasar-button>
           }
         </div>
       }
@@ -362,14 +370,18 @@
     <div class="picker-grid-wrapper radius-{{ radius }}">
       <div class="picker-grid months-grid">
         @for (m of monthsList; track m.index) {
-          <button
+          <dasar-button
             type="button"
             class="picker-cell"
+            full-width
+            button-class="picker-cell-button"
+            full-width
+            variant="ghost"
             [class.selected]="m.index === currentViewDate.getMonth()"
             (click)="selectMonth(m.index, $event)"
           >
             {{ m.name }}
-          </button>
+          </dasar-button>
         }
       </div>
     </div>
@@ -380,21 +392,25 @@
             *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
           ></ng-container>
         } @else {
-          <button
-            type="button"
-            class="picker-footer-action today-action"
+          <dasar-button
+            size="xs"
+            variant="ghost"
+            radius="sm"
+            button-class="picker-footer-action today-action"
             (click)="viewMode = 'days'; goToToday($event)"
           >
             Today
-          </button>
+          </dasar-button>
         }
-        <button
-          type="button"
-          class="picker-footer-action"
+        <dasar-button
+          size="xs"
+          variant="ghost"
+          radius="sm"
+          button-class="picker-footer-action"
           (click)="viewMode = 'days'"
         >
           Close
-        </button>
+        </dasar-button>
       </div>
     }
   }
@@ -402,14 +418,17 @@
     <div class="picker-grid-wrapper radius-{{ radius }}">
       <div class="picker-grid years-grid">
         @for (y of yearsList; track y) {
-          <button
+          <dasar-button
             type="button"
             class="picker-cell"
+            button-class="picker-cell-button"
+            variant="ghost"
+            full-width
             [class.selected]="y === currentViewDate.getFullYear()"
             (click)="selectYear(y, $event)"
           >
             {{ y }}
-          </button>
+          </dasar-button>
         }
       </div>
     </div>
@@ -420,21 +439,25 @@
             *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
           ></ng-container>
         } @else {
-          <button
-            type="button"
-            class="picker-footer-action today-action"
+          <dasar-button
+            size="xs"
+            variant="ghost"
+            radius="sm"
+            button-class="picker-footer-action today-action"
             (click)="viewMode = 'days'; goToToday($event)"
           >
             Today
-          </button>
+          </dasar-button>
         }
-        <button
-          type="button"
-          class="picker-footer-action"
+        <dasar-button
+          size="xs"
+          variant="ghost"
+          radius="sm"
+          button-class="picker-footer-action"
           (click)="viewMode = 'days'"
         >
           Close
-        </button>
+        </dasar-button>
       </div>
     }
   }

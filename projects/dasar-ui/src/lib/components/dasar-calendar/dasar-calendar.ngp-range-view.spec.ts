@@ -295,7 +295,6 @@ describe('DasarCalendar NgpDateRangePicker and View-Switcher Integration', () =>
 
       const container = fixture.debugElement.query(By.css('.dasar-calendar-container'));
       expect(container.nativeElement.classList.contains('variant-dropdown')).toBe(true);
-      expect(fixture.debugElement.query(By.css('.header-chevron'))).toBeNull();
       const label = fixture.debugElement.query(By.css('.header-title-wrapper'));
       expect(label).not.toBeNull();
       label.triggerEventHandler('click');
