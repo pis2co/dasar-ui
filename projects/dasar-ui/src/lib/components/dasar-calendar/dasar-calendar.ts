@@ -216,7 +216,7 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
   @Input() radius = resolveThemeDefault(
     'calendar',
     'radius',
-    null,
+    'md',
     this.themeProvider,
     this.themeService,
   );

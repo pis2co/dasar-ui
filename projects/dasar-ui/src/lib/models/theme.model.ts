@@ -769,6 +769,7 @@ export interface DasarThemeCalendar {
   agendaItemTimeFontSize?: string;
   agendaItemTimeFontWeight?: string;
   pickerCellButtonPadding?: string;
+  cardRadius?: string;
 }
 export interface DasarThemeDatepicker {
   disabledOpacity?: string;

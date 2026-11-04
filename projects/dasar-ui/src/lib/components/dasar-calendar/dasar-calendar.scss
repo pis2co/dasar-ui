@@ -185,7 +185,7 @@
 .dasar-calendar-container.picker-view-active .picker-grid-wrapper {
   border: none;
   background: transparent;
-  border-radius: var(--dasar-radius-none);
+  border-radius: var(--dasar-calendar-picker-radius, var(--dasar-radius-none));
   box-sizing: border-box;
   padding: var(--dasar-space-base);
 }
@@ -203,7 +203,7 @@
   padding: var(--dasar-calendar-footer-padding, var(--dasar-space-base));
   display: flex;
 
-  .picker-footer-action {
+  .picker-footer-action.dasar-button-native {
     border: 0;
     border-radius: var(--dasar-calendar-footer-action-radius, var(--dasar-radius-sm));
     background: transparent;
@@ -856,7 +856,7 @@
 @media (max-width: $breakpoint-sm) {
   .dasar-calendar-container.variant-dashboard {
     background-color: var(--dasar-theme-bg-surface-color);
-    border-radius: var(--dasar-calendar-card-radius, --dasar-radius-md);
+    border-radius: var(--dasar-calendar-card-radius, var(--dasar-radius-md));
 
     &.appearance-outline {
       border: 1px solid var(--dasar-theme-border-subtle-color);

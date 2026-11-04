@@ -596,6 +596,7 @@ export const calendarMap: Record<keyof DasarThemeCalendar, string> = {
   agendaItemTimeFontSize: '--dasar-calendar-agenda-item-time-font-size',
   agendaItemTimeFontWeight: '--dasar-calendar-agenda-item-time-font-weight',
   pickerCellButtonPadding: '--dasar-calendar-picker-cell-button-padding',
+  cardRadius: '--dasar-calendar-card-radius',
 };
 export const datepickerMap: Record<keyof DasarThemeDatepicker, string> = {
   disabledOpacity: '--dasar-datepicker-disabled-opacity',
