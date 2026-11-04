@@ -272,6 +272,23 @@
       }
     }
   }
+  @if (variant === 'dashboard' && agendaItems.length > 0) {
+    <section class="calendar-agenda">
+      <div class="calendar-agenda-title">
+        {{ formatWeekday(currentViewDate) }}, {{ currentViewDate.getDate() }}
+        {{ monthsList[currentViewDate.getMonth()].name }}
+      </div>
+      @for (item of agendaItems; track $index) {
+        <div class="calendar-agenda-item">
+          <div class="calendar-agenda-marker" aria-hidden="true"></div>
+          <div class="calendar-agenda-item-text">
+            <div class="calendar-agenda-item-title">{{ item.title }}</div>
+            <div class="calendar-agenda-item-time">{{ item.time }}</div>
+          </div>
+        </div>
+      }
+    </section>
+  }
   @if (viewMode === 'months') {
     <div class="picker-grid-wrapper radius-{{ radius }}">
       <div class="picker-grid months-grid">

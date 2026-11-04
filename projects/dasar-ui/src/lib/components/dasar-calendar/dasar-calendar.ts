@@ -280,6 +280,7 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
   @Input() min?: Date;
   @Input() max?: Date;
   @Input() dateDisabled: (date: Date) => boolean = () => false;
+  @Input() agendaItems: { title: string; time: string }[] = [];
 
   @Output() onMonthChange = new EventEmitter<Date>();
   @Output() onYearChange = new EventEmitter<Date>();

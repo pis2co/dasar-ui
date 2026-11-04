@@ -285,7 +285,8 @@
     display: flex;
     width: auto;
 
-    .variant-dashboard & {
+    .variant-dashboard &,
+    .variant-dropdown & {
       dasar-icon,
       .dasar-icon {
         color: var(
@@ -760,5 +761,196 @@
         transition: all 0.2s ease-in-out;
       }
     }
+  }
+}
+
+.calendar-agenda {
+  display: none;
+}
+
+@media (max-width: $breakpoint-sm) {
+  .dasar-calendar-container.variant-dashboard {
+    background-color: var(--dasar-theme-bg-surface-color);
+    border-radius: var(--dasar-calendar-card-radius, 10px);
+
+    &.appearance-outline {
+      border: 1px solid var(--dasar-theme-border-subtle-color);
+    }
+
+    &.appearance-elevated {
+      border: none;
+      box-shadow: 0 6px 24px #1118271f;
+    }
+
+    &.appearance-borderless {
+      border: none;
+      box-shadow: none;
+    }
+
+    .calendar-header {
+      justify-content: space-between;
+      padding: 16px;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .header-title-wrapper {
+      gap: var(--dasar-space-1);
+
+      &::after {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-right: 1.5px solid var(--dasar-theme-text-primary-color);
+        border-bottom: 1.5px solid var(--dasar-theme-text-primary-color);
+        transform: translateY(-2px) rotate(45deg);
+      }
+    }
+
+    .header-actions {
+      gap: 12px;
+
+      > dasar-button:first-child,
+      > dasar-button:last-child {
+        display: none;
+      }
+
+      ::ng-deep dasar-button:not([icon-only]) .dasar-button-native {
+        border-radius: var(--dasar-radius-md);
+        padding: 6px var(--dasar-space-3);
+      }
+    }
+
+    .calendar-grid-wrapper {
+      padding: 0 var(--dasar-space-2);
+    }
+
+    .calendar-grid {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0;
+
+      &::before {
+        content: 'S M T W T F S';
+        grid-column: 1 / -1;
+        box-sizing: border-box;
+        height: 24px;
+        padding: 4px var(--dasar-space-1);
+        color: var(--dasar-theme-text-secondary-color);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        text-align-last: justify;
+      }
+    }
+
+    .weekday-header {
+      color: var(--dasar-theme-text-secondary-color);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 0;
+    }
+
+    .day-cell {
+      height: 48px;
+      min-width: 0;
+      padding: 0;
+      border: none;
+      align-items: center;
+      justify-content: center;
+
+      .cell-top {
+        width: 100%;
+        height: 48px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cell-date-info {
+        display: none;
+      }
+
+      .day-number,
+      .day-badge {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--dasar-radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .day-number {
+        font-size: 14px;
+      }
+
+      .day-badge {
+        font-size: 14px;
+      }
+
+      &:disabled .day-number {
+        color: var(--dasar-theme-text-disabled-color);
+      }
+
+      &.other-month {
+        .cell-top {
+          background-color: transparent;
+          padding: 0;
+        }
+
+        .day-number {
+          color: var(--dasar-theme-text-disabled-color);
+        }
+      }
+    }
+  }
+
+  .calendar-agenda {
+    border-top: 1px solid var(--dasar-theme-border-subtle-color);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    gap: var(--dasar-space-3);
+    padding: var(--dasar-space-4);
+    width: 100%;
+  }
+
+  .calendar-agenda-title {
+    color: var(--dasar-theme-text-primary-color);
+    font-size: 13px;
+    font-weight: var(--dasar-font-weight-bold);
+  }
+
+  .calendar-agenda-item {
+    align-items: center;
+    display: flex;
+    gap: var(--dasar-space-3);
+  }
+
+  .calendar-agenda-marker {
+    background-color: var(--dasar-theme-primary-color);
+    border-radius: 2px;
+    flex: 0 0 3px;
+    height: 28px;
+    width: 3px;
+  }
+
+  .calendar-agenda-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .calendar-agenda-item-title {
+    color: var(--dasar-theme-text-primary-color);
+    font-size: 13px;
+    font-weight: var(--dasar-font-weight-semibold);
+  }
+
+  .calendar-agenda-item-time {
+    color: var(--dasar-theme-text-secondary-color);
+    font-size: 12px;
+    font-weight: var(--dasar-font-weight-medium);
   }
 }
