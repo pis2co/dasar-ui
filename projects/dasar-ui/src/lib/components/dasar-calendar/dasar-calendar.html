@@ -223,12 +223,12 @@
                         {{ date.getDate() }}
                       </div>
                     }
-                    @if (!hideFullDate) {
-                      <div class="cell-date-info">
-                        <div class="cell-weekday">{{ formatWeekday(date) }}</div>
+                    <div class="cell-date-info">
+                      <div class="cell-weekday">{{ formatWeekday(date) }}</div>
+                      @if (!hideFullDate) {
                         <div class="cell-date">{{ formatFullDate(date) }}</div>
-                      </div>
-                    }
+                      }
+                    </div>
                   </div>
                 } @else {
                   <div class="day-number" [class.today]="isTodayDate(date)">
@@ -248,13 +248,7 @@
               *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
             ></ng-container>
           } @else {
-            <dasar-button
-              size="sm"
-              variant="primary"
-              radius="md"
-              button-class="calendar-today-button"
-              (click)="goToToday($event)"
-            >
+            <dasar-button size="sm" variant="primary" (click)="goToToday($event)">
               Today
             </dasar-button>
           }
@@ -310,12 +304,12 @@
                         {{ date.getDate() }}
                       </div>
                     }
-                    @if (!hideFullDate) {
-                      <div class="cell-date-info">
-                        <div class="cell-weekday">{{ formatWeekday(date) }}</div>
+                    <div class="cell-date-info">
+                      <div class="cell-weekday">{{ formatWeekday(date) }}</div>
+                      @if (!hideFullDate) {
                         <div class="cell-date">{{ formatFullDate(date) }}</div>
-                      </div>
-                    }
+                      }
+                    </div>
                   </div>
                 } @else {
                   <div class="day-number" [class.today]="isTodayDate(date)">
@@ -335,13 +329,7 @@
               *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
             ></ng-container>
           } @else {
-            <dasar-button
-              size="sm"
-              variant="primary"
-              radius="md"
-              button-class="calendar-today-button"
-              (click)="goToToday($event)"
-            >
+            <dasar-button size="sm" variant="primary" (click)="goToToday($event)">
               Today
             </dasar-button>
           }
@@ -395,7 +383,6 @@
           <dasar-button
             size="xs"
             variant="ghost"
-            radius="sm"
             button-class="picker-footer-action today-action"
             (click)="viewMode = 'days'; goToToday($event)"
           >
@@ -405,7 +392,6 @@
         <dasar-button
           size="xs"
           variant="ghost"
-          radius="sm"
           button-class="picker-footer-action"
           (click)="viewMode = 'days'"
         >
@@ -442,7 +428,6 @@
           <dasar-button
             size="xs"
             variant="ghost"
-            radius="sm"
             button-class="picker-footer-action today-action"
             (click)="viewMode = 'days'; goToToday($event)"
           >
@@ -452,7 +437,6 @@
         <dasar-button
           size="xs"
           variant="ghost"
-          radius="sm"
           button-class="picker-footer-action"
           (click)="viewMode = 'days'"
         >
