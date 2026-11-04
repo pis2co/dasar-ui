@@ -43,8 +43,8 @@ export type DasarCalendarVariant = 'dashboard' | 'dropdown';
 export type DasarCalendarRadius = ScaleAttributeType;
 
 export interface DasarCalendarConfig {
-  appearance?: 'outline' | 'borderless';
-  variant?: 'dashboard' | 'dropdown';
+  appearance?: DasarCalendarAppearance;
+  variant?: DasarCalendarVariant;
   size?: DasarCalendarSizeType;
   radius?: DasarCalendarRadius;
   containerStyle?: StyleType;
@@ -510,23 +510,7 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
   getTimeSafe(date: Date | null): number | null {
     return date ? date.getTime() : null;
   }
-  constructor() {
-    const patchFocusedDate = () => {
-      const patchDir = (dir: any) => {
-        if (!dir?.focusedDate) return;
-        const sym = Object.getOwnPropertySymbols(dir.focusedDate).find((s) =>
-          s.toString().includes('SIGNAL'),
-        );
-        if (sym && dir.focusedDate[sym]) {
-          dir.focusedDate[sym].value = dir.state?.focusedDate?.();
-        }
-      };
-      patchDir(this.ngpDatePicker);
-      patchDir(this.ngpDateRangePicker);
-    };
-    this._patchFocusedDate = patchFocusedDate;
-  }
-  private _patchFocusedDate: () => void = () => {};
+  constructor() {}
   private syncPrimitiveState() {
     this.syncFocusedDateToPrimitive(this._currentViewDate);
     if (this.range) {
@@ -538,7 +522,6 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
   private syncFocusedDateToPrimitive(date: Date) {
     (this.ngpDatePicker as any)?.state?.setFocusedDate(date, 'program', 'forward');
     (this.ngpDateRangePicker as any)?.state?.setFocusedDate(date, 'program', 'forward');
-    this._patchFocusedDate();
   }
   private syncSinglePrimitiveState(val: Date | null) {
     (this.ngpDatePicker as any)?.state?.select(val ?? undefined, false, { emit: false });
@@ -549,7 +532,6 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
   }
   onNgpFocusedDateChange(date: Date) {
     if (!date) return;
-    this._patchFocusedDate();
     const oldMonth = this._currentViewDate.getMonth();
     const oldYear = this._currentViewDate.getFullYear();
     this._currentViewDate = new Date(date);
@@ -736,6 +718,7 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
     const oldYear = this.currentViewDate.getFullYear();
     this.currentViewDate = new Date(oldYear, this.currentViewDate.getMonth() + offset, 1);
     this.generateCalendar();
+    this.cdr.markForCheck();
     this.onMonthChange.emit(this.currentViewDate);
     if (oldYear !== this.currentViewDate.getFullYear()) {
       this.onYearChange.emit(this.currentViewDate);
@@ -750,6 +733,7 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
     const oldYear = this.currentViewDate.getFullYear();
     this.currentViewDate = new Date(oldYear + offset, this.currentViewDate.getMonth(), 1);
     this.generateCalendar();
+    this.cdr.markForCheck();
     this.onYearChange.emit(this.currentViewDate);
     offset > 0
       ? this.onNextYearClick.emit(this.currentViewDate)
@@ -760,6 +744,7 @@ export class DasarCalendar implements OnInit, OnChanges, AfterViewInit, ControlV
     const oldYear = this.currentViewDate.getFullYear();
     this.currentViewDate = new Date();
     this.generateCalendar();
+    this.cdr.markForCheck();
     this.onTodayClick.emit(this.currentViewDate);
     this.onMonthChange.emit(this.currentViewDate);
     if (oldYear !== this.currentViewDate.getFullYear()) {
