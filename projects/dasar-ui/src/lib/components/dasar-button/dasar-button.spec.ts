@@ -102,6 +102,37 @@ describe('DasarButton', () => {
       expect(nativeBtn.classList.contains(variant)).toBe(true);
     }
   });
+
+  it('applies press-down animation styles only with pressed appearance and data-press', async () => {
+    const hostFixture = TestBed.createComponent(TestButtonHost);
+    hostFixture.componentInstance.appearance = 'pressed';
+    hostFixture.detectChanges();
+    await hostFixture.whenStable();
+
+    const nativeBtn = hostFixture.nativeElement.querySelector(
+      '.dasar-button-native',
+    ) as HTMLButtonElement;
+    expect(getComputedStyle(nativeBtn).transform).not.toBe('scale(0.97)');
+    nativeBtn.setAttribute('data-press', '');
+
+    const styles = getComputedStyle(nativeBtn);
+    expect(styles.transform).toBe('scale(0.97)');
+    expect(styles.transitionProperty).toContain('transform');
+    expect(styles.transitionProperty).toContain('box-shadow');
+    expect(styles.transitionProperty).toContain('background-color');
+
+    for (const appearance of ['solid', 'subtle', 'outline', 'elevated'] as const) {
+      const otherFixture = TestBed.createComponent(TestButtonHost);
+      otherFixture.componentInstance.appearance = appearance;
+      otherFixture.detectChanges();
+      await otherFixture.whenStable();
+      const otherButton = otherFixture.nativeElement.querySelector(
+        '.dasar-button-native',
+      ) as HTMLButtonElement;
+      otherButton.setAttribute('data-press', '');
+      expect(getComputedStyle(otherButton).transform).not.toBe('scale(0.97)');
+    }
+  });
 });
 
 describe('DasarButton theme defaults', () => {

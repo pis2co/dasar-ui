@@ -426,6 +426,23 @@
     );
   }
 
+  &.pressed:not(:disabled) {
+    transition-property: background-color, transform, box-shadow;
+    transition-duration: 300ms, 120ms, 120ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1), ease, ease;
+  }
+
+  &.pressed:not(:disabled)[data-press] {
+    transform: scale(0.97);
+    box-shadow: 0 1px 2px #15395b30;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &.pressed:not(:disabled) {
+      transition-duration: 0s;
+    }
+  }
+
   &:disabled {
     border-color: var(--dasar-btn-disabled-border, var(--dasar-theme-border-subtle-color));
     background-color: var(--dasar-btn-disabled-bg, var(--dasar-theme-bg-hover-color));

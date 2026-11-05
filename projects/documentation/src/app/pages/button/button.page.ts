@@ -87,7 +87,7 @@ export class ButtonDocPage {
       name: 'appearance',
       type: "'solid' | 'subtle' | 'outline' | 'elevated' | 'pressed'",
       defaultValue: "'solid'",
-      description: 'Defines the fill, border, elevation, or pressed appearance style.',
+      description: 'Defines the fill, border, elevation, or animated pressed interaction style.',
     },
     {
       name: 'size',
