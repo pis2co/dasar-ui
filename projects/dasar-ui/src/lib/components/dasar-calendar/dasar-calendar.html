@@ -192,7 +192,9 @@
             }
           } @else if (variant === 'dashboard') {
             @for (wd of localizedDropdownWeekdays; track $index) {
-              <div hidden class="weekday-header dashboard-mobile-weekday">{{ wd | slice: 0 : 1 }}</div>
+              <div hidden class="weekday-header dashboard-mobile-weekday">
+                {{ wd | slice: 0 : 1 }}
+              </div>
             }
           }
           <ng-container *ngpDatePickerRowRender>
@@ -278,7 +280,9 @@
             }
           } @else if (variant === 'dashboard') {
             @for (wd of localizedDropdownWeekdays; track $index) {
-              <div hidden class="weekday-header dashboard-mobile-weekday">{{ wd | slice: 0 : 1 }}</div>
+              <div hidden class="weekday-header dashboard-mobile-weekday">
+                {{ wd | slice: 0 : 1 }}
+              </div>
             }
           }
           <ng-container *ngpDatePickerRowRender>
@@ -369,12 +373,11 @@
       <div class="picker-grid months-grid">
         @for (m of monthsList; track m.index) {
           <dasar-button
+            full-width
             type="button"
-            class="picker-cell"
-            full-width
-            button-class="picker-cell-button"
-            full-width
             variant="ghost"
+            class="picker-cell"
+            button-class="picker-cell-button"
             [class.selected]="m.index === currentViewDate.getMonth()"
             (click)="selectMonth(m.index, $event)"
           >
@@ -390,23 +393,11 @@
             *ngTemplateOutlet="todayTemplate.templateRef; context: { $implicit: this }"
           ></ng-container>
         } @else {
-          <dasar-button
-            size="xs"
-            variant="ghost"
-            button-class="picker-footer-action today-action"
-            (click)="viewMode = 'days'; goToToday($event)"
-          >
+          <dasar-button size="sm" variant="primary" (click)="viewMode = 'days'; goToToday($event)">
             Today
           </dasar-button>
         }
-        <dasar-button
-          size="xs"
-          variant="ghost"
-          button-class="picker-footer-action"
-          (click)="viewMode = 'days'"
-        >
-          Close
-        </dasar-button>
+        <dasar-button size="sm" variant="ghost" (click)="viewMode = 'days'"> Close </dasar-button>
       </div>
     }
   }
@@ -415,11 +406,11 @@
       <div class="picker-grid years-grid">
         @for (y of yearsList; track y) {
           <dasar-button
+            full-width
             type="button"
+            variant="ghost"
             class="picker-cell"
             button-class="picker-cell-button"
-            variant="ghost"
-            full-width
             [class.selected]="y === currentViewDate.getFullYear()"
             (click)="selectYear(y, $event)"
           >

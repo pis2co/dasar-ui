@@ -96,6 +96,42 @@ describe('DasarDatepicker', () => {
     roomy.mockRestore();
   });
 
+  it('portals out of clipping ancestors and keeps panel clicks inside', async () => {
+    const wrapper = fixture.nativeElement.querySelector('.dasar-datepicker-wrapper') as HTMLElement;
+    wrapper.style.overflow = 'hidden';
+    fixture.nativeElement.style.setProperty('--portal-inherited-test-token', 'rgb(1, 2, 3)');
+    (fixture.nativeElement.querySelector('dasar-datepicker') as HTMLElement).style.setProperty(
+      '--portal-inherited-test-token',
+      'rgb(4, 5, 6)',
+    );
+    await open();
+
+    const panel = document.body.querySelector('.dasar-datepicker-dropdown') as HTMLElement;
+    expect(panel).toBeTruthy();
+    expect(panel.parentElement).toBe(document.body);
+    expect(panel.style.getPropertyValue('--portal-inherited-test-token')).toBe('rgb(4, 5, 6)');
+
+    panel.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+    expect(component.isOpen).toBe(true);
+
+    document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+    expect(component.isOpen).toBe(false);
+    expect(document.body.querySelector('.dasar-datepicker-dropdown')).toBeNull();
+  });
+
+  it('restores a portaled panel before component teardown', async () => {
+    const wrapper = fixture.nativeElement.querySelector('.dasar-datepicker-wrapper') as HTMLElement;
+    wrapper.style.overflow = 'hidden';
+    await open();
+    const panel = document.body.querySelector('.dasar-datepicker-dropdown') as HTMLElement;
+    expect(panel.parentElement).toBe(document.body);
+
+    expect(() => fixture.destroy()).not.toThrow();
+    expect(panel.parentElement).not.toBe(document.body);
+  });
+
   it('never writes the flipped placement back to the placement input', async () => {
     await open();
 
@@ -308,6 +344,66 @@ describe('DasarDatepicker datetime mode logic', () => {
 
     expect(() => component.mergeTimeIntoInternalDate()).not.toThrow();
     expect(component.internalDate).toBeNull();
+  });
+
+  it('time type renders a time-only panel and emits a time-only value', () => {
+    component.type = 'time';
+    component.value = '14:35';
+    fixture.detectChanges();
+    (fixture.nativeElement.querySelector('.dasar-datepicker-trigger') as HTMLElement).click();
+    fixture.detectChanges();
+
+    const panel = fixture.nativeElement.querySelector('.dasar-datepicker-dropdown') as HTMLElement;
+    expect(panel.querySelector('.modal-title')?.textContent?.trim()).toBe('Select Time');
+    expect(panel.querySelector('dasar-calendar')).toBeNull();
+    expect(panel.querySelector('.time-row')).not.toBeNull();
+    expect(panel.querySelector('.dasar-datepicker-footer')?.textContent).toContain('Today');
+    expect(panel.querySelector('.dasar-datepicker-footer')?.textContent).toContain('Apply');
+    expect(component.displayText).toBe('14:35');
+    expect(component.internalDate?.getFullYear()).toBe(new Date().getFullYear());
+    expect(component.internalDate?.getMonth()).toBe(new Date().getMonth());
+    expect(component.internalDate?.getDate()).toBe(new Date().getDate());
+
+    let emitted: unknown;
+    component.valueChange.subscribe((value) => (emitted = value));
+    component.onHoursChange(15);
+    fixture.detectChanges();
+    const applyButton = Array.from(
+      fixture.nativeElement.querySelectorAll('dasar-button') as NodeListOf<HTMLElement>,
+    ).find((button) => button.textContent?.includes('Apply')) as HTMLElement;
+    applyButton.click();
+    fixture.detectChanges();
+
+    expect(emitted).toBe('15:35');
+    expect(component.isOpen).toBe(false);
+  });
+
+  it('hides the embedded calendar Today footer when the datetime footer is shown', () => {
+    component.type = 'datetime';
+    component.internalDate = new Date(2026, 5, 20, 10, 30);
+    (fixture.nativeElement.querySelector('.dasar-datepicker-trigger') as HTMLElement).click();
+    fixture.detectChanges();
+
+    expect(component.isOpen).toBe(true);
+    expect(fixture.nativeElement.querySelector('dasar-calendar')).toBeTruthy();
+    const calendarFooter = fixture.nativeElement.querySelector(
+      '.calendar-footer-bar',
+    ) as HTMLElement;
+    expect(calendarFooter).toBeTruthy();
+    expect(getComputedStyle(calendarFooter).display).toBe('none');
+    expect(fixture.nativeElement.querySelector('.dasar-datepicker-footer')?.textContent).toContain(
+      'Apply',
+    );
+  });
+
+  it('time type parses and formats 12-hour values without a date portion', () => {
+    component.type = 'time';
+    component.timeFormat = '12';
+    component.value = '2:05 PM';
+
+    expect(component.timeHours).toBe(14);
+    expect(component.timeMinutes).toBe(5);
+    expect(component.displayText).toBe('2:05 PM');
   });
 });
 

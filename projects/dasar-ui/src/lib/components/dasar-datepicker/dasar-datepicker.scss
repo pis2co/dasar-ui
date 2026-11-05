@@ -272,6 +272,7 @@
   background-color: var(--dasar-datepicker-dropdown-bg, var(--dasar-theme-bg-default-color));
   border: 1px solid var(--dasar-datepicker-dropdown-border, var(--dasar-theme-border-subtle-color));
   border-radius: var(--dasar-datepicker-dropdown-radius, var(--dasar-radius-md));
+  overflow: hidden;
 
   &.radius-none {
     border-radius: var(--dasar-datepicker-dropdown-radius-none, var(--dasar-radius-none));
@@ -359,75 +360,152 @@
 
 .dasar-datepicker-panel-body {
   display: flex;
-  align-items: flex-start;
-  gap: var(--dasar-space-base, 12px);
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
 
-  @media (max-width: ($breakpoint-sm - 0.02)) {
-    flex-direction: column;
+  &.has-time-section dasar-calendar .calendar-footer-divider,
+  &.has-time-section dasar-calendar .calendar-footer-bar {
+    display: none;
+  }
+}
+
+.dasar-datepicker-modal-header {
+  background-color: var(--dasar-theme-primary-color);
+  color: var(--dasar-theme-text-inverse-color);
+  padding: var(--dasar-space-4);
+  width: 100%;
+  box-sizing: border-box;
+
+  .modal-title {
+    font-size: var(--dasar-font-size-xl);
+    font-weight: var(--dasar-font-weight-bold);
   }
 }
 
 .dasar-datepicker-time-section {
-  min-width: 160px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--dasar-space-1, 8px);
-  border-left: 1px solid var(--dasar-theme-border-subtle-color);
-  padding-left: var(--dasar-space-base, 12px);
+  width: 100%;
+  min-width: 0;
+}
 
-  @media (max-width: ($breakpoint-sm - 0.02)) {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid var(--dasar-theme-border-subtle-color);
-    padding-top: var(--dasar-space-base, 12px);
-    width: 100%;
+.time-row {
+  display: flex;
+  align-items: center;
+  gap: var(--dasar-space-1);
+  padding: var(--dasar-space-3) var(--dasar-space-base);
+  border-top: var(--dasar-divider-thickness, 1px) solid var(--dasar-theme-border-subtle-color);
+  box-sizing: border-box;
+  width: 100%;
+
+  .time-row-icon {
+    width: var(--dasar-font-size-lg);
+    height: var(--dasar-font-size-lg);
+    color: var(--dasar-theme-text-secondary-color);
+    flex: 0 0 auto;
   }
 
   .time-section-label {
     font-weight: var(--dasar-font-weight-semibold);
-    color: var(--dasar-theme-text-primary-color);
+    color: var(--dasar-theme-text-secondary-color);
     font-size: var(--dasar-font-size-sm);
+    flex: 0 0 auto;
   }
 
-  .time-fields-row {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+  .time-row-spacer {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 
-    dasar-number-input {
-      flex: 1;
+  .time-separator {
+    font-weight: var(--dasar-font-weight-bold);
+    color: var(--dasar-theme-text-secondary-color);
+    font-size: var(--dasar-font-size-base);
+    user-select: none;
+    flex: 0 0 auto;
+  }
+
+  dasar-number-input.time-value-input {
+    width: var(--dasar-space-12);
+    flex: 0 0 var(--dasar-space-12);
+    min-width: 0;
+
+    .dasar-number-input-container {
+      background-color: var(--dasar-theme-bg-hover-color);
+      border: 0;
+      border-radius: var(--dasar-datepicker-radius-md, var(--dasar-radius-md));
+      height: var(--dasar-space-8);
+      padding: 0 var(--dasar-space-2);
+      box-sizing: border-box;
+    }
+
+    .dasar-number-input-native {
+      color: var(--dasar-theme-text-primary-color);
+      text-align: center;
+      font-size: var(--dasar-font-size-base);
+      font-weight: var(--dasar-font-weight-semibold);
+      padding: 0;
       min-width: 0;
     }
 
-    .time-separator {
-      font-weight: var(--dasar-font-weight-semibold);
-      color: var(--dasar-theme-text-secondary-color);
-      user-select: none;
+    .dasar-number-input-actions-group {
+      display: none;
+    }
+
+    input[type='number'] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }
 
-  .time-meridiem-row {
-    display: flex;
+  .time-period-toggle {
+    display: inline-flex;
     align-items: center;
-    gap: 4px;
-
-    dasar-button {
-      flex: 1;
-
-      .dasar-button-container {
-        width: 100%;
-      }
-    }
+    gap: var(--dasar-space-0-5);
+    padding: var(--dasar-space-0-5);
+    background-color: var(--dasar-theme-bg-hover-color);
+    border-radius: var(--dasar-datepicker-radius-md, var(--dasar-radius-md));
+    flex: 0 0 auto;
   }
 
-  .time-done-button {
-    width: 100%;
-    margin-top: var(--dasar-space-1, 4px);
+  .time-period-button {
+    background-color: var(--dasar-theme-bg-hover-color);
+    border: 0;
+    border-radius: var(--dasar-datepicker-radius-sm, var(--dasar-radius-sm));
+    color: var(--dasar-theme-text-secondary-color);
+    font: inherit;
+    font-size: var(--dasar-font-size-sm);
+    font-weight: var(--dasar-font-weight-semibold);
+    padding: var(--dasar-space-1) var(--dasar-space-base);
+    cursor: pointer;
 
-    .dasar-button-container {
-      width: 100%;
+    &.active {
+      background-color: var(--dasar-theme-primary-color);
+      color: var(--dasar-theme-text-inverse-color);
+      font-weight: var(--dasar-font-weight-bold);
+    }
+
+    &:focus-visible {
+      outline: var(--dasar-divider-thickness, 1px) solid var(--dasar-theme-primary-color);
+      outline-offset: 0;
     }
   }
+}
+
+.dasar-datepicker-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dasar-space-base);
+  padding: var(--dasar-space-base);
+  border-top: var(--dasar-divider-thickness, 1px) solid var(--dasar-theme-border-subtle-color);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .dasar-datepicker .hidden {

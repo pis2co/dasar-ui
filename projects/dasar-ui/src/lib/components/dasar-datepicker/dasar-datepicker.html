@@ -73,90 +73,114 @@
         [ngClass]="dropdownClass"
         [ngStyle]="dropdownStyle"
       >
-        <div class="dasar-datepicker-panel-body">
-          <dasar-calendar
-            variant="dropdown"
-            [size]="size"
-            [range]="range"
-            [rangeValue]="internalRange"
-            (rangeValueChange)="onRangeSelect($event)"
-            (valueChange)="onCalendarSelect($event)"
-            (prevMonth)="onPrevMonthClick.emit()"
-            (nextMonth)="onNextMonthClick.emit()"
-            (prevYear)="onPrevYearClick.emit()"
-            (nextYear)="onNextYearClick.emit()"
-            [value-format]="valueFormat"
-            [(value)]="internalDate"
-            [locale]="locale"
-          >
-            @if (extraFooterSlot) {
-              <ng-content
-                ngProjectAs="[calendar-footer-slot]"
-                select="[extra-footer-slot]"
-              ></ng-content>
-            }
-          </dasar-calendar>
+        <div class="dasar-datepicker-modal-header">
+          <span class="modal-title">{{ modalTitle }}</span>
+        </div>
+        <div class="dasar-datepicker-panel-body" [class.has-time-section]="showTimeSection">
+          @if (showCalendar) {
+            <dasar-calendar
+              variant="dropdown"
+              appearance="borderless"
+              [size]="size"
+              [range]="range"
+              [rangeValue]="internalRange"
+              (rangeValueChange)="onRangeSelect($event)"
+              (valueChange)="onCalendarSelect($event)"
+              (prevMonth)="onPrevMonthClick.emit()"
+              (nextMonth)="onNextMonthClick.emit()"
+              (prevYear)="onPrevYearClick.emit()"
+              (nextYear)="onNextYearClick.emit()"
+              [value-format]="valueFormat"
+              [(value)]="internalDate"
+              [locale]="locale"
+            >
+              @if (extraFooterSlot) {
+                <ng-content
+                  ngProjectAs="[calendar-footer-slot]"
+                  select="[extra-footer-slot]"
+                ></ng-content>
+              }
+            </dasar-calendar>
+          }
           @if (showTimeSection) {
             <div class="dasar-datepicker-time-section">
-              <span class="time-section-label">Time</span>
-              <div class="time-fields-row">
+              <div class="time-row">
+                <dasar-icon class="time-row-icon" name="clock"></dasar-icon>
+                <span class="time-section-label">Time</span>
+                <span class="time-row-spacer"></span>
                 <dasar-number-input
+                  class="time-value-input"
                   [min]="0"
                   [max]="showMeridiemToggle ? 12 : 23"
                   [size]="size"
+                  appearance="filled"
+                  radius="md"
+                  input-class="time-hours-input"
                   [value]="displayHours"
                   (valueChange)="onHoursChange($event)"
                 ></dasar-number-input>
                 <span class="time-separator">:</span>
                 <dasar-number-input
+                  class="time-value-input"
                   [min]="0"
                   [max]="59"
                   [size]="size"
+                  appearance="filled"
+                  radius="md"
+                  input-class="time-minutes-input"
                   [value]="timeMinutes"
                   (valueChange)="onMinutesChange($event)"
                 ></dasar-number-input>
                 @if (showSecondsSection) {
                   <span class="time-separator">:</span>
                   <dasar-number-input
+                    class="time-value-input"
                     [min]="0"
                     [max]="59"
                     [size]="size"
+                    appearance="filled"
+                    radius="md"
+                    input-class="time-seconds-input"
                     [value]="timeSeconds"
                     (valueChange)="onSecondsChange($event)"
                   ></dasar-number-input>
                 }
+                @if (showMeridiemToggle) {
+                  <div class="time-period-toggle" role="group" aria-label="Select AM or PM">
+                    <button
+                      type="button"
+                      class="time-period-button"
+                      [class.active]="timeMeridiem === 'AM'"
+                      [attr.aria-pressed]="timeMeridiem === 'AM'"
+                      (click)="onMeridiemToggle('AM')"
+                    >
+                      AM
+                    </button>
+                    <button
+                      type="button"
+                      class="time-period-button"
+                      [class.active]="timeMeridiem === 'PM'"
+                      [attr.aria-pressed]="timeMeridiem === 'PM'"
+                      (click)="onMeridiemToggle('PM')"
+                    >
+                      PM
+                    </button>
+                  </div>
+                }
               </div>
-              @if (showMeridiemToggle) {
-                <div class="time-meridiem-row">
-                  <dasar-button
-                    [size]="size"
-                    [appearance]="timeMeridiem === 'AM' ? 'solid' : 'outline'"
-                    [class.active]="timeMeridiem === 'AM'"
-                    (click)="onMeridiemToggle('AM')"
-                  >
-                    AM
-                  </dasar-button>
-                  <dasar-button
-                    [size]="size"
-                    [appearance]="timeMeridiem === 'PM' ? 'solid' : 'outline'"
-                    [class.active]="timeMeridiem === 'PM'"
-                    (click)="onMeridiemToggle('PM')"
-                  >
-                    PM
-                  </dasar-button>
-                </div>
-              }
-              <dasar-button
-                class="time-done-button"
-                variant="primary"
-                [size]="size"
-                (click)="confirmDateTime()"
-              >
-                Done
-              </dasar-button>
             </div>
           }
         </div>
+        @if (showTimeSection) {
+          <div class="dasar-datepicker-footer">
+            <dasar-button variant="ghost" [size]="size" (click)="selectToday()">
+              Today
+            </dasar-button>
+            <dasar-button variant="primary" [size]="size" (click)="confirmDateTime()">
+              Apply
+            </dasar-button>
+          </div>
+        }
       </div>
     }
   </div>

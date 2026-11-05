@@ -197,7 +197,7 @@
 }
 
 .dasar-calendar-container.picker-view-active .picker-grid {
-  row-gap: var(--dasar-space-base);
+  gap: var(--dasar-space-base);
 }
 
 .calendar-modal-footer {
@@ -756,38 +756,9 @@
   padding: 0;
 
   > dasar-button.picker-cell {
+    justify-self: center;
     cursor: pointer;
     display: flex;
-    height: var(--dasar-calendar-picker-cell-height, 48px);
-    justify-self: center;
-
-    > .dasar-button-native.picker-cell-button {
-      border: none;
-      font-weight: var(--dasar-calendar-picker-cell-font-weight, var(--dasar-font-weight-medium));
-      color: var(--dasar-calendar-picker-cell-color, var(--dasar-theme-text-primary-color));
-      justify-content: center;
-      background: var(--dasar-calendar-picker-cell-bg, transparent);
-      border-radius: var(--dasar-calendar-picker-cell-radius, var(--dasar-radius-md));
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      padding: var(--dasar-calendar-picker-cell-button-padding, 1px 6px);
-      font-size: var(--dasar-font-size-sm);
-      font-family: Arial;
-      line-height: normal;
-      letter-spacing: normal;
-      box-shadow: none;
-
-      &:hover {
-        background-color: var(
-          --dasar-calendar-picker-cell-hover-bg,
-          var(--dasar-theme-bg-hover-color)
-        );
-      }
-    }
 
     &.selected > .dasar-button-native.picker-cell-button {
       background-color: var(--dasar-calendar-picker-selected-bg, var(--dasar-theme-primary-color));

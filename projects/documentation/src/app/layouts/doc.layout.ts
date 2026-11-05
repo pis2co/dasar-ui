@@ -280,13 +280,11 @@ export class DocsLayoutComponent {
         { label: 'Chip', route: '/components/chip' },
         { label: 'Divider', route: '/components/divider' },
         { label: 'Alert', route: '/components/alert' },
-        { label: 'Calendar', route: '/components/calendar' },
         { label: 'Card', route: '/components/card' },
         { label: 'Modal', route: '/components/modal' },
         { label: 'Drawer', route: '/components/drawer' },
         { label: 'Tree', route: '/components/tree' },
         { label: 'Split', route: '/components/split' },
-        { label: 'Toast', route: '/components/toast' },
         { label: 'Tooltip', route: '/components/tooltip' },
         { label: 'Menu', route: '/components/menu' },
         { label: 'Tabs', route: '/components/tabs' },
@@ -295,8 +293,18 @@ export class DocsLayoutComponent {
       ],
     },
     {
-      title: 'Data',
-      items: [{ label: 'Table', route: '/components/table' }],
+      title: 'API',
+      items: [
+        { label: 'Breakpoint', route: '/components/breakpoint' },
+        { label: 'Toast', route: '/components/toast' },
+      ],
+    },
+    {
+      title: 'Date',
+      items: [
+        { label: 'Calendar', route: '/components/calendar' },
+        { label: 'Datepicker', route: '/components/datepicker' },
+      ],
     },
     {
       title: 'Input',
@@ -310,10 +318,13 @@ export class DocsLayoutComponent {
         { label: 'Radio', route: '/components/radio' },
         { label: 'Switch', route: '/components/switch' },
         { label: 'Skeleton', route: '/components/skeleton' },
-        { label: 'Breakpoint', route: '/components/breakpoint' },
+
         { label: 'Select', route: '/components/select' },
-        { label: 'Datepicker', route: '/components/datepicker' },
       ],
+    },
+    {
+      title: 'Data',
+      items: [{ label: 'Table', route: '/components/table' }],
     },
   ];
   apiColumns: DasarTableColumn[] = [
