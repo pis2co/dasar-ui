@@ -29,6 +29,7 @@ import {
   DasarThemeToast,
   DasarThemeTree,
   DasarThemeSkeleton,
+  DasarThemeRipple,
 } from '@models/theme.model';
 import {
   DASAR_THEME_PROVIDER,
@@ -175,6 +176,9 @@ export const buttonMap: Record<keyof DasarThemeButton, string> = {
   ghostFocusRing: '--dasar-btn-ghost-focus-ring',
   ghostPressedBg: '--dasar-btn-ghost-pressed-bg',
   pressedShadow: '--dasar-btn-pressed-shadow',
+};
+export const rippleMap: Record<keyof DasarThemeRipple, string> = {
+  color: '--dasar-ripple-color',
 };
 export const buttonGroupMap: Record<keyof DasarThemeButtonGroup, string> = {
   gap: '--dasar-btn-group-gap',
@@ -1289,6 +1293,9 @@ export class DasarThemeService {
     }
     if (config.tokens?.[config.mode]?.button) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.button, buttonMap);
+    }
+    if (config.tokens?.[config.mode]?.ripple) {
+      this.injectMappedTokens(root, config.tokens?.[config.mode]?.ripple, rippleMap);
     }
     if (config.tokens?.[config.mode]?.buttonGroup) {
       this.injectMappedTokens(root, config.tokens?.[config.mode]?.buttonGroup, buttonGroupMap);

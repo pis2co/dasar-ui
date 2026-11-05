@@ -14,6 +14,7 @@ import { DatepickerDocPage } from '../pages/datepicker/datepicker.page';
 import { CalendarDocPage } from '../pages/calendar/calendar.page';
 import { ThemingDocPage } from '../pages/theming/theming.page';
 import { ButtonDocPage } from '../pages/button/button.page';
+import { RippleDocPage } from '../pages/ripple/ripple.page';
 import { ButtonGroupDocPage } from '../pages/button-group/button-group.page';
 import { SelectDocPage } from '../pages/select/select.page';
 import { InputDocPage } from '../pages/input/input.page';
@@ -84,6 +85,11 @@ export const routes: Routes = [
     path: 'components/button',
     component: ButtonDocPage,
     title: 'Button Docs | Dasar UI',
+  },
+  {
+    path: 'components/ripple',
+    component: RippleDocPage,
+    title: 'Ripple Docs | Dasar UI',
   },
   {
     path: 'components/button-group',

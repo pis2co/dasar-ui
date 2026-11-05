@@ -40,6 +40,7 @@ export * from './lib/components/dasar-tree/dasar-tree';
 export * from './lib/components/dasar-overlay/dasar-overlay';
 export * from './lib/components/dasar-theme-provider/dasar-theme-provider';
 export * from './lib/components/dasar-button/dasar-button';
+export * from './lib/directives/dasar-ripple/dasar-ripple';
 export * from './lib/services/theme.service';
 export * from './lib/utils/panel-placement';
 export * from './lib/utils/icon-size';

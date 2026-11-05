@@ -251,6 +251,9 @@ export interface DasarThemeButtonGroup {
   dividerColor?: string;
   focusZIndex?: string;
 }
+export interface DasarThemeRipple {
+  color?: string;
+}
 export interface DasarThemeAlert {
   padding?: string;
   gap?: string;
@@ -1335,6 +1338,7 @@ export interface DasarThemeConfig {
     light?: {
       common?: DasarThemeCommon;
       button?: DasarThemeButton;
+      ripple?: DasarThemeRipple;
       buttonGroup?: DasarThemeButtonGroup;
       input?: DasarThemeInput;
       textarea?: DasarThemeTextarea;
@@ -1368,6 +1372,7 @@ export interface DasarThemeConfig {
     dark?: {
       common?: DasarThemeCommon;
       button?: DasarThemeButton;
+      ripple?: DasarThemeRipple;
       buttonGroup?: DasarThemeButtonGroup;
       input?: DasarThemeInput;
       textarea?: DasarThemeTextarea;

@@ -8,6 +8,7 @@ import {
   selectMap,
   buttonMap,
   buttonGroupMap,
+  rippleMap,
   commonMap,
   inputMap,
   textareaMap,
@@ -217,6 +218,14 @@ export class DasarThemeProviderComponent implements OnChanges {
         element: hostElement,
         payload: buttonTokens,
         dictionary: buttonMap,
+      });
+    }
+    const rippleTokens = this.tokenConfig?.[currentMode]?.ripple || this.tokenConfig?.light?.ripple;
+    if (rippleTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: rippleTokens,
+        dictionary: rippleMap,
       });
     }
     const buttonGroupTokens =

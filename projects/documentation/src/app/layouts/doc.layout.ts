@@ -274,6 +274,7 @@ export class DocsLayoutComponent {
       title: 'Basic',
       items: [
         { label: 'Button', route: '/components/button' },
+        { label: 'Ripple', route: '/components/ripple' },
         { label: 'Button Group', route: '/components/button-group' },
         { label: 'Toggle', route: '/components/toggle' },
         { label: 'Icon', route: '/components/icon' },
