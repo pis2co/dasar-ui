@@ -89,6 +89,7 @@ export interface DasarThemeCommon {
   primaryHoverColor?: string;
   primaryActiveColor?: string;
   primarySurfaceColor?: string;
+  primarySurfaceHoverColor?: string;
   textPrimaryColor?: string;
   textSecondaryColor?: string;
   textDisabledColor?: string;
@@ -119,6 +120,7 @@ export interface DasarThemeCommonDark {
   primaryHoverColor?: string;
   primaryActiveColor?: string;
   primarySurfaceColor?: string;
+  primarySurfaceHoverColor?: string;
   textPrimaryColor?: string;
   textSecondaryColor?: string;
   textDisabledColor?: string;

@@ -206,6 +206,7 @@ $dasar-warning-800: #92400e;
   --dasar-theme-primary-hover-color: #{$dasar-primary-700};
   --dasar-theme-primary-active-color: #{$dasar-primary-800};
   --dasar-theme-primary-surface-color: #{$dasar-primary-50};
+  --dasar-theme-primary-surface-hover-color: #{$dasar-primary-100};
 
   --dasar-theme-success-color: #{$dasar-success-base};
   --dasar-theme-success-surface-color: #{$dasar-success-50};
@@ -234,6 +235,7 @@ $dasar-warning-800: #92400e;
   --dasar-theme-primary-hover-color: #{$dasar-primary-200};
   --dasar-theme-primary-active-color: #{$dasar-primary-100};
   --dasar-theme-primary-surface-color: rgba(96, 165, 250, 0.1);
+  --dasar-theme-primary-surface-hover-color: rgba(59, 145, 250, 0.231);
 
   --dasar-theme-success-color: #{$dasar-success-base};
   --dasar-theme-success-surface-color: rgba(52, 211, 153, 0.1);

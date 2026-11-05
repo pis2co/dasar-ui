@@ -52,6 +52,7 @@ export const commonMap: Record<keyof DasarThemeCommon, string> = {
   primaryHoverColor: '--dasar-theme-primary-hover-color',
   primaryActiveColor: '--dasar-theme-primary-active-color',
   primarySurfaceColor: '--dasar-theme-primary-surface-color',
+  primarySurfaceHoverColor: '--dasar-theme-primary-surface-hover-color',
   textPrimaryColor: '--dasar-theme-text-primary-color',
   textSecondaryColor: '--dasar-theme-text-secondary-color',
   textDisabledColor: '--dasar-theme-text-disabled-color',

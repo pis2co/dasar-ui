@@ -12,6 +12,7 @@ import { DatepickerBasicExample } from './examples/basic/datepicker-basic.exampl
 import { DatepickerRangeExample } from './examples/range/datepicker-range.example';
 import { DatepickerSlotsExample } from './examples/slots/datepicker-slots.example';
 import { DatepickerTimepickerExample } from './examples/timepicker/datepicker-timepicker.example';
+import { DatepickerDatetimeExample } from './examples/datetime/datepicker-datetime.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/datepicker-basic.example.html' with { loader: 'text' };
@@ -69,6 +70,14 @@ import timepickerHtml from './examples/timepicker/datepicker-timepicker.example.
 import timepickerTs from './examples/timepicker/datepicker-timepicker.example.ts' with {
   loader: 'text',
 };
+// @ts-ignore
+import datetimeHtml from './examples/datetime/datepicker-datetime.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import datetimeTs from './examples/datetime/datepicker-datetime.example.ts' with {
+  loader: 'text',
+};
 
 @Component({
   imports: [
@@ -84,6 +93,7 @@ import timepickerTs from './examples/timepicker/datepicker-timepicker.example.ts
     DatepickerSlotsExample,
     DatepickerFooterExample,
     DatepickerTimepickerExample,
+    DatepickerDatetimeExample,
   ],
   templateUrl: './datepicker.page.html',
   selector: 'app-datepicker-page',
@@ -108,6 +118,8 @@ export class DatepickerDocPage {
   public footerTs = footerTs;
   public timepickerHtml = timepickerHtml;
   public timepickerTs = timepickerTs;
+  public datetimeHtml = datetimeHtml;
+  public datetimeTs = datetimeTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {
