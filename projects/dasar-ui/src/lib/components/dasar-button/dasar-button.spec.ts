@@ -17,11 +17,14 @@ class DisabledHost {}
   selector: 'test-button-host',
   standalone: true,
   imports: [DasarButtonComponent],
-  template: `<dasar-button [disabled]="disabled" [appearance]="appearance">A</dasar-button>`,
+  template: `<dasar-button [disabled]="disabled" [appearance]="appearance" [variant]="variant"
+    >A</dasar-button
+  >`,
 })
 class TestButtonHost {
   disabled = false;
   appearance: any = 'solid';
+  variant: any = 'primary';
 }
 
 describe('DasarButton', () => {
@@ -74,6 +77,30 @@ describe('DasarButton', () => {
       '.dasar-button-native',
     ) as HTMLButtonElement;
     expect(nativeBtn.classList.contains('elevated')).toBe(true);
+  });
+
+  it('applies pressed appearance classes for every variant', async () => {
+    for (const variant of [
+      'primary',
+      'success',
+      'warning',
+      'danger',
+      'secondary',
+      'ghost',
+    ] as const) {
+      const hostFixture = TestBed.createComponent(TestButtonHost);
+      hostFixture.componentInstance.appearance = 'pressed';
+      hostFixture.componentInstance.variant = variant;
+      hostFixture.detectChanges();
+      await hostFixture.whenStable();
+
+      const nativeBtn = hostFixture.nativeElement.querySelector(
+        '.dasar-button-native',
+      ) as HTMLButtonElement;
+
+      expect(nativeBtn.classList.contains('pressed')).toBe(true);
+      expect(nativeBtn.classList.contains(variant)).toBe(true);
+    }
   });
 });
 

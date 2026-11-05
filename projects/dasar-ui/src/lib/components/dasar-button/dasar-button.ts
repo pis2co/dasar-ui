@@ -17,7 +17,7 @@ import { NgpButton } from 'ng-primitives/button';
 export type DasarButtonSizeType = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarButtonVariantType =
   'primary' | 'success' | 'warning' | 'danger' | 'secondary' | 'ghost';
-export type DasarButtonAppearanceType = 'solid' | 'subtle' | 'outline' | 'elevated';
+export type DasarButtonAppearanceType = 'solid' | 'subtle' | 'outline' | 'elevated' | 'pressed';
 export type DasarButtonType = 'button' | 'submit' | 'reset';
 export type DasarButtonRadiusType = ScaleAttributeType;
 

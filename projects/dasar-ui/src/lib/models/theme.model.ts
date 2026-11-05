@@ -181,6 +181,7 @@ export interface DasarThemeButton {
   primaryHoverBg?: string;
   primaryHoverBorder?: string;
   primaryFocusRing?: string;
+  primaryPressedBg?: string;
   primarySubtleBg?: string;
   primarySubtleColor?: string;
   primarySubtleHoverBg?: string;
@@ -192,6 +193,7 @@ export interface DasarThemeButton {
   successBorder?: string;
   successColor?: string;
   successFocusRing?: string;
+  successPressedBg?: string;
   successSubtleBg?: string;
   successSubtleColor?: string;
   successSubtleHoverBg?: string;
@@ -203,6 +205,7 @@ export interface DasarThemeButton {
   warningBorder?: string;
   warningColor?: string;
   warningFocusRing?: string;
+  warningPressedBg?: string;
   warningSubtleBg?: string;
   warningSubtleColor?: string;
   warningSubtleHoverBg?: string;
@@ -214,6 +217,7 @@ export interface DasarThemeButton {
   dangerBorder?: string;
   dangerColor?: string;
   dangerFocusRing?: string;
+  dangerPressedBg?: string;
   dangerSubtleBg?: string;
   dangerSubtleColor?: string;
   dangerSubtleHoverBg?: string;
@@ -226,6 +230,7 @@ export interface DasarThemeButton {
   secondaryColor?: string;
   secondaryHoverBg?: string;
   secondaryFocusRing?: string;
+  secondaryPressedBg?: string;
   secondarySubtleBg?: string;
   secondarySubtleColor?: string;
   secondarySubtleHoverBg?: string;
@@ -237,6 +242,8 @@ export interface DasarThemeButton {
   ghostHoverBg?: string;
   ghostHoverColor?: string;
   ghostFocusRing?: string;
+  ghostPressedBg?: string;
+  pressedShadow?: string;
 }
 export interface DasarThemeButtonGroup {
   gap?: string;
