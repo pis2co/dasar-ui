@@ -98,6 +98,18 @@ describe('DasarDatepicker', () => {
 
   it('portals out of clipping ancestors and keeps panel clicks inside', async () => {
     const wrapper = fixture.nativeElement.querySelector('.dasar-datepicker-wrapper') as HTMLElement;
+    wrapper.style.fontFamily = '"Portal Test Font", sans-serif';
+    await open();
+
+    const inlinePanel = fixture.nativeElement.querySelector(
+      '.dasar-datepicker-dropdown',
+    ) as HTMLElement;
+    const inheritedFont = getComputedStyle(wrapper).fontFamily;
+    // jsdom leaves inherited font-family unresolved on the panel; browsers resolve it from wrapper.
+    expect(getComputedStyle(inlinePanel).fontFamily || inheritedFont).toBe(inheritedFont);
+
+    trigger().click();
+    await fixture.whenStable();
     wrapper.style.overflow = 'hidden';
     fixture.nativeElement.style.setProperty('--portal-inherited-test-token', 'rgb(1, 2, 3)');
     (fixture.nativeElement.querySelector('dasar-datepicker') as HTMLElement).style.setProperty(
@@ -109,6 +121,7 @@ describe('DasarDatepicker', () => {
     const panel = document.body.querySelector('.dasar-datepicker-dropdown') as HTMLElement;
     expect(panel).toBeTruthy();
     expect(panel.parentElement).toBe(document.body);
+    expect(getComputedStyle(panel).fontFamily).toBe(inheritedFont);
     expect(panel.style.getPropertyValue('--portal-inherited-test-token')).toBe('rgb(4, 5, 6)');
 
     panel.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -119,6 +132,7 @@ describe('DasarDatepicker', () => {
     fixture.detectChanges();
     expect(component.isOpen).toBe(false);
     expect(document.body.querySelector('.dasar-datepicker-dropdown')).toBeNull();
+    expect(panel.style.getPropertyValue('font-family')).toBe('');
   });
 
   it('restores a portaled panel before component teardown', async () => {

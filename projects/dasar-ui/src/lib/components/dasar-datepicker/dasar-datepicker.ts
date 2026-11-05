@@ -36,11 +36,11 @@ import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { fieldIconSize } from '../../utils/icon-size';
 import { CommonModule } from '@angular/common';
 
-export type DasarDatepickerPlacement = DasarPanelPlacement;
 export type DasarDatepickerSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
 export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle' | 'elevated';
-export type DasarDatepickerRadius = ScaleAttributeType;
 export type DasarDatepickerType = 'date' | 'datetime' | 'time';
+export type DasarDatepickerPlacement = DasarPanelPlacement;
+export type DasarDatepickerRadius = ScaleAttributeType;
 
 export interface DasarDatepickerConfig {
   fullWidth?: boolean;
@@ -131,6 +131,7 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   dropdownEl?: ElementRef<HTMLElement>;
   private dropdownOrigin: { parent: Node; nextSibling: Node | null } | null = null;
   private portalTokenProperties = new Set<string>();
+  private originalPanelFontFamily: { value: string; priority: string } | null = null;
   private stopWatchingPanel: (() => void) | null = null;
   private readonly watchPanelCleanup = inject(DestroyRef).onDestroy(() => {
     this.stopWatchingPanel?.();
@@ -893,6 +894,11 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
 
     if (!needsPortal || !panel.parentNode) return;
     this.dropdownOrigin = { parent: panel.parentNode, nextSibling: panel.nextSibling };
+    this.originalPanelFontFamily = {
+      value: panel.style.getPropertyValue('font-family'),
+      priority: panel.style.getPropertyPriority('font-family'),
+    };
+    panel.style.fontFamily = getComputedStyle(trigger).fontFamily;
     this.inheritThemeProperties(trigger, panel);
     document.body.appendChild(panel);
   }
@@ -932,8 +938,18 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     }
     if (panel) {
       for (const property of this.portalTokenProperties) panel.style.removeProperty(property);
+      if (this.originalPanelFontFamily?.value) {
+        panel.style.setProperty(
+          'font-family',
+          this.originalPanelFontFamily.value,
+          this.originalPanelFontFamily.priority,
+        );
+      } else {
+        panel.style.removeProperty('font-family');
+      }
     }
     this.portalTokenProperties.clear();
+    this.originalPanelFontFamily = null;
     this.dropdownOrigin = null;
   }
 }

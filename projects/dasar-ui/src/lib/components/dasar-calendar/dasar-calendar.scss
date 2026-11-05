@@ -10,7 +10,6 @@
 
 .dasar-calendar-container {
   background-color: var(--dasar-calendar-bg, transparent);
-  overflow: clip;
   flex-direction: column;
   font-family: inherit;
   display: flex;
@@ -82,7 +81,7 @@
   }
 
   &.picker-view-active {
-    width: min(100%, var(--dasar-calendar-picker-view-width, 320px));
+    min-width: min(100%, var(--dasar-calendar-picker-view-width, 320px));
     border: 1px solid var(--dasar-theme-border-subtle-color);
     background-color: var(--dasar-theme-bg-surface-color);
     box-sizing: border-box;

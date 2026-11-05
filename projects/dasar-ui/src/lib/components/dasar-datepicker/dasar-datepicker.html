@@ -105,33 +105,22 @@
           @if (showTimeSection) {
             <div class="dasar-datepicker-time-section">
               <div class="time-row">
-                <dasar-icon class="time-row-icon" name="clock"></dasar-icon>
-                <span class="time-section-label">Time</span>
-                <span class="time-row-spacer"></span>
-                <dasar-number-input
-                  class="time-value-input"
-                  [min]="0"
-                  [max]="showMeridiemToggle ? 12 : 23"
-                  [size]="size"
-                  appearance="filled"
-                  radius="md"
-                  input-class="time-hours-input"
-                  [value]="displayHours"
-                  (valueChange)="onHoursChange($event)"
-                ></dasar-number-input>
-                <span class="time-separator">:</span>
-                <dasar-number-input
-                  class="time-value-input"
-                  [min]="0"
-                  [max]="59"
-                  [size]="size"
-                  appearance="filled"
-                  radius="md"
-                  input-class="time-minutes-input"
-                  [value]="timeMinutes"
-                  (valueChange)="onMinutesChange($event)"
-                ></dasar-number-input>
-                @if (showSecondsSection) {
+                <div class="time-col">
+                  <dasar-icon class="time-row-icon" name="clock"></dasar-icon>
+                  <span class="time-section-label">Time</span>
+                </div>
+                <div class="time-col">
+                  <dasar-number-input
+                    class="time-value-input"
+                    [min]="0"
+                    [max]="showMeridiemToggle ? 12 : 23"
+                    [size]="size"
+                    appearance="filled"
+                    radius="md"
+                    input-class="time-hours-input"
+                    [value]="displayHours"
+                    (valueChange)="onHoursChange($event)"
+                  ></dasar-number-input>
                   <span class="time-separator">:</span>
                   <dasar-number-input
                     class="time-value-input"
@@ -140,31 +129,47 @@
                     [size]="size"
                     appearance="filled"
                     radius="md"
-                    input-class="time-seconds-input"
-                    [value]="timeSeconds"
-                    (valueChange)="onSecondsChange($event)"
+                    input-class="time-minutes-input"
+                    [value]="timeMinutes"
+                    (valueChange)="onMinutesChange($event)"
                   ></dasar-number-input>
-                }
+                  @if (showSecondsSection) {
+                    <span class="time-separator">:</span>
+                    <dasar-number-input
+                      class="time-value-input"
+                      [min]="0"
+                      [max]="59"
+                      [size]="size"
+                      appearance="filled"
+                      radius="md"
+                      input-class="time-seconds-input"
+                      [value]="timeSeconds"
+                      (valueChange)="onSecondsChange($event)"
+                    ></dasar-number-input>
+                  }
+                </div>
                 @if (showMeridiemToggle) {
                   <div class="time-period-toggle" role="group" aria-label="Select AM or PM">
-                    <button
+                    <dasar-button
+                      size="sm"
                       type="button"
-                      class="time-period-button"
+                      button-class="time-period-button"
                       [class.active]="timeMeridiem === 'AM'"
                       [attr.aria-pressed]="timeMeridiem === 'AM'"
                       (click)="onMeridiemToggle('AM')"
                     >
                       AM
-                    </button>
-                    <button
+                    </dasar-button>
+                    <dasar-button
+                      size="sm"
                       type="button"
-                      class="time-period-button"
+                      button-class="time-period-button"
                       [class.active]="timeMeridiem === 'PM'"
                       [attr.aria-pressed]="timeMeridiem === 'PM'"
                       (click)="onMeridiemToggle('PM')"
                     >
                       PM
-                    </button>
+                    </dasar-button>
                   </div>
                 }
               </div>
@@ -173,10 +178,8 @@
         </div>
         @if (showTimeSection) {
           <div class="dasar-datepicker-footer">
-            <dasar-button variant="ghost" [size]="size" (click)="selectToday()">
-              Today
-            </dasar-button>
-            <dasar-button variant="primary" [size]="size" (click)="confirmDateTime()">
+            <dasar-button variant="ghost" size="sm" (click)="selectToday()"> Today </dasar-button>
+            <dasar-button variant="primary" size="sm" (click)="confirmDateTime()">
               Apply
             </dasar-button>
           </div>

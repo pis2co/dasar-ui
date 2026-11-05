@@ -269,10 +269,12 @@
     0 10px 25px -5px rgba(0, 0, 0, 0.1),
     0 8px 10px -6px rgba(0, 0, 0, 0.1)
   );
-  background-color: var(--dasar-datepicker-dropdown-bg, var(--dasar-theme-bg-default-color));
-  border: 1px solid var(--dasar-datepicker-dropdown-border, var(--dasar-theme-border-subtle-color));
-  border-radius: var(--dasar-datepicker-dropdown-radius, var(--dasar-radius-md));
+  background-color: var(--dasar-datepicker-dropdown-bg, var(--dasar-theme-bg-surface-color));
+  z-index: var(--dasar-datepicker-dropdown-z-index, 1000);
+  animation: dasarFadeInDown 0.15s ease-out forwards;
+  visibility: hidden;
   overflow: hidden;
+  position: fixed;
 
   &.radius-none {
     border-radius: var(--dasar-datepicker-dropdown-radius-none, var(--dasar-radius-none));
@@ -295,12 +297,6 @@
   &.radius-full {
     border-radius: var(--dasar-datepicker-dropdown-radius-full, var(--dasar-radius-lg));
   }
-
-  position: fixed;
-  visibility: hidden;
-  z-index: var(--dasar-datepicker-dropdown-z-index, 1000);
-  width: var(--dasar-datepicker-dropdown-width, 280px);
-  animation: dasarFadeInDown 0.15s ease-out forwards;
 
   &.placement-bottom-start {
     transform-origin: top left;
@@ -391,11 +387,17 @@
 .time-row {
   display: flex;
   align-items: center;
-  gap: var(--dasar-space-1);
+  gap: var(--dasar-space-6);
   padding: var(--dasar-space-3) var(--dasar-space-base);
   border-top: var(--dasar-divider-thickness, 1px) solid var(--dasar-theme-border-subtle-color);
   box-sizing: border-box;
   width: 100%;
+
+  .time-col {
+    display: flex;
+    align-items: center;
+    gap: var(--dasar-space-1);
+  }
 
   .time-row-icon {
     width: var(--dasar-font-size-lg);
