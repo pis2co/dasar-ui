@@ -1,6 +1,7 @@
 @use '../../styles/theme.scss' as *;
 
 .dasar-modal {
+  z-index: var(--dasar-modal-z-index, 1050);
   position: fixed;
   inset: 0;
   display: flex;

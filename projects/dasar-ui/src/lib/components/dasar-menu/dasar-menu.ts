@@ -10,9 +10,17 @@ import {
   TemplateRef,
   ViewEncapsulation,
   ContentChild,
+  InjectionToken,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgpMenu, NgpMenuItem, NgpMenuPlacement, NgpMenuTrigger } from 'ng-primitives/menu';
+import {
+  NgpMenu,
+  NgpMenuConfig,
+  NgpMenuItem,
+  NgpMenuPlacement,
+  NgpMenuTrigger,
+  provideMenuConfig,
+} from 'ng-primitives/menu';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { DasarThemeService } from '../../services/theme.service';
@@ -50,6 +58,13 @@ export interface DasarMenuConfig {
   fluid?: boolean;
 }
 
+const defaultMenuProvider = provideMenuConfig({})[0] as {
+  provide: InjectionToken<NgpMenuConfig>;
+  useValue: NgpMenuConfig;
+};
+const menuConfigToken = defaultMenuProvider.provide;
+const defaultMenuConfig = defaultMenuProvider.useValue;
+
 /**
  * Directive applied to a menu trigger element (e.g. `<button [dasarMenuTrigger]="menuTpl">`),
  * backed by `NgpMenuTrigger`.
@@ -65,7 +80,23 @@ export interface DasarMenuConfig {
         'ngpMenuTriggerPlacement: dasarMenuTriggerPlacement',
         'ngpMenuTriggerDisabled: dasarMenuTriggerDisabled',
         'ngpMenuTriggerOffset: dasarMenuTriggerOffset',
+        'ngpMenuTriggerContainer: dasarMenuTriggerContainer',
       ],
+    },
+  ],
+  providers: [
+    {
+      provide: menuConfigToken,
+      useFactory: () => {
+        const parentConfig = inject(menuConfigToken, { optional: true, skipSelf: true });
+        const themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
+        const baseConfig = parentConfig ?? defaultMenuConfig;
+        return {
+          ...baseConfig,
+          container:
+            themeProvider?.wrapperElement ?? baseConfig?.container ?? 'body',
+        };
+      },
     },
   ],
 })

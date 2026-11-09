@@ -5,6 +5,7 @@ import {
   Component,
   Directive,
   inject,
+  InjectionToken,
   Input,
 } from '@angular/core';
 import {
@@ -13,6 +14,8 @@ import {
   NgpDialogTrigger,
   injectDialogState,
   provideDialogState,
+  provideDialogConfig,
+  NgpDialogConfig,
 } from 'ng-primitives/dialog';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.model';
@@ -59,6 +62,9 @@ export interface DasarModalTriggerConfig {
   closeOnOutsideClick?: boolean;
 }
 
+const dialogConfigToken = (provideDialogConfig({})[0] as { provide: InjectionToken<NgpDialogConfig> })
+  .provide;
+
 @Directive({ selector: '[header-slot]', standalone: true })
 export class DasarModalHeaderSlot {}
 @Directive({ selector: '[close-slot]', standalone: true })
@@ -85,8 +91,23 @@ export class DasarModalActionSlot {}
       outputs: ['ngpDialogTriggerClosed: dasarModalTriggerClosed'],
     },
   ],
+  providers: [
+    {
+      provide: dialogConfigToken,
+      useFactory: () => {
+        const parentConfig = inject(dialogConfigToken, { optional: true, skipSelf: true });
+        const themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
+        return {
+          ...parentConfig,
+          container:
+            themeProvider?.wrapperElement ?? parentConfig?.container ?? 'body',
+        };
+      },
+    },
+  ],
 })
-export class DasarModalTrigger {}
+export class DasarModalTrigger {
+}
 
 @Component({
   imports: [CommonModule, DasarButtonComponent, DasarIconComponent, NgpDialog],

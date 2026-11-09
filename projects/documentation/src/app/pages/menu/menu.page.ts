@@ -87,6 +87,13 @@ export class MenuDocPage {
       description: 'Pixel offset of the menu panel from the trigger element.',
     },
     {
+      name: '[dasarMenuTriggerContainer]',
+      type: 'HTMLElement | string',
+      defaultValue: 'document.body',
+      description:
+        'Container where the menu panel portal is appended. When unset, defaults to the nearest ancestor dasar-theme-provider (so theme tokens like font/color cascade correctly), falling back to document.body when no theme provider is present.',
+    },
+    {
       name: 'items',
       type: 'DasarMenuItem[]',
       defaultValue: '[]',

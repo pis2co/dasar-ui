@@ -40,6 +40,7 @@ import {
   Component,
   OnChanges,
   Input,
+  ViewChild,
   inject,
   effect,
   signal,
@@ -100,7 +101,7 @@ export const defaultDarkCommonTokens: DasarThemeCommon = {
     '[attr.data-theme]': 'activeMode()',
   },
   template: `
-    <div class="dasar-theme-wrapper">
+    <div class="dasar-theme-wrapper" #wrapper>
       <ng-content></ng-content>
     </div>
   `,
@@ -167,6 +168,16 @@ export class DasarThemeProviderComponent implements OnChanges {
         this.applyTokenConfig(hostElement);
       });
     }
+  }
+
+  get elementRef(): ElementRef<HTMLElement> {
+    return this.el;
+  }
+
+  @ViewChild('wrapper', { static: true }) private wrapperRef!: ElementRef<HTMLElement>;
+
+  get wrapperElement(): HTMLElement {
+    return this.wrapperRef.nativeElement;
   }
 
   ngOnChanges(changes: SimpleChanges) {
