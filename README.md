@@ -37,6 +37,7 @@ Read the full guides:
 
 - [Installation](./docs/installation.md)
 - [Getting started](./docs/getting-started.md)
+- [Design spec](./docs/design.md)
 - [Theming overview](https://github.com/pis2co/dasar-ui) (in the docs app: `/theming`)
 
 ## Links
