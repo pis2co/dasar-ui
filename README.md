@@ -39,6 +39,7 @@ Read the full guides:
 - [Getting started](./docs/getting-started.md)
 - [Design spec](./docs/design.md)
 - [Theming overview](https://github.com/pis2co/dasar-ui) (in the docs app: `/theming`)
+- [Maintaining Angular version support](./docs/maintaining-angular-support.md)
 
 ## Links
 
