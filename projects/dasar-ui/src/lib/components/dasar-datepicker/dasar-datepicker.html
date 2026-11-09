@@ -153,8 +153,9 @@
                     <dasar-button
                       size="sm"
                       type="button"
-                      button-class="time-period-button"
-                      [class.active]="timeMeridiem === 'AM'"
+                      [button-class]="
+                        timeMeridiem === 'AM' ? 'time-period-button active' : 'time-period-button'
+                      "
                       [attr.aria-pressed]="timeMeridiem === 'AM'"
                       (click)="onMeridiemToggle('AM')"
                     >
@@ -163,8 +164,9 @@
                     <dasar-button
                       size="sm"
                       type="button"
-                      button-class="time-period-button"
-                      [class.active]="timeMeridiem === 'PM'"
+                      [button-class]="
+                        timeMeridiem === 'PM' ? 'time-period-button active' : 'time-period-button'
+                      "
                       [attr.aria-pressed]="timeMeridiem === 'PM'"
                       (click)="onMeridiemToggle('PM')"
                     >
