@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DasarAlertComponent } from 'dasar-ui';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
@@ -74,6 +75,7 @@ import customStyleTs from './examples/custom-style/modal-custom-style.example.ts
 @Component({
   imports: [
     CommonModule,
+    DasarAlertComponent,
     DocsLayoutComponent,
     DocExampleComponent,
     ModalBasicExample,

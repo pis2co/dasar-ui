@@ -2,6 +2,7 @@ import { ThemingComponentConfigDocPage } from '../pages/theming/theming-componen
 import { ThemingCssVariablesDocPage } from '../pages/theming/theming-css-variables.page';
 import { GettingStartedDocPage } from '../pages/getting-started/getting-started.page';
 import { IntroductionDocPage } from '../pages/introduction/introduction.page';
+import { ChangelogDocPage } from '../pages/changelog/changelog.page';
 import { InstallationDocPage } from '../pages/installation/installation.page';
 import { NumberInputDocPage } from '../pages/number-input/number-input.page';
 import { TextareaDocPage } from '../pages/textarea/textarea.page';
@@ -60,6 +61,11 @@ export const routes: Routes = [
     path: 'getting-started',
     component: GettingStartedDocPage,
     title: 'Getting Started | Dasar UI',
+  },
+  {
+    path: 'changelog',
+    component: ChangelogDocPage,
+    title: 'Changelog | Dasar UI',
   },
   {
     path: 'theming',

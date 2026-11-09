@@ -4,6 +4,15 @@
   description="A modal dialog that overlays the page to focus the user on a task. Rendered into document.body via a portal using the trigger+template directive pattern."
   [apiData]="apiProps"
 >
+  <dasar-alert variant="warning" title="v3.0.0 — breaking change">
+    Modal's API changed from a declarative <code>[open]</code>/<code>(onClose)</code> pair to the
+    <code>dasarModalTrigger</code> + <code>&lt;ng-template let-close="close"&gt;</code> pattern
+    shown below. Focus-trap, scroll-lock, Escape and outside-click handling now come from
+    ng-primitives' <code>NgpDialog</code>/<code>NgpDialogOverlay</code>/<code>NgpDialogTrigger</code>
+    instead of hand-rolled logic. See the
+    <a href="/changelog">Changelog</a> for the full list of v3 changes.
+  </dasar-alert>
+
   <doc-example-component
     [codes]="[
       { label: 'HTML', lang: 'html', value: basicHtml },

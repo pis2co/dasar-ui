@@ -259,6 +259,7 @@ export class DocsLayoutComponent {
         { label: 'Introduction', route: '/introduction' },
         { label: 'Installation', route: '/installation' },
         { label: 'Getting Started', route: '/getting-started' },
+        { label: 'Changelog', route: '/changelog' },
       ],
     },
     {
