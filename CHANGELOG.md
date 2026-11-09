@@ -2,6 +2,79 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/pis2co/dasar-ui/compare/v2.6.5...v3.0.0) (2026-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* replaces the declarative [open]/(onClose) API with a
+dasarModalTrigger + <ng-template let-close="close"> pattern. Focus-trap,
+scroll-lock, escape and outside-click handling now come from ng-primitives'
+NgpDialog/NgpDialogOverlay/NgpDialogTrigger instead of hand-rolled logic.
+
+### Features
+
+* add appearance to DasarCheckbox and DasarCheckboxGroup ([d3e65a9](https://github.com/pis2co/dasar-ui/commit/d3e65a98404c79e05c7e859f0c4563846278481b))
+* add appearance to DasarRadio and DasarRadioGroup with docs examples ([91ed83d](https://github.com/pis2co/dasar-ui/commit/91ed83d618167c73b9948b27b7545770c2bdbee8))
+* add appearance to DasarSwitch ([508cfbb](https://github.com/pis2co/dasar-ui/commit/508cfbbce8b3cff6cc5f115d2cc0844adedb9305))
+* add built-on-primitive badge to docs layout ([fee8f15](https://github.com/pis2co/dasar-ui/commit/fee8f15b59c6c2f9aa25ca8fae1615235fc3de52))
+* add dasarRipple directive with hover and ripple animation ([d97ded5](https://github.com/pis2co/dasar-ui/commit/d97ded563dececc50678e8704e970361dce49be3))
+* add decade-paginated month/year selector to DasarCalendar ([3dc9bd6](https://github.com/pis2co/dasar-ui/commit/3dc9bd6e3335a2542fe8e5dfc5997965d4fc9ca2))
+* add elevated appearance to DasarButton ([a0367fd](https://github.com/pis2co/dasar-ui/commit/a0367fda6cddac12f94c69703b2e05c8a1e1b9e5))
+* add elevated appearance to DasarDatepicker ([433fd15](https://github.com/pis2co/dasar-ui/commit/433fd15bf7abde0435d6b5f203b93efe74df97d3))
+* add elevated appearance to DasarDrawer ([6d51fb7](https://github.com/pis2co/dasar-ui/commit/6d51fb76c3d5bd8bd9db6514c6d5c7468dddd389))
+* add elevated appearance to DasarInput ([cb1e12c](https://github.com/pis2co/dasar-ui/commit/cb1e12ccc28dd6a807717e0552bd775b15617a0f))
+* add elevated appearance to DasarMenu ([40f7e14](https://github.com/pis2co/dasar-ui/commit/40f7e14cede53947b94faf930fafac5cfbcb7b05))
+* add elevated appearance to DasarNumberInput ([63b1d1d](https://github.com/pis2co/dasar-ui/commit/63b1d1dd14bd9e2d6c4580a762cec7982c1057e6))
+* add elevated appearance to DasarPagination ([bc6e026](https://github.com/pis2co/dasar-ui/commit/bc6e02625790231028dea2fd2c31c9d814f2b1df))
+* add elevated appearance to DasarToast ([877a440](https://github.com/pis2co/dasar-ui/commit/877a440f834aa8036be99991f4c17a31df446cfd))
+* add mobile dashboard layout and fix dropdown nav icon styling ([ae64ab3](https://github.com/pis2co/dasar-ui/commit/ae64ab3455a7a42a89dd710a9aa16786100ff0d5))
+* add pressed appearance matching Pencil design ([ca27653](https://github.com/pis2co/dasar-ui/commit/ca27653b107c1f88383ef1e1397a0902bafa01e9))
+* add time-of-day picker section alongside the calendar ([a266fd6](https://github.com/pis2co/dasar-ui/commit/a266fd6add9bbc1a6dafd85e9481d5f237becddb))
+* **alert:** add appearance input (outline/borderless/elevated) ([35de0c6](https://github.com/pis2co/dasar-ui/commit/35de0c636e3aa48dfec8d19c92f8e19bf57e4060))
+* animate pressed appearance on press-down ([b1effc2](https://github.com/pis2co/dasar-ui/commit/b1effc23ac2f7b383406a83340d8ffd602dcf2de))
+* **button:** adopt NgpButton primitive from ng-primitives ([7c5e162](https://github.com/pis2co/dasar-ui/commit/7c5e1629bda4e293c88fe9b6c1f3de56c65d80dc))
+* **calendar:** adopt NgpDatePicker/NgpDateRangePicker primitives with date-fns adapter ([e864675](https://github.com/pis2co/dasar-ui/commit/e86467539fc7c34133a65f7887bee1d2918b3f35))
+* **checkbox:** adopt NgpCheckbox primitive from ng-primitives ([9181846](https://github.com/pis2co/dasar-ui/commit/91818468129f248061dbba41c62754aa829f9167))
+* implement DasarPin using NgpInputOtp primitive ([1852574](https://github.com/pis2co/dasar-ui/commit/18525748e9ae8a62868d412ac5c1eb7ef780347f))
+* implement DasarSlider using NgpSlider primitive ([d489ada](https://github.com/pis2co/dasar-ui/commit/d489ada8964b6dd786b7b30b54df3be5c0b3d640))
+* implement DasarToggle using NgpToggle primitive ([4b1dd1c](https://github.com/pis2co/dasar-ui/commit/4b1dd1cb61febfec596510c670a7636459313964))
+* implement DasarTooltip directive using NgpTooltip primitive ([5d6a3ac](https://github.com/pis2co/dasar-ui/commit/5d6a3acc777dac6db6a2683b022c2aefcfe908ad))
+* **radio-group:** wire NgpRadioGroup for grouped radio item DI ([fd752c2](https://github.com/pis2co/dasar-ui/commit/fd752c2c081cce9469cff6dd1766905984161a91))
+* **radio:** adopt NgpRadioItem primitive for grouped usage, preserve standalone path ([976cded](https://github.com/pis2co/dasar-ui/commit/976cded3743b90f10098fc6e9fd6320773dfd275))
+* revamp dashboard mobile view and consolidate radius/border ownership ([1d82492](https://github.com/pis2co/dasar-ui/commit/1d82492794e5d6568e3f921c3b1ede21a7f2cf40))
+* revamp panel to match Pencil design, add time-only type ([d036089](https://github.com/pis2co/dasar-ui/commit/d036089a703abab3121bf2cc2b32e21272722af4))
+* **switch:** adopt NgpSwitch primitive from ng-primitives ([20b403b](https://github.com/pis2co/dasar-ui/commit/20b403bc5c74251118adfb2d60eaf4828bdac4e7))
+* **tabs:** add elevated appearance to DasarTabs ([8e877e8](https://github.com/pis2co/dasar-ui/commit/8e877e8217a29975830c368f1f1ab87769d5a757))
+* wire theme config, NgpTextarea primitive, and token support ([14d5725](https://github.com/pis2co/dasar-ui/commit/14d572503810d000fedcc315e2619f3eae47d5f5))
+
+
+### Bug Fixes
+
+* add aria-label to prevent verbose date-button accessible name ([d2931af](https://github.com/pis2co/dasar-ui/commit/d2931aff469dcfe4f26f629dbe9cf123c26b4bb9))
+* **build:** allow ng-primitives as a non-peer dependency for ng-packagr ([0d18e7e](https://github.com/pis2co/dasar-ui/commit/0d18e7e7b76e1bea8231071eb90160f16ded49ca))
+* calendar cell and style ([14287dd](https://github.com/pis2co/dasar-ui/commit/14287ddc9fe41a1856d172de2dddf6fd666fff97))
+* calendar variant and styles ([848d3e7](https://github.com/pis2co/dasar-ui/commit/848d3e7a4d4ba9939f3820b00ecf1b7459e3a459))
+* **checkbox:** restore native disabled attribute and fix indeterminate desync with NgpCheckbox ([63c9b38](https://github.com/pis2co/dasar-ui/commit/63c9b3819b49d3429e1836450bc2c55701f62d33))
+* correct numberAttribute transform, example attribute casing, and token variable ([09559b9](https://github.com/pis2co/dasar-ui/commit/09559b9e18c3e3ef1990d7ed4555a87ee6b52594))
+* correct subtle appearance background and hover tones ([4e9357b](https://github.com/pis2co/dasar-ui/commit/4e9357bb66203407c28a551289b3c23a86f76723))
+* **dasar-calendar:** resolve dashboard variant colors through theme tokens ([3f273fc](https://github.com/pis2co/dasar-ui/commit/3f273fc8af4cfb52975cb154998a02ca030dfa9a))
+* datepicker time meridiem and more ([4c3e54a](https://github.com/pis2co/dasar-ui/commit/4c3e54a8a42028f3b6f31991182edf62eecfd7a0))
+* default font-family to system-ui stack and make customize-modal reset apply immediately ([91d6b1e](https://github.com/pis2co/dasar-ui/commit/91d6b1e5ba286d67053b78aa7afe49f6470c1a23))
+* gate DasarDrawer's box-shadow behind the elevated appearance ([588a970](https://github.com/pis2co/dasar-ui/commit/588a970ca16b4a821b26cd814fa81d59503e7cc7))
+* match dropdown day-view header to Pencil nav row ([af154fb](https://github.com/pis2co/dasar-ui/commit/af154fb71599f48fdf76a8b68d00a9b13ca611e7))
+* match dropdown month/year grid headers to Pencil ([3553b6b](https://github.com/pis2co/dasar-ui/commit/3553b6b36b8aea53189e19f218956ffba377b8f8))
+* preserve customized font-family through dropdown portal ([1fa14e6](https://github.com/pis2co/dasar-ui/commit/1fa14e6914903415ff63cdd36d329ce37e787122))
+* **radio-group:** stop double-emitting valueChange and fix compareWith/disabled sync with NgpRadioGroup ([42e1c87](https://github.com/pis2co/dasar-ui/commit/42e1c87643a5544e753817dc497084807f9b1974))
+* **radio:** resolve NgpRadioGroup DI resolution and sync focus/click selection ([54749df](https://github.com/pis2co/dasar-ui/commit/54749dfdacf51d0179292158e82ba681f7148db9))
+* regenerate grid when navigating months ([b8fca3e](https://github.com/pis2co/dasar-ui/commit/b8fca3e7b9345bad8491477a5b59eb1b2f3e79db))
+* **tabs:** remove transform from tab fade-in animation ([ce674c4](https://github.com/pis2co/dasar-ui/commit/ce674c45b07d1d35d59884dae6127810ca51a55e))
+* update DasarPagination ellipsis dropdown for NgpMenu trigger API ([4983b8d](https://github.com/pis2co/dasar-ui/commit/4983b8ddea6a2bbe174824d25eb85994bcd80623))
+* wire remaining radius tokens and set default radius ([f3487f3](https://github.com/pis2co/dasar-ui/commit/f3487f327eb15ffc5e400161d3fafa931ab0aadf))
+
+
+* migrate DasarModal to NgpDialog/NgpDialogTrigger primitives ([77f1242](https://github.com/pis2co/dasar-ui/commit/77f1242678b3083933f3edd5d63e3df327bc020e))
+
 ### [2.6.5](https://github.com/pis2co/dasar-ui/compare/v2.6.4...v2.6.5) (2026-10-26)
 
 
