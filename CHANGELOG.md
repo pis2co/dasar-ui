@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/pis2co/dasar-ui/compare/v3.0.0...v3.0.1) (2026-11-09)
+
+
+### Features
+
+* add changelog and more about new version ([af42b59](https://github.com/pis2co/dasar-ui/commit/af42b59ec41fd550f1b648351a8a45b288806ea8))
+
 ## [3.0.0](https://github.com/pis2co/dasar-ui/compare/v2.6.5...v3.0.0) (2026-11-09)
 
 ### ⚠ BREAKING CHANGES
