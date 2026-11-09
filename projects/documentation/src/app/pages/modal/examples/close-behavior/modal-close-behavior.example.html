@@ -1,44 +1,48 @@
 <div style="display: flex; gap: 8px; flex-wrap: wrap">
-  <dasar-button (click)="openNotClosable.set(true)">closable = false</dasar-button>
-  <dasar-button (click)="openNoOverlay.set(true)">close-on-overlay = false</dasar-button>
-  <dasar-button (click)="openNoEscape.set(true)">close-on-escape = false</dasar-button>
+  <dasar-button [dasarModalTrigger]="notClosableTpl"> closable = false </dasar-button>
+  <dasar-button
+    [dasarModalTrigger]="noOutsideClickTpl"
+    [dasarModalTriggerCloseOnOutsideClick]="false"
+  >
+    closeOnOutsideClick = false
+  </dasar-button>
+  <dasar-button [dasarModalTrigger]="noEscapeTpl" [dasarModalTriggerCloseOnEscape]="false">
+    closeOnEscape = false
+  </dasar-button>
 </div>
 
-<dasar-modal
-  [open]="openNotClosable()"
-  label="Not closable"
-  closable="false"
-  (onClose)="openNotClosable.set(false)"
->
-  <p>
-    With <code>closable="false"</code> the default ✕ button is not rendered, so the dialog can only
-    be closed from the action below.
-  </p>
-  <div action-slot>
-    <dasar-button size="md" radius="md" (click)="openNotClosable.set(false)">Close</dasar-button>
-  </div>
-</dasar-modal>
+<ng-template #notClosableTpl let-close="close">
+  <dasar-modal label="Not closable" closable="false">
+    <p>
+      With <code>closable="false"</code> the default ✕ button is not rendered, so the dialog can
+      only be closed from custom action buttons.
+    </p>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>
 
-<dasar-modal
-  [open]="openNoOverlay()"
-  label="Backdrop click does nothing"
-  close-on-overlay="false"
-  (onClose)="openNoOverlay.set(false)"
->
-  <p>
-    With <code>close-on-overlay="false"</code> clicking the backdrop no longer emits
-    <code>(onClose)</code>. The ✕ button and Esc still work.
-  </p>
-</dasar-modal>
+<ng-template #noOutsideClickTpl let-close="close">
+  <dasar-modal label="Outside click does nothing">
+    <p>
+      With <code>[dasarModalTriggerCloseOnOutsideClick]="false"</code> on the trigger, clicking
+      outside the modal no longer closes it. The ✕ button and Esc key still work.
+    </p>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>
 
-<dasar-modal
-  [open]="openNoEscape()"
-  label="Esc does nothing"
-  close-on-escape="false"
-  (onClose)="openNoEscape.set(false)"
->
-  <p>
-    With <code>close-on-escape="false"</code> pressing Esc no longer emits <code>(onClose)</code>.
-    The ✕ button and a backdrop click still work.
-  </p>
-</dasar-modal>
+<ng-template #noEscapeTpl let-close="close">
+  <dasar-modal label="Esc key does nothing">
+    <p>
+      With <code>[dasarModalTriggerCloseOnEscape]="false"</code> on the trigger, pressing Esc no
+      longer closes the dialog. The ✕ button and clicking outside still work.
+    </p>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>

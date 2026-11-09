@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
 
 export type DasarPaginationSizeType = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarPaginationRadiusType = ScaleAttributeType;
-export type DasarPaginationAppearanceType = 'ghost' | 'solid' | 'subtle' | 'outline';
+export type DasarPaginationAppearanceType = 'ghost' | 'solid' | 'subtle' | 'outline' | 'elevated';
 export type DasarPaginationSpacingType = Extract<
   ScaleAttributeType,
   'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
@@ -311,7 +311,9 @@ export class DasarPagination implements OnInit {
   }
 
   get itemAppearance(): DasarButtonAppearanceType {
-    return this.appearance === 'outline' ? 'outline' : 'solid';
+    if (this.appearance === 'outline') return 'outline';
+    if (this.appearance === 'elevated') return 'elevated';
+    return 'solid';
   }
 
   get activeVariant(): DasarButtonVariantType {
@@ -321,6 +323,7 @@ export class DasarPagination implements OnInit {
   get activeAppearance(): DasarButtonAppearanceType {
     if (this.appearance === 'solid') return 'solid';
     if (this.appearance === 'outline') return 'outline';
+    if (this.appearance === 'elevated') return 'elevated';
     return 'subtle';
   }
 

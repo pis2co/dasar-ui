@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+  <dasar-pin [length]="6" [(ngModel)]="pinValue" (complete)="onComplete($event)"></dasar-pin>
+
+  <p style="margin: 0; font-size: 14px; color: var(--dasar-theme-text-secondary-color)">
+    Entered PIN: <strong>{{ pinValue || '(empty)' }}</strong>
+    @if (completedValue) {
+      <span style="color: var(--dasar-success-500); margin-left: 8px"
+        >✓ Completed: {{ completedValue }}</span
+      >
+    }
+  </p>
+</div>

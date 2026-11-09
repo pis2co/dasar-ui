@@ -1,0 +1,56 @@
+<docs-layout
+  builtOnPrimitive
+  title="Slider"
+  description="A slider input component allowing users to select a numeric value or range along a track, supporting sizes, appearance variants, labels, hints, and error states."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Usage"
+  >
+    <app-slider-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+  >
+    <app-slider-appearance-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: sizesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: sizesTs },
+    ]"
+    title="Sizes"
+  >
+    <app-slider-sizes-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled State"
+  >
+    <app-slider-disabled-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: errorHtml },
+      { label: 'TypeScript', lang: 'typescript', value: errorTs },
+    ]"
+    title="Error & Hint Usage"
+  >
+    <app-slider-error-example />
+  </doc-example-component>
+</docs-layout>

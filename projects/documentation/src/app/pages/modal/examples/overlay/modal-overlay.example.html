@@ -3,27 +3,59 @@
 </p>
 
 <div style="display: flex; gap: 8px; flex-wrap: wrap">
-  <dasar-button (click)="blur.set('0px'); open.set(true)">No blur</dasar-button>
-  <dasar-button (click)="blur.set('4px'); open.set(true)">Default blur</dasar-button>
-  <dasar-button (click)="blur.set('12px'); open.set(true)">Heavy blur</dasar-button>
   <dasar-button
-    (click)="blur.set('6px'); background.set('rgba(37, 99, 235, 0.35)'); open.set(true)"
+    [dasarModalTrigger]="modalTpl"
+    (click)="setOverlay('0px', 'rgba(0, 0, 0, 0.45)', true)"
+  >
+    No blur (close-on-overlay = true)
+  </dasar-button>
+  <dasar-button
+    [dasarModalTrigger]="modalTpl"
+    (click)="setOverlay('4px', 'rgba(0, 0, 0, 0.45)', true)"
+  >
+    Default blur (close-on-overlay = true)
+  </dasar-button>
+  <dasar-button
+    [dasarModalTrigger]="modalTpl"
+    (click)="setOverlay('12px', 'rgba(0, 0, 0, 0.45)', true)"
+  >
+    Heavy blur
+  </dasar-button>
+  <dasar-button
+    [dasarModalTrigger]="modalTpl"
+    (click)="setOverlay('6px', 'rgba(37, 99, 235, 0.35)', true)"
   >
     Tinted backdrop
   </dasar-button>
+  <dasar-button
+    [dasarModalTrigger]="modalTpl"
+    (click)="setOverlay('4px', 'rgba(0, 0, 0, 0.45)', false)"
+  >
+    Overlay click disabled (close-on-overlay = false)
+  </dasar-button>
 </div>
 
-<dasar-modal
-  [open]="open()"
-  label="Overlay"
-  [overlay-blur]="blur()"
-  [overlay-background]="background()"
-  (onClose)="open.set(false)"
->
-  <p>
-    <code>overlay-blur</code> controls the backdrop blur radius and
-    <code>overlay-background</code> its color. Both are passed down to the underlying
-    <code>dasar-overlay</code>.
-  </p>
-  <p>Current blur: {{ blur() }}. Current background: {{ background() }}.</p>
-</dasar-modal>
+<ng-template #modalTpl let-close="close">
+  <dasar-modal
+    label="Overlay & Backdrop"
+    [overlay-blur]="blur()"
+    [overlay-background]="background()"
+    [close-on-overlay]="closeOnOverlay()"
+  >
+    <p>
+      <code>overlay-blur</code> controls the backdrop blur radius and
+      <code>overlay-background</code> its color.
+    </p>
+    <p>
+      <code>close-on-overlay</code> (default true) enables clicking the backdrop to close the
+      dialog.
+    </p>
+    <p>
+      Current blur: {{ blur() }}. Current background: {{ background() }}. Close on overlay:
+      {{ closeOnOverlay() }}.
+    </p>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>

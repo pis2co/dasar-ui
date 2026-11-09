@@ -4,6 +4,7 @@ import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
 import { CheckboxBasicExample } from './examples/basic/checkbox-basic.example';
+import { CheckboxAppearanceExample } from './examples/appearance/checkbox-appearance.example';
 import { CheckboxSizeExample } from './examples/size/checkbox-size.example';
 import { CheckboxCustomValuesExample } from './examples/custom-values/checkbox-custom-values.example';
 import { CheckboxLabelHintExample } from './examples/label-hint/checkbox-label-hint.example';
@@ -11,6 +12,7 @@ import { CheckboxErrorExample } from './examples/error/checkbox-error.example';
 import { CheckboxDisabledExample } from './examples/disabled/checkbox-disabled.example';
 import { CheckboxReactiveExample } from './examples/reactive/checkbox-reactive.example';
 import { CheckboxGroupExample } from './examples/group/checkbox-group.example';
+import { CheckboxGroupAppearanceExample } from './examples/group-appearance/checkbox-group-appearance.example';
 import { CheckboxGroupLayoutExample } from './examples/group-layout/checkbox-group-layout.example';
 import { CheckboxGroupValueFieldExample } from './examples/group-value-field/checkbox-group-value-field.example';
 import { CheckboxAdvancedThemeExample } from './examples/advanced-theme/checkbox-advanced-theme.example';
@@ -19,6 +21,15 @@ import { CheckboxAdvancedThemeExample } from './examples/advanced-theme/checkbox
 import basicHtml from './examples/basic/checkbox-basic.example.html' with { loader: 'text' };
 // @ts-ignore
 import basicTs from './examples/basic/checkbox-basic.example.ts' with { loader: 'text' };
+
+// @ts-ignore
+import appearanceHtml from './examples/appearance/checkbox-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import appearanceTs from './examples/appearance/checkbox-appearance.example.ts' with {
+  loader: 'text',
+};
 
 // @ts-ignore
 import sizeHtml from './examples/size/checkbox-size.example.html' with { loader: 'text' };
@@ -68,6 +79,15 @@ import groupHtml from './examples/group/checkbox-group.example.html' with { load
 import groupTs from './examples/group/checkbox-group.example.ts' with { loader: 'text' };
 
 // @ts-ignore
+import groupAppearanceHtml from './examples/group-appearance/checkbox-group-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import groupAppearanceTs from './examples/group-appearance/checkbox-group-appearance.example.ts' with {
+  loader: 'text',
+};
+
+// @ts-ignore
 import groupLayoutHtml from './examples/group-layout/checkbox-group-layout.example.html' with {
   loader: 'text',
 };
@@ -100,6 +120,7 @@ import advancedThemeTs from './examples/advanced-theme/checkbox-advanced-theme.e
     DocsLayoutComponent,
     DocExampleComponent,
     CheckboxBasicExample,
+    CheckboxAppearanceExample,
     CheckboxSizeExample,
     CheckboxCustomValuesExample,
     CheckboxLabelHintExample,
@@ -107,6 +128,7 @@ import advancedThemeTs from './examples/advanced-theme/checkbox-advanced-theme.e
     CheckboxDisabledExample,
     CheckboxReactiveExample,
     CheckboxGroupExample,
+    CheckboxGroupAppearanceExample,
     CheckboxGroupLayoutExample,
     CheckboxGroupValueFieldExample,
     CheckboxAdvancedThemeExample,
@@ -118,6 +140,9 @@ import advancedThemeTs from './examples/advanced-theme/checkbox-advanced-theme.e
 export class CheckboxDocPage {
   protected basicHtml = basicHtml;
   protected basicTs = basicTs;
+
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
 
   protected sizeHtml = sizeHtml;
   protected sizeTs = sizeTs;
@@ -140,6 +165,9 @@ export class CheckboxDocPage {
   protected groupHtml = groupHtml;
   protected groupTs = groupTs;
 
+  protected groupAppearanceHtml = groupAppearanceHtml;
+  protected groupAppearanceTs = groupAppearanceTs;
+
   protected groupLayoutHtml = groupLayoutHtml;
   protected groupLayoutTs = groupLayoutTs;
 
@@ -155,6 +183,12 @@ export class CheckboxDocPage {
       type: "'sm' | 'md' | 'lg'",
       defaultValue: "'md'",
       description: 'Size of the checkbox.',
+    },
+    {
+      name: 'appearance',
+      type: "'outline' | 'filled' | 'elevated'",
+      defaultValue: "'outline'",
+      description: 'Visual appearance style of the checkbox.',
     },
     {
       name: 'label',
@@ -255,6 +289,13 @@ export class CheckboxDocPage {
       type: "'sm' | 'md' | 'lg' | null",
       defaultValue: 'null',
       description: 'Overrides the size of every child. Null keeps each child size.',
+    },
+    {
+      name: 'dasar-checkbox-group: appearance',
+      type: "'outline' | 'filled' | 'elevated' | null",
+      defaultValue: 'null',
+      description:
+        'Overrides the appearance of every child checkbox. Null keeps each child appearance.',
     },
     {
       name: 'dasar-checkbox-group: direction',

@@ -1,1 +1,13 @@
-<p>dasar-toggle works!</p>
+<button
+  ngpToggle
+  ngpButton
+  class="dasar-toggle-native"
+  [ngClass]="buttonClasses"
+  [ngStyle]="toggleStyle"
+  [disabled]="disabled"
+  [type]="type"
+  (ngpToggleSelectedChange)="onPrimitiveSelectedChange($event)"
+  (blur)="onBlur()"
+>
+  <ng-content></ng-content>
+</button>

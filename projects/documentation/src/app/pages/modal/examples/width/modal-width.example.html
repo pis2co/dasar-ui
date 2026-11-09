@@ -1,23 +1,28 @@
 <div style="display: flex; gap: 8px; flex-wrap: wrap">
-  <dasar-button (click)="openCustom.set(true)">Custom width (720px)</dasar-button>
-  <dasar-button (click)="openFull.set(true)">Full width</dasar-button>
+  <dasar-button [dasarModalTrigger]="customWidthTpl">Custom width (720px)</dasar-button>
+  <dasar-button [dasarModalTrigger]="fullWidthTpl">Full width</dasar-button>
 </div>
 
-<dasar-modal
-  [open]="openCustom()"
-  label="Custom width"
-  width="720px"
-  (onClose)="openCustom.set(false)"
->
-  <p>
-    The <code>width</code> input sets an explicit width and overrides the preset that comes from
-    <code>size</code>.
-  </p>
-</dasar-modal>
+<ng-template #customWidthTpl let-close="close">
+  <dasar-modal label="Custom width" width="720px">
+    <p>
+      The <code>width</code> input sets an explicit width and overrides the preset that comes from
+      <code>size</code>.
+    </p>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>
 
-<dasar-modal [open]="openFull()" label="Full width" full-width (onClose)="openFull.set(false)">
-  <p>
-    <code>full-width</code> makes the modal span the viewport minus the overlay padding, and it wins
-    over an explicit <code>width</code>.
-  </p>
-</dasar-modal>
+<ng-template #fullWidthTpl let-close="close">
+  <dasar-modal label="Full width" full-width>
+    <p>
+      <code>full-width</code> makes the modal span the viewport minus the overlay padding, and it
+      wins over an explicit <code>width</code>.
+    </p>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>

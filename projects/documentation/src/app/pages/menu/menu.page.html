@@ -1,6 +1,7 @@
 <docs-layout
+  builtOnPrimitive
   title="Menu"
-  description="A contextual dropdown menu component used for displaying a list of selectable actions, links, or commands."
+  description="A contextual dropdown menu component used for displaying a list of selectable actions, links, or commands, powered by the dasarMenuTrigger directive."
   [apiData]="apiProps"
 >
   <doc-example-component
@@ -11,6 +12,16 @@
     title="Basic"
   >
     <app-menu-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+  >
+    <app-menu-appearance-example />
   </doc-example-component>
 
   <doc-example-component

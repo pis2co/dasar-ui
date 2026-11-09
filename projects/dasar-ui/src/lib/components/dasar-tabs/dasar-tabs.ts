@@ -23,6 +23,7 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
+import { NgpTabButton, NgpTabList, NgpTabset } from 'ng-primitives/tabs';
 import { DasarButtonComponent, DasarButtonSizeType } from '../dasar-button/dasar-button';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
@@ -32,7 +33,7 @@ import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
 
 export type DasarTabsRadiusType = ScaleAttributeType;
-export type DasarTabsAppearanceType = 'solid' | 'subtle' | 'outline';
+export type DasarTabsAppearanceType = 'solid' | 'subtle' | 'outline' | 'elevated';
 export type DasarTabsSizeType = ScaleAttributeType;
 export type DasarTabsSpacingType = 'compact' | 'normal';
 
@@ -82,7 +83,14 @@ export class DasarTabsScrollRightSlotDirective {
   selector: 'dasar-tabs',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, DasarButtonComponent, DasarIconComponent],
+  imports: [
+    CommonModule,
+    DasarButtonComponent,
+    DasarIconComponent,
+    NgpTabset,
+    NgpTabList,
+    NgpTabButton,
+  ],
   templateUrl: './dasar-tabs.html',
   styleUrls: ['./dasar-tabs.scss'],
 })
@@ -102,6 +110,7 @@ export class DasarTabs implements OnChanges, AfterViewInit {
   scrollRightSlot?: DasarTabsScrollRightSlotDirective;
 
   @ViewChild('tabsList') tabsList?: ElementRef<HTMLElement>;
+  @ViewChild(NgpTabset) private ngpTabset?: NgpTabset;
 
   @Input() appearance = resolveThemeDefault(
     'tabs',
@@ -235,15 +244,35 @@ export class DasarTabs implements OnChanges, AfterViewInit {
     return this.size as DasarButtonSizeType;
   }
 
-  selectTab(index: number) {
-    this.onTabsClick.emit(index);
+  selectTab(index: number, emitClick = true) {
+    if (emitClick) {
+      this.onTabsClick.emit(index);
+    }
     if (index === this.activeIndex) return;
     this.activeIndex = index;
+    this.syncPrimitiveValue(index);
     this.onTabsChange.emit(index);
     this.scrollActiveIntoView();
   }
 
+  onPrimitiveTabChange(value: any) {
+    const index = typeof value === 'number' ? value : Number(value);
+    if (!Number.isFinite(index)) return;
+    this.selectTab(index, false);
+  }
+
+  private syncPrimitiveValue(index: number) {
+    const tabsetInstance = this.ngpTabset;
+    if (!tabsetInstance) return;
+    const strIndex = String(index);
+    tabsetInstance.select(strIndex);
+  }
+
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['activeIndex']) {
+      this.syncPrimitiveValue(this.activeIndex);
+    }
+
     if (!isPlatformBrowser(this.platformId)) return;
 
     if (changes['activeIndex'] && !changes['activeIndex'].firstChange) {
@@ -262,6 +291,8 @@ export class DasarTabs implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.syncPrimitiveValue(this.activeIndex);
+
     if (!isPlatformBrowser(this.platformId)) return;
 
     if (typeof ResizeObserver !== 'undefined') {

@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { FormsModule } from '@angular/forms';
+import { NgpSelectOption } from 'ng-primitives/select';
 import { DasarSelect, DasarSelectComponent } from './dasar-select';
 
 @Component({
@@ -160,5 +161,54 @@ describe('DasarSelect', () => {
     expect(hint.getAttribute('id')).toBe(component.hintId);
     expect(container().getAttribute('aria-invalid')).toBe('true');
     expect(container().getAttribute('aria-describedby')).toBe(component.hintId);
+  });
+
+  describe('ng-primitives NgpSelectOption integration', () => {
+    it('applies NgpSelectOption directive and data attributes to rendered option elements', async () => {
+      await open();
+
+      const optionDebugEls = fixture.debugElement.queryAll((de) =>
+        de.nativeElement.classList?.contains('dasar-select-option'),
+      );
+      expect(optionDebugEls.length).toBe(2);
+
+      const ngpDirective = optionDebugEls[0].injector.get(NgpSelectOption, null);
+      expect(ngpDirective).toBeTruthy();
+
+      const optionEl1 = optionDebugEls[0].nativeElement as HTMLElement;
+      expect(optionEl1.getAttribute('role')).toBe('option');
+      expect(optionEl1.hasAttribute('data-selected')).toBe(false);
+
+      // Select first option
+      optionEl1.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      // Re-open panel
+      await open();
+      const updatedOptionEl1 = fixture.nativeElement.querySelectorAll(
+        '.dasar-select-option',
+      )[0] as HTMLElement;
+      expect(updatedOptionEl1.hasAttribute('data-selected')).toBe(true);
+    });
+
+    it('toggles data-active attribute on pointerenter and pointerleave', async () => {
+      await open();
+
+      const optionEl1 = fixture.nativeElement.querySelectorAll(
+        '.dasar-select-option',
+      )[0] as HTMLElement;
+      expect(optionEl1).toBeTruthy();
+
+      optionEl1.dispatchEvent(new PointerEvent('pointerenter'));
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(optionEl1.hasAttribute('data-active')).toBe(true);
+
+      optionEl1.dispatchEvent(new PointerEvent('pointerleave'));
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(optionEl1.hasAttribute('data-active')).toBe(false);
+    });
   });
 });

@@ -1,40 +1,28 @@
 import {
-  DestroyRef,
   booleanAttribute,
   Component,
+  Directive,
+  EventEmitter,
   HostBinding,
+  inject,
   Input,
   Output,
-  EventEmitter,
-  ViewEncapsulation,
   TemplateRef,
-  ChangeDetectorRef,
-  inject,
-  HostListener,
-  ElementRef,
-  signal,
-  Directive,
+  ViewEncapsulation,
   ContentChild,
-  ViewChild,
 } from '@angular/core';
-import {
-  applyFixedPanelPosition,
-  computeSmartPlacement,
-  DasarPanelPlacement,
-  listenViewportChanges,
-  watchPanel,
-} from '../../utils/panel-placement';
+import { CommonModule } from '@angular/common';
+import { NgpMenu, NgpMenuItem, NgpMenuPlacement, NgpMenuTrigger } from 'ng-primitives/menu';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { resolveThemeDefault } from '../../utils/common';
 import { fieldIconSize } from '../../utils/icon-size';
-import { CommonModule } from '@angular/common';
 
-export type DasarMenuPlacementType = DasarPanelPlacement;
+export type DasarMenuPlacementType = NgpMenuPlacement;
 export type DasarMenuSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
-export type DasarMenuAppearanceType = 'none' | 'outline' | 'filled';
+export type DasarMenuAppearanceType = 'none' | 'outline' | 'filled' | 'elevated';
 export type DasarMenuRadiusType = ScaleAttributeType;
 
 export interface DasarMenuItem {
@@ -50,7 +38,6 @@ export interface DasarMenuConfig {
   placement?: DasarMenuPlacementType;
   appearance?: DasarMenuAppearanceType;
   radius?: DasarMenuRadiusType;
-  label?: string;
   size?: DasarMenuSizeType;
   items?: DasarMenuItem[];
   containerStyle?: StyleType;
@@ -63,70 +50,56 @@ export interface DasarMenuConfig {
   fluid?: boolean;
 }
 
-@Directive({ selector: '[prefix-slot]', standalone: true })
-export class DasarMenuPrefixSlot {}
-@Directive({ selector: '[suffix-slot]', standalone: true })
-export class DasarMenuSuffixSlot {}
-@Directive({ selector: '[menu-label-slot]', standalone: true })
-export class DasarMenuLabelSlot {}
+/**
+ * Directive applied to a menu trigger element (e.g. `<button [dasarMenuTrigger]="menuTpl">`),
+ * backed by `NgpMenuTrigger`.
+ */
+@Directive({
+  selector: '[dasarMenuTrigger]',
+  standalone: true,
+  hostDirectives: [
+    {
+      directive: NgpMenuTrigger,
+      inputs: [
+        'ngpMenuTrigger: dasarMenuTrigger',
+        'ngpMenuTriggerPlacement: dasarMenuTriggerPlacement',
+        'ngpMenuTriggerDisabled: dasarMenuTriggerDisabled',
+        'ngpMenuTriggerOffset: dasarMenuTriggerOffset',
+      ],
+    },
+  ],
+})
+export class DasarMenuTrigger {}
+
 @Directive({ selector: '[menu-item-template]', standalone: true })
 export class DasarMenuItemTemplate {
   constructor(public templateRef: TemplateRef<any>) {}
 }
+
 @Component({
-  imports: [CommonModule, DasarIconComponent],
+  imports: [CommonModule, DasarIconComponent, NgpMenuItem],
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dasar-menu.scss'],
   templateUrl: './dasar-menu.html',
   selector: 'dasar-menu',
   standalone: true,
+  hostDirectives: [{ directive: NgpMenu }],
 })
 export class DasarMenu {
   @ContentChild(DasarMenuItemTemplate) providedMenuItem?: DasarMenuItemTemplate;
-  @ContentChild(DasarMenuLabelSlot) providedMenuLabel?: DasarMenuLabelSlot;
-  @ContentChild(DasarMenuPrefixSlot) providedMenuPrefix?: DasarMenuPrefixSlot;
-  @ContentChild(DasarMenuSuffixSlot) providedMenuSuffix?: DasarMenuSuffixSlot;
 
   private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
   private themeService = inject(DasarThemeService, { optional: true });
-  private cdr = inject(ChangeDetectorRef);
-  private elementRef = inject(ElementRef);
-  isOpen = signal<boolean>(false);
 
-  @ViewChild('triggerEl') triggerEl?: ElementRef<HTMLElement>;
-  panelEl?: ElementRef<HTMLElement>;
-  private stopWatchingPanel: (() => void) | null = null;
-  private readonly watchPanelCleanup = inject(DestroyRef).onDestroy(() =>
-    this.stopWatchingPanel?.(),
-  );
-  @ViewChild('panelEl')
-  set panelElRef(ref: ElementRef<HTMLElement> | undefined) {
-    this.stopWatchingPanel?.();
-    this.stopWatchingPanel = null;
-    this.panelEl = ref;
-    if (ref)
-      this.stopWatchingPanel = watchPanel(ref.nativeElement, () => this.recalculatePlacement());
-  }
-
-  private _placement: DasarMenuPlacementType = resolveThemeDefault(
+  @Input() placement: DasarMenuPlacementType = resolveThemeDefault(
     'menu',
     'placement',
     'bottom-start',
     this.themeProvider,
     this.themeService,
   );
-  @Input()
-  set placement(value: DasarMenuPlacementType) {
-    this._placement = value;
-    this.currentPlacement.set(value);
-  }
-  get placement(): DasarMenuPlacementType {
-    return this._placement;
-  }
 
-  readonly currentPlacement = signal<DasarMenuPlacementType>(this._placement);
-
-  @Input() appearance = resolveThemeDefault(
+  @Input() appearance: DasarMenuAppearanceType = resolveThemeDefault(
     'menu',
     'appearance',
     'outline',
@@ -134,7 +107,7 @@ export class DasarMenu {
     this.themeService,
   );
 
-  @Input() radius = resolveThemeDefault(
+  @Input() radius: DasarMenuRadiusType = resolveThemeDefault(
     'menu',
     'radius',
     'md',
@@ -142,65 +115,79 @@ export class DasarMenu {
     this.themeService,
   );
 
-  @Input() size = resolveThemeDefault('menu', 'size', 'md', this.themeProvider, this.themeService);
-  @Input() label = resolveThemeDefault(
+  @Input() size: DasarMenuSizeType = resolveThemeDefault(
     'menu',
-    'label',
-    undefined,
+    'size',
+    'md',
     this.themeProvider,
     this.themeService,
   );
-  @Input() items = resolveThemeDefault('menu', 'items', [], this.themeProvider, this.themeService);
-  @Input() containerStyle = resolveThemeDefault(
+
+  @Input() items: DasarMenuItem[] = resolveThemeDefault(
+    'menu',
+    'items',
+    [],
+    this.themeProvider,
+    this.themeService,
+  );
+
+  @Input() containerStyle: StyleType = resolveThemeDefault(
     'menu',
     'containerStyle',
     null,
     this.themeProvider,
     this.themeService,
   );
-  @Input() panelStyle = resolveThemeDefault(
+
+  @Input() panelStyle: StyleType = resolveThemeDefault(
     'menu',
     'panelStyle',
     null,
     this.themeProvider,
     this.themeService,
   );
-  @Input() itemStyle = resolveThemeDefault(
+
+  @Input() itemStyle: StyleType = resolveThemeDefault(
     'menu',
     'itemStyle',
     null,
     this.themeProvider,
     this.themeService,
   );
-  @Input() containerClass = resolveThemeDefault(
+
+  @Input() containerClass: ClassType = resolveThemeDefault(
     'menu',
     'containerClass',
     null,
     this.themeProvider,
     this.themeService,
   );
-  @Input() panelClass = resolveThemeDefault(
+
+  @Input() panelClass: ClassType = resolveThemeDefault(
     'menu',
     'panelClass',
     null,
     this.themeProvider,
     this.themeService,
   );
-  @Input() itemClass = resolveThemeDefault(
+
+  @Input() itemClass: ClassType = resolveThemeDefault(
     'menu',
     'itemClass',
     null,
     this.themeProvider,
     this.themeService,
   );
-  @Input({ transform: booleanAttribute }) disabled = resolveThemeDefault(
+
+  @Input({ transform: booleanAttribute }) disabled: boolean = resolveThemeDefault(
     'menu',
     'disabled',
     false,
     this.themeProvider,
     this.themeService,
   );
-  @Input({ transform: booleanAttribute }) fluid = resolveThemeDefault(
+
+  @Input({ transform: booleanAttribute }) fluid: boolean = resolveThemeDefault(
     'menu',
     'fluid',
     false,
@@ -209,86 +196,21 @@ export class DasarMenu {
   );
 
   @Output() onItemClick = new EventEmitter<DasarMenuItem>();
-  @Output() onPanelOpen = new EventEmitter<void>();
-  @Output() onPanelClose = new EventEmitter<void>();
 
   @HostBinding('class.dasar-menu') readonly baseClass = true;
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      if (this.isOpen()) {
-        this.close();
-      }
-    }
-  }
-  @HostListener('document:dasar-menu:opened', ['$event'])
-  onGlobalSelectOpened(event: any): void {
-    if (event.detail !== this && this.isOpen()) {
-      this.close();
-    }
-  }
 
-  get hasMenuLabel(): boolean {
-    return !!this.providedMenuLabel;
-  }
   get hasMenuItem(): boolean {
     return !!this.providedMenuItem;
   }
+
   get itemIconSize(): number {
     return fieldIconSize(this.size);
   }
-  private viewportListener = listenViewportChanges(() => {
-    if (this.isOpen()) this.recalculatePlacement();
-  }, inject(DestroyRef));
 
-  private recalculatePlacement(): void {
-    if (!this.triggerEl?.nativeElement || !this.panelEl?.nativeElement) return;
-    const next = computeSmartPlacement(
-      this.triggerEl.nativeElement,
-      this.panelEl.nativeElement,
-      this.placement,
-    );
-    if (next !== this.currentPlacement()) {
-      this.currentPlacement.set(next);
-      this.cdr.markForCheck();
-    }
-    applyFixedPanelPosition(this.triggerEl.nativeElement, this.panelEl.nativeElement, next);
-  }
-
-  toggle(event?: Event): void {
-    if (event) event.stopPropagation();
-    if (this.disabled) return;
-    if (this.isOpen()) {
-      this.close();
-    } else {
-      this.open();
-    }
-  }
-  open(): void {
-    if (this.disabled || this.isOpen()) return;
-    this.currentPlacement.set(this.placement);
-    this.isOpen.set(true);
-    this.onPanelClose.emit();
-    const openEvent = new CustomEvent('dasar-menu:opened', { detail: this });
-    document.dispatchEvent(openEvent);
-  }
-  close(): void {
-    if (!this.isOpen()) return;
-    this.isOpen.set(false);
-    this.onPanelClose.emit();
-  }
-  onItemSelect(item: DasarMenuItem, event: Event): void {
-    event.stopPropagation();
-    if (item.disabled || item.divider) return;
+  onItemSelect(item: DasarMenuItem): void {
+    if (item.disabled || item.divider || this.disabled) return;
     this.onItemClick.emit(item);
-    this.close();
   }
 }
 
-export const DasarMenuComponent = [
-  DasarMenuLabelSlot,
-  DasarMenuItemTemplate,
-  DasarMenuPrefixSlot,
-  DasarMenuSuffixSlot,
-  DasarMenu,
-] as const;
+export const DasarMenuComponent = [DasarMenuTrigger, DasarMenuItemTemplate, DasarMenu] as const;

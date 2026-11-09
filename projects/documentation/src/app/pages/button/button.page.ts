@@ -9,6 +9,7 @@ import { ButtonRadiusExample } from './examples/radius/button-radius.example';
 import { ButtonSizesExample } from './examples/sizes/button-sizes.example';
 import { ButtonStateExample } from './examples/state/button-state.example';
 import { ButtonIconExample } from './examples/icon/button-icon.example';
+import { ButtonPressedExample } from './examples/pressed/button-pressed.example';
 
 // @ts-ignore - raw example
 import variantHtml from './examples/variant/button-variant.example.html' with { loader: 'text' };
@@ -38,6 +39,10 @@ import iconTs from './examples/icon/button-icon.example.ts' with { loader: 'text
 import stateHtml from './examples/state/button-state.example.html' with { loader: 'text' };
 // @ts-ignore - raw example
 import stateTs from './examples/state/button-state.example.ts' with { loader: 'text' };
+// @ts-ignore - raw example
+import pressedHtml from './examples/pressed/button-pressed.example.html' with { loader: 'text' };
+// @ts-ignore - raw example
+import pressedTs from './examples/pressed/button-pressed.example.ts' with { loader: 'text' };
 
 @Component({
   imports: [
@@ -50,6 +55,7 @@ import stateTs from './examples/state/button-state.example.ts' with { loader: 't
     ButtonRadiusExample,
     ButtonIconExample,
     ButtonStateExample,
+    ButtonPressedExample,
   ],
   templateUrl: './button.page.html',
   selector: 'app-button-page',
@@ -68,6 +74,8 @@ export class ButtonDocPage {
   protected iconTs = iconTs;
   protected stateHtml = stateHtml;
   protected stateTs = stateTs;
+  protected pressedHtml = pressedHtml;
+  protected pressedTs = pressedTs;
   protected readonly apiProps: DocApiProperty[] = [
     {
       name: 'variant',
@@ -77,9 +85,9 @@ export class ButtonDocPage {
     },
     {
       name: 'appearance',
-      type: "'solid' | 'subtle' | 'outline'",
+      type: "'solid' | 'subtle' | 'outline' | 'elevated' | 'pressed'",
       defaultValue: "'solid'",
-      description: 'Defines the fill and border appearance style.',
+      description: 'Defines the fill, border, elevation, or animated pressed interaction style.',
     },
     {
       name: 'size',

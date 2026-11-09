@@ -5,6 +5,7 @@ import { DocExampleComponent } from '../../components/doc-example.component';
 
 import { ToastBasicExample } from './examples/basic/toast-basic.example';
 import { ToastVariantsExample } from './examples/variants/toast-variants.example';
+import { ToastAppearanceExample } from './examples/appearance/toast-appearance.example';
 import { ToastActionExample } from './examples/action/toast-action.example';
 import { ToastLinkExample } from './examples/link/toast-link.example';
 import { ToastDurationExample } from './examples/duration/toast-duration.example';
@@ -24,6 +25,14 @@ import basicTs from './examples/basic/toast-basic.example.ts' with { loader: 'te
 import variantsHtml from './examples/variants/toast-variants.example.html' with { loader: 'text' };
 // @ts-ignore
 import variantsTs from './examples/variants/toast-variants.example.ts' with { loader: 'text' };
+// @ts-ignore
+import appearanceHtml from './examples/appearance/toast-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import appearanceTs from './examples/appearance/toast-appearance.example.ts' with {
+  loader: 'text',
+};
 // @ts-ignore
 import actionHtml from './examples/action/toast-action.example.html' with { loader: 'text' };
 // @ts-ignore
@@ -78,6 +87,7 @@ import slotsTs from './examples/slots/toast-slots.example.ts' with { loader: 'te
     DocExampleComponent,
     ToastBasicExample,
     ToastVariantsExample,
+    ToastAppearanceExample,
     ToastActionExample,
     ToastLinkExample,
     ToastDurationExample,
@@ -99,6 +109,9 @@ export class ToastDocPage {
 
   protected variantsHtml = variantsHtml;
   protected variantsTs = variantsTs;
+
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
 
   protected actionHtml = actionHtml;
   protected actionTs = actionTs;
@@ -205,6 +218,13 @@ export class ToastDocPage {
       type: "'primary' | 'secondary' | 'success' | 'warning' | 'danger'",
       defaultValue: "'secondary'",
       description: 'Colors the icon and the close button.',
+    },
+    {
+      name: 'appearance',
+      type: "'solid' | 'elevated'",
+      defaultValue: "'solid'",
+      description:
+        'Visual appearance style of the toast container with standard or elevated shadow depth.',
     },
     {
       name: 'options.aliveOnHover',

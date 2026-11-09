@@ -8,8 +8,14 @@ import {
   selectMap,
   buttonMap,
   buttonGroupMap,
+  rippleMap,
   commonMap,
   inputMap,
+  textareaMap,
+  sliderMap,
+  pinMap,
+  toggleMap,
+  tooltipMap,
   chipMap,
   cardMap,
   menuMap,
@@ -214,6 +220,14 @@ export class DasarThemeProviderComponent implements OnChanges {
         dictionary: buttonMap,
       });
     }
+    const rippleTokens = this.tokenConfig?.[currentMode]?.ripple || this.tokenConfig?.light?.ripple;
+    if (rippleTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: rippleTokens,
+        dictionary: rippleMap,
+      });
+    }
     const buttonGroupTokens =
       this.tokenConfig?.[currentMode]?.buttonGroup || this.tokenConfig?.light?.buttonGroup;
     if (buttonGroupTokens) {
@@ -226,6 +240,48 @@ export class DasarThemeProviderComponent implements OnChanges {
     const inputTokens = this.tokenConfig?.[currentMode]?.input || this.tokenConfig?.light?.input;
     if (inputTokens) {
       this.injectMappedTokens({ element: hostElement, payload: inputTokens, dictionary: inputMap });
+    }
+    const textareaTokens =
+      this.tokenConfig?.[currentMode]?.textarea || this.tokenConfig?.light?.textarea;
+    if (textareaTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: textareaTokens,
+        dictionary: textareaMap,
+      });
+    }
+    const sliderTokens = this.tokenConfig?.[currentMode]?.slider || this.tokenConfig?.light?.slider;
+    if (sliderTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: sliderTokens,
+        dictionary: sliderMap,
+      });
+    }
+    const pinTokens = this.tokenConfig?.[currentMode]?.pin || this.tokenConfig?.light?.pin;
+    if (pinTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: pinTokens,
+        dictionary: pinMap,
+      });
+    }
+    const toggleTokens = this.tokenConfig?.[currentMode]?.toggle || this.tokenConfig?.light?.toggle;
+    if (toggleTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: toggleTokens,
+        dictionary: toggleMap,
+      });
+    }
+    const tooltipTokens =
+      this.tokenConfig?.[currentMode]?.tooltip || this.tokenConfig?.light?.tooltip;
+    if (tooltipTokens) {
+      this.injectMappedTokens({
+        element: hostElement,
+        payload: tooltipTokens,
+        dictionary: tooltipMap,
+      });
     }
     const calendarTokens =
       this.tokenConfig?.[currentMode]?.calendar || this.tokenConfig?.light?.calendar;

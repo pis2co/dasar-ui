@@ -1,0 +1,23 @@
+<div style="display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 320px">
+    <p style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600">Dashboard</p>
+    <dasar-calendar
+      variant="dashboard"
+      appearance="outline"
+      full-width
+      hide-full-date
+      [value]="dashboardDate()"
+      (valueChange)="dashboardDate.set($event)"
+    ></dasar-calendar>
+  </div>
+
+  <div style="width: 320px">
+    <p style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600">Dropdown</p>
+    <dasar-calendar
+      variant="dropdown"
+      appearance="outline"
+      [value]="dropdownDate()"
+      (valueChange)="dropdownDate.set($event)"
+    ></dasar-calendar>
+  </div>
+</div>

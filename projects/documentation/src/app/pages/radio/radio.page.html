@@ -1,4 +1,5 @@
 <docs-layout
+  builtOnPrimitive
   title="Radio"
   description="A radio button for picking one option out of several. Standalone radios sharing a name and ngModel behave as one group, including native arrow-key navigation. Dasar-radio-group manages the selection for you, with optional value-field matching for objects."
   [apiData]="apiProps"
@@ -11,6 +12,17 @@
     title="Basic"
   >
     <app-radio-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+    description="Supports outline (default), filled, and elevated appearance variants."
+  >
+    <app-radio-appearance-example />
   </doc-example-component>
 
   <doc-example-component
@@ -81,6 +93,17 @@
     title="Radio Group"
   >
     <app-radio-group-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupAppearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupAppearanceTs },
+    ]"
+    title="Group Appearance Passthrough"
+    description="The appearance input set on dasar-radio-group passes down to all child radios unless overridden."
+  >
+    <app-radio-group-appearance-example />
   </doc-example-component>
 
   <doc-example-component

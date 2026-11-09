@@ -38,7 +38,7 @@
 }
 
 .dasar-textarea-container {
-  color: var(--dasar-number-input-color, var(--dasar-theme-text-primary-color));
+  color: var(--dasar-textarea-color, var(--dasar-theme-text-primary-color));
   background-color: var(--dasar-textarea-background, var(--dasar-theme-bg-hover-color));
   padding: var(--dasar-textarea-padding, var(--dasar-space-base));
   font-family: inherit;
@@ -81,6 +81,29 @@
       border-color: var(--dasar-textarea-filled-focus-border, var(--dasar-theme-primary-color));
       box-shadow: 0 0 0 3px
         var(--dasar-textarea-filled-focus-ring, var(--dasar-theme-primary-surface-color));
+    }
+  }
+
+  &.appearance-elevated {
+    border: 1px solid var(--dasar-textarea-elevated-border, var(--dasar-theme-border-strong-color));
+    background-color: var(
+      --dasar-textarea-elevated-background,
+      var(--dasar-theme-bg-surface-color)
+    );
+    box-shadow: var(
+      --dasar-textarea-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+
+    &:hover:not(.disabled) {
+      border-color: var(--dasar-textarea-elevated-hover-border, var(--dasar-theme-primary-color));
+    }
+
+    &:focus-within {
+      border-color: var(--dasar-textarea-elevated-focus-border, var(--dasar-theme-primary-color));
+      box-shadow: 0 0 0 3px
+        var(--dasar-textarea-elevated-focus-ring, var(--dasar-theme-primary-surface-color));
     }
   }
 

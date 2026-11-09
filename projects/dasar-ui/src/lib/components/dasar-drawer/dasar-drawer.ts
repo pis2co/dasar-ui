@@ -31,9 +31,11 @@ import { resolveThemeDefault } from '../../utils/common';
 
 export type DasarDrawerPlacement = 'top' | 'right' | 'bottom' | 'left';
 export type DasarDrawerLength = string | number;
+export type DasarDrawerAppearanceType = 'outline' | 'elevated';
 
 export interface DasarDrawerConfig {
   placement?: DasarDrawerPlacement;
+  appearance?: DasarDrawerAppearanceType;
   label?: string;
   closable?: boolean;
   resizable?: boolean;
@@ -122,6 +124,13 @@ export class DasarDrawer implements ControlValueAccessor, OnDestroy {
     'drawer',
     'placement',
     'right' as DasarDrawerPlacement,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() appearance: DasarDrawerAppearanceType = resolveThemeDefault(
+    'drawer',
+    'appearance',
+    'outline',
     this.themeProvider,
     this.themeService,
   );

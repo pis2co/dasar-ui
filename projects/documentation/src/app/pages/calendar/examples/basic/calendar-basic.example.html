@@ -4,8 +4,23 @@
   </p>
 
   <dasar-calendar
-    [value]="selectedDate()"
     (valueChange)="selectedDate.set($event)"
+    [value]="selectedDate()"
+    appearance="outline"
+    full-width
+  ></dasar-calendar>
+
+  <dasar-calendar
+    (valueChange)="selectedDate.set($event)"
+    [value]="selectedDate()"
+    appearance="elevated"
+    full-width
+  ></dasar-calendar>
+
+  <dasar-calendar
+    (valueChange)="selectedDate.set($event)"
+    [value]="selectedDate()"
+    appearance="borderless"
     full-width
   ></dasar-calendar>
 </div>

@@ -3,10 +3,40 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { vi } from 'vitest';
+import { NgpSwitch, NgpSwitchThumb } from 'ng-primitives/switch';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarIcon } from '../dasar-icon/dasar-icon';
 import { switchMap } from '../../services/theme.service';
-import { DasarSwitch, DasarSwitchComponent, DasarSwitchSizeType } from './dasar-switch';
+import {
+  DasarSwitch,
+  DasarSwitchComponent,
+  DasarSwitchSizeType,
+  DasarSwitchAppearanceType,
+} from './dasar-switch';
+
+@Component({
+  selector: 'test-switch-appearance-host',
+  standalone: true,
+  imports: [DasarSwitchComponent],
+  template: `
+    @if (appearance() !== undefined) {
+      <dasar-switch [appearance]="appearance()!" />
+    } @else {
+      <dasar-switch />
+    }
+  `,
+})
+class SwitchAppearanceHost {
+  appearance = signal<DasarSwitchAppearanceType | undefined>(undefined);
+}
+
+@Component({
+  selector: 'test-switch-appearance-theme-host',
+  standalone: true,
+  imports: [DasarSwitchComponent],
+  template: `<dasar-switch label="Themed" />`,
+})
+class SwitchAppearanceThemeHost {}
 
 @Component({
   selector: 'test-switch-host',
@@ -144,6 +174,36 @@ describe('DasarSwitch', () => {
     expect(trackOf(fixture).classList).not.toContain('checked');
   });
 
+  it('hosts the NgpSwitch directive on the button and NgpSwitchThumb on the thumb', () => {
+    const ngpSwitchDebugEl = fixture.debugElement.query(By.directive(NgpSwitch));
+    expect(ngpSwitchDebugEl).not.toBeNull();
+    expect(ngpSwitchDebugEl.nativeElement).toBe(trackOf(fixture));
+
+    const ngpThumbDebugEl = fixture.debugElement.query(By.directive(NgpSwitchThumb));
+    expect(ngpThumbDebugEl).not.toBeNull();
+    expect(ngpThumbDebugEl.nativeElement.classList).toContain('dasar-switch-thumb');
+  });
+
+  it('reflects checked and disabled state into NgpSwitch directive and attributes', async () => {
+    const ngpSwitchDebugEl = fixture.debugElement.query(By.directive(NgpSwitch));
+    const ngpSwitch = ngpSwitchDebugEl.injector.get(NgpSwitch);
+    expect(ngpSwitch.checked()).toBe(false);
+    expect(trackOf(fixture).getAttribute('aria-checked')).toBe('false');
+
+    fixture.componentInstance.value.set(true);
+    await fixture.whenStable();
+
+    expect(ngpSwitch.checked()).toBe(true);
+    expect(trackOf(fixture).getAttribute('aria-checked')).toBe('true');
+
+    fixture.componentInstance.disabled.set(true);
+    await fixture.whenStable();
+
+    expect(ngpSwitch.disabled()).toBe(true);
+    expect((trackOf(fixture) as HTMLButtonElement).disabled).toBe(true);
+    expect(trackOf(fixture).getAttribute('aria-disabled')).toBe('true');
+  });
+
   it('toggles on click and emits the new value', async () => {
     trackOf(fixture).click();
     await fixture.whenStable();
@@ -220,15 +280,22 @@ describe('DasarSwitch', () => {
     expect(switchOf(fixture).hint).toBe('');
   });
 
-  it('toggles on Space and Enter', async () => {
+  it('toggles on Space and Enter exactly once per keydown', async () => {
+    fixture.componentInstance.updates.set([]);
     const track = trackOf(fixture);
-    track.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+    track.dispatchEvent(
+      new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }),
+    );
     await fixture.whenStable();
     expect(fixture.componentInstance.value()).toBe(true);
+    expect(fixture.componentInstance.updates()).toEqual([true]);
 
-    track.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    track.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }),
+    );
     await fixture.whenStable();
     expect(fixture.componentInstance.value()).toBe(false);
+    expect(fixture.componentInstance.updates()).toEqual([true, false]);
   });
 
   it('applies the size class', async () => {
@@ -421,6 +488,7 @@ describe('switchMap tokens', () => {
   });
 
   it('maps switch tokens to css variables', () => {
+    expect(switchMap['appearance']).toBe('--dasar-switch-appearance');
     expect(switchMap['gap']).toBe('--dasar-switch-gap');
     expect(switchMap['radius']).toBe('--dasar-switch-radius');
     expect(switchMap['thumbRadius']).toBe('--dasar-switch-thumb-radius');
@@ -446,5 +514,91 @@ describe('switchMap tokens', () => {
     expect(switchMap['hintColor']).toBe('--dasar-switch-hint-color');
     expect(switchMap['hintFontSize']).toBe('--dasar-switch-hint-font-size');
     expect(switchMap['hintErrorColor']).toBe('--dasar-switch-hint-error-color');
+  });
+});
+
+describe('DasarSwitch appearance', () => {
+  it("defaults to 'outline' appearance and applies appearance-outline class", async () => {
+    await TestBed.configureTestingModule({
+      imports: [SwitchAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(SwitchAppearanceHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const track = fixture.nativeElement.querySelector('.dasar-switch-track') as HTMLElement;
+    expect(track).toBeTruthy();
+    expect(track.classList.contains('appearance-outline')).toBe(true);
+    expect(track.classList.contains('appearance-elevated')).toBe(false);
+    expect(track.classList.contains('appearance-filled')).toBe(false);
+
+    const sw = fixture.debugElement.query(By.directive(DasarSwitch))
+      .componentInstance as DasarSwitch;
+    expect(sw.appearance).toBe('outline');
+  });
+
+  it("applies 'appearance-elevated' class when appearance is set to 'elevated'", async () => {
+    await TestBed.configureTestingModule({
+      imports: [SwitchAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(SwitchAppearanceHost);
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const track = fixture.nativeElement.querySelector('.dasar-switch-track') as HTMLElement;
+    expect(track).toBeTruthy();
+    expect(track.classList.contains('appearance-elevated')).toBe(true);
+    expect(track.classList.contains('appearance-outline')).toBe(false);
+
+    const sw = fixture.debugElement.query(By.directive(DasarSwitch))
+      .componentInstance as DasarSwitch;
+    expect(sw.appearance).toBe('elevated');
+  });
+
+  it("applies 'appearance-filled' class when appearance is set to 'filled'", async () => {
+    await TestBed.configureTestingModule({
+      imports: [SwitchAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(SwitchAppearanceHost);
+    fixture.componentInstance.appearance.set('filled');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const track = fixture.nativeElement.querySelector('.dasar-switch-track') as HTMLElement;
+    expect(track).toBeTruthy();
+    expect(track.classList.contains('appearance-filled')).toBe(true);
+    expect(track.classList.contains('appearance-outline')).toBe(false);
+
+    const sw = fixture.debugElement.query(By.directive(DasarSwitch))
+      .componentInstance as DasarSwitch;
+    expect(sw.appearance).toBe('filled');
+  });
+
+  it('respects theme-provided default appearance from DASAR_THEME_PROVIDER', async () => {
+    const customThemeConfig = {
+      componentConfig: {
+        switch: {
+          appearance: 'elevated' as const,
+        },
+      },
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [SwitchAppearanceThemeHost],
+      providers: [{ provide: DASAR_THEME_PROVIDER, useValue: customThemeConfig }],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(SwitchAppearanceThemeHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const track = fixture.nativeElement.querySelector('.dasar-switch-track') as HTMLElement;
+    expect(track).toBeTruthy();
+    expect(track.classList.contains('appearance-elevated')).toBe(true);
+
+    const sw = fixture.debugElement.query(By.directive(DasarSwitch))
+      .componentInstance as DasarSwitch;
+    expect(sw.appearance).toBe('elevated');
   });
 });

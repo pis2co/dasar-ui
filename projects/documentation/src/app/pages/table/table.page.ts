@@ -17,6 +17,7 @@ import { TableNestedExample } from './examples/nested/table-nested.example';
 import { TableEmptyExample } from './examples/empty/table-empty.example';
 import { TableRadiusExample } from './examples/radius/table-radius.example';
 import { TableRadiusThemeExample } from './examples/radius-theme/table-radius-theme.example';
+import { TableAppearanceExample } from './examples/appearance/table-appearance.example';
 
 // @ts-ignore
 import profileHtml from './examples/cell-profile/table-cell-profile.example.html' with {
@@ -106,6 +107,14 @@ import radiusThemeHtml from './examples/radius-theme/table-radius-theme.example.
 import radiusThemeTs from './examples/radius-theme/table-radius-theme.example.ts' with {
   loader: 'text',
 };
+// @ts-ignore
+import appearanceHtml from './examples/appearance/table-appearance.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import appearanceTs from './examples/appearance/table-appearance.example.ts' with {
+  loader: 'text',
+};
 
 @Component({
   imports: [
@@ -126,6 +135,7 @@ import radiusThemeTs from './examples/radius-theme/table-radius-theme.example.ts
     TableCustomBodyExample,
     TableRadiusExample,
     TableRadiusThemeExample,
+    TableAppearanceExample,
   ],
   templateUrl: './table.page.html',
   selector: 'app-table-page',
@@ -160,6 +170,8 @@ export class TableDocPage {
   protected radiusTs = radiusTs;
   protected radiusThemeHtml = radiusThemeHtml;
   protected radiusThemeTs = radiusThemeTs;
+  protected appearanceHtml = appearanceHtml;
+  protected appearanceTs = appearanceTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {

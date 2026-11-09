@@ -15,16 +15,22 @@ import {
 } from '@angular/core';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
-import { DasarRadio, DasarRadioSizeType } from '../dasar-radio/dasar-radio';
+import {
+  DasarRadio,
+  DasarRadioAppearanceType,
+  DasarRadioSizeType,
+} from '../dasar-radio/dasar-radio';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DasarThemeService } from '../../services/theme.service';
 import { ClassType, StyleType } from '../../models/type.model';
 import { CommonModule } from '@angular/common';
+import { NgpRadioGroup } from 'ng-primitives/radio';
 
 export type DasarRadioGroupDirectionType = 'horizontal' | 'vertical';
 
 export interface DasarRadioGroupConfig {
   direction?: DasarRadioGroupDirectionType;
+  appearance?: DasarRadioAppearanceType;
   size?: DasarRadioSizeType | null;
   disabled?: boolean;
   error?: boolean;
@@ -55,6 +61,12 @@ const keyOf = (value: any, valueField: string | null): any => {
       multi: true,
     },
   ],
+  hostDirectives: [
+    {
+      directive: NgpRadioGroup,
+      inputs: ['ngpRadioGroupDisabled: disabled', 'ngpRadioGroupOrientation: direction'],
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dasar-radio-group.scss'],
   templateUrl: './dasar-radio-group.html',
@@ -65,6 +77,7 @@ const keyOf = (value: any, valueField: string | null): any => {
 export class DasarRadioGroup implements ControlValueAccessor {
   private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
   private themeService = inject(DasarThemeService, { optional: true });
+  private ngpRadioGroup = inject(NgpRadioGroup, { self: true });
   private radios = contentChildren(DasarRadio, { descendants: true });
   private ownDisabled = signal(
     resolveThemeDefault('radioGroup', 'disabled', false, this.themeProvider, this.themeService),
@@ -88,13 +101,36 @@ export class DasarRadioGroup implements ControlValueAccessor {
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
 
+  compareWith = (a: any, b: any): boolean => {
+    return keyOf(a, this.valueField) === keyOf(b, this.valueField);
+  };
+
   constructor() {
+    // NgpRadioGroup's `compareWith` is a readonly input() with no public setter, and
+    // nothing in a consumer's template binds it (it's derived internally from valueField,
+    // not meant to be set by consumers) — so hostDirectives input aliasing never fires for
+    // it. Driving it requires reaching into the signal node directly; this must be redone
+    // if ng-primitives changes its internal signal representation.
+    const compareWithInput = this.ngpRadioGroup.compareWith as any;
+    const sym = Object.getOwnPropertySymbols(compareWithInput).find((s) =>
+      s.toString().includes('SIGNAL'),
+    );
+    if (sym && compareWithInput[sym]) {
+      compareWithInput[sym].value = (a: any, b: any) => this.compareWith(a, b);
+    }
+
+    // Listen to NgpRadioGroup value changes (from click or keyboard / roving focus)
+    this.ngpRadioGroup.valueChange.subscribe((val) => {
+      this.handleNgpGroupValueChange(val);
+    });
+
     effect(() => {
       const children = this.radios();
       const current = this.selected();
       const disabled = this.ownDisabled();
       const error = this.ownError();
       const size = this.ownSize();
+      const appearance = this.appearance;
       const valueField = this.valueField;
       const name = this.ownName() ?? this.groupName;
       for (const child of children) {
@@ -103,7 +139,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
           current !== undefined &&
           keyOf(current, valueField) === keyOf(child.checkedValue, valueField);
         child.applyGroupState(
-          { checked, disabled: disabled || child.disabled, error, size, name },
+          { checked, disabled: disabled || child.disabled, error, size, appearance, name },
           this.selectChild,
         );
       }
@@ -114,6 +150,13 @@ export class DasarRadioGroup implements ControlValueAccessor {
     'radioGroup',
     'direction',
     'vertical' as DasarRadioGroupDirectionType,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() appearance = resolveThemeDefault(
+    'radioGroup',
+    'appearance',
+    'outline' as DasarRadioAppearanceType,
     this.themeProvider,
     this.themeService,
   );
@@ -162,6 +205,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
   @Input()
   set value(val: any) {
     this.selected.set(val ?? null);
+    (this.ngpRadioGroup as any).state?.setValue(val ?? null, { emit: false });
   }
   get value(): any {
     return this.selected();
@@ -208,11 +252,6 @@ export class DasarRadioGroup implements ControlValueAccessor {
     return classes.join(' ');
   }
 
-  @HostBinding('attr.role')
-  get role(): string {
-    return 'radiogroup';
-  }
-
   @HostBinding('attr.aria-describedby')
   get describedBy(): string | null {
     return this.hint ? this.hintId : null;
@@ -254,21 +293,25 @@ export class DasarRadioGroup implements ControlValueAccessor {
     return baseClass;
   }
 
-  private selectChild = (radio: DasarRadio) => {
+  private handleNgpGroupValueChange = (next: any) => {
     const field = this.valueField;
-    const target = keyOf(radio.checkedValue, field);
+    const target = keyOf(next, field);
     const current = this.selected();
     if (current !== null && current !== undefined && keyOf(current, field) === target) return;
     this.onTouched();
-    const next = radio.checkedValue;
     this.selected.set(next);
     this.onChange(next);
     this.valueChange.emit(next);
     this.onUpdate.emit(next);
   };
 
+  private selectChild = (radio: DasarRadio) => {
+    this.handleNgpGroupValueChange(radio.checkedValue);
+  };
+
   writeValue(value: any): void {
     this.selected.set(value ?? null);
+    (this.ngpRadioGroup as any).state?.setValue(value ?? null, { emit: false });
   }
 
   registerOnChange(fn: any): void {
@@ -281,6 +324,7 @@ export class DasarRadioGroup implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.ownDisabled.set(isDisabled);
+    (this.ngpRadioGroup as any).state?.setDisabled(isDisabled);
   }
 
   ngOnDestroy() {

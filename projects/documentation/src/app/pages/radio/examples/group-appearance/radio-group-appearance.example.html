@@ -1,0 +1,52 @@
+<div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+  <div>
+    <p
+      style="
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dasar-theme-text-secondary-color);
+      "
+    >
+      Group with appearance="outline" (Default)
+    </p>
+    <dasar-radio-group [appearance]="'outline'" [value]="'a'">
+      <dasar-radio value="a">Option A</dasar-radio>
+      <dasar-radio value="b">Option B</dasar-radio>
+    </dasar-radio-group>
+  </div>
+
+  <div>
+    <p
+      style="
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dasar-theme-text-secondary-color);
+      "
+    >
+      Group with appearance="filled"
+    </p>
+    <dasar-radio-group [appearance]="'filled'" [value]="'a'">
+      <dasar-radio value="a">Option A</dasar-radio>
+      <dasar-radio value="b">Option B</dasar-radio>
+    </dasar-radio-group>
+  </div>
+
+  <div>
+    <p
+      style="
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dasar-theme-text-secondary-color);
+      "
+    >
+      Group with appearance="elevated" (passes down to children)
+    </p>
+    <dasar-radio-group [appearance]="'elevated'" [value]="'a'">
+      <dasar-radio value="a">Option A</dasar-radio>
+      <dasar-radio value="b">Option B</dasar-radio>
+    </dasar-radio-group>
+  </div>
+</div>

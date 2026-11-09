@@ -2,13 +2,20 @@ import { ThemingComponentConfigDocPage } from '../pages/theming/theming-componen
 import { ThemingCssVariablesDocPage } from '../pages/theming/theming-css-variables.page';
 import { GettingStartedDocPage } from '../pages/getting-started/getting-started.page';
 import { IntroductionDocPage } from '../pages/introduction/introduction.page';
+import { ChangelogDocPage } from '../pages/changelog/changelog.page';
 import { InstallationDocPage } from '../pages/installation/installation.page';
 import { NumberInputDocPage } from '../pages/number-input/number-input.page';
+import { TextareaDocPage } from '../pages/textarea/textarea.page';
+import { PinDocPage } from '../pages/pin/pin.page';
+import { SliderDocPage } from '../pages/slider/slider.page';
+import { ToggleDocPage } from '../pages/toggle/toggle.page';
+import { TooltipDocPage } from '../pages/tooltip/tooltip.page';
 import { ThemingTokensDocPage } from '../pages/theming/theming-tokens.page';
 import { DatepickerDocPage } from '../pages/datepicker/datepicker.page';
 import { CalendarDocPage } from '../pages/calendar/calendar.page';
 import { ThemingDocPage } from '../pages/theming/theming.page';
 import { ButtonDocPage } from '../pages/button/button.page';
+import { RippleDocPage } from '../pages/ripple/ripple.page';
 import { ButtonGroupDocPage } from '../pages/button-group/button-group.page';
 import { SelectDocPage } from '../pages/select/select.page';
 import { InputDocPage } from '../pages/input/input.page';
@@ -56,6 +63,11 @@ export const routes: Routes = [
     title: 'Getting Started | Dasar UI',
   },
   {
+    path: 'changelog',
+    component: ChangelogDocPage,
+    title: 'Changelog | Dasar UI',
+  },
+  {
     path: 'theming',
     component: ThemingDocPage,
     title: 'Theming | Dasar UI',
@@ -79,6 +91,11 @@ export const routes: Routes = [
     path: 'components/button',
     component: ButtonDocPage,
     title: 'Button Docs | Dasar UI',
+  },
+  {
+    path: 'components/ripple',
+    component: RippleDocPage,
+    title: 'Ripple Docs | Dasar UI',
   },
   {
     path: 'components/button-group',
@@ -204,6 +221,31 @@ export const routes: Routes = [
     path: 'components/number-input',
     component: NumberInputDocPage,
     title: 'Number Input Docs | Dasar UI',
+  },
+  {
+    path: 'components/textarea',
+    component: TextareaDocPage,
+    title: 'Textarea Docs | Dasar UI',
+  },
+  {
+    path: 'components/pin',
+    component: PinDocPage,
+    title: 'Pin Docs | Dasar UI',
+  },
+  {
+    path: 'components/slider',
+    component: SliderDocPage,
+    title: 'Slider Docs | Dasar UI',
+  },
+  {
+    path: 'components/toggle',
+    component: ToggleDocPage,
+    title: 'Toggle Docs | Dasar UI',
+  },
+  {
+    path: 'components/tooltip',
+    component: TooltipDocPage,
+    title: 'Tooltip Docs | Dasar UI',
   },
   {
     path: 'components/menu',

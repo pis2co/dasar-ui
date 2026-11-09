@@ -17,21 +17,25 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DasarThemeService } from '../../services/theme.service';
 import { isEqualValue } from '../dasar-checkbox/dasar-checkbox';
 import { CommonModule } from '@angular/common';
+import { NgpRadioIndicator, NgpRadioItem } from 'ng-primitives/radio';
 
 let nextDasarRadioId = 0;
 
 export type DasarRadioSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarRadioAppearanceType = 'outline' | 'filled' | 'elevated';
 
 export interface DasarRadioGroupState {
   checked: boolean;
   disabled: boolean;
   error?: boolean;
   size?: DasarRadioSizeType | null;
+  appearance?: DasarRadioAppearanceType;
   name: string;
 }
 
 export interface DasarRadioConfig {
   size?: DasarRadioSizeType;
+  appearance?: DasarRadioAppearanceType;
   disabled?: boolean;
   error?: boolean;
   hint?: string;
@@ -58,7 +62,7 @@ export interface DasarRadioConfig {
   styleUrls: ['./dasar-radio.scss'],
   templateUrl: './dasar-radio.html',
   selector: 'dasar-radio',
-  imports: [CommonModule],
+  imports: [CommonModule, NgpRadioItem, NgpRadioIndicator],
   standalone: true,
 })
 export class DasarRadio implements ControlValueAccessor {
@@ -73,6 +77,14 @@ export class DasarRadio implements ControlValueAccessor {
 
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
+
+  @Input() appearance: DasarRadioAppearanceType = resolveThemeDefault(
+    'radio',
+    'appearance',
+    'outline',
+    this.themeProvider,
+    this.themeService,
+  );
 
   @Input() size = resolveThemeDefault(
     'radio',
@@ -180,6 +192,10 @@ export class DasarRadio implements ControlValueAccessor {
     return this.groupState()?.size ?? this.size;
   }
 
+  get currentAppearance(): DasarRadioAppearanceType {
+    return this.groupState()?.appearance ?? this.appearance;
+  }
+
   get currentName(): string | null {
     return this.groupState()?.name ?? this.name;
   }
@@ -190,6 +206,10 @@ export class DasarRadio implements ControlValueAccessor {
 
   get hasError(): boolean {
     return this.error || (this.groupState()?.error ?? false);
+  }
+
+  get isGrouped(): boolean {
+    return this.groupState() !== null;
   }
 
   get isChecked(): boolean {
@@ -218,6 +238,7 @@ export class DasarRadio implements ControlValueAccessor {
     const overrideClass = parseClassesToArray(this.circleClass);
     const baseClass = {
       'dasar-radio-circle': true,
+      [`appearance-${this.currentAppearance}`]: true,
       checked: this.isChecked,
     };
     if (overrideClass && overrideClass?.length > 0) {

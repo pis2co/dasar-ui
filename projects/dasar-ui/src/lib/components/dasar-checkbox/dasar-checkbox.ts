@@ -9,6 +9,7 @@ import {
   Input,
   Output,
   signal,
+  viewChild,
 } from '@angular/core';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
@@ -17,18 +18,22 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { CommonModule } from '@angular/common';
+import { NgpCheckbox } from 'ng-primitives/checkbox';
 
 export type DasarCheckboxSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarCheckboxAppearanceType = 'outline' | 'filled' | 'elevated';
 
 export interface DasarCheckboxGroupState {
   checked: boolean;
   disabled: boolean;
   error?: boolean;
   size?: DasarCheckboxSizeType | null;
+  appearance?: DasarCheckboxAppearanceType;
 }
 
 export interface DasarCheckboxConfig {
   size?: DasarCheckboxSizeType;
+  appearance?: DasarCheckboxAppearanceType;
   disabled?: boolean;
   error?: boolean;
   hint?: string;
@@ -77,7 +82,7 @@ export const isEqualValue = (first: any, second: any): boolean => {
   styleUrls: ['./dasar-checkbox.scss'],
   templateUrl: './dasar-checkbox.html',
   selector: 'dasar-checkbox',
-  imports: [CommonModule, DasarIconComponent],
+  imports: [CommonModule, DasarIconComponent, NgpCheckbox],
   standalone: true,
 })
 export class DasarCheckbox implements ControlValueAccessor {
@@ -89,9 +94,18 @@ export class DasarCheckbox implements ControlValueAccessor {
     resolveThemeDefault('checkbox', 'disabled', false, this.themeProvider, this.themeService),
   );
   private groupState = signal<DasarCheckboxGroupState | null>(null);
+  private ngpCheckbox = viewChild(NgpCheckbox);
 
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
+
+  @Input() appearance: DasarCheckboxAppearanceType = resolveThemeDefault(
+    'checkbox',
+    'appearance',
+    'outline',
+    this.themeProvider,
+    this.themeService,
+  );
 
   @Input() size = resolveThemeDefault(
     'checkbox',
@@ -230,6 +244,10 @@ export class DasarCheckbox implements ControlValueAccessor {
     return this.groupState()?.size ?? this.size;
   }
 
+  get currentAppearance(): DasarCheckboxAppearanceType {
+    return this.groupState()?.appearance ?? this.appearance;
+  }
+
   get hasError(): boolean {
     return this.error || (this.groupState()?.error ?? false);
   }
@@ -264,6 +282,7 @@ export class DasarCheckbox implements ControlValueAccessor {
     const overrideClass = parseClassesToArray(this.boxClass);
     const baseClass = {
       'dasar-checkbox-box': true,
+      [`appearance-${this.currentAppearance}`]: true,
       checked: this.isChecked,
       indeterminate: this.indeterminate,
     };
@@ -314,15 +333,19 @@ export class DasarCheckbox implements ControlValueAccessor {
     this.groupToggleFn = toggle;
   }
 
-  toggle(event?: Event) {
+  onIndeterminateChange(value: boolean) {
+    if (this.indeterminate && !value) {
+      this.ngpCheckbox()?.setIndeterminate(true);
+    }
+  }
+
+  toggle(event?: any) {
     if (this.isDisabled) {
-      if (event) (event.target as HTMLInputElement).checked = this.isChecked;
       return;
     }
     this.onTouched();
     if (this.groupToggleFn) {
       this.groupToggleFn(this);
-      if (event) (event.target as HTMLInputElement).checked = this.isChecked;
       return;
     }
     const next = this.isChecked ? this.uncheckedValue : this.checkedValue;
@@ -330,7 +353,6 @@ export class DasarCheckbox implements ControlValueAccessor {
     this.onChange(next);
     this.valueChange.emit(next);
     this.onUpdate.emit(next);
-    if (event) (event.target as HTMLInputElement).checked = this.isChecked;
   }
 
   writeValue(value: any): void {

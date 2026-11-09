@@ -1,6 +1,7 @@
 <docs-layout
+  builtOnPrimitive
   title="Button"
-  description="A clickable action button with color variants, solid, subtle and outline appearances, five sizes, configurable radius, icon support, and disabled, full-width and fluid layouts."
+  description="A clickable action button with color variants, solid, subtle, outline, elevated and pressed appearances, five sizes, configurable radius, icon support, and disabled, full-width and fluid layouts."
   [apiData]="apiProps"
 >
   <doc-example-component
@@ -21,6 +22,16 @@
     title="Appearance"
   >
     <app-button-appearance-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: pressedHtml },
+      { label: 'TypeScript', lang: 'typescript', value: pressedTs },
+    ]"
+    title="Pressed Appearance"
+  >
+    <app-button-pressed-example />
   </doc-example-component>
 
   <doc-example-component

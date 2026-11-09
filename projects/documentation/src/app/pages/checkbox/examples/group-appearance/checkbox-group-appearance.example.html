@@ -1,0 +1,52 @@
+<div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
+  <div>
+    <p
+      style="
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dasar-theme-text-secondary-color);
+      "
+    >
+      Group with appearance="outline" (Default)
+    </p>
+    <dasar-checkbox-group [appearance]="'outline'" [value]="['a']">
+      <dasar-checkbox checked-value="a">Option A</dasar-checkbox>
+      <dasar-checkbox checked-value="b">Option B</dasar-checkbox>
+    </dasar-checkbox-group>
+  </div>
+
+  <div>
+    <p
+      style="
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dasar-theme-text-secondary-color);
+      "
+    >
+      Group with appearance="filled"
+    </p>
+    <dasar-checkbox-group [appearance]="'filled'" [value]="['a']">
+      <dasar-checkbox checked-value="a">Option A</dasar-checkbox>
+      <dasar-checkbox checked-value="b">Option B</dasar-checkbox>
+    </dasar-checkbox-group>
+  </div>
+
+  <div>
+    <p
+      style="
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dasar-theme-text-secondary-color);
+      "
+    >
+      Group with appearance="elevated" (passes down to children)
+    </p>
+    <dasar-checkbox-group [appearance]="'elevated'" [value]="['a']">
+      <dasar-checkbox checked-value="a">Option A</dasar-checkbox>
+      <dasar-checkbox checked-value="b">Option B</dasar-checkbox>
+    </dasar-checkbox-group>
+  </div>
+</div>

@@ -90,7 +90,7 @@ export class InputDocPage {
     },
     {
       name: 'appearance',
-      type: "'outline' | 'filled'",
+      type: "'outline' | 'filled' | 'elevated'",
       defaultValue: "'outline'",
       description: 'Visual style of the input container.',
     },

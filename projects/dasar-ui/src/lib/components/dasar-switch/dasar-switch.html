@@ -1,16 +1,17 @@
 <label [ngClass]="containerClasses" [ngStyle]="containerStyle">
   <button
     type="button"
-    role="switch"
+    ngpSwitch
     [ngClass]="trackClasses"
     [ngStyle]="trackStyle"
-    [attr.aria-checked]="isChecked"
+    [ngpSwitchChecked]="isChecked"
+    [ngpSwitchDisabled]="isDisabled"
+    (ngpSwitchCheckedChange)="toggle()"
+    (keydown)="onKeydown($event)"
     [attr.aria-invalid]="error || null"
     [attr.aria-describedby]="hint ? hintId : null"
     [attr.aria-label]="label || null"
     [disabled]="isDisabled"
-    (click)="toggle($event)"
-    (keydown)="onKeydown($event)"
   >
     <span class="dasar-switch-content">
       <span class="dasar-switch-content-checked" [class.hidden]="!providedChecked || !isChecked">
@@ -20,7 +21,7 @@
         <ng-content select="[unchecked-slot]"></ng-content>
       </span>
     </span>
-    <span class="dasar-switch-thumb">
+    <span class="dasar-switch-thumb" ngpSwitchThumb>
       <span class="dasar-switch-thumb-icon" [class.hidden]="!providedCheckedIcon || !isChecked">
         <ng-content select="[checked-icon-slot]"></ng-content>
       </span>

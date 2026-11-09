@@ -21,11 +21,14 @@ import { DasarThemeService } from '../../services/theme.service';
 import { isEqualValue } from '../dasar-checkbox/dasar-checkbox';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { CommonModule } from '@angular/common';
+import { NgpSwitch, NgpSwitchThumb } from 'ng-primitives/switch';
 
 export type DasarSwitchSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
+export type DasarSwitchAppearanceType = 'outline' | 'filled' | 'elevated';
 
 export interface DasarSwitchConfig {
   size?: DasarSwitchSizeType;
+  appearance?: DasarSwitchAppearanceType;
   disabled?: boolean;
   error?: boolean;
   checkedValue?: any;
@@ -72,7 +75,7 @@ let nextDasarSwitchId = 0;
   styleUrls: ['./dasar-switch.scss'],
   templateUrl: './dasar-switch.html',
   selector: 'dasar-switch',
-  imports: [CommonModule, DasarIconComponent],
+  imports: [CommonModule, DasarIconComponent, NgpSwitch, NgpSwitchThumb],
   standalone: true,
 })
 export class DasarSwitch implements ControlValueAccessor, OnInit {
@@ -92,6 +95,14 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
 
   onTouched: () => void = () => {};
   onChange: (value: any) => void = () => {};
+
+  @Input() appearance: DasarSwitchAppearanceType = resolveThemeDefault(
+    'switch',
+    'appearance',
+    'outline',
+    this.themeProvider,
+    this.themeService,
+  );
 
   @Input() size = resolveThemeDefault(
     'switch',
@@ -273,6 +284,7 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
     const overrideClass = parseClassesToArray(this.trackClass);
     const baseClass = {
       'dasar-switch-track': true,
+      [`appearance-${this.appearance}`]: true,
       checked: this.isChecked,
     };
     if (overrideClass && overrideClass?.length > 0) {
@@ -290,7 +302,7 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
     }
   }
 
-  toggle(event?: Event): void {
+  toggle(event?: any): void {
     if (this.isDisabled) return;
     this.onTouched();
     const next = this.isChecked ? this.uncheckedValue : this.checkedValue;
@@ -301,6 +313,9 @@ export class DasarSwitch implements ControlValueAccessor, OnInit {
   }
 
   onKeydown(event: KeyboardEvent): void {
+    // In a browser, native <button> triggers a synthetic click on Space (keyup) / Enter (keydown).
+    // In test environments (and to ensure consistent keyboard activation without double-toggling),
+    // handle Enter and Space keydown if not already dispatched as a click.
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
       this.toggle();

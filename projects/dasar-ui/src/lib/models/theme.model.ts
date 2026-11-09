@@ -5,18 +5,29 @@ import { DasarButtonGroupConfig } from '../components/dasar-button-group/dasar-b
 import { DasarButtonConfig } from '../components/dasar-button/dasar-button';
 import { DasarSelectConfig } from '../components/dasar-select/dasar-select';
 import { DasarInputConfig } from '../components/dasar-input/dasar-input';
+import { DasarTextareaConfig } from '../components/dasar-textarea/dasar-textarea';
+import { DasarSliderConfig } from '../components/dasar-slider/dasar-slider';
+import { DasarPinConfig, DasarPinAppearanceType } from '../components/dasar-pin/dasar-pin';
+import { DasarToggleConfig } from '../components/dasar-toggle/dasar-toggle';
+import { DasarTooltipConfig } from '../components/dasar-tooltip/dasar-tooltip';
 import { DasarTableConfig } from '../components/dasar-table/dasar-table';
 import { DasarCardConfig } from '../components/dasar-card/dasar-card';
 import { DasarChipConfig } from '../components/dasar-chip/dasar-chip';
 import { DasarDividerConfig } from '../components/dasar-divider/dasar-divider';
 import { DasarAlertConfig } from '../components/dasar-alert/dasar-alert';
-import { DasarCheckboxConfig } from '../components/dasar-checkbox/dasar-checkbox';
+import {
+  DasarCheckboxConfig,
+  DasarCheckboxAppearanceType,
+} from '../components/dasar-checkbox/dasar-checkbox';
 import { DasarCheckboxGroupConfig } from '../components/dasar-checkbox-group/dasar-checkbox-group';
-import { DasarRadioConfig } from '../components/dasar-radio/dasar-radio';
+import { DasarRadioConfig, DasarRadioAppearanceType } from '../components/dasar-radio/dasar-radio';
 import { DasarRadioGroupConfig } from '../components/dasar-radio-group/dasar-radio-group';
 import { DasarBreakpointConfig } from '../components/dasar-breakpoint/dasar-breakpoint';
 import { DasarModalConfig } from '../components/dasar-modal/dasar-modal';
-import { DasarDrawerConfig } from '../components/dasar-drawer/dasar-drawer';
+import {
+  DasarDrawerConfig,
+  DasarDrawerAppearanceType,
+} from '../components/dasar-drawer/dasar-drawer';
 import { DasarSplitConfig } from '../components/dasar-split/dasar-split';
 import { DasarToastConfig } from '../components/dasar-toast/dasar-toast.model';
 import { DasarTreeConfig } from '../components/dasar-tree/dasar-tree';
@@ -27,8 +38,24 @@ import { DasarTabsConfig } from '../components/dasar-tabs/dasar-tabs';
 import { ScaleAttributeType } from './type.model';
 import { DasarListConfig, DasarListItemConfig } from '@components/dasar-list/dasar-list';
 import { DasarPaginationConfig } from '@components/dasar-pagination/dasar-pagination';
-import { DasarSwitchConfig } from '@components/dasar-switch/dasar-switch';
+import {
+  DasarSwitchConfig,
+  DasarSwitchAppearanceType,
+} from '@components/dasar-switch/dasar-switch';
 import { DasarSkeletonConfig } from '@components/dasar-skeleton/dasar-skeleton';
+
+export type {
+  DasarPinConfig,
+  DasarPinAppearanceType,
+  DasarCheckboxConfig,
+  DasarCheckboxAppearanceType,
+  DasarRadioConfig,
+  DasarRadioAppearanceType,
+  DasarDrawerConfig,
+  DasarDrawerAppearanceType,
+  DasarSwitchConfig,
+  DasarSwitchAppearanceType,
+};
 
 export type DasarThemeMode = 'light' | 'dark';
 export type DasarBreakpointName = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -62,6 +89,7 @@ export interface DasarThemeCommon {
   primaryHoverColor?: string;
   primaryActiveColor?: string;
   primarySurfaceColor?: string;
+  primarySurfaceHoverColor?: string;
   textPrimaryColor?: string;
   textSecondaryColor?: string;
   textDisabledColor?: string;
@@ -92,6 +120,7 @@ export interface DasarThemeCommonDark {
   primaryHoverColor?: string;
   primaryActiveColor?: string;
   primarySurfaceColor?: string;
+  primarySurfaceHoverColor?: string;
   textPrimaryColor?: string;
   textSecondaryColor?: string;
   textDisabledColor?: string;
@@ -152,6 +181,7 @@ export interface DasarThemeButton {
   primaryHoverBg?: string;
   primaryHoverBorder?: string;
   primaryFocusRing?: string;
+  primaryPressedBg?: string;
   primarySubtleBg?: string;
   primarySubtleColor?: string;
   primarySubtleHoverBg?: string;
@@ -163,6 +193,7 @@ export interface DasarThemeButton {
   successBorder?: string;
   successColor?: string;
   successFocusRing?: string;
+  successPressedBg?: string;
   successSubtleBg?: string;
   successSubtleColor?: string;
   successSubtleHoverBg?: string;
@@ -174,6 +205,7 @@ export interface DasarThemeButton {
   warningBorder?: string;
   warningColor?: string;
   warningFocusRing?: string;
+  warningPressedBg?: string;
   warningSubtleBg?: string;
   warningSubtleColor?: string;
   warningSubtleHoverBg?: string;
@@ -185,6 +217,7 @@ export interface DasarThemeButton {
   dangerBorder?: string;
   dangerColor?: string;
   dangerFocusRing?: string;
+  dangerPressedBg?: string;
   dangerSubtleBg?: string;
   dangerSubtleColor?: string;
   dangerSubtleHoverBg?: string;
@@ -197,6 +230,7 @@ export interface DasarThemeButton {
   secondaryColor?: string;
   secondaryHoverBg?: string;
   secondaryFocusRing?: string;
+  secondaryPressedBg?: string;
   secondarySubtleBg?: string;
   secondarySubtleColor?: string;
   secondarySubtleHoverBg?: string;
@@ -208,12 +242,17 @@ export interface DasarThemeButton {
   ghostHoverBg?: string;
   ghostHoverColor?: string;
   ghostFocusRing?: string;
+  ghostPressedBg?: string;
+  pressedShadow?: string;
 }
 export interface DasarThemeButtonGroup {
   gap?: string;
   radius?: string;
   dividerColor?: string;
   focusZIndex?: string;
+}
+export interface DasarThemeRipple {
+  color?: string;
 }
 export interface DasarThemeAlert {
   padding?: string;
@@ -256,6 +295,7 @@ export interface DasarThemeAlert {
   dangerIconColor?: string;
 }
 export interface DasarThemeCheckbox {
+  appearance?: DasarCheckboxAppearanceType;
   gap?: string;
   hintGap?: string;
   sizeSm?: string;
@@ -279,6 +319,7 @@ export interface DasarThemeCheckbox {
   labelFontSizeLg?: string;
 }
 export interface DasarThemeRadio {
+  appearance?: DasarRadioAppearanceType;
   gap?: string;
   hintGap?: string;
   sizeSm?: string;
@@ -367,6 +408,257 @@ export interface DasarThemeInput {
   hintColor?: string;
   hintErrorColor?: string;
 }
+export interface DasarThemeTextarea {
+  wrapperGap?: string;
+  gap?: string;
+  color?: string;
+  background?: string;
+  padding?: string;
+  labelFontsize?: string;
+  labelFontWeight?: string;
+  labelColor?: string;
+  labelRightFontsize?: string;
+  labelRightColor?: string;
+  labelRightGap?: string;
+  paddingSm?: string;
+  fontSizeSm?: string;
+  paddingMd?: string;
+  fontSizeMd?: string;
+  paddingLg?: string;
+  fontSizeLg?: string;
+  radiusNone?: string;
+  radiusXs?: string;
+  radiusSm?: string;
+  radiusMd?: string;
+  radiusLg?: string;
+  radiusXl?: string;
+  radiusFull?: string;
+  outlineBg?: string;
+  outlineBorder?: string;
+  outlineHoverBorder?: string;
+  outlineFocusBorder?: string;
+  outlineFocusRing?: string;
+  filledBorder?: string;
+  filledHoverBg?: string;
+  filledFocusBg?: string;
+  filledFocusBorder?: string;
+  filledFocusRing?: string;
+  elevatedBorder?: string;
+  elevatedBackground?: string;
+  elevatedShadow?: string;
+  elevatedHoverBorder?: string;
+  elevatedFocusBorder?: string;
+  elevatedFocusRing?: string;
+  errorBorder?: string;
+  errorFocusRing?: string;
+  disabledBg?: string;
+  disabledBorder?: string;
+  disabledOpacity?: string;
+  placeholderColor?: string;
+  autofillBg?: string;
+  autofillColor?: string;
+  hintFontSize?: string;
+  hintColor?: string;
+  hintErrorColor?: string;
+}
+export interface DasarThemeSlider {
+  wrapperGap?: string;
+  radius?: string;
+  labelFontSize?: string;
+  labelFontWeight?: string;
+  labelColor?: string;
+  heightSm?: string;
+  paddingHorizontalSm?: string;
+  trackHeightSm?: string;
+  thumbSizeSm?: string;
+  heightMd?: string;
+  paddingHorizontalMd?: string;
+  trackHeightMd?: string;
+  thumbSizeMd?: string;
+  heightLg?: string;
+  paddingHorizontalLg?: string;
+  trackHeightLg?: string;
+  thumbSizeLg?: string;
+  trackBg?: string;
+  rangeBg?: string;
+  thumbBg?: string;
+  thumbBorder?: string;
+  thumbShadow?: string;
+  outlineBg?: string;
+  outlineBorder?: string;
+  outlineHoverBorder?: string;
+  outlineFocusBorder?: string;
+  outlineFocusRing?: string;
+  filledBg?: string;
+  filledBorder?: string;
+  filledHoverBg?: string;
+  filledFocusBg?: string;
+  filledFocusBorder?: string;
+  filledFocusRing?: string;
+  elevatedBg?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
+  elevatedHoverBorder?: string;
+  elevatedFocusBorder?: string;
+  elevatedFocusRing?: string;
+  errorBorder?: string;
+  errorFocusRing?: string;
+  disabledBg?: string;
+  disabledBorder?: string;
+  disabledOpacity?: string;
+  hintFontSize?: string;
+  hintColor?: string;
+  hintErrorColor?: string;
+}
+export interface DasarThemePin {
+  gap?: string;
+  color?: string;
+  fontWeight?: string;
+  sizeSm?: string;
+  heightSm?: string;
+  fontSizeSm?: string;
+  sizeMd?: string;
+  heightMd?: string;
+  fontSizeMd?: string;
+  sizeLg?: string;
+  heightLg?: string;
+  fontSizeLg?: string;
+  radiusNone?: string;
+  radiusXs?: string;
+  radiusSm?: string;
+  radiusMd?: string;
+  radiusLg?: string;
+  radiusXl?: string;
+  radiusFull?: string;
+  outlineBg?: string;
+  outlineBorder?: string;
+  outlineHoverBorder?: string;
+  outlineFocusBorder?: string;
+  outlineFocusRing?: string;
+  filledBg?: string;
+  filledBorder?: string;
+  filledHoverBg?: string;
+  filledFocusBg?: string;
+  filledFocusBorder?: string;
+  filledFocusRing?: string;
+  elevatedBg?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
+  elevatedHoverBorder?: string;
+  elevatedFocusBorder?: string;
+  elevatedFocusRing?: string;
+  errorBorder?: string;
+  errorFocusRing?: string;
+  disabledBg?: string;
+  disabledBorder?: string;
+  disabledColor?: string;
+  disabledOpacity?: string;
+  placeholderColor?: string;
+  caretColor?: string;
+}
+export interface DasarThemeToggle {
+  fontWeight?: string;
+  gap?: string;
+  heightXs?: string;
+  paddingHorizontalXs?: string;
+  heightSm?: string;
+  paddingHorizontalSm?: string;
+  heightMd?: string;
+  paddingHorizontalMd?: string;
+  heightLg?: string;
+  paddingHorizontalLg?: string;
+  heightXl?: string;
+  paddingHorizontalXl?: string;
+  radiusNone?: string;
+  radiusXs?: string;
+  radiusSm?: string;
+  radiusMd?: string;
+  radiusLg?: string;
+  radiusXl?: string;
+  radiusFull?: string;
+  disabledBg?: string;
+  disabledBorder?: string;
+  disabledColor?: string;
+  disabledOpacity?: string;
+  primaryBg?: string;
+  primaryBorder?: string;
+  primaryColor?: string;
+  primaryHoverBg?: string;
+  primaryHoverBorder?: string;
+  primaryFocusRing?: string;
+  primarySubtleBg?: string;
+  primarySubtleColor?: string;
+  primarySubtleHoverBg?: string;
+  primarySubtleHoverColor?: string;
+  primaryOutlineBorder?: string;
+  primaryOutlineColor?: string;
+  primaryOutlineHoverBg?: string;
+  successBg?: string;
+  successBorder?: string;
+  successColor?: string;
+  successFocusRing?: string;
+  successSubtleBg?: string;
+  successSubtleColor?: string;
+  successSubtleHoverBg?: string;
+  successSubtleHoverColor?: string;
+  successOutlineBorder?: string;
+  successOutlineColor?: string;
+  successOutlineHoverBg?: string;
+  warningBg?: string;
+  warningBorder?: string;
+  warningColor?: string;
+  warningFocusRing?: string;
+  warningSubtleBg?: string;
+  warningSubtleColor?: string;
+  warningSubtleHoverBg?: string;
+  warningSubtleHoverColor?: string;
+  warningOutlineBorder?: string;
+  warningOutlineColor?: string;
+  warningOutlineHoverBg?: string;
+  dangerBg?: string;
+  dangerBorder?: string;
+  dangerColor?: string;
+  dangerFocusRing?: string;
+  dangerSubtleBg?: string;
+  dangerSubtleColor?: string;
+  dangerSubtleHoverBg?: string;
+  dangerSubtleHoverColor?: string;
+  dangerOutlineBorder?: string;
+  dangerOutlineColor?: string;
+  dangerOutlineHoverBg?: string;
+  secondaryBg?: string;
+  secondaryBorder?: string;
+  secondaryColor?: string;
+  secondaryHoverBg?: string;
+  secondaryFocusRing?: string;
+  secondarySubtleBg?: string;
+  secondarySubtleColor?: string;
+  secondarySubtleHoverBg?: string;
+  secondarySubtleHoverColor?: string;
+  secondaryOutlineBorder?: string;
+  secondaryOutlineColor?: string;
+  secondaryOutlineHoverBg?: string;
+  ghostColor?: string;
+  ghostHoverBg?: string;
+  ghostHoverColor?: string;
+  ghostFocusRing?: string;
+  elevatedShadow?: string;
+}
+export interface DasarThemeTooltip {
+  fontSize?: string;
+  lineHeight?: string;
+  padding?: string;
+  radius?: string;
+  maxWidth?: string;
+  zIndex?: string;
+  bg?: string;
+  color?: string;
+  shadow?: string;
+  elevatedBg?: string;
+  elevatedColor?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
+}
 export interface DasarThemeCalendar {
   calendarBg?: string;
   outlineBorder?: string;
@@ -442,6 +734,54 @@ export interface DasarThemeCalendar {
   pickerSelectedColor?: string;
   pickerSelectedBorder?: string;
   pickerSelectedFontWeight?: string;
+  navBorderColor?: string;
+  navFontSize?: string;
+  navPadding?: string;
+  navButtonRadius?: string;
+  navButtonColor?: string;
+  navButtonSize?: string;
+  navLabelColor?: string;
+  navLabelFontSize?: string;
+  navLabelFontWeight?: string;
+  decadeLabelRadius?: string;
+  decadeLabelColor?: string;
+  decadeLabelPadding?: string;
+  footerBorderColor?: string;
+  footerGap?: string;
+  footerPadding?: string;
+  footerActionRadius?: string;
+  footerActionColor?: string;
+  footerActionFontSize?: string;
+  footerActionPadding?: string;
+  footerTodayColor?: string;
+  footerTodayFontWeight?: string;
+  footerDividerColor?: string;
+  footerDividerHeight?: string;
+  dropdownNavIconColor?: string;
+  dropdownNavIconFontSize?: string;
+  dropdownNavIconSize?: string;
+  decadeLabelFontSize?: string;
+  agendaBorderColor?: string;
+  agendaFontSize?: string;
+  agendaGap?: string;
+  agendaPadding?: string;
+  agendaTitleColor?: string;
+  agendaTitleFontSize?: string;
+  agendaTitleFontWeight?: string;
+  agendaItemGap?: string;
+  agendaMarkerColor?: string;
+  agendaMarkerRadius?: string;
+  agendaMarkerWidth?: string;
+  agendaMarkerHeight?: string;
+  agendaItemTextGap?: string;
+  agendaItemTitleColor?: string;
+  agendaItemTitleFontSize?: string;
+  agendaItemTitleFontWeight?: string;
+  agendaItemTimeColor?: string;
+  agendaItemTimeFontSize?: string;
+  agendaItemTimeFontWeight?: string;
+  pickerCellButtonPadding?: string;
+  cardRadius?: string;
 }
 export interface DasarThemeDatepicker {
   disabledOpacity?: string;
@@ -758,6 +1098,7 @@ export interface DasarThemePagination {
   dropdownMaxHeight?: string;
 }
 export interface DasarThemeSwitch {
+  appearance?: DasarSwitchAppearanceType;
   gap?: string;
   radius?: string;
   thumbRadius?: string;
@@ -849,6 +1190,7 @@ export interface DasarThemeTree {
   gap?: string;
 }
 export interface DasarThemeDrawer {
+  appearance?: DasarDrawerAppearanceType;
   background?: string;
   bodyColor?: string;
   titleColor?: string;
@@ -866,6 +1208,9 @@ export interface DasarThemeDrawer {
   animationDuration?: string;
   resizeHandleSize?: string;
   resizeHandleHoverColor?: string;
+  elevatedBg?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
 }
 export interface DasarThemeSplit {
   barSize?: string;
@@ -900,6 +1245,9 @@ export interface DasarThemeToast {
   successAccent?: string;
   warningAccent?: string;
   dangerAccent?: string;
+  elevatedBg?: string;
+  elevatedBorder?: string;
+  elevatedShadow?: string;
 }
 export interface DasarThemeModal {
   background?: string;
@@ -951,6 +1299,11 @@ export type DasarComponentConfig = {
   button?: DasarButtonConfig;
   buttonGroup?: DasarButtonGroupConfig;
   input?: DasarInputConfig;
+  textarea?: DasarTextareaConfig;
+  slider?: DasarSliderConfig;
+  pin?: DasarPinConfig;
+  toggle?: DasarToggleConfig;
+  tooltip?: DasarTooltipConfig;
   card?: DasarCardConfig;
   chip?: DasarChipConfig;
   divider?: DasarDividerConfig;
@@ -985,8 +1338,14 @@ export interface DasarThemeConfig {
     light?: {
       common?: DasarThemeCommon;
       button?: DasarThemeButton;
+      ripple?: DasarThemeRipple;
       buttonGroup?: DasarThemeButtonGroup;
       input?: DasarThemeInput;
+      textarea?: DasarThemeTextarea;
+      slider?: DasarThemeSlider;
+      pin?: DasarThemePin;
+      toggle?: DasarThemeToggle;
+      tooltip?: DasarThemeTooltip;
       calendar?: DasarThemeCalendar;
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;
@@ -1013,8 +1372,14 @@ export interface DasarThemeConfig {
     dark?: {
       common?: DasarThemeCommon;
       button?: DasarThemeButton;
+      ripple?: DasarThemeRipple;
       buttonGroup?: DasarThemeButtonGroup;
       input?: DasarThemeInput;
+      textarea?: DasarThemeTextarea;
+      slider?: DasarThemeSlider;
+      pin?: DasarThemePin;
+      toggle?: DasarThemeToggle;
+      tooltip?: DasarThemeTooltip;
       calendar?: DasarThemeCalendar;
       datepicker?: DasarThemeDatepicker;
       chip?: DasarThemeChip;

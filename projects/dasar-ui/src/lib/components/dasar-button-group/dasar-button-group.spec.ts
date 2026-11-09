@@ -1,10 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, viewChildren } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DasarButtonComponent } from '../dasar-button/dasar-button';
+import {
+  DasarButton,
+  DasarButtonAppearanceType,
+  DasarButtonComponent,
+  DasarButtonSizeType,
+  DasarButtonVariantType,
+} from '../dasar-button/dasar-button';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarComponentConfig, DasarThemeConfig } from '../../models/theme.model';
 import { DasarThemeProviderComponent } from '../dasar-theme-provider/dasar-theme-provider';
-import { DasarButtonGroupComponent } from './dasar-button-group';
+import { DasarButtonGroup, DasarButtonGroupComponent } from './dasar-button-group';
 
 @Component({
   selector: 'test-button-group-host',
@@ -15,6 +21,7 @@ import { DasarButtonGroupComponent } from './dasar-button-group';
       [orientation]="orientation()"
       [size]="size()"
       [variant]="variant()"
+      [appearance]="appearance()"
       [attached]="attached()"
       [disabled]="disabled()"
     >
@@ -25,8 +32,9 @@ import { DasarButtonGroupComponent } from './dasar-button-group';
 })
 class ButtonGroupHost {
   orientation = signal<'horizontal' | 'vertical'>('horizontal');
-  size = signal<'xs' | 'sm' | 'md' | 'lg' | 'xl' | null>(null);
-  variant = signal<'primary' | 'secondary' | null>(null);
+  size = signal<DasarButtonSizeType | null>(null);
+  variant = signal<DasarButtonVariantType | null>(null);
+  appearance = signal<DasarButtonAppearanceType | null>(null);
   attached = signal(true);
   disabled = signal(false);
 }
@@ -126,6 +134,22 @@ describe('DasarButtonGroup', () => {
     expect(second.classList).toContain('secondary');
   });
 
+  it('overrides every button appearance when the group appearance is set', async () => {
+    fixture.componentInstance.appearance.set('outline');
+    await fixture.whenStable();
+
+    const [first, second] = nativeButtonsOf(fixture);
+
+    expect(first.classList).toContain('outline');
+    expect(second.classList).toContain('outline');
+
+    fixture.componentInstance.appearance.set('subtle');
+    await fixture.whenStable();
+
+    expect(first.classList).toContain('subtle');
+    expect(second.classList).toContain('subtle');
+  });
+
   it('removes the attached class when detached', async () => {
     fixture.componentInstance.attached.set(false);
     await fixture.whenStable();
@@ -220,5 +244,57 @@ describe('DasarButtonGroup restores button inputs', () => {
 
     expect(second.classList).toContain('size-xl');
     expect(second.classList).not.toContain('size-sm');
+  });
+});
+
+describe('DasarButtonGroup applyGroupState propagation to child buttons', () => {
+  @Component({
+    selector: 'test-button-group-direct-host',
+    standalone: true,
+    imports: [DasarButtonGroupComponent, DasarButtonComponent],
+    template: `
+      <dasar-button-group>
+        <dasar-button>Button 1</dasar-button>
+        <dasar-button>Button 2</dasar-button>
+      </dasar-button-group>
+    `,
+  })
+  class DirectHostComponent {
+    group = viewChildren(DasarButtonGroup);
+    buttons = viewChildren(DasarButton);
+  }
+
+  it('correctly propagates {size, variant, appearance, disabled} via applyGroupState() to child buttons', async () => {
+    await TestBed.configureTestingModule({
+      imports: [DirectHostComponent],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(DirectHostComponent);
+    await fixture.whenStable();
+
+    const buttons = fixture.componentInstance.buttons();
+    expect(buttons.length).toBe(2);
+
+    for (const btn of buttons) {
+      btn.applyGroupState({
+        size: 'lg',
+        variant: 'danger',
+        appearance: 'outline',
+        disabled: true,
+      });
+    }
+    await fixture.whenStable();
+
+    const nativeButtons = nativeButtonsOf(fixture);
+    for (const nativeBtn of nativeButtons) {
+      expect(nativeBtn.classList).toContain('size-lg');
+      expect(nativeBtn.classList).toContain('danger');
+      expect(nativeBtn.classList).toContain('outline');
+      const isDisabled =
+        nativeBtn.disabled === true ||
+        nativeBtn.getAttribute('disabled') !== null ||
+        nativeBtn.getAttribute('aria-disabled') === 'true';
+      expect(isDisabled).toBe(true);
+    }
   });
 });

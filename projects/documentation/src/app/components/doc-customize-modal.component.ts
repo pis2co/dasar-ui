@@ -1,10 +1,12 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   Output,
   SimpleChanges,
+  ViewChild,
   inject,
   signal,
 } from '@angular/core';
@@ -35,165 +37,174 @@ const DEFAULT_SENTINEL = '__default__';
     DasarSelectComponent,
   ],
   template: `
-    <dasar-modal [open]="open" label="Customize" (onClose)="cancel()">
-      <section class="cm-section">
-        <h3>Component defaults</h3>
-        <p class="cm-hint">Applies to every example that does not set the property explicitly.</p>
+    <span
+      #triggerBtn
+      style="display: none"
+      [dasarModalTrigger]="modalTpl"
+      (dasarModalTriggerClosed)="cancel()"
+    ></span>
 
-        <dasar-select
-          full-width
-          label="Size"
-          [dropdown-panel-style]="panelStyle"
-          [options]="sizeOptions"
-          [ngModel]="draft().size ?? sentinel"
-          (ngModelChange)="setOption('size', $event)"
-        ></dasar-select>
+    <ng-template #modalTpl let-close="close">
+      <dasar-modal label="Customize">
+        <section class="cm-section">
+          <h3>Component defaults</h3>
+          <p class="cm-hint">Applies to every example that does not set the property explicitly.</p>
 
-        <dasar-select
-          full-width
-          label="Radius"
-          [dropdown-panel-style]="panelStyle"
-          [options]="radiusOptions"
-          [ngModel]="draft().radius ?? sentinel"
-          (ngModelChange)="setOption('radius', $event)"
-        ></dasar-select>
+          <dasar-select
+            full-width
+            label="Size"
+            [dropdown-panel-style]="panelStyle"
+            [options]="sizeOptions"
+            [ngModel]="draft().size ?? sentinel"
+            (ngModelChange)="setOption('size', $event)"
+          ></dasar-select>
 
-        <dasar-select
-          full-width
-          label="Button appearance"
-          [dropdown-panel-style]="panelStyle"
-          [options]="buttonAppearanceOptions"
-          [ngModel]="draft().buttonAppearance ?? sentinel"
-          (ngModelChange)="setOption('buttonAppearance', $event)"
-        ></dasar-select>
+          <dasar-select
+            full-width
+            label="Radius"
+            [dropdown-panel-style]="panelStyle"
+            [options]="radiusOptions"
+            [ngModel]="draft().radius ?? sentinel"
+            (ngModelChange)="setOption('radius', $event)"
+          ></dasar-select>
 
-        <dasar-select
-          full-width
-          label="Input appearance"
-          [dropdown-panel-style]="panelStyle"
-          [options]="inputAppearanceOptions"
-          [ngModel]="draft().inputAppearance ?? sentinel"
-          (ngModelChange)="setOption('inputAppearance', $event)"
-        ></dasar-select>
+          <dasar-select
+            full-width
+            label="Button appearance"
+            [dropdown-panel-style]="panelStyle"
+            [options]="buttonAppearanceOptions"
+            [ngModel]="draft().buttonAppearance ?? sentinel"
+            (ngModelChange)="setOption('buttonAppearance', $event)"
+          ></dasar-select>
 
-        <dasar-select
-          full-width
-          label="Card appearance"
-          [dropdown-panel-style]="panelStyle"
-          [options]="cardAppearanceOptions"
-          [ngModel]="draft().cardAppearance ?? sentinel"
-          (ngModelChange)="setOption('cardAppearance', $event)"
-        ></dasar-select>
+          <dasar-select
+            full-width
+            label="Input appearance"
+            [dropdown-panel-style]="panelStyle"
+            [options]="inputAppearanceOptions"
+            [ngModel]="draft().inputAppearance ?? sentinel"
+            (ngModelChange)="setOption('inputAppearance', $event)"
+          ></dasar-select>
 
-        <dasar-select
-          full-width
-          label="Tabs appearance"
-          [dropdown-panel-style]="panelStyle"
-          [options]="tabsAppearanceOptions"
-          [ngModel]="draft().tabsAppearance ?? sentinel"
-          (ngModelChange)="setOption('tabsAppearance', $event)"
-        ></dasar-select>
+          <dasar-select
+            full-width
+            label="Card appearance"
+            [dropdown-panel-style]="panelStyle"
+            [options]="cardAppearanceOptions"
+            [ngModel]="draft().cardAppearance ?? sentinel"
+            (ngModelChange)="setOption('cardAppearance', $event)"
+          ></dasar-select>
 
-        <dasar-select
-          full-width
-          label="Tabs size"
-          [dropdown-panel-style]="panelStyle"
-          [options]="tabsSizeOptions"
-          [ngModel]="draft().tabsSize ?? sentinel"
-          (ngModelChange)="setOption('tabsSize', $event)"
-        ></dasar-select>
+          <dasar-select
+            full-width
+            label="Tabs appearance"
+            [dropdown-panel-style]="panelStyle"
+            [options]="tabsAppearanceOptions"
+            [ngModel]="draft().tabsAppearance ?? sentinel"
+            (ngModelChange)="setOption('tabsAppearance', $event)"
+          ></dasar-select>
 
-        <dasar-select
-          full-width
-          label="Tabs spacing"
-          [dropdown-panel-style]="panelStyle"
-          [options]="tabsSpacingOptions"
-          [ngModel]="draft().tabsSpacing ?? sentinel"
-          (ngModelChange)="setOption('tabsSpacing', $event)"
-        ></dasar-select>
-      </section>
+          <dasar-select
+            full-width
+            label="Tabs size"
+            [dropdown-panel-style]="panelStyle"
+            [options]="tabsSizeOptions"
+            [ngModel]="draft().tabsSize ?? sentinel"
+            (ngModelChange)="setOption('tabsSize', $event)"
+          ></dasar-select>
 
-      <section class="cm-section">
-        <h3>List</h3>
+          <dasar-select
+            full-width
+            label="Tabs spacing"
+            [dropdown-panel-style]="panelStyle"
+            [options]="tabsSpacingOptions"
+            [ngModel]="draft().tabsSpacing ?? sentinel"
+            (ngModelChange)="setOption('tabsSpacing', $event)"
+          ></dasar-select>
+        </section>
 
-        <dasar-select
-          full-width
-          label="List size"
-          [dropdown-panel-style]="panelStyle"
-          [options]="listSizeOptions"
-          [ngModel]="draft().listSize ?? sentinel"
-          (ngModelChange)="setOption('listSize', $event)"
-        ></dasar-select>
+        <section class="cm-section">
+          <h3>List</h3>
 
-        <dasar-select
-          full-width
-          label="List bordered"
-          [dropdown-panel-style]="panelStyle"
-          [options]="booleanOptions"
-          [ngModel]="booleanSentinel(draft().listBordered)"
-          (ngModelChange)="setBooleanOption('listBordered', $event)"
-        ></dasar-select>
+          <dasar-select
+            full-width
+            label="List size"
+            [dropdown-panel-style]="panelStyle"
+            [options]="listSizeOptions"
+            [ngModel]="draft().listSize ?? sentinel"
+            (ngModelChange)="setOption('listSize', $event)"
+          ></dasar-select>
 
-        <dasar-select
-          full-width
-          label="List show divider"
-          [dropdown-panel-style]="panelStyle"
-          [options]="booleanOptions"
-          [ngModel]="booleanSentinel(draft().listDivider)"
-          (ngModelChange)="setBooleanOption('listDivider', $event)"
-        ></dasar-select>
-      </section>
+          <dasar-select
+            full-width
+            label="List bordered"
+            [dropdown-panel-style]="panelStyle"
+            [options]="booleanOptions"
+            [ngModel]="booleanSentinel(draft().listBordered)"
+            (ngModelChange)="setBooleanOption('listBordered', $event)"
+          ></dasar-select>
 
-      <section class="cm-section">
-        <h3>Theme</h3>
+          <dasar-select
+            full-width
+            label="List show divider"
+            [dropdown-panel-style]="panelStyle"
+            [options]="booleanOptions"
+            [ngModel]="booleanSentinel(draft().listDivider)"
+            (ngModelChange)="setBooleanOption('listDivider', $event)"
+          ></dasar-select>
+        </section>
 
-        <div class="cm-color">
-          <span>Primary color</span>
-          <input
-            type="color"
-            [ngModel]="draft().primaryColor ?? '#2563eb'"
-            (ngModelChange)="set('primaryColor', $event)"
-          />
-          <dasar-button appearance="subtle" (click)="set('primaryColor', null)">
-            Use default
+        <section class="cm-section">
+          <h3>Theme</h3>
+
+          <div class="cm-color">
+            <span>Primary color</span>
+            <input
+              type="color"
+              [ngModel]="draft().primaryColor ?? '#2563eb'"
+              (ngModelChange)="set('primaryColor', $event)"
+            />
+            <dasar-button appearance="subtle" (click)="set('primaryColor', null)">
+              Use default
+            </dasar-button>
+          </div>
+
+          <dasar-select
+            full-width
+            label="Base font size"
+            [dropdown-panel-style]="panelStyle"
+            [options]="fontSizeOptions"
+            [ngModel]="draft().fontSizeBase ?? sentinel"
+            (ngModelChange)="setOption('fontSizeBase', $event)"
+          ></dasar-select>
+
+          <dasar-select
+            full-width
+            label="Font family"
+            [options]="fontOptions"
+            [dropdown-panel-style]="panelStyle"
+            [ngModel]="draft().fontSans ?? sentinel"
+            (ngModelChange)="setOption('fontSans', $event)"
+          ></dasar-select>
+        </section>
+
+        <div
+          action-slot
+          style="width: 100%; display: flex; gap: var(--dasar-space-base); justify-content: space-between; align-items: center;"
+        >
+          <dasar-button appearance="outline" variant="danger" (click)="resetDraft()">
+            Reset to defaults
           </dasar-button>
+          <span class="cm-spacer"></span>
+          <div style="display: flex; gap: var(--dasar-space-base); align-items: center;">
+            <dasar-button appearance="outline" variant="secondary" (click)="cancel(); close()">
+              Cancel
+            </dasar-button>
+            <dasar-button appearance="solid" (click)="apply(); close()">Apply</dasar-button>
+          </div>
         </div>
-
-        <dasar-select
-          full-width
-          label="Base font size"
-          [dropdown-panel-style]="panelStyle"
-          [options]="fontSizeOptions"
-          [ngModel]="draft().fontSizeBase ?? sentinel"
-          (ngModelChange)="setOption('fontSizeBase', $event)"
-        ></dasar-select>
-
-        <dasar-select
-          full-width
-          label="Font family"
-          [options]="fontOptions"
-          [dropdown-panel-style]="panelStyle"
-          [ngModel]="draft().fontSans ?? sentinel"
-          (ngModelChange)="setOption('fontSans', $event)"
-        ></dasar-select>
-      </section>
-
-      <div
-        action-slot
-        style="width: 100%; display: flex; gap: var(--dasar-space-base); justify-content: space-between; align-items: center;"
-      >
-        <dasar-button appearance="outline" variant="danger" (click)="resetDraft()">
-          Reset to defaults
-        </dasar-button>
-        <span class="cm-spacer"></span>
-        <div style="display: flex; gap: var(--dasar-space-base); align-items: center;">
-          <dasar-button appearance="outline" variant="secondary" (click)="cancel()">
-            Cancel
-          </dasar-button>
-          <dasar-button appearance="solid" (click)="apply()">Apply</dasar-button>
-        </div>
-      </div>
-    </dasar-modal>
+      </dasar-modal>
+    </ng-template>
   `,
   styles: [
     `
@@ -242,6 +253,7 @@ const DEFAULT_SENTINEL = '__default__';
 export class DocCustomizeModalComponent implements OnChanges {
   @Input() open = false;
   @Output() closed = new EventEmitter<void>();
+  @ViewChild('triggerBtn') triggerBtn?: ElementRef<HTMLButtonElement>;
 
   private customize = inject(DocCustomizeService);
   readonly draft = signal<DocCustomizeSettings>({ ...DOC_DEFAULT_SETTINGS });
@@ -333,6 +345,9 @@ export class DocCustomizeModalComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['open'] && this.open) {
       this.draft.set({ ...this.customize.settings() });
+      queueMicrotask(() => {
+        this.triggerBtn?.nativeElement.click();
+      });
     }
   }
 
@@ -355,6 +370,7 @@ export class DocCustomizeModalComponent implements OnChanges {
 
   resetDraft() {
     this.draft.set({ ...DOC_DEFAULT_SETTINGS });
+    this.customize.apply(this.draft());
   }
 
   apply() {

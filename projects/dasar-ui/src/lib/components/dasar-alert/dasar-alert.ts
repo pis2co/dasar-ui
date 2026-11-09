@@ -22,8 +22,10 @@ import { CommonModule } from '@angular/common';
 
 export type DasarAlertVariantType = 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
 export type DasarAlertRadiusType = ScaleAttributeType;
+export type DasarAlertAppearanceType = 'outline' | 'borderless' | 'elevated';
 
 export interface DasarAlertConfig {
+  appearance?: DasarAlertAppearanceType;
   variant?: DasarAlertVariantType;
   radius?: DasarAlertRadiusType;
   bordered?: boolean;
@@ -61,6 +63,13 @@ export class DasarAlert implements OnDestroy {
   protected shown = signal(true);
   protected leaving = signal(false);
 
+  @Input() appearance = resolveThemeDefault(
+    'alert',
+    'appearance',
+    'outline' as DasarAlertAppearanceType,
+    this.themeProvider,
+    this.themeService,
+  );
   @Input() variant = resolveThemeDefault(
     'alert',
     'variant',
@@ -186,6 +195,7 @@ export class DasarAlert implements OnDestroy {
     const overrideClass = parseClassesToArray(this.containerClass);
     const baseClass = {
       [this.variant]: true,
+      [`appearance-${this.appearance}`]: !!this.appearance,
       bordered: this.bordered,
       [`radius-${this.radius}`]: !!this.radius,
       closeable: this.closeable,

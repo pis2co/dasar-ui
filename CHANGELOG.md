@@ -2,195 +2,262 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [2.6.5](https://github.com/pis2co/dasar-ui/compare/v2.6.4...v2.6.5) (2026-10-26)
-
-
-### Bug Fixes
-
-* **style:** default input container color ([da3c021](https://github.com/pis2co/dasar-ui/commit/da3c021a890f7c3b335e94356157a3e6b9b4d742))
-
-### [2.6.4](https://github.com/pis2co/dasar-ui/compare/v2.6.3...v2.6.4) (2026-10-26)
+### [3.0.1](https://github.com/pis2co/dasar-ui/compare/v3.0.0...v3.0.1) (2026-11-09)
 
 
 ### Features
 
-* **component:** adjusting input styling ([7fe203e](https://github.com/pis2co/dasar-ui/commit/7fe203e9562a0052c44a9fc783e59c7a38987516))
+* add changelog and more about new version ([af42b59](https://github.com/pis2co/dasar-ui/commit/af42b59ec41fd550f1b648351a8a45b288806ea8))
+
+## [3.0.0](https://github.com/pis2co/dasar-ui/compare/v2.6.5...v3.0.0) (2026-11-09)
+
+### ⚠ BREAKING CHANGES
+
+- **modal:** replaces the declarative `[open]`/`(onClose)` API with a
+  `dasarModalTrigger` + `<ng-template let-close="close">` pattern. Focus-trap,
+  scroll-lock, escape and outside-click handling now come from ng-primitives'
+  `NgpDialog`/`NgpDialogOverlay`/`NgpDialogTrigger` instead of hand-rolled logic.
+  See the modal docs for the updated usage.
+
+- **primitives:** Button, Checkbox, Switch, Radio/RadioGroup, Calendar (and the
+  Datepicker built on it), Pin, Slider, Toggle, Tooltip and Textarea now delegate
+  their interaction behavior (focus, keyboard nav, press/active state, DI wiring)
+  to the corresponding [ng-primitives](https://ng-primitives.dev) directive
+  (`NgpButton`, `NgpCheckbox`, `NgpSwitch`, `NgpRadioItem`/`NgpRadioGroup`,
+  `NgpDatePicker`/`NgpDateRangePicker`, `NgpInputOtp`, `NgpSlider`, `NgpToggle`,
+  `NgpTooltip`, `NgpTextarea`) instead of bespoke directives. Public `@Input`/`@Output`
+  names and templates are unchanged for these components, but any code that reached
+  into their internals (host classes, private directive instances, or relied on the
+  old hand-rolled focus/keyboard handling) should be re-verified against the new
+  primitive-backed implementation.
+
+### Features
+
+- add appearance to DasarCheckbox and DasarCheckboxGroup ([d3e65a9](https://github.com/pis2co/dasar-ui/commit/d3e65a98404c79e05c7e859f0c4563846278481b))
+- add appearance to DasarRadio and DasarRadioGroup with docs examples ([91ed83d](https://github.com/pis2co/dasar-ui/commit/91ed83d618167c73b9948b27b7545770c2bdbee8))
+- add appearance to DasarSwitch ([508cfbb](https://github.com/pis2co/dasar-ui/commit/508cfbbce8b3cff6cc5f115d2cc0844adedb9305))
+- add built-on-primitive badge to docs layout ([fee8f15](https://github.com/pis2co/dasar-ui/commit/fee8f15b59c6c2f9aa25ca8fae1615235fc3de52))
+- add dasarRipple directive with hover and ripple animation ([d97ded5](https://github.com/pis2co/dasar-ui/commit/d97ded563dececc50678e8704e970361dce49be3))
+- add decade-paginated month/year selector to DasarCalendar ([3dc9bd6](https://github.com/pis2co/dasar-ui/commit/3dc9bd6e3335a2542fe8e5dfc5997965d4fc9ca2))
+- add elevated appearance to DasarButton ([a0367fd](https://github.com/pis2co/dasar-ui/commit/a0367fda6cddac12f94c69703b2e05c8a1e1b9e5))
+- add elevated appearance to DasarDatepicker ([433fd15](https://github.com/pis2co/dasar-ui/commit/433fd15bf7abde0435d6b5f203b93efe74df97d3))
+- add elevated appearance to DasarDrawer ([6d51fb7](https://github.com/pis2co/dasar-ui/commit/6d51fb76c3d5bd8bd9db6514c6d5c7468dddd389))
+- add elevated appearance to DasarInput ([cb1e12c](https://github.com/pis2co/dasar-ui/commit/cb1e12ccc28dd6a807717e0552bd775b15617a0f))
+- add elevated appearance to DasarMenu ([40f7e14](https://github.com/pis2co/dasar-ui/commit/40f7e14cede53947b94faf930fafac5cfbcb7b05))
+- add elevated appearance to DasarNumberInput ([63b1d1d](https://github.com/pis2co/dasar-ui/commit/63b1d1dd14bd9e2d6c4580a762cec7982c1057e6))
+- add elevated appearance to DasarPagination ([bc6e026](https://github.com/pis2co/dasar-ui/commit/bc6e02625790231028dea2fd2c31c9d814f2b1df))
+- add elevated appearance to DasarToast ([877a440](https://github.com/pis2co/dasar-ui/commit/877a440f834aa8036be99991f4c17a31df446cfd))
+- add mobile dashboard layout and fix dropdown nav icon styling ([ae64ab3](https://github.com/pis2co/dasar-ui/commit/ae64ab3455a7a42a89dd710a9aa16786100ff0d5))
+- add pressed appearance matching Pencil design ([ca27653](https://github.com/pis2co/dasar-ui/commit/ca27653b107c1f88383ef1e1397a0902bafa01e9))
+- add time-of-day picker section alongside the calendar ([a266fd6](https://github.com/pis2co/dasar-ui/commit/a266fd6add9bbc1a6dafd85e9481d5f237becddb))
+- **alert:** add appearance input (outline/borderless/elevated) ([35de0c6](https://github.com/pis2co/dasar-ui/commit/35de0c636e3aa48dfec8d19c92f8e19bf57e4060))
+- animate pressed appearance on press-down ([b1effc2](https://github.com/pis2co/dasar-ui/commit/b1effc23ac2f7b383406a83340d8ffd602dcf2de))
+- **button:** adopt NgpButton primitive from ng-primitives ([7c5e162](https://github.com/pis2co/dasar-ui/commit/7c5e1629bda4e293c88fe9b6c1f3de56c65d80dc))
+- **calendar:** adopt NgpDatePicker/NgpDateRangePicker primitives with date-fns adapter ([e864675](https://github.com/pis2co/dasar-ui/commit/e86467539fc7c34133a65f7887bee1d2918b3f35))
+- **checkbox:** adopt NgpCheckbox primitive from ng-primitives ([9181846](https://github.com/pis2co/dasar-ui/commit/91818468129f248061dbba41c62754aa829f9167))
+- implement DasarPin using NgpInputOtp primitive ([1852574](https://github.com/pis2co/dasar-ui/commit/18525748e9ae8a62868d412ac5c1eb7ef780347f))
+- implement DasarSlider using NgpSlider primitive ([d489ada](https://github.com/pis2co/dasar-ui/commit/d489ada8964b6dd786b7b30b54df3be5c0b3d640))
+- implement DasarToggle using NgpToggle primitive ([4b1dd1c](https://github.com/pis2co/dasar-ui/commit/4b1dd1cb61febfec596510c670a7636459313964))
+- implement DasarTooltip directive using NgpTooltip primitive ([5d6a3ac](https://github.com/pis2co/dasar-ui/commit/5d6a3acc777dac6db6a2683b022c2aefcfe908ad))
+- **radio-group:** wire NgpRadioGroup for grouped radio item DI ([fd752c2](https://github.com/pis2co/dasar-ui/commit/fd752c2c081cce9469cff6dd1766905984161a91))
+- **radio:** adopt NgpRadioItem primitive for grouped usage, preserve standalone path ([976cded](https://github.com/pis2co/dasar-ui/commit/976cded3743b90f10098fc6e9fd6320773dfd275))
+- revamp dashboard mobile view and consolidate radius/border ownership ([1d82492](https://github.com/pis2co/dasar-ui/commit/1d82492794e5d6568e3f921c3b1ede21a7f2cf40))
+- revamp panel to match Pencil design, add time-only type ([d036089](https://github.com/pis2co/dasar-ui/commit/d036089a703abab3121bf2cc2b32e21272722af4))
+- **switch:** adopt NgpSwitch primitive from ng-primitives ([20b403b](https://github.com/pis2co/dasar-ui/commit/20b403bc5c74251118adfb2d60eaf4828bdac4e7))
+- **tabs:** add elevated appearance to DasarTabs ([8e877e8](https://github.com/pis2co/dasar-ui/commit/8e877e8217a29975830c368f1f1ab87769d5a757))
+- wire theme config, NgpTextarea primitive, and token support ([14d5725](https://github.com/pis2co/dasar-ui/commit/14d572503810d000fedcc315e2619f3eae47d5f5))
+
+### Bug Fixes
+
+- add aria-label to prevent verbose date-button accessible name ([d2931af](https://github.com/pis2co/dasar-ui/commit/d2931aff469dcfe4f26f629dbe9cf123c26b4bb9))
+- **build:** allow ng-primitives as a non-peer dependency for ng-packagr ([0d18e7e](https://github.com/pis2co/dasar-ui/commit/0d18e7e7b76e1bea8231071eb90160f16ded49ca))
+- calendar cell and style ([14287dd](https://github.com/pis2co/dasar-ui/commit/14287ddc9fe41a1856d172de2dddf6fd666fff97))
+- calendar variant and styles ([848d3e7](https://github.com/pis2co/dasar-ui/commit/848d3e7a4d4ba9939f3820b00ecf1b7459e3a459))
+- **checkbox:** restore native disabled attribute and fix indeterminate desync with NgpCheckbox ([63c9b38](https://github.com/pis2co/dasar-ui/commit/63c9b3819b49d3429e1836450bc2c55701f62d33))
+- correct numberAttribute transform, example attribute casing, and token variable ([09559b9](https://github.com/pis2co/dasar-ui/commit/09559b9e18c3e3ef1990d7ed4555a87ee6b52594))
+- correct subtle appearance background and hover tones ([4e9357b](https://github.com/pis2co/dasar-ui/commit/4e9357bb66203407c28a551289b3c23a86f76723))
+- **dasar-calendar:** resolve dashboard variant colors through theme tokens ([3f273fc](https://github.com/pis2co/dasar-ui/commit/3f273fc8af4cfb52975cb154998a02ca030dfa9a))
+- datepicker time meridiem and more ([4c3e54a](https://github.com/pis2co/dasar-ui/commit/4c3e54a8a42028f3b6f31991182edf62eecfd7a0))
+- default font-family to system-ui stack and make customize-modal reset apply immediately ([91d6b1e](https://github.com/pis2co/dasar-ui/commit/91d6b1e5ba286d67053b78aa7afe49f6470c1a23))
+- gate DasarDrawer's box-shadow behind the elevated appearance ([588a970](https://github.com/pis2co/dasar-ui/commit/588a970ca16b4a821b26cd814fa81d59503e7cc7))
+- match dropdown day-view header to Pencil nav row ([af154fb](https://github.com/pis2co/dasar-ui/commit/af154fb71599f48fdf76a8b68d00a9b13ca611e7))
+- match dropdown month/year grid headers to Pencil ([3553b6b](https://github.com/pis2co/dasar-ui/commit/3553b6b36b8aea53189e19f218956ffba377b8f8))
+- preserve customized font-family through dropdown portal ([1fa14e6](https://github.com/pis2co/dasar-ui/commit/1fa14e6914903415ff63cdd36d329ce37e787122))
+- **radio-group:** stop double-emitting valueChange and fix compareWith/disabled sync with NgpRadioGroup ([42e1c87](https://github.com/pis2co/dasar-ui/commit/42e1c87643a5544e753817dc497084807f9b1974))
+- **radio:** resolve NgpRadioGroup DI resolution and sync focus/click selection ([54749df](https://github.com/pis2co/dasar-ui/commit/54749dfdacf51d0179292158e82ba681f7148db9))
+- regenerate grid when navigating months ([b8fca3e](https://github.com/pis2co/dasar-ui/commit/b8fca3e7b9345bad8491477a5b59eb1b2f3e79db))
+- **tabs:** remove transform from tab fade-in animation ([ce674c4](https://github.com/pis2co/dasar-ui/commit/ce674c45b07d1d35d59884dae6127810ca51a55e))
+- update DasarPagination ellipsis dropdown for NgpMenu trigger API ([4983b8d](https://github.com/pis2co/dasar-ui/commit/4983b8ddea6a2bbe174824d25eb85994bcd80623))
+- wire remaining radius tokens and set default radius ([f3487f3](https://github.com/pis2co/dasar-ui/commit/f3487f327eb15ffc5e400161d3fafa931ab0aadf))
+
+### Code Refactoring
+
+- **modal:** migrate DasarModal to NgpDialog/NgpDialogTrigger primitives ([77f1242](https://github.com/pis2co/dasar-ui/commit/77f1242678b3083933f3edd5d63e3df327bc020e))
+
+### [2.6.5](https://github.com/pis2co/dasar-ui/compare/v2.6.4...v2.6.5) (2026-10-26)
+
+### Bug Fixes
+
+- **style:** default input container color ([da3c021](https://github.com/pis2co/dasar-ui/commit/da3c021a890f7c3b335e94356157a3e6b9b4d742))
+
+### [2.6.4](https://github.com/pis2co/dasar-ui/compare/v2.6.3...v2.6.4) (2026-10-26)
+
+### Features
+
+- **component:** adjusting input styling ([7fe203e](https://github.com/pis2co/dasar-ui/commit/7fe203e9562a0052c44a9fc783e59c7a38987516))
 
 ### [2.6.3](https://github.com/pis2co/dasar-ui/compare/v2.6.2...v2.6.3) (2026-10-23)
 
 ### [2.6.2](https://github.com/pis2co/dasar-ui/compare/v2.6.1...v2.6.2) (2026-10-23)
 
-
 ### Bug Fixes
 
-* slot styling and more ([d04b9ca](https://github.com/pis2co/dasar-ui/commit/d04b9ca5337ea9a3a9c1f3ea6bc2188d09f19003))
+- slot styling and more ([d04b9ca](https://github.com/pis2co/dasar-ui/commit/d04b9ca5337ea9a3a9c1f3ea6bc2188d09f19003))
 
 ### [2.6.1](https://github.com/pis2co/dasar-ui/compare/v2.6.0...v2.6.1) (2026-10-22)
 
-
 ### Features
 
-* add compact spacing to tree ([3750a18](https://github.com/pis2co/dasar-ui/commit/3750a1878d317afbc21db61e137a36dd658cb8f0))
-
+- add compact spacing to tree ([3750a18](https://github.com/pis2co/dasar-ui/commit/3750a1878d317afbc21db61e137a36dd658cb8f0))
 
 ### Bug Fixes
 
-* slot padding and more ([91b0bd4](https://github.com/pis2co/dasar-ui/commit/91b0bd4752e205d91ce7b79cc61bfed2ae39cbf7))
+- slot padding and more ([91b0bd4](https://github.com/pis2co/dasar-ui/commit/91b0bd4752e205d91ce7b79cc61bfed2ae39cbf7))
 
 ## [2.6.0](https://github.com/pis2co/dasar-ui/compare/v2.5.1...v2.6.0) (2026-10-22)
 
-
 ### Features
 
-* add dasar-toast service and provider ([f91405a](https://github.com/pis2co/dasar-ui/commit/f91405a6302a3bbfca720ea7fc395be03ca50a34))
-* ghost close button and closeable-slot for alert ([8fd45f4](https://github.com/pis2co/dasar-ui/commit/8fd45f455ea61b77c6db87937f0bef343690131a))
-
+- add dasar-toast service and provider ([f91405a](https://github.com/pis2co/dasar-ui/commit/f91405a6302a3bbfca720ea7fc395be03ca50a34))
+- ghost close button and closeable-slot for alert ([8fd45f4](https://github.com/pis2co/dasar-ui/commit/8fd45f455ea61b77c6db87937f0bef343690131a))
 
 ### Bug Fixes
 
-* align toast icon, label and close button, and make the scroll container full height ([9b5b004](https://github.com/pis2co/dasar-ui/commit/9b5b0045acbfea7dfca8928da3e31092f5cd6ae2))
-* keep toast width on hover and stop clipping the scroll container ([134324f](https://github.com/pis2co/dasar-ui/commit/134324fa4b7dfd710fcb950470963ad279cfb8ea))
+- align toast icon, label and close button, and make the scroll container full height ([9b5b004](https://github.com/pis2co/dasar-ui/commit/9b5b0045acbfea7dfca8928da3e31092f5cd6ae2))
+- keep toast width on hover and stop clipping the scroll container ([134324f](https://github.com/pis2co/dasar-ui/commit/134324fa4b7dfd710fcb950470963ad279cfb8ea))
 
 ### [2.5.1](https://github.com/pis2co/dasar-ui/compare/v2.5.0...v2.5.1) (2026-10-22)
 
-
 ### Bug Fixes
 
-* unmatched height ([b9a872b](https://github.com/pis2co/dasar-ui/commit/b9a872b41a7e2009c2e177d8c343d81560c4c566))
+- unmatched height ([b9a872b](https://github.com/pis2co/dasar-ui/commit/b9a872b41a7e2009c2e177d8c343d81560c4c566))
 
 ## [2.5.0](https://github.com/pis2co/dasar-ui/compare/v2.4.2...v2.5.0) (2026-10-21)
 
-
 ### Features
 
-* add dasar-split component ([341acfc](https://github.com/pis2co/dasar-ui/commit/341acfcb3f05d6fdac8216ee1664bab0bb71e5bd))
+- add dasar-split component ([341acfc](https://github.com/pis2co/dasar-ui/commit/341acfcb3f05d6fdac8216ee1664bab0bb71e5bd))
 
 ### [2.4.2](https://github.com/pis2co/dasar-ui/compare/v2.4.1...v2.4.2) (2026-10-21)
 
-
 ### Bug Fixes
 
-* adjust script ([ac2be88](https://github.com/pis2co/dasar-ui/commit/ac2be8839b842d0beab4e767a13a09a78dd41d53))
-* let a nested dasar-theme-provider use its own light or dark mode ([696aec9](https://github.com/pis2co/dasar-ui/commit/696aec94b74911650164d085fde65f47120acf12))
+- adjust script ([ac2be88](https://github.com/pis2co/dasar-ui/commit/ac2be8839b842d0beab4e767a13a09a78dd41d53))
+- let a nested dasar-theme-provider use its own light or dark mode ([696aec9](https://github.com/pis2co/dasar-ui/commit/696aec94b74911650164d085fde65f47120acf12))
 
 ### [2.4.1](https://github.com/pis2co/dasar-ui/compare/v2.4.0...v2.4.1) (2026-10-21)
 
-
 ### Features
 
-* add a mobile menu to the docs header and make it follow the customized theme ([cc65b48](https://github.com/pis2co/dasar-ui/commit/cc65b487c137723270d7c8661b2520bedc0d6af5))
-* add the dasar ui logo and favicon to the docs header ([fc269cd](https://github.com/pis2co/dasar-ui/commit/fc269cd17407833cca952b10dc6a9133d9e3c933))
-
+- add a mobile menu to the docs header and make it follow the customized theme ([cc65b48](https://github.com/pis2co/dasar-ui/commit/cc65b487c137723270d7c8661b2520bedc0d6af5))
+- add the dasar ui logo and favicon to the docs header ([fc269cd](https://github.com/pis2co/dasar-ui/commit/fc269cd17407833cca952b10dc6a9133d9e3c933))
 
 ### Bug Fixes
 
-* align dasar-checkbox and dasar-radio label sizes with the other components ([b6d1189](https://github.com/pis2co/dasar-ui/commit/b6d1189b73e51e862fed95795f3bbf2fe7930818))
-* header navigation and more ([9831dc4](https://github.com/pis2co/dasar-ui/commit/9831dc4281baf5da50cf057a606a51658332dd2f))
-* position dasar-select, menu and datepicker panels correctly on first open ([fb65736](https://github.com/pis2co/dasar-ui/commit/fb657369cfad850c12ffba0590a9ee34b34c6a94))
+- align dasar-checkbox and dasar-radio label sizes with the other components ([b6d1189](https://github.com/pis2co/dasar-ui/commit/b6d1189b73e51e862fed95795f3bbf2fe7930818))
+- header navigation and more ([9831dc4](https://github.com/pis2co/dasar-ui/commit/9831dc4281baf5da50cf057a606a51658332dd2f))
+- position dasar-select, menu and datepicker panels correctly on first open ([fb65736](https://github.com/pis2co/dasar-ui/commit/fb657369cfad850c12ffba0590a9ee34b34c6a94))
 
 ## [2.4.0](https://github.com/pis2co/dasar-ui/compare/v2.3.1...v2.4.0) (2026-10-21)
 
-
 ### ⚠ BREAKING CHANGES
 
-* rename any CSS variable overrides in your own styles by inserting dasar- after the leading dashes. Tokens set through setGlobalTheme or [tokenConfig] need no change.
+- rename any CSS variable overrides in your own styles by inserting dasar- after the leading dashes. Tokens set through setGlobalTheme or [tokenConfig] need no change.
 
 ### Features
 
-* add dasar-drawer component ([8d8cb38](https://github.com/pis2co/dasar-ui/commit/8d8cb38e8ca733ef1287505202212e1c0ac859c9))
-* add dasar-tree component ([305ad56](https://github.com/pis2co/dasar-ui/commit/305ad56c786e194aa8cead3f0d074021bcd7e47d))
-* add indeterminate state to dasar-checkbox ([f6bc573](https://github.com/pis2co/dasar-ui/commit/f6bc57303928f8ab820658c45a73f33ef44b409e))
-* prefix all css variables with dasar ([f1b5364](https://github.com/pis2co/dasar-ui/commit/f1b53642a1a94002d01027dcb4580611dfffbd1f))
-* use dasar-list for the docs sidebar and reset scroll on navigation ([c83f0a6](https://github.com/pis2co/dasar-ui/commit/c83f0a6a8e005b0e81d7afda822a0852cb079bb1))
-
+- add dasar-drawer component ([8d8cb38](https://github.com/pis2co/dasar-ui/commit/8d8cb38e8ca733ef1287505202212e1c0ac859c9))
+- add dasar-tree component ([305ad56](https://github.com/pis2co/dasar-ui/commit/305ad56c786e194aa8cead3f0d074021bcd7e47d))
+- add indeterminate state to dasar-checkbox ([f6bc573](https://github.com/pis2co/dasar-ui/commit/f6bc57303928f8ab820658c45a73f33ef44b409e))
+- prefix all css variables with dasar ([f1b5364](https://github.com/pis2co/dasar-ui/commit/f1b53642a1a94002d01027dcb4580611dfffbd1f))
+- use dasar-list for the docs sidebar and reset scroll on navigation ([c83f0a6](https://github.com/pis2co/dasar-ui/commit/c83f0a6a8e005b0e81d7afda822a0852cb079bb1))
 
 ### Bug Fixes
 
-* only scroll inside dasar-list when a max height is set ([622345e](https://github.com/pis2co/dasar-ui/commit/622345e6649a5b8e94b74b5b84814df6272b4498))
-* treat numeric string sizes as px in dasar-skeleton ([c5e09ea](https://github.com/pis2co/dasar-ui/commit/c5e09ea7655b07607f8aaa735b87d6c8b3d0e4c1))
+- only scroll inside dasar-list when a max height is set ([622345e](https://github.com/pis2co/dasar-ui/commit/622345e6649a5b8e94b74b5b84814df6272b4498))
+- treat numeric string sizes as px in dasar-skeleton ([c5e09ea](https://github.com/pis2co/dasar-ui/commit/c5e09ea7655b07607f8aaa735b87d6c8b3d0e4c1))
 
 ### [2.3.1](https://github.com/pis2co/dasar-ui/compare/v2.3.0...v2.3.1) (2026-10-21)
 
-
 ### Features
 
-* update list theming variable ([10ff366](https://github.com/pis2co/dasar-ui/commit/10ff36694609265bfe47eb1f23066e90a3e3805f))
+- update list theming variable ([10ff366](https://github.com/pis2co/dasar-ui/commit/10ff36694609265bfe47eb1f23066e90a3e3805f))
 
 ## [2.3.0](https://github.com/pis2co/dasar-ui/compare/v2.2.2...v2.3.0) (2026-10-21)
 
-
 ### Features
 
-* add component dasar-datepicker ([b137c9b](https://github.com/pis2co/dasar-ui/commit/b137c9b8f4900f957a66e614dfbfa380d874d79b))
+- add component dasar-datepicker ([b137c9b](https://github.com/pis2co/dasar-ui/commit/b137c9b8f4900f957a66e614dfbfa380d874d79b))
 
 ### [2.2.2](https://github.com/pis2co/dasar-ui/compare/v2.2.1...v2.2.2) (2026-10-19)
 
-
 ### Bug Fixes
 
-* alert colors and more ([6d4ddf1](https://github.com/pis2co/dasar-ui/commit/6d4ddf1f11f9582e2a309d34c6d84b947b0d03fa))
+- alert colors and more ([6d4ddf1](https://github.com/pis2co/dasar-ui/commit/6d4ddf1f11f9582e2a309d34c6d84b947b0d03fa))
 
 ### [2.2.1](https://github.com/pis2co/dasar-ui/compare/v2.1.0...v2.2.1) (2026-10-16)
 
-
 ### Features
 
-* add dasar-switch component ([bff0b49](https://github.com/pis2co/dasar-ui/commit/bff0b4907ee9073370088d311ca7948b06f86c98))
-* add radius config and more ([6b54f92](https://github.com/pis2co/dasar-ui/commit/6b54f92dc8f26e927f0494c83327b016f281b63b))
-* add skeleton and adjust input components ([d701362](https://github.com/pis2co/dasar-ui/commit/d701362b5df4a870bc37b5e8552a98659d77d9f9))
-
+- add dasar-switch component ([bff0b49](https://github.com/pis2co/dasar-ui/commit/bff0b4907ee9073370088d311ca7948b06f86c98))
+- add radius config and more ([6b54f92](https://github.com/pis2co/dasar-ui/commit/6b54f92dc8f26e927f0494c83327b016f281b63b))
+- add skeleton and adjust input components ([d701362](https://github.com/pis2co/dasar-ui/commit/d701362b5df4a870bc37b5e8552a98659d77d9f9))
 
 ### Bug Fixes
 
-* adjust margin ([128849e](https://github.com/pis2co/dasar-ui/commit/128849e16631c366d44615505da1d5e9bdbf55a6))
-* adjust pagination component ([bf638fe](https://github.com/pis2co/dasar-ui/commit/bf638feea5451ca08b4491f31bfd38b06a0a59c8))
-* dasar list focus state ([7c81493](https://github.com/pis2co/dasar-ui/commit/7c81493926599f9a68b228bbc2dd3423f235a057))
-* routes order adjustment ([e319543](https://github.com/pis2co/dasar-ui/commit/e3195437daf8475b39b3522edb882838d6e8866e))
+- adjust margin ([128849e](https://github.com/pis2co/dasar-ui/commit/128849e16631c366d44615505da1d5e9bdbf55a6))
+- adjust pagination component ([bf638fe](https://github.com/pis2co/dasar-ui/commit/bf638feea5451ca08b4491f31bfd38b06a0a59c8))
+- dasar list focus state ([7c81493](https://github.com/pis2co/dasar-ui/commit/7c81493926599f9a68b228bbc2dd3423f235a057))
+- routes order adjustment ([e319543](https://github.com/pis2co/dasar-ui/commit/e3195437daf8475b39b3522edb882838d6e8866e))
 
 ## [2.2.0](https://github.com/pis2co/dasar-ui/compare/v2.1.0...v2.2.0) (2026-10-15)
 
-
 ### Features
 
-* add dasar-switch component ([9922207](https://github.com/pis2co/dasar-ui/commit/992220768cb5e725b238c2b58767dcefa7300fd6))
-* add radius config and more ([2a258f5](https://github.com/pis2co/dasar-ui/commit/2a258f587d0a2e436db120a1313b58613977cbe7))
-* add skeleton and adjust input components ([69be24b](https://github.com/pis2co/dasar-ui/commit/69be24beded83edfddb59750b068369aa252bf1d))
-
+- add dasar-switch component ([9922207](https://github.com/pis2co/dasar-ui/commit/992220768cb5e725b238c2b58767dcefa7300fd6))
+- add radius config and more ([2a258f5](https://github.com/pis2co/dasar-ui/commit/2a258f587d0a2e436db120a1313b58613977cbe7))
+- add skeleton and adjust input components ([69be24b](https://github.com/pis2co/dasar-ui/commit/69be24beded83edfddb59750b068369aa252bf1d))
 
 ### Bug Fixes
 
-* adjust margin ([e6e466e](https://github.com/pis2co/dasar-ui/commit/e6e466ef60c9254d3aef13edb7a87d73db9665d0))
-* adjust pagination component ([f68e6ee](https://github.com/pis2co/dasar-ui/commit/f68e6ee45790b3bb90453b5335e0ce672c97df89))
-* dasar list focus state ([4754d5a](https://github.com/pis2co/dasar-ui/commit/4754d5ac67ca8066d3b8ebcc67c5f71c7cb61658))
+- adjust margin ([e6e466e](https://github.com/pis2co/dasar-ui/commit/e6e466ef60c9254d3aef13edb7a87d73db9665d0))
+- adjust pagination component ([f68e6ee](https://github.com/pis2co/dasar-ui/commit/f68e6ee45790b3bb90453b5335e0ce672c97df89))
+- dasar list focus state ([4754d5a](https://github.com/pis2co/dasar-ui/commit/4754d5ac67ca8066d3b8ebcc67c5f71c7cb61658))
 
 ## [2.1.0](https://github.com/pis2co/dasar-ui/compare/v2.0.3...v2.1.0) (2026-10-15)
 
-
 ### Features
 
-* add alert and checkbox component ([a8bc858](https://github.com/pis2co/dasar-ui/commit/a8bc8586db1a110b14eaaebffa88b388baf3f878))
-* add breakpoint, radio and more ([24c6e54](https://github.com/pis2co/dasar-ui/commit/24c6e54eae82c71ca37d1e323abd94bfffef1900))
-
+- add alert and checkbox component ([a8bc858](https://github.com/pis2co/dasar-ui/commit/a8bc8586db1a110b14eaaebffa88b388baf3f878))
+- add breakpoint, radio and more ([24c6e54](https://github.com/pis2co/dasar-ui/commit/24c6e54eae82c71ca37d1e323abd94bfffef1900))
 
 ### Bug Fixes
 
-* container issue on radio and checkbox component ([81d27a0](https://github.com/pis2co/dasar-ui/commit/81d27a0d4f6ff6d2073f604fcafe6ff6482a039e))
+- container issue on radio and checkbox component ([81d27a0](https://github.com/pis2co/dasar-ui/commit/81d27a0d4f6ff6d2073f604fcafe6ff6482a039e))
 
 ### [2.0.3](https://github.com/pis2co/dasar-ui/compare/v2.0.2...v2.0.3) (2026-10-15)
 
-
 ### Bug Fixes
 
-* update readme ([23e18f6](https://github.com/pis2co/dasar-ui/commit/23e18f62e4afebc966bd14023d0cb47a42573565))
+- update readme ([23e18f6](https://github.com/pis2co/dasar-ui/commit/23e18f62e4afebc966bd14023d0cb47a42573565))
 
 ### [2.0.1](https://github.com/pis2co/dasar-ui/compare/v2.0.0...v2.0.1) (2026-10-15)
 
-
 ### Bug Fixes
 
-* doc layout component ([59b4b9c](https://github.com/pis2co/dasar-ui/commit/59b4b9c5d664eb1b8eaba10eda2b27a783ebdf67))
-* update readme ([9d76faa](https://github.com/pis2co/dasar-ui/commit/9d76faa0064b4179e9552954d0c22d98d319d3fc))
-* vertical example button group ([4ee7bd8](https://github.com/pis2co/dasar-ui/commit/4ee7bd865d0e046248e038c263c8e4e6866ecc2a))
+- doc layout component ([59b4b9c](https://github.com/pis2co/dasar-ui/commit/59b4b9c5d664eb1b8eaba10eda2b27a783ebdf67))
+- update readme ([9d76faa](https://github.com/pis2co/dasar-ui/commit/9d76faa0064b4179e9552954d0c22d98d319d3fc))
+- vertical example button group ([4ee7bd8](https://github.com/pis2co/dasar-ui/commit/4ee7bd865d0e046248e038c263c8e4e6866ecc2a))
 
 ## [2.0.0](https://github.com/pis2co/dasar-ui/compare/v1.10.1...v2.0.0) (2026-10-15)
 
@@ -198,10 +265,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [1.10.0](https://github.com/pis2co/dasar-ui/compare/v1.9.3...v1.10.0) (2026-10-15)
 
-
 ### Features
 
-* add button group and divider ([4c53652](https://github.com/pis2co/dasar-ui/commit/4c53652ae72d562186d9a19db9d3db964b8d95cc))
+- add button group and divider ([4c53652](https://github.com/pis2co/dasar-ui/commit/4c53652ae72d562186d9a19db9d3db964b8d95cc))
 
 ### [1.9.3](https://github.com/pis2co/dasar-ui/compare/v1.9.2...v1.9.3) (2026-10-15)
 
@@ -209,96 +275,83 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.9.1](https://github.com/pis2co/dasar-ui/compare/v1.9.0...v1.9.1) (2026-10-15)
 
-
 ### Bug Fixes
 
-* docs and script publish ([1012339](https://github.com/pis2co/dasar-ui/commit/10123392d668821b282ca96d274cc5d68f799049))
+- docs and script publish ([1012339](https://github.com/pis2co/dasar-ui/commit/10123392d668821b282ca96d274cc5d68f799049))
 
 ## [1.9.0](https://github.com/pis2co/dasar-ui/compare/v1.7.1...v1.9.0) (2026-10-15)
 
-
 ### Bug Fixes
 
-* adjust docs ([e40bfef](https://github.com/pis2co/dasar-ui/commit/e40bfef5251752f24716b96c5081a8831a0991ed))
+- adjust docs ([e40bfef](https://github.com/pis2co/dasar-ui/commit/e40bfef5251752f24716b96c5081a8831a0991ed))
 
 ## [1.8.0](https://github.com/pis2co/dasar-ui/compare/v1.7.1...v1.8.0) (2026-10-15)
 
-
 ### Bug Fixes
 
-* adjust docs ([4b59465](https://github.com/pis2co/dasar-ui/commit/4b5946546fbbbb5de97ddc1d66687593dd289266))
+- adjust docs ([4b59465](https://github.com/pis2co/dasar-ui/commit/4b5946546fbbbb5de97ddc1d66687593dd289266))
 
 ### [1.7.1](https://github.com/pis2co/dasar-ui/compare/v1.7.0...v1.7.1) (2026-10-15)
 
-
 ### Bug Fixes
 
-* navbar styling ([05045d7](https://github.com/pis2co/dasar-ui/commit/05045d7e3c93f3a1f5bd1c68705be5937e0550ea))
+- navbar styling ([05045d7](https://github.com/pis2co/dasar-ui/commit/05045d7e3c93f3a1f5bd1c68705be5937e0550ea))
 
 ## [1.7.0](https://github.com/pis2co/dasar-ui/compare/v1.6.0...v1.7.0) (2026-10-15)
 
 ## [1.6.0](https://github.com/pis2co/dasar-ui/compare/v1.5.2...v1.6.0) (2026-10-15)
 
-
 ### Features
 
-* add more documentation page for basic and theme ([7671853](https://github.com/pis2co/dasar-ui/commit/7671853fb07d291a897bdd995f89daac893ac354))
+- add more documentation page for basic and theme ([7671853](https://github.com/pis2co/dasar-ui/commit/7671853fb07d291a897bdd995f89daac893ac354))
 
 ### [1.5.2](https://github.com/pis2co/dasar-ui/compare/v1.5.1...v1.5.2) (2026-10-15)
 
-
 ### Features
 
-* add documentation for dasar-list ([dab366a](https://github.com/pis2co/dasar-ui/commit/dab366adee2661891c601e3bd8eed6e65fb236f6))
+- add documentation for dasar-list ([dab366a](https://github.com/pis2co/dasar-ui/commit/dab366adee2661891c601e3bd8eed6e65fb236f6))
 
 ### [1.5.1](https://github.com/pis2co/dasar-ui/compare/v1.5.0...v1.5.1) (2026-10-15)
 
-
 ### Bug Fixes
 
-* theme and tokens configuration ([2af6c69](https://github.com/pis2co/dasar-ui/commit/2af6c69ec4bb54be02b12e199e8ad4caf64b62f6))
+- theme and tokens configuration ([2af6c69](https://github.com/pis2co/dasar-ui/commit/2af6c69ec4bb54be02b12e199e8ad4caf64b62f6))
 
 ## [1.5.0](https://github.com/pis2co/dasar-ui/compare/v1.4.0...v1.5.0) (2026-10-15)
 
-
 ### Features
 
-* adjust dasar-tabs functionality and more ([998739a](https://github.com/pis2co/dasar-ui/commit/998739afce63b1ce1beec5b65126c1ee2aa7e7e5))
-* adjust tabs component and more ([208f9aa](https://github.com/pis2co/dasar-ui/commit/208f9aa6706aacb766f592ddebcdd8480d06f945))
-* create dasar-list component ([94efa8c](https://github.com/pis2co/dasar-ui/commit/94efa8c92a03b9e92609b187c16f691e68d2cef6))
+- adjust dasar-tabs functionality and more ([998739a](https://github.com/pis2co/dasar-ui/commit/998739afce63b1ce1beec5b65126c1ee2aa7e7e5))
+- adjust tabs component and more ([208f9aa](https://github.com/pis2co/dasar-ui/commit/208f9aa6706aacb766f592ddebcdd8480d06f945))
+- create dasar-list component ([94efa8c](https://github.com/pis2co/dasar-ui/commit/94efa8c92a03b9e92609b187c16f691e68d2cef6))
 
 ## [1.4.0](https://github.com/pis2co/dasar-ui/compare/v1.3.0...v1.4.0) (2026-10-15)
 
-
 ### Features
 
-* config, custom modal and more ([0972e21](https://github.com/pis2co/dasar-ui/commit/0972e21ae8070c63ff11705d8ba107a1a7cf948b))
-
+- config, custom modal and more ([0972e21](https://github.com/pis2co/dasar-ui/commit/0972e21ae8070c63ff11705d8ba107a1a7cf948b))
 
 ### Bug Fixes
 
-* placement and more ([b2174e8](https://github.com/pis2co/dasar-ui/commit/b2174e8130e63214890ee1a80d3dc2e912d315ef))
+- placement and more ([b2174e8](https://github.com/pis2co/dasar-ui/commit/b2174e8130e63214890ee1a80d3dc2e912d315ef))
 
 ## [1.3.0](https://github.com/pis2co/dasar-ui/compare/v1.2.0...v1.3.0) (2026-10-09)
 
 ## [1.2.0](https://github.com/pis2co/dasar-ui/compare/v1.1.0...v1.2.0) (2026-10-09)
 
-
 ### Features
 
-* add library package json as bump files ([7d5b56b](https://github.com/pis2co/dasar-ui/commit/7d5b56b04423eb05bcb262100703e91c444d56fb))
+- add library package json as bump files ([7d5b56b](https://github.com/pis2co/dasar-ui/commit/7d5b56b04423eb05bcb262100703e91c444d56fb))
 
 ## [1.1.0](https://github.com/pis2co/dasar-ui/compare/v1.0.0...v1.1.0) (2026-10-09)
 
-
 ### Bug Fixes
 
-* set repo to public ([a47b464](https://github.com/pis2co/dasar-ui/commit/a47b4642184ebb7fd85728947c4e8222963cb185))
+- set repo to public ([a47b464](https://github.com/pis2co/dasar-ui/commit/a47b4642184ebb7fd85728947c4e8222963cb185))
 
 ## 1.0.0 (2026-10-09)
 
-
 ### Features
 
-* initial commit for dasar-ui library ([972f154](https://github.com/pis2co/dasar-ui/commit/972f154d0b0b763485806eded49088d551d80288))
-* resolve npm script and code cleanup ([798e4b8](https://github.com/pis2co/dasar-ui/commit/798e4b83a621409ae363ba5be714d6f077a694ce))
+- initial commit for dasar-ui library ([972f154](https://github.com/pis2co/dasar-ui/commit/972f154d0b0b763485806eded49088d551d80288))
+- resolve npm script and code cleanup ([798e4b8](https://github.com/pis2co/dasar-ui/commit/798e4b83a621409ae363ba5be714d6f077a694ce))

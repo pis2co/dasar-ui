@@ -33,6 +33,7 @@ describe('DasarThemeProviderComponent component tokens', () => {
   it('injects tabs, overlay and modal tokens on its host element', async () => {
     fixture.componentInstance.tokens.set({
       light: {
+        ripple: { color: 'rebeccapurple' },
         tabs: { listPaddingNormal: '11px', scrollFade: '20px' },
         overlay: { background: 'rgba(9, 9, 9, 0.2)' },
         modal: { titleColor: '#123456', elevatedShadow: 'none' },
@@ -41,6 +42,7 @@ describe('DasarThemeProviderComponent component tokens', () => {
     await fixture.whenStable();
 
     expect(host().style.getPropertyValue('--dasar-tabs-list-padding-normal')).toBe('11px');
+    expect(host().style.getPropertyValue('--dasar-ripple-color')).toBe('rebeccapurple');
     expect(host().style.getPropertyValue('--dasar-tabs-scroll-fade')).toBe('20px');
     expect(host().style.getPropertyValue('--dasar-overlay-background')).toBe('rgba(9, 9, 9, 0.2)');
     expect(host().style.getPropertyValue('--dasar-modal-title-color')).toBe('#123456');

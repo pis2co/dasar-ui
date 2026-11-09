@@ -13,7 +13,11 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { DasarCheckbox, DasarCheckboxSizeType } from '../dasar-checkbox/dasar-checkbox';
+import {
+  DasarCheckbox,
+  DasarCheckboxAppearanceType,
+  DasarCheckboxSizeType,
+} from '../dasar-checkbox/dasar-checkbox';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -25,6 +29,7 @@ export type DasarCheckboxGroupDirectionType = 'horizontal' | 'vertical';
 
 export interface DasarCheckboxGroupConfig {
   direction?: DasarCheckboxGroupDirectionType;
+  appearance?: DasarCheckboxAppearanceType;
   size?: DasarCheckboxSizeType | null;
   disabled?: boolean;
   error?: boolean;
@@ -90,6 +95,7 @@ export class DasarCheckboxGroup implements ControlValueAccessor {
       const current = this.values();
       const disabled = this.ownDisabled();
       const size = this.ownSize();
+      const appearance = this.appearance;
       const error = this.ownError();
       const valueField = this.valueField;
       for (const child of children) {
@@ -97,7 +103,7 @@ export class DasarCheckboxGroup implements ControlValueAccessor {
           (v) => keyOf(v, valueField) === keyOf(child.checkedValue, valueField),
         );
         child.applyGroupState(
-          { checked, disabled: disabled || child.disabled, error, size },
+          { checked, disabled: disabled || child.disabled, error, size, appearance },
           this.toggleChild,
         );
       }
@@ -108,6 +114,13 @@ export class DasarCheckboxGroup implements ControlValueAccessor {
     'checkboxGroup',
     'direction',
     'vertical' as DasarCheckboxGroupDirectionType,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() appearance = resolveThemeDefault(
+    'checkboxGroup',
+    'appearance',
+    'outline' as DasarCheckboxAppearanceType,
     this.themeProvider,
     this.themeService,
   );

@@ -30,16 +30,17 @@ import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provid
 import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { resolveThemeDefault, safeFormat } from '../../utils/common';
 import { DasarButtonComponent } from '../dasar-button/dasar-button';
+import { DasarNumberInputComponent } from '../dasar-number-input/dasar-number-input';
 import { DasarThemeService } from '../../services/theme.service';
 import { DasarIconComponent } from '../dasar-icon/dasar-icon';
 import { fieldIconSize } from '../../utils/icon-size';
 import { CommonModule } from '@angular/common';
 
-export type DasarDatepickerPlacement = DasarPanelPlacement;
 export type DasarDatepickerSize = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
-export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle';
+export type DasarDatepickerAppearance = 'outline' | 'filled' | 'subtle' | 'elevated';
+export type DasarDatepickerType = 'date' | 'datetime' | 'time';
+export type DasarDatepickerPlacement = DasarPanelPlacement;
 export type DasarDatepickerRadius = ScaleAttributeType;
-export type DasarDatepickerType = 'date';
 
 export interface DasarDatepickerConfig {
   fullWidth?: boolean;
@@ -50,6 +51,8 @@ export interface DasarDatepickerConfig {
   range?: boolean;
   displayFormat?: string;
   valueFormat?: string;
+  showSeconds?: boolean;
+  timeFormat?: '12' | '24';
   placement?: DasarDatepickerPlacement;
   appearance?: DasarDatepickerAppearance;
   extraLabel?: string;
@@ -98,6 +101,7 @@ let nextDasarDatepickerId = 0;
     DasarCalendarComponent,
     DasarIconComponent,
     DasarButtonComponent,
+    DasarNumberInputComponent,
   ],
   templateUrl: './dasar-datepicker.html',
   styleUrls: ['./dasar-datepicker.scss'],
@@ -125,17 +129,24 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
 
   @ViewChild('triggerElement') triggerEl?: ElementRef<HTMLElement>;
   dropdownEl?: ElementRef<HTMLElement>;
+  private dropdownOrigin: { parent: Node; nextSibling: Node | null } | null = null;
+  private portalTokenProperties = new Set<string>();
+  private originalPanelFontFamily: { value: string; priority: string } | null = null;
   private stopWatchingPanel: (() => void) | null = null;
-  private readonly watchPanelCleanup = inject(DestroyRef).onDestroy(() =>
-    this.stopWatchingPanel?.(),
-  );
+  private readonly watchPanelCleanup = inject(DestroyRef).onDestroy(() => {
+    this.stopWatchingPanel?.();
+    this.restoreDropdown();
+  });
   @ViewChild('dropdownElement')
   set dropdownElRef(ref: ElementRef<HTMLElement> | undefined) {
     this.stopWatchingPanel?.();
     this.stopWatchingPanel = null;
+    if (!ref) this.restoreDropdown();
     this.dropdownEl = ref;
-    if (ref)
+    if (ref) {
+      this.portalDropdownIfNeeded(ref.nativeElement);
       this.stopWatchingPanel = watchPanel(ref.nativeElement, () => this.calculateSmartPlacement());
+    }
   }
 
   @Input({ alias: 'display-format' }) displayFormat = resolveThemeDefault(
@@ -149,6 +160,20 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     'datepicker',
     'valueFormat',
     'yyyy-MM-dd',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'show-seconds', transform: booleanAttribute }) showSeconds = resolveThemeDefault(
+    'datepicker',
+    'showSeconds',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'time-format' }) timeFormat: '12' | '24' = resolveThemeDefault(
+    'datepicker',
+    'timeFormat',
+    '24',
     this.themeProvider,
     this.themeService,
   );
@@ -387,8 +412,20 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   private _value: any = null;
   internalDate: Date | null = null;
   internalRange: DasarCalendarRange = [null, null];
-  isOpen: boolean = false;
+  private _isOpen = false;
+  get isOpen(): boolean {
+    return this._isOpen;
+  }
+  set isOpen(open: boolean) {
+    if (!open) this.restoreDropdown();
+    this._isOpen = open;
+  }
   private isFocused: boolean = false;
+
+  timeHours: number = 0;
+  timeMinutes: number = 0;
+  timeSeconds: number = 0;
+  timeMeridiem: 'AM' | 'PM' = 'AM';
 
   @Input()
   get value(): any {
@@ -417,7 +454,11 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
     return !!(this.hint || this.hintSlot);
   }
   get hasValue(): boolean {
-    return this.range ? !!this.internalRange[0] : !!this.internalDate;
+    if (this.range) return !!this.internalRange[0];
+    if (this.type === 'time') {
+      return this._value !== null && this._value !== undefined && this._value !== '';
+    }
+    return !!this.internalDate;
   }
   get displayText(): string {
     if (!this.hasValue) {
@@ -446,12 +487,28 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   get formattedDisplay(): string {
     if (!this.internalDate || isNaN(this.internalDate.getTime())) return '';
     try {
+      if (this.type === 'time') {
+        return safeFormat(this.internalDate, this.timeValueFormat, this.locale);
+      }
       const formatToUse = () => {
+        if (this.type === 'datetime') {
+          const timePart =
+            this.timeFormat === '12'
+              ? this.showSeconds
+                ? 'h:mm:ss A'
+                : 'h:mm A'
+              : this.showSeconds
+                ? 'HH:mm:ss'
+                : 'HH:mm';
+          return `${this.displayFormat} ${timePart}`;
+        }
         return this.displayFormat;
       };
       return safeFormat(this.internalDate, formatToUse(), this.locale);
     } catch {
-      return this.internalDate.toDateString();
+      return this.type === 'time'
+        ? this.formatTimeFallback(this.internalDate)
+        : this.internalDate.toDateString();
     }
   }
 
@@ -474,7 +531,10 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
-    if (this.isOpen && !this.elementRef.nativeElement.contains(event.target)) {
+    const target = event.target as Node | null;
+    const clickedInsideHost = !!target && this.elementRef.nativeElement.contains(target);
+    const clickedInsidePanel = !!target && !!this.dropdownEl?.nativeElement.contains(target);
+    if (this.isOpen && !clickedInsideHost && !clickedInsidePanel) {
       this.isOpen = false;
       if (this.range) this.syncInternalDate();
       this.onClickOut.emit(event);
@@ -489,11 +549,36 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       return;
     }
     this.internalRange = [null, null];
+    if (this.type === 'time') {
+      const now = new Date();
+      const parsed =
+        this._value == null || this._value === '' ? null : this.parseTimeValue(this._value);
+      this.timeHours = parsed?.hours ?? now.getHours();
+      this.timeMinutes = parsed?.minutes ?? now.getMinutes();
+      this.timeSeconds = parsed?.seconds ?? now.getSeconds();
+      this.timeMeridiem = this.timeHours >= 12 ? 'PM' : 'AM';
+      this.internalDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        this.timeHours,
+        this.timeMinutes,
+        this.timeSeconds,
+        0,
+      );
+      return;
+    }
     if (!this._value) {
       this.internalDate = null;
       return;
     }
     this.internalDate = new Date(this._value);
+    if (!isNaN(this.internalDate.getTime())) {
+      this.timeHours = this.internalDate.getHours();
+      this.timeMinutes = this.internalDate.getMinutes();
+      this.timeSeconds = this.internalDate.getSeconds();
+      this.timeMeridiem = this.timeHours >= 12 ? 'PM' : 'AM';
+    }
   }
   private setFocus(state: boolean, event?: Event) {
     if (this.disabled) return;
@@ -510,6 +595,166 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   }
   get iconSize(): number {
     return fieldIconSize(this.size);
+  }
+
+  get displayHours(): number {
+    if (this.timeFormat === '12') {
+      return this.timeHours % 12 || 12;
+    }
+    return this.timeHours;
+  }
+
+  get showTimeSection(): boolean {
+    return this.type === 'datetime' || this.type === 'time';
+  }
+
+  get showCalendar(): boolean {
+    return this.type !== 'time';
+  }
+
+  get modalTitle(): string {
+    if (this.type === 'time') return 'Select Time';
+    if (this.type === 'datetime') return 'Select Date & Time';
+    return 'Select Date';
+  }
+
+  private get timeValueFormat(): string {
+    if (this.timeFormat === '12') return this.showSeconds ? 'h:mm:ss A' : 'h:mm A';
+    return this.showSeconds ? 'HH:mm:ss' : 'HH:mm';
+  }
+
+  private parseTimeValue(value: any): { hours: number; minutes: number; seconds: number } | null {
+    if (value instanceof Date && !isNaN(value.getTime())) {
+      return {
+        hours: value.getHours(),
+        minutes: value.getMinutes(),
+        seconds: value.getSeconds(),
+      };
+    }
+    const text = String(value).trim();
+    const match = text.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i);
+    if (match) {
+      let hours = Number(match[1]);
+      const minutes = Number(match[2]);
+      const seconds = Number(match[3] ?? 0);
+      const meridiem = match[4]?.toUpperCase();
+      if (minutes > 59 || seconds > 59) return null;
+      if (meridiem) {
+        if (hours < 1 || hours > 12) return null;
+        hours = (hours % 12) + (meridiem === 'PM' ? 12 : 0);
+      }
+      if (hours > 23) return null;
+      return { hours, minutes, seconds };
+    }
+    const parsedDate = new Date(value);
+    if (isNaN(parsedDate.getTime())) return null;
+    return {
+      hours: parsedDate.getHours(),
+      minutes: parsedDate.getMinutes(),
+      seconds: parsedDate.getSeconds(),
+    };
+  }
+
+  private formatTimeFallback(date: Date): string {
+    const pad = (value: number) => String(value).padStart(2, '0');
+    const hours = this.timeFormat === '12' ? date.getHours() % 12 || 12 : date.getHours();
+    const time = `${this.timeFormat === '12' ? hours : pad(hours)}:${pad(date.getMinutes())}${
+      this.showSeconds ? `:${pad(date.getSeconds())}` : ''
+    }`;
+    return this.timeFormat === '12' ? `${time} ${date.getHours() >= 12 ? 'PM' : 'AM'}` : time;
+  }
+
+  get showSecondsSection(): boolean {
+    return this.showSeconds;
+  }
+
+  get showMeridiemToggle(): boolean {
+    return this.timeFormat === '12';
+  }
+
+  onHoursChange(value: number | null): void {
+    if (value === null) return;
+    if (this.timeFormat === '12') {
+      const normalizedValue = value === 0 ? 12 : value;
+      const clampedDisplay = Math.min(12, Math.max(1, normalizedValue));
+      if (this.timeMeridiem === 'AM') {
+        this.timeHours = clampedDisplay === 12 ? 0 : clampedDisplay;
+      } else {
+        this.timeHours = clampedDisplay === 12 ? 12 : clampedDisplay + 12;
+      }
+    } else {
+      this.timeHours = Math.min(23, Math.max(0, value));
+      this.timeMeridiem = this.timeHours >= 12 ? 'PM' : 'AM';
+    }
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  onMinutesChange(value: number | null): void {
+    if (value === null) return;
+    this.timeMinutes = Math.min(59, Math.max(0, value));
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  onSecondsChange(value: number | null): void {
+    if (value === null) return;
+    this.timeSeconds = Math.min(59, Math.max(0, value));
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  onMeridiemToggle(value: 'AM' | 'PM'): void {
+    if (value === this.timeMeridiem) return;
+    if (value === 'PM' && this.timeHours < 12) {
+      this.timeHours += 12;
+    } else if (value === 'AM' && this.timeHours >= 12) {
+      this.timeHours -= 12;
+    }
+    this.timeMeridiem = value;
+    this.mergeTimeIntoInternalDate();
+    this.cdr.markForCheck();
+  }
+
+  confirmDateTime(): void {
+    this.mergeTimeIntoInternalDate();
+    if (this.internalDate) {
+      const returnValue = this.formatReturnValue(this.internalDate);
+      this._value = returnValue;
+      this.onChange(returnValue);
+      this.valueChange.emit(returnValue);
+      this.onDateSelected.emit(returnValue);
+    }
+    this.isOpen = false;
+    this.setFocus(false);
+    this.cdr.detectChanges();
+  }
+
+  selectToday(): void {
+    const now = new Date();
+    if (this.type === 'time') {
+      this.timeHours = now.getHours();
+      this.timeMinutes = now.getMinutes();
+      this.timeSeconds = now.getSeconds();
+      this.timeMeridiem = this.timeHours >= 12 ? 'PM' : 'AM';
+    }
+    this.internalDate = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      this.timeHours,
+      this.timeMinutes,
+      this.timeSeconds,
+      0,
+    );
+    this.cdr.markForCheck();
+  }
+
+  mergeTimeIntoInternalDate(): void {
+    if (!this.internalDate && this.type !== 'time') return;
+    const updated = this.internalDate ? new Date(this.internalDate.getTime()) : new Date();
+    updated.setHours(this.timeHours, this.timeMinutes, this.timeSeconds, 0);
+    this.internalDate = updated;
   }
 
   toggleDropdown(event: Event) {
@@ -559,22 +804,38 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
   }
   onCalendarSelect(date: Date | null) {
     if (!date) return;
-    this.internalDate = date;
+    if (this.type === 'datetime') {
+      const merged = new Date(date.getTime());
+      merged.setHours(this.timeHours, this.timeMinutes, this.timeSeconds, 0);
+      this.internalDate = merged;
+      const returnValue = this.formatReturnValue(merged);
+      this._value = returnValue;
+      this.onDateSelected.emit(returnValue);
+    } else {
+      this.internalDate = date;
 
-    const returnValue = this.formatReturnValue(date);
-    this._value = returnValue;
+      const returnValue = this.formatReturnValue(date);
+      this._value = returnValue;
 
-    this.onChange(returnValue);
-    this.valueChange.emit(returnValue);
-    this.onDateSelected.emit(returnValue);
+      this.onChange(returnValue);
+      this.valueChange.emit(returnValue);
+      this.onDateSelected.emit(returnValue);
 
-    if (this.type === 'date') {
-      this.isOpen = false;
-      this.setFocus(false);
+      if (this.type === 'date') {
+        this.isOpen = false;
+        this.setFocus(false);
+      }
     }
     this.cdr.detectChanges();
   }
   private formatReturnValue(date: Date): any {
+    if (this.type === 'time') {
+      try {
+        return safeFormat(date, this.timeValueFormat, this.locale);
+      } catch {
+        return this.formatTimeFallback(date);
+      }
+    }
     if (!this.valueFormat) return date;
     if (this.valueFormat === 'timestamp') return date.getTime();
     if (this.valueFormat === 'iso') return date.toISOString();
@@ -601,6 +862,95 @@ export class DasarDatepicker implements OnInit, ControlValueAccessor {
       newPlacement,
       { offset: 4 },
     );
+  }
+
+  private portalDropdownIfNeeded(panel: HTMLElement): void {
+    const trigger =
+      this.triggerEl?.nativeElement ??
+      (this.elementRef.nativeElement.querySelector(
+        '.dasar-datepicker-wrapper',
+      ) as HTMLElement | null);
+    if (!trigger || typeof document === 'undefined' || !document.body) return;
+
+    let parent: HTMLElement | null = trigger;
+    let needsPortal = false;
+    while (parent && parent !== document.body) {
+      const style = getComputedStyle(parent);
+      const clipsOverflow = /(hidden|auto|scroll|clip)/.test(
+        style.overflow + style.overflowX + style.overflowY,
+      );
+      const establishesFixedContainingBlock =
+        (style.transform !== 'none' && !!style.transform) ||
+        (style.filter !== 'none' && !!style.filter) ||
+        (style.perspective !== 'none' && !!style.perspective) ||
+        /(layout|paint|strict|content)/.test(style.contain) ||
+        /(transform|filter|perspective)/.test(style.willChange);
+      if (clipsOverflow || establishesFixedContainingBlock) {
+        needsPortal = true;
+        break;
+      }
+      parent = parent.parentElement;
+    }
+
+    if (!needsPortal || !panel.parentNode) return;
+    this.dropdownOrigin = { parent: panel.parentNode, nextSibling: panel.nextSibling };
+    this.originalPanelFontFamily = {
+      value: panel.style.getPropertyValue('font-family'),
+      priority: panel.style.getPropertyPriority('font-family'),
+    };
+    panel.style.fontFamily = getComputedStyle(trigger).fontFamily;
+    this.inheritThemeProperties(trigger, panel);
+    document.body.appendChild(panel);
+  }
+
+  private inheritThemeProperties(source: HTMLElement, panel: HTMLElement): void {
+    const ancestors: HTMLElement[] = [];
+    const originalProperties = new Set<string>();
+    for (let index = 0; index < panel.style.length; index++) {
+      originalProperties.add(panel.style.item(index));
+    }
+    for (let element: HTMLElement | null = source; element; element = element.parentElement) {
+      ancestors.push(element);
+    }
+    for (const element of ancestors.reverse()) {
+      const computed = getComputedStyle(element);
+      for (let index = 0; index < computed.length; index++) {
+        const property = computed.item(index);
+        if (!property.startsWith('--') || originalProperties.has(property)) continue;
+        const value = computed.getPropertyValue(property);
+        if (value) {
+          panel.style.setProperty(property, value);
+          this.portalTokenProperties.add(property);
+        }
+      }
+    }
+  }
+
+  private restoreDropdown(): void {
+    const panel = this.dropdownEl?.nativeElement;
+    const origin = this.dropdownOrigin;
+    if (panel && origin) {
+      if (origin.nextSibling?.parentNode === origin.parent) {
+        origin.parent.insertBefore(panel, origin.nextSibling);
+      } else {
+        origin.parent.appendChild(panel);
+      }
+    }
+    if (panel) {
+      for (const property of this.portalTokenProperties) panel.style.removeProperty(property);
+      if (this.originalPanelFontFamily?.value) {
+        panel.style.setProperty(
+          'font-family',
+          this.originalPanelFontFamily.value,
+          this.originalPanelFontFamily.priority,
+        );
+      } else {
+        panel.style.removeProperty('font-family');
+      }
+    }
+    this.portalTokenProperties.clear();
+    this.originalPanelFontFamily = null;
+    this.dropdownOrigin = null;
   }
 }
 

@@ -22,7 +22,7 @@ import { resolveThemeDefault } from '../../utils/common';
 import { CommonModule } from '@angular/common';
 
 export type DasarNumberInputSize = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-export type DasarNumberInputAppearanceType = 'outline' | 'filled';
+export type DasarNumberInputAppearanceType = 'outline' | 'filled' | 'elevated';
 export type DasarNumberInputRadiusType = ScaleAttributeType;
 
 export interface DasarNumberInputConfig {

@@ -2,9 +2,14 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { NgpCheckbox } from 'ng-primitives/checkbox';
 import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 import { DasarThemeProviderComponent } from '../dasar-theme-provider/dasar-theme-provider';
-import { DasarCheckboxComponent } from './dasar-checkbox';
+import {
+  DasarCheckbox,
+  DasarCheckboxAppearanceType,
+  DasarCheckboxComponent,
+} from './dasar-checkbox';
 import { DasarThemeConfig } from '../../models/theme.model';
 
 @Component({
@@ -100,7 +105,7 @@ describe('DasarCheckbox', () => {
   });
 
   it('is unchecked with the md class by default', () => {
-    expect(nativeOf(fixture).checked).toBe(false);
+    expect(nativeOf(fixture).getAttribute('aria-checked')).toBe('false');
     expect(boxOf(fixture).classList).not.toContain('checked');
     expect(hostOf(fixture).classList).toContain('md');
     expect(fixture.nativeElement.querySelector('.dasar-checkbox-label')?.textContent).toBe(
@@ -109,13 +114,44 @@ describe('DasarCheckbox', () => {
     expect(fixture.nativeElement.textContent).toContain('Extra');
   });
 
+  it('hosts the NgpCheckbox directive on the interactive element', () => {
+    const ngpCheckboxDebugEl = fixture.debugElement.query(By.directive(NgpCheckbox));
+    expect(ngpCheckboxDebugEl).not.toBeNull();
+    expect(ngpCheckboxDebugEl.nativeElement.tagName.toLowerCase()).toBe('button');
+    expect(ngpCheckboxDebugEl.nativeElement.getAttribute('type')).toBe('button');
+  });
+
+  it('reflects checked state into NgpCheckbox directive and aria-checked attribute', async () => {
+    const ngpCheckboxDebugEl = fixture.debugElement.query(By.directive(NgpCheckbox));
+    expect(ngpCheckboxDebugEl).not.toBeNull();
+
+    const ngpCheckbox = ngpCheckboxDebugEl.injector.get(NgpCheckbox);
+    expect(ngpCheckbox.checked()).toBe(false);
+    expect(ngpCheckboxDebugEl.nativeElement.getAttribute('aria-checked')).toBe('false');
+
+    fixture.componentInstance.value.set(true);
+    await fixture.whenStable();
+
+    expect(ngpCheckbox.checked()).toBe(true);
+    expect(ngpCheckboxDebugEl.nativeElement.getAttribute('aria-checked')).toBe('true');
+  });
+
+  it('toggles value via keyboard Space key interaction on the interactive element', async () => {
+    const el = nativeOf(fixture);
+    el.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }));
+    await fixture.whenStable();
+
+    expect(fixture.componentInstance.value()).toBe(true);
+    expect(fixture.componentInstance.updates()).toEqual([true]);
+  });
+
   it('toggles and emits the checked value on click', async () => {
     nativeOf(fixture).click();
     await fixture.whenStable();
 
     expect(fixture.componentInstance.value()).toBe(true);
     expect(fixture.componentInstance.updates()).toEqual([true]);
-    expect(nativeOf(fixture).checked).toBe(true);
+    expect(nativeOf(fixture).getAttribute('aria-checked')).toBe('true');
   });
 
   it('emits custom checked and unchecked values', async () => {
@@ -139,7 +175,7 @@ describe('DasarCheckbox', () => {
     fixture.componentInstance.value.set(true);
     await fixture.whenStable();
 
-    expect(nativeOf(fixture).checked).toBe(true);
+    expect(nativeOf(fixture).getAttribute('aria-checked')).toBe('true');
     expect(boxOf(fixture).classList).toContain('checked');
   });
 
@@ -147,7 +183,11 @@ describe('DasarCheckbox', () => {
     fixture.componentInstance.disabled.set(true);
     await fixture.whenStable();
 
-    nativeOf(fixture).click();
+    const nativeBtn = nativeOf(fixture);
+    expect(nativeBtn.disabled).toBe(true);
+    expect(nativeBtn.getAttribute('aria-disabled')).toBe('true');
+
+    nativeBtn.click();
     await fixture.whenStable();
 
     expect(fixture.componentInstance.value()).toBe(false);
@@ -191,9 +231,7 @@ describe('DasarCheckbox forms', () => {
     const fixture = TestBed.createComponent(CheckboxNgModelHost);
     await fixture.whenStable();
 
-    const native = fixture.nativeElement.querySelector(
-      '.dasar-checkbox-native',
-    ) as HTMLInputElement;
+    const native = fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLElement;
 
     native.click();
     await fixture.whenStable();
@@ -206,7 +244,7 @@ describe('DasarCheckbox forms', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(native.checked).toBe(false);
+    expect(native.getAttribute('aria-checked')).toBe('false');
   });
 
   it('respects a disabled reactive FormControl', async () => {
@@ -306,8 +344,7 @@ describe('DasarCheckbox indeterminate', () => {
   let fixture: ComponentFixture<CheckboxIndeterminateHost>;
   let host: CheckboxIndeterminateHost;
 
-  const input = () =>
-    fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLInputElement;
+  const input = () => fixture.nativeElement.querySelector('.dasar-checkbox-native') as HTMLElement;
   const box = () => fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
 
   beforeEach(async () => {
@@ -320,7 +357,6 @@ describe('DasarCheckbox indeterminate', () => {
   });
 
   it('shows the mixed state with a dash instead of a check', () => {
-    expect(input().indeterminate).toBe(true);
     expect(input().getAttribute('aria-checked')).toBe('mixed');
     expect(box().classList).toContain('indeterminate');
     expect(box().querySelector('dasar-icon')?.getAttribute('name')).toBe('minus');
@@ -330,8 +366,7 @@ describe('DasarCheckbox indeterminate', () => {
     host.indeterminate.set(false);
     fixture.detectChanges();
 
-    expect(input().indeterminate).toBe(false);
-    expect(input().getAttribute('aria-checked')).toBeNull();
+    expect(input().getAttribute('aria-checked')).toBe('false');
     expect(box().classList).not.toContain('indeterminate');
     expect(box().querySelector('dasar-icon')).toBeNull();
   });
@@ -341,6 +376,16 @@ describe('DasarCheckbox indeterminate', () => {
     fixture.detectChanges();
 
     expect(host.value()).toBe(true);
+  });
+
+  it('keeps indeterminate state and mixed aria-checked when parent maintains indeterminate input true across click', () => {
+    expect(input().getAttribute('aria-checked')).toBe('mixed');
+    input().click();
+    fixture.detectChanges();
+
+    expect(host.value()).toBe(true);
+    expect(input().getAttribute('aria-checked')).toBe('mixed');
+    expect(box().classList).toContain('indeterminate');
   });
 });
 
@@ -378,5 +423,99 @@ describe('DasarCheckbox label size', () => {
     fixture.componentInstance.size.set('lg');
     await fixture.whenStable();
     expect(fontSize()).toContain('--dasar-font-size-lg');
+  });
+});
+
+@Component({
+  selector: 'test-checkbox-appearance-host',
+  standalone: true,
+  imports: [DasarCheckboxComponent],
+  template: `
+    @if (appearance()) {
+      <dasar-checkbox label="Appearance" [appearance]="appearance()!" />
+    } @else {
+      <dasar-checkbox label="Appearance" />
+    }
+  `,
+})
+class CheckboxAppearanceHost {
+  appearance = signal<DasarCheckboxAppearanceType | undefined>(undefined);
+}
+
+@Component({
+  selector: 'test-checkbox-appearance-theme-host',
+  standalone: true,
+  imports: [DasarCheckboxComponent],
+  template: `<dasar-checkbox label="Themed" />`,
+})
+class CheckboxAppearanceThemeHost {}
+
+describe('DasarCheckbox appearance', () => {
+  it("defaults to 'outline' appearance and applies appearance-outline class", async () => {
+    await TestBed.configureTestingModule({
+      imports: [CheckboxAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(CheckboxAppearanceHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const box = fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+    expect(box).toBeTruthy();
+    expect(box.classList.contains('appearance-outline')).toBe(true);
+    expect(box.classList.contains('appearance-elevated')).toBe(false);
+    expect(box.classList.contains('appearance-filled')).toBe(false);
+
+    const checkbox = fixture.debugElement.query(By.directive(DasarCheckbox))
+      .componentInstance as DasarCheckbox;
+    expect(checkbox.appearance).toBe('outline');
+    expect(checkbox.currentAppearance).toBe('outline');
+  });
+
+  it("applies 'appearance-elevated' class when appearance is set to 'elevated'", async () => {
+    await TestBed.configureTestingModule({
+      imports: [CheckboxAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(CheckboxAppearanceHost);
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const box = fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+    expect(box).toBeTruthy();
+    expect(box.classList.contains('appearance-elevated')).toBe(true);
+    expect(box.classList.contains('appearance-outline')).toBe(false);
+
+    const checkbox = fixture.debugElement.query(By.directive(DasarCheckbox))
+      .componentInstance as DasarCheckbox;
+    expect(checkbox.appearance).toBe('elevated');
+    expect(checkbox.currentAppearance).toBe('elevated');
+  });
+
+  it('respects theme-provided default appearance from DASAR_THEME_PROVIDER', async () => {
+    const customThemeConfig = {
+      componentConfig: {
+        checkbox: {
+          appearance: 'elevated' as const,
+        },
+      },
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [CheckboxAppearanceThemeHost],
+      providers: [{ provide: DASAR_THEME_PROVIDER, useValue: customThemeConfig }],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(CheckboxAppearanceThemeHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const box = fixture.nativeElement.querySelector('.dasar-checkbox-box') as HTMLElement;
+    expect(box).toBeTruthy();
+    expect(box.classList.contains('appearance-elevated')).toBe(true);
+
+    const checkbox = fixture.debugElement.query(By.directive(DasarCheckbox))
+      .componentInstance as DasarCheckbox;
+    expect(checkbox.appearance).toBe('elevated');
+    expect(checkbox.currentAppearance).toBe('elevated');
   });
 });

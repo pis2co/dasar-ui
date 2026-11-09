@@ -11,6 +11,8 @@ import { DatepickerFooterExample } from './examples/footer/datepicker-footer.exa
 import { DatepickerBasicExample } from './examples/basic/datepicker-basic.example';
 import { DatepickerRangeExample } from './examples/range/datepicker-range.example';
 import { DatepickerSlotsExample } from './examples/slots/datepicker-slots.example';
+import { DatepickerTimepickerExample } from './examples/timepicker/datepicker-timepicker.example';
+import { DatepickerDatetimeExample } from './examples/datetime/datepicker-datetime.example';
 
 // @ts-ignore
 import basicHtml from './examples/basic/datepicker-basic.example.html' with { loader: 'text' };
@@ -60,6 +62,22 @@ import footerHtml from './examples/footer/datepicker-footer.example.html' with {
 import footerTs from './examples/footer/datepicker-footer.example.ts' with {
   loader: 'text',
 };
+// @ts-ignore
+import timepickerHtml from './examples/timepicker/datepicker-timepicker.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import timepickerTs from './examples/timepicker/datepicker-timepicker.example.ts' with {
+  loader: 'text',
+};
+// @ts-ignore
+import datetimeHtml from './examples/datetime/datepicker-datetime.example.html' with {
+  loader: 'text',
+};
+// @ts-ignore
+import datetimeTs from './examples/datetime/datepicker-datetime.example.ts' with {
+  loader: 'text',
+};
 
 @Component({
   imports: [
@@ -74,6 +92,8 @@ import footerTs from './examples/footer/datepicker-footer.example.ts' with {
     DatepickerPlacementExample,
     DatepickerSlotsExample,
     DatepickerFooterExample,
+    DatepickerTimepickerExample,
+    DatepickerDatetimeExample,
   ],
   templateUrl: './datepicker.page.html',
   selector: 'app-datepicker-page',
@@ -96,6 +116,10 @@ export class DatepickerDocPage {
   public slotsTs = slotsTs;
   public footerHtml = footerHtml;
   public footerTs = footerTs;
+  public timepickerHtml = timepickerHtml;
+  public timepickerTs = timepickerTs;
+  public datetimeHtml = datetimeHtml;
+  public datetimeTs = datetimeTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {
@@ -103,7 +127,14 @@ export class DatepickerDocPage {
       type: 'any',
       defaultValue: 'null',
       description:
-        'The currently selected date. Supports Angular two-way binding [(value)] and Reactive Forms.',
+        'The current selection. Date and datetime values use value-format; time-only mode returns a time string without a date. Supports [(value)] and Reactive Forms.',
+    },
+    {
+      name: 'type',
+      type: "'date' | 'datetime' | 'time'",
+      defaultValue: "'date'",
+      description:
+        'Selects date, combined date and time, or time-only mode; time-only mode shows no calendar date picker.',
     },
     {
       name: 'range',
@@ -116,14 +147,28 @@ export class DatepickerDocPage {
       name: 'display-format',
       type: 'string',
       defaultValue: "'DD-MM-YYYY'",
-      description: 'The date format shown in the input trigger (e.g., dd MMMM yyyy).',
+      description:
+        'The date format shown in date and datetime modes (e.g., dd MMMM yyyy). Time-only mode uses time-format and show-seconds.',
     },
     {
       name: 'value-format',
       type: 'string',
       defaultValue: "'yyyy-MM-dd'",
       description:
-        'The format of the returned value. Accepts date-fns strings, "iso", or "timestamp".',
+        'The returned date/datetime format. Accepts date-fns strings, "iso", or "timestamp"; time-only mode instead emits a time string based on time-format and show-seconds.',
+    },
+    {
+      name: 'time-format',
+      type: "'12' | '24'",
+      defaultValue: "'24'",
+      description:
+        'Controls the time display and emitted time string in datetime and time-only modes.',
+    },
+    {
+      name: 'show-seconds',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Shows seconds in the time controls and emitted time string.',
     },
     {
       name: 'locale',
@@ -133,7 +178,7 @@ export class DatepickerDocPage {
     },
     {
       name: 'appearance',
-      type: "'outline' | 'filled' | 'subtle'",
+      type: "'outline' | 'filled' | 'subtle' | 'elevated'",
       defaultValue: "'outline'",
       description: 'The visual style of the trigger input.',
     },

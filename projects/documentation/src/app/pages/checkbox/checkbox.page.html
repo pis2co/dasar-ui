@@ -1,4 +1,5 @@
 <docs-layout
+  builtOnPrimitive
   title="Checkbox"
   description="A checkbox for boolean or custom on/off values, with label, hint, error and disabled states. Works with ngModel and reactive forms. Dasar-checkbox-group combines several checkboxes into one array value, with optional value-field matching for objects."
   [apiData]="apiProps"
@@ -11,6 +12,17 @@
     title="Basic"
   >
     <app-checkbox-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+    description="Supports outline (default), filled, and elevated appearance variants."
+  >
+    <app-checkbox-appearance-example />
   </doc-example-component>
 
   <doc-example-component
@@ -81,6 +93,17 @@
     title="Checkbox Group"
   >
     <app-checkbox-group-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: groupAppearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: groupAppearanceTs },
+    ]"
+    title="Group Appearance Passthrough"
+    description="The appearance input set on dasar-checkbox-group passes down to all child checkboxes unless overridden."
+  >
+    <app-checkbox-group-appearance-example />
   </doc-example-component>
 
   <doc-example-component

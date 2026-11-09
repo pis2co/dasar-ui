@@ -204,7 +204,7 @@ export class TabsDocPage {
     },
     {
       name: 'appearance',
-      type: "'solid' | 'subtle' | 'outline'",
+      type: "'solid' | 'subtle' | 'outline' | 'elevated'",
       defaultValue: "'subtle'",
       description:
         'Visual style of the tab strip. Outline removes the container and draws an underline instead.',

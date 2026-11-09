@@ -1,0 +1,19 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%">
+  <p style="margin: 0">
+    Selected Range:
+    <strong>
+      {{ selectedRange()[0] ? (selectedRange()[0] | date: 'mediumDate') : 'Start date' }}
+      -
+      {{ selectedRange()[1] ? (selectedRange()[1] | date: 'mediumDate') : 'End date' }}
+    </strong>
+  </p>
+
+  <dasar-calendar
+    variant="dashboard"
+    appearance="outline"
+    full-width
+    [range]="true"
+    [rangeValue]="selectedRange()"
+    (rangeValueChange)="selectedRange.set($event)"
+  ></dasar-calendar>
+</div>

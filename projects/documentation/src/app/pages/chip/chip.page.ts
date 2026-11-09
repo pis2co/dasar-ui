@@ -82,7 +82,7 @@ export class ChipDocPage {
     },
     {
       name: 'appearance',
-      type: "'solid' | 'subtle' | 'outline'",
+      type: "'solid' | 'subtle' | 'outline' | 'elevated'",
       defaultValue: "'solid'",
       description: 'Defines the fill and border style of the chip.',
     },

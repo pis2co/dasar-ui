@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DasarAlertComponent } from 'dasar-ui';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 
@@ -74,6 +75,7 @@ import customStyleTs from './examples/custom-style/modal-custom-style.example.ts
 @Component({
   imports: [
     CommonModule,
+    DasarAlertComponent,
     DocsLayoutComponent,
     DocExampleComponent,
     ModalBasicExample,
@@ -124,10 +126,37 @@ export class ModalDocPage {
 
   protected readonly apiProps: DocApiProperty[] = [
     {
-      name: 'open',
+      name: '[dasarModalTrigger]',
+      type: 'TemplateRef<any>',
+      defaultValue: 'undefined',
+      description:
+        'Directive placed on the launcher element pointing to an <ng-template let-close="close"> that renders the dialog content.',
+    },
+    {
+      name: '[dasarModalTriggerCloseOnEscape]',
       type: 'boolean',
-      defaultValue: 'false',
-      description: 'Shows the modal. The component never closes itself, the consumer controls it.',
+      defaultValue: 'true',
+      description:
+        'Trigger-level option to enable or disable closing the dialog with the Escape key.',
+    },
+    {
+      name: '[dasarModalTriggerCloseOnOutsideClick]',
+      type: 'boolean',
+      defaultValue: 'true',
+      description:
+        'Trigger-level option to enable or disable closing the dialog when clicking outside.',
+    },
+    {
+      name: '[dasarModalTriggerContainer]',
+      type: 'HTMLElement | string',
+      defaultValue: 'document.body',
+      description: 'Trigger-level container where the dialog portal will be appended.',
+    },
+    {
+      name: '(dasarModalTriggerClosed)',
+      type: 'EventEmitter<void>',
+      defaultValue: '-',
+      description: 'Trigger-level event emitted when the dialog is closed.',
     },
     {
       name: 'label',
@@ -182,27 +211,21 @@ export class ModalDocPage {
       name: 'close-on-overlay',
       type: 'boolean',
       defaultValue: 'true',
-      description: 'A click on the backdrop emits (onClose).',
-    },
-    {
-      name: 'close-on-escape',
-      type: 'boolean',
-      defaultValue: 'true',
-      description: 'Pressing Escape emits (onClose).',
+      description: 'Enables closing when clicking on the modal backdrop/overlay.',
     },
     {
       name: 'overlay-blur',
       type: 'string | null',
       defaultValue: 'null',
       description:
-        'Backdrop blur radius, forwarded to the underlying dasar-overlay. Falls back to the --dasar-overlay-blur theme token, then 4px.',
+        'Backdrop blur radius. Falls back to the --dasar-modal-overlay-blur / --dasar-overlay-blur theme token, then 4px.',
     },
     {
       name: 'overlay-background',
       type: 'string | null',
       defaultValue: 'null',
       description:
-        'Backdrop color, forwarded to the underlying dasar-overlay. Falls back to the --dasar-overlay-background theme token, then rgba(0, 0, 0, 0.45).',
+        'Backdrop color. Falls back to the --dasar-modal-overlay-background / --dasar-overlay-background theme token, then rgba(0, 0, 0, 0.45).',
     },
     {
       name: 'fluid / ...-fluid',
@@ -222,13 +245,6 @@ export class ModalDocPage {
       type: 'string | object',
       defaultValue: 'null',
       description: 'Class injection for container, header, close, body and actions.',
-    },
-    {
-      name: '(onClose)',
-      type: 'EventEmitter<void>',
-      defaultValue: '-',
-      description:
-        'Emitted when the close button, the backdrop or Escape is used. Set open to false in the handler.',
     },
     {
       name: '[header-slot]',

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { DasarModalComponent, DasarButtonComponent } from 'dasar-ui';
 
 @Component({
@@ -7,6 +7,4 @@ import { DasarModalComponent, DasarButtonComponent } from 'dasar-ui';
   imports: [DasarModalComponent, DasarButtonComponent],
   standalone: true,
 })
-export class ModalCustomStyleExample {
-  protected open = signal(false);
-}
+export class ModalCustomStyleExample {}

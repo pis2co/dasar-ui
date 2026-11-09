@@ -12,11 +12,12 @@ import { ClassType, ScaleAttributeType, StyleType } from '../../models/type.mode
 import { parseClassesToArray, resolveThemeDefault } from '../../utils/common';
 import { DasarThemeService } from '../../services/theme.service';
 import { CommonModule } from '@angular/common';
+import { NgpButton } from 'ng-primitives/button';
 
 export type DasarButtonSizeType = Extract<ScaleAttributeType, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
 export type DasarButtonVariantType =
   'primary' | 'success' | 'warning' | 'danger' | 'secondary' | 'ghost';
-export type DasarButtonAppearanceType = 'solid' | 'subtle' | 'outline';
+export type DasarButtonAppearanceType = 'solid' | 'subtle' | 'outline' | 'elevated' | 'pressed';
 export type DasarButtonType = 'button' | 'submit' | 'reset';
 export type DasarButtonRadiusType = ScaleAttributeType;
 
@@ -39,7 +40,7 @@ export interface DasarButtonConfig {
   styleUrls: ['./dasar-button.scss'],
   templateUrl: './dasar-button.html',
   selector: 'dasar-button',
-  imports: [CommonModule],
+  imports: [CommonModule, NgpButton],
 })
 export class DasarButton {
   private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });

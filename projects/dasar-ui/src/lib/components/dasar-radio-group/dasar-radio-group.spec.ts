@@ -1,8 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { DasarRadioComponent } from '../dasar-radio/dasar-radio';
-import { DasarRadioGroupComponent } from './dasar-radio-group';
+import { NgpRadioGroup } from 'ng-primitives/radio';
+import {
+  DasarRadio,
+  DasarRadioAppearanceType,
+  DasarRadioComponent,
+} from '../dasar-radio/dasar-radio';
+import { DasarRadioGroup, DasarRadioGroupComponent } from './dasar-radio-group';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
 
 @Component({
   selector: 'test-radio-group-host',
@@ -10,12 +17,14 @@ import { DasarRadioGroupComponent } from './dasar-radio-group';
   imports: [DasarRadioGroupComponent, DasarRadioComponent],
   template: `<dasar-radio-group
     [(value)]="value"
+    [direction]="direction()"
     [disabled]="disabled()"
     [error]="error()"
     [hint]="hint()"
     [size]="size()"
     [value-field]="valueField()"
     (onUpdate)="updates.set([...updates(), $event])"
+    (valueChange)="valueChanges.set([...valueChanges(), $event])"
   >
     <dasar-radio
       label="A"
@@ -28,12 +37,14 @@ import { DasarRadioGroupComponent } from './dasar-radio-group';
 })
 class RadioGroupHost {
   value = signal<any>(null);
+  direction = signal<'horizontal' | 'vertical'>('vertical');
   disabled = signal(false);
   error = signal(false);
   hint = signal('');
   size = signal<'sm' | 'md' | 'lg' | null>(null);
   valueField = signal<string | null>(null);
   updates = signal<any[]>([]);
+  valueChanges = signal<any[]>([]);
   childDisabled = signal(false);
   childUpdates = signal(0);
 }
@@ -95,7 +106,7 @@ class RadioGroupDynamicHost {
 }
 
 const nativesOf = (fixture: ComponentFixture<unknown>) =>
-  Array.from(fixture.nativeElement.querySelectorAll('.dasar-radio-native')) as HTMLInputElement[];
+  Array.from(fixture.nativeElement.querySelectorAll('.dasar-radio-native')) as HTMLButtonElement[];
 const clickNative = async (fixture: ComponentFixture<unknown>, index: number) => {
   nativesOf(fixture)[index].click();
   await fixture.whenStable();
@@ -117,15 +128,39 @@ describe('DasarRadioGroup', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
+  it('hosts NgpRadioGroup on the radio group element with bound inputs', async () => {
+    const ngpGroupDebugEl = fixture.debugElement.query(By.directive(NgpRadioGroup));
+    expect(ngpGroupDebugEl).not.toBeNull();
+
+    const ngpGroup = ngpGroupDebugEl.injector.get(NgpRadioGroup);
+    // `value` is driven internally via `state.setValue`, not a template-bound input
+    // (see dasar-radio-group.ts for why: binding it would put NgpRadioGroup into
+    // "controlled mode" and break the synchronous dedup needed for a real click, which
+    // fires both focus and click listeners).
+    expect((ngpGroup as any).state.value()).toBeNull();
+    expect(ngpGroup.disabled()).toBe(false);
+    expect(ngpGroup.orientation()).toBe('vertical');
+
+    // Update value, disabled, and direction
+    fixture.componentInstance.value.set('b');
+    fixture.componentInstance.disabled.set(true);
+    fixture.componentInstance.direction.set('horizontal');
+    await fixture.whenStable();
+
+    expect((ngpGroup as any).state.value()).toBe('b');
+    expect(ngpGroup.disabled()).toBe(true);
+    expect(ngpGroup.orientation()).toBe('horizontal');
+  });
+
   it('checks only the matching child from the initial value', async () => {
     fixture.componentInstance.value.set('b');
     await fixture.whenStable();
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(false);
-    expect(natives[1].checked).toBe(true);
-    expect(natives[2].checked).toBe(false);
+    expect(natives[0].getAttribute('aria-checked')).toBe('false');
+    expect(natives[1].getAttribute('aria-checked')).toBe('true');
+    expect(natives[2].getAttribute('aria-checked')).toBe('false');
   });
 
   it('selects the clicked child, unchecks the previous one and emits onUpdate', async () => {
@@ -138,8 +173,8 @@ describe('DasarRadioGroup', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(false);
-    expect(natives[2].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('false');
+    expect(natives[2].getAttribute('aria-checked')).toBe('true');
   });
 
   it('emits nothing when the selected child is clicked again', async () => {
@@ -176,6 +211,44 @@ describe('DasarRadioGroup', () => {
 
     expect(nativesOf(fixture)[1].disabled).toBe(true);
     expect(nativesOf(fixture)[0].disabled).toBe(false);
+  });
+
+  it('emits valueChange exactly once per click selection', async () => {
+    fixture.componentInstance.value.set('a');
+    await fixture.whenStable();
+    fixture.componentInstance.valueChanges.set([]);
+
+    await clickNative(fixture, 2);
+
+    expect(fixture.componentInstance.valueChanges()).toEqual(['c']);
+  });
+
+  it('does not emit valueChange on a programmatic writeValue/[value] write', async () => {
+    fixture.componentInstance.valueChanges.set([]);
+
+    fixture.componentInstance.value.set('b');
+    await fixture.whenStable();
+
+    expect(fixture.componentInstance.valueChanges()).toEqual([]);
+  });
+
+  it('syncs setDisabledState into the hosted NgpRadioGroup state', async () => {
+    const ngpGroupDebugEl = fixture.debugElement.query(By.directive(NgpRadioGroup));
+    const ngpGroup = ngpGroupDebugEl.injector.get(NgpRadioGroup);
+
+    const dasarRadioGroupDebugEl = fixture.debugElement.query(By.css('dasar-radio-group'));
+    const dasarRadioGroup = dasarRadioGroupDebugEl.injector.get(DasarRadioGroupComponent[0]);
+    dasarRadioGroup.setDisabledState(true);
+    await fixture.whenStable();
+
+    expect((ngpGroup as any).state.disabled()).toBe(true);
+    expect(dasarRadioGroup.disabled).toBe(true);
+
+    dasarRadioGroup.setDisabledState(false);
+    await fixture.whenStable();
+
+    expect((ngpGroup as any).state.disabled()).toBe(false);
+    expect(dasarRadioGroup.disabled).toBe(false);
   });
 
   it('overrides child sizes and renders hint and error', async () => {
@@ -229,8 +302,8 @@ describe('DasarRadioGroup with objects', () => {
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(false);
-    expect(natives[1].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('false');
+    expect(natives[1].getAttribute('aria-checked')).toBe('true');
 
     natives[0].click();
     await fixture.whenStable();
@@ -246,11 +319,13 @@ describe('DasarRadioGroup forms', () => {
     }).compileComponents();
 
     const fixture = TestBed.createComponent(RadioGroupNgModelHost);
+    fixture.detectChanges();
     await fixture.whenStable();
+    fixture.detectChanges();
 
     const natives = nativesOf(fixture);
 
-    expect(natives[0].checked).toBe(true);
+    expect(natives[0].getAttribute('aria-checked')).toBe('true');
 
     natives[1].click();
     await fixture.whenStable();
@@ -277,11 +352,104 @@ describe('DasarRadioGroup dynamic children', () => {
     const natives = nativesOf(fixture);
 
     expect(natives.length).toBe(3);
-    expect(natives[1].checked).toBe(true);
+    expect(natives[1].getAttribute('aria-checked')).toBe('true');
 
     natives[2].click();
     await fixture.whenStable();
 
     expect(fixture.componentInstance.value()).toBe('c');
+  });
+});
+
+@Component({
+  selector: 'test-radio-group-appearance-host',
+  standalone: true,
+  imports: [DasarRadioGroupComponent, DasarRadioComponent],
+  template: `
+    @if (appearance()) {
+      <dasar-radio-group [appearance]="appearance()!">
+        <dasar-radio label="One" [checked-value]="'1'" />
+        <dasar-radio label="Two" [checked-value]="'2'" />
+      </dasar-radio-group>
+    } @else {
+      <dasar-radio-group>
+        <dasar-radio label="One" [checked-value]="'1'" />
+        <dasar-radio label="Two" [checked-value]="'2'" />
+      </dasar-radio-group>
+    }
+  `,
+})
+class RadioGroupAppearanceHost {
+  appearance = signal<DasarRadioAppearanceType | undefined>(undefined);
+}
+
+@Component({
+  selector: 'test-radio-group-appearance-theme-host',
+  standalone: true,
+  imports: [DasarRadioGroupComponent, DasarRadioComponent],
+  template: `
+    <dasar-radio-group>
+      <dasar-radio label="Theme Child" [checked-value]="'tc'" />
+    </dasar-radio-group>
+  `,
+})
+class RadioGroupAppearanceThemeHost {}
+
+describe('DasarRadioGroup appearance propagation', () => {
+  it('propagates default outline appearance to child radios', async () => {
+    await TestBed.configureTestingModule({
+      imports: [RadioGroupAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(RadioGroupAppearanceHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const circles = fixture.nativeElement.querySelectorAll('.dasar-radio-circle');
+    expect(circles.length).toBe(2);
+    for (const circle of Array.from(circles)) {
+      expect((circle as HTMLElement).classList.contains('appearance-outline')).toBe(true);
+      expect((circle as HTMLElement).classList.contains('appearance-elevated')).toBe(false);
+    }
+  });
+
+  it('propagates explicit appearance to all child radios', async () => {
+    await TestBed.configureTestingModule({
+      imports: [RadioGroupAppearanceHost],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(RadioGroupAppearanceHost);
+    fixture.componentInstance.appearance.set('elevated');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const circles = fixture.nativeElement.querySelectorAll('.dasar-radio-circle');
+    expect(circles.length).toBe(2);
+    for (const circle of Array.from(circles)) {
+      expect((circle as HTMLElement).classList.contains('appearance-elevated')).toBe(true);
+      expect((circle as HTMLElement).classList.contains('appearance-outline')).toBe(false);
+    }
+  });
+
+  it('respects theme-configured default appearance on radioGroup', async () => {
+    const customThemeConfig = {
+      componentConfig: {
+        radioGroup: {
+          appearance: 'elevated' as const,
+        },
+      },
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [RadioGroupAppearanceThemeHost],
+      providers: [{ provide: DASAR_THEME_PROVIDER, useValue: customThemeConfig }],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(RadioGroupAppearanceThemeHost);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const group = fixture.debugElement.children[0].componentInstance as DasarRadioGroup;
+    expect(group.appearance).toBe('elevated');
+
+    const circle = fixture.nativeElement.querySelector('.dasar-radio-circle') as HTMLElement;
+    expect(circle.classList.contains('appearance-elevated')).toBe(true);
   });
 });

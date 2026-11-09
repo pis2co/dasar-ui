@@ -1,0 +1,428 @@
+@use '../../styles/theme.scss' as *;
+
+.dasar-toggle {
+  display: inline-flex;
+  width: fit-content;
+
+  &.full-width {
+    width: 100%;
+
+    .dasar-toggle-native {
+      width: 100%;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.dasar-toggle-native {
+  font-weight: var(--dasar-toggle-font-weight, var(--dasar-font-weight-medium));
+  gap: var(--dasar-toggle-gap, var(--dasar-space-base));
+  border: 1px solid transparent;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  width: auto;
+  user-select: none;
+
+  &.size-xs {
+    padding: 0 var(--dasar-toggle-padding-horizontal-xs, var(--dasar-space-base));
+    height: var(--dasar-toggle-height-xs, var(--dasar-space-6));
+    font-size: var(--dasar-font-size-xs);
+  }
+
+  &.size-sm {
+    padding: 0 var(--dasar-toggle-padding-horizontal-sm, var(--dasar-space-3));
+    height: var(--dasar-toggle-height-sm, var(--dasar-space-8));
+    font-size: var(--dasar-font-size-sm);
+  }
+
+  &.size-md {
+    padding: 0 var(--dasar-toggle-padding-horizontal-md, var(--dasar-space-4));
+    height: var(--dasar-toggle-height-md, var(--dasar-space-10));
+    font-size: var(--dasar-font-size-base);
+  }
+
+  &.size-lg {
+    padding: 0 var(--dasar-toggle-padding-horizontal-lg, var(--dasar-space-5));
+    height: var(--dasar-toggle-height-lg, var(--dasar-space-12));
+    font-size: var(--dasar-font-size-lg);
+  }
+
+  &.size-xl {
+    padding: 0 var(--dasar-toggle-padding-horizontal-xl, var(--dasar-space-6));
+    height: var(--dasar-toggle-height-xl, var(--dasar-space-14));
+    font-size: var(--dasar-font-size-xl);
+  }
+
+  &.radius-none {
+    border-radius: var(--dasar-toggle-radius-none, 0);
+  }
+
+  &.radius-xs {
+    border-radius: var(--dasar-toggle-radius-xs, var(--dasar-radius-xs));
+  }
+
+  &.radius-sm {
+    border-radius: var(--dasar-toggle-radius-sm, var(--dasar-radius-sm));
+  }
+
+  &.radius-md {
+    border-radius: var(--dasar-toggle-radius-md, var(--dasar-radius-md));
+  }
+
+  &.radius-lg {
+    border-radius: var(--dasar-toggle-radius-lg, var(--dasar-radius-lg));
+  }
+
+  &.radius-xl {
+    border-radius: var(--dasar-toggle-radius-xl, var(--dasar-radius-xl));
+  }
+
+  &.radius-full {
+    border-radius: var(--dasar-toggle-radius-full, 9999px);
+  }
+
+  &.primary {
+    background-color: var(--dasar-toggle-primary-bg, var(--dasar-theme-primary-color));
+    border-color: var(--dasar-toggle-primary-border, var(--dasar-theme-primary-color));
+    color: var(--dasar-toggle-primary-color, var(--dasar-theme-text-inverse-color));
+
+    &:hover:not(:disabled) {
+      background-color: var(
+        --dasar-toggle-primary-hover-bg,
+        var(--dasar-theme-primary-hover-color)
+      );
+      border-color: var(
+        --dasar-toggle-primary-hover-border,
+        var(--dasar-theme-primary-hover-color)
+      );
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:focus-visible {
+      outline: 3px solid
+        var(--dasar-toggle-primary-focus-ring, var(--dasar-theme-primary-surface-color));
+      border-color: transparent;
+    }
+
+    &.subtle {
+      background-color: var(
+        --dasar-toggle-primary-subtle-bg,
+        var(--dasar-theme-primary-surface-color)
+      );
+      color: var(--dasar-toggle-primary-subtle-color, var(--dasar-theme-primary-color));
+      border-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-primary-subtle-hover-bg,
+          var(--dasar-theme-primary-color)
+        );
+        color: var(
+          --dasar-toggle-primary-subtle-hover-color,
+          var(--dasar-theme-text-inverse-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &.outline {
+      border-color: var(--dasar-toggle-primary-outline-border, var(--dasar-theme-primary-color));
+      color: var(--dasar-toggle-primary-outline-color, var(--dasar-theme-primary-color));
+      background-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-primary-outline-hover-bg,
+          var(--dasar-theme-primary-surface-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  &.success {
+    background-color: var(--dasar-toggle-success-bg, var(--dasar-theme-success-color));
+    border-color: var(--dasar-toggle-success-border, var(--dasar-theme-success-color));
+    color: var(--dasar-toggle-success-color, var(--dasar-theme-text-inverse-color));
+
+    &:hover:not(:disabled) {
+      background-color: var(
+        --dasar-toggle-success-hover-bg,
+        var(--dasar-theme-success-hover-color)
+      );
+      border-color: var(
+        --dasar-toggle-success-hover-border,
+        var(--dasar-theme-success-hover-color)
+      );
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:focus-visible {
+      outline: 3px solid
+        var(--dasar-toggle-success-focus-ring, var(--dasar-theme-success-surface-color));
+      border-color: transparent;
+    }
+
+    &.subtle {
+      background-color: var(
+        --dasar-toggle-success-subtle-bg,
+        var(--dasar-theme-success-surface-color)
+      );
+      color: var(--dasar-toggle-success-subtle-color, var(--dasar-theme-success-color));
+      border-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-success-subtle-hover-bg,
+          var(--dasar-theme-success-color)
+        );
+        color: var(
+          --dasar-toggle-success-subtle-hover-color,
+          var(--dasar-theme-text-inverse-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &.outline {
+      border-color: var(--dasar-toggle-success-outline-border, var(--dasar-theme-success-color));
+      color: var(--dasar-toggle-success-outline-color, var(--dasar-theme-success-color));
+      background-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-success-outline-hover-bg,
+          var(--dasar-theme-success-surface-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  &.warning {
+    background-color: var(--dasar-toggle-warning-bg, var(--dasar-theme-warning-color));
+    border-color: var(--dasar-toggle-warning-border, var(--dasar-theme-warning-color));
+    color: var(--dasar-toggle-warning-color, var(--dasar-theme-text-inverse-color));
+
+    &:hover:not(:disabled) {
+      background-color: var(
+        --dasar-toggle-warning-hover-bg,
+        var(--dasar-theme-warning-hover-color)
+      );
+      border-color: var(
+        --dasar-toggle-warning-hover-border,
+        var(--dasar-theme-warning-hover-color)
+      );
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:focus-visible {
+      outline: 3px solid
+        var(--dasar-toggle-warning-focus-ring, var(--dasar-theme-warning-surface-color));
+      border-color: transparent;
+    }
+
+    &.subtle {
+      background-color: var(
+        --dasar-toggle-warning-subtle-bg,
+        var(--dasar-theme-warning-surface-color)
+      );
+      color: var(--dasar-toggle-warning-subtle-color, var(--dasar-theme-warning-color));
+      border-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-warning-subtle-hover-bg,
+          var(--dasar-theme-warning-color)
+        );
+        color: var(
+          --dasar-toggle-warning-subtle-hover-color,
+          var(--dasar-theme-text-inverse-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &.outline {
+      border-color: var(--dasar-toggle-warning-outline-border, var(--dasar-theme-warning-color));
+      color: var(--dasar-toggle-warning-outline-color, var(--dasar-theme-warning-color));
+      background-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-warning-outline-hover-bg,
+          var(--dasar-theme-warning-surface-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  &.danger {
+    background-color: var(--dasar-toggle-danger-bg, var(--dasar-theme-danger-color));
+    border-color: var(--dasar-toggle-danger-border, var(--dasar-theme-danger-color));
+    color: var(--dasar-toggle-danger-color, var(--dasar-theme-text-inverse-color));
+
+    &:hover:not(:disabled) {
+      background-color: var(--dasar-toggle-danger-hover-bg, var(--dasar-theme-danger-hover-color));
+      border-color: var(--dasar-toggle-danger-hover-border, var(--dasar-theme-danger-hover-color));
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:focus-visible {
+      outline: 3px solid
+        var(--dasar-toggle-danger-focus-ring, var(--dasar-theme-danger-surface-color));
+      border-color: transparent;
+    }
+
+    &.subtle {
+      background-color: var(
+        --dasar-toggle-danger-subtle-bg,
+        var(--dasar-theme-danger-surface-color)
+      );
+      color: var(--dasar-toggle-danger-subtle-color, var(--dasar-theme-danger-color));
+      border-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-danger-subtle-hover-bg,
+          var(--dasar-theme-danger-color)
+        );
+        color: var(--dasar-toggle-danger-subtle-hover-color, var(--dasar-theme-text-inverse-color));
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &.outline {
+      border-color: var(--dasar-toggle-danger-outline-border, var(--dasar-theme-danger-color));
+      color: var(--dasar-toggle-danger-outline-color, var(--dasar-theme-danger-color));
+      background-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-danger-outline-hover-bg,
+          var(--dasar-theme-danger-surface-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  &.secondary {
+    background-color: var(--dasar-toggle-secondary-bg, var(--dasar-theme-bg-hover-color));
+    border-color: var(--dasar-toggle-secondary-border, var(--dasar-theme-border-strong-color));
+    color: var(--dasar-toggle-secondary-color, var(--dasar-theme-text-primary-color));
+
+    &:hover:not(:disabled) {
+      background-color: var(
+        --dasar-toggle-secondary-hover-bg,
+        var(--dasar-theme-border-subtle-color)
+      );
+      border-color: var(--dasar-toggle-secondary-hover-border, var(--dasar-theme-border-color));
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:focus-visible {
+      outline: 3px solid
+        var(--dasar-toggle-secondary-focus-ring, var(--dasar-theme-border-subtle-color));
+      border-color: transparent;
+    }
+
+    &.subtle {
+      background-color: var(--dasar-toggle-secondary-subtle-bg, var(--dasar-theme-bg-hover-color));
+      color: var(--dasar-toggle-secondary-subtle-color, var(--dasar-theme-text-primary-color));
+      border-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-secondary-subtle-hover-bg,
+          var(--dasar-theme-border-subtle-color)
+        );
+        color: var(
+          --dasar-toggle-secondary-subtle-hover-color,
+          var(--dasar-theme-text-primary-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &.outline {
+      border-color: var(
+        --dasar-toggle-secondary-outline-border,
+        var(--dasar-theme-border-strong-color)
+      );
+      color: var(--dasar-toggle-secondary-outline-color, var(--dasar-theme-text-primary-color));
+      background-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: var(
+          --dasar-toggle-secondary-outline-hover-bg,
+          var(--dasar-theme-bg-hover-color)
+        );
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  &.ghost {
+    color: var(--dasar-toggle-ghost-color, var(--dasar-theme-text-secondary-color));
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: var(--dasar-toggle-ghost-hover-bg, var(--dasar-theme-bg-hover-color));
+      color: var(--dasar-toggle-ghost-hover-color, var(--dasar-theme-text-primary-color));
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:focus-visible {
+      outline: 3px solid
+        var(--dasar-toggle-ghost-focus-ring, var(--dasar-theme-border-subtle-color));
+    }
+  }
+
+  &.elevated {
+    box-shadow: var(
+      --dasar-toggle-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+  }
+
+  &:disabled {
+    border-color: var(--dasar-toggle-disabled-border, var(--dasar-theme-border-subtle-color));
+    background-color: var(--dasar-toggle-disabled-bg, var(--dasar-theme-bg-hover-color));
+    color: var(--dasar-toggle-disabled-color, var(--dasar-theme-text-disabled-color));
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  // Selected (pressed / active) overlay state
+  &[data-selected],
+  &.selected {
+    filter: brightness(0.92);
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+
+    &.outline {
+      background-color: var(--dasar-theme-bg-hover-color);
+    }
+
+    &.ghost {
+      background-color: var(--dasar-theme-bg-hover-color);
+      color: var(--dasar-theme-text-primary-color);
+    }
+
+    &.subtle {
+      filter: brightness(0.88);
+    }
+  }
+}

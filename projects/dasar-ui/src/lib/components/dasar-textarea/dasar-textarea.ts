@@ -1,5 +1,6 @@
 import {
   booleanAttribute,
+  numberAttribute,
   Component,
   HostBinding,
   Input,
@@ -14,12 +15,38 @@ import {
   ContentChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { ScaleAttributeType } from '@models/type.model';
+import { ClassType, StyleType, ScaleAttributeType } from '../../models/type.model';
 import { CommonModule } from '@angular/common';
+import { NgpTextarea } from 'ng-primitives/textarea';
+import { DASAR_THEME_PROVIDER } from '../dasar-theme-provider/dasar-theme-provider';
+import { DasarThemeService } from '../../services/theme.service';
+import { resolveThemeDefault } from '../../utils/common';
 
 export type DasarTextareaSizeType = Extract<ScaleAttributeType, 'sm' | 'md' | 'lg'>;
-export type DasarTextareaAppearanceType = 'outline' | 'filled';
+export type DasarTextareaAppearanceType = 'outline' | 'filled' | 'elevated';
 export type DasarTextareaRadiusType = ScaleAttributeType;
+
+export interface DasarTextareaConfig {
+  appearance?: DasarTextareaAppearanceType;
+  labelRight?: string | TemplateRef<any>;
+  radius?: DasarTextareaRadiusType;
+  size?: DasarTextareaSizeType;
+  hint?: string;
+  placeholder?: string;
+  label?: string;
+  rows?: number;
+  cols?: number;
+  fullWidth?: boolean;
+  disabled?: boolean;
+  readonly?: boolean;
+  error?: boolean;
+  containerClass?: ClassType;
+  textareaClass?: ClassType;
+  hostClass?: ClassType;
+  containerStyle?: StyleType;
+  textareaStyle?: StyleType;
+  hostStyle?: StyleType;
+}
 
 @Directive({ selector: '[label-slot]', standalone: true })
 export class DasarTextareaLabelSlot {}
@@ -35,7 +62,7 @@ export class DasarTextareaExtraLabelSlot {}
     },
   ],
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgpTextarea],
   styleUrls: ['./dasar-textarea.scss'],
   templateUrl: './dasar-textarea.html',
   selector: 'dasar-textarea',
@@ -45,28 +72,135 @@ export class DasarTextarea implements ControlValueAccessor {
   @ContentChild(DasarTextareaExtraLabelSlot) extraLabelSlot?: DasarTextareaExtraLabelSlot;
   @ContentChild(DasarTextareaLabelSlot) labelSlot?: DasarTextareaLabelSlot;
 
-  @Input() appearance: DasarTextareaAppearanceType = 'outline';
-  @Input() labelRight?: string | TemplateRef<any>;
-  @Input() size: DasarTextareaSizeType = 'md';
-  @Input() radius: DasarTextareaRadiusType = 'md';
-  @Input() hint: string = '';
-  @Input() placeholder = '';
-  @Input() label?: string;
-  @Input() rows: number = 4;
-  @Input() cols: number = 20;
-  @Input({ transform: booleanAttribute }) fullWidth = false;
-  @Input({ transform: booleanAttribute }) disabled = false;
-  @Input({ transform: booleanAttribute }) readonly = false;
-  @Input({ transform: booleanAttribute }) error = false;
-
-  @Input() containerClass: string | string[] | Set<string> | { [klass: string]: any } = '';
-  @Input() textareaClass: string | string[] | Set<string> | { [klass: string]: any } = '';
-  @Input() hostClass: string | string[] | Set<string> | { [klass: string]: any } = '';
-  @Input() containerStyle: Record<string, any> | null = null;
-  @Input() textareaStyle: Record<string, any> | null = null;
-  @Input() hostStyle: Record<string, any> | null = null;
-
+  private themeProvider = inject(DASAR_THEME_PROVIDER, { optional: true });
+  private themeService = inject(DasarThemeService, { optional: true });
   private cdr = inject(ChangeDetectorRef);
+
+  @Input() appearance: DasarTextareaAppearanceType = resolveThemeDefault(
+    'textarea',
+    'appearance',
+    'outline',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'label-right' }) labelRight: string | TemplateRef<any> | undefined =
+    resolveThemeDefault('textarea', 'labelRight', undefined, this.themeProvider, this.themeService);
+  @Input() size: DasarTextareaSizeType = resolveThemeDefault(
+    'textarea',
+    'size',
+    'md',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() radius: DasarTextareaRadiusType = resolveThemeDefault(
+    'textarea',
+    'radius',
+    'md',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() hint: string = resolveThemeDefault(
+    'textarea',
+    'hint',
+    '',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() placeholder: string = resolveThemeDefault(
+    'textarea',
+    'placeholder',
+    '',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input() label?: string = resolveThemeDefault(
+    'textarea',
+    'label',
+    undefined,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ transform: numberAttribute }) rows: number = resolveThemeDefault(
+    'textarea',
+    'rows',
+    4,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ transform: numberAttribute }) cols: number = resolveThemeDefault(
+    'textarea',
+    'cols',
+    20,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'full-width', transform: booleanAttribute }) fullWidth: boolean =
+    resolveThemeDefault('textarea', 'fullWidth', false, this.themeProvider, this.themeService);
+  @Input({ transform: booleanAttribute }) disabled: boolean = resolveThemeDefault(
+    'textarea',
+    'disabled',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ transform: booleanAttribute }) readonly: boolean = resolveThemeDefault(
+    'textarea',
+    'readonly',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ transform: booleanAttribute }) error: boolean = resolveThemeDefault(
+    'textarea',
+    'error',
+    false,
+    this.themeProvider,
+    this.themeService,
+  );
+
+  @Input({ alias: 'container-class' }) containerClass: ClassType = resolveThemeDefault(
+    'textarea',
+    'containerClass',
+    '',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'textarea-class' }) textareaClass: ClassType = resolveThemeDefault(
+    'textarea',
+    'textareaClass',
+    '',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'host-class' }) hostClass: ClassType = resolveThemeDefault(
+    'textarea',
+    'hostClass',
+    '',
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'container-style' }) containerStyle: StyleType = resolveThemeDefault(
+    'textarea',
+    'containerStyle',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'textarea-style' }) textareaStyle: StyleType = resolveThemeDefault(
+    'textarea',
+    'textareaStyle',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
+  @Input({ alias: 'host-style' }) hostStyle: StyleType = resolveThemeDefault(
+    'textarea',
+    'hostStyle',
+    null,
+    this.themeProvider,
+    this.themeService,
+  );
+
   _value: any = '';
 
   @Input()

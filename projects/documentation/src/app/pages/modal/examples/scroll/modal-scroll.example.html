@@ -1,14 +1,16 @@
-<dasar-button (click)="open.set(true)">Open a tall modal</dasar-button>
+<dasar-button [dasarModalTrigger]="modalTpl">Open a tall modal</dasar-button>
 
-<dasar-modal [open]="open()" label="Scrollable body" (onClose)="open.set(false)">
-  @for (p of paragraphs; track p) {
-    <p>
-      Paragraph {{ p }}. When the content is taller than the viewport, only the body scrolls while
-      the header and the actions stay visible.
-    </p>
-  }
+<ng-template #modalTpl let-close="close">
+  <dasar-modal label="Scrollable body">
+    @for (p of paragraphs; track p) {
+      <p>
+        Paragraph {{ p }}. When the content is taller than the viewport, only the body scrolls while
+        the header and the actions stay visible.
+      </p>
+    }
 
-  <div action-slot>
-    <dasar-button size="md" radius="md" (click)="open.set(false)">Close</dasar-button>
-  </div>
-</dasar-modal>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>

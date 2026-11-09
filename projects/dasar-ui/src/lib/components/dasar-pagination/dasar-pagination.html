@@ -55,20 +55,25 @@
               </dasar-button>
             } @else {
               @if (showEllipsisDropdown && !disabled) {
-                <dasar-menu
-                  class="dasar-pagination-ellipsis-menu"
-                  appearance="none"
-                  [size]="controlSize"
-                  [radius]="radius"
-                  [items]="ellipsisItems(item)"
-                  panelClass="dasar-pagination-ellipsis-panel"
+                <span
+                  class="dasar-pagination-ellipsis-menu dasar-menu-trigger"
+                  [dasarMenuTrigger]="ellipsisTpl"
                   [attr.aria-label]="
                     item.key === 'left' ? 'Previous hidden pages' : 'Next hidden pages'
                   "
-                  (onItemClick)="onEllipsisPick($event)"
                 >
                   <span class="dasar-pagination-ellipsis" aria-hidden="true">…</span>
-                </dasar-menu>
+                </span>
+                <ng-template #ellipsisTpl>
+                  <dasar-menu
+                    appearance="none"
+                    [size]="controlSize"
+                    [radius]="radius"
+                    [items]="ellipsisItems(item)"
+                    panelClass="dasar-pagination-ellipsis-panel"
+                    (onItemClick)="onEllipsisPick($event)"
+                  ></dasar-menu>
+                </ng-template>
               } @else {
                 <span class="dasar-pagination-ellipsis" aria-hidden="true">…</span>
               }

@@ -1,0 +1,56 @@
+<docs-layout
+  builtOnPrimitive
+  title="Toggle"
+  description="A two-state button component that can be toggled on or off, supporting appearance styles, color variants, size scales, and full ControlValueAccessor integration."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Usage"
+  >
+    <app-toggle-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+  >
+    <app-toggle-appearance-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: variantsHtml },
+      { label: 'TypeScript', lang: 'typescript', value: variantsTs },
+    ]"
+    title="Variants"
+  >
+    <app-toggle-variants-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: sizesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: sizesTs },
+    ]"
+    title="Sizes"
+  >
+    <app-toggle-sizes-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled State"
+  >
+    <app-toggle-disabled-example />
+  </doc-example-component>
+</docs-layout>

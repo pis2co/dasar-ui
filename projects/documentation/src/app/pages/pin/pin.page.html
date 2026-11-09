@@ -1,0 +1,61 @@
+<docs-layout
+  builtOnPrimitive
+  title="Pin"
+  description="A segmented PIN/OTP input component designed for numeric or alphanumeric codes, supporting auto-focus navigation, appearance styles, sizing scales, and error validation."
+  [apiData]="apiProps"
+>
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: basicHtml },
+      { label: 'TypeScript', lang: 'typescript', value: basicTs },
+    ]"
+    title="Basic Usage"
+    description="A 6-digit PIN input with two-way ngModel binding and (complete) event listener."
+  >
+    <app-pin-basic-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: appearanceHtml },
+      { label: 'TypeScript', lang: 'typescript', value: appearanceTs },
+    ]"
+    title="Appearance"
+    description="Supports outline, filled, and elevated appearance variants."
+  >
+    <app-pin-appearance-with-elevated-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: sizesHtml },
+      { label: 'TypeScript', lang: 'typescript', value: sizesTs },
+    ]"
+    title="Sizes"
+    description="Available in sm, md, and lg sizes."
+  >
+    <app-pin-sizes-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: disabledHtml },
+      { label: 'TypeScript', lang: 'typescript', value: disabledTs },
+    ]"
+    title="Disabled State"
+    description="Disables all slots and prevents user input."
+  >
+    <app-pin-disabled-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: errorHtml },
+      { label: 'TypeScript', lang: 'typescript', value: errorTs },
+    ]"
+    title="Validation & Error State"
+    description="Applies error styling across all input segments."
+  >
+    <app-pin-error-example />
+  </doc-example-component>
+</docs-layout>

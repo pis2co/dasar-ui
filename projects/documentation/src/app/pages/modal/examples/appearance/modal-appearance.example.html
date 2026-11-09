@@ -1,18 +1,20 @@
 <div style="display: flex; gap: 8px; flex-wrap: wrap">
   @for (a of appearances; track a) {
-    <dasar-button (click)="show(a)">Appearance: {{ a }}</dasar-button>
+    <dasar-button [dasarModalTrigger]="modalTpl" (click)="setAppearance(a)">
+      Appearance: {{ a }}
+    </dasar-button>
   }
 </div>
 
-<dasar-modal
-  [open]="open()"
-  [appearance]="appearance()"
-  [label]="'Appearance: ' + appearance()"
-  (onClose)="open.set(false)"
->
-  <p>
-    The <code>appearance</code> input mirrors <code>dasar-card</code>: <code>elevated</code> draws a
-    border and a shadow, <code>outline</code> draws only a border, and <code>borderless</code> draws
-    neither.
-  </p>
-</dasar-modal>
+<ng-template #modalTpl let-close="close">
+  <dasar-modal [appearance]="appearance()" [label]="'Appearance: ' + appearance()">
+    <p>
+      The <code>appearance</code> input mirrors <code>dasar-card</code>: <code>elevated</code> draws
+      a border and a shadow, <code>outline</code> draws only a border, and
+      <code>borderless</code> draws neither.
+    </p>
+    <div action-slot>
+      <dasar-button size="md" radius="md" (click)="close()">Close</dasar-button>
+    </div>
+  </dasar-modal>
+</ng-template>

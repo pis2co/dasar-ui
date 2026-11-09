@@ -49,7 +49,37 @@
     var(--dasar-radio-border-color, var(--dasar-theme-border-subtle-color));
   border-radius: 50%;
   background: var(--dasar-radio-bg, transparent);
-  transition: border-color 150ms ease;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+
+  &.appearance-outline {
+    // Standard baseline outline appearance
+  }
+
+  &.appearance-filled {
+    background: var(--dasar-radio-filled-bg, var(--dasar-theme-bg-hover-color));
+    border-color: var(--dasar-radio-filled-border, transparent);
+
+    &:hover:not(.disabled) {
+      background: var(--dasar-radio-filled-hover-bg, var(--dasar-theme-border-subtle-color));
+    }
+  }
+
+  &.appearance-elevated {
+    background: var(--dasar-radio-elevated-bg, var(--dasar-theme-bg-surface-color));
+    border: 1px solid var(--dasar-radio-elevated-border, var(--dasar-theme-border-strong-color));
+    box-shadow: var(
+      --dasar-radio-elevated-shadow,
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 4px 6px -4px rgba(0, 0, 0, 0.03)
+    );
+
+    &:hover:not(.disabled) {
+      border-color: var(--dasar-radio-elevated-hover-border, var(--dasar-theme-primary-color));
+    }
+  }
 }
 
 .dasar-radio-native:checked + .dasar-radio-circle,
