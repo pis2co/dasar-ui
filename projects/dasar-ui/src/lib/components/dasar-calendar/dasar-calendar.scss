@@ -177,8 +177,8 @@
 
   .current-month {
     color: var(--dasar-calendar-nav-label-color, var(--dasar-theme-text-primary-color));
-    font-size: var(--dasar-calendar-nav-label-font-size, var(--dasar-font-size-lg));
-    font-weight: var(--dasar-calendar-nav-label-font-weight, var(--dasar-font-weight-bold));
+    font-size: var(--dasar-calendar-nav-label-font-size, var(--dasar-font-size-base));
+    font-weight: var(--dasar-calendar-nav-label-font-weight, var(--dasar-font-weight-semibold));
   }
 
   .current-month.decade-label {
@@ -312,8 +312,8 @@
 
   > .header-title-wrapper .current-month {
     color: var(--dasar-calendar-nav-label-color, var(--dasar-theme-text-primary-color));
-    font-size: var(--dasar-calendar-nav-label-font-size, var(--dasar-font-size-lg));
-    font-weight: var(--dasar-calendar-nav-label-font-weight, var(--dasar-font-weight-bold));
+    font-size: var(--dasar-calendar-nav-label-font-size, var(--dasar-font-size-base));
+    font-weight: var(--dasar-calendar-nav-label-font-weight, var(--dasar-font-weight-semibold));
   }
 
   > dasar-button dasar-icon,
@@ -342,8 +342,8 @@
 
   .header-title-wrapper .current-month {
     color: var(--dasar-calendar-nav-label-color, var(--dasar-theme-text-primary-color));
-    font-size: var(--dasar-calendar-nav-label-font-size, var(--dasar-font-size-lg));
-    font-weight: var(--dasar-calendar-nav-label-font-weight, var(--dasar-font-weight-bold));
+    font-size: var(--dasar-calendar-nav-label-font-size, var(--dasar-font-size-base));
+    font-weight: var(--dasar-calendar-nav-label-font-weight, var(--dasar-font-weight-semibold));
   }
 
   .decade-chip {
@@ -764,7 +764,7 @@
       color: var(--dasar-calendar-picker-selected-color, var(--dasar-theme-text-inverse-color));
       font-weight: var(
         --dasar-calendar-picker-selected-font-weight,
-        var(--dasar-font-weight-semibold)
+        var(--dasar-font-weight-medium)
       );
     }
   }
