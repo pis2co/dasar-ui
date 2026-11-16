@@ -276,7 +276,7 @@
     0 8px 10px -6px rgba(0, 0, 0, 0.1)
   );
   background-color: var(--dasar-datepicker-dropdown-bg, var(--dasar-theme-bg-surface-color));
-  z-index: var(--dasar-datepicker-dropdown-z-index, 1000);
+  z-index: var(--dasar-datepicker-dropdown-z-index, 12010);
   animation: dasarFadeInDown 0.15s ease-out forwards;
   visibility: hidden;
   overflow: hidden;
@@ -380,8 +380,8 @@
   box-sizing: border-box;
 
   .modal-title {
-    font-size: var(--dasar-font-size-xl);
-    font-weight: var(--dasar-font-weight-bold);
+    font-size: var(--dasar-font-size-base);
+    font-weight: var(--dasar-font-weight-semibold);
   }
 }
 

@@ -150,7 +150,8 @@ export class ModalDocPage {
       name: '[dasarModalTriggerContainer]',
       type: 'HTMLElement | string',
       defaultValue: 'document.body',
-      description: 'Trigger-level container where the dialog portal will be appended.',
+      description:
+        'Trigger-level container where the dialog portal will be appended. When unset, defaults to the nearest ancestor dasar-theme-provider (so theme tokens like font/color cascade correctly), falling back to document.body when no theme provider is present.',
     },
     {
       name: '(dasarModalTriggerClosed)',

@@ -37,7 +37,9 @@ Read the full guides:
 
 - [Installation](./docs/installation.md)
 - [Getting started](./docs/getting-started.md)
+- [Design spec](./docs/design.md)
 - [Theming overview](https://github.com/pis2co/dasar-ui) (in the docs app: `/theming`)
+- [Maintaining Angular version support](./docs/maintaining-angular-support.md)
 
 ## Links
 
@@ -51,7 +53,7 @@ Read the full guides:
 - <a href="https://github.com/pis2co"><div style="display: flex; align-items: center;"><img src="https://github.com/pis2co.png?size=40" width="32" height="32" alt="pis2co" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /><span>**[pis2co](https://github.com/pis2co)**, Organization and maintainer</span></div></a>
 - <a href="https://github.com/dxxta"><div style="display: flex; align-items: center;"><img src="https://github.com/dxxta.png?size=40" width="32" height="32" alt="dxxta" style="display: inline-block; border-radius: 50%; vertical-align: middle; margin: 0 8px 0 0;" /><span>**[dxxta](https://github.com/dxxta)**, Author and maintainer</span></div></a>
 
-Contributions are welcome for apbn core team. Open an issue or a pull request on [GitHub](https://github.com/pis2co/dasar-ui).
+Contributions are welcome for apbn core team. Open an issue or a pull request on [GitHub](https://github.com/pis2co/dasar-ui). Please follow our [Code of Conduct](./CODE_OF_CONDUCT.md), which also explains how to file a reproducible bug report.
 
 ## Development
 

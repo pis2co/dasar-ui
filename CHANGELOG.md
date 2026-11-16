@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/pis2co/dasar-ui/compare/v3.2.0...v3.3.0) (2026-11-16)
+
+
+### Bug Fixes
+
+* align calendar/datepicker header typography with day cell weight ([f7fe47d](https://github.com/pis2co/dasar-ui/commit/f7fe47d454a68a35a6636aee78cb9741312cdddf))
+
+## [3.2.0](https://github.com/pis2co/dasar-ui/compare/v3.1.0...v3.2.0) (2026-11-16)
+
+
+### Bug Fixes
+
+* prevent bootstrap crash when a trigger is projected into dasar-theme-provider ([39d0508](https://github.com/pis2co/dasar-ui/commit/39d05082921eab191fcc92168e8538829b44a975))
+
+## [3.1.0](https://github.com/pis2co/dasar-ui/compare/v3.0.1...v3.1.0) (2026-11-16)
+
+
+### Bug Fixes
+
+* modal/menu theming and menu positioning ([b28e075](https://github.com/pis2co/dasar-ui/commit/b28e0751fa4d7f8556612a255d96376c2d2aa493))
+* raise overlay z-index defaults, drawer example, alert icon alignment ([5938a1a](https://github.com/pis2co/dasar-ui/commit/5938a1aff6cdb5a6a30bc46de94bf8ebcd30781a))
+
 ### [3.0.1](https://github.com/pis2co/dasar-ui/compare/v3.0.0...v3.0.1) (2026-11-09)
 
 

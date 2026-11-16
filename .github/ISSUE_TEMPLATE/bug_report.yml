@@ -1,0 +1,79 @@
+name: Bug report
+description: Report a reproducible bug in dasar-ui
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill in as much as you can so it can be reproduced quickly. See the [Code of Conduct](https://github.com/pis2co/dasar-ui/blob/main/CODE_OF_CONDUCT.md#reproducing-and-reporting-bugs) for what makes a good bug report.
+
+  - type: input
+    id: dasar-ui-version
+    attributes:
+      label: dasar-ui version
+      description: Run `npm ls dasar-ui` and paste the resolved version.
+      placeholder: '3.0.1'
+    validations:
+      required: true
+
+  - type: input
+    id: angular-version
+    attributes:
+      label: Angular version
+      description: Run `npm ls @angular/core` and paste the resolved version.
+      placeholder: '22.1.0'
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: >
+        A link to a StackBlitz, GitHub repo, or a short code snippet (component usage + relevant template/CSS) that triggers the bug. Issues without a reproduction are harder to act on and may be closed if more info isn't provided.
+      placeholder: |
+        Link: https://stackblitz.com/...
+        or paste a minimal snippet here
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: browser-os
+    attributes:
+      label: Browser / OS (if relevant)
+      placeholder: 'Chrome 131 on macOS 15 — only needed for rendering/SSR issues'
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console errors / screenshots
+      description: Paste any relevant console output, stack traces, or attach screenshots.
+    validations:
+      required: false
