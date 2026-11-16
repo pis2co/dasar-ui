@@ -177,7 +177,7 @@ export class DasarThemeProviderComponent implements OnChanges {
   @ViewChild('wrapper', { static: true }) private wrapperRef!: ElementRef<HTMLElement>;
 
   get wrapperElement(): HTMLElement {
-    return this.wrapperRef.nativeElement;
+    return this.wrapperRef?.nativeElement ?? this.el.nativeElement;
   }
 
   ngOnChanges(changes: SimpleChanges) {
