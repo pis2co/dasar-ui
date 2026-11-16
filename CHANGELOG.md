@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/pis2co/dasar-ui/compare/v3.2.0...v3.3.0) (2026-11-16)
+
+
+### Bug Fixes
+
+* align calendar/datepicker header typography with day cell weight ([f7fe47d](https://github.com/pis2co/dasar-ui/commit/f7fe47d454a68a35a6636aee78cb9741312cdddf))
+
 ## [3.2.0](https://github.com/pis2co/dasar-ui/compare/v3.1.0...v3.2.0) (2026-11-16)
 
 
