@@ -13,19 +13,17 @@
         }
       </span>
     }
-    <div class="dasar-alert-body">
-      @if (hasHeader) {
+    @if (hasHeader) {
         <div [ngClass]="titleClasses" [ngStyle]="titleStyle">
           <ng-content select="[header-slot]"></ng-content>
           @if (!headerSlot && title) {
             {{ title }}
           }
         </div>
-      }
-      <div [ngClass]="contentClasses" [ngStyle]="contentStyle">
+    }
+    <div [ngClass]="contentClasses" [ngStyle]="contentStyle">
         <ng-content></ng-content>
       </div>
-    </div>
     @if (closeable || closeableSlot) {
       <div class="dasar-alert-close-section">
         @if (closeableSlot) {
