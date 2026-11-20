@@ -1,3 +1,4 @@
+import { menuMap } from './theme.service';
 import { TestBed } from '@angular/core/testing';
 import { PLATFORM_ID } from '@angular/core';
 import { DasarThemeService } from './theme.service';
@@ -126,5 +127,9 @@ describe('DasarThemeService component tokens', () => {
     });
 
     expect(root().style.getPropertyValue('--dasar-modal-not-a-real-token')).toBe('');
+  });
+
+  it('maps the menu panelZIndex theme key to --dasar-menu-z-index', () => {
+    expect(menuMap.panelZIndex).toBe('--dasar-menu-z-index');
   });
 });

@@ -276,7 +276,7 @@
     0 8px 10px -6px rgba(0, 0, 0, 0.1)
   );
   background-color: var(--dasar-datepicker-dropdown-bg, var(--dasar-theme-bg-surface-color));
-  z-index: var(--dasar-datepicker-dropdown-z-index, 12010);
+  z-index: var(--dasar-datepicker-dropdown-z-index, 1040);
   animation: dasarFadeInDown 0.15s ease-out forwards;
   visibility: hidden;
   overflow: hidden;

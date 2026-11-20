@@ -214,7 +214,7 @@ export class DasarDrawer implements ControlValueAccessor, OnDestroy {
   @Input({ alias: 'z-index' }) zIndex = resolveThemeDefault(
     'drawer',
     'zIndex',
-    1000,
+    1010,
     this.themeProvider,
     this.themeService,
   );
