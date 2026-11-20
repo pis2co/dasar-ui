@@ -1,6 +1,6 @@
 {
   "name": "dasar-ui",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "author": "dxxta",
   "packageManager": "npm@10.9.8",
   "scripts": {
@@ -8,6 +8,10 @@
     "git:patch:push": "bash -c 'read -r -p \"branch: \" BRANCH </dev/tty && [ -n \"$BRANCH\" ] && npm run git:patch && git push --follow-tags origin HEAD:\"$BRANCH\"'",
     "git:minor:push": "bash -c 'read -r -p \"branch: \" BRANCH </dev/tty && [ -n \"$BRANCH\" ] && npm run git:minor && git push --follow-tags origin HEAD:\"$BRANCH\"'",
     "git:major:push": "bash -c 'read -r -p \"branch: \" BRANCH </dev/tty && [ -n \"$BRANCH\" ] && npm run git:major && git push --follow-tags origin HEAD:\"$BRANCH\"'",
+    "win:lib:create": "powershell -NoProfile -Command \"$n = Read-Host 'name'; if ($n) { ng generate component $n --project=dasar-ui }\"",
+    "win:git:patch:push": "powershell -NoProfile -Command \"$b = Read-Host 'branch'; if ($b) { npm run git:patch; if ($LASTEXITCODE -eq 0) { git push --follow-tags origin HEAD:$b } }\"",
+    "win:git:minor:push": "powershell -NoProfile -Command \"$b = Read-Host 'branch'; if ($b) { npm run git:minor; if ($LASTEXITCODE -eq 0) { git push --follow-tags origin HEAD:$b } }\"",
+    "win:git:major:push": "powershell -NoProfile -Command \"$b = Read-Host 'branch'; if ($b) { npm run git:major; if ($LASTEXITCODE -eq 0) { git push --follow-tags origin HEAD:$b } }\"",
     "git:patch": "npx standard-version --release-as patch",
     "git:minor": "npx standard-version --release-as minor",
     "git:major": "npx standard-version --release-as major",
