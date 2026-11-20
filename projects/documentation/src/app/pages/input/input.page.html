@@ -63,4 +63,26 @@
   >
     <app-input-more-example />
   </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: decimalHtml },
+      { label: 'TypeScript', lang: 'typescript', value: decimalTs },
+    ]"
+    title="Decimal Values"
+    description="Enter decimal numbers with custom mask functions (dot or comma separator, limited decimals) or the built-in decimal mask."
+  >
+    <app-input-decimal-example />
+  </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: decimalCursorHtml },
+      { label: 'TypeScript', lang: 'typescript', value: decimalCursorTs },
+    ]"
+    title="Minimal Reproduction: Cursor Jumps on Decimal Separator"
+    description="Minimal reproduction of reported bug: cursor moves to the front when typing decimal separator."
+  >
+    <app-input-decimal-cursor-example />
+  </doc-example-component>
 </docs-layout>

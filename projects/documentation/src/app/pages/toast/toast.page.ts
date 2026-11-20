@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -17,68 +18,32 @@ import { ToastScrollableExample } from './examples/scrollable/toast-scrollable.e
 import { ToastBlurExample } from './examples/blur/toast-blur.example';
 import { ToastSlotsExample } from './examples/slots/toast-slots.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/toast-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/toast-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import variantsHtml from './examples/variants/toast-variants.example.html' with { loader: 'text' };
-// @ts-ignore
-import variantsTs from './examples/variants/toast-variants.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/toast-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/toast-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import actionHtml from './examples/action/toast-action.example.html' with { loader: 'text' };
-// @ts-ignore
-import actionTs from './examples/action/toast-action.example.ts' with { loader: 'text' };
-// @ts-ignore
-import linkHtml from './examples/link/toast-link.example.html' with { loader: 'text' };
-// @ts-ignore
-import linkTs from './examples/link/toast-link.example.ts' with { loader: 'text' };
-// @ts-ignore
-import durationHtml from './examples/duration/toast-duration.example.html' with { loader: 'text' };
-// @ts-ignore
-import durationTs from './examples/duration/toast-duration.example.ts' with { loader: 'text' };
-// @ts-ignore
-import eventsHtml from './examples/events/toast-events.example.html' with { loader: 'text' };
-// @ts-ignore
-import eventsTs from './examples/events/toast-events.example.ts' with { loader: 'text' };
-// @ts-ignore
-import controlHtml from './examples/control/toast-control.example.html' with { loader: 'text' };
-// @ts-ignore
-import controlTs from './examples/control/toast-control.example.ts' with { loader: 'text' };
-// @ts-ignore
-import placementHtml from './examples/placement/toast-placement.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import placementTs from './examples/placement/toast-placement.example.ts' with { loader: 'text' };
-// @ts-ignore
-import maxHtml from './examples/max/toast-max.example.html' with { loader: 'text' };
-// @ts-ignore
-import maxTs from './examples/max/toast-max.example.ts' with { loader: 'text' };
-// @ts-ignore
-import scrollableHtml from './examples/scrollable/toast-scrollable.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import scrollableTs from './examples/scrollable/toast-scrollable.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import blurHtml from './examples/blur/toast-blur.example.html' with { loader: 'text' };
-// @ts-ignore
-import blurTs from './examples/blur/toast-blur.example.ts' with { loader: 'text' };
-// @ts-ignore
-import slotsHtml from './examples/slots/toast-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/toast-slots.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/basic/toast-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/basic/toast-basic.example.ts');
+const variantsHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/variants/toast-variants.example.html');
+const variantsTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/variants/toast-variants.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/appearance/toast-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/appearance/toast-appearance.example.ts');
+const actionHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/action/toast-action.example.html');
+const actionTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/action/toast-action.example.ts');
+const linkHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/link/toast-link.example.html');
+const linkTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/link/toast-link.example.ts');
+const durationHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/duration/toast-duration.example.html');
+const durationTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/duration/toast-duration.example.ts');
+const eventsHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/events/toast-events.example.html');
+const eventsTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/events/toast-events.example.ts');
+const controlHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/control/toast-control.example.html');
+const controlTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/control/toast-control.example.ts');
+const placementHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/placement/toast-placement.example.html');
+const placementTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/placement/toast-placement.example.ts');
+const maxHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/max/toast-max.example.html');
+const maxTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/max/toast-max.example.ts');
+const scrollableHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/scrollable/toast-scrollable.example.html');
+const scrollableTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/scrollable/toast-scrollable.example.ts');
+const blurHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/blur/toast-blur.example.html');
+const blurTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/blur/toast-blur.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/toast/examples/slots/toast-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/toast/examples/slots/toast-slots.example.ts');
 
 @Component({
   imports: [

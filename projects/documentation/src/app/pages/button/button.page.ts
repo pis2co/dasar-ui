@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { DocsLayoutComponent, DocNavGroup, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 import { CommonModule } from '@angular/common';
@@ -12,37 +13,33 @@ import { ButtonIconExample } from './examples/icon/button-icon.example';
 import { ButtonPressedExample } from './examples/pressed/button-pressed.example';
 
 // @ts-ignore - raw example
-import variantHtml from './examples/variant/button-variant.example.html' with { loader: 'text' };
+const variantHtml = getDocsContent('projects/documentation/src/app/pages/button/examples/variant/button-variant.example.html');
 // @ts-ignore - raw example
-import variantTs from './examples/variant/button-variant.example.ts' with { loader: 'text' };
+const variantTs = getDocsContent('projects/documentation/src/app/pages/button/examples/variant/button-variant.example.ts');
 // @ts-ignore - raw example
-import appearanceHtml from './examples/appearance/button-appearance.example.html' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/button/examples/appearance/button-appearance.example.html');
 // @ts-ignore - raw example
-import appearanceTs from './examples/appearance/button-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/button/examples/appearance/button-appearance.example.ts');
 // @ts-ignore - raw example
-import sizesHtml from './examples/sizes/button-sizes.example.html' with { loader: 'text' };
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/button/examples/sizes/button-sizes.example.html');
 // @ts-ignore - raw example
-import sizesTs from './examples/sizes/button-sizes.example.ts' with { loader: 'text' };
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/button/examples/sizes/button-sizes.example.ts');
 // @ts-ignore - raw example
-import radiusHtml from './examples/radius/button-radius.example.html' with { loader: 'text' };
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/button/examples/radius/button-radius.example.html');
 // @ts-ignore - raw example
-import radiusTs from './examples/radius/button-radius.example.ts' with { loader: 'text' };
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/button/examples/radius/button-radius.example.ts');
 // @ts-ignore - raw example
-import iconHtml from './examples/icon/button-icon.example.html' with { loader: 'text' };
+const iconHtml = getDocsContent('projects/documentation/src/app/pages/button/examples/icon/button-icon.example.html');
 // @ts-ignore - raw example
-import iconTs from './examples/icon/button-icon.example.ts' with { loader: 'text' };
+const iconTs = getDocsContent('projects/documentation/src/app/pages/button/examples/icon/button-icon.example.ts');
 // @ts-ignore - raw example
-import stateHtml from './examples/state/button-state.example.html' with { loader: 'text' };
+const stateHtml = getDocsContent('projects/documentation/src/app/pages/button/examples/state/button-state.example.html');
 // @ts-ignore - raw example
-import stateTs from './examples/state/button-state.example.ts' with { loader: 'text' };
+const stateTs = getDocsContent('projects/documentation/src/app/pages/button/examples/state/button-state.example.ts');
 // @ts-ignore - raw example
-import pressedHtml from './examples/pressed/button-pressed.example.html' with { loader: 'text' };
+const pressedHtml = getDocsContent('projects/documentation/src/app/pages/button/examples/pressed/button-pressed.example.html');
 // @ts-ignore - raw example
-import pressedTs from './examples/pressed/button-pressed.example.ts' with { loader: 'text' };
+const pressedTs = getDocsContent('projects/documentation/src/app/pages/button/examples/pressed/button-pressed.example.ts');
 
 @Component({
   imports: [

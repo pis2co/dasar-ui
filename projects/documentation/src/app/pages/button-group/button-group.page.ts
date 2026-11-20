@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -13,70 +14,32 @@ import { ButtonGroupToggleExample } from './examples/toggle/button-group-toggle.
 import { ButtonGroupFullWidthExample } from './examples/full-width/button-group-full-width.example';
 import { ButtonGroupAdvancedThemeExample } from './examples/advanced-theme/button-group-advanced-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/button-group-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/button-group-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/basic/button-group-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/basic/button-group-basic.example.ts');
 
-// @ts-ignore
-import orientationHtml from './examples/orientation/button-group-orientation.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import orientationTs from './examples/orientation/button-group-orientation.example.ts' with {
-  loader: 'text',
-};
+const orientationHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/orientation/button-group-orientation.example.html');
+const orientationTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/orientation/button-group-orientation.example.ts');
 
-// @ts-ignore
-import sizeHtml from './examples/size/button-group-size.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizeTs from './examples/size/button-group-size.example.ts' with { loader: 'text' };
+const sizeHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/size/button-group-size.example.html');
+const sizeTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/size/button-group-size.example.ts');
 
-// @ts-ignore
-import variantAppearanceHtml from './examples/variant-appearance/button-group-variant-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import variantAppearanceTs from './examples/variant-appearance/button-group-variant-appearance.example.ts' with {
-  loader: 'text',
-};
+const variantAppearanceHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/variant-appearance/button-group-variant-appearance.example.html');
+const variantAppearanceTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/variant-appearance/button-group-variant-appearance.example.ts');
 
-// @ts-ignore
-import detachedHtml from './examples/detached/button-group-detached.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import detachedTs from './examples/detached/button-group-detached.example.ts' with {
-  loader: 'text',
-};
+const detachedHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/detached/button-group-detached.example.html');
+const detachedTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/detached/button-group-detached.example.ts');
 
-// @ts-ignore
-import iconsHtml from './examples/icons/button-group-icons.example.html' with { loader: 'text' };
-// @ts-ignore
-import iconsTs from './examples/icons/button-group-icons.example.ts' with { loader: 'text' };
+const iconsHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/icons/button-group-icons.example.html');
+const iconsTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/icons/button-group-icons.example.ts');
 
-// @ts-ignore
-import toggleHtml from './examples/toggle/button-group-toggle.example.html' with { loader: 'text' };
-// @ts-ignore
-import toggleTs from './examples/toggle/button-group-toggle.example.ts' with { loader: 'text' };
+const toggleHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/toggle/button-group-toggle.example.html');
+const toggleTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/toggle/button-group-toggle.example.ts');
 
-// @ts-ignore
-import fullWidthHtml from './examples/full-width/button-group-full-width.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import fullWidthTs from './examples/full-width/button-group-full-width.example.ts' with {
-  loader: 'text',
-};
+const fullWidthHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/full-width/button-group-full-width.example.html');
+const fullWidthTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/full-width/button-group-full-width.example.ts');
 
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/button-group-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/button-group-advanced-theme.example.ts' with {
-  loader: 'text',
-};
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/button-group/examples/advanced-theme/button-group-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/button-group/examples/advanced-theme/button-group-advanced-theme.example.ts');
 
 @Component({
   imports: [

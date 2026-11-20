@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -21,138 +22,56 @@ import { ListValueFieldExample } from './examples/value-field/list-value-field.e
 import { ListReactiveExample } from './examples/reactive/list-reactive.example';
 import { ListKeyboardExample } from './examples/keyboard/list-keyboard.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/list-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/list-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/basic/list-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/list/examples/basic/list-basic.example.ts');
 
-// @ts-ignore
-import sizeHtml from './examples/size/list-size.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizeTs from './examples/size/list-size.example.ts' with { loader: 'text' };
+const sizeHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/size/list-size.example.html');
+const sizeTs = getDocsContent('projects/documentation/src/app/pages/list/examples/size/list-size.example.ts');
 
-// @ts-ignore
-import borderedDividerHtml from './examples/bordered-divider/list-bordered-divider.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import borderedDividerTs from './examples/bordered-divider/list-bordered-divider.example.ts' with {
-  loader: 'text',
-};
+const borderedDividerHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/bordered-divider/list-bordered-divider.example.html');
+const borderedDividerTs = getDocsContent('projects/documentation/src/app/pages/list/examples/bordered-divider/list-bordered-divider.example.ts');
 
-// @ts-ignore
-import interactiveHtml from './examples/interactive/list-interactive.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import interactiveTs from './examples/interactive/list-interactive.example.ts' with {
-  loader: 'text',
-};
+const interactiveHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/interactive/list-interactive.example.html');
+const interactiveTs = getDocsContent('projects/documentation/src/app/pages/list/examples/interactive/list-interactive.example.ts');
 
-// @ts-ignore
-import headerFooterHtml from './examples/header-footer/list-header-footer.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import headerFooterTs from './examples/header-footer/list-header-footer.example.ts' with {
-  loader: 'text',
-};
+const headerFooterHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/header-footer/list-header-footer.example.html');
+const headerFooterTs = getDocsContent('projects/documentation/src/app/pages/list/examples/header-footer/list-header-footer.example.ts');
 
-// @ts-ignore
-import prefixSuffixHtml from './examples/prefix-suffix/list-prefix-suffix.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import prefixSuffixTs from './examples/prefix-suffix/list-prefix-suffix.example.ts' with {
-  loader: 'text',
-};
+const prefixSuffixHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/prefix-suffix/list-prefix-suffix.example.html');
+const prefixSuffixTs = getDocsContent('projects/documentation/src/app/pages/list/examples/prefix-suffix/list-prefix-suffix.example.ts');
 
-// @ts-ignore
-import customStyleHtml from './examples/custom-style/list-custom-style.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customStyleTs from './examples/custom-style/list-custom-style.example.ts' with {
-  loader: 'text',
-};
+const customStyleHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/custom-style/list-custom-style.example.html');
+const customStyleTs = getDocsContent('projects/documentation/src/app/pages/list/examples/custom-style/list-custom-style.example.ts');
 
-// @ts-ignore
-import advancedDynamicHtml from './examples/advanced-dynamic/list-advanced-dynamic.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedDynamicTs from './examples/advanced-dynamic/list-advanced-dynamic.example.ts' with {
-  loader: 'text',
-};
+const advancedDynamicHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/advanced-dynamic/list-advanced-dynamic.example.html');
+const advancedDynamicTs = getDocsContent('projects/documentation/src/app/pages/list/examples/advanced-dynamic/list-advanced-dynamic.example.ts');
 
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/list-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/list-advanced-theme.example.ts' with {
-  loader: 'text',
-};
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/advanced-theme/list-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/list/examples/advanced-theme/list-advanced-theme.example.ts');
 
-// @ts-ignore
-import radiusHtml from './examples/radius/list-radius.example.html' with { loader: 'text' };
-// @ts-ignore
-import radiusTs from './examples/radius/list-radius.example.ts' with { loader: 'text' };
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/radius/list-radius.example.html');
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/list/examples/radius/list-radius.example.ts');
 
-// @ts-ignore
-import radiusThemeHtml from './examples/radius-theme/list-radius-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import radiusThemeTs from './examples/radius-theme/list-radius-theme.example.ts' with {
-  loader: 'text',
-};
+const radiusThemeHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/radius-theme/list-radius-theme.example.html');
+const radiusThemeTs = getDocsContent('projects/documentation/src/app/pages/list/examples/radius-theme/list-radius-theme.example.ts');
 
-// @ts-ignore
-import selectableHtml from './examples/selectable/list-selectable.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import selectableTs from './examples/selectable/list-selectable.example.ts' with {
-  loader: 'text',
-};
+const selectableHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/selectable/list-selectable.example.html');
+const selectableTs = getDocsContent('projects/documentation/src/app/pages/list/examples/selectable/list-selectable.example.ts');
 
-// @ts-ignore
-import scrollHtml from './examples/scroll/list-scroll.example.html' with { loader: 'text' };
-// @ts-ignore
-import scrollTs from './examples/scroll/list-scroll.example.ts' with { loader: 'text' };
+const scrollHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/scroll/list-scroll.example.html');
+const scrollTs = getDocsContent('projects/documentation/src/app/pages/list/examples/scroll/list-scroll.example.ts');
 
-// @ts-ignore
-import scrollToValueHtml from './examples/scroll-to-value/list-scroll-to-value.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import scrollToValueTs from './examples/scroll-to-value/list-scroll-to-value.example.ts' with {
-  loader: 'text',
-};
+const scrollToValueHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/scroll-to-value/list-scroll-to-value.example.html');
+const scrollToValueTs = getDocsContent('projects/documentation/src/app/pages/list/examples/scroll-to-value/list-scroll-to-value.example.ts');
 
-// @ts-ignore
-import valueFieldHtml from './examples/value-field/list-value-field.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import valueFieldTs from './examples/value-field/list-value-field.example.ts' with {
-  loader: 'text',
-};
+const valueFieldHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/value-field/list-value-field.example.html');
+const valueFieldTs = getDocsContent('projects/documentation/src/app/pages/list/examples/value-field/list-value-field.example.ts');
 
-// @ts-ignore
-import reactiveHtml from './examples/reactive/list-reactive.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import reactiveTs from './examples/reactive/list-reactive.example.ts' with { loader: 'text' };
+const reactiveHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/reactive/list-reactive.example.html');
+const reactiveTs = getDocsContent('projects/documentation/src/app/pages/list/examples/reactive/list-reactive.example.ts');
 
-// @ts-ignore
-import keyboardHtml from './examples/keyboard/list-keyboard.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import keyboardTs from './examples/keyboard/list-keyboard.example.ts' with { loader: 'text' };
+const keyboardHtml = getDocsContent('projects/documentation/src/app/pages/list/examples/keyboard/list-keyboard.example.html');
+const keyboardTs = getDocsContent('projects/documentation/src/app/pages/list/examples/keyboard/list-keyboard.example.ts');
 
 @Component({
   imports: [

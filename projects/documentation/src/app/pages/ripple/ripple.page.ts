@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { DocsLayoutComponent } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
@@ -5,9 +6,9 @@ import { DocExampleComponent } from '../../components/doc-example.component';
 import { RippleBasicExample } from './examples/basic/ripple-basic.example';
 
 // @ts-ignore - raw example
-import basicHtml from './examples/basic/ripple-basic.example.html' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/ripple/examples/basic/ripple-basic.example.html');
 // @ts-ignore - raw example
-import basicTs from './examples/basic/ripple-basic.example.ts' with { loader: 'text' };
+const basicTs = getDocsContent('projects/documentation/src/app/pages/ripple/examples/basic/ripple-basic.example.ts');
 
 @Component({
   imports: [DocsLayoutComponent, DocExampleComponent, RippleBasicExample],

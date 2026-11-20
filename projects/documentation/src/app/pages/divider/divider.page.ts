@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -13,68 +14,32 @@ import { DividerLabelSlotExample } from './examples/label-slot/divider-label-slo
 import { DividerCustomStyleExample } from './examples/custom-style/divider-custom-style.example';
 import { DividerAdvancedThemeExample } from './examples/advanced-theme/divider-advanced-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/divider-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/divider-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/basic/divider-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/basic/divider-basic.example.ts');
 
-// @ts-ignore
-import dashedHtml from './examples/dashed/divider-dashed.example.html' with { loader: 'text' };
-// @ts-ignore
-import dashedTs from './examples/dashed/divider-dashed.example.ts' with { loader: 'text' };
+const dashedHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/dashed/divider-dashed.example.html');
+const dashedTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/dashed/divider-dashed.example.ts');
 
-// @ts-ignore
-import labelHtml from './examples/label/divider-label.example.html' with { loader: 'text' };
-// @ts-ignore
-import labelTs from './examples/label/divider-label.example.ts' with { loader: 'text' };
+const labelHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/label/divider-label.example.html');
+const labelTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/label/divider-label.example.ts');
 
-// @ts-ignore
-import labelPlacementHtml from './examples/label-placement/divider-label-placement.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import labelPlacementTs from './examples/label-placement/divider-label-placement.example.ts' with {
-  loader: 'text',
-};
+const labelPlacementHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/label-placement/divider-label-placement.example.html');
+const labelPlacementTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/label-placement/divider-label-placement.example.ts');
 
-// @ts-ignore
-import verticalHtml from './examples/vertical/divider-vertical.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import verticalTs from './examples/vertical/divider-vertical.example.ts' with { loader: 'text' };
+const verticalHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/vertical/divider-vertical.example.html');
+const verticalTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/vertical/divider-vertical.example.ts');
 
-// @ts-ignore
-import spacingHtml from './examples/spacing/divider-spacing.example.html' with { loader: 'text' };
-// @ts-ignore
-import spacingTs from './examples/spacing/divider-spacing.example.ts' with { loader: 'text' };
+const spacingHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/spacing/divider-spacing.example.html');
+const spacingTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/spacing/divider-spacing.example.ts');
 
-// @ts-ignore
-import labelSlotHtml from './examples/label-slot/divider-label-slot.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import labelSlotTs from './examples/label-slot/divider-label-slot.example.ts' with {
-  loader: 'text',
-};
+const labelSlotHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/label-slot/divider-label-slot.example.html');
+const labelSlotTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/label-slot/divider-label-slot.example.ts');
 
-// @ts-ignore
-import customStyleHtml from './examples/custom-style/divider-custom-style.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customStyleTs from './examples/custom-style/divider-custom-style.example.ts' with {
-  loader: 'text',
-};
+const customStyleHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/custom-style/divider-custom-style.example.html');
+const customStyleTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/custom-style/divider-custom-style.example.ts');
 
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/divider-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/divider-advanced-theme.example.ts' with {
-  loader: 'text',
-};
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/divider/examples/advanced-theme/divider-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/divider/examples/advanced-theme/divider-advanced-theme.example.ts');
 
 @Component({
   imports: [

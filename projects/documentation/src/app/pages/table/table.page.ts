@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 import { CommonModule } from '@angular/common';
@@ -19,102 +20,36 @@ import { TableRadiusExample } from './examples/radius/table-radius.example';
 import { TableRadiusThemeExample } from './examples/radius-theme/table-radius-theme.example';
 import { TableAppearanceExample } from './examples/appearance/table-appearance.example';
 
-// @ts-ignore
-import profileHtml from './examples/cell-profile/table-cell-profile.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import profileTs from './examples/cell-profile/table-cell-profile.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import actionsHtml from './examples/cell-actions/table-cell-actions.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import paginationHtml from './examples/pagination/table-pagination.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import paginationTs from './examples/pagination/table-pagination.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customSizesHtml from './examples/custom-sizes/table-custom-sizes.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customSizesTs from './examples/custom-sizes/table-custom-sizes.example' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customBodyHtml from './examples/custom-body/table-custom-body.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customBodyTs from './examples/custom-body/table-custom-body.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import badgeHtml from './examples/cell-badge/table-cell-badge.example.html' with { loader: 'text' };
-// @ts-ignore
-import badgeTs from './examples/cell-badge/table-cell-badge.example.ts' with { loader: 'text' };
-// @ts-ignore
-import actionsTs from './examples/cell-actions/table-cell-actions.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import expandedHtml from './examples/expanded/table-expanded.example.html' with { loader: 'text' };
-// @ts-ignore
-import expandedTs from './examples/expanded/table-expanded.example.ts' with { loader: 'text' };
-// @ts-ignore
-import emptyHtml from './examples/empty/table-empty.example.html' with { loader: 'text' };
-// @ts-ignore
-import emptyTs from './examples/empty/table-empty.example.ts' with { loader: 'text' };
-// @ts-ignore
-import heatmapHtml from './examples/heatmap/table-heatmap.example.html' with { loader: 'text' };
-// @ts-ignore
-import heatmapTs from './examples/heatmap/table-heatmap.example.ts' with { loader: 'text' };
-// @ts-ignore
-import dynamicStyleHtml from './examples/dynamic-style/table-dynamic-style.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import dynamicStyleTs from './examples/dynamic-style/table-dynamic-style.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import inlineEditHtml from './examples/inline-edit/table-inline-edit.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import inlineEditTs from './examples/inline-edit/table-inline-edit.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import nestedHtml from './examples/nested/table-nested.example.html' with { loader: 'text' };
-// @ts-ignore
-import nestedTs from './examples/nested/table-nested.example.ts' with { loader: 'text' };
-// @ts-ignore
-import radiusHtml from './examples/radius/table-radius.example.html' with { loader: 'text' };
-// @ts-ignore
-import radiusTs from './examples/radius/table-radius.example.ts' with { loader: 'text' };
-// @ts-ignore
-import radiusThemeHtml from './examples/radius-theme/table-radius-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import radiusThemeTs from './examples/radius-theme/table-radius-theme.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceHtml from './examples/appearance/table-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/table-appearance.example.ts' with {
-  loader: 'text',
-};
+const profileHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/cell-profile/table-cell-profile.example.html');
+const profileTs = getDocsContent('projects/documentation/src/app/pages/table/examples/cell-profile/table-cell-profile.example.ts');
+const actionsHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/cell-actions/table-cell-actions.example.html');
+const paginationHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/pagination/table-pagination.example.html');
+const paginationTs = getDocsContent('projects/documentation/src/app/pages/table/examples/pagination/table-pagination.example.ts');
+const customSizesHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/custom-sizes/table-custom-sizes.example.html');
+const customSizesTs = getDocsContent('projects/documentation/src/app/pages/table/examples/custom-sizes/table-custom-sizes.example.ts');
+const customBodyHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/custom-body/table-custom-body.example.html');
+const customBodyTs = getDocsContent('projects/documentation/src/app/pages/table/examples/custom-body/table-custom-body.example.ts');
+const badgeHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/cell-badge/table-cell-badge.example.html');
+const badgeTs = getDocsContent('projects/documentation/src/app/pages/table/examples/cell-badge/table-cell-badge.example.ts');
+const actionsTs = getDocsContent('projects/documentation/src/app/pages/table/examples/cell-actions/table-cell-actions.example.ts');
+const expandedHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/expanded/table-expanded.example.html');
+const expandedTs = getDocsContent('projects/documentation/src/app/pages/table/examples/expanded/table-expanded.example.ts');
+const emptyHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/empty/table-empty.example.html');
+const emptyTs = getDocsContent('projects/documentation/src/app/pages/table/examples/empty/table-empty.example.ts');
+const heatmapHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/heatmap/table-heatmap.example.html');
+const heatmapTs = getDocsContent('projects/documentation/src/app/pages/table/examples/heatmap/table-heatmap.example.ts');
+const dynamicStyleHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/dynamic-style/table-dynamic-style.example.html');
+const dynamicStyleTs = getDocsContent('projects/documentation/src/app/pages/table/examples/dynamic-style/table-dynamic-style.example.ts');
+const inlineEditHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/inline-edit/table-inline-edit.example.html');
+const inlineEditTs = getDocsContent('projects/documentation/src/app/pages/table/examples/inline-edit/table-inline-edit.example.ts');
+const nestedHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/nested/table-nested.example.html');
+const nestedTs = getDocsContent('projects/documentation/src/app/pages/table/examples/nested/table-nested.example.ts');
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/radius/table-radius.example.html');
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/table/examples/radius/table-radius.example.ts');
+const radiusThemeHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/radius-theme/table-radius-theme.example.html');
+const radiusThemeTs = getDocsContent('projects/documentation/src/app/pages/table/examples/radius-theme/table-radius-theme.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/table/examples/appearance/table-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/table/examples/appearance/table-appearance.example.ts');
 
 @Component({
   imports: [

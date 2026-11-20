@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 import { CommonModule } from '@angular/common';
@@ -14,70 +15,26 @@ import { DatepickerSlotsExample } from './examples/slots/datepicker-slots.exampl
 import { DatepickerTimepickerExample } from './examples/timepicker/datepicker-timepicker.example';
 import { DatepickerDatetimeExample } from './examples/datetime/datepicker-datetime.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/datepicker-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/datepicker-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import rangeHtml from './examples/range/datepicker-range.example.html' with { loader: 'text' };
-// @ts-ignore
-import rangeTs from './examples/range/datepicker-range.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/datepicker-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/datepicker-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import formatHtml from './examples/format/datepicker-format.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import formatTs from './examples/format/datepicker-format.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import statesHtml from './examples/states/datepicker-states.example.html' with { loader: 'text' };
-// @ts-ignore
-import statesTs from './examples/states/datepicker-states.example.ts' with { loader: 'text' };
-// @ts-ignore
-import placementHtml from './examples/placement/datepicker-placement.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import placementTs from './examples/placement/datepicker-placement.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import slotsHtml from './examples/slots/datepicker-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/datepicker-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import footerHtml from './examples/footer/datepicker-footer.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import footerTs from './examples/footer/datepicker-footer.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import timepickerHtml from './examples/timepicker/datepicker-timepicker.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import timepickerTs from './examples/timepicker/datepicker-timepicker.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import datetimeHtml from './examples/datetime/datepicker-datetime.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import datetimeTs from './examples/datetime/datepicker-datetime.example.ts' with {
-  loader: 'text',
-};
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/basic/datepicker-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/basic/datepicker-basic.example.ts');
+const rangeHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/range/datepicker-range.example.html');
+const rangeTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/range/datepicker-range.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/appearance/datepicker-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/appearance/datepicker-appearance.example.ts');
+const formatHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/format/datepicker-format.example.html');
+const formatTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/format/datepicker-format.example.ts');
+const statesHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/states/datepicker-states.example.html');
+const statesTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/states/datepicker-states.example.ts');
+const placementHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/placement/datepicker-placement.example.html');
+const placementTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/placement/datepicker-placement.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/slots/datepicker-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/slots/datepicker-slots.example.ts');
+const footerHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/footer/datepicker-footer.example.html');
+const footerTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/footer/datepicker-footer.example.ts');
+const timepickerHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/timepicker/datepicker-timepicker.example.html');
+const timepickerTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/timepicker/datepicker-timepicker.example.ts');
+const datetimeHtml = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/datetime/datepicker-datetime.example.html');
+const datetimeTs = getDocsContent('projects/documentation/src/app/pages/datepicker/examples/datetime/datepicker-datetime.example.ts');
 
 @Component({
   imports: [

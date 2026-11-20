@@ -1,0 +1,39 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 220px">
+    <dasar-number-input
+      label="Price (step 0.01)"
+      [step]="0.01"
+      [(ngModel)]="price"
+      full-width
+    ></dasar-number-input>
+    <p style="margin: 8px 0 0; font-size: 13px">
+      Bound value: <strong>{{ price }}</strong>
+    </p>
+  </div>
+
+  <div style="flex: 1; min-width: 220px">
+    <dasar-number-input
+      label="Temperature (step 0.1, 30 to 45)"
+      [step]="0.1"
+      [min]="30"
+      [max]="45"
+      [(ngModel)]="temperature"
+      full-width
+    ></dasar-number-input>
+    <p style="margin: 8px 0 0; font-size: 13px">
+      Bound value: <strong>{{ temperature }}</strong>
+    </p>
+  </div>
+
+  <div style="flex: 1; min-width: 220px">
+    <dasar-number-input
+      label="Rate (step 0.005)"
+      [step]="0.005"
+      [(ngModel)]="rate"
+      full-width
+    ></dasar-number-input>
+    <p style="margin: 8px 0 0; font-size: 13px">
+      Bound value: <strong>{{ rate }}</strong>
+    </p>
+  </div>
+</div>

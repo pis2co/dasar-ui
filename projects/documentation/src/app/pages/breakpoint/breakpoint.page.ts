@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -12,63 +13,29 @@ import { BreakpointTemplateExample } from './examples/template/breakpoint-templa
 import { BreakpointCustomExample } from './examples/custom/breakpoint-custom.example';
 import { BreakpointAdvancedThemeExample } from './examples/advanced-theme/breakpoint-advanced-theme.example';
 
-// @ts-ignore
-import serviceBasicsHtml from './examples/service-basics/breakpoint-service-basics.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import serviceBasicsTs from './examples/service-basics/breakpoint-service-basics.example.ts' with {
-  loader: 'text',
-};
+const serviceBasicsHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/service-basics/breakpoint-service-basics.example.html');
+const serviceBasicsTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/service-basics/breakpoint-service-basics.example.ts');
 
-// @ts-ignore
-import hiddenAtHtml from './examples/hidden-at/breakpoint-hidden-at.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import hiddenAtTs from './examples/hidden-at/breakpoint-hidden-at.example.ts' with {
-  loader: 'text',
-};
+const hiddenAtHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/hidden-at/breakpoint-hidden-at.example.html');
+const hiddenAtTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/hidden-at/breakpoint-hidden-at.example.ts');
 
-// @ts-ignore
-import showAtHtml from './examples/show-at/breakpoint-show-at.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import showAtTs from './examples/show-at/breakpoint-show-at.example.ts' with { loader: 'text' };
+const showAtHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/show-at/breakpoint-show-at.example.html');
+const showAtTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/show-at/breakpoint-show-at.example.ts');
 
-// @ts-ignore
-import pairHtml from './examples/pair/breakpoint-pair.example.html' with { loader: 'text' };
-// @ts-ignore
-import pairTs from './examples/pair/breakpoint-pair.example.ts' with { loader: 'text' };
+const pairHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/pair/breakpoint-pair.example.html');
+const pairTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/pair/breakpoint-pair.example.ts');
 
-// @ts-ignore
-import eventsHtml from './examples/events/breakpoint-events.example.html' with { loader: 'text' };
-// @ts-ignore
-import eventsTs from './examples/events/breakpoint-events.example.ts' with { loader: 'text' };
+const eventsHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/events/breakpoint-events.example.html');
+const eventsTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/events/breakpoint-events.example.ts');
 
-// @ts-ignore
-import templateHtml from './examples/template/breakpoint-template.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import templateTs from './examples/template/breakpoint-template.example.ts' with {
-  loader: 'text',
-};
+const templateHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/template/breakpoint-template.example.html');
+const templateTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/template/breakpoint-template.example.ts');
 
-// @ts-ignore
-import customHtml from './examples/custom/breakpoint-custom.example.html' with { loader: 'text' };
-// @ts-ignore
-import customTs from './examples/custom/breakpoint-custom.example.ts' with { loader: 'text' };
+const customHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/custom/breakpoint-custom.example.html');
+const customTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/custom/breakpoint-custom.example.ts');
 
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/breakpoint-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/breakpoint-advanced-theme.example.ts' with {
-  loader: 'text',
-};
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/advanced-theme/breakpoint-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/breakpoint/examples/advanced-theme/breakpoint-advanced-theme.example.ts');
 
 @Component({
   imports: [

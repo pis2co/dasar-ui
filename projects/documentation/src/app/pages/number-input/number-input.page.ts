@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -8,31 +9,20 @@ import { NumberInputAppearanceExample } from './examples/appearance/number-input
 import { NumberInputLimitsExample } from './examples/limits/number-input-limits.example';
 import { NumberInputStatesExample } from './examples/states/number-input-states.example';
 import { NumberInputSlotsExample } from './examples/slots/number-input-slots.example';
+import { NumberInputDecimalExample } from './examples/decimal/number-input-decimal.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/number-input-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/number-input-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/number-input-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/number-input-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import limitsHtml from './examples/limits/number-input-limits.example.html' with { loader: 'text' };
-// @ts-ignore
-import limitsTs from './examples/limits/number-input-limits.example.ts' with { loader: 'text' };
-// @ts-ignore
-import statesHtml from './examples/states/number-input-states.example.html' with { loader: 'text' };
-// @ts-ignore
-import statesTs from './examples/states/number-input-states.example.ts' with { loader: 'text' };
-// @ts-ignore
-import slotsHtml from './examples/slots/number-input-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/number-input-slots.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/number-input/examples/basic/number-input-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/number-input/examples/basic/number-input-basic.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/number-input/examples/appearance/number-input-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/number-input/examples/appearance/number-input-appearance.example.ts');
+const limitsHtml = getDocsContent('projects/documentation/src/app/pages/number-input/examples/limits/number-input-limits.example.html');
+const limitsTs = getDocsContent('projects/documentation/src/app/pages/number-input/examples/limits/number-input-limits.example.ts');
+const statesHtml = getDocsContent('projects/documentation/src/app/pages/number-input/examples/states/number-input-states.example.html');
+const statesTs = getDocsContent('projects/documentation/src/app/pages/number-input/examples/states/number-input-states.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/number-input/examples/slots/number-input-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/number-input/examples/slots/number-input-slots.example.ts');
+const decimalHtml = getDocsContent('projects/documentation/src/app/pages/number-input/examples/decimal/number-input-decimal.example.html');
+const decimalTs = getDocsContent('projects/documentation/src/app/pages/number-input/examples/decimal/number-input-decimal.example.ts');
 
 @Component({
   imports: [
@@ -44,6 +34,7 @@ import slotsTs from './examples/slots/number-input-slots.example.ts' with { load
     NumberInputLimitsExample,
     NumberInputStatesExample,
     NumberInputSlotsExample,
+    NumberInputDecimalExample,
   ],
   templateUrl: './number-input.page.html',
   selector: 'app-number-input-page',
@@ -60,6 +51,8 @@ export class NumberInputDocPage {
   protected statesTs = statesTs;
   protected slotsHtml = slotsHtml;
   protected slotsTs = slotsTs;
+  protected decimalHtml = decimalHtml;
+  protected decimalTs = decimalTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {
