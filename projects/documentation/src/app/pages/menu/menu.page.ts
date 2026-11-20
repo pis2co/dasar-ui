@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 import { DasarCardComponent, DasarIconComponent } from 'dasar-ui';
@@ -10,31 +11,21 @@ import { MenuAppearanceExample } from './examples/appearance/menu-appearance.exa
 import { MenuBasicExample } from './examples/basic/menu-basic.example';
 
 // @ts-ignore - raw example
-import basicHtml from './examples/basic/menu-basic.example.html' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/menu/examples/basic/menu-basic.example.html');
 // @ts-ignore - raw example
-import basicTs from './examples/basic/menu-basic.example.ts' with { loader: 'text' };
+const basicTs = getDocsContent('projects/documentation/src/app/pages/menu/examples/basic/menu-basic.example.ts');
 // @ts-ignore - raw example
-import appearanceHtml from './examples/appearance/menu-appearance.example.html' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/menu/examples/appearance/menu-appearance.example.html');
 // @ts-ignore - raw example
-import appearanceTs from './examples/appearance/menu-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/menu/examples/appearance/menu-appearance.example.ts');
 // @ts-ignore - raw example
-import placementHtml from './examples/placement/menu-placement.example.html' with {
-  loader: 'text',
-};
+const placementHtml = getDocsContent('projects/documentation/src/app/pages/menu/examples/placement/menu-placement.example.html');
 // @ts-ignore - raw example
-import placementTs from './examples/placement/menu-placement.example.ts' with { loader: 'text' };
+const placementTs = getDocsContent('projects/documentation/src/app/pages/menu/examples/placement/menu-placement.example.ts');
 // @ts-ignore - raw example
-import templateHtml from './examples/custom-template/menu-custom-template.example.html' with {
-  loader: 'text',
-};
+const templateHtml = getDocsContent('projects/documentation/src/app/pages/menu/examples/custom-template/menu-custom-template.example.html');
 // @ts-ignore - raw example
-import templateTs from './examples/custom-template/menu-custom-template.example.ts' with {
-  loader: 'text',
-};
+const templateTs = getDocsContent('projects/documentation/src/app/pages/menu/examples/custom-template/menu-custom-template.example.ts');
 
 @Component({
   imports: [

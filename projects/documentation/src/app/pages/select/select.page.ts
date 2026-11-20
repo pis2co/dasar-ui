@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -11,47 +12,25 @@ import { SelectStatesExample } from './examples/states/select-states.example';
 import { SelectSlotsExample } from './examples/slots/select-slots.example';
 import { SelectPlacementExample } from './examples/placement/select-placement.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/select-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/select-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/select/examples/basic/select-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/select/examples/basic/select-basic.example.ts');
 
-// @ts-ignore
-import appearanceHtml from './examples/appearance/select-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/select-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/select/examples/appearance/select-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/select/examples/appearance/select-appearance.example.ts');
 
-// @ts-ignore
-import searchHtml from './examples/search/select-search.example.html' with { loader: 'text' };
-// @ts-ignore
-import searchTs from './examples/search/select-search.example.ts' with { loader: 'text' };
+const searchHtml = getDocsContent('projects/documentation/src/app/pages/select/examples/search/select-search.example.html');
+const searchTs = getDocsContent('projects/documentation/src/app/pages/select/examples/search/select-search.example.ts');
 
-// @ts-ignore
-import multipleHtml from './examples/multiple/select-multiple.example.html' with { loader: 'text' };
-// @ts-ignore
-import multipleTs from './examples/multiple/select-multiple.example.ts' with { loader: 'text' };
+const multipleHtml = getDocsContent('projects/documentation/src/app/pages/select/examples/multiple/select-multiple.example.html');
+const multipleTs = getDocsContent('projects/documentation/src/app/pages/select/examples/multiple/select-multiple.example.ts');
 
-// @ts-ignore
-import statesHtml from './examples/states/select-states.example.html' with { loader: 'text' };
-// @ts-ignore
-import statesTs from './examples/states/select-states.example.ts' with { loader: 'text' };
+const statesHtml = getDocsContent('projects/documentation/src/app/pages/select/examples/states/select-states.example.html');
+const statesTs = getDocsContent('projects/documentation/src/app/pages/select/examples/states/select-states.example.ts');
 
-// @ts-ignore
-import slotsHtml from './examples/slots/select-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/select-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import placementHtml from './examples/placement/select-placement.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import placementTs from './examples/placement/select-placement.example.ts' with {
-  loader: 'text',
-};
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/select/examples/slots/select-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/select/examples/slots/select-slots.example.ts');
+const placementHtml = getDocsContent('projects/documentation/src/app/pages/select/examples/placement/select-placement.example.html');
+const placementTs = getDocsContent('projects/documentation/src/app/pages/select/examples/placement/select-placement.example.ts');
 
 @Component({
   imports: [

@@ -1,0 +1,51 @@
+<div style="display: flex; flex-direction: column; gap: 16px; width: 100%">
+  <p style="margin: 0; font-size: 13px">
+    Steps: click the empty field, type <strong>5</strong>, then the separator, then
+    <strong>03</strong>. Expected result <strong>5{{ '.' }}03</strong> (or
+    <strong>5,03</strong>) with the cursor staying after what you typed. Reported bug: after the
+    separator the cursor jumps to the front, so you have to type <strong>503</strong> first and
+    insert the separator between 5 and 0.
+  </p>
+
+  <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap">
+    <div style="flex: 1; min-width: 250px">
+      <dasar-input
+        label="Native number type (step 0.01)"
+        type="number"
+        step="0.01"
+        placeholder="5.03"
+        [(ngModel)]="numberValue"
+        full-width
+      ></dasar-input>
+      <p style="margin: 8px 0 0; font-size: 13px">
+        Bound value: <strong>{{ numberValue }}</strong>
+      </p>
+    </div>
+
+    <div style="flex: 1; min-width: 250px">
+      <dasar-input
+        label="Custom mask (comma as separator, 3 decimals)"
+        placeholder="5,03"
+        [mask]="commaDecimalMask"
+        [(ngModel)]="commaValue"
+        full-width
+      ></dasar-input>
+      <p style="margin: 8px 0 0; font-size: 13px">
+        Bound value: <strong>{{ commaValue }}</strong>
+      </p>
+    </div>
+
+    <div style="flex: 1; min-width: 250px">
+      <dasar-input
+        label="Custom mask (dot as separator, 2 decimals)"
+        placeholder="5.03"
+        [mask]="dotDecimalMask"
+        [(ngModel)]="dotValue"
+        full-width
+      ></dasar-input>
+      <p style="margin: 8px 0 0; font-size: 13px">
+        Bound value: <strong>{{ dotValue }}</strong>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -10,40 +11,18 @@ import { TextareaLabelHintExample } from './examples/label-hint/textarea-label-h
 import { TextareaErrorExample } from './examples/error/textarea-error.example';
 import { TextareaDisabledExample } from './examples/disabled/textarea-disabled.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/textarea-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/textarea-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import sizesHtml from './examples/sizes/textarea-sizes.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizesTs from './examples/sizes/textarea-sizes.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/textarea-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/textarea-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import labelHintHtml from './examples/label-hint/textarea-label-hint.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import labelHintTs from './examples/label-hint/textarea-label-hint.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import errorHtml from './examples/error/textarea-error.example.html' with { loader: 'text' };
-// @ts-ignore
-import errorTs from './examples/error/textarea-error.example.ts' with { loader: 'text' };
-// @ts-ignore
-import disabledHtml from './examples/disabled/textarea-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/textarea-disabled.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/textarea/examples/basic/textarea-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/textarea/examples/basic/textarea-basic.example.ts');
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/textarea/examples/sizes/textarea-sizes.example.html');
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/textarea/examples/sizes/textarea-sizes.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/textarea/examples/appearance/textarea-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/textarea/examples/appearance/textarea-appearance.example.ts');
+const labelHintHtml = getDocsContent('projects/documentation/src/app/pages/textarea/examples/label-hint/textarea-label-hint.example.html');
+const labelHintTs = getDocsContent('projects/documentation/src/app/pages/textarea/examples/label-hint/textarea-label-hint.example.ts');
+const errorHtml = getDocsContent('projects/documentation/src/app/pages/textarea/examples/error/textarea-error.example.html');
+const errorTs = getDocsContent('projects/documentation/src/app/pages/textarea/examples/error/textarea-error.example.ts');
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/textarea/examples/disabled/textarea-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/textarea/examples/disabled/textarea-disabled.example.ts');
 
 @Component({
   imports: [

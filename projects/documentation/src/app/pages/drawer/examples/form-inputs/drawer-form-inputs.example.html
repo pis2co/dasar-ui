@@ -1,0 +1,33 @@
+<dasar-button (click)="show.set(true)">Open form drawer</dasar-button>
+
+<dasar-drawer [(show)]="show" label="Form with all inputs" width="420px">
+  <div style="display: flex; flex-direction: column; gap: 16px; width: 100%">
+    <dasar-input label="Full name" placeholder="Your name" full-width></dasar-input>
+    <dasar-textarea label="Notes" placeholder="Write something" rows="3" full-width></dasar-textarea>
+    <dasar-number-input label="Quantity" full-width></dasar-number-input>
+    <dasar-select label="Country" [options]="options" full-width></dasar-select>
+    <dasar-datepicker label="Date" full-width></dasar-datepicker>
+  
+    <dasar-checkbox-group [value]="['email']">
+      <dasar-checkbox label="Email updates" checked-value="email" />
+      <dasar-checkbox label="SMS updates" checked-value="sms" />
+    </dasar-checkbox-group>
+  
+    <dasar-radio-group [value]="'standard'">
+      <dasar-radio label="Standard" checked-value="standard" />
+      <dasar-radio label="Express" checked-value="express" />
+    </dasar-radio-group>
+  
+    <dasar-switch [(value)]="notify" label="Notify me" hint="Switch input" />
+    <dasar-slider label="Budget" [value]="40" [fullWidth]="true"></dasar-slider>
+  
+    <div>
+      <p style="margin: 0 0 8px; font-size: 13px; font-weight: 500">PIN</p>
+      <dasar-pin [length]="4"></dasar-pin>
+    </div>
+  </div>
+  <div action-slot>
+    <dasar-button appearance="outline" variant="secondary" (click)="show.set(false)">Cancel</dasar-button>
+    <dasar-button (click)="show.set(false)">Save</dasar-button>
+  </div>
+</dasar-drawer>

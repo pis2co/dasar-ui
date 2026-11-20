@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -12,42 +13,22 @@ import { SplitTriggerExample } from './examples/trigger/split-trigger.example';
 import { SplitEventsExample } from './examples/events/split-events.example';
 import { SplitNestedExample } from './examples/nested/split-nested.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/split-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/split-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import verticalHtml from './examples/vertical/split-vertical.example.html' with { loader: 'text' };
-// @ts-ignore
-import verticalTs from './examples/vertical/split-vertical.example.ts' with { loader: 'text' };
-// @ts-ignore
-import limitsHtml from './examples/limits/split-limits.example.html' with { loader: 'text' };
-// @ts-ignore
-import limitsTs from './examples/limits/split-limits.example.ts' with { loader: 'text' };
-// @ts-ignore
-import controlledHtml from './examples/controlled/split-controlled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import controlledTs from './examples/controlled/split-controlled.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledHtml from './examples/disabled/split-disabled.example.html' with { loader: 'text' };
-// @ts-ignore
-import disabledTs from './examples/disabled/split-disabled.example.ts' with { loader: 'text' };
-// @ts-ignore
-import triggerHtml from './examples/trigger/split-trigger.example.html' with { loader: 'text' };
-// @ts-ignore
-import triggerTs from './examples/trigger/split-trigger.example.ts' with { loader: 'text' };
-// @ts-ignore
-import eventsHtml from './examples/events/split-events.example.html' with { loader: 'text' };
-// @ts-ignore
-import eventsTs from './examples/events/split-events.example.ts' with { loader: 'text' };
-// @ts-ignore
-import nestedHtml from './examples/nested/split-nested.example.html' with { loader: 'text' };
-// @ts-ignore
-import nestedTs from './examples/nested/split-nested.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/basic/split-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/split/examples/basic/split-basic.example.ts');
+const verticalHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/vertical/split-vertical.example.html');
+const verticalTs = getDocsContent('projects/documentation/src/app/pages/split/examples/vertical/split-vertical.example.ts');
+const limitsHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/limits/split-limits.example.html');
+const limitsTs = getDocsContent('projects/documentation/src/app/pages/split/examples/limits/split-limits.example.ts');
+const controlledHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/controlled/split-controlled.example.html');
+const controlledTs = getDocsContent('projects/documentation/src/app/pages/split/examples/controlled/split-controlled.example.ts');
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/disabled/split-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/split/examples/disabled/split-disabled.example.ts');
+const triggerHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/trigger/split-trigger.example.html');
+const triggerTs = getDocsContent('projects/documentation/src/app/pages/split/examples/trigger/split-trigger.example.ts');
+const eventsHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/events/split-events.example.html');
+const eventsTs = getDocsContent('projects/documentation/src/app/pages/split/examples/events/split-events.example.ts');
+const nestedHtml = getDocsContent('projects/documentation/src/app/pages/split/examples/nested/split-nested.example.html');
+const nestedTs = getDocsContent('projects/documentation/src/app/pages/split/examples/nested/split-nested.example.ts');
 
 @Component({
   imports: [

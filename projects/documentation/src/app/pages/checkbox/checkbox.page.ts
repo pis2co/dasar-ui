@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -17,102 +18,44 @@ import { CheckboxGroupLayoutExample } from './examples/group-layout/checkbox-gro
 import { CheckboxGroupValueFieldExample } from './examples/group-value-field/checkbox-group-value-field.example';
 import { CheckboxAdvancedThemeExample } from './examples/advanced-theme/checkbox-advanced-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/checkbox-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/checkbox-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/basic/checkbox-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/basic/checkbox-basic.example.ts');
 
-// @ts-ignore
-import appearanceHtml from './examples/appearance/checkbox-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/checkbox-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/appearance/checkbox-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/appearance/checkbox-appearance.example.ts');
 
-// @ts-ignore
-import sizeHtml from './examples/size/checkbox-size.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizeTs from './examples/size/checkbox-size.example.ts' with { loader: 'text' };
+const sizeHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/size/checkbox-size.example.html');
+const sizeTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/size/checkbox-size.example.ts');
 
-// @ts-ignore
-import customValuesHtml from './examples/custom-values/checkbox-custom-values.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customValuesTs from './examples/custom-values/checkbox-custom-values.example.ts' with {
-  loader: 'text',
-};
+const customValuesHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/custom-values/checkbox-custom-values.example.html');
+const customValuesTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/custom-values/checkbox-custom-values.example.ts');
 
-// @ts-ignore
-import labelHintHtml from './examples/label-hint/checkbox-label-hint.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import labelHintTs from './examples/label-hint/checkbox-label-hint.example.ts' with {
-  loader: 'text',
-};
+const labelHintHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/label-hint/checkbox-label-hint.example.html');
+const labelHintTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/label-hint/checkbox-label-hint.example.ts');
 
-// @ts-ignore
-import errorHtml from './examples/error/checkbox-error.example.html' with { loader: 'text' };
-// @ts-ignore
-import errorTs from './examples/error/checkbox-error.example.ts' with { loader: 'text' };
+const errorHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/error/checkbox-error.example.html');
+const errorTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/error/checkbox-error.example.ts');
 
-// @ts-ignore
-import disabledHtml from './examples/disabled/checkbox-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/checkbox-disabled.example.ts' with { loader: 'text' };
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/disabled/checkbox-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/disabled/checkbox-disabled.example.ts');
 
-// @ts-ignore
-import reactiveHtml from './examples/reactive/checkbox-reactive.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import reactiveTs from './examples/reactive/checkbox-reactive.example.ts' with { loader: 'text' };
+const reactiveHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/reactive/checkbox-reactive.example.html');
+const reactiveTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/reactive/checkbox-reactive.example.ts');
 
-// @ts-ignore
-import groupHtml from './examples/group/checkbox-group.example.html' with { loader: 'text' };
-// @ts-ignore
-import groupTs from './examples/group/checkbox-group.example.ts' with { loader: 'text' };
+const groupHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group/checkbox-group.example.html');
+const groupTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group/checkbox-group.example.ts');
 
-// @ts-ignore
-import groupAppearanceHtml from './examples/group-appearance/checkbox-group-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import groupAppearanceTs from './examples/group-appearance/checkbox-group-appearance.example.ts' with {
-  loader: 'text',
-};
+const groupAppearanceHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group-appearance/checkbox-group-appearance.example.html');
+const groupAppearanceTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group-appearance/checkbox-group-appearance.example.ts');
 
-// @ts-ignore
-import groupLayoutHtml from './examples/group-layout/checkbox-group-layout.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import groupLayoutTs from './examples/group-layout/checkbox-group-layout.example.ts' with {
-  loader: 'text',
-};
+const groupLayoutHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group-layout/checkbox-group-layout.example.html');
+const groupLayoutTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group-layout/checkbox-group-layout.example.ts');
 
-// @ts-ignore
-import groupValueFieldHtml from './examples/group-value-field/checkbox-group-value-field.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import groupValueFieldTs from './examples/group-value-field/checkbox-group-value-field.example.ts' with {
-  loader: 'text',
-};
+const groupValueFieldHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group-value-field/checkbox-group-value-field.example.html');
+const groupValueFieldTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/group-value-field/checkbox-group-value-field.example.ts');
 
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/checkbox-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/checkbox-advanced-theme.example.ts' with {
-  loader: 'text',
-};
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/advanced-theme/checkbox-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/checkbox/examples/advanced-theme/checkbox-advanced-theme.example.ts');
 
 @Component({
   imports: [

@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -18,98 +19,46 @@ import { AlertAdvancedThemeExample } from './examples/advanced-theme/alert-advan
 import { AlertRadiusExample } from './examples/radius/alert-radius.example';
 import { AlertRadiusThemeExample } from './examples/radius-theme/alert-radius-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/alert-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/alert-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/basic/alert-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/basic/alert-basic.example.ts');
 
-// @ts-ignore
-import appearanceHtml from './examples/appearance/alert-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/alert-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/appearance/alert-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/appearance/alert-appearance.example.ts');
 
-// @ts-ignore
-import variantHtml from './examples/variant/alert-variant.example.html' with { loader: 'text' };
-// @ts-ignore
-import variantTs from './examples/variant/alert-variant.example.ts' with { loader: 'text' };
+const variantHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/variant/alert-variant.example.html');
+const variantTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/variant/alert-variant.example.ts');
 
-// @ts-ignore
-import borderedHtml from './examples/bordered/alert-bordered.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import borderedTs from './examples/bordered/alert-bordered.example.ts' with { loader: 'text' };
+const borderedHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/bordered/alert-bordered.example.html');
+const borderedTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/bordered/alert-bordered.example.ts');
 
-// @ts-ignore
-import titleHtml from './examples/title/alert-title.example.html' with { loader: 'text' };
-// @ts-ignore
-import titleTs from './examples/title/alert-title.example.ts' with { loader: 'text' };
+const titleHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/title/alert-title.example.html');
+const titleTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/title/alert-title.example.ts');
 
-// @ts-ignore
-import iconHtml from './examples/icon/alert-icon.example.html' with { loader: 'text' };
-// @ts-ignore
-import iconTs from './examples/icon/alert-icon.example.ts' with { loader: 'text' };
+const iconHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/icon/alert-icon.example.html');
+const iconTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/icon/alert-icon.example.ts');
 
-// @ts-ignore
-import closeableHtml from './examples/closeable/alert-closeable.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import closeableTs from './examples/closeable/alert-closeable.example.ts' with { loader: 'text' };
+const closeableHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/closeable/alert-closeable.example.html');
+const closeableTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/closeable/alert-closeable.example.ts');
 
-// @ts-ignore
-import closeSlotHtml from './examples/close-slot/alert-close-slot.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import closeSlotTs from './examples/close-slot/alert-close-slot.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import visibleHtml from './examples/visible/alert-visible.example.html' with { loader: 'text' };
-// @ts-ignore
-import visibleTs from './examples/visible/alert-visible.example.ts' with { loader: 'text' };
+const closeSlotHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/close-slot/alert-close-slot.example.html');
+const closeSlotTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/close-slot/alert-close-slot.example.ts');
+const visibleHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/visible/alert-visible.example.html');
+const visibleTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/visible/alert-visible.example.ts');
 
-// @ts-ignore
-import slotsHtml from './examples/slots/alert-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/alert-slots.example.ts' with { loader: 'text' };
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/slots/alert-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/slots/alert-slots.example.ts');
 
-// @ts-ignore
-import customStyleHtml from './examples/custom-style/alert-custom-style.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customStyleTs from './examples/custom-style/alert-custom-style.example.ts' with {
-  loader: 'text',
-};
+const customStyleHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/custom-style/alert-custom-style.example.html');
+const customStyleTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/custom-style/alert-custom-style.example.ts');
 
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/alert-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/alert-advanced-theme.example.ts' with {
-  loader: 'text',
-};
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/advanced-theme/alert-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/advanced-theme/alert-advanced-theme.example.ts');
 
-// @ts-ignore
-import radiusHtml from './examples/radius/alert-radius.example.html' with { loader: 'text' };
-// @ts-ignore
-import radiusTs from './examples/radius/alert-radius.example.ts' with { loader: 'text' };
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/radius/alert-radius.example.html');
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/radius/alert-radius.example.ts');
 
-// @ts-ignore
-import radiusThemeHtml from './examples/radius-theme/alert-radius-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import radiusThemeTs from './examples/radius-theme/alert-radius-theme.example.ts' with {
-  loader: 'text',
-};
+const radiusThemeHtml = getDocsContent('projects/documentation/src/app/pages/alert/examples/radius-theme/alert-radius-theme.example.html');
+const radiusThemeTs = getDocsContent('projects/documentation/src/app/pages/alert/examples/radius-theme/alert-radius-theme.example.ts');
 
 @Component({
   imports: [

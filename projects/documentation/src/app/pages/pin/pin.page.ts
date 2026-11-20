@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -9,30 +10,16 @@ import { PinSizesExample } from './examples/sizes/pin-sizes.example';
 import { PinDisabledExample } from './examples/disabled/pin-disabled.example';
 import { PinErrorExample } from './examples/error/pin-error.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/pin-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/pin-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance-with-elevated/pin-appearance-with-elevated.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance-with-elevated/pin-appearance-with-elevated.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import sizesHtml from './examples/sizes/pin-sizes.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizesTs from './examples/sizes/pin-sizes.example.ts' with { loader: 'text' };
-// @ts-ignore
-import disabledHtml from './examples/disabled/pin-disabled.example.html' with { loader: 'text' };
-// @ts-ignore
-import disabledTs from './examples/disabled/pin-disabled.example.ts' with { loader: 'text' };
-// @ts-ignore
-import errorHtml from './examples/error/pin-error.example.html' with { loader: 'text' };
-// @ts-ignore
-import errorTs from './examples/error/pin-error.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/pin/examples/basic/pin-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/pin/examples/basic/pin-basic.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/pin/examples/appearance-with-elevated/pin-appearance-with-elevated.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/pin/examples/appearance-with-elevated/pin-appearance-with-elevated.example.ts');
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/pin/examples/sizes/pin-sizes.example.html');
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/pin/examples/sizes/pin-sizes.example.ts');
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/pin/examples/disabled/pin-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/pin/examples/disabled/pin-disabled.example.ts');
+const errorHtml = getDocsContent('projects/documentation/src/app/pages/pin/examples/error/pin-error.example.html');
+const errorTs = getDocsContent('projects/documentation/src/app/pages/pin/examples/error/pin-error.example.ts');
 
 @Component({
   imports: [

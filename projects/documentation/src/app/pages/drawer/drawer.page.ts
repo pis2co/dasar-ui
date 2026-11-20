@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -10,45 +11,24 @@ import { DrawerResizableExample } from './examples/resizable/drawer-resizable.ex
 import { DrawerSlotsExample } from './examples/slots/drawer-slots.example';
 import { DrawerNgModelExample } from './examples/ng-model/drawer-ng-model.example';
 import { DrawerCallbacksExample } from './examples/callbacks/drawer-callbacks.example';
+import { DrawerFormInputsExample } from './examples/form-inputs/drawer-form-inputs.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/drawer-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/drawer-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/drawer-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/drawer-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import placementHtml from './examples/placement/drawer-placement.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import placementTs from './examples/placement/drawer-placement.example.ts' with { loader: 'text' };
-// @ts-ignore
-import resizableHtml from './examples/resizable/drawer-resizable.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import resizableTs from './examples/resizable/drawer-resizable.example.ts' with { loader: 'text' };
-// @ts-ignore
-import slotsHtml from './examples/slots/drawer-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/drawer-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import ngModelHtml from './examples/ng-model/drawer-ng-model.example.html' with { loader: 'text' };
-// @ts-ignore
-import ngModelTs from './examples/ng-model/drawer-ng-model.example.ts' with { loader: 'text' };
-// @ts-ignore
-import callbacksHtml from './examples/callbacks/drawer-callbacks.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import callbacksTs from './examples/callbacks/drawer-callbacks.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/basic/drawer-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/basic/drawer-basic.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/appearance/drawer-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/appearance/drawer-appearance.example.ts');
+const placementHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/placement/drawer-placement.example.html');
+const placementTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/placement/drawer-placement.example.ts');
+const resizableHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/resizable/drawer-resizable.example.html');
+const resizableTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/resizable/drawer-resizable.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/slots/drawer-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/slots/drawer-slots.example.ts');
+const ngModelHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/ng-model/drawer-ng-model.example.html');
+const ngModelTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/ng-model/drawer-ng-model.example.ts');
+const callbacksHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/callbacks/drawer-callbacks.example.html');
+const callbacksTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/callbacks/drawer-callbacks.example.ts');
+const formInputsHtml = getDocsContent('projects/documentation/src/app/pages/drawer/examples/form-inputs/drawer-form-inputs.example.html');
+const formInputsTs = getDocsContent('projects/documentation/src/app/pages/drawer/examples/form-inputs/drawer-form-inputs.example.ts');
 
 @Component({
   imports: [
@@ -62,6 +42,7 @@ import callbacksTs from './examples/callbacks/drawer-callbacks.example.ts' with 
     DrawerSlotsExample,
     DrawerNgModelExample,
     DrawerCallbacksExample,
+    DrawerFormInputsExample,
   ],
   templateUrl: './drawer.page.html',
   selector: 'app-drawer-page',
@@ -88,6 +69,9 @@ export class DrawerDocPage {
 
   protected callbacksHtml = callbacksHtml;
   protected callbacksTs = callbacksTs;
+
+  public formInputsHtml = formInputsHtml;
+  public formInputsTs = formInputsTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {
@@ -156,7 +140,7 @@ export class DrawerDocPage {
     {
       name: 'z-index',
       type: 'number',
-      defaultValue: '1000',
+      defaultValue: '1010',
       description: 'Stacking order of the backdrop and drawer.',
     },
     {
