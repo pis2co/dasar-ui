@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.2](https://github.com/pis2co/dasar-ui/compare/v3.4.1...v3.4.2) (2026-11-20)
+
+
+### Features
+
+* **docs:** generated docs content, decimal and form examples, win scripts ([73ef369](https://github.com/pis2co/dasar-ui/commit/73ef3691e68c05d4a4ed22ea0881e1bc15f08603))
+
+
+### Bug Fixes
+
+* **z-index:** new stack for overlapping components ([93f865e](https://github.com/pis2co/dasar-ui/commit/93f865e2d46f1b32f1ecbb1817efbcf9ab7e08ba))
+
 ### [3.4.1](https://github.com/pis2co/dasar-ui/compare/v3.4.0...v3.4.1) (2026-11-20)
 
 ## [3.4.0](https://github.com/pis2co/dasar-ui/compare/v3.3.0...v3.4.0) (2026-11-16)
