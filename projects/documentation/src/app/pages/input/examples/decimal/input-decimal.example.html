@@ -1,0 +1,42 @@
+<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; width: 100%">
+  <div style="flex: 1; min-width: 250px">
+    <dasar-input
+      label="Custom mask (max 2 decimals)"
+      placeholder="1234.56"
+      [mask]="decimalMask"
+      [(ngModel)]="price"
+      hint="Digits and one dot only; extra decimals are cut."
+      full-width
+    ></dasar-input>
+    <p style="margin: 8px 0 0; font-size: 13px">
+      Bound value: <strong>{{ price }}</strong>
+    </p>
+  </div>
+
+  <div style="flex: 1; min-width: 250px">
+    <dasar-input
+      label="Custom mask (comma as separator, 3 decimals)"
+      placeholder="0,125"
+      [mask]="commaDecimalMask"
+      [(ngModel)]="rate"
+      hint="Typing a dot is turned into a comma."
+      full-width
+    ></dasar-input>
+    <p style="margin: 8px 0 0; font-size: 13px">
+      Bound value: <strong>{{ rate }}</strong>
+    </p>
+  </div>
+
+  <div style="flex: 1; min-width: 250px">
+    <dasar-input
+      label="Built-in decimal mask"
+      placeholder="1234.56"
+      mask="decimal"
+      [(ngModel)]="weight"
+      full-width
+    ></dasar-input>
+    <p style="margin: 8px 0 0; font-size: 13px">
+      Bound value: <strong>{{ weight }}</strong>
+    </p>
+  </div>
+</div>

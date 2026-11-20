@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -17,98 +18,44 @@ import { RadioGroupLayoutExample } from './examples/group-layout/radio-group-lay
 import { RadioGroupValueFieldExample } from './examples/group-value-field/radio-group-value-field.example';
 import { RadioAdvancedThemeExample } from './examples/advanced-theme/radio-advanced-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/radio-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/radio-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/basic/radio-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/basic/radio-basic.example.ts');
 
-// @ts-ignore
-import appearanceHtml from './examples/appearance/radio-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/radio-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/appearance/radio-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/appearance/radio-appearance.example.ts');
 
-// @ts-ignore
-import sizeHtml from './examples/size/radio-size.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizeTs from './examples/size/radio-size.example.ts' with { loader: 'text' };
+const sizeHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/size/radio-size.example.html');
+const sizeTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/size/radio-size.example.ts');
 
-// @ts-ignore
-import updateHtml from './examples/update/radio-update.example.html' with { loader: 'text' };
-// @ts-ignore
-import updateTs from './examples/update/radio-update.example.ts' with { loader: 'text' };
+const updateHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/update/radio-update.example.html');
+const updateTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/update/radio-update.example.ts');
 
-// @ts-ignore
-import labelHintHtml from './examples/label-hint/radio-label-hint.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import labelHintTs from './examples/label-hint/radio-label-hint.example.ts' with {
-  loader: 'text',
-};
+const labelHintHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/label-hint/radio-label-hint.example.html');
+const labelHintTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/label-hint/radio-label-hint.example.ts');
 
-// @ts-ignore
-import errorHtml from './examples/error/radio-error.example.html' with { loader: 'text' };
-// @ts-ignore
-import errorTs from './examples/error/radio-error.example.ts' with { loader: 'text' };
+const errorHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/error/radio-error.example.html');
+const errorTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/error/radio-error.example.ts');
 
-// @ts-ignore
-import disabledHtml from './examples/disabled/radio-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/radio-disabled.example.ts' with { loader: 'text' };
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/disabled/radio-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/disabled/radio-disabled.example.ts');
 
-// @ts-ignore
-import reactiveHtml from './examples/reactive/radio-reactive.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import reactiveTs from './examples/reactive/radio-reactive.example.ts' with { loader: 'text' };
+const reactiveHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/reactive/radio-reactive.example.html');
+const reactiveTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/reactive/radio-reactive.example.ts');
 
-// @ts-ignore
-import groupHtml from './examples/group/radio-group.example.html' with { loader: 'text' };
-// @ts-ignore
-import groupTs from './examples/group/radio-group.example.ts' with { loader: 'text' };
+const groupHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/group/radio-group.example.html');
+const groupTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/group/radio-group.example.ts');
 
-// @ts-ignore
-import groupAppearanceHtml from './examples/group-appearance/radio-group-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import groupAppearanceTs from './examples/group-appearance/radio-group-appearance.example.ts' with {
-  loader: 'text',
-};
+const groupAppearanceHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/group-appearance/radio-group-appearance.example.html');
+const groupAppearanceTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/group-appearance/radio-group-appearance.example.ts');
 
-// @ts-ignore
-import groupLayoutHtml from './examples/group-layout/radio-group-layout.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import groupLayoutTs from './examples/group-layout/radio-group-layout.example.ts' with {
-  loader: 'text',
-};
+const groupLayoutHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/group-layout/radio-group-layout.example.html');
+const groupLayoutTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/group-layout/radio-group-layout.example.ts');
 
-// @ts-ignore
-import groupValueFieldHtml from './examples/group-value-field/radio-group-value-field.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import groupValueFieldTs from './examples/group-value-field/radio-group-value-field.example.ts' with {
-  loader: 'text',
-};
+const groupValueFieldHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/group-value-field/radio-group-value-field.example.html');
+const groupValueFieldTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/group-value-field/radio-group-value-field.example.ts');
 
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/radio-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/radio-advanced-theme.example.ts' with {
-  loader: 'text',
-};
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/radio/examples/advanced-theme/radio-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/radio/examples/advanced-theme/radio-advanced-theme.example.ts');
 
 @Component({
   imports: [

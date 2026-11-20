@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -14,65 +15,35 @@ import { SkeletonFullWidthExample } from './examples/full-width/skeleton-full-wi
 import { SkeletonCardPatternExample } from './examples/card-pattern/skeleton-card-pattern.example';
 import { SkeletonThemeExample } from './examples/theme/skeleton-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/skeleton-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/skeleton-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/basic/skeleton-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/basic/skeleton-basic.example.ts');
 
-// @ts-ignore
-import typesHtml from './examples/types/skeleton-types.example.html' with { loader: 'text' };
-// @ts-ignore
-import typesTs from './examples/types/skeleton-types.example.ts' with { loader: 'text' };
+const typesHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/types/skeleton-types.example.html');
+const typesTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/types/skeleton-types.example.ts');
 
-// @ts-ignore
-import sizesHtml from './examples/sizes/skeleton-sizes.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizesTs from './examples/sizes/skeleton-sizes.example.ts' with { loader: 'text' };
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/sizes/skeleton-sizes.example.html');
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/sizes/skeleton-sizes.example.ts');
 
-// @ts-ignore
-import repeatHtml from './examples/repeat/skeleton-repeat.example.html' with { loader: 'text' };
-// @ts-ignore
-import repeatTs from './examples/repeat/skeleton-repeat.example.ts' with { loader: 'text' };
+const repeatHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/repeat/skeleton-repeat.example.html');
+const repeatTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/repeat/skeleton-repeat.example.ts');
 
-// @ts-ignore
-import circleHtml from './examples/circle/skeleton-circle.example.html' with { loader: 'text' };
-// @ts-ignore
-import circleTs from './examples/circle/skeleton-circle.example.ts' with { loader: 'text' };
+const circleHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/circle/skeleton-circle.example.html');
+const circleTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/circle/skeleton-circle.example.ts');
 
-// @ts-ignore
-import radiusHtml from './examples/radius/skeleton-radius.example.html' with { loader: 'text' };
-// @ts-ignore
-import radiusTs from './examples/radius/skeleton-radius.example.ts' with { loader: 'text' };
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/radius/skeleton-radius.example.html');
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/radius/skeleton-radius.example.ts');
 
-// @ts-ignore
-import animatedHtml from './examples/animated/skeleton-animated.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import animatedTs from './examples/animated/skeleton-animated.example.ts' with { loader: 'text' };
+const animatedHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/animated/skeleton-animated.example.html');
+const animatedTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/animated/skeleton-animated.example.ts');
 
-// @ts-ignore
-import fullWidthHtml from './examples/full-width/skeleton-full-width.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import fullWidthTs from './examples/full-width/skeleton-full-width.example.ts' with {
-  loader: 'text',
-};
+const fullWidthHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/full-width/skeleton-full-width.example.html');
+const fullWidthTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/full-width/skeleton-full-width.example.ts');
 
-// @ts-ignore
-import cardPatternHtml from './examples/card-pattern/skeleton-card-pattern.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import cardPatternTs from './examples/card-pattern/skeleton-card-pattern.example.ts' with {
-  loader: 'text',
-};
+const cardPatternHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/card-pattern/skeleton-card-pattern.example.html');
+const cardPatternTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/card-pattern/skeleton-card-pattern.example.ts');
 
-// @ts-ignore
-import themeHtml from './examples/theme/skeleton-theme.example.html' with { loader: 'text' };
-// @ts-ignore
-import themeTs from './examples/theme/skeleton-theme.example.ts' with { loader: 'text' };
+const themeHtml = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/theme/skeleton-theme.example.html');
+const themeTs = getDocsContent('projects/documentation/src/app/pages/skeleton/examples/theme/skeleton-theme.example.ts');
 
 @Component({
   imports: [

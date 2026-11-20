@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -17,96 +18,44 @@ import { SwitchContentSlotsExample } from './examples/content-slots/switch-conte
 import { SwitchIconSlotsExample } from './examples/icon-slots/switch-icon-slots.example';
 import { SwitchThemeExample } from './examples/theme/switch-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/switch-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/switch-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/basic/switch-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/basic/switch-basic.example.ts');
 
-// @ts-ignore
-import appearanceHtml from './examples/appearance/switch-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/switch-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/appearance/switch-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/appearance/switch-appearance.example.ts');
 
-// @ts-ignore
-import sizeHtml from './examples/size/switch-size.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizeTs from './examples/size/switch-size.example.ts' with { loader: 'text' };
+const sizeHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/size/switch-size.example.html');
+const sizeTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/size/switch-size.example.ts');
 
-// @ts-ignore
-import disabledHtml from './examples/disabled/switch-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/switch-disabled.example.ts' with { loader: 'text' };
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/disabled/switch-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/disabled/switch-disabled.example.ts');
 
-// @ts-ignore
-import errorHtml from './examples/error/switch-error.example.html' with { loader: 'text' };
-// @ts-ignore
-import errorTs from './examples/error/switch-error.example.ts' with { loader: 'text' };
+const errorHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/error/switch-error.example.html');
+const errorTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/error/switch-error.example.ts');
 
-// @ts-ignore
-import customValuesHtml from './examples/custom-values/switch-custom-values.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customValuesTs from './examples/custom-values/switch-custom-values.example.ts' with {
-  loader: 'text',
-};
+const customValuesHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/custom-values/switch-custom-values.example.html');
+const customValuesTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/custom-values/switch-custom-values.example.ts');
 
-// @ts-ignore
-import defaultValueHtml from './examples/default-value/switch-default-value.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import defaultValueTs from './examples/default-value/switch-default-value.example.ts' with {
-  loader: 'text',
-};
+const defaultValueHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/default-value/switch-default-value.example.html');
+const defaultValueTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/default-value/switch-default-value.example.ts');
 
-// @ts-ignore
-import ngModelHtml from './examples/ng-model/switch-ng-model.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import ngModelTs from './examples/ng-model/switch-ng-model.example.ts' with { loader: 'text' };
+const ngModelHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/ng-model/switch-ng-model.example.html');
+const ngModelTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/ng-model/switch-ng-model.example.ts');
 
-// @ts-ignore
-import reactiveHtml from './examples/reactive/switch-reactive.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import reactiveTs from './examples/reactive/switch-reactive.example.ts' with { loader: 'text' };
+const reactiveHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/reactive/switch-reactive.example.html');
+const reactiveTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/reactive/switch-reactive.example.ts');
 
-// @ts-ignore
-import iconsHtml from './examples/icons/switch-icons.example.html' with { loader: 'text' };
-// @ts-ignore
-import iconsTs from './examples/icons/switch-icons.example.ts' with { loader: 'text' };
+const iconsHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/icons/switch-icons.example.html');
+const iconsTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/icons/switch-icons.example.ts');
 
-// @ts-ignore
-import contentSlotsHtml from './examples/content-slots/switch-content-slots.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import contentSlotsTs from './examples/content-slots/switch-content-slots.example.ts' with {
-  loader: 'text',
-};
+const contentSlotsHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/content-slots/switch-content-slots.example.html');
+const contentSlotsTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/content-slots/switch-content-slots.example.ts');
 
-// @ts-ignore
-import iconSlotsHtml from './examples/icon-slots/switch-icon-slots.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import iconSlotsTs from './examples/icon-slots/switch-icon-slots.example.ts' with {
-  loader: 'text',
-};
+const iconSlotsHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/icon-slots/switch-icon-slots.example.html');
+const iconSlotsTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/icon-slots/switch-icon-slots.example.ts');
 
-// @ts-ignore
-import themeHtml from './examples/theme/switch-theme.example.html' with { loader: 'text' };
-// @ts-ignore
-import themeTs from './examples/theme/switch-theme.example.ts' with { loader: 'text' };
+const themeHtml = getDocsContent('projects/documentation/src/app/pages/switch/examples/theme/switch-theme.example.html');
+const themeTs = getDocsContent('projects/documentation/src/app/pages/switch/examples/theme/switch-theme.example.ts');
 
 @Component({
   imports: [

@@ -1,9 +1,9 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { DocsLayoutComponent } from '../../layouts/doc.layout';
 import { DocMarkdownComponent } from '../../components/doc-markdown.component';
 
-// @ts-ignore
-import source from '../../../../../../CHANGELOG.md' with { loader: 'text' };
+const source = getDocsContent('CHANGELOG.md');
 
 @Component({
   imports: [DocsLayoutComponent, DocMarkdownComponent],

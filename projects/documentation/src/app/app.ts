@@ -1,3 +1,4 @@
+import { getDocsContent } from './docs-content.generated';
 import {
   DasarThemeProviderComponent,
   DasarBreakpointService,
@@ -26,8 +27,7 @@ interface HeaderAction {
   textOnDesktop?: boolean;
 }
 
-// @ts-ignore
-import packageJson from '../../../../projects/dasar-ui/package.json' with { loader: 'text' };
+const packageJson = getDocsContent('projects/dasar-ui/package.json');
 
 @Component({
   imports: [

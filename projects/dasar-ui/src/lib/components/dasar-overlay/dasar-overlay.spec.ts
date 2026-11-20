@@ -109,4 +109,8 @@ describe('DasarOverlay interactions', () => {
 
     expect(emitted).toBe(false);
   });
+
+  it('defaults the z-index to 1000', () => {
+    expect(TestBed.createComponent(DasarOverlay).componentInstance.zIndex).toBe(1000);
+  });
 });

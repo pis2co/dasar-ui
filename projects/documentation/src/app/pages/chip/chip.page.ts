@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { DocsLayoutComponent, DocNavGroup, DocApiProperty } from '../../layouts/doc.layout';
 import { DocExampleComponent } from '../../components/doc-example.component';
 import { CommonModule } from '@angular/common';
@@ -10,31 +11,29 @@ import { ChipSizesExample } from './examples/sizes/chip-sizes.example';
 import { ChipMoreExample } from './examples/more/chip-more.example';
 
 // @ts-ignore - raw example
-import variantHtml from './examples/variant/chip-variant.example.html' with { loader: 'text' };
+const variantHtml = getDocsContent('projects/documentation/src/app/pages/chip/examples/variant/chip-variant.example.html');
 // @ts-ignore - raw example
-import variantTs from './examples/variant/chip-variant.example.ts' with { loader: 'text' };
+const variantTs = getDocsContent('projects/documentation/src/app/pages/chip/examples/variant/chip-variant.example.ts');
 
 // @ts-ignore - raw example
-import appearanceHtml from './examples/appearance/chip-appearance.example.html' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/chip/examples/appearance/chip-appearance.example.html');
 // @ts-ignore - raw example
-import appearanceTs from './examples/appearance/chip-appearance.example.ts' with { loader: 'text' };
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/chip/examples/appearance/chip-appearance.example.ts');
 
 // @ts-ignore - raw example
-import radiusHtml from './examples/radius/chip-radius.example.html' with { loader: 'text' };
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/chip/examples/radius/chip-radius.example.html');
 // @ts-ignore - raw example
-import radiusTs from './examples/radius/chip-radius.example.ts' with { loader: 'text' };
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/chip/examples/radius/chip-radius.example.ts');
 
 // @ts-ignore - raw example
-import sizesHtml from './examples/sizes/chip-sizes.example.html' with { loader: 'text' };
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/chip/examples/sizes/chip-sizes.example.html');
 // @ts-ignore - raw example
-import sizesTs from './examples/sizes/chip-sizes.example.ts' with { loader: 'text' };
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/chip/examples/sizes/chip-sizes.example.ts');
 
 // @ts-ignore - raw example
-import moreHtml from './examples/more/chip-more.example.html' with { loader: 'text' };
+const moreHtml = getDocsContent('projects/documentation/src/app/pages/chip/examples/more/chip-more.example.html');
 // @ts-ignore - raw example
-import moreTs from './examples/more/chip-more.example.ts' with { loader: 'text' };
+const moreTs = getDocsContent('projects/documentation/src/app/pages/chip/examples/more/chip-more.example.ts');
 
 @Component({
   imports: [

@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -18,103 +19,47 @@ import { PaginationSummaryExample } from './examples/summary/pagination-summary.
 import { PaginationDisabledExample } from './examples/disabled/pagination-disabled.example';
 import { PaginationThemeExample } from './examples/theme/pagination-theme.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/pagination-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/pagination-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/basic/pagination-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/basic/pagination-basic.example.ts');
 
-// @ts-ignore
-import pageSlotHtml from './examples/page-slot/pagination-page-slot.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import pageSlotTs from './examples/page-slot/pagination-page-slot.example.ts' with {
-  loader: 'text',
-};
+const pageSlotHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/page-slot/pagination-page-slot.example.html');
+const pageSlotTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/page-slot/pagination-page-slot.example.ts');
 
-// @ts-ignore
-import sizePickerHtml from './examples/size-picker/pagination-size-picker.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import sizePickerTs from './examples/size-picker/pagination-size-picker.example.ts' with {
-  loader: 'text',
-};
+const sizePickerHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/size-picker/pagination-size-picker.example.html');
+const sizePickerTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/size-picker/pagination-size-picker.example.ts');
 
-// @ts-ignore
-import ellipsisDropdownHtml from './examples/ellipsis-dropdown/pagination-ellipsis-dropdown.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import ellipsisDropdownTs from './examples/ellipsis-dropdown/pagination-ellipsis-dropdown.example.ts' with {
-  loader: 'text',
-};
+const ellipsisDropdownHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/ellipsis-dropdown/pagination-ellipsis-dropdown.example.html');
+const ellipsisDropdownTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/ellipsis-dropdown/pagination-ellipsis-dropdown.example.ts');
 
-// @ts-ignore
-import displayOrderHtml from './examples/display-order/pagination-display-order.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import displayOrderTs from './examples/display-order/pagination-display-order.example.ts' with {
-  loader: 'text',
-};
+const displayOrderHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/display-order/pagination-display-order.example.html');
+const displayOrderTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/display-order/pagination-display-order.example.ts');
 
-// @ts-ignore
-import sizesHtml from './examples/sizes/pagination-sizes.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizesTs from './examples/sizes/pagination-sizes.example.ts' with { loader: 'text' };
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/sizes/pagination-sizes.example.html');
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/sizes/pagination-sizes.example.ts');
 
-// @ts-ignore
-import appearanceHtml from './examples/appearance/pagination-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/pagination-appearance.example.ts' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/appearance/pagination-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/appearance/pagination-appearance.example.ts');
 
-// @ts-ignore
-import radiusHtml from './examples/radius/pagination-radius.example.html' with { loader: 'text' };
-// @ts-ignore
-import radiusTs from './examples/radius/pagination-radius.example.ts' with { loader: 'text' };
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/radius/pagination-radius.example.html');
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/radius/pagination-radius.example.ts');
 
-// @ts-ignore
-import spacingFluidHtml from './examples/spacing-fluid/pagination-spacing-fluid.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import spacingFluidTs from './examples/spacing-fluid/pagination-spacing-fluid.example.ts' with {
-  loader: 'text',
-};
+const spacingFluidHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/spacing-fluid/pagination-spacing-fluid.example.html');
+const spacingFluidTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/spacing-fluid/pagination-spacing-fluid.example.ts');
 
-// @ts-ignore
-import iconsHtml from './examples/icons/pagination-icons.example.html' with { loader: 'text' };
-// @ts-ignore
-import iconsTs from './examples/icons/pagination-icons.example.ts' with { loader: 'text' };
+const iconsHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/icons/pagination-icons.example.html');
+const iconsTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/icons/pagination-icons.example.ts');
 
-// @ts-ignore
-import slotsHtml from './examples/slots/pagination-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/pagination-slots.example.ts' with { loader: 'text' };
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/slots/pagination-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/slots/pagination-slots.example.ts');
 
-// @ts-ignore
-import summaryHtml from './examples/summary/pagination-summary.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import summaryTs from './examples/summary/pagination-summary.example.ts' with { loader: 'text' };
+const summaryHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/summary/pagination-summary.example.html');
+const summaryTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/summary/pagination-summary.example.ts');
 
-// @ts-ignore
-import disabledHtml from './examples/disabled/pagination-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/pagination-disabled.example.ts' with { loader: 'text' };
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/disabled/pagination-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/disabled/pagination-disabled.example.ts');
 
-// @ts-ignore
-import themeHtml from './examples/theme/pagination-theme.example.html' with { loader: 'text' };
-// @ts-ignore
-import themeTs from './examples/theme/pagination-theme.example.ts' with { loader: 'text' };
+const themeHtml = getDocsContent('projects/documentation/src/app/pages/pagination/examples/theme/pagination-theme.example.html');
+const themeTs = getDocsContent('projects/documentation/src/app/pages/pagination/examples/theme/pagination-theme.example.ts');
 
 @Component({
   imports: [

@@ -52,4 +52,15 @@
   >
     <app-number-input-slots-example></app-number-input-slots-example>
   </doc-example-component>
+
+  <doc-example-component
+    [codes]="[
+      { label: 'HTML', lang: 'html', value: decimalHtml },
+      { label: 'TypeScript', lang: 'typescript', value: decimalTs },
+    ]"
+    title="Decimal Values"
+    description="Use a fractional step such as 0.01, 0.1 or 0.005 to enter and step through decimal values."
+  >
+    <app-number-input-decimal-example />
+  </doc-example-component>
 </docs-layout>

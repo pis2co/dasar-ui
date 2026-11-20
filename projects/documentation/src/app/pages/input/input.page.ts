@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -9,35 +10,25 @@ import { InputMaskExample } from './examples/mask/input-mask.example';
 import { InputStatesExample } from './examples/states/input-states.example';
 import { InputSlotsExample } from './examples/slots/input-slots.example';
 import { InputMoreExample } from './examples/more/input-more.example';
+import { InputDecimalExample } from './examples/decimal/input-decimal.example';
+import { InputDecimalCursorExample } from './examples/decimal-cursor/input-decimal-cursor.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/input-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/input-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/input-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/input-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import maskHtml from './examples/mask/input-mask.example.html' with { loader: 'text' };
-// @ts-ignore
-import maskTs from './examples/mask/input-mask.example.ts' with { loader: 'text' };
-// @ts-ignore
-import statesHtml from './examples/states/input-states.example.html' with { loader: 'text' };
-// @ts-ignore
-import statesTs from './examples/states/input-states.example.ts' with { loader: 'text' };
-// @ts-ignore
-import slotsHtml from './examples/slots/input-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/input-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import searchHtml from './examples/more/input-more.example.html' with { loader: 'text' };
-// @ts-ignore
-import searchTs from './examples/more/input-more.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/basic/input-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/input/examples/basic/input-basic.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/appearance/input-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/input/examples/appearance/input-appearance.example.ts');
+const maskHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/mask/input-mask.example.html');
+const maskTs = getDocsContent('projects/documentation/src/app/pages/input/examples/mask/input-mask.example.ts');
+const statesHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/states/input-states.example.html');
+const statesTs = getDocsContent('projects/documentation/src/app/pages/input/examples/states/input-states.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/slots/input-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/input/examples/slots/input-slots.example.ts');
+const searchHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/more/input-more.example.html');
+const searchTs = getDocsContent('projects/documentation/src/app/pages/input/examples/more/input-more.example.ts');
+const decimalHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/decimal/input-decimal.example.html');
+const decimalTs = getDocsContent('projects/documentation/src/app/pages/input/examples/decimal/input-decimal.example.ts');
+const decimalCursorHtml = getDocsContent('projects/documentation/src/app/pages/input/examples/decimal-cursor/input-decimal-cursor.example.html');
+const decimalCursorTs = getDocsContent('projects/documentation/src/app/pages/input/examples/decimal-cursor/input-decimal-cursor.example.ts');
 
 @Component({
   imports: [
@@ -50,6 +41,8 @@ import searchTs from './examples/more/input-more.example.ts' with { loader: 'tex
     InputStatesExample,
     InputSlotsExample,
     InputMoreExample,
+    InputDecimalExample,
+    InputDecimalCursorExample,
   ],
   templateUrl: './input.page.html',
   selector: 'app-input-page',
@@ -68,6 +61,10 @@ export class InputDocPage {
   protected slotsTs = slotsTs;
   protected searchHtml = searchHtml;
   protected searchTs = searchTs;
+  protected decimalHtml = decimalHtml;
+  protected decimalTs = decimalTs;
+  protected decimalCursorHtml = decimalCursorHtml;
+  protected decimalCursorTs = decimalCursorTs;
   protected readonly apiProps: DocApiProperty[] = [
     {
       name: 'value',

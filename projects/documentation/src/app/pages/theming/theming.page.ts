@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -9,54 +10,21 @@ import { ThemingLightDarkExample } from './examples/light-dark/theming-light-dar
 import { ThemingGlobalThemeExample } from './examples/global-theme/theming-global-theme.example';
 import { ThemingCssOverrideExample } from './examples/css-override/theming-css-override.example';
 
-// @ts-ignore
-import customTokensHtml from './examples/custom-tokens/theming-custom-tokens.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customTokensTs from './examples/custom-tokens/theming-custom-tokens.example.ts' with {
-  loader: 'text',
-};
+const customTokensHtml = getDocsContent('projects/documentation/src/app/pages/theming/examples/custom-tokens/theming-custom-tokens.example.html');
+const customTokensTs = getDocsContent('projects/documentation/src/app/pages/theming/examples/custom-tokens/theming-custom-tokens.example.ts');
 
-// @ts-ignore
-import componentConfigHtml from './examples/component-config/theming-component-config.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import componentConfigTs from './examples/component-config/theming-component-config.example.ts' with {
-  loader: 'text',
-};
+const componentConfigHtml = getDocsContent('projects/documentation/src/app/pages/theming/examples/component-config/theming-component-config.example.html');
+const componentConfigTs = getDocsContent('projects/documentation/src/app/pages/theming/examples/component-config/theming-component-config.example.ts');
 
-// @ts-ignore
-import lightDarkHtml from './examples/light-dark/theming-light-dark.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import lightDarkTs from './examples/light-dark/theming-light-dark.example.ts' with {
-  loader: 'text',
-};
+const lightDarkHtml = getDocsContent('projects/documentation/src/app/pages/theming/examples/light-dark/theming-light-dark.example.html');
+const lightDarkTs = getDocsContent('projects/documentation/src/app/pages/theming/examples/light-dark/theming-light-dark.example.ts');
 
-// @ts-ignore
-import globalThemeHtml from './examples/global-theme/theming-global-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import globalThemeTs from './examples/global-theme/theming-global-theme.example.ts' with {
-  loader: 'text',
-};
+const globalThemeHtml = getDocsContent('projects/documentation/src/app/pages/theming/examples/global-theme/theming-global-theme.example.html');
+const globalThemeTs = getDocsContent('projects/documentation/src/app/pages/theming/examples/global-theme/theming-global-theme.example.ts');
 
-// @ts-ignore
-import cssOverrideHtml from './examples/css-override/theming-css-override.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import cssOverrideTs from './examples/css-override/theming-css-override.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import cssOverrideCss from './examples/css-override/theming-css-override.example.scss' with {
-  loader: 'text',
-};
+const cssOverrideHtml = getDocsContent('projects/documentation/src/app/pages/theming/examples/css-override/theming-css-override.example.html');
+const cssOverrideTs = getDocsContent('projects/documentation/src/app/pages/theming/examples/css-override/theming-css-override.example.ts');
+const cssOverrideCss = getDocsContent('projects/documentation/src/app/pages/theming/examples/css-override/theming-css-override.example.scss');
 
 @Component({
   imports: [

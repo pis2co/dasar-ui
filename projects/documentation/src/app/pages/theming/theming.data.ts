@@ -1167,7 +1167,7 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
     {
       name: 'zIndex',
       type: 'number',
-      defaultValue: '1000',
+      defaultValue: '1010',
       description: 'Stacking order.',
     },
     {
@@ -1281,7 +1281,7 @@ export const COMPONENT_CONFIG_DOCS: Record<string, DocApiProperty[]> = {
     {
       name: 'zIndex',
       type: 'number',
-      defaultValue: '-',
+      defaultValue: '1000',
       description: 'Stacking order of the overlay.',
     },
     {

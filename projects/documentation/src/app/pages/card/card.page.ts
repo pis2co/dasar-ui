@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -11,40 +12,20 @@ import { CardMediaExample } from './examples/media/card-media.example';
 import { CardRadiusExample } from './examples/radius/card-radius.example';
 import { CardCustomStyleExample } from './examples/custom-style/card-custom-style.example';
 
-// @ts-ignore
-import appearanceHtml from './examples/appearance/card-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/card-appearance.example.ts' with { loader: 'text' };
-// @ts-ignore
-import spacingHtml from './examples/spacing/card-spacing.example.html' with { loader: 'text' };
-// @ts-ignore
-import spacingTs from './examples/spacing/card-spacing.example.ts' with { loader: 'text' };
-// @ts-ignore
-import slotsHtml from './examples/slots/card-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/card-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import closableHtml from './examples/closable/card-closable.example.html' with { loader: 'text' };
-// @ts-ignore
-import closableTs from './examples/closable/card-closable.example.ts' with { loader: 'text' };
-// @ts-ignore
-import mediaHtml from './examples/media/card-media.example.html' with { loader: 'text' };
-// @ts-ignore
-import mediaTs from './examples/media/card-media.example.ts' with { loader: 'text' };
-// @ts-ignore
-import radiusHtml from './examples/radius/card-radius.example.html' with { loader: 'text' };
-// @ts-ignore
-import radiusTs from './examples/radius/card-radius.example.ts' with { loader: 'text' };
-// @ts-ignore
-import customStyleHtml from './examples/custom-style/card-custom-style.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customStyleTs from './examples/custom-style/card-custom-style.example.ts' with {
-  loader: 'text',
-};
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/card/examples/appearance/card-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/card/examples/appearance/card-appearance.example.ts');
+const spacingHtml = getDocsContent('projects/documentation/src/app/pages/card/examples/spacing/card-spacing.example.html');
+const spacingTs = getDocsContent('projects/documentation/src/app/pages/card/examples/spacing/card-spacing.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/card/examples/slots/card-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/card/examples/slots/card-slots.example.ts');
+const closableHtml = getDocsContent('projects/documentation/src/app/pages/card/examples/closable/card-closable.example.html');
+const closableTs = getDocsContent('projects/documentation/src/app/pages/card/examples/closable/card-closable.example.ts');
+const mediaHtml = getDocsContent('projects/documentation/src/app/pages/card/examples/media/card-media.example.html');
+const mediaTs = getDocsContent('projects/documentation/src/app/pages/card/examples/media/card-media.example.ts');
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/card/examples/radius/card-radius.example.html');
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/card/examples/radius/card-radius.example.ts');
+const customStyleHtml = getDocsContent('projects/documentation/src/app/pages/card/examples/custom-style/card-custom-style.example.html');
+const customStyleTs = getDocsContent('projects/documentation/src/app/pages/card/examples/custom-style/card-custom-style.example.ts');
 
 @Component({
   imports: [

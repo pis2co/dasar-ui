@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -9,32 +10,16 @@ import { SliderAppearanceExample } from './examples/appearance/slider-appearance
 import { SliderDisabledExample } from './examples/disabled/slider-disabled.example';
 import { SliderErrorExample } from './examples/error/slider-error.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/slider-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/slider-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import sizesHtml from './examples/sizes/slider-sizes.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizesTs from './examples/sizes/slider-sizes.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/slider-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/slider-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledHtml from './examples/disabled/slider-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/slider-disabled.example.ts' with { loader: 'text' };
-// @ts-ignore
-import errorHtml from './examples/error/slider-error.example.html' with { loader: 'text' };
-// @ts-ignore
-import errorTs from './examples/error/slider-error.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/slider/examples/basic/slider-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/slider/examples/basic/slider-basic.example.ts');
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/slider/examples/sizes/slider-sizes.example.html');
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/slider/examples/sizes/slider-sizes.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/slider/examples/appearance/slider-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/slider/examples/appearance/slider-appearance.example.ts');
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/slider/examples/disabled/slider-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/slider/examples/disabled/slider-disabled.example.ts');
+const errorHtml = getDocsContent('projects/documentation/src/app/pages/slider/examples/error/slider-error.example.html');
+const errorTs = getDocsContent('projects/documentation/src/app/pages/slider/examples/error/slider-error.example.ts');
 
 @Component({
   imports: [

@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DasarAlertComponent } from 'dasar-ui';
@@ -14,63 +15,30 @@ import { ModalScrollExample } from './examples/scroll/modal-scroll.example';
 import { ModalCloseBehaviorExample } from './examples/close-behavior/modal-close-behavior.example';
 import { ModalOverlayExample } from './examples/overlay/modal-overlay.example';
 import { ModalCustomStyleExample } from './examples/custom-style/modal-custom-style.example';
+import { ModalFormInputsExample } from './examples/form-inputs/modal-form-inputs.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/modal-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/modal-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import sizeHtml from './examples/size/modal-size.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizeTs from './examples/size/modal-size.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/modal-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/modal-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import radiusSpacingHtml from './examples/radius-spacing/modal-radius-spacing.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import radiusSpacingTs from './examples/radius-spacing/modal-radius-spacing.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import widthHtml from './examples/width/modal-width.example.html' with { loader: 'text' };
-// @ts-ignore
-import widthTs from './examples/width/modal-width.example.ts' with { loader: 'text' };
-// @ts-ignore
-import slotsHtml from './examples/slots/modal-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/modal-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import scrollHtml from './examples/scroll/modal-scroll.example.html' with { loader: 'text' };
-// @ts-ignore
-import scrollTs from './examples/scroll/modal-scroll.example.ts' with { loader: 'text' };
-// @ts-ignore
-import closeBehaviorHtml from './examples/close-behavior/modal-close-behavior.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import closeBehaviorTs from './examples/close-behavior/modal-close-behavior.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import overlayHtml from './examples/overlay/modal-overlay.example.html' with { loader: 'text' };
-// @ts-ignore
-import overlayTs from './examples/overlay/modal-overlay.example.ts' with { loader: 'text' };
-// @ts-ignore
-import customStyleHtml from './examples/custom-style/modal-custom-style.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customStyleTs from './examples/custom-style/modal-custom-style.example.ts' with {
-  loader: 'text',
-};
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/basic/modal-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/basic/modal-basic.example.ts');
+const sizeHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/size/modal-size.example.html');
+const sizeTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/size/modal-size.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/appearance/modal-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/appearance/modal-appearance.example.ts');
+const radiusSpacingHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/radius-spacing/modal-radius-spacing.example.html');
+const radiusSpacingTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/radius-spacing/modal-radius-spacing.example.ts');
+const widthHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/width/modal-width.example.html');
+const widthTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/width/modal-width.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/slots/modal-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/slots/modal-slots.example.ts');
+const scrollHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/scroll/modal-scroll.example.html');
+const scrollTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/scroll/modal-scroll.example.ts');
+const closeBehaviorHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/close-behavior/modal-close-behavior.example.html');
+const closeBehaviorTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/close-behavior/modal-close-behavior.example.ts');
+const overlayHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/overlay/modal-overlay.example.html');
+const overlayTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/overlay/modal-overlay.example.ts');
+const customStyleHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/custom-style/modal-custom-style.example.html');
+const customStyleTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/custom-style/modal-custom-style.example.ts');
+const formInputsHtml = getDocsContent('projects/documentation/src/app/pages/modal/examples/form-inputs/modal-form-inputs.example.html');
+const formInputsTs = getDocsContent('projects/documentation/src/app/pages/modal/examples/form-inputs/modal-form-inputs.example.ts');
 
 @Component({
   imports: [
@@ -88,6 +56,7 @@ import customStyleTs from './examples/custom-style/modal-custom-style.example.ts
     ModalCloseBehaviorExample,
     ModalOverlayExample,
     ModalCustomStyleExample,
+    ModalFormInputsExample,
   ],
   templateUrl: './modal.page.html',
   selector: 'app-modal-page',
@@ -123,6 +92,9 @@ export class ModalDocPage {
 
   protected customStyleHtml = customStyleHtml;
   protected customStyleTs = customStyleTs;
+
+  public formInputsHtml = formInputsHtml;
+  public formInputsTs = formInputsTs;
 
   protected readonly apiProps: DocApiProperty[] = [
     {

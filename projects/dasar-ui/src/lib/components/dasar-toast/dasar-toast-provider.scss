@@ -10,7 +10,7 @@ dasar-toast-provider {
   --dasar-toast-pad: 0px;
 
   position: fixed;
-  z-index: var(--dasar-toast-z-index, 12100);
+  z-index: var(--dasar-toast-z-index, 1060);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   width: calc(var(--dasar-toast-width, 360px) + 2 * var(--dasar-toast-pad));

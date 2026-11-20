@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -14,69 +15,35 @@ import { CalendarRangeExample } from './examples/range/calendar-range.example';
 import { CalendarDisabledDatesExample } from './examples/disabled-dates/calendar-disabled-dates.example';
 import { CalendarComparisonExample } from './examples/comparison/calendar-comparison.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/calendar-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/calendar-basic.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/basic/calendar-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/basic/calendar-basic.example.ts');
 
-// @ts-ignore
-import dropdownHtml from './examples/dropdown/calendar-dropdown.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import dropdownTs from './examples/dropdown/calendar-dropdown.example.ts' with { loader: 'text' };
+const dropdownHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/dropdown/calendar-dropdown.example.html');
+const dropdownTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/dropdown/calendar-dropdown.example.ts');
 
-// @ts-ignore
-import rangeHtml from './examples/range/calendar-range.example.html' with { loader: 'text' };
-// @ts-ignore
-import rangeTs from './examples/range/calendar-range.example.ts' with { loader: 'text' };
+const rangeHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/range/calendar-range.example.html');
+const rangeTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/range/calendar-range.example.ts');
 
-// @ts-ignore
-import disabledDatesHtml from './examples/disabled-dates/calendar-disabled-dates.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledDatesTs from './examples/disabled-dates/calendar-disabled-dates.example.ts' with {
-  loader: 'text',
-};
+const disabledDatesHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/disabled-dates/calendar-disabled-dates.example.html');
+const disabledDatesTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/disabled-dates/calendar-disabled-dates.example.ts');
 
-// @ts-ignore
-import comparisonHtml from './examples/comparison/calendar-comparison.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import comparisonTs from './examples/comparison/calendar-comparison.example.ts' with {
-  loader: 'text',
-};
+const comparisonHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/comparison/calendar-comparison.example.html');
+const comparisonTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/comparison/calendar-comparison.example.ts');
 
-// @ts-ignore
-import localeHtml from './examples/locale/calendar-locale.example.html' with { loader: 'text' };
-// @ts-ignore
-import localeTs from './examples/locale/calendar-locale.example.ts' with { loader: 'text' };
+const localeHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/locale/calendar-locale.example.html');
+const localeTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/locale/calendar-locale.example.ts');
 
-// @ts-ignore
-import formatHtml from './examples/format/calendar-format.example.html' with { loader: 'text' };
-// @ts-ignore
-import formatTs from './examples/format/calendar-format.example.ts' with { loader: 'text' };
+const formatHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/format/calendar-format.example.html');
+const formatTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/format/calendar-format.example.ts');
 
-// @ts-ignore
-import headerHtml from './examples/custom-header/calendar-custom-header.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import headerTs from './examples/custom-header/calendar-custom-header.example.ts' with {
-  loader: 'text',
-};
+const headerHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/custom-header/calendar-custom-header.example.html');
+const headerTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/custom-header/calendar-custom-header.example.ts');
 
-// @ts-ignore
-import actionsHtml from './examples/actions/calendar-actions.example.html' with { loader: 'text' };
-// @ts-ignore
-import actionsTs from './examples/actions/calendar-actions.example.ts' with { loader: 'text' };
+const actionsHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/actions/calendar-actions.example.html');
+const actionsTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/actions/calendar-actions.example.ts');
 
-// @ts-ignore
-import stylesHtml from './examples/styles/calendar-styles.example.html' with { loader: 'text' };
-// @ts-ignore
-import stylesTs from './examples/styles/calendar-styles.example.ts' with { loader: 'text' };
+const stylesHtml = getDocsContent('projects/documentation/src/app/pages/calendar/examples/styles/calendar-styles.example.html');
+const stylesTs = getDocsContent('projects/documentation/src/app/pages/calendar/examples/styles/calendar-styles.example.ts');
 
 @Component({
   imports: [

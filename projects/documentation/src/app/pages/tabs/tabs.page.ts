@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -20,98 +21,38 @@ import { TabsScrollExample } from './examples/scroll/tabs-scroll.example';
 import { TabsScrollIconExample } from './examples/scroll-icon/tabs-scroll-icon.example';
 import { TabsScrollSlotExample } from './examples/scroll-slot/tabs-scroll-slot.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/tabs-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/tabs-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/tabs-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/tabs-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import sizeHtml from './examples/size/tabs-size.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizeTs from './examples/size/tabs-size.example.ts' with { loader: 'text' };
-// @ts-ignore
-import spacingHtml from './examples/spacing/tabs-spacing.example.html' with { loader: 'text' };
-// @ts-ignore
-import spacingTs from './examples/spacing/tabs-spacing.example.ts' with { loader: 'text' };
-// @ts-ignore
-import radiusHtml from './examples/radius/tabs-radius.example.html' with { loader: 'text' };
-// @ts-ignore
-import radiusTs from './examples/radius/tabs-radius.example.ts' with { loader: 'text' };
-// @ts-ignore
-import fluidHtml from './examples/fluid/tabs-fluid.example.html' with { loader: 'text' };
-// @ts-ignore
-import fluidTs from './examples/fluid/tabs-fluid.example.ts' with { loader: 'text' };
-// @ts-ignore
-import noBodyHtml from './examples/no-body/tabs-no-body.example.html' with { loader: 'text' };
-// @ts-ignore
-import noBodyTs from './examples/no-body/tabs-no-body.example.ts' with { loader: 'text' };
-// @ts-ignore
-import slotsHtml from './examples/slots/tabs-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/tabs-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import customStyleHtml from './examples/custom-style/tabs-custom-style.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customStyleTs from './examples/custom-style/tabs-custom-style.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import eventsHtml from './examples/events/tabs-events.example.html' with { loader: 'text' };
-// @ts-ignore
-import eventsTs from './examples/events/tabs-events.example.ts' with { loader: 'text' };
-// @ts-ignore
-import advancedDynamicHtml from './examples/advanced-dynamic/tabs-advanced-dynamic.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedDynamicTs from './examples/advanced-dynamic/tabs-advanced-dynamic.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedFormHtml from './examples/advanced-form/tabs-advanced-form.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedFormTs from './examples/advanced-form/tabs-advanced-form.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeHtml from './examples/advanced-theme/tabs-advanced-theme.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import advancedThemeTs from './examples/advanced-theme/tabs-advanced-theme.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import scrollHtml from './examples/scroll/tabs-scroll.example.html' with { loader: 'text' };
-// @ts-ignore
-import scrollTs from './examples/scroll/tabs-scroll.example.ts' with { loader: 'text' };
-// @ts-ignore
-import scrollIconHtml from './examples/scroll-icon/tabs-scroll-icon.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import scrollIconTs from './examples/scroll-icon/tabs-scroll-icon.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import scrollSlotHtml from './examples/scroll-slot/tabs-scroll-slot.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import scrollSlotTs from './examples/scroll-slot/tabs-scroll-slot.example.ts' with {
-  loader: 'text',
-};
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/basic/tabs-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/basic/tabs-basic.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/appearance/tabs-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/appearance/tabs-appearance.example.ts');
+const sizeHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/size/tabs-size.example.html');
+const sizeTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/size/tabs-size.example.ts');
+const spacingHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/spacing/tabs-spacing.example.html');
+const spacingTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/spacing/tabs-spacing.example.ts');
+const radiusHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/radius/tabs-radius.example.html');
+const radiusTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/radius/tabs-radius.example.ts');
+const fluidHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/fluid/tabs-fluid.example.html');
+const fluidTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/fluid/tabs-fluid.example.ts');
+const noBodyHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/no-body/tabs-no-body.example.html');
+const noBodyTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/no-body/tabs-no-body.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/slots/tabs-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/slots/tabs-slots.example.ts');
+const customStyleHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/custom-style/tabs-custom-style.example.html');
+const customStyleTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/custom-style/tabs-custom-style.example.ts');
+const eventsHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/events/tabs-events.example.html');
+const eventsTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/events/tabs-events.example.ts');
+const advancedDynamicHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/advanced-dynamic/tabs-advanced-dynamic.example.html');
+const advancedDynamicTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/advanced-dynamic/tabs-advanced-dynamic.example.ts');
+const advancedFormHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/advanced-form/tabs-advanced-form.example.html');
+const advancedFormTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/advanced-form/tabs-advanced-form.example.ts');
+const advancedThemeHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/advanced-theme/tabs-advanced-theme.example.html');
+const advancedThemeTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/advanced-theme/tabs-advanced-theme.example.ts');
+const scrollHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/scroll/tabs-scroll.example.html');
+const scrollTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/scroll/tabs-scroll.example.ts');
+const scrollIconHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/scroll-icon/tabs-scroll-icon.example.html');
+const scrollIconTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/scroll-icon/tabs-scroll-icon.example.ts');
+const scrollSlotHtml = getDocsContent('projects/documentation/src/app/pages/tabs/examples/scroll-slot/tabs-scroll-slot.example.html');
+const scrollSlotTs = getDocsContent('projects/documentation/src/app/pages/tabs/examples/scroll-slot/tabs-scroll-slot.example.ts');
 
 @Component({
   imports: [

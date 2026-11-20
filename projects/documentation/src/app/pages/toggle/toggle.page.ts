@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -9,32 +10,16 @@ import { ToggleVariantsExample } from './examples/variants/toggle-variants.examp
 import { ToggleSizesExample } from './examples/sizes/toggle-sizes.example';
 import { ToggleDisabledExample } from './examples/disabled/toggle-disabled.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/toggle-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/toggle-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import appearanceHtml from './examples/appearance/toggle-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/toggle-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import variantsHtml from './examples/variants/toggle-variants.example.html' with { loader: 'text' };
-// @ts-ignore
-import variantsTs from './examples/variants/toggle-variants.example.ts' with { loader: 'text' };
-// @ts-ignore
-import sizesHtml from './examples/sizes/toggle-sizes.example.html' with { loader: 'text' };
-// @ts-ignore
-import sizesTs from './examples/sizes/toggle-sizes.example.ts' with { loader: 'text' };
-// @ts-ignore
-import disabledHtml from './examples/disabled/toggle-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/toggle-disabled.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/toggle/examples/basic/toggle-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/toggle/examples/basic/toggle-basic.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/toggle/examples/appearance/toggle-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/toggle/examples/appearance/toggle-appearance.example.ts');
+const variantsHtml = getDocsContent('projects/documentation/src/app/pages/toggle/examples/variants/toggle-variants.example.html');
+const variantsTs = getDocsContent('projects/documentation/src/app/pages/toggle/examples/variants/toggle-variants.example.ts');
+const sizesHtml = getDocsContent('projects/documentation/src/app/pages/toggle/examples/sizes/toggle-sizes.example.html');
+const sizesTs = getDocsContent('projects/documentation/src/app/pages/toggle/examples/sizes/toggle-sizes.example.ts');
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/toggle/examples/disabled/toggle-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/toggle/examples/disabled/toggle-disabled.example.ts');
 
 @Component({
   imports: [

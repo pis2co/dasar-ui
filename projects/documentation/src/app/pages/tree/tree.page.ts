@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -15,58 +16,28 @@ import { TreeCustomIconsExample } from './examples/custom-icons/tree-custom-icon
 import { TreeSlotsExample } from './examples/slots/tree-slots.example';
 import { TreeNgModelExample } from './examples/ng-model/tree-ng-model.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/tree-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/tree-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import fileHtml from './examples/file/tree-file.example.html' with { loader: 'text' };
-// @ts-ignore
-import fileTs from './examples/file/tree-file.example.ts' with { loader: 'text' };
-// @ts-ignore
-import selectableHtml from './examples/selectable/tree-selectable.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import selectableTs from './examples/selectable/tree-selectable.example.ts' with { loader: 'text' };
-// @ts-ignore
-import multipleHtml from './examples/multiple/tree-multiple.example.html' with { loader: 'text' };
-// @ts-ignore
-import multipleTs from './examples/multiple/tree-multiple.example.ts' with { loader: 'text' };
-// @ts-ignore
-import spacingHtml from './examples/spacing/tree-spacing.example.html' with { loader: 'text' };
-// @ts-ignore
-import spacingTs from './examples/spacing/tree-spacing.example.ts' with { loader: 'text' };
-// @ts-ignore
-import showLineHtml from './examples/show-line/tree-show-line.example.html' with { loader: 'text' };
-// @ts-ignore
-import showLineTs from './examples/show-line/tree-show-line.example.ts' with { loader: 'text' };
-// @ts-ignore
-import searchHtml from './examples/search/tree-search.example.html' with { loader: 'text' };
-// @ts-ignore
-import searchTs from './examples/search/tree-search.example.ts' with { loader: 'text' };
-// @ts-ignore
-import draggableHtml from './examples/draggable/tree-draggable.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import draggableTs from './examples/draggable/tree-draggable.example.ts' with { loader: 'text' };
-// @ts-ignore
-import customIconsHtml from './examples/custom-icons/tree-custom-icons.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import customIconsTs from './examples/custom-icons/tree-custom-icons.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import slotsHtml from './examples/slots/tree-slots.example.html' with { loader: 'text' };
-// @ts-ignore
-import slotsTs from './examples/slots/tree-slots.example.ts' with { loader: 'text' };
-// @ts-ignore
-import ngModelHtml from './examples/ng-model/tree-ng-model.example.html' with { loader: 'text' };
-// @ts-ignore
-import ngModelTs from './examples/ng-model/tree-ng-model.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/basic/tree-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/basic/tree-basic.example.ts');
+const fileHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/file/tree-file.example.html');
+const fileTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/file/tree-file.example.ts');
+const selectableHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/selectable/tree-selectable.example.html');
+const selectableTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/selectable/tree-selectable.example.ts');
+const multipleHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/multiple/tree-multiple.example.html');
+const multipleTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/multiple/tree-multiple.example.ts');
+const spacingHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/spacing/tree-spacing.example.html');
+const spacingTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/spacing/tree-spacing.example.ts');
+const showLineHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/show-line/tree-show-line.example.html');
+const showLineTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/show-line/tree-show-line.example.ts');
+const searchHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/search/tree-search.example.html');
+const searchTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/search/tree-search.example.ts');
+const draggableHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/draggable/tree-draggable.example.html');
+const draggableTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/draggable/tree-draggable.example.ts');
+const customIconsHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/custom-icons/tree-custom-icons.example.html');
+const customIconsTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/custom-icons/tree-custom-icons.example.ts');
+const slotsHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/slots/tree-slots.example.html');
+const slotsTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/slots/tree-slots.example.ts');
+const ngModelHtml = getDocsContent('projects/documentation/src/app/pages/tree/examples/ng-model/tree-ng-model.example.html');
+const ngModelTs = getDocsContent('projects/documentation/src/app/pages/tree/examples/ng-model/tree-ng-model.example.ts');
 
 @Component({
   imports: [

@@ -1,3 +1,4 @@
+import { getDocsContent } from '../../docs-content.generated';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocsLayoutComponent, DocApiProperty } from '../../layouts/doc.layout';
@@ -9,36 +10,16 @@ import { TooltipAppearanceExample } from './examples/appearance/tooltip-appearan
 import { TooltipDelayExample } from './examples/delay/tooltip-delay.example';
 import { TooltipDisabledExample } from './examples/disabled/tooltip-disabled.example';
 
-// @ts-ignore
-import basicHtml from './examples/basic/tooltip-basic.example.html' with { loader: 'text' };
-// @ts-ignore
-import basicTs from './examples/basic/tooltip-basic.example.ts' with { loader: 'text' };
-// @ts-ignore
-import placementsHtml from './examples/placements/tooltip-placements.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import placementsTs from './examples/placements/tooltip-placements.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceHtml from './examples/appearance/tooltip-appearance.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import appearanceTs from './examples/appearance/tooltip-appearance.example.ts' with {
-  loader: 'text',
-};
-// @ts-ignore
-import delayHtml from './examples/delay/tooltip-delay.example.html' with { loader: 'text' };
-// @ts-ignore
-import delayTs from './examples/delay/tooltip-delay.example.ts' with { loader: 'text' };
-// @ts-ignore
-import disabledHtml from './examples/disabled/tooltip-disabled.example.html' with {
-  loader: 'text',
-};
-// @ts-ignore
-import disabledTs from './examples/disabled/tooltip-disabled.example.ts' with { loader: 'text' };
+const basicHtml = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/basic/tooltip-basic.example.html');
+const basicTs = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/basic/tooltip-basic.example.ts');
+const placementsHtml = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/placements/tooltip-placements.example.html');
+const placementsTs = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/placements/tooltip-placements.example.ts');
+const appearanceHtml = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/appearance/tooltip-appearance.example.html');
+const appearanceTs = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/appearance/tooltip-appearance.example.ts');
+const delayHtml = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/delay/tooltip-delay.example.html');
+const delayTs = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/delay/tooltip-delay.example.ts');
+const disabledHtml = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/disabled/tooltip-disabled.example.html');
+const disabledTs = getDocsContent('projects/documentation/src/app/pages/tooltip/examples/disabled/tooltip-disabled.example.ts');
 
 @Component({
   imports: [
