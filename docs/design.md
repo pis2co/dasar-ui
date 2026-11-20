@@ -123,6 +123,23 @@ Added across every component with an `appearance` input (button and its dependen
 
 Each component exposes its own override tokens following the existing naming convention, e.g. `--dasar-btn-elevated-shadow`, `--dasar-input-elevated-border`, `--dasar-select-elevated-focus-ring`.
 
+### Z-index stack
+
+Overlapping components stack as follows (lowest to highest). Each default can be overridden with the CSS variable or, for overlay/drawer, the `z-index` input or theme `overlay.zIndex` / `drawer.zIndex`.
+
+| # | Layer | Default | Override |
+|---|-------|---------|----------|
+| 1 | `dasar-overlay` | 1000 | `z-index` input, theme `overlay.zIndex` |
+| 2 | `dasar-drawer` | 1010 | `z-index` input, theme `drawer.zIndex` |
+| 3 | `dasar-modal` | 1020 | `--dasar-modal-z-index` |
+| 4 | `dasar-menu` panel | 1030 | `--dasar-menu-z-index` (theme `menu.panelZIndex`) |
+| 5 | `dasar-datepicker` popup | 1040 | `--dasar-datepicker-dropdown-z-index` |
+| 6 | `dasar-select` dropdown | 1050 | `--dasar-select-dropdown-z-index` |
+| 7 | `dasar-toast-provider` | 1060 | `--dasar-toast-z-index` |
+| 8 | `dasar-tooltip` | 1070 | `--dasar-tooltip-z-index` |
+
+Popups opened inside a modal (menu, datepicker, select, tooltip) render above it, and a tooltip renders above a toast.
+
 ## Shared vocabulary (for a design tool / token import)
 
 - **Size scale**: `xs, sm, md, lg, xl` (not all components use the full range — see table).

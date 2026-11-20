@@ -910,7 +910,7 @@ export const menuMap: Record<keyof DasarThemeMenu, string> = {
   panelRadius: '--dasar-menu-panel-radius',
   panelShadow: '--dasar-menu-panel-shadow',
   panelPadding: '--dasar-menu-panel-padding',
-  panelZIndex: '--dasar-menu-panel-z-index',
+  panelZIndex: '--dasar-menu-z-index',
   panelOffset: '--dasar-menu-panel-offset',
   itemGap: '--dasar-menu-item-gap',
   itemPaddingVertical: '--dasar-menu-item-padding-vertical',

@@ -448,4 +448,9 @@ describe('DasarDrawer appearance', () => {
     const drawer = fixture.debugElement.children[0].componentInstance as DasarDrawer;
     expect(drawer.appearance).toBe('elevated');
   });
+
+  it('defaults the z-index above the overlay default', () => {
+    const drawer = TestBed.createComponent(DasarDrawer);
+    expect(drawer.componentInstance.zIndex).toBe(1010);
+  });
 });
